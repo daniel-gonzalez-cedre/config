@@ -1,0 +1,77 @@
+https-strict: behind-the-scene false
+matrix-off: about-scheme true
+matrix-off: bankofamerica.com true
+matrix-off: behind-the-scene true
+matrix-off: chrome-extension-scheme true
+matrix-off: chrome-scheme true
+matrix-off: etsy.com true
+matrix-off: moz-extension-scheme true
+matrix-off: opera-scheme true
+matrix-off: paypal.com true
+matrix-off: vivaldi-scheme true
+matrix-off: w3toys.com true
+matrix-off: wyciwyg-scheme true
+noscript-spoof: * true
+referrer-spoof: * true
+referrer-spoof: behind-the-scene false
+* * * block
+* * css allow
+* * frame block
+* * image allow
+* 1st-party * allow
+* 1st-party frame allow
+4chan.org 4cdn.org * allow
+4chan.org s.4cdn.org * allow
+4channel.org 4cdn.org * allow
+4channel.org 4chan.org * allow
+4channel.org 4channel.org * allow
+4channel.org boards.4chan.org * allow
+4channel.org boards.4chan.org frame allow
+4channel.org boards.4channel.org * allow
+4channel.org cdnjs.cloudflare.com script allow
+4channel.org mathjax.org * allow
+4channel.org www.google.com frame allow
+4channel.org www.google.com script allow
+4channel.org www.google.com xhr allow
+4channel.org www.gstatic.com script allow
+amazon.com media-amazon.com * allow
+amazon.com ssl-images-amazon.com * allow
+bandcamp.com bcbits.com * allow
+carhartt-wip.com carhartt-wip-utilities-app.herokuapp.com * allow
+carhartt-wip.com findify.io * allow
+carhartt-wip.com jsdelivr.net * allow
+carhartt-wip.com netdna-ssl.com * allow
+carhartt-wip.com platform-api.sharethis.com * block
+carhartt-wip.com sharethis.com * block
+carhartt-wip.com shopify.com * allow
+carryology.com 1ehsc340rreh3g4z3o4dk7eu-wpengine.netdna-ssl.com script allow
+dsptch.com shopify.com * allow
+etsy.com etsystatic.com * allow
+farfetch.com farfetch-contents.com * allow
+fsu.edu maps.googleapis.com * allow
+github.com avatars2.githubusercontent.com * allow
+github.com github.githubassets.com * allow
+github.com githubassets.com * allow
+github.com raw.githubusercontent.com * allow
+github.com render.githubusercontent.com * allow
+github.com render.githubusercontent.com frame allow
+ovate.ca ajax.googleapis.com * allow
+ovate.ca shopify.com * allow
+pornhub.com phncdn.com * allow
+reddit.com redditmedia.com * allow
+reddit.com redditstatic.com * allow
+reddit.com v.redd.it * allow
+root-store.com cloudflare.com * allow
+rutracker.org static.t-ru.org * allow
+stackexchange.com cdnjs.cloudflare.com script allow
+techradar.com www.techradar.com script block
+tombihn.com shopify.com * allow
+topodesigns.com shopify.com * allow
+twitch.tv ttvnw.net * allow
+twitch.tv twitchcdn.net * allow
+twitch.tv twitchsvc.net * allow
+vimeo.com vimeocdn.com * allow
+xvideos.com xvideos-cdn.com * allow
+youjizz.com yjcontentdelivery.com * allow
+youtube.com googlevideo.com * allow
+youtube.com s.ytimg.com script allow

@@ -1,0 +1,8 @@
+# This is Git's per-user configuration file.
+# daniel-simon-gonzalez
+[user]
+    name = 高明俊
+    email = daniel.simon.gonzalez.descamps@gmail.com
+[core]
+    editor = vim
+	excludesfile = /Users/akira/.gitignore_global
