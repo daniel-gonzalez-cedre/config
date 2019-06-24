@@ -2,7 +2,8 @@
 PS1='\[\e[02m\]\w\[\e[m\] \[\e[33m\]λ\[\e[m\] '
 
 export TERM=xterm-256color
-# export PATH=/usr/local/bin/:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export LD_LIBRARY_PATH=/Users/akira/Downloads/osm-bundler/software/bundler/bin:$LD_LIBRARY_PATH
 # export CPATH=/usr/local/bin/opencv4/
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
@@ -16,6 +17,10 @@ alias matlab="/Applications/MATLAB_R2019a.app/bin/matlab -nodesktop"
 alias mpv="open -a /Applications/mpv.app/"
 alias python="python3"
 alias tree="tree -C -N"
+
+preview(){
+    qlmanage -p "$1"
+}
 
 clean(){
     rm -i .DS_Store *.aux *.fdb_latexmk *.fls *.log *.out
