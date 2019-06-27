@@ -2,8 +2,8 @@
 PS1='\[\e[02m\]\w\[\e[m\] \[\e[33m\]λ\[\e[m\] '
 
 export TERM=xterm-256color
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-export LD_LIBRARY_PATH=/Users/akira/Downloads/osm-bundler/software/bundler/bin:$LD_LIBRARY_PATH
+export PATH=/usr/local/Cellar:/usr/local/bin:/usr/local/sbin:$PATH
+# export LD_LIBRARY_PATH=/Users/akira/Downloads/osm-bundler/software/bundler/bin:$LD_LIBRARY_PATH
 # export CPATH=/usr/local/bin/opencv4/
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'     #   config config --local status.showUntrackedFiles no
