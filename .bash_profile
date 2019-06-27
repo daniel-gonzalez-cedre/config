@@ -3,11 +3,13 @@ PS1='\[\e[02m\]\w\[\e[m\] \[\e[33m\]λ\[\e[m\] '
 
 export TERM=xterm-256color
 export PATH=/usr/local/Cellar:/usr/local/bin:/usr/local/sbin:$PATH
-# export LD_LIBRARY_PATH=/Users/akira/Downloads/osm-bundler/software/bundler/bin:$LD_LIBRARY_PATH
+export LIBRARY_PATH=/usr/local/Cellar/opencv/4.1.0_2/lib:$LIBRARY_PATH
+export LD_LIBRARY_PATH=/Users/akira/Downloads/osm-bundler/software/bundler/bin:$LD_LIBRARY_PATH
 # export CPATH=/usr/local/bin/opencv4/
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'     #   config config --local status.showUntrackedFiles no
 alias g++="g++ -std=c++11"
+alias gopencv="g++ \$(pkg-config --cflags --libs opencv4) -std=c++11"
 alias ghc="ghc -no-keep-hi-files -no-keep-o-files"
 alias haskell="runhaskell"
 alias latexmk="latexmk -pdf -pvc"
