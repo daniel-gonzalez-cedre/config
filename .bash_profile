@@ -19,6 +19,19 @@ alias mpv="open -a /Applications/mpv.app/"
 # alias python="python3"
 alias tree="tree -C -N"
 
+update(){
+    read -p "Are you sure? " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+        if [ -d "./.cfg" ]; then
+            config fetch --all && config reset --hard origin/master
+        else
+            git fetch --all && git reset --hard origin/master
+        fi
+    fi
+}
+
 preview(){
     qlmanage -p "$1"
 }
