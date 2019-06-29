@@ -37,10 +37,12 @@ vnoremap { <C-c>`>a}<C-c>`<i{<C-c>
 vnoremap $ <C-c>`>a$<C-c>`<i$<C-c>
 vnoremap " <C-c>`>a"<C-c>`<i"<C-c>
 vnoremap ' <C-c>`>a'<C-c>`<i'<C-c>
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+if has('clipboard')
+    vnoremap y "+y
+    noremap x "+x
+    noremap d "+d
+    noremap p "+p
+endif
 function ClosePair(char)
 	if getline('.')[col('.') - 1] == a:char
 		return "\<Right>"

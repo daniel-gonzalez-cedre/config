@@ -3,7 +3,7 @@ PS1='\[\e[02m\]\w\[\e[m\] \[\e[33m\]λ\[\e[m\] '
 
 export TERM=xterm-256color
 export PATH=/usr/local/Cellar:/usr/local/bin:/usr/local/sbin:$PATH
-export LIBRARY_PATH=/usr/local/Cellar/opencv/4.1.0_2/lib:$LIBRARY_PATH
+export LIBRARY_PATH=/usr/local/lib:/usr/local/lib/opencv4/3rdparty:/usr/local/Cellar/opencv/4.1.0_2/lib:$LIBRARY_PATH
 export LD_LIBRARY_PATH=/Users/akira/Downloads/osm-bundler/software/bundler/bin:$LD_LIBRARY_PATH
 # export CPATH=/usr/local/bin/opencv4/
 
