@@ -121,12 +121,12 @@ fi
 PS1='\[\e[02m\]\w\[\e[m\] \[\e[30m\]λ\[\e[m\] '
 export TERM=xterm-256color
 # export PATH=$PATH
-# export LIBRARY_PATH=/usr/local/lib:/usr/local/lib/opencv4/3rdparty:/usr/local/Cellar/opencv/4.1.0_2/lib:$LIBRARY_PATH
+# export LD_LIBRARY_PATH=/usr/include/eigen3/Eigen:/usr/local/lib:/usr/local/lib/opencv4/3rdparty:$LD_LIBRARY_PATH
 # export LD_LIBRARY_PATH=$LD_LIBRARY_PATH
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'     #   config config --local status.showUntrackedFiles no
 alias g++="g++ -std=c++11"
-alias g++cv="g++ \$(pkg-config --cflags --libs opencv4) -std=c++11"
+alias cv++="g++ \$(pkg-config --cflags --libs opencv) -std=c++11"
 alias ghc="ghc -no-keep-hi-files -no-keep-o-files"
 alias haskell="runhaskell"
 alias latexmk="latexmk -pdf -pvc"
