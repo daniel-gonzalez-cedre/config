@@ -9,7 +9,6 @@ export LD_LIBRARY_PATH=/Users/akira/Downloads/osm-bundler/software/bundler/bin:$
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'     #   config config --local status.showUntrackedFiles no
 alias g++="g++ -std=c++11"
-alias cv++="g++ \$(pkg-config --cflags --libs opencv4) -std=c++11"
 alias ghc="ghc -no-keep-hi-files -no-keep-o-files"
 alias haskell="runhaskell"
 alias latexmk="latexmk -pdf -pvc"
