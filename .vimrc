@@ -39,7 +39,9 @@ vnoremap " <C-c>`>a"<C-c>`<i"<C-c>
 vnoremap ' <C-c>`>a'<C-c>`<i'<C-c>
 if has('clipboard')
     vnoremap y "+y
+    vnoremap Y "+y
     noremap x "+x
+    noremap X "+x
     noremap d "+d
     noremap p "+p
 endif

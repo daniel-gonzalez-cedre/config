@@ -2,8 +2,8 @@
 # daniel-simon-gonzalez
 [user]
     name = 高明俊
-    user = daniel-simon-gonzalez
     email = daniel.simon.gonzalez.descamps@gmail.com
+    username = daniel-simon-gonzalez
 [core]
     editor = vim
 	excludesfile = /Users/akira/.gitignore_global
