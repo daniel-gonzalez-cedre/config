@@ -19,6 +19,10 @@ alias mpv="open -a /Applications/mpv.app/"
 # alias python="python3"
 alias tree="tree -C -N"
 
+cv(){
+    g++ -std=c++11 $1 $(pkg-config --cflags --libs opencv4);
+}
+
 update(){
     read -p "Are you sure? " -n 1 -r
     echo
@@ -72,8 +76,7 @@ decrypt_email(){
     openssl enc -d -aes-256-cbc -a -in "$1" > "$2"
 }
 
-# weather function takes one parameter: the city desired
-weather() {
+weather(){
     curl wttr.in/$1
 }
 

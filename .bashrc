@@ -126,7 +126,6 @@ export TERM=xterm-256color
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'     #   config config --local status.showUntrackedFiles no
 alias g++="g++ -std=c++11"
-alias cv++="g++ \$(pkg-config --cflags --libs opencv) -std=c++11"
 alias ghc="ghc -no-keep-hi-files -no-keep-o-files"
 alias haskell="runhaskell"
 alias latexmk="latexmk -pdf -pvc"
@@ -135,6 +134,10 @@ alias matlab="/Applications/MATLAB_R2019a.app/bin/matlab -nodesktop -nosplash"
 alias mpv="open -a /Applications/mpv.app/"
 # alias python="python3"
 alias tree="tree -C -N"
+
+cv(){
+    g++ -std=c++11 $1 $(pkg-config --cflags --libs opencv4);
+}
 
 update(){
     read -p "Are you sure? " -n 1 -r
