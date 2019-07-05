@@ -4,9 +4,13 @@ syntax on
 autocmd BufEnter * :syntax sync fromstart
 set autoindent
 set background=dark
+set backspace=indent,eol,start
+set display+=lastline
 set expandtab
+set laststatus=2
 set number
 set ruler
+set scrolloff=10
 set shiftround
 set shiftwidth=4
 set smartindent
@@ -15,6 +19,8 @@ set spell
 set splitbelow
 set splitright
 set tabstop=4
+set wildmenu
+set wildmode=list:longest,full
 let g:latex_to_unicode_file_types = ".*"
 let g:haskell_indent_if = 4
 let g:haskell_indent_case = 4
