@@ -10,7 +10,7 @@ set expandtab
 set laststatus=2
 set number
 set ruler
-set scrolloff=10
+set scrolloff=5
 set shiftround
 set shiftwidth=4
 set smartindent
