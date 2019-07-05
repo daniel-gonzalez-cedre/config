@@ -23,10 +23,9 @@ cv(){
 }
 
 update(){
-    read -p "Are you sure? " -n 1 -r
+    read -p "Are you sure? " -r
     echo
-    if [[ $REPLY =~ ^[Yy]$ ]]
-    then
+    if [[ $REPLY =~ ^[Yy]$ ]] then
         if [ -d "./.cfg" ]; then
             config fetch --all && config reset --hard origin/master
         else
