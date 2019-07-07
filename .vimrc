@@ -5,6 +5,7 @@ autocmd BufEnter * :syntax sync fromstart
 set autoindent
 set background=dark
 set backspace=indent,eol,start
+set conceallevel=0
 set display+=lastline
 set expandtab
 set laststatus=2
