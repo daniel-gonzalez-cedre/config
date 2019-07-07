@@ -1,6 +1,7 @@
 filetype plugin indent on
 silent
 syntax on
+au FileType * set conceallevel=0
 autocmd BufEnter * :syntax sync fromstart
 set autoindent
 set background=dark
