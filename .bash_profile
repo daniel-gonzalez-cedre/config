@@ -41,7 +41,11 @@ preview(){
 # TO CONVERT ALL .HEIC IMAGES IN A DIRECTORY TO .png
 # mogrify -monitor -format png *.HEIC
 format(){
-    mogrify -monitor -format "$2" ."$1"
+    if [[ $# -eq 2 ]]; then
+        mogrify -monitor -format "$2" *."$1"
+    else
+        echo Input and output filetypes are required.
+    fi
 }
 
 resize(){
