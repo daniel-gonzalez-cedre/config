@@ -38,6 +38,21 @@ preview(){
     qlmanage -p "$1"
 }
 
+# TO CONVERT ALL .HEIC IMAGES IN A DIRECTORY TO .png
+# mogrify -monitor -format png *.HEIC
+format(){
+    mogrify -monitor -format "$2" ."$1"
+}
+
+resize(){
+    for f in ./*.png
+    do
+        echo Resizing $f...
+        convert "$f" -resize "$1"\% "$f"
+        echo done.
+    done
+}
+
 clean(){
     rm -i .DS_Store *.aux *.fdb_latexmk *.fls *.log *.out
 }
