@@ -8,6 +8,7 @@ export LD_LIBRARY_PATH=/Users/akira/Downloads/osm-bundler/software/bundler/bin:$
 # export CPATH=/usr/local/bin/opencv4/
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'     #   config config --local status.showUntrackedFiles no
+alias cp="cp -v"
 alias g++="g++ -std=c++11"
 alias ghc="ghc -no-keep-hi-files -no-keep-o-files"
 alias haskell="runhaskell"
@@ -15,6 +16,7 @@ alias latexmk="latexmk -pdf -pvc"
 alias ls="tree -C -N -L 1"
 alias matlab="/Applications/MATLAB_R2019a.app/bin/matlab -nodesktop -nosplash"
 alias mpv="open -a /Applications/mpv.app/"
+alias mv="mv -v"
 # alias python="python3"
 alias tree="tree -C -N"
 
