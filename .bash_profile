@@ -17,6 +17,7 @@ alias ls="tree -C -N -L 1"
 alias matlab="/Applications/MATLAB_R2019a.app/bin/matlab -nodesktop -nosplash"
 alias mpv="open -a /Applications/mpv.app/"
 alias mv="mv -v"
+alias rm="rm -v"
 # alias python="python3"
 alias tree="tree -C -N"
 
