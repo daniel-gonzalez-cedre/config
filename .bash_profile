@@ -54,7 +54,7 @@ resize(){
     for f in ./*.png
     do
         echo Resizing $f...
-        convert "$f" -resize "$1"\% "$f"
+        convert "$f" -resize "$1" "$f"
         echo done.
     done
 }
