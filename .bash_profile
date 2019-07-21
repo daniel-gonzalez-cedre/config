@@ -129,7 +129,7 @@ weather(){
 #   Green         #666666      2      |      brGreen       #666666      10     |
 #   Yellow        #87875f      3      |      brYellow      #87875f      11     |
 #   Blue          #888888      4      |      brBlue        #888888      12     |
-#   Magenta       #8181a6      5      |      brMagenta     #8181a6      13     |
+#   Magenta       #4B5F69      5      |      brMagenta     #4B5F69      13     |
 #   Cyan          #777777      6      |      brCyan        #777777      14     |
 #   White         #c1c1c1      7      |      brWhite       #c1c1c1      15     |
 #-------------------------------------|-----------------------------------------
