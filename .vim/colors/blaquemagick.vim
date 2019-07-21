@@ -37,8 +37,8 @@ hi PreProc      term=NONE       cterm=NONE      ctermfg=66      ctermbg=NONE
 hi Search       term=NONE       cterm=NONE      ctermfg=251     ctermbg=247
 hi Special      term=NONE       cterm=NONE      ctermfg=66      ctermbg=NONE
 hi SpecialKey   term=NONE       cterm=NONE      ctermfg=101     ctermbg=NONE
-hi SpellBad     term=NONE       cterm=NONE      ctermfg=NONE    ctermbg=52
-hi SpellCap     term=NONE       cterm=NONE      ctermfg=NONE    ctermbg=23
+hi SpellBad     term=NONE       cterm=NONE      ctermfg=16      ctermbg=52
+hi SpellCap     term=NONE       cterm=NONE      ctermfg=16      ctermbg=23
 ""hi Statement    term=NONE       cterm=NONE      ctermfg=251     ctermbg=NONE
 hi Statement    term=NONE       cterm=NONE      ctermfg=23      ctermbg=NONE
 hi StatusLine   term=NONE       cterm=NONE      ctermfg=66      ctermbg=233

@@ -190,3 +190,5 @@ undistort
 OpenCV
 pointcloud
 config
+colorscheme
+colorschemes
