@@ -50,7 +50,7 @@ hi Todo         term=NONE       cterm=NONE      ctermfg=251     ctermbg=66
 hi Type         term=NONE       cterm=NONE      ctermfg=52      ctermbg=NONE
 hi VertSplit    term=NONE       cterm=NONE      ctermfg=236     ctermbg=16
 hi Visual       term=NONE       cterm=NONE      ctermfg=16      ctermbg=101
-hi WarningMsg   term=NONE       cterm=NONE      ctermfg=103     ctermbg=NONE
+hi WarningMsg   term=NONE       cterm=NONE      ctermfg=52      ctermbg=NONE
 hi LineNr       term=NONE       cterm=NONE      ctermfg=238     ctermbg=16
 hi CursorLineNr term=NONE       cterm=NONE      ctermfg=16      ctermbg=237
 hi Pmenu        term=NONE       cterm=NONE      ctermfg=249     ctermbg=16
