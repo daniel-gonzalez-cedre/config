@@ -5,10 +5,10 @@
 "  ██████ ░░██████ ░░██████░███   ░░█████ ░░██████░███   ░░██████░███   
 " ░░░░░░   ░░░░░░   ░░░░░░ ░░░     ░░░░░   ░░░░░░ ░░░     ░░░░░░ ░░░   
 "  r  e  a  d     c  o  d  e     l  i  k  e     a     w  i  z  a  r  d 
-"
-" sourcerer by xero harrison (http://sourcerer.xero.nu)
-"  ├─ based on sorcerer by Jeet Sukumaran (http://jeetworks.org)
-"  └─ based on mustang by Henrique C. Alves (hcarvalhoalves@gmail.com)
+"  modified by 高明俊 
+"  ├─sourcerer by xero harrison (http://sourcerer.xero.nu)
+"  └──┬─ based on sorcerer by Jeet Sukumaran (http://jeetworks.org)
+"     └─ based on mustang by Henrique C. Alves (hcarvalhoalves@gmail.com)
 
 set background=dark
 hi clear
@@ -107,7 +107,7 @@ hi pythonDecorator  guifg=#888555 guibg=NONE gui=NONE
 hi link pythonDecoratorFunction pythonDecorator
 
 "  █▓▒░ 256 colors 
-hi Normal                 cterm=NONE             ctermbg=NONE  ctermfg=145
+hi Normal                 cterm=NONE             ctermbg=16    ctermfg=145
 hi ColorColumn            cterm=NONE             ctermbg=16    ctermfg=NONE
 hi Cursor                 cterm=NONE             ctermbg=241   ctermfg=fg
 hi CursorColumn           cterm=NONE             ctermbg=16    ctermfg=fg
@@ -144,7 +144,7 @@ hi TabLine                cterm=bold             ctermbg=102   ctermfg=16
 hi TabLineFill            cterm=NONE             ctermbg=102   ctermfg=16
 hi TabLineSel             cterm=bold             ctermbg=16    ctermfg=59
 hi Title                  cterm=bold             ctermbg=NONE  ctermfg=66
-hi Visual                 cterm=NONE             ctermbg=67    ctermfg=16
+hi Visual                 cterm=NONE             ctermbg=101   ctermfg=16
 hi WarningMsg             cterm=NONE             ctermbg=234   ctermfg=208
 hi WildMenu               cterm=NONE             ctermbg=116   ctermfg=16
 hi ExtraWhitespace        cterm=NONE             ctermbg=66    ctermfg=fg
@@ -213,4 +213,3 @@ hi Pmenu                  cterm=NONE             ctermfg=248   ctermbg=237
 hi PmenuSel               cterm=NONE             ctermfg=16    ctermbg=66
 hi PmenuSbar              cterm=NONE             ctermfg=16    ctermbg=66
 hi PmenuThumb             cterm=NONE             ctermfg=16    ctermbg=66
-
