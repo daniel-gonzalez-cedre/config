@@ -27,9 +27,7 @@ let g:latex_to_unicode_file_types = ".*"
 let g:haskell_indent_if = 4
 let g:haskell_indent_case = 4
 let g:haskell_indent_guard = 4
-""let g:alduin_Shout_Become_Ethereal = 1
-""colorscheme alduin
-colorscheme nord
+colorscheme blaquemagick
 inoremap <C-c> <Esc>
 inoremap ( ()<left>
 inoremap [ []<left>
