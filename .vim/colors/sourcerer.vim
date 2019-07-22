@@ -107,7 +107,7 @@ hi pythonDecorator  guifg=#888555 guibg=NONE gui=NONE
 hi link pythonDecoratorFunction pythonDecorator
 
 "  █▓▒░ 256 colors 
-hi Normal                 cterm=NONE             ctermbg=16    ctermfg=145
+hi Normal                 cterm=NONE             ctermbg=232    ctermfg=145
 hi ColorColumn            cterm=NONE             ctermbg=16    ctermfg=NONE
 hi Cursor                 cterm=NONE             ctermbg=241   ctermfg=fg
 hi CursorColumn           cterm=NONE             ctermbg=16    ctermfg=fg
