@@ -1,7 +1,7 @@
 # ALDUIN:
 #PS1='\[\e[02m\]\w\[\e[m\] \[\e[33m\]λ\[\e[m\] '
 # BLAQUEMAGICK:
-PS1='\[\e[38;5;237m\]\w\[\e[m\] \[\e[38;5;88m\]λ\[\e[m\] '
+PS1='\[\e[38;5;66m\]\w\[\e[m\] \[\e[38;5;88m\]λ\[\e[m\] '
 
 export TERM=xterm-256color
 export PATH=/usr/local/Cellar:/usr/local/bin:/usr/local/sbin:$PATH
@@ -51,6 +51,16 @@ reformat(){
     else
         echo Input and output filetypes are required.
     fi
+}
+
+noaudio(){
+    for f in ./*
+    do
+        filename="$f"
+        echo Removing audio from $f ...
+        ffmpeg -i $filename -c copy -an "${filename:2:8}-noaudio.mov"
+        echo done.
+    done
 }
 
 resize(){
@@ -103,14 +113,14 @@ weather(){
 }
 
 #color profiles
-# ┏┓ ╻  ┏━┓┏━┓╻ ╻┏━╸   ┏┳┓┏━┓┏━╸╻┏━╸╻┏ 
-# ┣┻┓┃  ┣━┫┃┓┃┃ ┃┣╸    ┃┃┃┣━┫┃╺┓┃┃  ┣┻┓
-# ┗━┛┗━╸╹ ╹┗┻┛┗━┛┗━╸   ╹ ╹╹ ╹┗━┛╹┗━╸╹ ╹
+# ┏┓ ╻  ┏━┓┏━┓╻ ╻┏━╸█▓▒░┏┳┓┏━┓┏━╸╻┏━╸╻┏ 
+# ┣┻┓┃  ┣━┫┃┓┃┃ ┃┣╸ █▓▒░┃┃┃┣━┫┃╺┓┃┃  ┣┻┓
+# ┗━┛┗━╸╹ ╹┗┻┛┗━┛┗━╸█▓▒░╹ ╹╹ ╹┗━┛╹┗━╸╹ ╹
 #-------------------------------------|-----------------------------------------
 #   BASIC         HEX                 |     BASIC         HEX                  |
 #-------------------------------------|-----------------------------------------
-#   Foreground    #d7d7d7             |     Text          #303030              |
-#   Background    #070808             |     Bold          #585858              |
+#   Foreground    #d7d7d7             |     Text          #585858              |
+#   Background    #000000             |     Bold          #585858              |
 #   Links         #005cbb             |     Selection     #5F8787              |
 #-------------------------------------|-----------------------------------------
 #
@@ -128,7 +138,7 @@ weather(){
 #   Red           #5f8787      1      |      brRed         #5f8787      9      |
 #   Green         #666666      2      |      brGreen       #666666      10     |
 #   Yellow        #87875f      3      |      brYellow      #87875f      11     |
-#   Blue          #888888      4      |      brBlue        #888888      12     |
+#   Blue          #875F5F      4      |      brBlue        #875F5F      12     |
 #   Magenta       #4B5F69      5      |      brMagenta     #4B5F69      13     |
 #   Cyan          #777777      6      |      brCyan        #777777      14     |
 #   White         #c1c1c1      7      |      brWhite       #c1c1c1      15     |

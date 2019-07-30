@@ -152,7 +152,7 @@ highlight VimCommentTitle  guifg=#6c6c6c  guibg=NONE     gui=reverse    ctermfg=
 highlight SpecialComment   guifg=#6c6c6c  guibg=NONE     gui=reverse    ctermfg=242   ctermbg=NONE  cterm=reverse
 highlight Underlined       guifg=#af5f5f  guibg=NONE     gui=NONE       ctermfg=131   ctermbg=NONE  cterm=NONE
 highlight Todo             guifg=#af5f00  guibg=NONE     gui=reverse    ctermfg=130   ctermbg=NONE  cterm=reverse
-highlight Visual           guifg=#dfdfaf  guibg=#875f5f  gui=NONE       ctermfg=187   ctermbg=95    cterm=NONE
+highlight Visual           guifg=#dfdfaf  guibg=#875f5f  gui=NONE       ctermfg=16    ctermbg=95    cterm=NONE
 highlight Question         guifg=#875f5f  guibg=NONE     gui=NONE       ctermfg=95    ctermbg=NONE  cterm=NONE
 highlight Search           guifg=#af5f00  guibg=NONE     gui=reverse    ctermfg=130   ctermbg=NONE  cterm=reverse
 highlight MatchParen       guifg=#878787  guibg=NONE     gui=reverse    ctermfg=102   ctermbg=NONE  cterm=reverse
@@ -176,9 +176,11 @@ highlight DiffChange       guifg=#005f5f  guibg=NONE     gui=reverse    ctermfg=
 highlight DiffDelete       guifg=#af5f5f  guibg=NONE     gui=reverse    ctermfg=131   ctermbg=NONE  cterm=reverse
 
 "SPELLING
-highlight SpellBad         guifg=#800000  guibg=NONE     gui=NONE  ctermfg=124   ctermbg=NONE  cterm=NONE
+"highlight SpellBad         guifg=#800000  guibg=NONE     gui=NONE  ctermfg=124   ctermbg=NONE  cterm=REVERSE
+highlight SpellBad         guifg=#800000  guibg=NONE     gui=NONE  ctermfg=52    ctermbg=NONE  cterm=REVERSE
 highlight SpellLocal       guifg=#5f875f  guibg=NONE     gui=NONE  ctermfg=65    ctermbg=NONE  cterm=NONE
-highlight SpellCap         guifg=#87afff  guibg=NONE     gui=NONE  ctermfg=111   ctermbg=NONE  cterm=NONE
+"highlight SpellCap         guifg=#87afff  guibg=NONE     gui=NONE  ctermfg=111   ctermbg=NONE  cterm=REVERSE
+highlight SpellCap         guifg=#87afff  guibg=NONE     gui=NONE  ctermfg=66    ctermbg=NONE  cterm=REVERSE
 highlight SpellRare        guifg=#d75f00  guibg=NONE     gui=NONE  ctermfg=166   ctermbg=NONE  cterm=NONE
 
 " ALDUIN DEFAULT UI:
@@ -240,7 +242,8 @@ endif
 " SHOUT_BECOME_ETHEREAL UI:
 if g:alduin_Shout_Become_Ethereal
     "COLORS
-    highlight Normal          guifg=#dfdfaf  guibg=#080808  gui=NONE    ctermfg=187   ctermbg=232  cterm=NONE
+    "highlight Normal          guifg=#dfdfaf  guibg=#080808  gui=NONE    ctermfg=187   ctermbg=232  cterm=NONE
+    highlight Normal          guifg=#dfdfaf  guibg=#080808  gui=NONE    ctermfg=187   ctermbg=16   cterm=NONE
     highlight String          guifg=#ffdf87  guibg=#121212  gui=NONE    ctermfg=222   ctermbg=233  cterm=NONE
 
     "WINDOW UI
