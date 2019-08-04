@@ -23,59 +23,23 @@ alias rm="rm -v"
 alias python="python3"
 alias tree="tree -C -N"
 
-cv(){
-    g++ -std=c++11 $1 $(pkg-config --cflags --libs opencv4);
-}
-
-update(){
-    read -p "Are you sure? [y/n] " -r
-    if [[ $REPLY =~ ^[Yy]$ ]]
-    then
-        if [ -d "./.cfg" ]; then
-            config fetch --all && config reset --hard origin/master
-        else
-            git fetch --all && git reset --hard origin/master
-        fi
-    fi
-}
-
-preview(){
-    qlmanage -p "$1"
-}
-
-# TO CONVERT ALL .HEIC IMAGES IN A DIRECTORY TO .png
-# mogrify -monitor -format png *.HEIC
-reformat(){
-    if [[ $# -eq 2 ]]; then
-        mogrify -monitor -format "$2" *."$1"
-    else
-        echo Input and output filetypes are required.
-    fi
-}
-
-noaudio(){
-    for f in ./*
-    do
-        filename="$f"
-        echo Removing audio from $f ...
-        ffmpeg -i $filename -c copy -an "${filename:2:8}-noaudio.mov"
-        echo done.
-    done
-}
-
-resize(){
-    for f in ./*.png
-    do
-        echo Resizing $f...
-        convert "$f" -resize "$1" "$f"
-        echo done.
-    done
-}
-
 clean(){
     rm -i .DS_Store *.aux *.fdb_latexmk *.fls *.log *.out
 }
 
+cv(){
+    g++ -std=c++11 $1 $(pkg-config --cflags --libs opencv4);
+}
+
+decrypt(){
+    openssl enc -d -aes-256-cbc -in "$1" > "$2"
+}
+
+encrypt(){
+    openssl enc -aes-256-cbc -salt -in "$1" -out "$2"
+}
+
+# flac_split example.cue example.flac
 flac_split(){
     shnsplit -f "$1" -o flac -t "flac %n. %p - %a - %t" "$2"
 }
@@ -92,20 +56,49 @@ flac_convert_all(){
     done
 }
 
-encrypt(){
-    openssl enc -aes-256-cbc -salt -in "$1" -out "$2"
+noaudio(){
+    for f in ./*
+    do
+        filename="$f"
+        echo Removing audio from $f ...
+        ffmpeg -i $filename -c copy -an "${filename:2:8}-noaudio.mov"
+        echo done.
+    done
 }
 
-decrypt(){
-    openssl enc -d -aes-256-cbc -in "$1" > "$2"
+preview(){
+    qlmanage -p "$1"
 }
 
-encrypt_email(){
-    openssl enc -aes-256-cbc -a -salt -in "$1" -out "$2"
+# TO CONVERT ALL .HEIC IMAGES IN A DIRECTORY TO .png
+# mogrify -monitor -format png *.HEIC
+reformat(){
+    if [[ $# -eq 2 ]]; then
+        mogrify -monitor -format "$2" *."$1"
+    else
+        echo Input and output filetypes are required.
+    fi
 }
 
-decrypt_email(){
-    openssl enc -d -aes-256-cbc -a -in "$1" > "$2"
+resize(){
+    for f in ./*.png
+    do
+        echo Resizing $f...
+        convert "$f" -resize "$1" "$f"
+        echo done.
+    done
+}
+
+update(){
+    read -p "Are you sure? [y/n] " -r
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+        if [ -d "./.cfg" ]; then
+            config fetch --all && config reset --hard origin/master
+        else
+            git fetch --all && git reset --hard origin/master
+        fi
+    fi
 }
 
 weather(){
