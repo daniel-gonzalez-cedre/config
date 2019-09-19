@@ -54,6 +54,9 @@ if has('clipboard')
     noremap X "+x
     noremap d "+d
     noremap p "+p
+    noremap P "+P
+    noremap s "+s
+    noremap S "+S
 endif
 function ClosePair(char)
     if getline('.')[col('.') - 1] == a:char
