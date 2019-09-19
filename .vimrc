@@ -46,6 +46,7 @@ vnoremap { <C-c>`>a}<C-c>`<i{<C-c>
 vnoremap $ <C-c>`>a$<C-c>`<i$<C-c>
 vnoremap " <C-c>`>a"<C-c>`<i"<C-c>
 vnoremap ' <C-c>`>a'<C-c>`<i'<C-c>
+vnoremap <C-u> y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""P
 if has('clipboard')
     vnoremap y "+y
     vnoremap Y "+y
@@ -55,11 +56,11 @@ if has('clipboard')
     noremap p "+p
 endif
 function ClosePair(char)
-	if getline('.')[col('.') - 1] == a:char
-		return "\<Right>"
-	else
-		return a:char
-	endif
+    if getline('.')[col('.') - 1] == a:char
+        return "\<Right>"
+    else
+        return a:char
+    endif
 endf
 function QuoteDelim(char)
     let line = getline('.')
@@ -72,3 +73,6 @@ function QuoteDelim(char)
         return a:char.a:char."\<Esc>i"
     endif
 endf
+function! TwiddleCase(str)
+    return substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
+endfunction
