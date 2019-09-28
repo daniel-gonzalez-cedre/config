@@ -1,9 +1,9 @@
 # This is Git's per-user configuration file.
-# daniel-simon-gonzalez
+# daniel-gonzalez-cedre
 [user]
-    name = 高明俊
-    user = daniel-simon-gonzalez
-    email = daniel.simon.gonzalez.descamps@gmail.com
+    name = cedré
+    user = daniel-gonzalez-cedre
+    email = daniel.gonzalez.cedre@gmail.com
 [alias]
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all

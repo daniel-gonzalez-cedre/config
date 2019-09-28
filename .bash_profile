@@ -24,7 +24,7 @@ alias python="python3"
 alias tree="tree -C -N"
 
 clean(){
-    rm -i .DS_Store *.aux *.fdb_latexmk *.fls *.log *.out
+    rm -i .DS_Store *.aux *.bbl *.blg *.fdb_latexmk *.fls *.log *.out
 }
 
 cv(){
