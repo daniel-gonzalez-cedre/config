@@ -176,11 +176,9 @@ highlight DiffChange       guifg=#005f5f  guibg=NONE     gui=reverse    ctermfg=
 highlight DiffDelete       guifg=#af5f5f  guibg=NONE     gui=reverse    ctermfg=131   ctermbg=NONE  cterm=reverse
 
 "SPELLING
-"highlight SpellBad         guifg=#800000  guibg=NONE     gui=NONE  ctermfg=124   ctermbg=NONE  cterm=REVERSE
-highlight SpellBad         guifg=#800000  guibg=NONE     gui=NONE  ctermfg=52    ctermbg=NONE  cterm=REVERSE
+highlight SpellBad         guifg=#800000  guibg=NONE     gui=NONE  ctermfg=52    ctermbg=NONE  cterm=NONE
 highlight SpellLocal       guifg=#5f875f  guibg=NONE     gui=NONE  ctermfg=65    ctermbg=NONE  cterm=NONE
-"highlight SpellCap         guifg=#87afff  guibg=NONE     gui=NONE  ctermfg=111   ctermbg=NONE  cterm=REVERSE
-highlight SpellCap         guifg=#87afff  guibg=NONE     gui=NONE  ctermfg=66    ctermbg=NONE  cterm=REVERSE
+highlight SpellCap         guifg=#87afff  guibg=NONE     gui=NONE  ctermfg=66    ctermbg=NONE  cterm=NONE
 highlight SpellRare        guifg=#d75f00  guibg=NONE     gui=NONE  ctermfg=166   ctermbg=NONE  cterm=NONE
 
 " ALDUIN DEFAULT UI:

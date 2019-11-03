@@ -1,8 +1,8 @@
 # ALDUIN:
 #PS1='\[\e[02m\]\w\[\e[m\] \[\e[38;5;88m\]λ\[\e[m\] '
 # BLAQUEMAGICK:
-PS1='\[\e[38;5;66m\]\w\[\e[m\] \[\e[38;5;88m\]λ\[\e[m\] '
-export PS1='%10F%m%f:%11F%1~%f λ '
+#PS1='\[\e[38;5;66m\]\w\[\e[m\] \[\e[38;5;88m\]λ\[\e[m\] '
+export PS1='%1F%m%f:%11F%1~%f λ '
 
 export TERM=xterm-256color
 export PATH=/usr/local/Cellar:/usr/local/bin:/usr/local/sbin:$PATH

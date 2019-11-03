@@ -23,6 +23,7 @@ set splitright
 set tabstop=4
 set wildmenu
 set wildmode=list:longest,full
+let g:python_highlight_all = 1
 let g:latex_to_unicode_file_types = ".*"
 let g:haskell_indent_if = 4
 let g:haskell_indent_case = 4

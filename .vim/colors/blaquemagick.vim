@@ -14,7 +14,7 @@ endif
 let g:colors_name="blaquemagick"
 
 hi ColorColumn  term=NONE       cterm=NONE      ctermfg=NONE    ctermbg=242
-hi Comment      term=NONE       cterm=NONE      ctermfg=232     ctermbg=NONE
+hi Comment      term=NONE       cterm=NONE      ctermfg=233     ctermbg=NONE
 hi Constant     term=NONE       cterm=NONE      ctermfg=101     ctermbg=233
 hi Cursor       term=NONE       cterm=NONE      ctermfg=242     ctermbg=NONE
 hi CursorLine   term=NONE       cterm=NONE      ctermfg=NONE    ctermbg=234
@@ -32,14 +32,16 @@ hi Identifier   term=NONE       cterm=NONE      ctermfg=66      ctermbg=NONE
 hi IncSearch    term=NONE       cterm=NONE      ctermfg=247     ctermbg=247
 hi MatchParen   term=NONE       cterm=NONE      ctermfg=0       ctermbg=66
 hi NonText      term=NONE       cterm=NONE      ctermfg=101     ctermbg=NONE
-hi Normal       term=NONE       cterm=NONE      ctermfg=238     ctermbg=NONE
+hi Normal       term=NONE       cterm=NONE      ctermfg=241     ctermbg=NONE
 hi PreProc      term=NONE       cterm=NONE      ctermfg=66      ctermbg=NONE
 hi Search       term=NONE       cterm=NONE      ctermfg=251     ctermbg=247
 hi Special      term=NONE       cterm=NONE      ctermfg=66      ctermbg=NONE
 hi SpecialKey   term=NONE       cterm=NONE      ctermfg=101     ctermbg=NONE
-hi SpellBad     term=NONE       cterm=REVERSE   ctermfg=52      ctermbg=16
-hi SpellCap     term=NONE       cterm=REVERSE   ctermfg=23      ctermbg=16
-hi Statement    term=NONE       cterm=NONE      ctermfg=250     ctermbg=NONE
+hi SpellBad     term=NONE       cterm=NONE ctermfg=52      ctermbg=16
+""hi SpellBad     term=NONE       cterm=REVERSE   ctermfg=52      ctermbg=16
+hi SpellCap     term=NONE       cterm=NONE ctermfg=23      ctermbg=16
+""hi SpellCap     term=NONE       cterm=REVERSE   ctermfg=23      ctermbg=16
+hi Statement    term=NONE       cterm=NONE      ctermfg=255     ctermbg=NONE
 hi StatusLine   term=NONE       cterm=NONE      ctermfg=66      ctermbg=233
 hi StatusLineNC term=NONE       cterm=NONE      ctermfg=238     ctermbg=NONE
 hi String       term=NONE       cterm=NONE      ctermfg=66      ctermbg=233
