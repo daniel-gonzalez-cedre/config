@@ -30,7 +30,7 @@ let colors_name = 'spacegray'
 if g:spacegray_low_contrast
   hi Normal        ctermbg=235  ctermfg=250    guibg=#242424  guifg=#B3B8C4  cterm=NONE      gui=NONE
 else
-  hi Normal        ctermbg=234  ctermfg=250    guibg=#111314  guifg=#B3B8C4  cterm=NONE      gui=NONE
+  hi Normal        ctermbg=232  ctermfg=250    guibg=#111314  guifg=#B3B8C4  cterm=NONE      gui=NONE
 endif
 
 if g:spacegray_use_italics
