@@ -9,6 +9,8 @@ set backspace=indent,eol,start
 set conceallevel=0
 set display+=lastline
 set expandtab
+set foldlevel=0
+set foldmethod=indent
 set laststatus=2
 set number
 set ruler
@@ -28,9 +30,10 @@ let g:latex_to_unicode_file_types = ".*"
 let g:haskell_indent_if = 4
 let g:haskell_indent_case = 4
 let g:haskell_indent_guard = 4
-let g:alduin_Shout_Become_Ethereal = 1
-colorscheme alduin
-"colorscheme blaquemagick
+colorscheme gruvbox
+map <C-b> <Nop>
+map! <C-b> <Nop>
+noremap <C-f> za
 inoremap <C-c> <Esc>
 inoremap ( ()<left>
 inoremap [ []<left>
