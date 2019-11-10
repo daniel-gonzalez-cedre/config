@@ -504,7 +504,7 @@ endif
 hi! link NonText GruvboxBg2
 hi! link SpecialKey GruvboxBg2
 
-call s:HL('Visual',    s:none,  s:bg3, s:invert_selection)
+call s:HL('Visual',    s:none,  s:bg0, s:invert_selection)
 hi! link VisualNOS Visual
 
 call s:HL('Search',    s:yellow, s:bg0, s:inverse)
@@ -548,9 +548,9 @@ call s:HL('LineNr', s:bg4, s:number_column)
 call s:HL('SignColumn', s:none, s:sign_column)
 
 " Line used for closed folds
-call s:HL('Folded', s:gray, ['#000000', 16], s:italic)
+call s:HL('Folded', s:gray, s:gb.black, s:italic)
 " Column where folds are displayed
-call s:HL('FoldColumn', s:gray, ['#000000', 16])
+call s:HL('FoldColumn', s:gray, s:gb.black)
 
 " }}}
 " Cursor: {{{
