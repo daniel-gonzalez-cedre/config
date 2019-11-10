@@ -9,6 +9,7 @@ set backspace=indent,eol,start
 set conceallevel=0
 set display+=lastline
 set expandtab
+set foldignore=
 set foldlevel=0
 set foldmethod=indent
 set hlsearch
@@ -33,6 +34,7 @@ let g:incsearch#auto_nohlsearch = 1
 let g:latex_to_unicode_file_types = ".*"
 let g:python_highlight_all = 1
 let g:gruvbox_contrast_dark = "hard"
+let g:gruvbox_number_column = "black"
 colorscheme gruvbox
 map <C-b> <Nop>
 map! <C-b> <Nop>
@@ -46,7 +48,7 @@ map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 noremap <C-f> za
-noremap F zi
+noremap F zA
 inoremap <C-c> <Esc>
 inoremap ( ()<left>
 inoremap [ []<left>

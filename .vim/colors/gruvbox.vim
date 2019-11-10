@@ -95,7 +95,8 @@ let s:gb.dark3       = ['#665c54', 241]     " 102-92-84
 let s:gb.dark4       = ['#7c6f64', 243]     " 124-111-100
 let s:gb.dark4_256   = ['#7c6f64', 243]     " 124-111-100
 
-let s:gb.gray_245    = ['#928374', 245]     " 146-131-116
+let s:gb.black       = ['#000000', 16]      " 0-0-0
+let s:gb.gray_240    = ['#928374', 240]     " 88-88-88
 let s:gb.gray_244    = ['#928374', 244]     " 146-131-116
 
 let s:gb.light0_hard = ['#f9f5d7', 230]     " 249-245-215
@@ -180,7 +181,7 @@ if s:is_dark
   let s:bg3  = s:gb.dark3
   let s:bg4  = s:gb.dark4
 
-  let s:gray = s:gb.gray_245
+  let s:gray = s:gb.gray_240
 
   let s:fg0 = s:gb.light0
   let s:fg1 = s:gb.light1
@@ -547,9 +548,9 @@ call s:HL('LineNr', s:bg4, s:number_column)
 call s:HL('SignColumn', s:none, s:sign_column)
 
 " Line used for closed folds
-call s:HL('Folded', s:gray, s:bg1, s:italic)
+call s:HL('Folded', s:gray, ['#000000', 16], s:italic)
 " Column where folds are displayed
-call s:HL('FoldColumn', s:gray, s:bg1)
+call s:HL('FoldColumn', s:gray, ['#000000', 16])
 
 " }}}
 " Cursor: {{{
