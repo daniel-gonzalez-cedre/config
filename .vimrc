@@ -46,6 +46,7 @@ map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 noremap <C-f> za
+noremap F zi
 inoremap <C-c> <Esc>
 inoremap ( ()<left>
 inoremap [ []<left>
