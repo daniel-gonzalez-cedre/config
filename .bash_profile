@@ -1,1 +1,1 @@
-/Users/akira/.bash/.bash_profile
+.bash/.bash_profile
