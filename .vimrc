@@ -11,6 +11,7 @@ set display+=lastline
 set expandtab
 set foldlevel=0
 set foldmethod=indent
+set hlsearch
 set laststatus=2
 set number
 set ruler
@@ -25,25 +26,36 @@ set splitright
 set tabstop=4
 set wildmenu
 set wildmode=list:longest,full
-let g:python_highlight_all = 1
-let g:latex_to_unicode_file_types = ".*"
 let g:haskell_indent_if = 4
 let g:haskell_indent_case = 4
 let g:haskell_indent_guard = 4
+let g:incsearch#auto_nohlsearch = 1
+let g:latex_to_unicode_file_types = ".*"
+let g:python_highlight_all = 1
+let g:gruvbox_contrast_dark = "hard"
 colorscheme gruvbox
 map <C-b> <Nop>
 map! <C-b> <Nop>
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
 noremap <C-f> za
 inoremap <C-c> <Esc>
 inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
-inoremap ) <c-r>=ClosePair(')')<CR>
-inoremap ] <c-r>=ClosePair(']')<CR>
-inoremap } <c-r>=ClosePair('}')<CR>
-inoremap $ <c-r>=QuoteDelim("$")<CR>
-inoremap " <c-r>=QuoteDelim('"')<CR>
-inoremap ' <c-r>=QuoteDelim("'")<CR>
+inoremap ) <C-r>=ClosePair(')')<CR>
+inoremap ] <C-r>=ClosePair(']')<CR>
+inoremap } <C-r>=ClosePair('}')<CR>
+inoremap $ <C-r>=QuoteDelim("$")<CR>
+inoremap " <C-r>=QuoteDelim('"')<CR>
+inoremap ' <C-r>=QuoteDelim("'")<CR>
 vnoremap ( <C-c>`>a)<C-c>`<i(<C-c>
 vnoremap [ <C-c>`>a]<C-c>`<i[<C-c>
 vnoremap { <C-c>`>a}<C-c>`<i{<C-c>
