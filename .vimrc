@@ -10,7 +10,7 @@ set conceallevel=0
 set display+=lastline
 set expandtab
 set foldignore=
-set foldlevelstart=2
+set foldlevelstart=99
 set foldmethod=indent
 set hlsearch
 set laststatus=2
