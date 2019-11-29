@@ -1,1 +1,1 @@
-/Users/akira/.zsh/.zshrc
+.zsh/.zshrc
