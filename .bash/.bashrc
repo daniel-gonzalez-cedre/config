@@ -118,7 +118,8 @@ fi
 
 ########## custom configurations ##########
 
-PS1='\[\e[02m\]\w\[\e[m\] \[\e[30m\]λ\[\e[m\] '
+#PS1='\[\e[02m\]\w\[\e[m\] \[\e[08m\]λ\[\e[m\] '
+PS1='\[\e[38;5;1m\]\w\[\e[m\] \[\e[38;5;6m\]λ\[\e[m\] '
 export TERM=xterm-256color
 # export PATH=$PATH
 # export LD_LIBRARY_PATH=/usr/include/eigen3/Eigen:/usr/local/lib:/usr/local/lib/opencv4/3rdparty:$LD_LIBRARY_PATH
