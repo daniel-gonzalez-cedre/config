@@ -120,7 +120,6 @@ fi
 
 PS1='\[\e[38;5;1m\]\w\[\e[m\] \[\e[38;5;6m\]λ\[\e[m\] '
 export TERM=xterm-256color
-export PATH=$PATH:/usr/local/go/bin
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'     #   config config --local status.showUntrackedFiles no
 alias g++="g++ -std=c++11"
@@ -132,6 +131,7 @@ alias matlab="/Applications/MATLAB_R2019a.app/bin/matlab -nodesktop -nosplash"
 alias mpv="open -a /Applications/mpv.app/"
 alias mv="mv -v"
 alias rm="rm -v"
+alias rsync"rsync --progress"
 alias python="python3"
 alias tree="tree -C -N"
 
