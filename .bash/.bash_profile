@@ -2,7 +2,7 @@
 #PS1='\[\e[02m\]\w\[\e[m\] \[\e[38;5;88m\]λ\[\e[m\] '
 # BLAQUEMAGICK:
 #PS1='\[\e[38;5;1m\]\w\[\e[m\] \[\e[38;5;6m\]λ\[\e[m\] '
-PS1='\[\e[38;5;11m\]\u\[\e[m\]\[\e[38;5;8m\]@\[\e[m\]\[\e[38;5;3m\]\h\[\e[m\] \[\e[38;5;1m\]\w\[\e[m\] \[\e[38;5;6m\]λ\[\e[m\] '
+PS1='\[\e[38;5;11m\]\u\[\e[m\]\[\e[38;5;8m\]@\[\e[m\]\[\e[38;5;3m\]\h\[\e[m\] \[\e[38;5;1m\]\W\[\e[m\] \[\e[38;5;6m\]λ\[\e[m\] '
 
 export TERM=xterm-256color
 export PATH=/usr/local/Cellar:/usr/local/bin:/usr/local/sbin:$PATH
@@ -20,6 +20,7 @@ alias matlab="/Applications/MATLAB_R2019a.app/bin/matlab -nodesktop -nosplash"
 alias mpv="open -a /Applications/mpv.app/"
 alias mv="mv -v"
 alias rm="rm -v"
+alias rsync="rsync --progress"
 alias python="python3"
 alias tree="tree -C -N"
 
