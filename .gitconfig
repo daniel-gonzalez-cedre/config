@@ -3,7 +3,8 @@
 [user]
     name = cedré
     user = daniel-gonzalez-cedre
-    email = daniel.gonzalez.cedre@gmail.com
+    email = 39937561+daniel-gonzalez-cedre@users.noreply.github.com
+	mail = 39937561+daniel-gonzalez-cedre@users.noreply.github.com
 [alias]
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
