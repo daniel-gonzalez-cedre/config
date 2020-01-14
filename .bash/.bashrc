@@ -138,15 +138,3 @@ alias tree="tree -C -N"
 cv(){
     g++ -std=c++11 $1 $(pkg-config --cflags --libs opencv4);
 }
-
-update(){
-    read -p "Are you sure? [y/n] " -r
-    if [[ $REPLY =~ ^[Yy]$ ]]
-    then
-        if [ -d "./.cfg" ]; then
-            config fetch --all && config reset --hard origin/master
-        else
-            git fetch --all && git reset --hard origin/master
-        fi
-    fi
-}
