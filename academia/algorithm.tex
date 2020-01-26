@@ -10,13 +10,13 @@
 
 \allowdisplaybreaks
 
-\newcounter{nalg}[chapter] % defines algorithm counter for chapter-level
-\renewcommand{\thenalg}{\thechapter.\arabic{nalg}} % defines appearance of the algorithm counter
-\DeclareCaptionLabelFormat{algocaption}{\it Algorithm \thenalg} % defines a new caption label as Algorithm x.y
+\newcounter{nalg}[chapter]
+\renewcommand{\thenalg}{\thechapter.\arabic{nalg}}
+\DeclareCaptionLabelFormat{algocaption}{\it Algorithm \thenalg}
 
-\lstnewenvironment{algorithm}[1][] % defines the algorithm listing environment
+\lstnewenvironment{algorithm}[1][]
 {
-    \refstepcounter{nalg} %increments algorithm number
+    \refstepcounter{nalg}
     \captionsetup{labelformat=algocaption,labelsep=colon}
     \lstset{
         mathescape=true,
@@ -25,13 +25,17 @@
         numberstyle=\tiny,
         basicstyle=\scriptsize,
         keywordstyle=\color{black}\bfseries\em,
-        keywords={,input, output, return, datatype, function, in, if, else, for, foreach, while, not, begin, end, } % add the keywords you want
+        keywords={,input, output, return, datatype, function, in, if, else, for, foreach, while, not, begin, end, }
         numbers=left,
         xleftmargin=.04\textwidth,
-        #1 % this is to add specific settings to an usage of this environment (for instance, the caption and referable label)
+        #1
     }
 }
 {}
+
+\newenvironment{subproof}[1][Proof]
+    {\proof[#1]\leftskip=1cm\rightskip=1cm}
+    {\endproof}
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
