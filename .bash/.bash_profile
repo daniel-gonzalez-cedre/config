@@ -7,8 +7,6 @@ PS1='\[\e[38;5;11m\]\u\[\e[m\]\[\e[38;5;8m\]@\[\e[m\]\[\e[38;5;3m\]\h\[\e[m\] \[
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export TERM=xterm-256color
 export PATH=/usr/local/Cellar:/usr/local/bin:/usr/local/sbin:$PATH
-export LIBRARY_PATH=/usr/local/lib:/usr/local/lib/opencv4/3rdparty:/usr/local/Cellar/opencv/4.1.0_2/lib:$LIBRARY_PATH
-export LD_LIBRARY_PATH=/Users/akira/Downloads/osm-bundler/software/bundler/bin:$LD_LIBRARY_PATH
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'     #   config config --local status.showUntrackedFiles no
 alias cp="cp -v"
