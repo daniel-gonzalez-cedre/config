@@ -4,7 +4,7 @@
 \usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
 \hypersetup{
     colorlinks=true,
-    linkcolor=black!50!blue,
+    linkcolor=black!50!red,
     urlcolor=black!50!blue
 }
 
@@ -65,6 +65,9 @@
 \newenvironment{#note}[1]
     {\renewcommand\theinnernote{#1}\innernote}
     {\endinnernote}
+
+\def\lstlistingautorefname{Algorithm}
+\def\itemautorefname{Section}
 
 \renewcommand{\restriction}[1]{\downharpoonright_{#1}}
 \renewcommand{\qedsymbol}{\sc q.e.d.}
