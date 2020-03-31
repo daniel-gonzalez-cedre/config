@@ -85,8 +85,8 @@
 \newcommand{\mean}[1]{\overline{#1}}
 \newcommand{\integral}[1]{\smashoperator{\int_{#1}}}
 \newcommand*\diff{\mathop{}\!\mathrm{d}}
-\newcommand{\E}[1]{\mathbb{E}\sqparens*{#1}}
-\newcommand{\Esub}[2]{\mathbb{E}_{#1}\sqparens*{#2}}
+\newcommand{\E}[1]{\mathbb{E}\crochets*{#1}}
+\newcommand{\Esub}[2]{\mathbb{E}_{#1}\crochets*{#2}}
 \newcommand{\var}[1]{\mathrm{Var}\parens*{#1}}
 \newcommand{\cov}[2]{\mathrm{Cov}\parens*{#1, #2}}
 \newcommand{\der}[2]{\frac{\diff{#1}}{\diff{#2}}}
@@ -116,7 +116,6 @@
 \newcommand{\jp}[1]{\begin{CJK}{UTF8}{gbsn}#1\end{CJK}}
 
 \DeclarePairedDelimiterX \inner[2]{\langle}{\rangle}{#1,#2}
-%\DeclarePairedDelimiterX \braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
 \DeclarePairedDelimiter \bra{\langle}{\rvert}
 \DeclarePairedDelimiter \ket{\lvert}{\rangle}
 \DeclarePairedDelimiter \abs{\lvert}{\rvert}
@@ -124,8 +123,8 @@
 \DeclarePairedDelimiter \set{\lbrace}{\rbrace}
 \DeclarePairedDelimiter \seq{\langle}{\rangle}
 \DeclarePairedDelimiter \parens{(}{)}
-\DeclarePairedDelimiter \sqparens{[}{]}
-\DeclarePairedDelimiter \braket{\langle}{\rangle}
+\DeclarePairedDelimiter \crochets{[}{]}
+\DeclarePairedDelimiter \brackets{\langle}{\rangle}
 
 \begin{document}
 \begin{center}
