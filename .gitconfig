@@ -4,7 +4,7 @@
     name = cedré
     user = daniel-gonzalez-cedre
     email = 39937561+daniel-gonzalez-cedre@users.noreply.github.com
-	mail = 39937561+daniel-gonzalez-cedre@users.noreply.github.com
+    mail = 39937561+daniel-gonzalez-cedre@users.noreply.github.com
 [alias]
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
@@ -15,4 +15,4 @@
     status = auto
 [core]
     editor = vim
-	excludesfile = /Users/akira/.gitignore_global
+    excludesfile = /Users/akira/.gitignore_global
