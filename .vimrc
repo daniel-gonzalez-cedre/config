@@ -14,6 +14,7 @@ set foldlevelstart=99
 set foldmethod=indent
 set hlsearch
 set laststatus=2
+set matchpairs+=<:>
 set number
 set ruler
 set scrolloff=5
@@ -32,6 +33,8 @@ let g:haskell_indent_case = 4
 let g:haskell_indent_guard = 4
 let g:incsearch#auto_nohlsearch = 1
 let g:latex_to_unicode_file_types = ".*"
+let g:matchparen_timeout = 8
+let g:matchparen_insert_timeout = 8
 let g:python_highlight_all = 1
 let g:gruvbox_contrast_dark = "hard"
 let g:gruvbox_number_column = "black"
