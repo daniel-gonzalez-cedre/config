@@ -23,6 +23,18 @@ alias rsync="rsync -v --progress"
 alias python="python3"
 alias tree="tree -C -N"
 
+low_p() {
+        nice -n 20 "$@"
+}
+
+mid_p() {
+        nice -n 10 "$@"
+}
+
+high_p() {
+        nice -n 0 "$@"
+}
+
 clean(){
     rm -i .DS_Store *.aux *.bbl *.blg *.fdb_latexmk *.fls *.log *.out
 }
