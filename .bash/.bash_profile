@@ -22,17 +22,22 @@ alias rm="rm -v"
 alias rsync="rsync -v --progress"
 alias python="python3"
 alias tree="tree -C -N"
+alias istats="watch -n0 --color istats"
+
+temperature() {
+    watch 'sudo powermetrics --samplers smc -i1 -n1 | tail'
+}
 
 low_p() {
-        nice -n 20 "$@"
+    nice -n 20 "$@"
 }
 
 mid_p() {
-        nice -n 10 "$@"
+    nice -n 10 "$@"
 }
 
 high_p() {
-        nice -n 0 "$@"
+    nice -n 0 "$@"
 }
 
 clean(){
