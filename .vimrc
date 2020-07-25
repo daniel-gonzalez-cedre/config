@@ -59,13 +59,15 @@ inoremap { {}<left>
 inoremap ) <C-r>=ClosePair(')')<CR>
 inoremap ] <C-r>=ClosePair(']')<CR>
 inoremap } <C-r>=ClosePair('}')<CR>
-inoremap $ <C-r>=QuoteDelim("$")<CR>
+au BufNewFile *.tex inoremap $ <C-r>=QuoteDelim("$")<CR>
+au BufRead *.tex inoremap $ <C-r>=QuoteDelim("$")<CR>
 inoremap " <C-r>=QuoteDelim('"')<CR>
 inoremap ' <C-r>=QuoteDelim("'")<CR>
 vnoremap ( <C-c>`>a)<C-c>`<i(<C-c>
 vnoremap [ <C-c>`>a]<C-c>`<i[<C-c>
 vnoremap { <C-c>`>a}<C-c>`<i{<C-c>
-vnoremap $ <C-c>`>a$<C-c>`<i$<C-c>
+au BufNewFile *.tex vnoremap $ <C-c>`>a$<C-c>`<i$<C-c>
+au BufRead *.tex vnoremap $ <C-c>`>a$<C-c>`<i$<C-c>
 vnoremap " <C-c>`>a"<C-c>`<i"<C-c>
 vnoremap ' <C-c>`>a'<C-c>`<i'<C-c>
 vnoremap <C-u> y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""P
