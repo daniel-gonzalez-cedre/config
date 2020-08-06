@@ -14,6 +14,7 @@ set foldlevelstart=99
 set foldmethod=indent
 set hlsearch
 set laststatus=2
+set linebreak
 set matchpairs+=<:>
 set number
 set ruler
@@ -28,6 +29,7 @@ set splitright
 set tabstop=4
 set wildmenu
 set wildmode=list:longest,full
+set wrap
 let g:haskell_indent_if = 4
 let g:haskell_indent_case = 4
 let g:haskell_indent_guard = 4
@@ -51,6 +53,8 @@ map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 noremap <C-f> za
+nnoremap <C-j> gj
+nnoremap <C-k> gk
 noremap F zA
 inoremap <C-c> <Esc>
 inoremap ( ()<left>
