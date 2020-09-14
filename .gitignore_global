@@ -1,4 +1,5 @@
 *.swp
+.CFUserTextEncoding
 .DS_Store
 .DS_Store?
 .Spotlight-V100
