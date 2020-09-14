@@ -1,0 +1,16 @@
+/* show title of unread tabs in grey */
+:root.sidebar tab-item.unread .label-content {
+    color: grey !important;
+}
+
+/* remove new tab button */
+#tabbar .after-tabs {
+    display: none !important;
+}
+
+/* more compact tab height and darker colors */
+.tab {
+    height: 25px;
+    background: #202020;
+    border: #000000;
+}
