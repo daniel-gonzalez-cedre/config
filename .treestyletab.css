@@ -14,3 +14,8 @@
     background: #202020;
     border: #000000;
 }
+
+/* change current tab highlight color */
+:root .tab .highlighter::before {
+    background: #ff0000;
+}
