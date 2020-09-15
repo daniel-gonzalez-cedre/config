@@ -354,3 +354,7 @@ al
 coreness
 subgraph
 graphlet
+parallelizable
+parallelizablility
+Serializable
+serializable
