@@ -174,14 +174,14 @@
       "verbose": "Transparent"
     },
     {
-      "keyCode": 226,
-      "label": "LAlt",
-      "verbose": "Left Alt"
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
     },
     {
-      "keyCode": 225,
-      "label": "LShift",
-      "verbose": "Left Shift"
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
     },
     {
       "keyCode": 76,
