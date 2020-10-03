@@ -19,8 +19,5 @@
 .tab.active { background: #303030; }
 :root .tab .highlighter::before { background: #555555; }
 
-/* make [x] tab close button take up less horizontal space */
-.closebox { width: 15px; }
-
 /* hide [x] tab close button unless hovering on tab */
 .tab:not(:hover) .closebox { visibility: collapse !important; }
