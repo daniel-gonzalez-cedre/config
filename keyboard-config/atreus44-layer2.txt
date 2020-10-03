@@ -1,0 +1,222 @@
+{
+  "keymap": [
+    {
+      "keyCode": 2078,
+      "label": "!"
+    },
+    {
+      "keyCode": 2079,
+      "label": "@"
+    },
+    {
+      "keyCode": 2080,
+      "label": "#"
+    },
+    {
+      "keyCode": 2081,
+      "label": "$"
+    },
+    {
+      "keyCode": 2082,
+      "label": "%"
+    },
+    {
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
+    },
+    {
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
+    },
+    {
+      "keyCode": 2083,
+      "label": "^"
+    },
+    {
+      "keyCode": 2084,
+      "label": "&"
+    },
+    {
+      "keyCode": 2085,
+      "label": "*"
+    },
+    {
+      "keyCode": 2086,
+      "label": "("
+    },
+    {
+      "keyCode": 2087,
+      "label": ")"
+    },
+    {
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
+    },
+    {
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
+    },
+    {
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
+    },
+    {
+      "keyCode": 2086,
+      "label": "("
+    },
+    {
+      "keyCode": 2087,
+      "label": ")"
+    },
+    {
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
+    },
+    {
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
+    },
+    {
+      "keyCode": 80,
+      "label": "←"
+    },
+    {
+      "keyCode": 81,
+      "label": "↓"
+    },
+    {
+      "keyCode": 82,
+      "label": "↑"
+    },
+    {
+      "keyCode": 79,
+      "label": "→"
+    },
+    {
+      "keyCode": 49,
+      "label": "\\"
+    },
+    {
+      "keyCode": 47,
+      "label": "["
+    },
+    {
+      "keyCode": 48,
+      "label": "]"
+    },
+    {
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
+    },
+    {
+      "keyCode": 2095,
+      "label": "{"
+    },
+    {
+      "keyCode": 2096,
+      "label": "}"
+    },
+    {
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
+    },
+    {
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
+    },
+    {
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
+    },
+    {
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
+    },
+    {
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
+    },
+    {
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
+    },
+    {
+      "keyCode": 2094,
+      "label": "+"
+    },
+    {
+      "keyCode": 17411,
+      "label": "3",
+      "extraLabel": "LockTo"
+    },
+    {
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
+    },
+    {
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
+    },
+    {
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
+    },
+    {
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
+    },
+    {
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
+    },
+    {
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
+    },
+    {
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
+    },
+    {
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
+    },
+    {
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
+    },
+    {
+      "keyCode": 65535,
+      "label": "",
+      "verbose": "Transparent"
+    },
+    {
+      "keyCode": 46,
+      "label": "="
+    }
+  ],
+  "palette": []
+}
