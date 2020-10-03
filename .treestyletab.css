@@ -1,21 +1,26 @@
-/* show title of unread tabs in grey */
-:root.sidebar tab-item.unread .label-content {
-    color: grey !important;
-}
+/* sidebar background */
+:root, #background { background: #000000; }
 
-/* remove new tab button */
-#tabbar .after-tabs {
-    display: none !important;
-}
+/* show title of unread tabs in grey */
+:root.sidebar tab-item.unread .label-content { color: grey !important; }
+
+/* hide new tab button */
+#tabbar .after-tabs { display: none !important; }
+.after-tabs button { display: none !important; }
 
 /* more compact tab height and darker colors */
 .tab {
     height: 25px;
-    background: #202020;
+    background: #090909;
     border: #000000;
 }
 
-/* change current tab highlight color */
-:root .tab .highlighter::before {
-    background: #ff0000;
-}
+/* highlight current tab */
+.tab.active { background: #303030; }
+:root .tab .highlighter::before { background: #555555; }
+
+/* make [x] tab close button take up less horizontal space */
+.closebox { width: 15px; }
+
+/* hide [x] tab close button unless hovering on tab */
+.tab:not(:hover) .closebox { visibility: collapse !important; }
