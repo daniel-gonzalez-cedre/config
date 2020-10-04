@@ -125,9 +125,9 @@
       "label": "}"
     },
     {
-      "keyCode": 65535,
-      "label": "",
-      "verbose": "Transparent"
+      "keyCode": 57,
+      "label": "CapsLK",
+      "verbose": "Caps Lock"
     },
     {
       "keyCode": 65535,
@@ -179,14 +179,13 @@
       "verbose": "Transparent"
     },
     {
-      "keyCode": 65535,
-      "label": "",
-      "verbose": "Transparent"
+      "keyCode": 76,
+      "label": "Del"
     },
     {
-      "keyCode": 65535,
-      "label": "",
-      "verbose": "Transparent"
+      "keyCode": 224,
+      "label": "LCtrl",
+      "verbose": "Left Control"
     },
     {
       "keyCode": 65535,
