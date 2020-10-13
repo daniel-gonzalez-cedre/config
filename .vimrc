@@ -89,8 +89,8 @@ if has('clipboard')
 endif
 
 " START CUSTOM CURSORS
-let &t_SI="\033[4 q" " start insert mode
-let &t_EI="\033[0 q" " end insert mode
+let &t_SI="\e[4 q" " start insert mode: underline
+let &t_EI="\e[2 q" " end insert mode: block
 " END CUSTOM CURSORS
 
 " START NVIM-R SETTINGS
