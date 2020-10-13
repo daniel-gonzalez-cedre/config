@@ -87,15 +87,22 @@ if has('clipboard')
     noremap s "+s
     noremap S "+S
 endif
-" <nvim-R settings>
-" start with \rf
-" quit with \rq
-" <C-w> to switch panes
+
+" START CUSTOM CURSORS
+let &t_SI="\033[4 q" " start insert mode
+let &t_EI="\033[0 q" " end insert mode
+" END CUSTOM CURSORS
+
+" START NVIM-R SETTINGS
+    " start with \rf
+    " quit with \rq
+    " <C-w> to switch panes
 let R_assign_map = "--"
 let R_external_term = 1
 vmap <Space> <Plug>RSendSelection
 nmap <LocalLeader><Space> <Plug>RSendLine
-" </nvim-R settings>
+" END NVIM-R SETTINGS
+
 function ClosePair(char)
     if getline('.')[col('.') - 1] == a:char
         return "\<Right>"
