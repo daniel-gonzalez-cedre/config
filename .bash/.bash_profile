@@ -27,6 +27,10 @@ alias tree="tree -C -N"
 alias istats="watch -n 0 --color istats"
 alias storage="watch -n 1 --color df -h"
 
+flash() {
+    avrdude -p atmega32u4 -c avr109 -U flash:w:"$@" -P /dev/cu.usbmodematreus1
+}
+
 size() {
     du -h -d 0 "$@" 
 }
