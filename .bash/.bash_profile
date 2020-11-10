@@ -8,7 +8,7 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export TERM=xterm-256color
-export PATH=/usr/local/Cellar:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=/usr/local/Cellar:/usr/local/bin:/usr/local/sbin:/Users/danielgonzalez/Library/Python/3.8/bin:$PATH
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'     #   config config --local status.showUntrackedFiles no
 alias cp="cp -v"
@@ -27,7 +27,7 @@ alias tree="tree -C -N"
 alias istats="watch -n 0 --color istats"
 alias storage="watch -n 1 --color df -h"
 
-flash() {
+qmk_flash() {
     avrdude -p atmega32u4 -c avr109 -U flash:w:"$@" -P /dev/cu.usbmodematreus1
 }
 
@@ -37,18 +37,6 @@ size() {
 
 temperature() {
     watch 'sudo powermetrics --samplers smc -i1 -n1 | tail'
-}
-
-low_p() {
-    nice -n 20 "$@"
-}
-
-mid_p() {
-    nice -n 10 "$@"
-}
-
-high_p() {
-    nice -n 0 "$@"
 }
 
 clean(){
