@@ -387,3 +387,5 @@ NetworkX
 JSON
 json
 nonterminals
+nonsingular
+coproduct
