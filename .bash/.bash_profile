@@ -44,7 +44,7 @@ temperature() {
 }
 
 clean(){
-    rm -i .DS_Store *.aux *.bbl *.blg *.fdb_latexmk *.fls *.log *.out *.bcf *.def *.run.xml *.xdv .*.swp
+    rm -i .DS_Store *.aux *.bbl *.blg *.fdb_latexmk *.fls *.log *.out *.bcf *.run.xml *.xdv .*.swp
 }
 
 cv(){

@@ -415,13 +415,17 @@
 
   \begin{center}%
     \ifonline%
+      \phantom{}
+      \newline
       \adcv@email~~~~~~\adcv@website~~~~~~\adcv@git%
-
-      \adcv@address~~~~~~\adcv@telephone%
+      %
+      %\adcv@address~~~~~~\adcv@telephone%
     \else%
+      \phantom{}
+      \newline
       \adcv@email~~~~~~\adcv@website~~~~~~\adcv@telephone%
-
-      \adcv@address~~~~~~\adcv@telephone%
+      %
+      %\adcv@address~~~~~~\adcv@telephone%
     \fi%
   \end{center}%
 }
