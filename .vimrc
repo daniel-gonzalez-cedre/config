@@ -88,6 +88,10 @@ if has('clipboard')
     noremap s "+s
     noremap S "+S
 endif
+augroup keymap_ft
+  au!
+  autocmd BufNewFile,BufRead *.keymap   set syntax=keymap
+augroup END
 
 " START CUSTOM CURSORS
 let &t_SI="\e[4 q" " start insert mode: underline

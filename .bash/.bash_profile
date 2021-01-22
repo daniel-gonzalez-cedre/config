@@ -10,6 +10,9 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export TERM=xterm-256color
 export PATH=/usr/local/Cellar:/usr/local/bin:/usr/local/sbin:/Users/danielgonzalez/Library/Python/3.8/bin:$PATH
 
+export ZEPHYR_TOOLCHAIN_VARIANT=gnuarmemb
+export GNUARMEMB_TOOLCHAIN_PATH=/home/danielgonzalez/Downloads/gnu_arm_embedded
+
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'     #   config config --local status.showUntrackedFiles no
 alias cp="cp -v"
 alias g++="g++ -std=c++11"
