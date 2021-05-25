@@ -30,6 +30,9 @@ alias tree="tree -C -N"
 alias istats="watch -n 0 --color istats"
 alias storage="watch -n 1 --color df -h"
 
+alias remote_mount="sshfs -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3"
+alias remote_unmount="fusermount -u"
+
 compress_pdf() {
     gs -sDEVICE=pdfwrite -dNOPAUSE -dQUIET -dBATCH -dPDFSETTINGS=/${3:-"screen"} -dCompatibilityLevel=1.4 -sOutputFile="$2" "$1"
 }
