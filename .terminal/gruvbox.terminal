@@ -185,7 +185,7 @@
 	<key>BookmarkRestorations</key>
 	<false/>
 	<key>CommandString</key>
-	<string>tmux</string>
+	<string></string>
 	<key>ConvertNewlinesOnPaste</key>
 	<false/>
 	<key>CursorBlink</key>
@@ -218,7 +218,7 @@
 	<key>ProfileCurrentVersion</key>
 	<real>2.0699999999999998</real>
 	<key>RunCommandAsShell</key>
-	<false/>
+	<true/>
 	<key>SelectionColor</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
