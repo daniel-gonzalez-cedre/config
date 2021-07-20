@@ -26,7 +26,7 @@ alias mv="mv -v"
 alias rm="rm -v"
 alias rsync="rsync -v --progress"
 alias python="python3"
-alias tree="tree -C -N"
+alias tree="tree -C -N --dirsfirst"
 alias istats="watch -n 0 --color istats"
 alias storage="watch -n 1 --color df -h"
 
