@@ -21,10 +21,9 @@ tab-item-substance {
 
 /* more compact tab height and darker colors */
 .tab {
-    margin-left: 17px;
-    height: 25px;
-    border: #555555;
-    background: #101010;
+  height: 25px;
+  border: #555555;
+  background: #101010;
 }
 
 /* highlight current tab -- can be unset for photon theme */
@@ -34,6 +33,17 @@ tab-item-substance {
 /* hide [x] tab close button unless hovering on tab */
 .tab:not(:hover) .closebox { visibility: collapse !important; }
 
-/* moves scrollbar out of frame
- * make sure to add 'margin-left: 17px;' to '.tab' */
-#tabbar.overflow { margin-left: -17px; }
+
+/* remove scroll bar */
+.tab {
+  margin-left: 15px;
+}
+#tabbar {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+:root.left #tabbar,
+#tabContextMenu,
+#tabContextMenu ul {
+  margin-left: -15px;
+}
