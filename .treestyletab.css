@@ -7,6 +7,8 @@
 /* Less visible tab dividers. 
    A black border with a very low alpha slightly darkens any color. */
 tab-item-substance {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   border-top: solid 0.5px #aaaaaa25;
   border-bottom: solid 0.5px #aaaaaa25;
   border-left: solid 1px #aaaaaa25;
