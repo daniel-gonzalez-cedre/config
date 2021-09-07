@@ -36,7 +36,7 @@ tab-item-substance {
 
 /* remove scroll bar */
 .tab {
-  margin-left: 15px;
+  margin-left: 17px;
 }
 #tabbar {
   overflow-x: hidden;
