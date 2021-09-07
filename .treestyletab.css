@@ -8,6 +8,9 @@
    A black border with a very low alpha slightly darkens any color. */
 tab-item-substance {
   border-top: solid 0.5px #aaaaaa25;
+  border-bottom: solid 0.5px #aaaaaa25;
+  border-left: solid 1px #aaaaaa25;
+  background-color: #202020;
 }
 
 /* hide new tab button */
@@ -17,8 +20,8 @@ tab-item-substance {
 /* more compact tab height and darker colors */
 .tab {
     height: 25px;
-    background: #202020;
     border: #555555;
+    background: #101010;
 }
 
 /* highlight current tab -- can be unset for photon theme */
