@@ -1,8 +1,14 @@
 /* sidebar background */
-:root, #background { background: #000000; }
+:root, #background { background: #101010; }
 
 /* show title of unread tabs in grey */
-:root.sidebar tab-item.unread .label-content { color: grey !important; }
+:root.sidebar tab-item.unread .label-content { color: #555555 !important; }
+
+/* Less visible tab dividers. 
+   A black border with a very low alpha slightly darkens any color. */
+tab-item-substance {
+  border-top: solid 0.5px #aaaaaa25;
+}
 
 /* hide new tab button */
 #tabbar .after-tabs { display: none !important; }
@@ -11,12 +17,12 @@
 /* more compact tab height and darker colors */
 .tab {
     height: 25px;
-    background: #090909;
-    border: #000000;
+    background: #202020;
+    border: #555555;
 }
 
-/* highlight current tab */
-.tab.active { background: #303030; }
+/* highlight current tab -- can be unset for photon theme */
+.tab.active { /* background: #303030; */ }
 :root .tab .highlighter::before { background: #555555; }
 
 /* hide [x] tab close button unless hovering on tab */
