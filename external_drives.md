@@ -171,6 +171,10 @@
     - game of thrones s2
     - game of thrones s3
     - game of thrones s4
+    - game of thrones s5
+    - game of thrones s6
+    - game of thrones s7
+    - game of thrones s8
     - gamestopped
     - ghostwatch
     - good morning vietnam
@@ -326,7 +330,6 @@
     - free solo
     - friday the 13th
     - from beyond
-    - game of thrones
     - gangs of new york
     - gattaca
     - gett：the trial of viviane amsalem
