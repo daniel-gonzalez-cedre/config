@@ -1,0 +1,564 @@
+# WD_BLACK
+    - 5 centimeters per second
+    - FLCL s1
+    - Neon Genesis Evangelion
+    - REDLINE
+    - adventure time with finn and jake
+    - akira
+    - aku no hana
+    - angel beats!
+    - avatar：the last airbender
+    - b - the beginning
+    - battle angel
+    - beck：mongolian chop squad
+    - black lagoon
+    - blood - the last vampire
+    - blood+
+    - boku dake ga inai machi
+    - boku no hero academia
+    - boku no hero academia s4
+    - bubblegum crisis
+    - castle in the sky
+    - castlevania
+    - clannad
+    - clannad after story
+    - classroom of the elite
+    - code geass R1
+    - code geass R2
+    - colorful
+    - cowboy bebop
+    - cowboy bebop knockin' on heaven's door
+    - darker than black s1
+    - darker than black s2 (ryuusei no gemini)
+    - darker than black s3 (ryuusei no gemini gaiden)
+    - darling in the franxx
+    - death note
+    - death parade
+    - demon slayer (kimetsu no yaiba)
+    - devilman crybaby
+    - eden of the east
+    - flip flappers
+    - full metal alchemist brotherhood
+    - futurama
+    - ghost in the shell
+    - ghost in the shell 2：innocence
+    - ghost in the shell：stand alone complex
+    - ghost in the shell：stand alone complex 2nd gig
+    - gosick
+    - gravity falls s1
+    - gravity falls s2
+    - grimgar ashes and illusions
+    - gunslinger girl
+    - gunslinger girl ~ il teatrino
+    - haibane renmei
+    - heavy object
+    - higurashi no naku koro ni
+    - higurashi no naku koro ni kai
+    - himouto umaru-chan
+    - howl's moving castle
+    - hunter x hunter
+    - hyouge mono
+    - i want to eat your pancreas
+    - inuyashiki
+    - invader zim
+    - jin-roh the wolf brigade
+    - jojo's bizarre adventure 1
+    - jojo's bizarre adventure 2： stardust crusaders
+    - jojo's bizarre adventure 3： diamond is unbreakable
+    - jormungand
+    - kaiba
+    - kakegurui s1
+    - kakegurui s2
+    - kiki's delivery service
+    - kill la kill
+    - kyoukai no kanata
+    - legend of the galactic heroes
+    - made in abyss
+    - march comes in like a lion 1
+    - march comes in like a lion 2
+    - memories
+    - millennium actress
+    - mob psycho 100
+    - mononoke
+    - monster
+    - mushishi
+    - nausicaä of the valey of the wind
+    - neo tokyo
+    - nichijou
+    - ninja scroll
+    - one-punch man
+    - overlord
+    - panty and stocking with garterbelt
+    - paprika
+    - paranoia agent
+    - parasyte - the maxim
+    - patema inverted
+    - patlabor
+    - perfect blue
+    - ping pong the animation
+    - planetes
+    - pom poko
+    - porco rosso
+    - princess mononoke
+    - psycho-pass s1
+    - psycho-pass s2
+    - puella magi madoka magica
+    - puella magi madoka magica III： rebellion
+    - revolutionary girl utena
+    - re﹕zero s1 (director's cut)
+    - re﹕zero s2
+    - sakamichi no apollon
+    - sakigake cromartie high school
+    - samurai champloo
+    - sayonara zetsubou sensei
+    - school-live!
+    - serial experiments lain
+    - shigurui
+    - shingeki no kyojin s1
+    - shingeki no kyojin s2
+    - shingeki no kyojin s3
+    - shinsekai yori
+    - space dandy
+    - spice and wolf
+    - spirited away
+    - steins;gate
+    - steins;gate 0
+    - sword of the stranger
+    - tengen toppa gurren lagann
+    - tengen toppa gurren lagann - gurren arc
+    - tengen toppa gurren lagann - lagann arc
+    - the cat returns
+    - the count of monte cristo
+    - the girl who leapt through time
+    - the lion king
+    - the prince of egypt
+    - the rising of the shield hero
+    - the tatami galaxy
+    - tiger & bunny
+    - tokyo godfathers
+    - trigun
+    - vinland saga
+    - welcome to the nhk
+    - whisper of the heart
+    - your lie in april
+    - yuuki yuuna wa yuusha de aru
+    - zankyou no terror
+    - 「your name」kimi no na wa
+
+# ext1 (half-tone)
+    - a history of violence
+    - a nightmare on elm street
+    - american psycho
+    - anthropoid
+    - antiviral
+    - baby driver
+    - beetlejuice
+    - buffy the vampire slayer s1
+    - buffy the vampire slayer s2
+    - censor
+    - come and see
+    - contagion
+    - crash
+    - death proof
+    - die hard
+    - event horizon
+    - fargo s1
+    - fargo s2
+    - fargo s3
+    - feels good man
+    - friday the 13th part VI
+    - game of thrones s1
+    - game of thrones s2
+    - game of thrones s3
+    - game of thrones s4
+    - game of thrones s5
+    - game of thrones s6
+    - game of thrones s7
+    - game of thrones s8
+    - gamestopped
+    - ghostwatch
+    - good morning vietnam
+    - happy death day
+    - happy death day 2u
+    - i spit on your grave
+    - inherent vice
+    - invasion of the body snatchers
+    - jodorowsky's dune
+    - loveless
+    - loving vincent
+    - magnolia
+    - malignant
+    - marriage story
+    - memories of murder
+    - night of the creeps
+    - oxygen
+    - pig
+    - pirates of the caribbean
+    - possessor
+    - psycho goreman
+    - rashomon 羅生門
+    - run
+    - saint maud
+    - scanners
+    - stalker
+    - tangerine
+    - the big lebowski
+    - the big short
+    - the blackcoat's daughter
+    - the blair witch project
+    - the blob
+    - the clovehitch killer
+    - the devil's advocate
+    - the double
+    - the evil dead
+    - the exorcist
+    - the florida project
+    - the girl with the dragon tattoo
+    - the green knight
+    - the handmaiden
+    - the hateful eight
+    - the haunting of hill house
+    - the house of the devil
+    - the house that jack built
+    - the hummingbird project
+    - the imitation game
+    - the insider
+    - the jinx
+    - the killing of a sacred deer
+    - the king of comedy
+    - the last circus
+    - the last kingdom s1
+    - the last kingdom s2
+    - the last kingdom s3
+    - the last kingdom s4
+    - the last temptation of christ
+    - the lobster
+    - the producers
+    - the suicide squad
+    - train to busan
+    - tremors
+    - true detective s1
+    - true detective s3
+    - underwater
+    - wake in fright
+    - westworld s1
+
+# ext2 (easystore)
+    - 12 angry men
+    - 2001 a space odyssey
+    - 28 days later
+    - [REC]
+    - [REC] 2
+    - a chinese ghost story 倩女幽魂
+    - a cure for wellness
+    - a few good men
+    - a ghost story
+    - a scanner darkly
+    - a serious man
+    - a tale of two sisters 장화, 홍련
+    - aladdin
+    - alpha go
+    - american animals
+    - amores perros
+    - anthropoid
+    - antichrist
+    - apocalypse now
+    - apocalypto
+    - arrival
+    - as above so below
+    - audition
+    - avengers infinity war
+    - á l'interieur
+    - baby driver
+    - bad genius
+    - barry lyndon
+    - batman
+    - bedevilled 김복남 살인사건의 전말
+    - beyond the black rainbow
+    - bicentennial man
+    - bill and ted's excellent adventure
+    - birdman
+    - blade runner
+    - blade runner 2049
+    - blood simple
+    - blue ruin
+    - body bags
+    - bogowie
+    - bone tomahawk
+    - braveheart
+    - bronson
+    - burning 버닝
+    - caché
+    - child's play
+    - children of men
+    - chungking express 重庆森林
+    - city of god
+    - clue
+    - color out of space
+    - creature from the black lagoon
+    - danton
+    - dark city
+    - dawn of the dead
+    - day of the dead
+    - dead of night
+    - dead poets society
+    - der untergang
+    - dheepan
+    - dogtooth
+    - dogville
+    - donnie darko
+    - doubt
+    - drive
+    - dunkirk
+    - eastern promises
+    - ed wood
+    - el topo
+    - empire of dust
+    - enemy
+    - enter the void
+    - er ist wieder da
+    - eraserhead
+    - event horizon
+    - evil dead 2
+    - ex machina
+    - eyes without a face
+    - fallen angels 墮落天使
+    - falling down
+    - fargo
+    - first reformed
+    - flubber
+    - free solo
+    - friday the 13th
+    - from beyond
+    - gangs of new york
+    - gattaca
+    - gett：the trial of viviane amsalem
+    - ghostbusters
+    - gladiator
+    - gone girl
+    - good morning vietnam
+    - good time
+    - goodfellas
+    - green room
+    - gremlins
+    - gremlins 2：the new batch
+    - grindhouse
+    - guardians of the galaxy
+    - guardians of the galaxy vol. 2
+    - hackers
+    - halloween
+    - harry potter
+    - heavy metal
+    - heima
+    - hellraiser
+    - hellraiser II
+    - her
+    - hereditary
+    - hidden
+    - home alone
+    - home alone 2 (lost in new york)
+    - hot fuzz
+    - house ハウス
+    - i saw the devil 악마를 보았다
+    - icarus
+    - in the mouth of madness
+    - incendies
+    - inception
+    - inglourious basterds
+    - it comes at night
+    - it follows
+    - jackie brown
+    - jodorowsky's dune
+    - john wick
+    - john wick chapter 2
+    - juno
+    - kagemusha 影武者
+    - kairo 回路
+    - kill bill vol. 1
+    - kill bill vol. 2
+    - kingdom of heaven
+    - knight of cups
+    - krampus
+    - krisha
+    - kung fury
+    - kung pow enter the fist
+    - la danza de la realidad
+    - la montaña sagrada
+    - lake mungo
+    - les misérables
+    - let the right one in
+    - leviathan
+    - love exposure
+    - misery
+    - poltergeist
+    - rosemary's baby
+    - salo or the 120 days of sodom
+    - samsara
+    - scott pilgrim vs the world
+    - se7en
+    - shaun of the dead
+    - shin godzilla
+    - shogun
+    - sicario
+    - silence
+    - sleepaway camp
+    - solaris
+    - southbound
+    - stalker
+    - star wars
+    - stray dogs 郊遊
+    - suicide club
+    - sunshine
+    - super dark times
+    - suspiria 1977
+    - suspiria 2018
+    - sweeney todd (the demon barber of fleet street)
+    - synecdoche, new york
+    - taboo
+    - the borderlands
+    - the boys
+    - the conversation
+    - the empty man
+    - the evil dead
+    - the exorcist iii
+    - the father
+    - the innocents
+    - the inventor (out for blood in silicon valley)
+    - the lord of the rings
+    - the master
+    - the neon demon
+    - the nightmare before christmas
+    - the pervert's guide to ideology
+    - the raid
+    - the red spectacles 紅い眼鏡
+    - the return of the living dead
+    - the revenant
+    - the ring
+    - the ritual
+    - the shining
+    - the sisters brothers
+    - the social network
+    - the sopranos
+    - the survivalist
+    - the tenants downstairs 楼下的房客
+    - the terror
+    - the texas chainsaw massacre
+    - the thing
+    - the wailing 곡성
+    - the witch
+    - the wolf of wall street
+    - the world's end
+    - the young pope
+    - there will be blood
+    - they live
+    - thoroughbreds
+    - tickled
+    - toad road
+    - trick 'r treat
+    - twelve monkeys
+    - twin peaks
+    - twin peaks fire walk with me
+    - under the silver lake
+    - under the skin
+    - upstream color
+    - vive l'amour 爱情万岁
+    - wayne's world
+    - we need to talk about kevin
+    - welcome to leith
+    - westworld
+    - what we do in the shadows
+    - whiplash
+    - wild at heart
+    - wish upon
+    - yi yi
+    - you were never really here
+    - you're next
+    - zodiac
+
+# ext3 (my passport ultra -- blue)
+    - 28 weeks later
+    - 300
+    - a nightmare on elm street
+    - airplane
+    - an american werewolf in london
+    - before the devil knows you're dead
+    - bill and ted's excellent adventure
+    - birds of passage
+    - blue velvet
+    - cabin fever
+    - chernobyl
+    - contagion
+    - dead of night
+    - demolition man
+    - eternal sunshine of the spotless mind
+    - eyes without a face
+    - for sama
+    - ginger snaps
+    - i'm thinking of ending things
+    - los espookys
+    - mad men s1
+    - mad men s2
+    - mad men s3
+    - mad men s4
+    - mad men s6
+    - magical girl
+    - manchester by the sea
+    - mandy
+    - marriage story
+    - martyrs
+    - may
+    - mean creek
+    - melancholia
+    - midsommar
+    - mommy
+    - monos
+    - moon
+    - mother!
+    - mr robot
+    - nameless gangster 범죄와의 전쟁
+    - neil breen
+    - nick and norah's infinite playlist
+    - night of the living dead
+    - nightcrawler
+    - no country for old men
+    - nocturnal animals
+    - norwegian wood
+    - oldboy 올드보이
+    - once upon a time in hollywood
+    - one cut of the dead
+    - only god forgives
+    - parasite 기생충
+    - pawn sacrifice
+    - pet sematary
+    - phantom thread
+    - polytechnique
+    - pontypool
+    - possession
+    - primer
+    - prisoners
+    - pulp fiction
+    - raging bull
+    - rams
+    - ran 乱
+    - raw
+    - re-animator
+    - reality
+    - relic
+    - reservoir dogs
+    - ringu
+    - room
+    - rosemary's baby
+    - rust and bone
+    - shadow
+    - starry eyes
+    - the beach house
+    - the lighthouse
+    - the nightingale
+    - the princess bride
+    - the vast of night
+    - train to busan
+    - tremors
+    - twin peaks
+    - uncut gems
+    - zodiac
+    - zombie
