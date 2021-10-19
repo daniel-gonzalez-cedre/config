@@ -17,6 +17,7 @@ set laststatus=2
 set linebreak
 set matchpairs+=<:>
 set number
+set relativenumber
 set ruler
 set scrolloff=5
 set shiftround
