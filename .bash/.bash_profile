@@ -35,6 +35,14 @@ alias storage="watch -n 1 --color df -h"
 alias remote_mount="sshfs -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3"
 alias remote_unmount="fusermount -u"
 
+# $1 : <port_number>
+# $2 : <username>@<remote_server>
+ssh_tunnel() {
+    ssh -N -L "$1":localhost:"$1" "$2"
+}
+
+# $1 : <input_file>
+# $2 : <output_file>
 compress_pdf() {
     gs -sDEVICE=pdfwrite -dNOPAUSE -dQUIET -dBATCH -dPDFSETTINGS=/${3:-"screen"} -dCompatibilityLevel=1.4 -sOutputFile="$2" "$1"
 }
@@ -55,28 +63,36 @@ clean(){
     rm -i .DS_Store *.aux *.bbl *.blg *.fdb_latexmk *.fls *.log *.out *.bcf *.run.xml *.xdv .*.swp
 }
 
+# computer vision
 cv(){
     g++ -std=c++11 $1 $(pkg-config --cflags --libs opencv4);
 }
 
+# $1 : <input_file>
+# $2 : <output_file>
 decrypt(){
     openssl enc -d -aes-256-cbc -in "$1" > "$2"
 }
 
+# $1 : <input_file>
+# $2 : <output_file>
 encrypt(){
     openssl enc -aes-256-cbc -salt -in "$1" -out "$2"
 }
 
-# flac_split example.cue example.flac
+# $1 : <input>.cue
+# $2 : <input>.flac
 flac_split(){
     shnsplit -f "$1" -o flac -t "flac %n. %p - %a - %t" "$2"
 }
 
+# $1 : <input_file>
 flac_convert(){
     filename=$1
     ffmpeg -i "$1" -codec:a libmp3lame -b:a 320k "${filename//flac/mp3}"
 }
 
+# converts all flac files in the current directory to mp3
 flac_convert_all(){
     for f in ./*.flac
     do
@@ -84,6 +100,7 @@ flac_convert_all(){
     done
 }
 
+# removes audio from all files in current directory
 noaudio(){
     for f in ./*
     do
@@ -94,11 +111,12 @@ noaudio(){
     done
 }
 
+# $1 : <input_file>
 preview(){
     qlmanage -p "$1"
 }
 
-# TO CONVERT ALL .HEIC IMAGES IN A DIRECTORY TO .png
+# to convert all .HEIC images in a directory to .png
 # mogrify -monitor -format png *.HEIC
 reformat(){
     if [[ $# -eq 2 ]]; then
@@ -108,6 +126,7 @@ reformat(){
     fi
 }
 
+# $1 : ???
 resize(){
     for f in ./*.png
     do
