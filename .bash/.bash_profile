@@ -13,7 +13,7 @@ export PATH=/opt/homebrew/bin:/usr/local/Cellar:/usr/local/bin:/usr/local/sbin:/
 export ZEPHYR_TOOLCHAIN_VARIANT=gnuarmemb
 export GNUARMEMB_TOOLCHAIN_PATH=/home/danielgonzalez/Downloads/gnu_arm_embedded
 
-alias gitfig='/usr/bin/git --git-dir=$HOME/.gitfig/ --work-tree=$HOME'     #   config config --local status.showUntrackedFiles no
+alias gitfig='/usr/bin/git --git-dir=$HOME/.gitfig/ --work-tree=$HOME'     #   gitfig config --local status.showUntrackedFiles no
 alias cp="cp -v"
 alias g++="g++ -std=c++11"
 alias ghc="ghc -no-keep-hi-files -no-keep-o-files"
