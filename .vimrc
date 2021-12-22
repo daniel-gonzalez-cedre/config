@@ -25,6 +25,7 @@ set shiftwidth=4
 set smartindent
 set softtabstop=4
 set spell
+set spelllang+=cjk
 set splitbelow
 set splitright
 set tabstop=4
