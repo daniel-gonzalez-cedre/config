@@ -16,3 +16,7 @@
 [core]
     editor = vim
     excludesfile = /Users/akira/.gitignore_global
+[pull]
+	rebase = false
+[init]
+	defaultBranch = master
