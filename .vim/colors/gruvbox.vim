@@ -475,7 +475,7 @@ endif
 
 if version >= 700
   " Screen line that the cursor is
-  call s:HL('CursorLine',   s:none, s:bg1)
+  call s:HL('CursorLine', s:none, s:none)
   " Screen column that the cursor is
   hi! link CursorColumn CursorLine
 
@@ -498,7 +498,7 @@ if version >= 703
   call s:HL('Conceal', s:blue, s:none)
 
   " Line number of CursorLine
-  call s:HL('CursorLineNr', s:yellow, s:bg1)
+  call s:HL('CursorLineNr', s:yellow, s:bg0)
 endif
 
 hi! link NonText GruvboxBg2
@@ -507,7 +507,7 @@ hi! link SpecialKey GruvboxBg2
 call s:HL('Visual',    s:none,  s:bg0, s:invert_selection)
 hi! link VisualNOS Visual
 
-call s:HL('Search',    s:yellow, s:bg0, s:inverse)
+call s:HL('Search', s:yellow, s:bg0, s:inverse)
 call s:HL('IncSearch', s:hls_cursor, s:bg0, s:inverse)
 
 call s:HL('Underlined', s:blue, s:none, s:underline)
@@ -542,7 +542,9 @@ hi! link WarningMsg GruvboxRedBold
 " Gutter: {{{
 
 " Line number for :number and :# commands
-call s:HL('LineNr', s:bg4, s:number_column)
+call s:HL('LineNr', s:bg1, s:number_column)
+call s:HL('CursorLine', s:none, s:none)
+call s:HL('CursorLineNr', s:yellow, s:bg0)
 
 " Column where signs are displayed
 call s:HL('SignColumn', s:none, s:sign_column)
