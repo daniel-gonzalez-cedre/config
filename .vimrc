@@ -7,6 +7,7 @@ set autoindent
 set background=dark
 set backspace=indent,eol,start
 set conceallevel=0
+set cursorline
 set display+=lastline
 set expandtab
 set foldignore=
@@ -41,7 +42,6 @@ let g:matchparen_timeout = 8
 let g:matchparen_insert_timeout = 8
 let g:python_highlight_all = 1
 let g:gruvbox_contrast_dark = "hard"
-let g:gruvbox_number_column = "black"
 colorscheme gruvbox
 map <C-b> <Nop>
 map! <C-b> <Nop>

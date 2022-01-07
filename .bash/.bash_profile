@@ -28,12 +28,16 @@ alias rm="rm -v"
 alias rsync="rsync -v --progress"
 alias pdfcrop="/Library/TeX/texbin/pdfcrop"
 alias python="python3"
-alias tree="tree -C -N --dirsfirst"
+alias tree="tree -C -N -h --dirsfirst"
 alias istats="watch -n 0 --color istats"
 alias storage="watch -n 1 --color df -h"
 
 alias remote_mount="sshfs -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3"
 alias remote_unmount="fusermount -u"
+
+tree_ascii() {
+    tree --dirsfirst -C -N -h "$1" | sed 's/├/\+/g; s/─/-/g; s/└/\\/g'
+}
 
 # $1 : <port_number>
 # $2 : <username>@<remote_server>
