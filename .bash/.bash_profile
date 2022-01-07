@@ -41,6 +41,11 @@ ssh_tunnel() {
     ssh -N -L "$1":localhost:"$1" "$2"
 }
 
+# $1 : <port_number>
+ssh_jupyter() {
+    jupyter notebook --no-browser --port="$1"
+}
+
 # $1 : <input_file>
 # $2 : <output_file>
 compress_pdf() {
