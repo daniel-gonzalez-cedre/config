@@ -15,7 +15,7 @@
     status = auto
 [core]
     editor = vim
-    excludesfile = /Users/akira/.gitignore_global
+    excludesfile = /Users/danielgonzalez/.gitignore_global
 [pull]
 	rebase = false
 [init]
