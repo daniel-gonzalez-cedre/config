@@ -59,50 +59,11 @@
 \newtheorem{conjecture}{Conjecture}
 \newtheorem{justification}{Justification}
 \newtheorem{definition}{Definition}
+\newtheorem{definition}{Example}
+\newtheorem{definition}{Counterexample}
 \newtheorem{idea}{Idea}
 \newtheorem*{remark}{Remark}
 \newtheorem*{note}{Note}
-
-\newtheorem{innertheorem}{Theorem}
-\newenvironment{#theorem}[1]
-    {\renewcommand\theinnertheorem{#1}\innertheorem}
-    {\endinnertheorem}
-\newtheorem{innerlemma}{Lemma}
-\newenvironment{#lemma}[1]
-    {\renewcommand\theinnerlemma{#1}\innerlemma}
-    {\endinnerlemma}
-\newtheorem{innerproposition}{Proposition}
-\newenvironment{#proposition}[1]
-    {\renewcommand\theinnerproposition{#1}\innerproposition}
-    {\endinnerproposition}
-\newtheorem{innercorollary}{Corollary}
-\newenvironment{#corollary}[1]
-    {\renewcommand\theinnercorollary{#1}\innercorollary}
-    {\endinnercorollary}
-\newtheorem{innerclaim}{Claim}
-\newenvironment{#claim}[1]
-    {\renewcommand\theinnerclaim{#1}\innerclaim}
-    {\endinnerclaim}
-\newtheorem{innerconjecture}{Conjecture}
-\newenvironment{#conjecture}[1]
-    {\renewcommand\theinnerconjecture{#1}\innerconjecture}
-    {\endinnerconjecture}
-\newtheorem{innerjustification}{Justification}
-\newenvironment{#justification}[1]
-    {\renewcommand\theinnerjustification{#1}\innerjustification}
-    {\endinnerjustification}
-\newtheorem{innerdefinition}{Definition}
-\newenvironment{#definition}[1]
-    {\renewcommand\theinnerdefinition{#1}\innerdefinition}
-    {\endinnerdefinition}
-\newtheorem{innerremark}{Remark}
-\newenvironment{#remark}[1]
-    {\renewcommand\theinnerremark{#1}\innerremark}
-    {\endinnerremark}
-\newtheorem{innernote}{Note}
-\newenvironment{#note}[1]
-    {\renewcommand\theinnernote{#1}\innernote}
-    {\endinnernote}
 
 \def\lstlistingautorefname{Algorithm}
 \def\itemautorefname{Section}
@@ -114,6 +75,7 @@
 \newcommand{\justificationautorefname}{Justification}
 \newcommand{\definitionautorefname}{Definition}
 \newcommand{\exampleautorefname}{Example}
+\newcommand{\counterexampleautorefname}{Counterexample}
 \newcommand{\ideaautorefname}{Idea}
 
 \renewcommand{\restriction}[1]{\downharpoonright_{#1}}
