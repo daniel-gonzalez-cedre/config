@@ -1,0 +1,152 @@
+\documentclass[]{book}
+
+\usepackage{amsmath, amsfonts, amssymb, amstext, amscd, amsthm, arydshln, bbm, booktabs, CJKutf8, caption, chngcntr, color, colortbl, dsfont, enumerate, float, graphicx, hyperref, lipsum, listings, makecell, makeidx, mathrsfs, mathtools, marvosym, parskip, soul, stmaryrd, tikz, url, verbatim, xcolor, xfrac}
+\usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\usepackage[group-separator={,},group-minimum-digits={3}]{siunitx}
+\usepackage[math]{cellspace}
+\cellspacetoplimit 6pt
+\cellspacebottomlimit 6pt
+\hypersetup{
+    citecolor=black!50!red,
+    colorlinks=true,
+    linkcolor=black!50!red,
+    urlcolor=black!25!blue
+}
+
+\allowdisplaybreaks
+
+\newenvironment{subproof}[1][Proof]
+    {\proof[#1]\leftskip=1cm\rightskip=1cm}
+    {\endproof}
+
+\newtheoremstyle{break}% name
+  {}%         Space above, empty = `usual value'
+  {}%         Space below
+  {\itshape}% Body font
+  {}%         Indent amount (empty = no indent, \parindent = para indent)
+  {\bfseries}% Thm head font
+  {.}%        Punctuation after thm head
+  {\newline}% Space after thm head: \newline = linebreak
+  {}%         Thm head spec
+
+\theoremstyle{break}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{claim}{Claim}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{justification}{Justification}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+\newtheorem{counterexample}{Counterexample}
+\newtheorem{idea}{Idea}
+\newtheorem*{remark}{Remark}
+\newtheorem*{note}{Note}
+
+\def\lstlistingautorefname{Algorithm}
+\def\itemautorefname{Section}
+\newcommand{\lemmaautorefname}{Lemma}
+\newcommand{\propositionautorefname}{Proposition}
+\newcommand{\corollaryautorefname}{Corollary}
+\newcommand{\claimautorefname}{Claim}
+\newcommand{\conjectureautorefname}{Conjecture}
+\newcommand{\justificationautorefname}{Justification}
+\newcommand{\definitionautorefname}{Definition}
+\newcommand{\exampleautorefname}{Example}
+\newcommand{\counterexampleautorefname}{Counterexample}
+\newcommand{\ideaautorefname}{Idea}
+
+\renewcommand{\restriction}[1]{\downharpoonright_{#1}}
+\renewcommand{\qedsymbol}{\sc q.e.d.}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+\newcommand{\conjunct}{~\wedge~}
+\newcommand{\disjunct}{~\vee~}
+\newcommand{\defn}{\coloneqq}
+\newcommand{\xor}{~\oplus~}
+\newcommand{\nand}{~\uparrow~}
+\newcommand{\nor}{~\downarrow~}
+\newcommand{\divides}{~|~}
+\newcommand{\given}{~\middle|~}
+\newcommand{\suchthat}{~\middle|~}
+\newcommand{\contradiction}{~\text{\Large \Lightning}}
+\newcommand{\conj}[1]{\overline{#1}}
+\newcommand{\mean}[1]{\overline{#1}}
+\newcommand{\integral}[1]{\smashoperator{\int_{#1}}}
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand{\E}[1]{\mathbb{E}\crochets*{#1}}
+\newcommand{\Esub}[2]{\mathbb{E}_{#1}\crochets*{#2}}
+\newcommand{\var}[1]{\mathrm{Var}\parens*{#1}}
+\newcommand{\cov}[2]{\mathrm{Cov}\parens*{#1, #2}}
+\newcommand{\der}[2]{\frac{\diff{#1}}{\diff{#2}}}
+\newcommand{\dern}[3]{\frac{\diff^{#3}{#1}}{\diff{#2}^{#3}}}
+\newcommand{\derm}[3]{\frac{\diff^{#3}{#1}}{\diff{#2}}}
+\newcommand{\prt}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\prtn}[3]{\frac{\partial^{#3}{#1}}{\partial{#2}^{#3}}}
+\newcommand{\prtm}[3]{\frac{\partial^{#3}{#1}}{\partial{#2}}}
+\newcommand{\Mod}[1]{~\parens{\mathrm{mod}~#1}}
+
+\renewcommand{\O}[1]{\mathcal{O}\parens*{#1}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\cf}{\textit{c.f.}, }
+\newcommand{\eg}{\textit{e.g.}, }
+\newcommand{\ie}{\textit{i.e.}, }
+\newcommand{\viz}{\textit{viz. }}
+\newcommand{\vide}{\textit{v. }}
+\newcommand{\etal}{\textit{et al. }}
+
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator*{\argmin}{arg\!\min}
+\DeclareMathOperator*{\argmax}{arg\!\max}
+
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+\newcommand{\zh}[1]{\begin{CJK}{UTF8}{gbsn}#1\end{CJK}}
+\newcommand{\jp}[1]{\begin{CJK}{UTF8}{gbsn}#1\end{CJK}}
+
+\DeclarePairedDelimiterX \inner[2]{\langle}{\rangle}{#1,#2}
+\DeclarePairedDelimiter \bra{\langle}{\rvert}
+\DeclarePairedDelimiter \ket{\lvert}{\rangle}
+\DeclarePairedDelimiter \abs{\lvert}{\rvert}
+\DeclarePairedDelimiter \norm{\lVert}{\rVert}
+\DeclarePairedDelimiter \set{\lbrace}{\rbrace}
+\DeclarePairedDelimiter \seq{\langle}{\rangle}
+\DeclarePairedDelimiter \parens{(}{)}
+\DeclarePairedDelimiter \crochets{[}{]}
+\DeclarePairedDelimiter \brackets{\langle}{\rangle}
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+\renewcommand{\theequation}{\thechapter.\arabic{equation}}
+\renewcommand{\thetheorem}{\thechapter.\arabic{theorem}}
+\renewcommand{\thelemma}{\thechapter.\arabic{lemma}}
+\renewcommand{\theproposition}{\thechapter.\arabic{proposition}}
+\renewcommand{\thecorollary}{\thechapter.\arabic{corollary}}
+\renewcommand{\theclaim}{\thechapter.\arabic{claim}}
+\renewcommand{\theconjecture}{\thechapter.\arabic{conjecture}}
+\renewcommand{\thejustification}{\thechapter.\arabic{justification}}
+\renewcommand{\thedefinition}{\thechapter.\arabic{definition}}
+\renewcommand{\theexample}{\thechapter.\arabic{example}}
+\renewcommand{\thecounterexample}{\thechapter.\arabic{counterexample}}
+
+\counterwithin*{equation}{chapter}
+\counterwithin*{theorem}{chapter}
+\counterwithin*{lemma}{chapter}
+\counterwithin*{proposition}{chapter}
+\counterwithin*{corollary}{chapter}
+\counterwithin*{claim}{chapter}
+\counterwithin*{conjecture}{chapter}
+\counterwithin*{justification}{chapter}
+\counterwithin*{definition}{chapter}
+\counterwithin*{example}{chapter}
+\counterwithin*{counterexample}{chapter}
