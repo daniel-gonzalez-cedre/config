@@ -24,6 +24,7 @@ set ruler
 set scrolloff=1
 set shiftround
 set shiftwidth=4
+set smartcase
 set smartindent
 set softtabstop=4
 set spell
