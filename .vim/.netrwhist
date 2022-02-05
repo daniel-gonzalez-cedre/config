@@ -1,4 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =3
-let g:netrw_dirhist_3='/Users/danielgonzalez/repos/daniel-gonzalez-cedre.github.io/images'
+let g:netrw_dirhistcnt =2
 let g:netrw_dirhist_2='/Users/danielgonzalez/academia/pedagogy/2021-spring-discrete-math/solutions/solutions-quiz'

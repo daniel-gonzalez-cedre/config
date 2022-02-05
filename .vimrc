@@ -14,6 +14,7 @@ set foldignore=
 set foldlevelstart=99
 set foldmethod=indent
 set hlsearch
+set ignorecase
 set laststatus=2
 set linebreak
 set matchpairs+=<:>
