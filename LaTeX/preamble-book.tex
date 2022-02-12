@@ -47,6 +47,17 @@
   {\newline}%   Space after thm head: \newline = linebreak
   {}%           Thm head spec
 
+% begin new proof environment
+\expandafter\let\expandafter\oldproof\csname\string\proof\endcsname
+\let\oldendproof\endproof
+
+\renewenvironment{proof}[1][\proofname]{%
+    \oldproof[#1]$~$\par\nobreak\ignorespaces
+}{%
+    \oldendproof
+}
+% end new proof environment
+
 \theoremstyle{thm}% style for theorems
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
@@ -57,6 +68,7 @@
 \newtheorem{justification}{Justification}
 
 \theoremstyle{dfn}% style for definitions
+\newtheorem{axiom}{Axiom}
 \newtheorem{definition}{Definition}
 \newtheorem{exercise}{Exercise}
 \newtheorem{example}{Example}
@@ -153,6 +165,7 @@
 \let\emptyset\varnothing
 \let\union\cup
 \let\intersection\cap
+\let\intersect\cap
 
 \renewcommand{\theequation}{\thechapter.\arabic{equation}}
 \renewcommand{\thetheorem}{\thechapter.\arabic{theorem}}
