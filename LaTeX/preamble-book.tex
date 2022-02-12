@@ -89,96 +89,66 @@
     \newtheorem*{prenote}{Note}
 
     % theorem
-    \newenvironment{theorem}[1][]
-        {\begin{pretheorem}[#1]\quote~
-
-            }
+    \NewDocumentEnvironment{theorem}{O{} O{}}
+        {\begin{pretheorem}[#1]~#2\quote}
         {\endquote\end{pretheorem}}
     % lemma
-    \newenvironment{lemma}[1][]
-        {\begin{prelemma}[#1]\quote~
-
-            }
+    \NewDocumentEnvironment{lemma}{O{} O{}}
+        {\begin{prelemma}[#1]~#2\quote}
         {\endquote\end{prelemma}}
     % proposition
-    \newenvironment{proposition}[1][]
-        {\begin{preproposition}[#1]\quote~
-
-            }
+    \NewDocumentEnvironment{proposition}{O{} O{}}
+        {\begin{preproposition}[#1]~#2\quote}
         {\endquote\end{preproposition}}
     % corollary
-    \newenvironment{corollary}[1][]
-        {\begin{precorollary}[#1]\quote~
-
-            }
+    \NewDocumentEnvironment{corollary}{O{} O{}}
+        {\begin{precorollary}[#1]~#2\quote}
         {\endquote\end{precorollary}}
     % claim
-    \newenvironment{claim}[1][]
-        {\begin{preclaim}[#1]\quote~
-
-            }
+    \NewDocumentEnvironment{claim}{O{} O{}}
+        {\begin{preclaim}[#1]~#2\quote}
         {\endquote\end{preclaim}}
     % conjecture
-    \newenvironment{conjecture}[1][]
-        {\begin{preconjecture}[#1]\quote~
-
-            }
+    \NewDocumentEnvironment{conjecture}{O{} O{}}
+        {\begin{preconjecture}[#1]~#2\quote}
         {\endquote\end{preconjecture}}
     % justification
-    \newenvironment{justification}[1][]
-        {\begin{prejustification}[#1]\quote~
-
-            }
+    \NewDocumentEnvironment{justification}{O{} O{}}
+        {\begin{prejustification}[#1]~#2\quote}
         {\endquote\end{prejustification}}
 
     % axiom
-    \newenvironment{axiom}[1][]
-        {\begin{preaxiom}[#1]\quote~
-
-            }
+    \NewDocumentEnvironment{axiom}{O{} O{}}
+        {\begin{preaxiom}[#1]~#2\quote}
         {\endquote\end{preaxiom}}
     % definition
-    \newenvironment{definition}[1][]
-        {\begin{predefinition}[#1]\quote~
-
-            }
+    \NewDocumentEnvironment{definition}{O{} O{}}
+        {\begin{predefinition}[#1]~#2\quote}
         {\endquote\end{predefinition}}
     % exercise
-    \newenvironment{exercise}[1][]
-        {\begin{preexercise}[#1]\quote~
-
-            }
+    \NewDocumentEnvironment{exercise}{O{} O{}}
+        {\begin{preexercise}[#1]~#2\quote}
         {\endquote\end{preexercise}}
     % example
-    \newenvironment{example}[1][]
-        {\begin{preexample}[#1]\quote~
-
-            }
+    \NewDocumentEnvironment{example}{O{} O{}}
+        {\begin{preexample}[#1]~#2\quote}
         {\endquote\end{preexample}}
     % counterexample
-    \newenvironment{counterexample}[1][]
-        {\begin{precounterexample}[#1]\quote~
-
-            }
+    \NewDocumentEnvironment{counterexample}{O{} O{}}
+        {\begin{precounterexample}[#1]~#2\quote}
         {\endquote\end{precounterexample}}
 
     % idea
-    \newenvironment{idea}[1][]
-        {\begin{preidea}[#1]\quote~
-
-            }
+    \NewDocumentEnvironment{idea}{O{} O{}}
+        {\begin{preidea}[#1]~#2\quote}
         {\endquote\end{preidea}}
     % remark
-    \newenvironment{remark}[1][]
-        {\begin{preremark}[#1]\quote~
-
-            }
+    \NewDocumentEnvironment{remark}{O{} O{}}
+        {\begin{preremark}[#1]~#2\quote}
         {\endquote\end{preremark}}
     % note
-    \newenvironment{note}[1][]
-        {\begin{prenote}[#1]\quote~
-
-            }
+    \NewDocumentEnvironment{note}{O{} O{}}
+        {\begin{prenote}[#1]~#2\quote}
         {\endquote\end{prenote}}
 \else
     \theoremstyle{thm}% style for theorems
@@ -205,6 +175,19 @@
 
 \def\lstlistingautorefname{Algorithm}
 \def\itemautorefname{Section}
+\newcommand{\pretheoremautorefname}{Theorem}
+\newcommand{\preaxiomautorefname}{Axiom}
+\newcommand{\prelemmaautorefname}{Lemma}
+\newcommand{\prepropositionautorefname}{Proposition}
+\newcommand{\precorollaryautorefname}{Corollary}
+\newcommand{\preclaimautorefname}{Claim}
+\newcommand{\preconjectureautorefname}{Conjecture}
+\newcommand{\prejustificationautorefname}{Justification}
+\newcommand{\predefinitionautorefname}{Definition}
+\newcommand{\preexampleautorefname}{Example}
+\newcommand{\precounterexampleautorefname}{Counterexample}
+\newcommand{\preideaautorefname}{Idea}
+\newcommand{\axiomautorefname}{Axiom}
 \newcommand{\lemmaautorefname}{Lemma}
 \newcommand{\propositionautorefname}{Proposition}
 \newcommand{\corollaryautorefname}{Corollary}
