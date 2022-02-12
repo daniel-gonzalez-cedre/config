@@ -65,118 +65,118 @@
 
 \ifindenttheorems
     \theoremstyle{thm}% style for theorems
-    \newtheorem{pre-theorem}{Theorem}
-    \newtheorem{pre-lemma}{Lemma}
-    \newtheorem{pre-proposition}{Proposition}
-    \newtheorem{pre-corollary}{Corollary}
-    \newtheorem{pre-claim}{Claim}
-    \newtheorem{pre-conjecture}{Conjecture}
-    \newtheorem{pre-justification}{Justification}
+    \newtheorem{pretheorem}{Theorem}
+    \newtheorem{prelemma}{Lemma}
+    \newtheorem{preproposition}{Proposition}
+    \newtheorem{precorollary}{Corollary}
+    \newtheorem{preclaim}{Claim}
+    \newtheorem{preconjecture}{Conjecture}
+    \newtheorem{prejustification}{Justification}
 
     \theoremstyle{dfn}% style for definitions
-    \newtheorem{pre-axiom}{Axiom}
-    \newtheorem{pre-definition}{Definition}
-    \newtheorem{pre-exercise}{Exercise}
-    \newtheorem{pre-example}{Example}
-    \newtheorem{pre-counterexample}{Counterexample}
+    \newtheorem{preaxiom}{Axiom}
+    \newtheorem{predefinition}{Definition}
+    \newtheorem{preexercise}{Exercise}
+    \newtheorem{preexample}{Example}
+    \newtheorem{precounterexample}{Counterexample}
 
     \theoremstyle{rmk}% style for remarks
-    \newtheorem{pre-idea}{Idea}
-    \newtheorem*{pre-remark}{Remark}
-    \newtheorem*{pre-note}{Note}
+    \newtheorem{preidea}{Idea}
+    \newtheorem*{preremark}{Remark}
+    \newtheorem*{prenote}{Note}
 
     % theorem
     \newenvironment{theorem}[1][]
-        {\begin{pre-theorem}[#1]\quote~
+        {\begin{pretheorem}[#1]\quote~
 
             }
-        {\endquote\end{pre-theorem}}
+        {\endquote\end{pretheorem}}
     % lemma
     \newenvironment{lemma}[1][]
-        {\begin{pre-lemma}[#1]\quote~
+        {\begin{prelemma}[#1]\quote~
 
             }
-        {\endquote\end{pre-lemma}}
+        {\endquote\end{prelemma}}
     % proposition
     \newenvironment{proposition}[1][]
-        {\begin{pre-proposition}[#1]\quote~
+        {\begin{preproposition}[#1]\quote~
 
             }
-        {\endquote\end{pre-proposition}}
+        {\endquote\end{preproposition}}
     % corollary
     \newenvironment{corollary}[1][]
-        {\begin{pre-corollary}[#1]\quote~
+        {\begin{precorollary}[#1]\quote~
 
             }
-        {\endquote\end{pre-corollary}}
+        {\endquote\end{precorollary}}
     % claim
     \newenvironment{claim}[1][]
-        {\begin{pre-claim}[#1]\quote~
+        {\begin{preclaim}[#1]\quote~
 
             }
-        {\endquote\end{pre-claim}}
+        {\endquote\end{preclaim}}
     % conjecture
     \newenvironment{conjecture}[1][]
-        {\begin{pre-conjecture}[#1]\quote~
+        {\begin{preconjecture}[#1]\quote~
 
             }
-        {\endquote\end{pre-conjecture}}
+        {\endquote\end{preconjecture}}
     % justification
     \newenvironment{justification}[1][]
-        {\begin{pre-justification}[#1]\quote~
+        {\begin{prejustification}[#1]\quote~
 
             }
-        {\endquote\end{pre-justification}}
+        {\endquote\end{prejustification}}
 
     % axiom
     \newenvironment{axiom}[1][]
-        {\begin{pre-axiom}[#1]\quote~
+        {\begin{preaxiom}[#1]\quote~
 
             }
-        {\endquote\end{pre-axiom}}
+        {\endquote\end{preaxiom}}
     % definition
     \newenvironment{definition}[1][]
-        {\begin{pre-definition}[#1]\quote~
+        {\begin{predefinition}[#1]\quote~
 
             }
-        {\endquote\end{pre-definition}}
+        {\endquote\end{predefinition}}
     % exercise
     \newenvironment{exercise}[1][]
-        {\begin{pre-exercise}[#1]\quote~
+        {\begin{preexercise}[#1]\quote~
 
             }
-        {\endquote\end{pre-exercise}}
+        {\endquote\end{preexercise}}
     % example
     \newenvironment{example}[1][]
-        {\begin{pre-example}[#1]\quote~
+        {\begin{preexample}[#1]\quote~
 
             }
-        {\endquote\end{pre-example}}
+        {\endquote\end{preexample}}
     % counterexample
     \newenvironment{counterexample}[1][]
-        {\begin{pre-counterexample}[#1]\quote~
+        {\begin{precounterexample}[#1]\quote~
 
             }
-        {\endquote\end{pre-counterexample}}
+        {\endquote\end{precounterexample}}
 
     % idea
     \newenvironment{idea}[1][]
-        {\begin{pre-idea}[#1]\quote~
+        {\begin{preidea}[#1]\quote~
 
             }
-        {\endquote\end{pre-idea}}
+        {\endquote\end{preidea}}
     % remark
     \newenvironment{remark}[1][]
-        {\begin{pre-remark}[#1]\quote~
+        {\begin{preremark}[#1]\quote~
 
             }
-        {\endquote\end{pre-remark}}
+        {\endquote\end{preremark}}
     % note
     \newenvironment{note}[1][]
-        {\begin{pre-note}[#1]\quote~
+        {\begin{prenote}[#1]\quote~
 
             }
-        {\endquote\end{pre-note}}
+        {\endquote\end{prenote}}
 \else
     \theoremstyle{thm}% style for theorems
     \newtheorem{theorem}{Theorem}
@@ -247,6 +247,7 @@
 \newcommand{\Mod}[1]{~\parens{\mathrm{mod}~#1}}
 
 \renewcommand{\O}[1]{\mathcal{O}\parens*{#1}}
+\renewcommand{\P}[1]{\mathcal{P}\parens*{#1}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Q}{\mathbb{Q}}
