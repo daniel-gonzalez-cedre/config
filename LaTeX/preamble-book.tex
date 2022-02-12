@@ -13,11 +13,15 @@
     urlcolor=black!25!blue
 }
 
-\allowdisplaybreaks
+% define new conditionals: \if<conditional>
+\newif\ifindentproofs
+\newif\ifindenttheorems
 
-\newenvironment{subproof}[1][Proof]
-    {\proof[#1]\leftskip=1cm\rightskip=1cm}
-    {\endproof}
+% set the values of those conditionals: \<conditional>true / \<conditional>false
+\indentproofstrue
+\indenttheoremstrue
+
+\allowdisplaybreaks
 
 \newtheoremstyle{thm}
   {}%           Space above, empty = `usual value'
@@ -47,38 +51,157 @@
   {\newline}%   Space after thm head: \newline = linebreak
   {}%           Thm head spec
 
-% begin new proof environment
-\expandafter\let\expandafter\oldproof\csname\string\proof\endcsname
-\let\oldendproof\endproof
+\ifindentproofs
+    % begin new proof environment
+    \expandafter\let\expandafter\oldproof\csname\string\proof\endcsname
+    \let\oldendproof\endproof
 
-\renewenvironment{proof}[1][\proofname]{%
-    \oldproof[#1]\quote~
+    \renewenvironment{proof}[1][\proofname]{%
+        \oldproof[#1]\quote~
 
-}{%
-    \endquote\oldendproof
-}
-% end new proof environment
+    }{%
+        \endquote\oldendproof
+    }
+    % end new proof environment
+\else
+\fi
 
-\theoremstyle{thm}% style for theorems
-\newtheorem{theorem}{Theorem}
-\newtheorem{lemma}{Lemma}
-\newtheorem{proposition}{Proposition}
-\newtheorem{corollary}{Corollary}
-\newtheorem{claim}{Claim}
-\newtheorem{conjecture}{Conjecture}
-\newtheorem{justification}{Justification}
+\ifindenttheorems
+    \theoremstyle{thm}% style for theorems
+    \newtheorem{pre-theorem}{Theorem}
+    \newtheorem{pre-lemma}{Lemma}
+    \newtheorem{pre-proposition}{Proposition}
+    \newtheorem{pre-corollary}{Corollary}
+    \newtheorem{pre-claim}{Claim}
+    \newtheorem{pre-conjecture}{Conjecture}
+    \newtheorem{pre-justification}{Justification}
 
-\theoremstyle{dfn}% style for definitions
-\newtheorem{axiom}{Axiom}
-\newtheorem{definition}{Definition}
-\newtheorem{exercise}{Exercise}
-\newtheorem{example}{Example}
-\newtheorem{counterexample}{Counterexample}
+    \theoremstyle{dfn}% style for definitions
+    \newtheorem{pre-axiom}{Axiom}
+    \newtheorem{pre-definition}{Definition}
+    \newtheorem{pre-exercise}{Exercise}
+    \newtheorem{pre-example}{Example}
+    \newtheorem{pre-counterexample}{Counterexample}
 
-\theoremstyle{rmk}% style for remarks
-\newtheorem{idea}{Idea}
-\newtheorem*{remark}{Remark}
-\newtheorem*{note}{Note}
+    \theoremstyle{rmk}% style for remarks
+    \newtheorem{pre-idea}{Idea}
+    \newtheorem*{pre-remark}{Remark}
+    \newtheorem*{pre-note}{Note}
+
+    % theorem
+    \newenvironment{theorem}[1][]
+        {\begin{pre-theorem}[#1]\quote~
+
+            }
+        {\endquote\end{pre-theorem}}
+    % lemma
+    \newenvironment{lemma}[1][]
+        {\begin{pre-lemma}[#1]\quote~
+
+            }
+        {\endquote\end{pre-lemma}}
+    % proposition
+    \newenvironment{proposition}[1][]
+        {\begin{pre-proposition}[#1]\quote~
+
+            }
+        {\endquote\end{pre-proposition}}
+    % corollary
+    \newenvironment{corollary}[1][]
+        {\begin{pre-corollary}[#1]\quote~
+
+            }
+        {\endquote\end{pre-corollary}}
+    % claim
+    \newenvironment{claim}[1][]
+        {\begin{pre-claim}[#1]\quote~
+
+            }
+        {\endquote\end{pre-claim}}
+    % conjecture
+    \newenvironment{conjecture}[1][]
+        {\begin{pre-conjecture}[#1]\quote~
+
+            }
+        {\endquote\end{pre-conjecture}}
+    % justification
+    \newenvironment{justification}[1][]
+        {\begin{pre-justification}[#1]\quote~
+
+            }
+        {\endquote\end{pre-justification}}
+
+    % axiom
+    \newenvironment{axiom}[1][]
+        {\begin{pre-axiom}[#1]\quote~
+
+            }
+        {\endquote\end{pre-axiom}}
+    % definition
+    \newenvironment{definition}[1][]
+        {\begin{pre-definition}[#1]\quote~
+
+            }
+        {\endquote\end{pre-definition}}
+    % exercise
+    \newenvironment{exercise}[1][]
+        {\begin{pre-exercise}[#1]\quote~
+
+            }
+        {\endquote\end{pre-exercise}}
+    % example
+    \newenvironment{example}[1][]
+        {\begin{pre-example}[#1]\quote~
+
+            }
+        {\endquote\end{pre-example}}
+    % counterexample
+    \newenvironment{counterexample}[1][]
+        {\begin{pre-counterexample}[#1]\quote~
+
+            }
+        {\endquote\end{pre-counterexample}}
+
+    % idea
+    \newenvironment{idea}[1][]
+        {\begin{pre-idea}[#1]\quote~
+
+            }
+        {\endquote\end{pre-idea}}
+    % remark
+    \newenvironment{remark}[1][]
+        {\begin{pre-remark}[#1]\quote~
+
+            }
+        {\endquote\end{pre-remark}}
+    % note
+    \newenvironment{note}[1][]
+        {\begin{pre-note}[#1]\quote~
+
+            }
+        {\endquote\end{pre-note}}
+\else
+    \theoremstyle{thm}% style for theorems
+    \newtheorem{theorem}{Theorem}
+    \newtheorem{lemma}{Lemma}
+    \newtheorem{proposition}{Proposition}
+    \newtheorem{corollary}{Corollary}
+    \newtheorem{claim}{Claim}
+    \newtheorem{conjecture}{Conjecture}
+    \newtheorem{justification}{Justification}
+
+    \theoremstyle{dfn}% style for definitions
+    \newtheorem{axiom}{Axiom}
+    \newtheorem{definition}{Definition}
+    \newtheorem{exercise}{Exercise}
+    \newtheorem{example}{Example}
+    \newtheorem{counterexample}{Counterexample}
+
+    \theoremstyle{rmk}% style for remarks
+    \newtheorem{idea}{Idea}
+    \newtheorem*{remark}{Remark}
+    \newtheorem*{note}{Note}
+\fi
 
 \def\lstlistingautorefname{Algorithm}
 \def\itemautorefname{Section}
