@@ -49,9 +49,10 @@
 \let\oldendproof\endproof
 
 \renewenvironment{proof}[1][\proofname]{%
-    \oldproof[#1]$~$\par\nobreak\ignorespaces
+    \oldproof[#1]\quote~
+
 }{%
-    \oldendproof
+    \endquote\oldendproof
 }
 % end new proof environment
 
