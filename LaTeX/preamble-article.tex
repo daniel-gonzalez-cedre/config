@@ -1,4 +1,4 @@
-\documentclass[12pt, a4paper]{article}
+\documentclass[letterpaper]{article}
 
 \usepackage{amsmath, amsfonts, amssymb, amstext, amscd, amsthm, bbm, booktabs, CJKutf8, caption, color, dsfont, enumerate, float, graphicx, hyperref, lipsum, listings, makecell, makeidx, mathrsfs, mathtools, marvosym, parskip, soul, stmaryrd, tikz, url, verbatim, xargs, xcolor, xfrac}
 \usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
@@ -57,7 +57,8 @@
         \oldproof[#1]\quote~
 
     }{%
-        \endquote\oldendproof
+        %\endquote\oldendproof
+        \endquote\qed
     }
     % end new proof environment
 \else
