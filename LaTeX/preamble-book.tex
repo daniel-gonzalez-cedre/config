@@ -30,7 +30,7 @@
   {}%           Indent amount (empty = no indent, \parindent = para indent)
   {\bfseries}%  Thm head font
   {}%           Punctuation after thm head
-  {\newline}%   Space after thm head: \newline = linebreak
+  {}%           Space after thm head: \newline = linebreak
   {}%           Thm head spec
 \newtheoremstyle{dfn}
   {}%           Space above, empty = `usual value'
@@ -39,7 +39,7 @@
   {}%           Indent amount (empty = no indent, \parindent = para indent)
   {\bfseries}%  Thm head font
   {}%           Punctuation after thm head
-  {\newline}%   Space after thm head: \newline = linebreak
+  {}%           Space after thm head: \newline = linebreak
   {}%           Thm head spec
 \newtheoremstyle{rmk}
   {}%           Space above, empty = `usual value'
@@ -48,7 +48,7 @@
   {}%           Indent amount (empty = no indent, \parindent = para indent)
   {\bfseries}%  Thm head font
   {}%           Punctuation after thm head
-  {\newline}%   Space after thm head: \newline = linebreak
+  {}%           Space after thm head: \newline = linebreak
   {}%           Thm head spec
 
 \ifindentproofs
@@ -141,16 +141,16 @@
 
     % idea
     \NewDocumentEnvironment{idea}{O{} O{}}
-        {\begin{preidea}[#1]~#2\quote}
-        {\endquote\end{preidea}}
+        {\begin{preidea}[#1]~#2}
+        {\end{preidea}}
     % remark
     \NewDocumentEnvironment{remark}{O{} O{}}
-        {\begin{preremark}[#1]~#2\quote}
-        {\endquote\end{preremark}}
+        {\begin{preremark}[#1]~#2}
+        {\end{preremark}}
     % note
     \NewDocumentEnvironment{note}{O{} O{}}
-        {\begin{prenote}[#1]~#2\quote}
-        {\endquote\end{prenote}}
+        {\begin{prenote}[#1]~#2}
+        {\end{prenote}}
 \else
     \theoremstyle{thm}% style for theorems
     \newtheorem{theorem}{Theorem}
