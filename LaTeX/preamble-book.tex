@@ -23,34 +23,6 @@
 
 \allowdisplaybreaks
 
-\newtheoremstyle{thm}
-  {}%           Space above, empty = `usual value'
-  {}%           Space below
-  {\itshape}%   Body font
-  {}%           Indent amount (empty = no indent, \parindent = para indent)
-  {\bfseries}%  Thm head font
-  {}%           Punctuation after thm head
-  {}%           Space after thm head: \newline = linebreak
-  {}%           Thm head spec
-\newtheoremstyle{dfn}
-  {}%           Space above, empty = `usual value'
-  {}%           Space below
-  {}%           Body font
-  {}%           Indent amount (empty = no indent, \parindent = para indent)
-  {\bfseries}%  Thm head font
-  {}%           Punctuation after thm head
-  {}%           Space after thm head: \newline = linebreak
-  {}%           Thm head spec
-\newtheoremstyle{rmk}
-  {}%           Space above, empty = `usual value'
-  {}%           Space below
-  {}%           Body font
-  {}%           Indent amount (empty = no indent, \parindent = para indent)
-  {\bfseries}%  Thm head font
-  {}%           Punctuation after thm head
-  {}%           Space after thm head: \newline = linebreak
-  {}%           Thm head spec
-
 \ifindentproofs
     % begin new proof environment
     \expandafter\let\expandafter\oldproof\csname\string\proof\endcsname
@@ -68,7 +40,6 @@
 \fi
 
 \ifindenttheorems
-    \theoremstyle{thm}% style for theorems
     \newtheorem{pretheorem}{Theorem}
     \newtheorem{prelemma}{Lemma}
     \newtheorem{preproposition}{Proposition}
@@ -77,14 +48,12 @@
     \newtheorem{preconjecture}{Conjecture}
     \newtheorem{prejustification}{Justification}
 
-    \theoremstyle{dfn}% style for definitions
     \newtheorem{preaxiom}{Axiom}
     \newtheorem{predefinition}{Definition}
     \newtheorem{preexercise}{Exercise}
     \newtheorem{preexample}{Example}
     \newtheorem{precounterexample}{Counterexample}
 
-    \theoremstyle{rmk}% style for remarks
     \newtheorem{preidea}{Idea}
     \newtheorem*{preremark}{Remark}
     \newtheorem*{prenote}{Note}
@@ -243,9 +212,10 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Z}{\mathbb{Z}}
 
-\newcommand{\cf}{\textit{c.f.}, }
-\newcommand{\eg}{\textit{e.g.}, }
-\newcommand{\ie}{\textit{i.e.}, }
+\newcommand{\cf}{\textit{c.f.},}
+\newcommand{\eg}{\textit{e.g.},}
+\newcommand{\ie}{\textit{i.e.},}
+\newcommand{\aka}{\textit{a.k.a.}}
 \newcommand{\viz}{\textit{viz. }}
 \newcommand{\vide}{\textit{v. }}
 \newcommand{\etal}{\textit{et al. }}
@@ -280,26 +250,26 @@
 \let\intersect\cap
 
 \renewcommand{\theequation}{\thechapter.\arabic{equation}}
-\renewcommand{\thetheorem}{\thechapter.\arabic{theorem}}
-\renewcommand{\thelemma}{\thechapter.\arabic{lemma}}
-\renewcommand{\theproposition}{\thechapter.\arabic{proposition}}
-\renewcommand{\thecorollary}{\thechapter.\arabic{corollary}}
-\renewcommand{\theclaim}{\thechapter.\arabic{claim}}
-\renewcommand{\theconjecture}{\thechapter.\arabic{conjecture}}
-\renewcommand{\thejustification}{\thechapter.\arabic{justification}}
-\renewcommand{\thedefinition}{\thechapter.\arabic{definition}}
-\renewcommand{\theexample}{\thechapter.\arabic{example}}
-\renewcommand{\thecounterexample}{\thechapter.\arabic{counterexample}}
+\renewcommand{\thepretheorem}{\thechapter.\arabic{pretheorem}}
+\renewcommand{\theprelemma}{\thechapter.\arabic{prelemma}}
+\renewcommand{\thepreproposition}{\thechapter.\arabic{preproposition}}
+\renewcommand{\theprecorollary}{\thechapter.\arabic{precorollary}}
+\renewcommand{\thepreclaim}{\thechapter.\arabic{preclaim}}
+\renewcommand{\thepreconjecture}{\thechapter.\arabic{preconjecture}}
+\renewcommand{\theprejustification}{\thechapter.\arabic{prejustification}}
+\renewcommand{\thepredefinition}{\thechapter.\arabic{predefinition}}
+\renewcommand{\thepreexample}{\thechapter.\arabic{preexample}}
+\renewcommand{\theprecounterexample}{\thechapter.\arabic{precounterexample}}
 
 \counterwithin*{equation}{chapter}
-\counterwithin*{theorem}{chapter}
-\counterwithin*{lemma}{chapter}
-\counterwithin*{proposition}{chapter}
-\counterwithin*{corollary}{chapter}
-\counterwithin*{claim}{chapter}
-\counterwithin*{conjecture}{chapter}
-\counterwithin*{justification}{chapter}
-\counterwithin*{definition}{chapter}
-\counterwithin*{exercise}{chapter}
-\counterwithin*{example}{chapter}
-\counterwithin*{counterexample}{chapter}
+\counterwithin*{pretheorem}{chapter}
+\counterwithin*{prelemma}{chapter}
+\counterwithin*{preproposition}{chapter}
+\counterwithin*{precorollary}{chapter}
+\counterwithin*{preclaim}{chapter}
+\counterwithin*{preconjecture}{chapter}
+\counterwithin*{prejustification}{chapter}
+\counterwithin*{predefinition}{chapter}
+\counterwithin*{preexercise}{chapter}
+\counterwithin*{preexample}{chapter}
+\counterwithin*{precounterexample}{chapter}
