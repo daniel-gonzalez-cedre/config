@@ -97,6 +97,10 @@ augroup keymap_ft
   autocmd BufNewFile,BufRead *.keymap   set syntax=keymap
 augroup END
 
+nmap <C-h>h <Plug>(HighlineToggle)
+xmap <C-h>h <Plug>(HighlineToggle)
+nmap <C-h>c <Plug>(HighlineClear)
+
 " START CUSTOM CURSORS
 let &t_SI="\e[4 q" " start insert mode: underline
 let &t_EI="\e[2 q" " end insert mode: block
