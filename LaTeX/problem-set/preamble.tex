@@ -23,29 +23,6 @@
 
 \allowdisplaybreaks
 
-\newcounter{nalg}[chapter]
-\renewcommand{\thenalg}{\thechapter.\arabic{nalg}}
-\DeclareCaptionLabelFormat{algocaption}{\it Algorithm \thenalg}
-
-\lstnewenvironment{algorithm}[1][]
-{
-    \refstepcounter{nalg}
-    \captionsetup{labelformat=algocaption,labelsep=colon}
-    \lstset{
-        mathescape=true,
-        frame=tB,
-        numbers=left,
-        numberstyle=\tiny,
-        basicstyle=\scriptsize,
-        keywordstyle=\color{black}\bfseries\em,
-        keywords={,input, output, return, datatype, function, in, if, else, elif, for, foreach, while, not, begin, end, true, false, null, break, continue, let, and, or, }
-        numbers=left,
-        xleftmargin=.04\textwidth,
-        #1
-    }
-}
-{}
-
 \ifindentproofs
     % begin new proof environment
     \expandafter\let\expandafter\oldproof\csname\string\proof\endcsname
@@ -212,7 +189,7 @@
 \newcommand{\divides}{~|~}
 \newcommand{\given}{~\middle|~}
 \newcommand{\suchthat}{~\middle|~}
-\newcommand{\contradiction}{~\text{\Large \Lightning}~}
+\newcommand{\contradiction}{~\smash{\text{\Large \Lightning}}~}
 \newcommand{\conj}[1]{\overline{#1}}
 \newcommand{\mean}[1]{\overline{#1}}
 \newcommand{\integral}[1]{\smashoperator{\int_{#1}}}

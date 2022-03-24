@@ -1,6 +1,6 @@
-\documentclass[letterpaper]{book}
+\documentclass[letterpaper]{article}
 
-\usepackage{amsmath, amsfonts, amssymb, amstext, amscd, amsthm, arydshln, bbm, booktabs, CJKutf8, caption, chngcntr, color, colortbl, dsfont, enumerate, float, graphicx, hyperref, lipsum, listings, makecell, makeidx, mathrsfs, mathtools, marvosym, parskip, soul, stmaryrd, tikz, url, verbatim, xargs, xcolor, xfrac}
+\usepackage{amsmath, amsfonts, amssymb, amstext, amscd, amsthm, bbm, booktabs, CJKutf8, caption, color, colortbl, dsfont, enumerate, float, graphicx, hyperref, lipsum, listings, makecell, makeidx, mathrsfs, mathtools, marvosym, parskip, soul, stmaryrd, tikz, url, verbatim, xargs, xcolor, xfrac}
 \usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
 \usepackage[group-separator={,},group-minimum-digits={3}]{siunitx}
 \usepackage[math]{cellspace}
@@ -189,7 +189,7 @@
 \newcommand{\divides}{~|~}
 \newcommand{\given}{~\middle|~}
 \newcommand{\suchthat}{~\middle|~}
-\newcommand{\contradiction}{~\text{\Large \Lightning}~}
+\newcommand{\contradiction}{~\smash{\text{\Large \Lightning}}~}
 \newcommand{\conj}[1]{\overline{#1}}
 \newcommand{\mean}[1]{\overline{#1}}
 \newcommand{\integral}[1]{\smashoperator{\int_{#1}}}
@@ -250,28 +250,3 @@
 \let\union\cup
 \let\intersection\cap
 \let\intersect\cap
-
-\renewcommand{\theequation}{\thechapter.\arabic{equation}}
-\renewcommand{\thepretheorem}{\thechapter.\arabic{pretheorem}}
-\renewcommand{\theprelemma}{\thechapter.\arabic{prelemma}}
-\renewcommand{\thepreproposition}{\thechapter.\arabic{preproposition}}
-\renewcommand{\theprecorollary}{\thechapter.\arabic{precorollary}}
-\renewcommand{\thepreclaim}{\thechapter.\arabic{preclaim}}
-\renewcommand{\thepreconjecture}{\thechapter.\arabic{preconjecture}}
-\renewcommand{\theprejustification}{\thechapter.\arabic{prejustification}}
-\renewcommand{\thepredefinition}{\thechapter.\arabic{predefinition}}
-\renewcommand{\thepreexample}{\thechapter.\arabic{preexample}}
-\renewcommand{\theprecounterexample}{\thechapter.\arabic{precounterexample}}
-
-\counterwithin*{equation}{chapter}
-\counterwithin*{pretheorem}{chapter}
-\counterwithin*{prelemma}{chapter}
-\counterwithin*{preproposition}{chapter}
-\counterwithin*{precorollary}{chapter}
-\counterwithin*{preclaim}{chapter}
-\counterwithin*{preconjecture}{chapter}
-\counterwithin*{prejustification}{chapter}
-\counterwithin*{predefinition}{chapter}
-\counterwithin*{preexercise}{chapter}
-\counterwithin*{preexample}{chapter}
-\counterwithin*{precounterexample}{chapter}

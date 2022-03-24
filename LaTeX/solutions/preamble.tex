@@ -1,0 +1,252 @@
+\documentclass[letterpaper]{article}
+
+\usepackage{amsmath, amsfonts, amssymb, amstext, amscd, amsthm, bbm, booktabs, CJKutf8, caption, color, colortbl, dsfont, enumerate, float, graphicx, hyperref, lipsum, listings, makecell, makeidx, mathrsfs, mathtools, marvosym, parskip, soul, stmaryrd, tikz, url, verbatim, xargs, xcolor, xfrac}
+\usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\usepackage[group-separator={,},group-minimum-digits={3}]{siunitx}
+\usepackage[math]{cellspace}
+\cellspacetoplimit 6pt
+\cellspacebottomlimit 6pt
+\hypersetup{
+    citecolor=black!50!red,
+    colorlinks=true,
+    linkcolor=black!50!red,
+    urlcolor=black!25!blue
+}
+
+% define new conditionals: \if<conditional>
+\newif\ifindentproofs
+\newif\ifindenttheorems
+
+% set the values of those conditionals: \<conditional>true / \<conditional>false
+\indentproofstrue
+\indenttheoremstrue
+
+\allowdisplaybreaks
+
+\ifindentproofs
+    % begin new proof environment
+    \expandafter\let\expandafter\oldproof\csname\string\proof\endcsname
+    \let\oldendproof\endproof
+
+    \renewenvironment{proof}[1][\proofname]{%
+        \oldproof[#1]\quote~
+
+    }{%
+        %\endquote\oldendproof
+        \endquote\qed
+    }
+    % end new proof environment
+\else
+\fi
+
+\ifindenttheorems
+    \newtheorem{pretheorem}{Theorem}
+    \newtheorem{prelemma}{Lemma}
+    \newtheorem{preproposition}{Proposition}
+    \newtheorem{precorollary}{Corollary}
+    \newtheorem{preclaim}{Claim}
+    \newtheorem{preconjecture}{Conjecture}
+    \newtheorem{prejustification}{Justification}
+
+    \newtheorem{preaxiom}{Axiom}
+    \newtheorem{predefinition}{Definition}
+    \newtheorem{preexercise}{Exercise}
+    \newtheorem{preexample}{Example}
+    \newtheorem{precounterexample}{Counterexample}
+
+    \newtheorem{preidea}{Idea}
+    \newtheorem*{preremark}{Remark}
+    \newtheorem*{prenote}{Note}
+
+    % theorem
+    \NewDocumentEnvironment{theorem}{O{} O{}}
+        {\begin{pretheorem}[#1]~#2\quote}
+        {\endquote\end{pretheorem}}
+    % lemma
+    \NewDocumentEnvironment{lemma}{O{} O{}}
+        {\begin{prelemma}[#1]~#2\quote}
+        {\endquote\end{prelemma}}
+    % proposition
+    \NewDocumentEnvironment{proposition}{O{} O{}}
+        {\begin{preproposition}[#1]~#2\quote}
+        {\endquote\end{preproposition}}
+    % corollary
+    \NewDocumentEnvironment{corollary}{O{} O{}}
+        {\begin{precorollary}[#1]~#2\quote}
+        {\endquote\end{precorollary}}
+    % claim
+    \NewDocumentEnvironment{claim}{O{} O{}}
+        {\begin{preclaim}[#1]~#2\quote}
+        {\endquote\end{preclaim}}
+    % conjecture
+    \NewDocumentEnvironment{conjecture}{O{} O{}}
+        {\begin{preconjecture}[#1]~#2\quote}
+        {\endquote\end{preconjecture}}
+    % justification
+    \NewDocumentEnvironment{justification}{O{} O{}}
+        {\begin{prejustification}[#1]~#2\quote}
+        {\endquote\end{prejustification}}
+
+    % axiom
+    \NewDocumentEnvironment{axiom}{O{} O{}}
+        {\begin{preaxiom}[#1]~#2\quote}
+        {\endquote\end{preaxiom}}
+    % definition
+    \NewDocumentEnvironment{definition}{O{} O{}}
+        {\begin{predefinition}[#1]~#2\quote}
+        {\endquote\end{predefinition}}
+    % exercise
+    \NewDocumentEnvironment{exercise}{O{} O{}}
+        {\begin{preexercise}[#1]~#2\quote}
+        {\endquote\end{preexercise}}
+    % example
+    \NewDocumentEnvironment{example}{O{} O{}}
+        {\begin{preexample}[#1]~#2\quote}
+        {\endquote\end{preexample}}
+    % counterexample
+    \NewDocumentEnvironment{counterexample}{O{} O{}}
+        {\begin{precounterexample}[#1]~#2\quote}
+        {\endquote\end{precounterexample}}
+
+    % idea
+    \NewDocumentEnvironment{idea}{O{} O{}}
+        {\begin{preidea}[#1]~#2}
+        {\end{preidea}}
+    % remark
+    \NewDocumentEnvironment{remark}{O{} O{}}
+        {\begin{preremark}[#1]~#2}
+        {\end{preremark}}
+    % note
+    \NewDocumentEnvironment{note}{O{} O{}}
+        {\begin{prenote}[#1]~#2}
+        {\end{prenote}}
+\else
+    \theoremstyle{thm}% style for theorems
+    \newtheorem{theorem}{Theorem}
+    \newtheorem{lemma}{Lemma}
+    \newtheorem{proposition}{Proposition}
+    \newtheorem{corollary}{Corollary}
+    \newtheorem{claim}{Claim}
+    \newtheorem{conjecture}{Conjecture}
+    \newtheorem{justification}{Justification}
+
+    \theoremstyle{dfn}% style for definitions
+    \newtheorem{axiom}{Axiom}
+    \newtheorem{definition}{Definition}
+    \newtheorem{exercise}{Exercise}
+    \newtheorem{example}{Example}
+    \newtheorem{counterexample}{Counterexample}
+
+    \theoremstyle{rmk}% style for remarks
+    \newtheorem{idea}{Idea}
+    \newtheorem*{remark}{Remark}
+    \newtheorem*{note}{Note}
+\fi
+
+\def\lstlistingautorefname{Algorithm}
+\def\itemautorefname{Section}
+\newcommand{\pretheoremautorefname}{Theorem}
+\newcommand{\preaxiomautorefname}{Axiom}
+\newcommand{\prelemmaautorefname}{Lemma}
+\newcommand{\prepropositionautorefname}{Proposition}
+\newcommand{\precorollaryautorefname}{Corollary}
+\newcommand{\preclaimautorefname}{Claim}
+\newcommand{\preconjectureautorefname}{Conjecture}
+\newcommand{\prejustificationautorefname}{Justification}
+\newcommand{\predefinitionautorefname}{Definition}
+\newcommand{\preexampleautorefname}{Example}
+\newcommand{\precounterexampleautorefname}{Counterexample}
+\newcommand{\preideaautorefname}{Idea}
+\newcommand{\axiomautorefname}{Axiom}
+\newcommand{\lemmaautorefname}{Lemma}
+\newcommand{\propositionautorefname}{Proposition}
+\newcommand{\corollaryautorefname}{Corollary}
+\newcommand{\claimautorefname}{Claim}
+\newcommand{\conjectureautorefname}{Conjecture}
+\newcommand{\justificationautorefname}{Justification}
+\newcommand{\definitionautorefname}{Definition}
+\newcommand{\exampleautorefname}{Example}
+\newcommand{\counterexampleautorefname}{Counterexample}
+\newcommand{\ideaautorefname}{Idea}
+
+\newcommand*{\xline}[1][3em]{\rule[0.5ex]{#1}{0.55pt}}
+
+\newcommand{\defniff}{\mathrel{\vcentcolon\Leftrightarrow}}
+\newcommand{\iffbydefn}{$ \defniff $ }
+\newcommand{\niff}{\mathrel{{\ooalign{\hidewidth$\not\phantom{"}$\hidewidth\cr$\iff$}}}}
+\renewcommand{\implies}{\Rightarrow}
+\renewcommand{\iff}{\Leftrightarrow}
+\renewcommand{\restriction}[1]{\downharpoonright_{#1}}
+\renewcommand{\qedsymbol}{\sc q.e.d.}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+\newcommand{\conjunct}{\wedge}
+\newcommand{\disjunct}{\vee}
+\newcommand{\defn}{\coloneqq}
+\newcommand{\xor}{\oplus}
+\newcommand{\nand}{\uparrow}
+\newcommand{\nor}{\downarrow}
+\newcommand{\divides}{~|~}
+\newcommand{\given}{~\middle|~}
+\newcommand{\suchthat}{~\middle|~}
+\newcommand{\contradiction}{~\smash{\text{\Large \Lightning}}~}
+\newcommand{\conj}[1]{\overline{#1}}
+\newcommand{\mean}[1]{\overline{#1}}
+\newcommand{\integral}[1]{\smashoperator{\int_{#1}}}
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand{\E}[1]{\mathbb{E}\crochets*{#1}}
+\newcommand{\Esub}[2]{\mathbb{E}_{#1}\crochets*{#2}}
+\newcommand{\var}[1]{\mathrm{Var}\parens*{#1}}
+\newcommand{\cov}[2]{\mathrm{Cov}\parens*{#1, #2}}
+\newcommand{\der}[2]{\frac{\diff{#1}}{\diff{#2}}}
+\newcommand{\dern}[3]{\frac{\diff^{#3}{#1}}{\diff{#2}^{#3}}}
+\newcommand{\derm}[3]{\frac{\diff^{#3}{#1}}{\diff{#2}}}
+\newcommand{\prt}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\prtn}[3]{\frac{\partial^{#3}{#1}}{\partial{#2}^{#3}}}
+\newcommand{\prtm}[3]{\frac{\partial^{#3}{#1}}{\partial{#2}}}
+\newcommand{\Mod}[1]{~\parens{\mathrm{mod}~#1}}
+
+\renewcommand{\O}[1]{\mathcal{O}\parens*{#1}}
+\renewcommand{\P}[1]{\mathcal{P}\parens*{#1}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\cf}{\textit{c.f.}, }
+\newcommand{\eg}{\textit{e.g.}, }
+\newcommand{\ie}{\textit{i.e.}, }
+\newcommand{\aka}{\textit{a.k.a.} }
+\newcommand{\viz}{\textit{viz.} }
+\newcommand{\vide}{\textit{v.} }
+\newcommand{\etal}{\textit{et al.} }
+
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator*{\argmin}{arg\!\min}
+\DeclareMathOperator*{\argmax}{arg\!\max}
+
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+\newcommand{\zh}[1]{\begin{CJK}{UTF8}{gbsn}#1\end{CJK}}
+\newcommand{\jp}[1]{\begin{CJK}{UTF8}{gbsn}#1\end{CJK}}
+
+\DeclarePairedDelimiterX \inner[2]{\langle}{\rangle}{#1,#2}
+\DeclarePairedDelimiter \bra{\langle}{\rvert}
+\DeclarePairedDelimiter \ket{\lvert}{\rangle}
+\DeclarePairedDelimiter \abs{\lvert}{\rvert}
+\DeclarePairedDelimiter \cardinality{\lvert}{\rvert}
+\DeclarePairedDelimiter \norm{\lVert}{\rVert}
+\DeclarePairedDelimiter \set{\lbrace}{\rbrace}
+\DeclarePairedDelimiter \seq{\langle}{\rangle}
+\DeclarePairedDelimiter \parens{(}{)}
+\DeclarePairedDelimiter \crochets{[}{]}
+\DeclarePairedDelimiter \brackets{\langle}{\rangle}
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+\let\union\cup
+\let\intersection\cap
+\let\intersect\cap
