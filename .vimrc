@@ -97,8 +97,8 @@ augroup keymap_ft
   autocmd BufNewFile,BufRead *.keymap   set syntax=keymap
 augroup END
 
-nmap <C-h>h <Plug>(HighlineToggle)
-xmap <C-h>h <Plug>(HighlineToggle)
+nmap <C-h>v <Plug>(HighlineToggle)
+xmap <C-h>v <Plug>(HighlineToggle)
 nmap <C-h>c <Plug>(HighlineClear)
 
 " START CUSTOM CURSORS
