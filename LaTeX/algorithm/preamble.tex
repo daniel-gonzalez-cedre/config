@@ -166,6 +166,10 @@
     \newtheorem*{note}{Note}
 \fi
 
+\newenvironment{case}[1][Case]
+    {\textbf{#1:}\quote}
+    {\endquote}
+
 \def\lstlistingautorefname{Algorithm}
 \def\itemautorefname{Section}
 \newcommand{\pretheoremautorefname}{Theorem}
