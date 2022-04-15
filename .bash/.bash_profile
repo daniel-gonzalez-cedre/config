@@ -71,7 +71,11 @@ temperature() {
 # $1: <options>
 #   pass "-i" as an argument to ask on every rm
 clean(){
-    rm "${1:-}" .DS_Store *.aux *.bbl *.blg *.fdb_latexmk *.fls *.log *.out *.bcf *.run.xml *.xdv .*.swp
+    rm "${1:-}" .DS_Store *.aux *.bbl *.blg *.fdb_latexmk *.fls *.log *.out *.bcf *.run.xml *.xdv
+}
+
+cleanswp(){
+    .*.swp .*.swo
 }
 
 # computer vision
