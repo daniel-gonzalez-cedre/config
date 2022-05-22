@@ -26,6 +26,7 @@ set number
 set relativenumber
 set ruler
 set scrolloff=1
+set signcolumn=yes
 set shiftround
 set shiftwidth=4
 set smartcase
@@ -60,6 +61,8 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
+map <C-n> :ALENextWrap<CR>
+map <C-p> :ALEPreviousWrap<CR>
 noremap <C-f> za
 nnoremap <C-j> gj
 nnoremap <C-k> gk
