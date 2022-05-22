@@ -3,10 +3,7 @@ silent
 syntax on
 au FileType * set conceallevel=0
 autocmd BufEnter * :syntax sync fromstart
-let g:ale_linters = {'python': ['flake8']}
-"autocmd FileType python compiler pylint
-"autocmd BufWritePost *.py silent make! <afile> | silent redraw!
-"autocmd QuickFixCmdPost [^l]* cwindow
+let g:ale_linters = {'python': ['flake8', 'mypy']}
 set autoindent
 set background=dark
 set backspace=indent,eol,start
