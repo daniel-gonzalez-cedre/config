@@ -26,7 +26,7 @@ set number
 set relativenumber
 set ruler
 set scrolloff=1
-set signcolumn=yes
+set signcolumn=number
 set shiftround
 set shiftwidth=4
 set smartcase
