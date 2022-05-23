@@ -146,3 +146,5 @@ highlight ALEErrorSign ctermbg=234 ctermfg=214 cterm=none
 highlight ALEWarningSign ctermbg=234 ctermfg=214 cterm=none
 highlight ALEErrorLine ctermbg=234 cterm=none
 highlight ALEWarningLine ctermbg=234 cterm=none
+highlight ALEError ctermbg=none cterm=inverse
+highlight ALEWarning ctermbg=none cterm=inverse
