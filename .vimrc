@@ -1,3 +1,5 @@
+let mapleader=","
+
 filetype plugin indent on
 silent
 syntax on
@@ -26,6 +28,7 @@ set scrolloff=1
 set signcolumn=number
 set shiftround
 set shiftwidth=4
+set showcmd
 set smartcase
 set smartindent
 set softtabstop=4
@@ -46,6 +49,7 @@ let g:matchparen_timeout = 8
 let g:matchparen_insert_timeout = 8
 let g:python_highlight_all = 1
 let g:gruvbox_contrast_dark = "hard"
+let g:gruvbox_contrast_light = "hard"
 colorscheme gruvbox
 map <C-b> <Nop>
 map! <C-b> <Nop>
@@ -148,3 +152,13 @@ highlight ALEErrorLine ctermbg=234 cterm=none
 highlight ALEWarningLine ctermbg=none cterm=none
 highlight ALEError ctermbg=none cterm=inverse
 highlight ALEWarning ctermbg=none cterm=inverse
+
+function! ToggleBG()
+    if (&bg == "light")
+        set bg=dark
+    else
+        set bg=light
+    endif
+endfunction
+
+map <Leader>t :call ToggleBG()<Cr>
