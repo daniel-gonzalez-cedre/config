@@ -52,6 +52,8 @@ let g:gruvbox_contrast_light = "hard"
 colorscheme gruvbox
 hi StatusLine ctermbg=none ctermfg=237 cterm=none
 hi StatusLineNC ctermbg=none ctermfg=237 cterm=none
+" highlight ALEErrorSign ctermfg=none cterm=inverse
+" highlight ALEWarningSign ctermfg=none cterm=inverse
 highlight ALEErrorLine ctermbg=234 cterm=none
 highlight ALEWarningLine ctermbg=none cterm=none
 highlight ALEError ctermbg=none cterm=inverse
