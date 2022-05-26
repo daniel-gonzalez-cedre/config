@@ -1,11 +1,10 @@
-let mapleader=","
+let mapleader=" "
 
 filetype plugin indent on
 silent
 syntax on
 au FileType * set conceallevel=0
 autocmd BufEnter * :syntax sync fromstart
-let g:ale_linters = {'python': ['flake8', 'mypy']}
 set autoindent
 set background=dark
 set backspace=indent,eol,start
@@ -24,7 +23,7 @@ set matchpairs+=<:>
 set number
 set relativenumber
 set ruler
-set scrolloff=1
+" set scrolloff=1
 set signcolumn=number
 set shiftround
 set shiftwidth=4
@@ -51,6 +50,12 @@ let g:python_highlight_all = 1
 let g:gruvbox_contrast_dark = "hard"
 let g:gruvbox_contrast_light = "hard"
 colorscheme gruvbox
+hi StatusLine ctermbg=none ctermfg=237 cterm=none
+hi StatusLineNC ctermbg=none ctermfg=237 cterm=none
+highlight ALEErrorLine ctermbg=234 cterm=none
+highlight ALEWarningLine ctermbg=none cterm=none
+highlight ALEError ctermbg=none cterm=inverse
+highlight ALEWarning ctermbg=none cterm=inverse
 map <C-b> <Nop>
 map! <C-b> <Nop>
 map /  <Plug>(incsearch-forward)
@@ -62,8 +67,6 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
-map <C-n> :ALENextWrap<CR>
-map <C-p> :ALEPreviousWrap<CR>
 noremap <C-f> za
 nnoremap <C-j> gj
 nnoremap <C-k> gk
@@ -114,15 +117,7 @@ let &t_SI="\e[4 q" " start insert mode: underline
 let &t_EI="\e[2 q" " end insert mode: block
 " END CUSTOM CURSORS
 
-" START NVIM-R SETTINGS
-    " start with \rf
-    " quit with \rq
-    " <C-w> to switch panes
-let R_assign_map = "--"
-let R_external_term = 1
-vmap <Space> <Plug>RSendSelection
-nmap <LocalLeader><Space> <Plug>RSendLine
-" END NVIM-R SETTINGS
+let g:ale_linters = {'python': ['flake8', 'mypy']}
 
 function ClosePair(char)
     if getline('.')[col('.') - 1] == a:char
@@ -146,19 +141,27 @@ function! TwiddleCase(str)
     return substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
 endfunction
 
-highlight ALEErrorSign ctermbg=234 ctermfg=214 cterm=none
-highlight ALEWarningSign ctermbg=none ctermfg=214 cterm=none
-highlight ALEErrorLine ctermbg=234 cterm=none
-highlight ALEWarningLine ctermbg=none cterm=none
-highlight ALEError ctermbg=none cterm=inverse
-highlight ALEWarning ctermbg=none cterm=inverse
-
 function! ToggleBG()
     if (&bg == "light")
         set bg=dark
+        highlight ALEErrorLine ctermbg=234 cterm=none
+        highlight ALEWarningLine ctermbg=none cterm=none
+        highlight ALEError ctermbg=none cterm=inverse
+        highlight ALEWarning ctermbg=none cterm=inverse
     else
         set bg=light
+        highlight ALEErrorLine ctermbg=15 cterm=none
+        highlight ALEWarningLine ctermbg=none cterm=none
+        highlight ALEError ctermbg=none cterm=inverse
+        highlight ALEWarning ctermbg=none cterm=inverse
     endif
+    hi StatusLine ctermbg=none ctermfg=237 cterm=none
+    hi StatusLineNC ctermbg=none ctermfg=237 cterm=none
 endfunction
 
-map <Leader>t :call ToggleBG()<Cr>
+map <Leader><C-t> :call ToggleBG()<CR>
+map <Leader>n :ALENextWrap<CR>
+map <Leader>p :ALEPreviousWrap<CR>
+map <Leader>d :ALEDetail<CR>
+
+set fillchars=stl:⋅,stlnc:⋅,vert:│,fold:۰,diff:·
