@@ -117,7 +117,7 @@ let &t_SI="\e[4 q" " start insert mode: underline
 let &t_EI="\e[2 q" " end insert mode: block
 " END CUSTOM CURSORS
 
-let g:ale_linters = {'python': ['flake8', 'mypy']}
+let g:ale_linters = {'python': ['flake8', 'pylint', 'mypy']}
 
 function ClosePair(char)
     if getline('.')[col('.') - 1] == a:char
