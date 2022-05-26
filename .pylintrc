@@ -90,7 +90,10 @@ disable=raw-checker-failed,
         suppressed-message,
         useless-suppression,
         deprecated-pragma,
-        use-symbolic-message-instead
+        use-symbolic-message-instead,
+        missing-module-docstring,
+        missing-class-docstring,
+        missing-function-docstring
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
@@ -542,13 +545,13 @@ exclude-too-few-public-methods=
 ignored-parents=
 
 # Maximum number of arguments for function / method.
-max-args=5
+max-args=100
 
 # Maximum number of attributes for a class (see R0902).
-max-attributes=7
+max-attributes=100
 
 # Maximum number of boolean expressions in an if statement (see R0916).
-max-bool-expr=5
+max-bool-expr=100
 
 # Maximum number of branch for function / method body.
 max-branches=12
@@ -560,10 +563,10 @@ max-locals=15
 max-parents=7
 
 # Maximum number of public methods for a class (see R0904).
-max-public-methods=20
+max-public-methods=100
 
 # Maximum number of return / yield for function / method body.
-max-returns=6
+max-returns=100
 
 # Maximum number of statements in function / method body.
 max-statements=50
