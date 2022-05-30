@@ -163,7 +163,7 @@ endfunction
 
 map <Leader><C-t> :call ToggleBG()<CR>
 map <Leader>n :ALENextWrap<CR>
-map <Leader>p :ALEPreviousWrap<CR>
+map <Leader>N :ALEPreviousWrap<CR>
 map <Leader>d :ALEDetail<CR>
 
 set fillchars=stl:⋅,stlnc:⋅,vert:│,fold:۰,diff:·
