@@ -21,7 +21,7 @@ set laststatus=2
 set linebreak
 set matchpairs+=<:>
 set number
-set relativenumber
+" set relativenumber
 set ruler
 set scrolloff=1
 set signcolumn=number
