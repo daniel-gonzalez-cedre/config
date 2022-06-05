@@ -21,9 +21,9 @@ set laststatus=2
 set linebreak
 set matchpairs+=<:>
 set number
-set relativenumber
+" set relativenumber
 set ruler
-" set scrolloff=1
+set scrolloff=1
 set signcolumn=number
 set shiftround
 set shiftwidth=4
@@ -52,6 +52,8 @@ let g:gruvbox_contrast_light = "hard"
 colorscheme gruvbox
 hi StatusLine ctermbg=none ctermfg=237 cterm=none
 hi StatusLineNC ctermbg=none ctermfg=237 cterm=none
+" highlight ALEErrorSign ctermfg=none cterm=inverse
+" highlight ALEWarningSign ctermfg=none cterm=inverse
 highlight ALEErrorLine ctermbg=234 cterm=none
 highlight ALEWarningLine ctermbg=none cterm=none
 highlight ALEError ctermbg=none cterm=inverse
@@ -108,10 +110,6 @@ augroup keymap_ft
   autocmd BufNewFile,BufRead *.keymap   set syntax=keymap
 augroup END
 
-nmap <C-h>v <Plug>(HighlineToggle)
-xmap <C-h>v <Plug>(HighlineToggle)
-nmap <C-h>c <Plug>(HighlineClear)
-
 " START CUSTOM CURSORS
 let &t_SI="\e[4 q" " start insert mode: underline
 let &t_EI="\e[2 q" " end insert mode: block
@@ -161,7 +159,11 @@ endfunction
 
 map <Leader><C-t> :call ToggleBG()<CR>
 map <Leader>n :ALENextWrap<CR>
-map <Leader>p :ALEPreviousWrap<CR>
+map <Leader>N :ALEPreviousWrap<CR>
 map <Leader>d :ALEDetail<CR>
+
+noremap <leader>/ :%s//gc<LEFT><LEFT><LEFT>
+nnoremap <LEADER>r *yiw:%s/<C-R>"//gc<LEFT><LEFT><LEFT>
+noremap <Leader>h :noh<CR>
 
 set fillchars=stl:⋅,stlnc:⋅,vert:│,fold:۰,diff:·
