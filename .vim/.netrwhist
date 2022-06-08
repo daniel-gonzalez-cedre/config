@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =7
+let g:netrw_dirhistcnt =8
+let g:netrw_dirhist_8='/Users/danielgonzalez/repos/gruvarc-firefox/images'
 let g:netrw_dirhist_7='/usr/share/vim/vim82/compiler'
 let g:netrw_dirhist_6='/Users/danielgonzalez/academia/pedagogy/2022-spring-discrete-math/lecture-notes/chapter01'
 let g:netrw_dirhist_5='/Users/danielgonzalez/repos/passage-of-time-refactor/src/similarity'
