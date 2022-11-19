@@ -8,6 +8,7 @@ disable=
     R0912, # too-many-branches
     R0914, # too-many-locals
     R0915, # too-many-statements
+    W0703, # broad-except
     W1514, # unspecified-encoding
 
 # A comma-separated list of package or module names from where C extensions may
