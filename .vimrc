@@ -21,7 +21,6 @@ set laststatus=2
 set linebreak
 set matchpairs+=<:>
 set number
-" set relativenumber
 set ruler
 set scrolloff=1
 set signcolumn=number
@@ -39,6 +38,9 @@ set tabstop=4
 set wildmenu
 set wildmode=list:longest,full
 set wrap
+let g:ale_linters = {'python': ['flake8', 'mypy', 'pylint'], 'lua': ['luacheck', 'luac']}
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
 let g:haskell_indent_if = 4
 let g:haskell_indent_case = 4
 let g:haskell_indent_guard = 4
@@ -94,6 +96,7 @@ vnoremap " <C-c>`>a"<C-c>`<i"<C-c>
 vnoremap ' <C-c>`>a'<C-c>`<i'<C-c>
 vnoremap ` <C-c>`>a`<C-c>`<i`<C-c>
 vnoremap <C-u> y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""P
+
 if has('clipboard')
     vnoremap y "+y
     vnoremap Y "+y
@@ -105,18 +108,18 @@ if has('clipboard')
     noremap s "+s
     noremap S "+S
 endif
+
 augroup keymap_ft
   au!
   autocmd BufNewFile,BufRead *.keymap   set syntax=keymap
 augroup END
 
-" START CUSTOM CURSORS
-let &t_SI="\e[4 q" " start insert mode: underline
-let &t_EI="\e[2 q" " end insert mode: block
-" END CUSTOM CURSORS
+" custom cursor: start insert mode with underline
+let &t_SI="\e[4 q"
+" custom cursor: end insert mode with block
+let &t_EI="\e[2 q"
 
-let g:ale_linters = {'python': ['flake8', 'mypy', 'pylint'], 'lua': ['luacheck', 'luac']}
-
+" auto closing of paired chars
 function ClosePair(char)
     if getline('.')[col('.') - 1] == a:char
         return "\<Right>"
@@ -135,10 +138,12 @@ function QuoteDelim(char)
         return a:char.a:char."\<Esc>i"
     endif
 endf
+" camel-case selected text
 function! TwiddleCase(str)
     return substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
 endfunction
 
+" toggle dark/light background
 function! ToggleBG()
     if (&bg == "light")
         set bg=dark
@@ -157,13 +162,16 @@ function! ToggleBG()
     hi StatusLineNC ctermbg=none ctermfg=237 cterm=none
 endfunction
 
-map <Leader><C-t> :call ToggleBG()<CR>
-map <Leader>n :ALENextWrap<CR>
-map <Leader>N :ALEPreviousWrap<CR>
-map <Leader>d :ALEDetail<CR>
+map <LEADER><C-t> :call ToggleBG()<CR>
+map <LEADER>n :ALENextWrap<CR>
+map <LEADER>N :ALEPreviousWrap<CR>
+map <LEADER>m :ALEDetail<CR>
 
-noremap <leader>/ :%s//gc<LEFT><LEFT><LEFT>
-nnoremap <LEADER>r *yiw:%s/<C-R>"//gc<LEFT><LEFT><LEFT>
-noremap <Leader>h :noh<CR>
+" search & replace
+noremap <LEADER>/ :%s//gc<LEFT><LEFT><LEFT>
+" search & replace word/token under the cursor
+nnoremap <LEADER>r *yiw:%s/<C-r>"//gc<LEFT><LEFT><LEFT>
+" remove all highlighting highlighting
+noremap <LEADER>h :noh<CR>
 
 set fillchars=stl:⋅,stlnc:⋅,vert:│,fold:۰,diff:·
