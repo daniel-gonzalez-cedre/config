@@ -104,6 +104,8 @@ vnoremap <C-u> y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""P
 if has('clipboard')
     vnoremap y "+y
     vnoremap Y "+Y
+    vnoremap x "+x
+    vnoremap X "+X
     noremap p "+p
     noremap P "+P
 endif
