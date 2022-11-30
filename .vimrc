@@ -90,6 +90,9 @@ inoremap ' <C-r>=QuoteDelim("'")<CR>
 vnoremap ( <C-c>`>a)<C-c>`<i(<C-c>
 vnoremap [ <C-c>`>a]<C-c>`<i[<C-c>
 vnoremap { <C-c>`>a}<C-c>`<i{<C-c>
+vnoremap ) <C-c>`<i(<C-c>`>a)<C-c>
+vnoremap ] <C-c>`<i[<C-c>`>a]<C-c>
+vnoremap } <C-c>`<i{<C-c>`>a}<C-c>
 vnoremap <BS> <Nop>
 au BufNewFile *.tex vnoremap $ <C-c>`>a$<C-c>`<i$<C-c>
 au BufRead *.tex vnoremap $ <C-c>`>a$<C-c>`<i$<C-c>
@@ -101,13 +104,6 @@ vnoremap <C-u> y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""P
 if has('clipboard')
     vnoremap y "+y
     vnoremap Y "+y
-    noremap x "+x
-    noremap X "+x
-    noremap d "+d
-    noremap p "+p
-    noremap P "+P
-    noremap s "+s
-    noremap S "+S
 endif
 
 augroup keymap_ft
@@ -169,9 +165,11 @@ map <LEADER>N :ALEPreviousWrap<CR>
 map <LEADER>m :ALEDetail<CR>
 
 " search & replace
-noremap <LEADER>/ :%s//gc<LEFT><LEFT><LEFT>
+nnoremap <LEADER>s :%s//gc<LEFT><LEFT><LEFT>
+" search & replace visual selection
+vnoremap <LEADER>s y`<`>:<C-u>%s/<C-r>0//gc<LEFT><LEFT><LEFT>
 " search & replace word/token under the cursor
-nnoremap <LEADER>r *yiw:%s/<C-r>"//gc<LEFT><LEFT><LEFT>
+" nnoremap <LEADER>r *yiw:%s/<C-r>"//gc<LEFT><LEFT><LEFT>
 " remove all highlighting highlighting
 noremap <LEADER>h :noh<CR>
 
