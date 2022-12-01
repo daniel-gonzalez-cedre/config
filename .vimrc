@@ -90,9 +90,9 @@ inoremap ' <C-r>=QuoteDelim("'")<CR>
 vnoremap ( <C-c>`>a)<C-c>`<i(<C-c>
 vnoremap [ <C-c>`>a]<C-c>`<i[<C-c>
 vnoremap { <C-c>`>a}<C-c>`<i{<C-c>
-vnoremap ) <C-c>`<i(<C-c>`>a)<C-c>
-vnoremap ] <C-c>`<i[<C-c>`>a]<C-c>
-vnoremap } <C-c>`<i{<C-c>`>a}<C-c>
+vnoremap ) <C-c>`<i(<C-c>`><RIGHT>a)<C-c>
+vnoremap ] <C-c>`<i[<C-c>`><RIGHT>a]<C-c>
+vnoremap } <C-c>`<i{<C-c>`><RIGHT>a}<C-c>
 vnoremap <BS> <Nop>
 au BufNewFile *.tex vnoremap $ <C-c>`>a$<C-c>`<i$<C-c>
 au BufRead *.tex vnoremap $ <C-c>`>a$<C-c>`<i$<C-c>
