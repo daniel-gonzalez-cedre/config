@@ -20,6 +20,12 @@ autocmd BufEnter * :syntax sync fromstart
 set autoindent
 set background=dark
 set backspace=indent,eol,start
+
+set previewpopup=height:10,width:60,highlight:PMenuSbar
+set completeopt+=popup
+set completepopup=height:15,width:60,border:off,highlight:PMenuSbar
+" set completeopt-=preview
+
 set conceallevel=0
 set cursorline
 set display+=lastline
@@ -66,6 +72,8 @@ let g:rainbow_active = 1
 let g:gruvbox_contrast_dark = "hard"
 let g:gruvbox_contrast_light = "hard"
 let g:ycm_auto_hover=""
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_key_list_stop_completion = ['<C-y>']
 colorscheme gruvbox
 hi StatusLine ctermbg=none ctermfg=237 cterm=none
 hi StatusLineNC ctermbg=none ctermfg=237 cterm=none
