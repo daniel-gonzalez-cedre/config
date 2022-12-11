@@ -93,8 +93,7 @@ nnoremap F zA
 
 imap <C-c> <ESC>
 inoremap <expr> <CR> pumvisible() ? !empty(v:completed_item) ? "<C-y><C-c>" : "<C-y><CR>" : "<CR>"
-inoremap <C-@> pumvisible() ? "<C-y><C-c>" : <CR>
-inoremap  <ESC>dli
+inoremap <C-]> <Del>
 
 inoremap ( ()<left>
 inoremap [ []<left>
