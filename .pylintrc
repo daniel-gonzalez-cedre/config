@@ -1,5 +1,6 @@
 [MASTER]
-init-hook='import sys; sys.path.append("."); sys.path.append("./repos"); sys.path.append("./repos/DyVeRG")'
+init-hook='import sys; sys.path.append("."); sys.path.append("./repos"); sys.path.append("./repos/DyVeRG"); sys.path.append("./repos/DyVeRG/cnrg"); sys.path.append("./repos/DyVeRG/src")'
+
 disable=
     C0114, # missing-module-docstring
     C0115, # missing-class-docstring

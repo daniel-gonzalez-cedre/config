@@ -1,4 +1,16 @@
-let mapleader=" "
+packadd YouCompleteMe
+nnoremap <leader>gg :YcmCompleter GoTo<CR>:noh<CR>
+nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>:noh<CR>
+nnoremap <leader>gr :YcmCompleter GoToReferences<CR>:noh<CR>
+
+let s:lsp_ft_maps = 'python'
+augroup ycm_settings | au!
+    exe printf('au FileType %s call Ycm_mappings()', s:lsp_ft_maps)
+augroup end
+func! Ycm_mappings() abort
+    nmap <silent><buffer> K <plug>(YCMHover)
+    nnoremap <silent><buffer> gd :YcmCompleter GoTo<CR>
+endfunc
 
 filetype plugin indent on
 silent
@@ -35,11 +47,12 @@ set spelllang+=cjk
 set splitbelow
 set splitright
 set tabstop=4
+set ttimeoutlen=10
 set wildmenu
 set wildmode=list:longest,full
 set wrap
-let g:ale_linters = {'python': ['flake8', 'mypy', 'pylint'], 'lua': ['luacheck', 'luac']}
-let g:ale_lint_on_text_changed = 'never'
+let g:ale_linters = {"python": ["flake8", "pylint"], "lua": ["luacheck", "luac"]}
+let g:ale_lint_on_text_changed = "never"
 let g:ale_lint_on_insert_leave = 0
 let g:haskell_indent_if = 4
 let g:haskell_indent_case = 4
@@ -52,6 +65,7 @@ let g:python_highlight_all = 1
 let g:rainbow_active = 1
 let g:gruvbox_contrast_dark = "hard"
 let g:gruvbox_contrast_light = "hard"
+let g:ycm_auto_hover=""
 colorscheme gruvbox
 hi StatusLine ctermbg=none ctermfg=237 cterm=none
 hi StatusLineNC ctermbg=none ctermfg=237 cterm=none
@@ -72,11 +86,16 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
-noremap <C-f> za
+nnoremap <C-f> za
 nnoremap <C-j> gj
 nnoremap <C-k> gk
-noremap F zA
-inoremap <C-c> <Esc>
+nnoremap F zA
+
+imap <C-c> <ESC>
+inoremap <expr> <CR> pumvisible() ? !empty(v:completed_item) ? "<C-y><C-c>" : "<C-y><CR>" : "<CR>"
+inoremap <C-@> pumvisible() ? "<C-y><C-c>" : <CR>
+inoremap  <ESC>dli
+
 inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
@@ -172,8 +191,7 @@ map <LEADER>m :ALEDetail<CR>
 nnoremap <LEADER>s :%s//gc<LEFT><LEFT><LEFT>
 " search & replace visual selection
 vnoremap <LEADER>s y`<`>:<C-u>%s/<C-r>0//gc<LEFT><LEFT><LEFT>
-" search & replace word/token under the cursor
-" nnoremap <LEADER>r *yiw:%s/<C-r>"//gc<LEFT><LEFT><LEFT>
+vnoremap <LEADER><C-s> :%s//gc<LEFT><LEFT><LEFT>
 " remove all highlighting highlighting
 noremap <LEADER>h :noh<CR>
 

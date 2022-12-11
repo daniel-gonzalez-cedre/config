@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =8
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/Users/danielgonzalez/.vim/pack/git-plugins/opt/YouCompleteMe/autoload/youcompleteme'
+let g:netrw_dirhist_0='/Users/danielgonzalez/.vim/after/syntax'
+let g:netrw_dirhist_9='/Users/danielgonzalez/.vim/after'
 let g:netrw_dirhist_8='/Users/danielgonzalez/repos/gruvarc-firefox/images'
 let g:netrw_dirhist_7='/usr/share/vim/vim82/compiler'
 let g:netrw_dirhist_6='/Users/danielgonzalez/academia/pedagogy/2022-spring-discrete-math/lecture-notes/chapter01'
