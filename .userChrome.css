@@ -1,8 +1,8 @@
 #TabsToolbar { visibility: collapse !important; }
 #sidebar {
-    width: 128px !important;
+    width: 100%;
     min-width: 128px !important;
-    max-width: 256px !important;
+    /* max-width: 256px !important; */
 }
 #sidebar-header {
     visibility: collapse !important;
