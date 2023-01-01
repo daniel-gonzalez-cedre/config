@@ -1,19 +1,30 @@
 /* sidebar background */
-:root, #background { background: #101010; }
+:root, #background {
+  background: #000000;
+}
 
 /* show title of unread tabs in grey */
 :root.sidebar tab-item.unread .label-content { color: #555555 !important; }
+:root.sidebar .label-content {
+  padding-left: 5px;
+  color: #cabaa9 !important;
+}
+
+tab-item tab-favicon {
+  padding-left: 2px;
+}
 
 /* Less visible tab dividers. 
    A black border with a very low alpha slightly darkens any color. */
 tab-item-substance {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  border-top: solid 0.5px #aaaaaa25;
-  border-bottom: solid 0.5px #aaaaaa25;
-  border-left: solid 1px #aaaaaa25;
-  background-color: #202020;
+  border-top: solid 0.5px #25252575;
+  border-bottom: solid 0.5px #25252575;
+  border-left: solid 1px #25252595;
+  background-color: #161414;
 }
+tab-item tab-item-substance:hover { }
 
 /* hide new tab button */
 #tabbar .after-tabs { display: none !important; }
@@ -22,21 +33,33 @@ tab-item-substance {
 /* more compact tab height and darker colors */
 .tab {
   height: 25px;
-  border: #555555;
-  background: #101010;
+  border: #000000;
+  background: #000000;
 }
 
 /* highlight current tab -- can be unset for photon theme */
-.tab.active { /* background: #303030; */ }
-:root .tab .highlighter::before { background: #555555; }
+.tab.active { background: #000000; }
+.tab.active .background { background: #2f2d2d; }
+:root .tab .highlighter::before { background: #2f2d2d; }
+tab-item.active .contextual-identity-marker { }
+
+/* hide collapse twisty arrow */
+/* collapse/expand subtree with favicon */
+tab-item tab-twisty {
+  margin-right: -1em;
+  opacity: 0 !important;
+  position: relative;
+  z-index: 10000;
+}
 
 /* hide [x] tab close button unless hovering on tab */
 .tab:not(:hover) .closebox { visibility: collapse !important; }
 
+.tab:hover { background: #000000; }
 
 /* remove scroll bar */
 .tab {
-  margin-left: 17px;
+  margin-left: 1px;
 }
 #tabbar {
   overflow-x: hidden;
@@ -45,5 +68,5 @@ tab-item-substance {
 :root.left #tabbar,
 #tabContextMenu,
 #tabContextMenu ul {
-  margin-left: -15px;
+  margin-left: 1px;
 }
