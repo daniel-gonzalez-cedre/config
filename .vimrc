@@ -6,12 +6,12 @@ autocmd BufEnter * :syntax sync fromstart
 set autoindent
 set background=dark
 set backspace=indent,eol,start
-
+set breakindent
+set breakindentopt=sbr
+set virtualedit=block
 set previewpopup=height:10,width:60,highlight:PMenuSbar
 set completeopt+=popup
 set completepopup=height:15,width:60,border:off,highlight:PMenuSbar
-" set completeopt-=preview
-
 set conceallevel=0
 set cursorline
 set display+=lastline
@@ -30,6 +30,7 @@ set scrolloff=1
 set signcolumn=number
 set shiftround
 set shiftwidth=4
+let &showbreak="> "
 set showcmd
 set smartcase
 set smartindent
@@ -39,10 +40,12 @@ set spelllang+=cjk
 set splitbelow
 set splitright
 set tabstop=4
+set textwidth=0
 set ttimeoutlen=10
 set wildmenu
 set wildmode=list:longest,full
 set wrap
+set wrapmargin=1
 " tex: chktek, lacheck
 let g:ale_linters = {"python": ["flake8", "pylint"], "lua": ["luacheck", "luac"], "tex": ["lacheck"]}
 let g:ale_lint_on_text_changed = "never"
