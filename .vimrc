@@ -1,17 +1,3 @@
-packadd YouCompleteMe
-nnoremap <leader>gg :YcmCompleter GoTo<CR>:noh<CR>
-nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>:noh<CR>
-nnoremap <leader>gr :YcmCompleter GoToReferences<CR>:noh<CR>
-
-let s:lsp_ft_maps = 'python'
-augroup ycm_settings | au!
-    exe printf('au FileType %s call Ycm_mappings()', s:lsp_ft_maps)
-augroup end
-func! Ycm_mappings() abort
-    nmap <silent><buffer> K <plug>(YCMHover)
-    nnoremap <silent><buffer> gd :YcmCompleter GoTo<CR>
-endfunc
-
 filetype plugin indent on
 silent
 syntax on
@@ -57,7 +43,8 @@ set ttimeoutlen=10
 set wildmenu
 set wildmode=list:longest,full
 set wrap
-let g:ale_linters = {"python": ["flake8", "pylint"], "lua": ["luacheck", "luac"]}
+" tex: chktek, lacheck
+let g:ale_linters = {"python": ["flake8", "pylint"], "lua": ["luacheck", "luac"], "tex": ["lacheck"]}
 let g:ale_lint_on_text_changed = "never"
 let g:ale_lint_on_insert_leave = 0
 let g:haskell_indent_if = 4
@@ -71,9 +58,6 @@ let g:python_highlight_all = 1
 let g:rainbow_active = 1
 let g:gruvbox_contrast_dark = "hard"
 let g:gruvbox_contrast_light = "hard"
-let g:ycm_auto_hover=""
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_key_list_stop_completion = ['<C-y>']
 colorscheme gruvbox
 hi StatusLine ctermbg=none ctermfg=237 cterm=none
 hi StatusLineNC ctermbg=none ctermfg=237 cterm=none
@@ -99,9 +83,11 @@ nnoremap <C-j> gj
 nnoremap <C-k> gk
 nnoremap F zA
 
+nnoremap <C-l> :ALELint<CR>
+
 imap <C-c> <ESC>
-inoremap <expr> <CR> pumvisible() ? !empty(v:completed_item) ? "<C-y><C-c>" : "<C-y><CR>" : "<CR>"
 inoremap <C-]> <Del>
+inoremap <expr> <CR> pumvisible() ? !empty(v:completed_item) ? "<C-y><C-c>" : "<C-y><CR>" : "<CR>"
 
 inoremap ( ()<left>
 inoremap [ []<left>
@@ -109,8 +95,6 @@ inoremap { {}<left>
 inoremap ) <C-r>=ClosePair(')')<CR>
 inoremap ] <C-r>=ClosePair(']')<CR>
 inoremap } <C-r>=ClosePair('}')<CR>
-au BufNewFile *.tex inoremap $ <C-r>=QuoteDelim("$")<CR>
-au BufRead *.tex inoremap $ <C-r>=QuoteDelim("$")<CR>
 inoremap " <C-r>=QuoteDelim('"')<CR>
 inoremap ' <C-r>=QuoteDelim("'")<CR>
 vnoremap ( <C-c>`>a)<C-c>`<i(<C-c>
@@ -119,9 +103,22 @@ vnoremap { <C-c>`>a}<C-c>`<i{<C-c>
 vnoremap ) <C-c>`<i(<C-c>`><RIGHT>a)<C-c>
 vnoremap ] <C-c>`<i[<C-c>`><RIGHT>a]<C-c>
 vnoremap } <C-c>`<i{<C-c>`><RIGHT>a}<C-c>
+
+" think about this later
+" vnoremap <C-[> <C-c>`>a<C-r>=ReplaceDelim(']')<CR><C-c>`<i<C-r>=ReplaceDelim('[')<CR><C-c>
+" matchstr(getline('.'), '\%' . col('.') . 'c.')
+" function! ReplaceDelim(repl)
+"     let char = matchstr(getline('.'), '\%' . col('.') . 'c.')
+"     if char == "(" ||  char == "{" || char == "["
+"         return "\<DEL>".a:repl
+"     elseif char == ")" || char == "}" ||char == "]"
+"         return "\<BS>".a:repl
+"     else
+"         return a:repl
+" endf
+
 vnoremap <BS> <Nop>
-au BufNewFile *.tex vnoremap $ <C-c>`>a$<C-c>`<i$<C-c>
-au BufRead *.tex vnoremap $ <C-c>`>a$<C-c>`<i$<C-c>
+
 vnoremap " <C-c>`>a"<C-c>`<i"<C-c>
 vnoremap ' <C-c>`>a'<C-c>`<i'<C-c>
 vnoremap ` <C-c>`>a`<C-c>`<i`<C-c>
@@ -135,11 +132,6 @@ if has('clipboard')
     noremap p "+p
     noremap P "+P
 endif
-
-augroup keymap_ft
-  au!
-  autocmd BufNewFile,BufRead *.keymap   set syntax=keymap
-augroup END
 
 " custom cursor: start insert mode with underline
 let &t_SI="\e[4 q"
