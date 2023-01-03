@@ -3,6 +3,8 @@
   background: #000000;
 }
 
+#tabbar { scrollbar-width: none; }
+
 /* show title of unread tabs in grey */
 :root.sidebar tab-item.unread .label-content { color: #555555 !important; }
 :root.sidebar .label-content {
@@ -10,9 +12,7 @@
   color: #cabaa9 !important;
 }
 
-tab-item tab-favicon {
-  padding-left: 2px;
-}
+tab-item tab-favicon { padding-left: 2px; }
 
 /* Less visible tab dividers. 
    A black border with a very low alpha slightly darkens any color. */
@@ -65,8 +65,4 @@ tab-item tab-twisty {
   overflow-x: hidden;
   overflow-y: scroll;
 }
-:root.left #tabbar,
-#tabContextMenu,
-#tabContextMenu ul {
-  margin-left: 1px;
-}
+:root.left #tabbar, #tabContextMenu, #tabContextMenu ul { margin-left: 1px; }
