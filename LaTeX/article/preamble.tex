@@ -4,6 +4,7 @@
 \usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
 \usepackage[group-separator={,},group-minimum-digits={3}]{siunitx}
 \usepackage[math]{cellspace}
+\usepackage[shortlabels]{enumitem}
 \cellspacetoplimit 6pt
 \cellspacebottomlimit 6pt
 \hypersetup{
@@ -12,6 +13,9 @@
     linkcolor=black!50!red,
     urlcolor=black!50!blue
 }
+
+\newlist{detail}{itemize}{2}
+\setlist[detail]{label={\boldmath$\cdot$},topsep=0pt,leftmargin=*,noitemsep}
 
 % define new conditionals: \if<conditional>
 \newif\ifindentproofs

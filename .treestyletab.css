@@ -1,9 +1,11 @@
 /* sidebar background */
-:root, #background {
-  background: #000000;
-}
+:root, #background { background: #000000; }
 
-#tabbar { scrollbar-width: none; }
+#tabbar {
+  scrollbar-width: none;
+  bottom: 0 !important; /* Eliminate dead space on bottom */
+}
+.newtab-button-box { display: none; }
 
 /* show title of unread tabs in grey */
 :root.sidebar tab-item.unread .label-content { color: #555555 !important; }
@@ -19,10 +21,10 @@ tab-item tab-favicon { padding-left: 2px; }
 tab-item-substance {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  border-top: solid 0.5px #25252575;
-  border-bottom: solid 0.5px #25252575;
-  border-left: solid 1px #25252595;
-  background-color: #161414;
+  border-top: solid 0.5px #28282875;
+  border-bottom: solid 0.5px #28282875;
+  border-left: solid 1px #28282895;
+  background-color: #181818;
 }
 tab-item tab-item-substance:hover { }
 
@@ -58,9 +60,7 @@ tab-item tab-twisty {
 .tab:hover { background: #000000; }
 
 /* remove scroll bar */
-.tab {
-  margin-left: 1px;
-}
+.tab { margin-left: 1px; }
 #tabbar {
   overflow-x: hidden;
   overflow-y: scroll;

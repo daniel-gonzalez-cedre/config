@@ -19,6 +19,7 @@ set expandtab
 set foldignore=
 set foldlevelstart=99
 set foldmethod=indent
+set formatoptions-=t
 set hlsearch
 set ignorecase
 set laststatus=2
@@ -26,11 +27,11 @@ set linebreak
 set matchpairs+=<:>
 set number
 set ruler
-set scrolloff=1
+set scrolloff=0
 set signcolumn=number
 set shiftround
 set shiftwidth=4
-let &showbreak="> "
+let &showbreak=">>> "
 set showcmd
 set smartcase
 set smartindent
@@ -45,7 +46,7 @@ set ttimeoutlen=10
 set wildmenu
 set wildmode=list:longest,full
 set wrap
-set wrapmargin=1
+set wrapmargin=0
 " tex: chktek, lacheck
 let g:ale_linters = {"python": ["flake8", "pylint"], "lua": ["luacheck", "luac"], "tex": ["lacheck"]}
 let g:ale_lint_on_text_changed = "never"
