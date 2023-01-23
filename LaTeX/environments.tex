@@ -1,31 +1,31 @@
-\documentclass[letterpaper]{article}
-
-\usepackage{amsmath, amsfonts, amssymb, amstext, amscd, amsthm, bbm, booktabs, CJKutf8, caption, color, colortbl, dsfont, enumerate, float, graphicx, hyperref, lipsum, listings, makecell, makeidx, mathrsfs, mathtools, marvosym, parskip, soul, stmaryrd, tikz, url, verbatim, xargs, xcolor, xfrac}
-\usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
-\usepackage[group-separator={,},group-minimum-digits={3}]{siunitx}
-\usepackage[math]{cellspace}
-\usepackage[shortlabels]{enumitem}
-\cellspacetoplimit 6pt
-\cellspacebottomlimit 6pt
-\hypersetup{
-    citecolor=black!50!red,
-    colorlinks=true,
-    linkcolor=black!50!red,
-    urlcolor=black!50!blue
-}
-
 \newlist{detail}{itemize}{2}
 \setlist[detail]{label={\boldmath$\cdot$},topsep=0pt,leftmargin=*,noitemsep}
 
-% define new conditionals: \if<conditional>
-\newif\ifindentproofs
-\newif\ifindenttheorems
+\ifalgorithms
+    \newcounter{nalg}[chapter]
+    \renewcommand{\thenalg}{\thechapter.\arabic{nalg}}
+    \DeclareCaptionLabelFormat{algocaption}{\it Algorithm \thenalg}
 
-% set the values of those conditionals: \<conditional>true / \<conditional>false
-\indentproofstrue
-\indenttheoremstrue
-
-\allowdisplaybreaks
+    \lstnewenvironment{algorithm}[1][]
+    {
+        \refstepcounter{nalg}
+        \captionsetup{labelformat=algocaption,labelsep=colon}
+        \lstset{
+            mathescape=true,
+            frame=tB,
+            numbers=left,
+            numberstyle=\tiny,
+            basicstyle=\scriptsize,
+            keywordstyle=\color{black}\bfseries\em,
+            keywords={,input, output, return, datatype, function, in, if, else, elif, for, foreach, while, not, begin, end, true, false, null, break, continue, let, and, or, }
+            numbers=left,
+            xleftmargin=.04\textwidth,
+            #1
+        }
+    }
+    {}
+\else
+\fi
 
 \ifindentproofs
     % begin new proof environment
@@ -177,101 +177,29 @@
 \newcommand{\counterexampleautorefname}{Counterexample}
 \newcommand{\ideaautorefname}{Idea}
 
-\newcommand*{\xline}[1][3em]{\rule[0.5ex]{#1}{0.55pt}}
-
-\newcommand{\isomorphic}{\cong}
-\newcommand{\iffdefn}{\mathrel{\vcentcolon\Leftrightarrow}}
-\newcommand{\iffbydefn}{$\iffdefn{}$}
-\newcommand{\niff}{\mathrel{{\ooalign{\hidewidth$\not\phantom{"}$\hidewidth\cr$\iff$}}}}
-\renewcommand{\implies}{~\Rightarrow~}
-\renewcommand{\iff}{~\Leftrightarrow~}
-\renewcommand{\restriction}[1]{\downharpoonright_{#1}}
-\renewcommand{\qedsymbol}{\sc q.e.d.}
-\renewcommand{\leq}{\leqslant}
-\renewcommand{\geq}{\geqslant}
-\newcommand{\conjunct}{\wedge}
-\newcommand{\disjunct}{\vee}
-\newcommand{\defn}{\coloneqq}
-\newcommand{\xor}{\oplus}
-\newcommand{\nand}{\uparrow}
-\newcommand{\nor}{\downarrow}
-\newcommand{\compose}{\circ}
-\newcommand{\divides}{~|~}
-\newcommand{\notdivides}{\not|~}
-\newcommand{\given}{~\middle|~}
-\newcommand{\suchthat}{~\middle|~}
-\newcommand{\contradiction}{~\smash{\text{\Large \Lightning}}~}
-\newcommand{\conj}[1]{\overline{#1}}
-\newcommand{\mean}[1]{\overline{#1}}
-\newcommand{\integral}[1]{\smashoperator{\int_{#1}}}
-\newcommand*\diff{\mathop{}\!\mathrm{d}}
-\newcommand{\E}[1]{\mathbb{E}\crochets*{#1}}
-\newcommand{\Esub}[2]{\mathbb{E}_{#1}\crochets*{#2}}
-\newcommand{\var}[1]{\mathrm{Var}\parens*{#1}}
-\newcommand{\cov}[2]{\mathrm{Cov}\parens*{#1, #2}}
-\newcommand{\der}[2]{\frac{\diff{#1}}{\diff{#2}}}
-\newcommand{\dern}[3]{\frac{\diff^{#3}{#1}}{\diff{#2}^{#3}}}
-\newcommand{\derm}[3]{\frac{\diff^{#3}{#1}}{\diff{#2}}}
-\newcommand{\prt}[2]{\frac{\partial{#1}}{\partial{#2}}}
-\newcommand{\prtn}[3]{\frac{\partial^{#3}{#1}}{\partial{#2}^{#3}}}
-\newcommand{\prtm}[3]{\frac{\partial^{#3}{#1}}{\partial{#2}}}
-\newcommand{\modulo}[1]{~\parens{\mathrm{mod}~#1}}
-
-\newcommand{\injection}{\hookrightarrow}
-\newcommand{\surjection}{\twoheadrightarrow}
-\newcommand{\bijection}{\lhook\joinrel\twoheadrightarrow}
-\newcommand{\monomorphism}{\hookrightarrow}
-\newcommand{\epimorphism}{\twoheadrightarrow}
-\newcommand{\isomorphism}{\lhook\joinrel\twoheadrightarrow}
-\newcommand{\inj}{\hookrightarrow}
-\newcommand{\surj}{\twoheadrightarrow}
-\newcommand{\bij}{\lhook\joinrel\twoheadrightarrow}
-\newcommand{\monic}{\hookrightarrow}
-\newcommand{\epic}{\twoheadrightarrow}
-\newcommand{\iso}{\lhook\joinrel\twoheadrightarrow}
-\newcommand{\immersion}{\looprightarrow}
-
-\renewcommand{\O}[1]{\mathcal{O}\parens*{#1}}
-\renewcommand{\P}[1]{\mathcal{P}\parens*{#1}}
-\newcommand{\C}{\mathbb{C}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Z}{\mathbb{Z}}
-
-\newcommand{\cf}{\textit{c.f.}, }
-\newcommand{\eg}{\textit{e.g.}, }
-\newcommand{\ie}{\textit{i.e.}, }
-\newcommand{\aka}{\textit{a.k.a.} }
-\newcommand{\viz}{\textit{viz.} }
-\newcommand{\vide}{\textit{v.} }
-\newcommand{\etal}{\textit{et al.} }
-
-\DeclareMathOperator{\lcm}{lcm}
-\DeclareMathOperator*{\argmin}{arg\!\min}
-\DeclareMathOperator*{\argmax}{arg\!\max}
-
-\let\originalleft\left
-\let\originalright\right
-\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
-\renewcommand{\right}{\aftergroup\egroup\originalright}
-\newcommand{\zh}[1]{\begin{CJK}{UTF8}{gbsn}#1\end{CJK}}
-\newcommand{\jp}[1]{\begin{CJK}{UTF8}{gbsn}#1\end{CJK}}
-
-\DeclarePairedDelimiterX \inner[2]{\langle}{\rangle}{#1,#2}
-\DeclarePairedDelimiter \bra{\langle}{\rvert}
-\DeclarePairedDelimiter \ket{\lvert}{\rangle}
-\DeclarePairedDelimiter \abs{\lvert}{\rvert}
-\DeclarePairedDelimiter \cardinality{\lvert}{\rvert}
-\DeclarePairedDelimiter \norm{\lVert}{\rVert}
-\DeclarePairedDelimiter \set{\lbrace}{\rbrace}
-\DeclarePairedDelimiter \seq{\langle}{\rangle}
-\DeclarePairedDelimiter \parens{(}{)}
-\DeclarePairedDelimiter \crochets{[}{]}
-\DeclarePairedDelimiter \brackets{\langle}{\rangle}
-
-\let\oldemptyset\emptyset
-\let\emptyset\varnothing
-\let\union\cup
-\let\intersection\cap
-\let\intersect\cap
+\ifbook
+    \renewcommand{\theequation}{\thechapter.\arabic{equation}}
+    \renewcommand{\thepretheorem}{\thechapter.\arabic{pretheorem}}
+    \renewcommand{\theprelemma}{\thechapter.\arabic{prelemma}}
+    \renewcommand{\thepreproposition}{\thechapter.\arabic{preproposition}}
+    \renewcommand{\theprecorollary}{\thechapter.\arabic{precorollary}}
+    \renewcommand{\thepreclaim}{\thechapter.\arabic{preclaim}}
+    \renewcommand{\thepreconjecture}{\thechapter.\arabic{preconjecture}}
+    \renewcommand{\theprejustification}{\thechapter.\arabic{prejustification}}
+    \renewcommand{\thepredefinition}{\thechapter.\arabic{predefinition}}
+    \renewcommand{\thepreexample}{\thechapter.\arabic{preexample}}
+    \renewcommand{\theprecounterexample}{\thechapter.\arabic{precounterexample}}
+    \counterwithin*{equation}{chapter}
+    \counterwithin*{pretheorem}{chapter}
+    \counterwithin*{prelemma}{chapter}
+    \counterwithin*{preproposition}{chapter}
+    \counterwithin*{precorollary}{chapter}
+    \counterwithin*{preclaim}{chapter}
+    \counterwithin*{preconjecture}{chapter}
+    \counterwithin*{prejustification}{chapter}
+    \counterwithin*{predefinition}{chapter}
+    \counterwithin*{preexercise}{chapter}
+    \counterwithin*{preexample}{chapter}
+    \counterwithin*{precounterexample}{chapter}
+\else
+\fi

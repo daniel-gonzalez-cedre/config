@@ -126,7 +126,6 @@ vnoremap <BS> <Nop>
 vnoremap " <C-c>`>a"<C-c>`<i"<C-c>
 vnoremap ' <C-c>`>a'<C-c>`<i'<C-c>
 vnoremap ` <C-c>`>a`<C-c>`<i`<C-c>
-vnoremap <C-u> y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""P
 
 if has('clipboard')
     vnoremap y "+y

@@ -1,0 +1,49 @@
+\documentclass[letterpaper]{article}
+
+% define new conditionals: \if<conditional>
+\newif\ifbook  % whether or not to use book styles
+\newif\ifalgorithms  % whether or not to define the algorithm environment
+\newif\ifindentproofs  % whether or not to hang-indent proof environments
+\newif\ifindenttheorems  % whether or not to hang-indent theorem environments
+
+% set the conditionals: \<conditional>true / \<conditional>false
+\bookfalse
+\algorithmsfalse
+\indentproofstrue
+\indenttheoremstrue
+
+\ifbook
+    \usepackage{arydshln, chngcntr}
+\else
+\fi
+
+% math
+\usepackage{amsmath, amsfonts, amssymb, amstext, amscd, amsthm, mathrsfs, mathtools, xfrac}
+% fonts
+\usepackage{bbm, CJKutf8, caption, dsfont, marvosym, stmaryrd}
+% tables
+\usepackage{booktabs, colortbl, makecell}
+% colors
+\usepackage{color, soul, xcolor}
+% references
+\usepackage{hyperref, url}
+% figures
+\usepackage{graphicx, float, tikz}
+% miscellaneous
+\usepackage{enumerate, lipsum, listings, makeidx, parskip, verbatim, xargs}
+
+\usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\usepackage[group-separator={,},group-minimum-digits={3}]{siunitx}
+\usepackage[shortlabels]{enumitem}
+\usepackage[math]{cellspace}
+\cellspacetoplimit 6pt
+\cellspacebottomlimit 6pt
+
+\hypersetup{
+    citecolor=black!50!red,
+    colorlinks=true,
+    linkcolor=black!50!red,
+    urlcolor=black!50!blue
+}
+
+\allowdisplaybreaks
