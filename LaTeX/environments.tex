@@ -93,36 +93,36 @@
 
     % axiom
     \NewDocumentEnvironment{axiom}{O{} O{}}
-        {\begin{preaxiom}[#1]~#2\quote}
+        {\begin{preaxiom}[#1]~#2\quote\normalfont}
         {\endquote\end{preaxiom}}
     % definition
     \NewDocumentEnvironment{definition}{O{} O{}}
-        {\begin{predefinition}[#1]~#2\quote}
+        {\begin{predefinition}[#1]~#2\quote\normalfont}
         {\endquote\end{predefinition}}
     % exercise
     \NewDocumentEnvironment{exercise}{O{} O{}}
-        {\begin{preexercise}[#1]~#2\quote}
+        {\begin{preexercise}[#1]~#2\quote\normalfont}
         {\endquote\end{preexercise}}
     % example
     \NewDocumentEnvironment{example}{O{} O{}}
-        {\begin{preexample}[#1]~#2\quote}
+        {\begin{preexample}[#1]~#2\quote\normalfont}
         {\endquote\end{preexample}}
     % counterexample
     \NewDocumentEnvironment{counterexample}{O{} O{}}
-        {\begin{precounterexample}[#1]~#2\quote}
+        {\begin{precounterexample}[#1]~#2\quote\normalfont}
         {\endquote\end{precounterexample}}
 
     % idea
     \NewDocumentEnvironment{idea}{O{} O{}}
-        {\begin{preidea}[#1]~#2}
+        {\begin{preidea}[#1]~#2\normalfont}
         {\end{preidea}}
     % remark
     \NewDocumentEnvironment{remark}{O{} O{}}
-        {\begin{preremark}[#1]~#2}
+        {\begin{preremark}[#1]~#2\normalfont}
         {\end{preremark}}
     % note
     \NewDocumentEnvironment{note}{O{} O{}}
-        {\begin{prenote}[#1]~#2}
+        {\begin{prenote}[#1]~#2\normalfont}
         {\end{prenote}}
 \else
     \theoremstyle{thm}% style for theorems
