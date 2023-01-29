@@ -78,12 +78,13 @@ nnoremap <C-l> :ALELint<CR>
 map <C-b> <NOP>
 map! <C-b> <NOP>
 
+nnoremap <silent> <BS> :noh<BAR>:echo<CR>
 nnoremap <silent> <ESC> :noh<BAR>:echo<CR><ESC>
-nnoremap <silent> <SPACE> :noh<BAR>:echo<CR><SPACE>
-nnoremap <silent> k :noh<CR>k
-nnoremap <silent> j :noh<CR>j
-nnoremap <silent> h :noh<CR>h
-nnoremap <silent> l :noh<CR>l
+nnoremap <silent> <SPACE> :noh<BAR>:echo<CR>
+" nnoremap <silent> k :noh<CR>k  " might cause cursor to disappear when holding down
+" nnoremap <silent> j :noh<CR>j
+" nnoremap <silent> h :noh<CR>h
+" nnoremap <silent> l :noh<CR>l
 nnoremap <C-k> gk
 nnoremap <C-j> gj
 
