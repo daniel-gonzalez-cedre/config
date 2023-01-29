@@ -72,7 +72,7 @@ temperature() {
 # $1: <options>
 #   pass "-i" as an argument to ask on every rm
 clean(){
-    rm "${1:-}" .DS_Store *.aux *.bbl *.blg *.fdb_latexmk *.fls *.log *.out *.bcf *.run.xml *.xdv
+    rm "${1:-}" .DS_Store *.aux *.bbl *.blg *.fdb_latexmk *.fls *.log *.out *.bcf *.run.xml *.xdv *.toc
 }
 
 cleanswp(){
