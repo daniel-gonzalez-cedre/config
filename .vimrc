@@ -73,14 +73,14 @@ highlight ALEWarningLine ctermbg=none cterm=none
 highlight ALEError ctermbg=none cterm=inverse
 highlight ALEWarning ctermbg=none cterm=inverse
 
-nnoremap <C-l> :ALELint<CR>
+nnoremap <C-l> :ALELint<cr>
 
-map <C-b> <NOP>
-map! <C-b> <NOP>
+map <C-b> <nop>
+map! <C-b> <nop>
 
-nnoremap <silent> <BS> :noh<BAR>:echo<CR>
-nnoremap <silent> <ESC> :noh<BAR>:echo<CR><ESC>
-nnoremap <silent> <SPACE> :noh<BAR>:echo<CR>
+nnoremap <silent> <bs> :noh<bar>:echo<cr>
+nnoremap <silent> <esc> :noh<bar>:echo<cr><esc>
+nnoremap <silent> <space> :noh<bar>:echo<cr>
 " nnoremap <silent> k :noh<CR>k  " might cause cursor to disappear when holding down
 " nnoremap <silent> j :noh<CR>j
 " nnoremap <silent> h :noh<CR>h
@@ -91,24 +91,24 @@ nnoremap <C-j> gj
 nnoremap <C-f> za
 nnoremap F zA
 
-imap <C-c> <ESC>
-inoremap <C-]> <Del>
-inoremap <expr> <CR> pumvisible() ? !empty(v:completed_item) ? "<C-y><C-c>" : "<C-y><CR>" : "<CR>"
+imap <C-c> <esc>
+inoremap <C-]> <del>
+inoremap <expr> <cr> pumvisible() ? !empty(v:completed_item) ? "<C-y><C-c>" : "<C-y><cr>" : "<cr>"
 
-inoremap ( ()<LEFT>
-inoremap [ []<LEFT>
-inoremap { {}<LEFT>
-inoremap ) <C-r>=ClosePair(')')<CR>
-inoremap ] <C-r>=ClosePair(']')<CR>
-inoremap } <C-r>=ClosePair('}')<CR>
-inoremap " <C-r>=QuoteDelim('"')<CR>
-inoremap ' <C-r>=QuoteDelim("'")<CR>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap ) <C-r>=ClosePair(')')<cr>
+inoremap ] <C-r>=ClosePair(']')<cr>
+inoremap } <C-r>=ClosePair('}')<cr>
+inoremap " <C-r>=QuoteDelim('"')<cr>
+inoremap ' <C-r>=QuoteDelim("'")<cr>
 vnoremap ( <C-c>`>a)<C-c>`<i(<C-c>
 vnoremap [ <C-c>`>a]<C-c>`<i[<C-c>
 vnoremap { <C-c>`>a}<C-c>`<i{<C-c>
-vnoremap ) <C-c>`<i(<C-c>`><RIGHT>a)<C-c>
-vnoremap ] <C-c>`<i[<C-c>`><RIGHT>a]<C-c>
-vnoremap } <C-c>`<i{<C-c>`><RIGHT>a}<C-c>
+vnoremap ) <C-c>`<i(<C-c>`><right>a)<C-c>
+vnoremap ] <C-c>`<i[<C-c>`><right>a]<C-c>
+vnoremap } <C-c>`<i{<C-c>`><right>a}<C-c>
 
 " think about this later
 " vnoremap <C-[> <C-c>`>a<C-r>=ReplaceDelim(']')<CR><C-c>`<i<C-r>=ReplaceDelim('[')<CR><C-c>
@@ -123,7 +123,7 @@ vnoremap } <C-c>`<i{<C-c>`><RIGHT>a}<C-c>
 "         return a:repl
 " endf
 
-vnoremap <BS> <NOP>
+vnoremap <bs> <nop>
 
 vnoremap " <C-c>`>a"<C-c>`<i"<C-c>
 vnoremap ' <C-c>`>a'<C-c>`<i'<C-c>
@@ -146,7 +146,7 @@ let &t_EI="\e[2 q"
 " auto closing of paired chars
 function ClosePair(char)
     if getline('.')[col('.') - 1] == a:char
-        return "\<RIGHT>"
+        return "\<right>"
     else
         return a:char
     endif
@@ -157,9 +157,9 @@ function QuoteDelim(char)
     if line[col - 2] == "\\"
         return a:char
     elseif line[col - 1] == a:char
-        return "\<RIGHT>"
+        return "\<right>"
     else
-        return a:char.a:char."\<Esc>i"
+        return a:char.a:char."\<esc>i"
     endif
 endf
 " camel-case selected text
@@ -186,17 +186,17 @@ function! ToggleBG()
     hi StatusLineNC ctermbg=none ctermfg=237 cterm=none
 endfunction
 
-map <LEADER><C-t> :call ToggleBG()<CR>
-map <LEADER>n :ALENextWrap<CR>
-map <LEADER>N :ALEPreviousWrap<CR>
-map <LEADER>m :ALEDetail<CR>
+map <leader><C-t> :call ToggleBG()<cr>
+map <leader>n :ALENextWrap<cr>
+map <leader>N :ALEPreviousWrap<cr>
+map <leader>m :ALEDetail<cr>
 
 " search & replace
-nnoremap <LEADER>s :%s//gc<LEFT><LEFT><LEFT>
+nnoremap <leader>s :%s//gc<left><left><left>
 " search & replace visual selection
-vnoremap <LEADER>s y`<`>:<C-u>%s/<C-r>0//gc<LEFT><LEFT><LEFT>
-vnoremap <LEADER><C-s> :%s//gc<LEFT><LEFT><LEFT>
+vnoremap <leader>s y`<`>:<C-u>%s/<C-r>0//gc<left><left><left>
+vnoremap <leader><C-s> :%s//gc<left><left><left>
 " remove all highlighting highlighting
-noremap <LEADER>h :noh<CR>
+noremap <leader>h :noh<cr>
 
 set fillchars=stl:⋅,stlnc:⋅,vert:│,fold:۰,diff:·
