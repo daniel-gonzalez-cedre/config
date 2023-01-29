@@ -22,6 +22,7 @@ set foldmethod=indent
 set formatoptions-=t
 set hlsearch
 set ignorecase
+set is
 set laststatus=2
 set linebreak
 set matchpairs+=<:>
@@ -71,31 +72,31 @@ highlight ALEErrorLine ctermbg=234 cterm=none
 highlight ALEWarningLine ctermbg=none cterm=none
 highlight ALEError ctermbg=none cterm=inverse
 highlight ALEWarning ctermbg=none cterm=inverse
-map <C-b> <Nop>
-map! <C-b> <Nop>
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
-nnoremap <C-f> za
-nnoremap <C-j> gj
-nnoremap <C-k> gk
-nnoremap F zA
 
 nnoremap <C-l> :ALELint<CR>
+
+map <C-b> <NOP>
+map! <C-b> <NOP>
+
+nnoremap <silent> <ESC> :noh<BAR>:echo<CR><ESC>
+nnoremap <silent> <SPACE> :noh<BAR>:echo<CR><SPACE>
+nnoremap <silent> k :noh<CR>k
+nnoremap <silent> j :noh<CR>j
+nnoremap <silent> h :noh<CR>h
+nnoremap <silent> l :noh<CR>l
+nnoremap <C-k> gk
+nnoremap <C-j> gj
+
+nnoremap <C-f> za
+nnoremap F zA
 
 imap <C-c> <ESC>
 inoremap <C-]> <Del>
 inoremap <expr> <CR> pumvisible() ? !empty(v:completed_item) ? "<C-y><C-c>" : "<C-y><CR>" : "<CR>"
 
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
+inoremap ( ()<LEFT>
+inoremap [ []<LEFT>
+inoremap { {}<LEFT>
 inoremap ) <C-r>=ClosePair(')')<CR>
 inoremap ] <C-r>=ClosePair(']')<CR>
 inoremap } <C-r>=ClosePair('}')<CR>
@@ -121,7 +122,7 @@ vnoremap } <C-c>`<i{<C-c>`><RIGHT>a}<C-c>
 "         return a:repl
 " endf
 
-vnoremap <BS> <Nop>
+vnoremap <BS> <NOP>
 
 vnoremap " <C-c>`>a"<C-c>`<i"<C-c>
 vnoremap ' <C-c>`>a'<C-c>`<i'<C-c>
@@ -144,7 +145,7 @@ let &t_EI="\e[2 q"
 " auto closing of paired chars
 function ClosePair(char)
     if getline('.')[col('.') - 1] == a:char
-        return "\<Right>"
+        return "\<RIGHT>"
     else
         return a:char
     endif
@@ -155,7 +156,7 @@ function QuoteDelim(char)
     if line[col - 2] == "\\"
         return a:char
     elseif line[col - 1] == a:char
-        return "\<Right>"
+        return "\<RIGHT>"
     else
         return a:char.a:char."\<Esc>i"
     endif
