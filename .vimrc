@@ -61,6 +61,7 @@ let g:matchparen_timeout = 8
 let g:matchparen_insert_timeout = 8
 let g:python_highlight_all = 1
 let g:rainbow_active = 1
+let g:tex_flavor = "latex"
 let g:gruvbox_contrast_dark = "hard"
 let g:gruvbox_contrast_light = "hard"
 colorscheme gruvbox
