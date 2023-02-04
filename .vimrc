@@ -80,7 +80,6 @@ map <C-b> <nop>
 map! <C-b> <nop>
 
 nnoremap <silent> <bs> :noh<bar>:echo<cr>
-nnoremap <silent> <esc> :noh<bar>:echo<cr><esc>
 nnoremap <silent> <space> :noh<bar>:echo<cr>
 " nnoremap <silent> k :noh<CR>k  " might cause cursor to disappear when holding down
 " nnoremap <silent> j :noh<CR>j
