@@ -4,10 +4,13 @@
 \newcommand{\iffdefn}{\mathrel{\vcentcolon\Leftrightarrow}}
 \newcommand{\iffbydefn}{$\iffdefn{}$}
 \newcommand{\niff}{\mathrel{{\ooalign{\hidewidth$\not\phantom{"}$\hidewidth\cr$\iff$}}}}
-\renewcommand{\implies}{~\Rightarrow~}
-\renewcommand{\iff}{~\Leftrightarrow~}
-\renewcommand{\restriction}[1]{\downharpoonright_{#1}}
+\renewcommand{\implies}{\Rightarrow}
+\renewcommand{\iff}{\Leftrightarrow}
+\newcommand{\proves}{\vdash}
+\newcommand{\satisfies}{\models}
 \renewcommand{\qedsymbol}{\sc q.e.d.}
+
+\renewcommand{\restriction}[1]{\downharpoonright_{#1}}
 \renewcommand{\leq}{\leqslant}
 \renewcommand{\geq}{\geqslant}
 
@@ -34,15 +37,15 @@
 \newcommand{\integral}[1]{\smashoperator{\int_{#1}}}
 \newcommand{\E}[1]{\mathbb{E}\sq*{#1}}
 \newcommand{\Esub}[2]{\mathbb{E}_{#1}\sq*{#2}}
-\newcommand{\var}[1]{\mathrm{Var}\p*{#1}}
-\newcommand{\cov}[2]{\mathrm{Cov}\p*{#1, #2}}
+\newcommand{\var}[1]{\mathrm{Var}\pn*{#1}}
+\newcommand{\cov}[2]{\mathrm{Cov}\pn*{#1, #2}}
 \newcommand{\der}[2]{\frac{\diff{#1}}{\diff{#2}}}
 \newcommand{\dern}[3]{\frac{\diff^{#3}{#1}}{\diff{#2}^{#3}}}
 \newcommand{\derm}[3]{\frac{\diff^{#3}{#1}}{\diff{#2}}}
 \newcommand{\prt}[2]{\frac{\partial{#1}}{\partial{#2}}}
 \newcommand{\prtn}[3]{\frac{\partial^{#3}{#1}}{\partial{#2}^{#3}}}
 \newcommand{\prtm}[3]{\frac{\partial^{#3}{#1}}{\partial{#2}}}
-\newcommand{\modulo}[1]{~\p{\mathrm{mod}~#1}}
+\newcommand{\modulo}[1]{~\pn{\mathrm{mod}~#1}}
 
 \newcommand{\inj}{\hookrightarrow}
 \newcommand{\injection}{\hookrightarrow}
@@ -63,8 +66,8 @@
 \newcommand{\isomorphism}{\lhook\joinrel\twoheadrightarrow}
 \newcommand{\immersion}{\looprightarrow}
 
-\renewcommand{\O}[1]{\mathcal{O}\p*{#1}}
-\renewcommand{\P}[1]{\mathcal{P}\p*{#1}}
+\renewcommand{\O}[1]{\mathcal{O}\pn*{#1}}
+\renewcommand{\P}[1]{\mathcal{P}\pn*{#1}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Q}{\mathbb{Q}}

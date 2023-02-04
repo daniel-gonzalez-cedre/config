@@ -64,65 +64,65 @@
 
     % theorem
     \NewDocumentEnvironment{theorem}{O{} O{}}
-        {\begin{pretheorem}[#1]~#2\quote}
+        {\begin{pretheorem}[#1]~#2\quote\vspace{-0.75\parskip}}
         {\endquote\end{pretheorem}}
     % lemma
     \NewDocumentEnvironment{lemma}{O{} O{}}
-        {\begin{prelemma}[#1]~#2\quote}
+        {\begin{prelemma}[#1]~#2\quote\vspace{-0.75\parskip}}
         {\endquote\end{prelemma}}
     % proposition
     \NewDocumentEnvironment{proposition}{O{} O{}}
-        {\begin{preproposition}[#1]~#2\quote}
+        {\begin{preproposition}[#1]~#2\quote\vspace{-0.75\parskip}}
         {\endquote\end{preproposition}}
     % corollary
     \NewDocumentEnvironment{corollary}{O{} O{}}
-        {\begin{precorollary}[#1]~#2\quote}
+        {\begin{precorollary}[#1]~#2\quote\vspace{-0.75\parskip}}
         {\endquote\end{precorollary}}
     % claim
     \NewDocumentEnvironment{claim}{O{} O{}}
-        {\begin{preclaim}[#1]~#2\quote}
+        {\begin{preclaim}[#1]~#2\quote\vspace{-0.75\parskip}}
         {\endquote\end{preclaim}}
     % conjecture
     \NewDocumentEnvironment{conjecture}{O{} O{}}
-        {\begin{preconjecture}[#1]~#2\quote}
+        {\begin{preconjecture}[#1]~#2\quote\vspace{-0.75\parskip}}
         {\endquote\end{preconjecture}}
     % justification
     \NewDocumentEnvironment{justification}{O{} O{}}
-        {\begin{prejustification}[#1]~#2\quote}
+        {\begin{prejustification}[#1]~#2\quote\vspace{-0.75\parskip}}
         {\endquote\end{prejustification}}
 
     % axiom
     \NewDocumentEnvironment{axiom}{O{} O{}}
-        {\begin{preaxiom}[#1]~#2\quote\normalfont}
+        {\begin{preaxiom}[#1]~#2\quote\normalfont\vspace{-0.75\parskip}}
         {\endquote\end{preaxiom}}
     % definition
     \NewDocumentEnvironment{definition}{O{} O{}}
-        {\begin{predefinition}[#1]~#2\quote\normalfont}
+        {\begin{predefinition}[#1]~#2\quote\normalfont\vspace{-0.75\parskip}}
         {\endquote\end{predefinition}}
     % exercise
     \NewDocumentEnvironment{exercise}{O{} O{}}
-        {\begin{preexercise}[#1]~#2\quote\normalfont}
+        {\begin{preexercise}[#1]~#2\quote\normalfont\vspace{-0.75\parskip}}
         {\endquote\end{preexercise}}
     % example
     \NewDocumentEnvironment{example}{O{} O{}}
-        {\begin{preexample}[#1]~#2\quote\normalfont}
+        {\begin{preexample}[#1]~#2\quote\normalfont\vspace{-0.75\parskip}}
         {\endquote\end{preexample}}
     % counterexample
     \NewDocumentEnvironment{counterexample}{O{} O{}}
-        {\begin{precounterexample}[#1]~#2\quote\normalfont}
+        {\begin{precounterexample}[#1]~#2\quote\normalfont\vspace{-0.75\parskip}}
         {\endquote\end{precounterexample}}
 
     % idea
     \NewDocumentEnvironment{idea}{O{} O{}}
-        {\begin{preidea}[#1]~#2\normalfont}
+        {\begin{preidea}[#1]~#2\normalfont\vspace{-0.75\parskip}}
         {\end{preidea}}
     % remark
     \NewDocumentEnvironment{remark}{O{} O{}}
-        {\begin{preremark}[#1]~#2\normalfont}
+        {\begin{preremark}[#1]~#2\normalfont\vspace{-0.75\parskip}}
         {\end{preremark}}
     % note
     \NewDocumentEnvironment{note}{O{} O{}}
-        {\begin{prenote}[#1]~#2\normalfont}
+        {\begin{prenote}[#1]~#2\normalfont\vspace{-0.75\parskip}}
         {\end{prenote}}
 \else
     \theoremstyle{thm}% style for theorems
@@ -153,6 +153,8 @@
 
 \def\lstlistingautorefname{Algorithm}
 \def\itemautorefname{Section}
+\renewcommand{\chapterautorefname}{Chapter}
+\renewcommand{\sectionautorefname}{Section}
 \newcommand{\pretheoremautorefname}{Theorem}
 \newcommand{\preaxiomautorefname}{Axiom}
 \newcommand{\prelemmaautorefname}{Lemma}
