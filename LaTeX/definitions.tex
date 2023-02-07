@@ -18,6 +18,10 @@
 \newcommand{\join}{\vee}
 \newcommand{\conjunct}{\wedge}
 \newcommand{\disjunct}{\vee}
+\newcommand{\bigmeet}{\bigwedge}
+\newcommand{\bigjoin}{\bigvee}
+\newcommand{\bigconjunct}{\bigwedge}
+\newcommand{\bigdisjunct}{\bigvee}
 \newcommand{\defn}{\coloneqq}
 \newcommand{\xor}{\oplus}
 \newcommand{\nand}{\uparrow}
@@ -74,14 +78,17 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Z}{\mathbb{Z}}
 
+% these don't need {} after them since they should be followed by text
 \newcommand{\cf}{\textit{c.f.},\ }
 \newcommand{\eg}{\textit{e.g.},\ }
 \newcommand{\ie}{\textit{i.e.},\ }
 \newcommand{\aka}{\textit{a.k.a.}\ }
-\newcommand{\etc}{\textit{etc.}}
 \newcommand{\viz}{\textit{viz.}\ }
 \newcommand{\vide}{\textit{v.}\ }
-\newcommand{\etal}{\textit{et al.}\ }
+
+% these need {} after them
+\newcommand{\etal}{\textit{et al.}}
+\newcommand{\wff}{\textit{wff}}
 
 \DeclareMathOperator{\lcm}{lcm}
 \DeclareMathOperator*{\argmin}{arg\!\min}
@@ -92,10 +99,8 @@
 \renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
 \renewcommand{\right}{\aftergroup\egroup\originalright}
 
-\newcommand{\zh}[1]{\begin{CJK}{UTF8}{min}#1\end{CJK}}
-\newcommand{\hanzi}[1]{\begin{CJK}{UTF8}{gkai}#1\end{CJK}}
-\newcommand{\kanji}[1]{\begin{CJK}{UTF8}{bkai}#1\end{CJK}}
-\newcommand{\kana}[1]{\begin{CJK}{UTF8}{min}#1\end{CJK}}
+\newcommand{\zh}[1]{\begin{CJK}{UTF8}{gbsn}#1\end{CJK}}
+\newcommand{\jp}[1]{\begin{CJK}{UTF8}{gbsn}#1\end{CJK}}
 
 \DeclarePairedDelimiterX \inner[2]{\langle}{\rangle}{#1,#2}
 \DeclarePairedDelimiter \bra{\langle}{\rvert}
