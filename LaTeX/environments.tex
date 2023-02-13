@@ -37,7 +37,7 @@
             \vspace{-\abovedisplayskip}
         \else
         \fi
-        \oldproof[#1]\quote~
+        \oldproof[#1]\quote~\vspace{-\parskip}
 
     }{%
         %\endquote\oldendproof
@@ -158,7 +158,7 @@
 \fi
 
 \newenvironment{case}[1][Case]
-    {\textbf{#1:}\quote}
+    {\textbf{#1:}\quote\vspace{-0.75\parskip}}
     {\endquote}
 
 \def\lstlistingautorefname{Algorithm}

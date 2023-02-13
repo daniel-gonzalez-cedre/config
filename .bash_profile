@@ -37,7 +37,7 @@ alias remote_mount="sshfs -o reconnect,ServerAliveInterval=15,ServerAliveCountMa
 alias remote_unmount="fusermount -u"
 
 latex() {
-    latexmk -pdf -pvc "$1" | grep --color -A3 '^!.*'
+    latexmk -pdf -pvc "$1" | grep --color -A3 '^!.*\|.*error.*'
 }
 
 tree_ascii() {
