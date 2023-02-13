@@ -33,11 +33,15 @@
     \let\oldendproof\endproof
 
     \renewenvironment{proof}[1][\proofname]{%
+        \ifindenttheorems
+            \vspace{-\abovedisplayskip}
+        \else
+        \fi
         \oldproof[#1]\quote~
 
     }{%
         %\endquote\oldendproof
-        \endquote\qed
+        \endquote\vspace{-\parskip}\qed
     }
     % end new proof environment
 \else
@@ -54,6 +58,7 @@
 
     \newtheorem{preaxiom}{Axiom}
     \newtheorem{predefinition}{Definition}
+    \newtheorem{prenotation}{Notation}
     \newtheorem{preexercise}{Exercise}
     \newtheorem{preexample}{Example}
     \newtheorem{precounterexample}{Counterexample}
@@ -99,6 +104,10 @@
     \NewDocumentEnvironment{definition}{O{} O{}}
         {\begin{predefinition}[#1]~#2\quote\normalfont\vspace{-0.75\parskip}}
         {\endquote\end{predefinition}}
+    % notation
+    \NewDocumentEnvironment{notation}{O{} O{}}
+        {\begin{prenotation}[#1]~#2\quote\normalfont\vspace{-0.75\parskip}}
+        {\endquote\end{prenotation}}
     % exercise
     \NewDocumentEnvironment{exercise}{O{} O{}}
         {\begin{preexercise}[#1]~#2\quote\normalfont\vspace{-0.75\parskip}}
@@ -137,6 +146,7 @@
     \theoremstyle{dfn}% style for definitions
     \newtheorem{axiom}{Axiom}
     \newtheorem{definition}{Definition}
+    \newtheorem{notation}{Notation}
     \newtheorem{exercise}{Exercise}
     \newtheorem{example}{Example}
     \newtheorem{counterexample}{Counterexample}
@@ -164,6 +174,7 @@
 \newcommand{\preconjectureautorefname}{Conjecture}
 \newcommand{\prejustificationautorefname}{Justification}
 \newcommand{\predefinitionautorefname}{Definition}
+\newcommand{\prenotationautorefname}{Notation}
 \newcommand{\preexampleautorefname}{Example}
 \newcommand{\precounterexampleautorefname}{Counterexample}
 \newcommand{\preideaautorefname}{Idea}
@@ -175,6 +186,7 @@
 \newcommand{\conjectureautorefname}{Conjecture}
 \newcommand{\justificationautorefname}{Justification}
 \newcommand{\definitionautorefname}{Definition}
+\newcommand{\notationautorefname}{Notation}
 \newcommand{\exampleautorefname}{Example}
 \newcommand{\counterexampleautorefname}{Counterexample}
 \newcommand{\ideaautorefname}{Idea}
@@ -189,6 +201,7 @@
     \renewcommand{\thepreconjecture}{\thechapter.\arabic{preconjecture}}
     \renewcommand{\theprejustification}{\thechapter.\arabic{prejustification}}
     \renewcommand{\thepredefinition}{\thechapter.\arabic{predefinition}}
+    \renewcommand{\theprenotation}{\thechapter.\arabic{prenotation}}
     \renewcommand{\thepreexample}{\thechapter.\arabic{preexample}}
     \renewcommand{\theprecounterexample}{\thechapter.\arabic{precounterexample}}
     \counterwithin*{equation}{chapter}
@@ -200,6 +213,7 @@
     \counterwithin*{preconjecture}{chapter}
     \counterwithin*{prejustification}{chapter}
     \counterwithin*{predefinition}{chapter}
+    \counterwithin*{prenotation}{chapter}
     \counterwithin*{preexercise}{chapter}
     \counterwithin*{preexample}{chapter}
     \counterwithin*{precounterexample}{chapter}

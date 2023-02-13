@@ -19,7 +19,7 @@ alias cp="cp -v"
 # alias g++="g++ -std=c++11"
 alias ghc="ghc -no-keep-hi-files -no-keep-o-files"
 alias haskell="runhaskell"
-alias latexmk="latexmk -pdf -pvc"
+# alias latexmk="latexmk -pdf -pvc"
 alias ls="tree -h -C -N -L 1 --dirsfirst"
 alias matlab="/Applications/MATLAB_R2019a.app/bin/matlab -nodesktop -nosplash"
 alias minicondactivate="source ~/miniconda3/bin/activate"
@@ -35,6 +35,10 @@ alias storage="watch -n 1 --color df -h"
 
 alias remote_mount="sshfs -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3"
 alias remote_unmount="fusermount -u"
+
+latex() {
+    latexmk -pdf -pvc "$1" | grep --color -A3 '^!.*'
+}
 
 tree_ascii() {
     tree --dirsfirst -C -N -h "$1" | sed 's/├/\+/g; s/─/-/g; s/└/\\/g'
@@ -72,7 +76,7 @@ temperature() {
 # $1: <options>
 #   pass "-i" as an argument to ask on every rm
 clean(){
-    rm "${1:-}" .DS_Store *.aux *.bbl *.blg *.fdb_latexmk *.fls *.log *.out *.bcf *.run.xml *.xdv *.toc
+    rm "${1:-}" .DS_Store *.aux *.bbl *.blg *.bst *.fdb_latexmk *.fls *.log *.out *.bcf *.run.xml *.xdv *.toc
 }
 
 cleanswp(){
