@@ -14,12 +14,12 @@ autocmd BufNewFile,BufRead *.tikz setfiletype tex
 " endfunction
 function! IDollar()
     let [l:l,l:c] = searchpairpos('\\(', '', '\\)', 'cbWn')
-    return l:l ? '\)' : '\(\)'
+    return l:l ? '\)' : '\('
 endfunction
 
-au BufNewFile *.tex inoremap $ <C-r>=IDollar()<cr><left><left>
+au BufNewFile *.tex inoremap $ <C-r>=IDollar()<cr>
 au BufNewFile *.tex vmap $ <C-c>`>a\)<C-c>`<i$<C-c>
-au BufRead *.tex inoremap $ <C-r>=IDollar()<cr><left><left>
+au BufRead *.tex inoremap $ <C-r>=IDollar()<cr>
 au BufRead *.tex vmap $ <C-c>`>a\)<C-c>`<i$<C-c>
 " au BufNewFile *.tex imap $ <C-r>=QuoteDelim("$")<CR>
 " au BufNewFile *.tex vnoremap $ <C-c>`>a$<C-c>`<i$<C-c>

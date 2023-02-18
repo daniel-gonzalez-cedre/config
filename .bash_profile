@@ -19,7 +19,7 @@ alias cp="cp -v"
 # alias g++="g++ -std=c++11"
 alias ghc="ghc -no-keep-hi-files -no-keep-o-files"
 alias haskell="runhaskell"
-# alias latexmk="latexmk -pdf -pvc"
+alias latexmk="latexmk -pdf -pvc"
 alias ls="tree -h -C -N -L 1 --dirsfirst"
 alias matlab="/Applications/MATLAB_R2019a.app/bin/matlab -nodesktop -nosplash"
 alias minicondactivate="source ~/miniconda3/bin/activate"
@@ -37,7 +37,7 @@ alias remote_mount="sshfs -o reconnect,ServerAliveInterval=15,ServerAliveCountMa
 alias remote_unmount="fusermount -u"
 
 latex() {
-    latexmk -pdf -pvc "$1" | grep --color -A3 '^!.*\|.*error.*'
+    latexmk -pdf -pvc "$1" | grep --color -A7 '^!.*\|.*error.*'
 }
 
 tree_ascii() {

@@ -109,6 +109,7 @@ vnoremap { <C-c>`>a}<C-c>`<i{<C-c>
 vnoremap ) <C-c>`<i(<C-c>`><right>a)<C-c>
 vnoremap ] <C-c>`<i[<C-c>`><right>a]<C-c>
 vnoremap } <C-c>`<i{<C-c>`><right>a}<C-c>
+vnoremap // y/\V<C-r>=escape(@",'/\')<cr><cr>
 
 " think about this later
 " vnoremap <C-[> <C-c>`>a<C-r>=ReplaceDelim(']')<CR><C-c>`<i<C-r>=ReplaceDelim('[')<CR><C-c>
