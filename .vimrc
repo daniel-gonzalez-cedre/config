@@ -109,7 +109,7 @@ vnoremap { <C-c>`>a}<C-c>`<i{<C-c>
 vnoremap ) <C-c>`<i(<C-c>`><right>a)<C-c>
 vnoremap ] <C-c>`<i[<C-c>`><right>a]<C-c>
 vnoremap } <C-c>`<i{<C-c>`><right>a}<C-c>
-vnoremap // y/\V<C-r>=escape(@",'/\')<cr><cr>
+vnoremap // y/\V<C-r>=escape(@",'/\')<cr>
 
 " think about this later
 " vnoremap <C-[> <C-c>`>a<C-r>=ReplaceDelim(']')<CR><C-c>`<i<C-r>=ReplaceDelim('[')<CR><C-c>
@@ -192,10 +192,12 @@ map <leader>n :ALENextWrap<cr>
 map <leader>N :ALEPreviousWrap<cr>
 map <leader>m :ALEDetail<cr>
 
+""vnoremap // y/\V<C-r>=escape(@",'/\')<cr>
+
 " search & replace
 nnoremap <leader>s :%s//gc<left><left><left>
 " search & replace visual selection
-vnoremap <leader>s y`<`>:<C-u>%s/<C-r>0//gc<left><left><left>
+vnoremap <leader>s y`<`>:<C-u>%s/\V<C-r>=escape(@",'/\')<cr>//gc<left><left><left>
 vnoremap <leader><C-s> :%s//gc<left><left><left>
 " remove all highlighting highlighting
 noremap <leader>h :noh<cr>
