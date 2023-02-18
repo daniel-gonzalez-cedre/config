@@ -21,6 +21,14 @@ endfunction
 " au BufNewFile *.tex vmap $ <C-c>`>a\)<C-c>`<i$<C-c>
 " au BufRead *.tex inoremap $ <C-r>=IDollar()<cr>
 " au BufRead *.tex vmap $ <C-c>`>a\)<C-c>`<i$<C-c>
+" 
+" au BufNewFile *.tex inoremap <leader>d $
+" au BufNewFile *.tex vnoremap <leader>d <C-c>`>a$<C-c>`<i$<C-c>
+" au BufRead *.tex inoremap <leader>d $
+" au BufRead *.tex vnoremap <leader>d <C-c>`>a$<C-c>`<i$<C-c>
+
+" old settings
+
 au BufNewFile *.tex imap $ <C-r>=QuoteDelim("$")<CR>
 au BufNewFile *.tex vnoremap $ <C-c>`>a$<C-c>`<i$<C-c>
 au BufRead *.tex imap $ <C-r>=QuoteDelim("$")<CR>
