@@ -5,6 +5,7 @@ disable=
     C0114, # missing-module-docstring
     C0115, # missing-class-docstring
     C0116, # missing-function-docstring
+    C3001, # unnecessary-lambda-assignment
     C0413, # wrong-import-position
     R0912, # too-many-branches
     R0914, # too-many-locals
