@@ -5,6 +5,7 @@
 PS1='\[\e[38;5;11m\]\u\[\e[m\]\[\e[38;5;8m\]@\[\e[m\]\[\e[38;5;3m\]\h\[\e[m\] \[\e[38;5;1m\]\W\[\e[m\] \[\e[38;5;6m\]λ\[\e[m\] '
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
+export GREP_OPTIONS='--color=always'  # --line-buffered
 
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export TERM=xterm-256color
@@ -37,7 +38,7 @@ alias remote_mount="sshfs -o reconnect,ServerAliveInterval=15,ServerAliveCountMa
 alias remote_unmount="fusermount -u"
 
 latex() {
-    latexmk -pdf -pvc "$1" | grep --color -A7 '^!.*\|.*error.*'
+    latexmk -pdf -pvc "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$'
 }
 
 tree_ascii() {

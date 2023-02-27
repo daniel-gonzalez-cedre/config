@@ -3,5 +3,6 @@ ignore = E116, # unexpected indentation (comment)
          E117, # over-indented (comment)
          E501, # line too long
          E731, # do not use lambda expressions
+         E741, # ambiguous variable name
          W504, # line break after binary operator
          E402, # module level import not at top of file
