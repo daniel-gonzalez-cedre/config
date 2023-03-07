@@ -40,7 +40,7 @@
 \newtheoremstyle{cedretheorem} % name
     {1ex}  % space above
     {-1ex}  % space below
-    {\itshape} % body font
+    {\itshape}  % body font
     {}  % indent amount
     {\bfseries}  % theorem head font
     {.\\}  % punctuation after theorem head
@@ -50,7 +50,7 @@
 \newtheoremstyle{cedredefinition} % name
     {1ex}  % space above
     {-1ex}  % space below
-    {} % body font
+    {}  % body font
     {}  % indent amount
     {\bfseries}  % theorem head font
     {.\\}  % punctuation after theorem head
@@ -60,7 +60,7 @@
 \newtheoremstyle{cedrenote} % name
     {}  % space above
     {}  % space below
-    {} % body font
+    {}  % body font
     {}  % indent amount
     {\bfseries}  % theorem head font
     {.}  % punctuation after theorem head
@@ -76,6 +76,7 @@
 \newtheorem{conjecture}{Conjecture}[theorem]
 \newtheorem*{claim}{Claim}
 \newtheorem*{justification}{Justification}
+% \newtheorem{code}{Code}[theorem]
 
 % style for definitions
 \theoremstyle{cedredefinition}
@@ -88,12 +89,17 @@
 
 % style for notes
 \theoremstyle{cedrenote}
-\newtheorem{idea}{Idea}[definition]
-\newtheorem*{remark}{Remark}
 \newtheorem*{note}{Note}
+\newtheorem*{remark}{Remark}
+\newtheorem{idea}{Idea}
+\newtheorem{intuition}{Intuition}[idea]
 
 \newenvironment{case}[1][Case]
     {\quote\textbf{#1:}~\\}
+    {\endquote}
+
+\newenvironment{code}[1][Code]
+    {\textbf{#1:}\quote}
     {\endquote}
 
 \def\lstlistingautorefname{Algorithm}
@@ -112,7 +118,10 @@
 \newcommand{\notationautorefname}{Notation}
 \newcommand{\exampleautorefname}{Example}
 \newcommand{\counterexampleautorefname}{Counterexample}
+\newcommand{\noteautorefname}{Note}
+\newcommand{\remarkautorefname}{Remark}
 \newcommand{\ideaautorefname}{Idea}
+\newcommand{\intuitionautorefname}{Intuition}
 
 \ifbook
     \renewcommand{\theequation}{\thechapter.\arabic{equation}}
@@ -127,6 +136,10 @@
     \renewcommand{\thenotation}{\thechapter.\arabic{notation}}
     \renewcommand{\theexample}{\thechapter.\arabic{example}}
     % \renewcommand{\thecounterexample}{\thechapter.\arabic{counterexample}}
+    % \renewcommand{\thenote}{\thechapter.\arabic{note}}
+    % \renewcommand{\theremark}{\thechapter.\arabic{remark}}
+    \renewcommand{\theidea}{\thechapter.\arabic{idea}}
+    \renewcommand{\theintuition}{\thechapter.\arabic{intuition}}
     \counterwithin*{equation}{chapter}
     \counterwithin*{theorem}{chapter}
     \counterwithin*{lemma}{chapter}
@@ -140,5 +153,9 @@
     \counterwithin*{exercise}{chapter}
     \counterwithin*{example}{chapter}
     % \counterwithin*{counterexample}{chapter}
+    % \counterwithin*{note}{chapter}
+    % \counterwithin*{remark}{chapter}
+    \counterwithin*{idea}{chapter}
+    \counterwithin*{intuition}{chapter}
 \else
 \fi

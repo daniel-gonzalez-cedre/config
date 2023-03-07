@@ -41,6 +41,10 @@ latex() {
     latexmk -pdf -pvc "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$'
 }
 
+latexsh() {
+    latexmk -pdf -pvc -shell-escape "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$'
+}
+
 tree_ascii() {
     tree --dirsfirst -C -N -h "$1" | sed 's/├/\+/g; s/─/-/g; s/└/\\/g'
 }
@@ -77,7 +81,7 @@ temperature() {
 # $1: <options>
 #   pass "-i" as an argument to ask on every rm
 clean(){
-    rm "${1:-}" .DS_Store *.aux *.bbl *.blg *.bst *.fdb_latexmk *.fls *.log *.out *.bcf *.run.xml *.xdv *.toc
+    rm "${1:-}" .DS_Store *.aux *.bbl *.blg *.bst *.fdb_latexmk *.fls *.log *.out *.bcf *.run.xml *.xdv *.toc *.lol _minted* __pycache__/
 }
 
 cleanswp(){

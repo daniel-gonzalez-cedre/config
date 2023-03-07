@@ -498,3 +498,6 @@ Laplacian
 multiedges
 wasserstein
 semiring
+simplicial
+assortativity
+Assortativity
