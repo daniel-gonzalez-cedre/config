@@ -4,17 +4,19 @@
 #PS1='\[\e[38;5;1m\]\w\[\e[m\] \[\e[38;5;6m\]λ\[\e[m\] '
 PS1='\[\e[38;5;11m\]\u\[\e[m\]\[\e[38;5;8m\]@\[\e[m\]\[\e[38;5;3m\]\h\[\e[m\] \[\e[38;5;1m\]\W\[\e[m\] \[\e[38;5;6m\]λ\[\e[m\] '
 
+export EDITOR='vim'
+export VISUAL='vim'
 export BASH_SILENCE_DEPRECATION_WARNING=1
-export GREP_OPTIONS='--color=always'  # --line-buffered
+export GREP_OPTIONS="--color=always"  # --line-buffered
 
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-export TERM=xterm-256color
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY="YES"
+export TERM="xterm-256color"
 export PATH=/opt/homebrew/bin:/usr/local/Cellar:/usr/local/bin:/usr/local/sbin:/Users/danielgonzalez/Library/Python/3.8/bin:$PATH
 
-export ZEPHYR_TOOLCHAIN_VARIANT=gnuarmemb
-export GNUARMEMB_TOOLCHAIN_PATH=/home/danielgonzalez/Downloads/gnu_arm_embedded
+export ZEPHYR_TOOLCHAIN_VARIANT="gnuarmemb"
+export GNUARMEMB_TOOLCHAIN_PATH="/home/danielgonzalez/Downloads/gnu_arm_embedded"
 
-alias gitfig='/usr/bin/git --git-dir=$HOME/.gitfig/ --work-tree=$HOME'     #   gitfig config --local status.showUntrackedFiles no
+alias gitfig="/usr/bin/git --git-dir=$HOME/.gitfig/ --work-tree=$HOME"     #   gitfig config --local status.showUntrackedFiles no
 alias cp="cp -v"
 # alias dg="python -m dg"
 # alias g++="g++ -std=c++11"
@@ -47,6 +49,10 @@ latexsh() {
 
 tree_ascii() {
     tree --dirsfirst -C -N -h "$1" | sed 's/├/\+/g; s/─/-/g; s/└/\\/g'
+}
+
+ris2bib() {
+    ris2xml "$1" | xml2bib > "${1/%.ris/.bib}"
 }
 
 # $1 : <port_number>
