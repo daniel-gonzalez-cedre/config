@@ -86,8 +86,27 @@ temperature() {
 
 # $1: <options>
 #   pass "-i" as an argument to ask on every rm
+# clean(){
+#     [ -e .DS_Store ] && rm -v .DS_Store
+#     [ -e *.aux ] && rm -v *.aux
+#     [ -e *.bcf ] && rm -v *.bcf
+#     [ -e *.blg ] && rm -v *.blg
+#     [ -e *.brf ] && rm -v *.brf
+#     [ -e *.bst ] && rm -v *.bst
+#     [ -e *.fdb_latexmk ] && rm -v *.fdb_latexmk
+#     [ -e *.fls ] && rm -v *.fls
+#     [ -e *.log ] && rm -v *.log
+#     [ -e *.out ] && rm -v *.out
+#     [ -e *.run.xml ] && rm -v *.run.xml
+#     [ -e *.xdv ] && rm -v *.xdv
+#     [ -e *.toc ] && rm -v *.toc
+#     [ -e *.lol ] && rm -v *.lol
+#     [ -e _minted* ] && rm -v _minted*
+#     [ -e __pycache__ ] && rm -rf __pycache__
+#     [ -e *.bbl ] && rm -v -i *.bbl
+# }
 clean(){
-    rm "${1:-}" .DS_Store *.aux *.bbl *.blg *.bst *.fdb_latexmk *.fls *.log *.out *.bcf *.run.xml *.xdv *.toc *.lol _minted* __pycache__/
+    rm "${1:-}" .DS_Store *.aux *.brf *.blg *.bst *.fdb_latexmk *.fls *.log *.out *.bcf *.run.xml *.xdv *.toc *.lol _minted* __pycache__/
 }
 
 cleanswp(){

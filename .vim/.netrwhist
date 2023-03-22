@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =3
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/Users/danielgonzalez/repos/arXiv-template/sections'
+let g:netrw_dirhist_4='/Users/danielgonzalez/repos/DyVeRG/results/likelihoods/realism'
 let g:netrw_dirhist_3='/Users/danielgonzalez/repos/DyVeRG/data/coauth-dblp'
 let g:netrw_dirhist_2='/Users/danielgonzalez/.ssh'
 let g:netrw_dirhist_1='/Users/danielgonzalez/.vim/ftdetect'
@@ -8,5 +10,3 @@ let g:netrw_dirhist_9='/Users/danielgonzalez/repos/DyVeRG/data_pruned'
 let g:netrw_dirhist_8='/Users/danielgonzalez/repos/DyVeRG/data/email-dnc'
 let g:netrw_dirhist_7='/Users/danielgonzalez/.vim/after/tex'
 let g:netrw_dirhist_6='/Users/danielgonzalez/.vim/temp/tex'
-let g:netrw_dirhist_5='/Users/danielgonzalez/LaTeX/book'
-let g:netrw_dirhist_4='/Users/danielgonzalez/LaTeX/solution'
