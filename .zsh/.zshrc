@@ -3,22 +3,21 @@ setopt prompt_subst
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
-# !!! git integration, but this is slow !!!
-# autoload -Uz add-zsh-hook vcs_info
-# function precmd_vcs_info() { vcs_info }
-# precmd_functions+=( precmd_vcs_info )
-# setopt prompt_subst
-# add-zsh-hook precmd vcs_info
-# # zstyle ':vcs_info:git:*' formats '%b'
-# # use %b for the branch
-# zstyle ':vcs_info:*' enable git
-# zstyle ':vcs_info:*' formats "%F{12}%c%u%b%f"
-# zstyle ':vcs_info:*' actionformats "%F{4}%c%u%b%f %a"
-# zstyle ':vcs_info:*' stagedstr "%F{2}"
-# zstyle ':vcs_info:*' unstagedstr "%F{9}"
-# zstyle ':vcs_info:*' check-for-changes true
-# 
-# zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+precmd_conda_info() {
+    if [[ -n $CONDA_PREFIX ]]; then
+        if [[ $(basename $CONDA_PREFIX) == "miniconda3" ]]; then
+            # Without this, it would display conda version
+            CONDA_ENV="(base) "
+        else
+            # For all environments that aren't (base)
+            CONDA_ENV="($(basename $CONDA_PREFIX)) "
+        fi
+    # When no conda environment is active, don't show anything
+    else
+        CONDA_ENV=""
+    fi
+}
+precmd_functions+=( precmd_conda_info )
 
 function promptwidth() { echo $(( ${COLUMNS} - 15 - 10 - 10)) }
 function dirwidth() { echo $(( ${COLUMNS} - 15 - 10 - 10)) }
@@ -26,10 +25,8 @@ function hostwidth() { echo $(( ${COLUMNS} - 15 - 10 - 3)) }
 width='$(promptwidth)'
 dwidth='$(dirwidth)'
 hwidth='$(hostwidth)'
-# PROMPT=' ${vcs_info_msg_0_} %F{11}λ%f '
-PROMPT=' %F{11}λ%f '
-RPROMPT="%F{0}[%D{%L:%M:%S}]%F{0}%${width}<...< %F{9}%~%F{0} %<<%F{3}%m%f"
-# RPROMPT='[%0F%D{%m-%d-%y %L:%M:%S}%f] %9F%1~%0F:%3F%m%f'
+PROMPT=' %F{0}%D{%K:%M:%S} %F{11}λ%f '
+RPROMPT='%F{0}${CONDA_ENV}'"%F{0}%${width}<...<%F{9}%1~%F{0} %<<%F{3}%m%f"
 
 function schedprompt() {
     emulate -L zsh
@@ -47,7 +44,9 @@ export VISUAL='vim'
 export GREP_OPTIONS="--color=always"  # --line-buffered
 
 export TERM=xterm-256color
-export PATH=/opt/homebrew/bin:/usr/local/Cellar:/usr/local/bin:/usr/local/sbin:/Users/danielgonzalez/Library/Python/3.8/bin:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+# export PATH=${HOME}/Library/Python/3.8/bin:$PATH
+export PATH=/opt/homebrew/bin:/usr/local/Cellar:$PATH
 
 alias gitfig="/usr/bin/git --git-dir=$HOME/.gitfig/ --work-tree=$HOME"     #   gitfig config --local status.showUntrackedFiles no
 
@@ -67,9 +66,9 @@ alias matlab="/Applications/MATLAB_R2019a.app/bin/matlab -nodesktop -nosplash"
 # alias minicondactivate="source ~/miniconda3/bin/activate"
 alias python="python3"
 function minicondactivate() {
-    source ~/miniconda3/bin/activate
-    PROMPT=" ${vcs_info_msg_0_} %11Fλ%f "
-    RPROMPT="%0F$CONDA_PROMPT_MODIFIER%f$RPROMPT"
+# source ~/miniconda3/bin/activate  # commented out by conda initialize
+    PROMPT=" %11Fλ%f "
+    RPROMPT="%0F%10<(...<$CONDA_PROMPT_MODIFIER%<<$RPROMPT"
     # ask_conda="$(PROMPT="${PROMPT:-}" __conda_exe shell.posix activate)" || \return
     # echo "$ask_conda"
 
@@ -194,4 +193,23 @@ function resize(){
         convert "$f" -resize "$1" "$f"
         echo done.
     done
+}
+
+function condactivate() {
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+            . "$HOME/miniconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="$HOME/miniconda3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+    # <<< conda initialize <<<
+    conda activate
+    conda config --set changeps1 false
 }
