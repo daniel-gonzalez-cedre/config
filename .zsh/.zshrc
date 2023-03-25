@@ -1,64 +1,169 @@
-# ALDUIN:
-#PS1='\[\e[02m\]\w\[\e[m\] \[\e[38;5;88m\]λ\[\e[m\] '
-# BLAQUEMAGICK:
-#PS1='\[\e[38;5;66m\]\w\[\e[m\] \[\e[38;5;88m\]λ\[\e[m\] '
+autoload -Uz add-zsh-hook
+setopt prompt_subst
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
-export PS1='%1F%m%f:%11F%1~%f λ '
+# !!! git integration, but this is slow !!!
+# autoload -Uz add-zsh-hook vcs_info
+# function precmd_vcs_info() { vcs_info }
+# precmd_functions+=( precmd_vcs_info )
+# setopt prompt_subst
+# add-zsh-hook precmd vcs_info
+# # zstyle ':vcs_info:git:*' formats '%b'
+# # use %b for the branch
+# zstyle ':vcs_info:*' enable git
+# zstyle ':vcs_info:*' formats "%F{12}%c%u%b%f"
+# zstyle ':vcs_info:*' actionformats "%F{4}%c%u%b%f %a"
+# zstyle ':vcs_info:*' stagedstr "%F{2}"
+# zstyle ':vcs_info:*' unstagedstr "%F{9}"
+# zstyle ':vcs_info:*' check-for-changes true
+# 
+# zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+
+function promptwidth() { echo $(( ${COLUMNS} - 15 - 10 - 10)) }
+function dirwidth() { echo $(( ${COLUMNS} - 15 - 10 - 10)) }
+function hostwidth() { echo $(( ${COLUMNS} - 15 - 10 - 3)) }
+width='$(promptwidth)'
+dwidth='$(dirwidth)'
+hwidth='$(hostwidth)'
+# PROMPT=' ${vcs_info_msg_0_} %F{11}λ%f '
+PROMPT=' %F{11}λ%f '
+RPROMPT="%F{0}[%D{%L:%M:%S}]%F{0}%${width}<...< %F{9}%~%F{0} %<<%F{3}%m%f"
+# RPROMPT='[%0F%D{%m-%d-%y %L:%M:%S}%f] %9F%1~%0F:%3F%m%f'
+
+function schedprompt() {
+    emulate -L zsh
+    zmodload -i zsh/sched
+    integer i=${"${(@)zsh_scheduled_events#*:*:}"[(I)schedprompt]}
+    (( i )) && sched -$i
+    zle && zle reset-prompt
+    sched +30 schedprompt
+}
+schedprompt
+
+
+export EDITOR='vim'
+export VISUAL='vim'
+export GREP_OPTIONS="--color=always"  # --line-buffered
 
 export TERM=xterm-256color
-export PATH=/usr/local/Cellar:/usr/local/bin:/usr/local/sbin:$PATH
-export LIBRARY_PATH=/usr/local/lib:/usr/local/lib/opencv4/3rdparty:/usr/local/Cellar/opencv/4.1.0_2/lib:$LIBRARY_PATH
-export LD_LIBRARY_PATH=/Users/akira/Downloads/osm-bundler/software/bundler/bin:$LD_LIBRARY_PATH
-# export CPATH=/usr/local/bin/opencv4/
+export PATH=/opt/homebrew/bin:/usr/local/Cellar:/usr/local/bin:/usr/local/sbin:/Users/danielgonzalez/Library/Python/3.8/bin:$PATH
 
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'     #   config config --local status.showUntrackedFiles no
+alias gitfig="/usr/bin/git --git-dir=$HOME/.gitfig/ --work-tree=$HOME"     #   gitfig config --local status.showUntrackedFiles no
+
 alias cp="cp -v"
+alias mv="mv -v"
+alias rm="rm -v"
+alias rsync="rsync -v --progress"
+
+alias ls="tree -h -C -N -L 1 --dirsfirst"
+alias tree="tree -C -N -h --dirsfirst"
+function tree_ascii() { tree --dirsfirst -C -N -h "$1" | sed 's/├/\+/g; s/─/-/g; s/└/\\/g' }
+
 alias g++="g++ -std=c++11"
 alias ghc="ghc -no-keep-hi-files -no-keep-o-files"
 alias haskell="runhaskell"
-alias latexmk="latexmk -pdf -pvc"
-alias ls="tree -h -C -N -L 1 --dirsfirst"
 alias matlab="/Applications/MATLAB_R2019a.app/bin/matlab -nodesktop -nosplash"
-alias mpv="open -a /Applications/mpv.app/"
-alias mv="mv -v"
-alias rm="rm -v"
+# alias minicondactivate="source ~/miniconda3/bin/activate"
 alias python="python3"
-alias tree="tree -C -N"
+function minicondactivate() {
+    source ~/miniconda3/bin/activate
+    PROMPT=" ${vcs_info_msg_0_} %11Fλ%f "
+    RPROMPT="%0F$CONDA_PROMPT_MODIFIER%f$RPROMPT"
+    # ask_conda="$(PROMPT="${PROMPT:-}" __conda_exe shell.posix activate)" || \return
+    # echo "$ask_conda"
 
-clean(){
-    rm -i .DS_Store *.aux *.bbl *.blg *.fdb_latexmk *.fls *.log *.out
+    # ask_conda="$(PS1="${PS1:-}" __conda_exe shell.posix "$@")" || \return
 }
 
-cv(){
-    g++ -std=c++11 $1 $(pkg-config --cflags --libs opencv4);
+alias pdfcrop="/Library/TeX/texbin/pdfcrop"
+alias mpv="open -a /Applications/mpv.app/"
+alias istats="watch -n 0 --color istats"
+alias storage="watch -n 1 --color df -h"
+
+alias latexmk="latexmk -pdf -pvc"
+function latex() { latexmk -pdf -pvc "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$' }
+function latexsh() { latexmk -pdf -pvc -shell-escape "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$' }
+
+function ris2bib() { ris2xml "$1" | xml2bib > "${1/%.ris/.bib}" }
+
+# $1 : <port_number>
+# $2 : <username>@<remote_server>
+function ssh_tunnel() { ssh -N -L "$1":localhost:"$1" "$2" }
+
+# $1 : <port_number>
+function ssh_jupyter() { jupyter notebook --no-browser --port="$1" }
+
+# $1 : <input_file>
+# $2 : <output_file>
+function compress_pdf() {
+    gs -sDEVICE=pdfwrite -dNOPAUSE -dQUIET -dBATCH -dPDFSETTINGS=/${3:-"screen"} -dCompatibilityLevel=1.4 -sOutputFile="$2" "$1"
 }
 
-decrypt(){
-    openssl enc -d -aes-256-cbc -in "$1" > "$2"
-}
+function qmk_flash_atreus() { avrdude -p atmega32u4 -c avr109 -U flash:w:"$@" -P /dev/cu.usbmodematreus1 }
 
-encrypt(){
-    openssl enc -aes-256-cbc -salt -in "$1" -out "$2"
-}
+function size() { du -h -d 0 "$@" }
 
-# flac_split example.cue example.flac
-flac_split(){
-    shnsplit -f "$1" -o flac -t "flac %n. %p - %a - %t" "$2"
-}
+function temperature() { watch 'sudo powermetrics --samplers smc -i1 -n1 | tail' }
 
-flac_convert(){
+# $1: <options>
+#   pass "-i" as an argument to ask on every rm
+function clean(){
+    rm "${1:-}" .DS_Store *.aux *.brf *.blg *.bst *.fdb_latexmk *.fls *.log *.out *.bcf *.run.xml *.xdv *.toc *.lol _minted* __pycache__/
+}
+# function clean(){
+#     [ -e .DS_Store ] && rm -v .DS_Store
+#     [ -e *.aux ] && rm -v *.aux
+#     [ -e *.bcf ] && rm -v *.bcf
+#     [ -e *.blg ] && rm -v *.blg
+#     [ -e *.brf ] && rm -v *.brf
+#     [ -e *.bst ] && rm -v *.bst
+#     [ -e *.fdb_latexmk ] && rm -v *.fdb_latexmk
+#     [ -e *.fls ] && rm -v *.fls
+#     [ -e *.log ] && rm -v *.log
+#     [ -e *.out ] && rm -v *.out
+#     [ -e *.run.xml ] && rm -v *.run.xml
+#     [ -e *.xdv ] && rm -v *.xdv
+#     [ -e *.toc ] && rm -v *.toc
+#     [ -e *.lol ] && rm -v *.lol
+#     [ -e _minted* ] && rm -v _minted*
+#     [ -e __pycache__ ] && rm -rf __pycache__
+#     [ -e *.bbl ] && rm -v -i *.bbl
+# }
+
+function cleanswp(){ .*.swp .*.swo }
+
+# computer vision
+function cv(){ g++ -std=c++11 $1 $(pkg-config --cflags --libs opencv4); }
+
+# $1 : <input_file>
+# $2 : <output_file>
+function decrypt(){ openssl enc -d -aes-256-cbc -in "$1" > "$2" }
+
+# $1 : <input_file>
+# $2 : <output_file>
+function encrypt(){ openssl enc -aes-256-cbc -salt -in "$1" -out "$2" }
+
+# $1 : <input>.cue
+# $2 : <input>.flac
+function flac_split(){ shnsplit -f "$1" -o flac -t "flac %n. %p - %a - %t" "$2" }
+
+# $1 : <input_file>
+function flac_convert(){
     filename=$1
     ffmpeg -i "$1" -codec:a libmp3lame -b:a 320k "${filename//flac/mp3}"
 }
 
-flac_convert_all(){
+# converts all flac files in the current directory to mp3
+function flac_convert_all(){
     for f in ./*.flac
     do
         flac_convert "$f"
     done
 }
 
-noaudio(){
+# removes audio from all files in current directory
+function noaudio(){
     for f in ./*
     do
         filename="$f"
@@ -68,13 +173,12 @@ noaudio(){
     done
 }
 
-preview(){
-    qlmanage -p "$1"
-}
+# $1 : <input_file>
+function preview(){ qlmanage -p "$1" }
 
-# TO CONVERT ALL .HEIC IMAGES IN A DIRECTORY TO .png
+# to convert all .HEIC images in a directory to .png
 # mogrify -monitor -format png *.HEIC
-reformat(){
+function reformat(){
     if [[ $# -eq 2 ]]; then
         mogrify -monitor -format "$2" *."$1"
     else
@@ -82,7 +186,8 @@ reformat(){
     fi
 }
 
-resize(){
+# $1 : ???
+function resize(){
     for f in ./*.png
     do
         echo Resizing $f...
@@ -90,181 +195,3 @@ resize(){
         echo done.
     done
 }
-
-update(){
-    read -p "Are you sure? [y/n] " -r
-    if [[ $REPLY =~ ^[Yy]$ ]]
-    then
-        if [ -d "./.cfg" ]; then
-            config fetch --all && config reset --hard origin/master
-        else
-            git fetch --all && git reset --hard origin/master
-        fi
-    fi
-}
-
-weather(){
-    curl wttr.in/$1
-}
-
-#color profiles
-# ┏┓ ╻  ┏━┓┏━┓╻ ╻┏━╸█▓▒░┏┳┓┏━┓┏━╸╻┏━╸╻┏ 
-# ┣┻┓┃  ┣━┫┃┓┃┃ ┃┣╸ █▓▒░┃┃┃┣━┫┃╺┓┃┃  ┣┻┓
-# ┗━┛┗━╸╹ ╹┗┻┛┗━┛┗━╸█▓▒░╹ ╹╹ ╹┗━┛╹┗━╸╹ ╹
-#-------------------------------------|-----------------------------------------
-#   BASIC         HEX                 |     BASIC         HEX                  |
-#-------------------------------------|-----------------------------------------
-#   Foreground    #d7d7d7             |     Text          #585858              |
-#   Background    #000000             |     Bold          #585858              |
-#   Links         #005cbb             |     Selection     #5F8787              |
-#-------------------------------------|-----------------------------------------
-#
-#-------------------------------------|-----------------------------------------
-#   CURSOR         HEX                |                                        |
-#-------------------------------------|-----------------------------------------
-#   CursorColor   #90110F             |                                        |
-#   CursorText    #000000             |                                        |
-#-------------------------------------|-----------------------------------------
-#
-#-------------------------------------|-----------------------------------------
-#   NORMAL        HEX          XTERM  |      BRIGHT        HEX          XTERM  |
-#-------------------------------------|-----------------------------------------
-#   Black         #222222      0      |      brBlack       #222222      8      |
-#   Red           #5f8787      1      |      brRed         #5f8787      9      |
-#   Green         #666666      2      |      brGreen       #666666      10     |
-#   Yellow        #87875f      3      |      brYellow      #87875f      11     |
-#   Blue          #875F5F      4      |      brBlue        #875F5F      12     |
-#   Magenta       #4B5F69      5      |      brMagenta     #4B5F69      13     |
-#   Cyan          #777777      6      |      brCyan        #777777      14     |
-#   White         #c1c1c1      7      |      brWhite       #c1c1c1      15     |
-#-------------------------------------|-----------------------------------------
-#
-# あきら／アキラ basic
-#-------------------------------------|-----------------------------------------
-#   BASIC         HEX                 |     BASIC         HEX                  |
-#-------------------------------------|-----------------------------------------
-#   Foreground    #d7d7d7             |     Text          #d7d7d7 / #dfdfaf    |
-#   Background    #121212             |     Bold          #d7d7d7 / #ffffff    |
-#   Links         #005cbb             |     Selection     #5F8787              |
-#-------------------------------------|-----------------------------------------
-#
-#-------------------------------------|-----------------------------------------
-#   CURSOR         HEX                |                                        |
-#-------------------------------------|-----------------------------------------
-#   CursorColor   #90110F             |                                        |
-#   CursorText    #000000             |                                        |
-#-------------------------------------|-----------------------------------------
-#
-#-------------------------------------|-----------------------------------------
-#   NORMAL        HEX          XTERM  |      BRIGHT        HEX          XTERM  |
-#-------------------------------------|-----------------------------------------
-#   Black         #121212      0      |      brBlack       #303030      8      |
-#   Red           #d56061      1      |      brRed         #ff8702      9      |
-#   Green         #7c9b5e      2      |      brGreen       #87b087      10     |
-#   Yellow        #fdad3a      3      |      brYellow      #ffffaf      11     |
-#   Blue          #88afaf      4      |      brBlue        #8fafd6      12     |
-#   Magenta       #957999      5      |      brMagenta     #8787af      13     |
-#   Cyan          #5f8785      6      |      brCyan        #5fb0af      14     |
-#   White         #6c6c6c      7      |      brWhite       #ffffff      15     |
-#-------------------------------------|-----------------------------------------
-#   ___                           
-#  -   -_, ,,  |\                 
-# (  ~/||  ||   \\         '      
-# (  / ||  ||  / \\ \\ \\ \\ \\/\\
-#  \/==||  || || || || || || || ||
-#  /_ _||  || || || || || || || ||
-# (  - \\, \\  \\/  \\/\\ \\ \\ \\
-#-------------------------------------|-----------------------------------------
-#   BASIC         HEX                 |     BASIC         HEX                  |
-#-------------------------------------|-----------------------------------------
-#   Foreground    #dfdfaf             |     Text          #dfdfaf              |
-#   Background    #121212             |     Bold          #ffffff              |
-#   Links         #005cbb             |     Selection     #875f5f  Opacity 50% |
-#-------------------------------------|-----------------------------------------
-#
-#-------------------------------------|-----------------------------------------
-#   CURSOR         HEX                |                                        |
-#-------------------------------------|-----------------------------------------
-#   CursorColor   #90110f             |                                        |
-#   CursorText    #dfdfaf             |                                        |
-#-------------------------------------|-----------------------------------------
-#
-#-------------------------------------|-----------------------------------------
-#   NORMAL        HEX          XTERM  |      BRIGHT        HEX          XTERM  |
-#-------------------------------------|-----------------------------------------
-#   Black         #121212      0      |      brBlack       #878787      8      |
-#   Red           #af5f5f      1      |      brRed         #af5f5f      9      |
-#   Green         #87875f      2      |      brGreen       #87875f      10     |
-#   Yellow        #af875f      3      |      brYellow      #af875f      11     |
-#   Blue          #878787      4      |      brBlue        #878787      12     |
-#   Magenta       #af8787      5      |      brMagenta     #af8787      13     |
-#   Cyan          #87afaf      6      |      brCyan        #87afaf      14     |
-#   White         #dfdfaf      7      |      brWhite       #dfdfaf      15     |
-#-------------------------------------|-----------------------------------------
-#  ________  ________  ________  ________  ________  ___  ________
-# |\   __  \|\   __  \|\   ____\|\   __  \|\   ___ \|\  \|\   __  \
-# \ \  \|\  \ \  \|\  \ \  \___|\ \  \|\  \ \  \_|\ \ \  \ \  \|\  \
-#  \ \   __  \ \   _  _\ \  \    \ \   __  \ \  \ \\ \ \  \ \   __  \
-#   \ \  \ \  \ \  \\  \\ \  \____\ \  \ \  \ \  \_\\ \ \  \ \  \ \  \
-#    \ \__\ \__\ \__\\ _\\ \_______\ \__\ \__\ \_______\ \__\ \__\ \__\
-#     \|__|\|__|\|__|\|__|\|_______|\|__|\|__|\|_______|\|__|\|__|\|__|
-#-------------------------------------|-----------------------------------------
-#   BASIC         HEX                 |     BASIC         HEX                  |
-#-------------------------------------|-----------------------------------------
-#   Foreground    #e4e4e4             |     Text          #e4e4e4              |
-#   Background    #121212             |     Bold          #ffffff              |
-#   Links         #005cbb             |     Selection     #008787              |
-#-------------------------------------|-----------------------------------------
-#
-#-------------------------------------|-----------------------------------------
-#   CURSOR         HEX                |                                        |
-#-------------------------------------|-----------------------------------------
-#   CursorColor   #90110F             |                                        |
-#   CursorText    #000000             |                                        |
-#-------------------------------------|-----------------------------------------
-#
-#-------------------------------------|-----------------------------------------
-#   NORMAL        HEX          XTERM  |      BRIGHT        HEX          XTERM  |
-#-------------------------------------|-----------------------------------------
-#   Black         #121212      0      |      brBlack       #303030      8      |
-#   Red           #af005f      1      |      brRed         #af5f87      9      |
-#   Green         #1c5f5f      2      |      brGreen       #008787      10     |
-#   Yellow        #af871c      3      |      brYellow      #dfaf00      11     |
-#   Blue          #1c5f87      4      |      brBlue        #5f87af      12     |
-#   Magenta       #5f1c5f      5      |      brMagenta     #875f87      13     |
-#   Cyan          #005f87      6      |      brCyan        #0087af      14     |
-#   White         #e4e4e4      7      |      brWhite       #ffffff      15     |
-#-------------------------------------|-----------------------------------------
-# ███████╗██╗███████╗██████╗ ██████╗  █████╗
-# ██╔════╝██║██╔════╝██╔══██╗██╔══██╗██╔══██╗
-# ███████╗██║█████╗  ██████╔╝██████╔╝███████║
-# ╚════██║██║██╔══╝  ██╔══██╗██╔══██╗██╔══██║
-# ███████║██║███████╗██║  ██║██║  ██║██║  ██║
-# ╚══════╝╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝
-#-------------------------------------|-----------------------------------------
-#   BASIC         HEX                 |      BASIC         HEX                 |
-#-------------------------------------|-----------------------------------------
-#   Foreground    #dfdfaf             |      Text          #dfdfaf             |
-#   Background    #121212             |      Bold          #ffffff             |
-#   Links         #005cbb             |     Selection     #875F5F  Opacity 50% |
-#-------------------------------------|-----------------------------------------
-#
-#-------------------------------------|-----------------------------------------
-#   CURSOR        HEX                 |                                        |
-#-------------------------------------|-----------------------------------------
-#   CursorColor   #dfdfaf             |                                        |
-#   CursorText    #303030             |                                        |
-#-------------------------------------|-----------------------------------------
-#
-#-------------------------------------|-----------------------------------------
-#   NORMAL        HEX          XTERM  |      BRIGHT       HEX          XTERM   |
-#-------------------------------------|-----------------------------------------
-#   Black         #121212      0      |      brBlack      #303030      8       |
-#   Red           #af5f5f      1      |      brRed        #af5f5f      9       |
-#   Green         #d75f5f      2      |      brGreen      #d75f5f      10      |
-#   Yellow        #afd7d7      3      |      brYellow     #afd7d7      11      |
-#   Blue          #af8787      4      |      brBlue       #af8787      12      |
-#   Magenta       #dfaf87      5      |      brMagenta    #dfaf87      13      |
-#   Cyan          #ffafaf      6      |      brCyan       #ffafaf      14      |
-#   White         #dfdfaf      7      |      brWhite      #dfdfaf      15      |
-#-------------------------------------|-----------------------------------------

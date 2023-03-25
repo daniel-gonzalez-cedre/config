@@ -139,10 +139,14 @@ if has('clipboard')
     noremap P "+P
 endif
 
-" custom cursor: start insert mode with underline
-let &t_SI="\e[4 q"
-" custom cursor: end insert mode with block
-let &t_EI="\e[2 q"
+" custom cursors
+" LINE: \e[5
+" BLOCK: 
+" UNDERLINE: \e[4
+let &t_SI="\e[5 q"  " LINE: start insert mode
+" let &t_SI="\e[4 q"  "  UNDERLINE: start insert mode
+let &t_EI="\e[1 q"  "  UNDERLINE: end insert mode
+" let &t_EI="\e[2 q"  "  BLOCK: end insert mode
 
 " auto closing of paired chars
 function ClosePair(char)
