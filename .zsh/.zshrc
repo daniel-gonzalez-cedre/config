@@ -21,10 +21,45 @@ precmd_conda_info() {
 }
 precmd_functions+=( precmd_conda_info )
 
+function git_info()
+{
+    local BRANCH=$(git symbolic-ref --short HEAD 2> /dev/null) || return
+    if [[ $BRANCH == "" ]];
+    then
+        :
+    else
+        echo "%F{3}$BRANCH -> %f"
+    fi
+    # local STATUS=''
+    # local FLAGS
+    # FLAGS=('--porcelain')
+    # if [[ "$(command git config --get oh-my-zsh.hide-dirty)" != "1" ]]; then
+    #     if [[ $POST_1_7_2_GIT -gt 0 ]]; then
+    #     FLAGS+='--ignore-submodules=dirty'
+    #     fi
+    #     if [[ "$DISABLE_UNTRACKED_FILES_DIRTY" == "true" ]]; then
+    #     FLAGS+='--untracked-files=no'
+    #     fi
+    #     STATUS=$(command git status ${FLAGS} 2> /dev/null | tail -n1)
+    # fi
+    # if [[ -n $STATUS ]]; then
+    #     GIT_PROMPT_COLOR="%F{7}"
+    #     GIT_STAR=""
+    # else
+    #     GIT_PROMPT_COLOR="%F{6}"
+    #     unset GIT_STAR
+    # fi
+    # echo "$BRANCH$GIT_STAR"
+}
+
 function promptwidth() { echo $(( ${COLUMNS} - 25 - 10 - 15)) }
 width='$(promptwidth)'
-PROMPT=' %F{0}%D{%K:%M:%S} %F{11}λ%f '
-RPROMPT='%F{0}${CONDA_ENV}'"%F{0}%${width}<...<%F{9}%1~%F{0} %15<...<%F{3}%m%f"
+git_branch='$(git_info)'
+# PROMPT=' %F{0}%D{%K:%M:%S} %F{11}λ%f '
+# PROMPT=' %F{3}λ%f '
+PROMPT=''' %F{3}⟩%f '
+# RPROMPT='%F{0}${CONDA_ENV}'"%F{0}%D{%K:%M:%S} %${width}<...<%F{9}%2~%F{0} %15<...<%F{3}%m%f"
+RPROMPT='%F{0}${CONDA_ENV}'"%F{0}%D{%K:%M:%S} ${git_branch}%${width}<...<%F{9}%1~%F{0}%f"
 
 function schedprompt() {
     emulate -L zsh
@@ -43,7 +78,6 @@ export GREP_OPTIONS="--color=always"  # --line-buffered
 
 export TERM=xterm-256color
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-# export PATH=${HOME}/Library/Python/3.8/bin:$PATH
 export PATH=/opt/homebrew/bin:/usr/local/Cellar:$PATH
 
 alias gitfig="/usr/bin/git --git-dir=$HOME/.gitfig/ --work-tree=$HOME"     #   gitfig config --local status.showUntrackedFiles no
