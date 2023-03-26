@@ -3,7 +3,7 @@ setopt prompt_subst
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' menu select
-setopt menu_complete
+# setopt menu_complete
 
 precmd_conda_info() {
     if [[ -n $CONDA_PREFIX ]]; then
