@@ -112,7 +112,6 @@ function clean() {
     rm -f *.bcf(N)
     rm -f *.blg(N)
     rm -f *.brf(N)
-    rm -f *.bst(N)
     rm -f *.fdb_latexmk(N)
     rm -f *.fls(N)
     rm -f *.log(N)
