@@ -19,14 +19,15 @@ precmd_conda_info() {
 }
 precmd_functions+=( precmd_conda_info )
 
-function promptwidth() { echo $(( ${COLUMNS} - 15 - 10 - 10)) }
-function dirwidth() { echo $(( ${COLUMNS} - 15 - 10 - 10)) }
-function hostwidth() { echo $(( ${COLUMNS} - 15 - 10 - 3)) }
+function promptwidth() { echo $(( ${COLUMNS} - 25 - 10 - 15)) }
+# function promptwidth() { echo $(( ${COLUMNS} * 40 / 100)) }
+# function dirwidth() { echo $(( ${COLUMNS} - 15 - 10 - 10)) }
+# function hostwidth() { echo $(( ${COLUMNS} - 15 - 10 - 3)) }
 width='$(promptwidth)'
-dwidth='$(dirwidth)'
-hwidth='$(hostwidth)'
+# dwidth='$(dirwidth)'
+# hwidth='$(hostwidth)'
 PROMPT=' %F{0}%D{%K:%M:%S} %F{11}λ%f '
-RPROMPT='%F{0}${CONDA_ENV}'"%F{0}%${width}<...<%F{9}%1~%F{0} %<<%F{3}%m%f"
+RPROMPT='%F{0}${CONDA_ENV}'"%F{0}%${width}<...<%F{9}%2~%F{0} %15<...<%F{3}%m%f"
 
 function schedprompt() {
     emulate -L zsh
