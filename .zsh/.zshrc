@@ -107,54 +107,50 @@ function temperature() { watch 'sudo powermetrics --samplers smc -i1 -n1 | tail'
 
 # $1: <options>
 #   pass "-i" as an argument to ask on every rm
-function clean(){
-    rm "${1:-}" .DS_Store *.aux *.brf *.blg *.bst *.fdb_latexmk *.fls *.log *.out *.bcf *.run.xml *.xdv *.toc *.lol _minted* __pycache__/
+function clean() {
+    rm -rf __pycache__/
+    rm -f .DS_Store
+    rm -f *.aux(N)
+    rm -f *.bcf(N)
+    rm -f *.blg(N)
+    rm -f *.brf(N)
+    rm -f *.bst(N)
+    rm -f *.fdb_latexmk(N)
+    rm -f *.fls(N)
+    rm -f *.log(N)
+    rm -f *.lol(N)
+    rm -f *.out(N)
+    rm -f *.run.xml(N)
+    rm -f *.toc(N)
+    rm -f *.xdv(N)
+    rm -f _minted*(N)
+    rm -if .*.swp(N)
+    rm -if .*.swo(N)
 }
-# function clean(){
-#     [ -e .DS_Store ] && rm -v .DS_Store
-#     [ -e *.aux ] && rm -v *.aux
-#     [ -e *.bcf ] && rm -v *.bcf
-#     [ -e *.blg ] && rm -v *.blg
-#     [ -e *.brf ] && rm -v *.brf
-#     [ -e *.bst ] && rm -v *.bst
-#     [ -e *.fdb_latexmk ] && rm -v *.fdb_latexmk
-#     [ -e *.fls ] && rm -v *.fls
-#     [ -e *.log ] && rm -v *.log
-#     [ -e *.out ] && rm -v *.out
-#     [ -e *.run.xml ] && rm -v *.run.xml
-#     [ -e *.xdv ] && rm -v *.xdv
-#     [ -e *.toc ] && rm -v *.toc
-#     [ -e *.lol ] && rm -v *.lol
-#     [ -e _minted* ] && rm -v _minted*
-#     [ -e __pycache__ ] && rm -rf __pycache__
-#     [ -e *.bbl ] && rm -v -i *.bbl
-# }
-
-function cleanswp(){ .*.swp .*.swo }
 
 # computer vision
-function cv(){ g++ -std=c++11 $1 $(pkg-config --cflags --libs opencv4); }
+function cv() { g++ -std=c++11 $1 $(pkg-config --cflags --libs opencv4); }
 
 # $1 : <input_file>
 # $2 : <output_file>
-function decrypt(){ openssl enc -d -aes-256-cbc -in "$1" > "$2" }
+function decrypt() { openssl enc -d -aes-256-cbc -in "$1" > "$2" }
 
 # $1 : <input_file>
 # $2 : <output_file>
-function encrypt(){ openssl enc -aes-256-cbc -salt -in "$1" -out "$2" }
+function encrypt() { openssl enc -aes-256-cbc -salt -in "$1" -out "$2" }
 
 # $1 : <input>.cue
 # $2 : <input>.flac
-function flac_split(){ shnsplit -f "$1" -o flac -t "flac %n. %p - %a - %t" "$2" }
+function flac_split() { shnsplit -f "$1" -o flac -t "flac %n. %p - %a - %t" "$2" }
 
 # $1 : <input_file>
-function flac_convert(){
+function flac_convert() {
     filename=$1
     ffmpeg -i "$1" -codec:a libmp3lame -b:a 320k "${filename//flac/mp3}"
 }
 
 # converts all flac files in the current directory to mp3
-function flac_convert_all(){
+function flac_convert_all() {
     for f in ./*.flac
     do
         flac_convert "$f"
@@ -162,7 +158,7 @@ function flac_convert_all(){
 }
 
 # removes audio from all files in current directory
-function noaudio(){
+function noaudio() {
     for f in ./*
     do
         filename="$f"
@@ -173,11 +169,11 @@ function noaudio(){
 }
 
 # $1 : <input_file>
-function preview(){ qlmanage -p "$1" }
+function preview() { qlmanage -p "$1" }
 
 # to convert all .HEIC images in a directory to .png
 # mogrify -monitor -format png *.HEIC
-function reformat(){
+function reformat() {
     if [[ $# -eq 2 ]]; then
         mogrify -monitor -format "$2" *."$1"
     else
@@ -186,7 +182,7 @@ function reformat(){
 }
 
 # $1 : ???
-function resize(){
+function resize() {
     for f in ./*.png
     do
         echo Resizing $f...
