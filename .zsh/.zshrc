@@ -52,7 +52,7 @@ function git_info()
     # echo "$BRANCH$GIT_STAR"
 }
 
-function promptwidth() { echo $(( ${COLUMNS} - 25 - 10 - 15)) }
+function promptwidth() { echo $(( ${COLUMNS} - 25 - 10)) }
 width='$(promptwidth)'
 git_branch='$(git_info)'
 # PROMPT=' %F{0}%D{%K:%M:%S} %F{11}λ%f '
