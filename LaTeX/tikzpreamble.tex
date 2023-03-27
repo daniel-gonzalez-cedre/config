@@ -1,0 +1,122 @@
+\usepackage{tikz, pgfplots}
+\usetikzlibrary{calc}
+\usetikzlibrary{math}
+\usetikzlibrary{shapes}
+\usetikzlibrary{patterns}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{positioning}
+\usetikzlibrary{decorations.pathmorphing}
+
+\usepgfplotslibrary{fillbetween}
+
+\colorlet{ploter}{coloryellow}
+\colorlet{plotcl}{colororange}
+\colorlet{plotsbm}{colorred}
+\colorlet{plotgraphrnn}{colorpurple}
+\colorlet{plotverg}{colorteal}
+\colorlet{plotdyverg}{colorgreen}
+
+\colorlet{plotemaildnc}{coloryellow}
+\colorlet{plotemaileucore}{colororange}
+\colorlet{plotcoauthdblp}{colorred}
+\colorlet{plotfacebooklinks}{colorpurple}
+
+\tikzmath{%
+    \figscale = 1.75;
+    \nodesize = 0.06cm; % 0.06cm
+    \nodespacing = 1.5pt;
+    \radbig = 360/5;
+    \radtri = 360/3;
+    \rottri = 360/6;
+    \radpent = 360/5;
+    \rotpent = 360/10;
+    \arccurve = 0.5cm;
+    \arcstraight = 0.0cm;
+}
+
+% \tikzset{snake it/.style={decorate, decoration=snake}}
+\tikzset{snake it/.style={
+    decoration={snake, 
+        amplitude = 0.2mm,
+        segment length = 1mm,
+        post length=1mm},decorate}
+}
+% \tikzset{%
+%     >={To[length=3.5pt]}
+% }
+
+\tikzstyle{blank} = [outer sep=8*\nodespacing, inner sep=\nodesize]
+\tikzstyle{bdeg} = [outer sep=\nodespacing, inner sep=\nodesize]
+
+\tikzstyle{tnode} = [circle, draw=colorgrey, outer sep=0cm, inner sep=\nodesize/4, fill opacity=1, draw opacity=1, text opacity=1, fill=white]
+\tikzstyle{taddnode} = [tnode, fill=colorteal, fill opacity=0.25]
+\tikzstyle{tdelnode} = [tnode, fill=colororange, fill opacity=0.25]
+
+\tikzstyle{lhs} = [very thick, rectangle, rounded corners=0.5mm, draw=colorblack, fill=white, outer sep=4*\nodespacing, inner sep=\nodesize,  fill opacity=1, draw opacity=1, text opacity=1]
+\tikzstyle{addlhs} = [lhs, draw=colorteal, fill=colorteal, fill opacity=0]
+\tikzstyle{dellhs} = [lhs, draw=colororange, fill=colororange, fill opacity=0]
+
+\tikzstyle{nts} = [very thick, rectangle, rounded corners=0.5mm, draw=colorblack, fill=white, outer sep=\nodespacing, inner sep=\nodesize, fill opacity=1, draw opacity=1, text opacity=1]
+\tikzstyle{addnts} = [nts, draw=colorteal, fill=colorteal, fill opacity=0]
+\tikzstyle{delnts} = [nts, draw=colororange, fill=colororange, fill opacity=0]
+
+\tikzstyle{node} = [very thick, circle, draw=colorblack, fill=colorblack, outer sep=\nodespacing, inner sep=\nodesize, text opacity=1]  % minimum size = 0.1cm
+\tikzstyle{addnode} = [node, draw=colorteal, fill=colorteal, draw opacity=1]
+\tikzstyle{delnode} = [node, draw=colororange, fill=colororange, opacity=1]
+
+\tikzstyle{thinedge} = [thick, draw=colorblack, opacity=1]
+\tikzstyle{edge} = [very thick, draw=colorblack, opacity=1]
+\tikzstyle{addedge} = [edge, densely dotted, draw=colorteal]
+\tikzstyle{frontieredge} = [edge, densely dash dot, draw=colorteal]
+% \tikzstyle{frontieredge} = [edge, loosely dashed, draw=colorteal, decorate, decoration={coil, amplitude=1pt, segment length=2pt}]
+\tikzstyle{deledge} = [edge, densely dotted, draw=colororange, decorate, decoration={snake, amplitude=0.25mm, segment length=2.7mm, post length=0.0mm, pre length=0.0mm}]
+% \tikzstyle{deledge} = [edge, densely dotted, draw=colororange]
+
+\tikzstyle{bedge} = [edge, opacity=1]
+\tikzstyle{addbedge} = [bedge, densely dotted, draw=colorteal]
+\tikzstyle{delbedge} = [bedge, densely dotted, draw=colororange, decorate, decoration={snake, amplitude=0.25mm, segment length=2.7mm, post length=0.0mm, pre length=0.0mm}]
+% \tikzstyle{delbedge} = [bedge, densely dotted, draw=colororange]
+
+\tikzstyle{fedge} = [very thick, draw=colorblack, rounded corners=0.05cm, opacity=1]
+\tikzstyle{addfedge} = [fedge, densely dotted, draw=colorteal]
+\tikzstyle{delfedge} = [very thick, densely dotted, draw=colororange, decorate, decoration={snake, amplitude=0.25mm, segment length=2.7mm, post length=0.0mm, pre length=0.0mm}]
+
+\tikzstyle{cone} = [draw=colorgrey, shorten <= -2pt]
+\tikzstyle{addcone} = [draw=colorgrey, shorten <= -2pt]
+
+
+
+\usetikzlibrary{pgfplots.groupplots}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{positioning,fit,shapes.geometric,backgrounds, calc}
+\usetikzlibrary{arrows,decorations.markings}
+\usetikzlibrary{shapes.arrows}
+\usetikzlibrary{patterns}
+\tikzset{textnode/.style={inner sep=0pt,outer sep=0,execute at begin node={\strut}}}
+\tikzstyle{state} = [textnode,circle, draw, inner sep=0pt, outer sep=0]
+\usepgfplotslibrary{groupplots}
+                    
+\pgfplotsset{every axis/.append style={
+                    xlabel={$x$},          % default put x on x-axis
+                    ylabel={$y$},          % default put y on y-axis
+                    % label style={font=\sffamily\small},
+                    % tick label style={font=\sffamily\small},
+                    % xticklabel style = {font=\sffamily\small},
+                    % title style = {font=\footnotesize\sffamily},
+                    ylabel near ticks,
+                    % y label style={font=\sffamily\small},
+                    xlabel near ticks,
+                    % x label style={font=\sffamily\small},
+                    legend cell align={left},
+                    % legend style={draw=none, font=\sffamily\normalsize},
+                    },
+                    legend image code/.code={
+                    \draw[mark repeat=2,mark phase=2]
+                        plot coordinates {
+                        (0cm,0cm)
+                        (0.15cm,0cm)        %% default is (0.3cm,0cm)
+                        (0.3cm,0cm)         %% default is (0.6cm,0cm)
+                        };%
+                    }
+                    }
+\pgfplotsset{compat=newest}  
