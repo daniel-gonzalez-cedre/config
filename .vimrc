@@ -85,8 +85,8 @@ nnoremap <silent> <space> :noh<bar>:echo<cr>
 " nnoremap <silent> j :noh<CR>j
 " nnoremap <silent> h :noh<CR>h
 " nnoremap <silent> l :noh<CR>l
-nnoremap <C-k> gk
-nnoremap <C-j> gj
+" nnoremap <C-k> gk
+" nnoremap <C-j> gj
 
 nnoremap <C-f> za
 nnoremap F zA
