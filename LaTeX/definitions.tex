@@ -29,9 +29,12 @@
 \newcommand{\nand}{\uparrow}
 \newcommand{\nor}{\downarrow}
 
+\newcommand{\subgraph}{\triangleleft}
 \newcommand{\compose}{\circ}
-\newcommand{\divides}{~|~}
-\newcommand{\notdivides}{\not|~}
+\renewcommand{\div}{\mid}
+\newcommand{\ndiv}{\nmid}
+\newcommand{\divides}{\mid}
+\newcommand{\notdivides}{\nmid}
 \newcommand{\given}{~\middle|~}
 \newcommand{\suchthat}{~\middle|~}
 \newcommand{\contradiction}{\smash{\text{\raisebox{-0.6ex}{\Large \Lightning}}}~~}
@@ -52,6 +55,7 @@
 \newcommand{\prtn}[3]{\frac{\partial^{#3}{#1}}{\partial{#2}^{#3}}}
 \newcommand{\prtm}[3]{\frac{\partial^{#3}{#1}}{\partial{#2}}}
 \newcommand{\modulo}[1]{~\pn{\mathrm{mod}~#1}}
+\newcommand*\id{\text{id}}
 
 \newcommand{\inj}{\hookrightarrow}
 \newcommand{\injection}{\hookrightarrow}
@@ -72,6 +76,9 @@
 \newcommand{\isomorphism}{\lhook\joinrel\twoheadrightarrow}
 \newcommand{\immersion}{\looprightarrow}
 
+% \newcommand{\im}{\text{im}}
+\newcommand{\im}[1]{\text{im}\pn*{#1}}
+\renewcommand{\ker}[1]{\text{ker}\pn*{#1}}
 \renewcommand{\O}[1]{\mathcal{O}\pn*{#1}}
 \renewcommand{\P}[1]{\mathbb{P}\pn*{#1}}
 \newcommand{\power}[1]{\mathcal{P}\pn*{#1}}
@@ -94,7 +101,8 @@
 \newcommand{\qv}{\textit{q.v.}\ }
 \newcommand{\ifandonlyif}{\textit{iff}\ }
 
-% these need {} after them
+% these may need {} after them
+\newcommand{\apriori}{\textit{a priori}}
 \newcommand{\etal}{\textit{et al.}}
 \newcommand{\wff}{\textit{wff}}
 

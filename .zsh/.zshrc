@@ -4,6 +4,7 @@ autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' menu select
 # setopt menu_complete
+bindkey -e
 
 precmd_conda_info() {
     if [[ -n $CONDA_PREFIX ]]; then
@@ -72,8 +73,8 @@ function schedprompt() {
 schedprompt
 
 
-export EDITOR='vim'
-export VISUAL='vim'
+# export EDITOR='vim'
+# export VISUAL='vim'
 export GREP_OPTIONS="--color=always"  # --line-buffered
 
 export TERM=xterm-256color
@@ -148,15 +149,17 @@ function clean() {
     rm -f *.brf(N)
     rm -f *.fdb_latexmk(N)
     rm -f *.fls(N)
+    rm -f *.lof(N)
     rm -f *.log(N)
     rm -f *.lol(N)
+    rm -f *.lot(N)
     rm -f *.out(N)
     rm -f *.run.xml(N)
     rm -f *.toc(N)
     rm -f *.xdv(N)
-    rm -f _minted*(N)
     rm -if .*.swp(N)
     rm -if .*.swo(N)
+    rm -f _minted*(N)
 }
 
 # computer vision
