@@ -109,13 +109,15 @@ inoremap ] <C-r>=ClosePair(']')<cr>
 inoremap } <C-r>=ClosePair('}')<cr>
 inoremap " <C-r>=QuoteDelim('"')<cr>
 inoremap ' <C-r>=QuoteDelim("'")<cr>
-vnoremap ( <C-c>`>a)<C-c>`<i(<C-c>
-vnoremap [ <C-c>`>a]<C-c>`<i[<C-c>
-vnoremap { <C-c>`>a}<C-c>`<i{<C-c>
-vnoremap ) <C-c>`<i(<C-c>`><right>a)<C-c>
-vnoremap ] <C-c>`<i[<C-c>`><right>a]<C-c>
-vnoremap } <C-c>`<i{<C-c>`><right>a}<C-c>
+" vnoremap ( <C-c>`>a)<C-c>`<i(<C-c>
+" vnoremap [ <C-c>`>a]<C-c>`<i[<C-c>
+" vnoremap { <C-c>`>a}<C-c>`<i{<C-c>
+" vnoremap ) <C-c>`<i(<C-c>`><right>a)<C-c>
+" vnoremap ] <C-c>`<i[<C-c>`><right>a]<C-c>
+" vnoremap } <C-c>`<i{<C-c>`><right>a}<C-c>
 vnoremap // y/\V<C-r>=escape(@",'/\')<cr>
+vnoremap = g_
+nnoremap = g_
 
 " think about this later
 " vnoremap <C-[> <C-c>`>a<C-r>=ReplaceDelim(']')<CR><C-c>`<i<C-r>=ReplaceDelim('[')<CR><C-c>

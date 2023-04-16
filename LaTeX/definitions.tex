@@ -1,6 +1,7 @@
 \newcommand*{\xline}[1][3em]{\rule[0.5ex]{#1}{0.55pt}}
 
 \newcommand{\isomorphic}{\cong}
+\newcommand{\defniff}{~\mathrel{\vcentcolon\Leftrightarrow}~}
 \newcommand{\iffdefn}{~\mathrel{\vcentcolon\Leftrightarrow}~}
 \newcommand{\iffbydefn}{\(\mathrel{\vcentcolon\Leftrightarrow}\)\ }
 \newcommand{\niff}{\mathrel{{\ooalign{\hidewidth$\not\phantom{"}$\hidewidth\cr$\iff$}}}}
@@ -28,6 +29,12 @@
 \newcommand{\xor}{\oplus}
 \newcommand{\nand}{\uparrow}
 \newcommand{\nor}{\downarrow}
+\newcommand{\Plus}{\text{\begin{tikzpicture}[baseline=-0.56ex, x=1ex, y=1ex]
+    \node at (-26/40, 0) {};
+    \node at (26/40, 0) {};
+    \draw [line width=1.25, line cap=round] (0, -2/3) -- (0, 2/3);
+    \draw [line width=1.25, line cap=round] (-2/3, 0) -- (2/3, 0);
+\end{tikzpicture}}}
 
 \newcommand{\subgraph}{\triangleleft}
 \newcommand{\compose}{\circ}
@@ -54,7 +61,8 @@
 \newcommand{\prt}[2]{\frac{\partial{#1}}{\partial{#2}}}
 \newcommand{\prtn}[3]{\frac{\partial^{#3}{#1}}{\partial{#2}^{#3}}}
 \newcommand{\prtm}[3]{\frac{\partial^{#3}{#1}}{\partial{#2}}}
-\newcommand{\modulo}[1]{~\pn{\mathrm{mod}~#1}}
+\newcommand{\modulo}[1]{~\pn*{\mathrm{mod}~#1}}  % maybe replace this with the below
+\newcommand{\congruent}[3]{#1 \equiv #2 ~\pn*{\mathrm{mod}~#3}}
 \newcommand*\id{\text{id}}
 
 \newcommand{\inj}{\hookrightarrow}

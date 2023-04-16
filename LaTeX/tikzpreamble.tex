@@ -1,4 +1,4 @@
-\usepackage{tikz, pgfplots}
+% \usepackage{tikz, pgfplots}
 \usetikzlibrary{calc}
 \usetikzlibrary{math}
 \usetikzlibrary{shapes}
@@ -9,17 +9,29 @@
 
 \usepgfplotslibrary{fillbetween}
 
-\colorlet{ploter}{coloryellow}
-\colorlet{plotcl}{colororange}
-\colorlet{plotsbm}{colorred}
-\colorlet{plotgraphrnn}{colorpurple}
-\colorlet{plotverg}{colorteal}
-\colorlet{plotdyverg}{colorgreen}
+% colors
+\definecolor{plotblack}{HTML}{252422}
+\definecolor{plotgrey}{HTML}{f4efef}
 
-\colorlet{plotemaildnc}{coloryellow}
-\colorlet{plotemaileucore}{colororange}
-\colorlet{plotcoauthdblp}{colorred}
-\colorlet{plotfacebooklinks}{colorpurple}
+\definecolor{plotblue}{HTML}{045275}
+\definecolor{plotteal}{HTML}{089099}
+\definecolor{plotgreen}{HTML}{7ccba2}
+\definecolor{plotyellow}{HTML}{ffc61e}  % fcde9c % ffc61e  % b8860b
+\definecolor{plotorange}{HTML}{f0746e}
+\definecolor{plotred}{HTML}{dc3977}
+\definecolor{plotpurple}{HTML}{7c1d6f}
+
+\colorlet{ploter}{plotyellow}
+\colorlet{plotcl}{plotorange}
+\colorlet{plotsbm}{plotred}
+\colorlet{plotgraphrnn}{plotpurple}
+\colorlet{plotverg}{plotteal}
+\colorlet{plotdyverg}{plotgreen}
+
+\colorlet{plotemaildnc}{plotyellow}
+\colorlet{plotemaileucore}{plotorange}
+\colorlet{plotcoauthdblp}{plotred}
+\colorlet{plotfacebooklinks}{plotpurple}
 
 \tikzmath{%
     \figscale = 1.75;
@@ -36,11 +48,24 @@
 
 % \tikzset{snake it/.style={decorate, decoration=snake}}
 \tikzset{snake it/.style={
-    decoration={snake, 
+    decoration={
+        snake, 
         amplitude = 0.2mm,
         segment length = 1mm,
-        post length=1mm},decorate}
-}
+        post length=1mm
+    },
+    decorate
+}}
+\tikzcdset{arrow style=tikz, squiggle/.style={
+    decoration={
+        snake, 
+        amplitude=.3mm,
+        segment length=2mm,
+        post length=1mm
+    }, 
+    rounded corners=.2pt,
+    decorate
+}}
 % \tikzset{%
 %     >={To[length=3.5pt]}
 % }
@@ -48,41 +73,43 @@
 \tikzstyle{blank} = [outer sep=8*\nodespacing, inner sep=\nodesize]
 \tikzstyle{bdeg} = [outer sep=\nodespacing, inner sep=\nodesize]
 
-\tikzstyle{tnode} = [circle, draw=colorgrey, outer sep=0cm, inner sep=\nodesize/4, fill opacity=1, draw opacity=1, text opacity=1, fill=white]
-\tikzstyle{taddnode} = [tnode, fill=colorteal, fill opacity=0.25]
-\tikzstyle{tdelnode} = [tnode, fill=colororange, fill opacity=0.25]
+\tikzstyle{tnode} = [circle, draw=plotgrey, outer sep=0cm, inner sep=\nodesize/4, fill opacity=1, draw opacity=1, text opacity=1, fill=white]
+\tikzstyle{taddnode} = [tnode, fill=plotteal, fill opacity=0.25]
+\tikzstyle{tdelnode} = [tnode, fill=plotorange, fill opacity=0.25]
 
-\tikzstyle{lhs} = [very thick, rectangle, rounded corners=0.5mm, draw=colorblack, fill=white, outer sep=4*\nodespacing, inner sep=\nodesize,  fill opacity=1, draw opacity=1, text opacity=1]
-\tikzstyle{addlhs} = [lhs, draw=colorteal, fill=colorteal, fill opacity=0]
-\tikzstyle{dellhs} = [lhs, draw=colororange, fill=colororange, fill opacity=0]
+\tikzstyle{lhs} = [very thick, rectangle, rounded corners=0.5mm, draw=plotblack, fill=white, outer sep=4*\nodespacing, inner sep=\nodesize,  fill opacity=1, draw opacity=1, text opacity=1]
+\tikzstyle{addlhs} = [lhs, draw=plotteal, fill=plotteal, fill opacity=0]
+\tikzstyle{dellhs} = [lhs, draw=plotorange, fill=plotorange, fill opacity=0]
 
-\tikzstyle{nts} = [very thick, rectangle, rounded corners=0.5mm, draw=colorblack, fill=white, outer sep=\nodespacing, inner sep=\nodesize, fill opacity=1, draw opacity=1, text opacity=1]
-\tikzstyle{addnts} = [nts, draw=colorteal, fill=colorteal, fill opacity=0]
-\tikzstyle{delnts} = [nts, draw=colororange, fill=colororange, fill opacity=0]
+\tikzstyle{nts} = [very thick, rectangle, rounded corners=0.5mm, draw=plotblack, fill=white, outer sep=\nodespacing, inner sep=\nodesize, fill opacity=1, draw opacity=1, text opacity=1]
+\tikzstyle{addnts} = [nts, draw=plotteal, fill=plotteal, fill opacity=0]
+\tikzstyle{delnts} = [nts, draw=plotorange, fill=plotorange, fill opacity=0]
 
-\tikzstyle{node} = [very thick, circle, draw=colorblack, fill=colorblack, outer sep=\nodespacing, inner sep=\nodesize, text opacity=1]  % minimum size = 0.1cm
-\tikzstyle{addnode} = [node, draw=colorteal, fill=colorteal, draw opacity=1]
-\tikzstyle{delnode} = [node, draw=colororange, fill=colororange, opacity=1]
+\tikzstyle{node} = [very thick, circle, draw=plotblack, fill=plotblack, outer sep=\nodespacing, inner sep=\nodesize, text opacity=1]  % minimum size = 0.1cm
+\tikzstyle{addnode} = [node, draw=plotteal, fill=plotteal, draw opacity=1]
+\tikzstyle{delnode} = [node, draw=plotorange, fill=plotorange, opacity=1]
 
-\tikzstyle{thinedge} = [thick, draw=colorblack, opacity=1]
-\tikzstyle{edge} = [very thick, draw=colorblack, opacity=1]
-\tikzstyle{addedge} = [edge, densely dotted, draw=colorteal]
-\tikzstyle{frontieredge} = [edge, densely dash dot, draw=colorteal]
-% \tikzstyle{frontieredge} = [edge, loosely dashed, draw=colorteal, decorate, decoration={coil, amplitude=1pt, segment length=2pt}]
-\tikzstyle{deledge} = [edge, densely dotted, draw=colororange, decorate, decoration={snake, amplitude=0.25mm, segment length=2.7mm, post length=0.0mm, pre length=0.0mm}]
-% \tikzstyle{deledge} = [edge, densely dotted, draw=colororange]
+% \tikzstyle{spacenode} = [very thick, circle, draw=white, fill=plotblack, outer sep=0.5*\nodespacing, inner sep=1.5*\nodesize, text opacity=1]  % minimum size = 0.1cm
+
+\tikzstyle{thinedge} = [thick, draw=plotblack, opacity=1]
+\tikzstyle{edge} = [very thick, draw=plotblack, opacity=1]
+\tikzstyle{addedge} = [edge, densely dotted, draw=plotteal]
+\tikzstyle{frontieredge} = [edge, densely dash dot, draw=plotteal]
+% \tikzstyle{frontieredge} = [edge, loosely dashed, draw=plotteal, decorate, decoration={coil, amplitude=1pt, segment length=2pt}]
+\tikzstyle{deledge} = [edge, densely dotted, draw=plotorange, decorate, decoration={snake, amplitude=0.25mm, segment length=2.7mm, post length=0.0mm, pre length=0.0mm}]
+% \tikzstyle{deledge} = [edge, densely dotted, draw=plotorange]
 
 \tikzstyle{bedge} = [edge, opacity=1]
-\tikzstyle{addbedge} = [bedge, densely dotted, draw=colorteal]
-\tikzstyle{delbedge} = [bedge, densely dotted, draw=colororange, decorate, decoration={snake, amplitude=0.25mm, segment length=2.7mm, post length=0.0mm, pre length=0.0mm}]
-% \tikzstyle{delbedge} = [bedge, densely dotted, draw=colororange]
+\tikzstyle{addbedge} = [bedge, densely dotted, draw=plotteal]
+\tikzstyle{delbedge} = [bedge, densely dotted, draw=plotorange, decorate, decoration={snake, amplitude=0.25mm, segment length=2.7mm, post length=0.0mm, pre length=0.0mm}]
+% \tikzstyle{delbedge} = [bedge, densely dotted, draw=plotorange]
 
-\tikzstyle{fedge} = [very thick, draw=colorblack, rounded corners=0.05cm, opacity=1]
-\tikzstyle{addfedge} = [fedge, densely dotted, draw=colorteal]
-\tikzstyle{delfedge} = [very thick, densely dotted, draw=colororange, decorate, decoration={snake, amplitude=0.25mm, segment length=2.7mm, post length=0.0mm, pre length=0.0mm}]
+\tikzstyle{fedge} = [very thick, draw=plotblack, rounded corners=0.05cm, opacity=1]
+\tikzstyle{addfedge} = [fedge, densely dotted, draw=plotteal]
+\tikzstyle{delfedge} = [very thick, densely dotted, draw=plotorange, decorate, decoration={snake, amplitude=0.25mm, segment length=2.7mm, post length=0.0mm, pre length=0.0mm}]
 
-\tikzstyle{cone} = [draw=colorgrey, shorten <= -2pt]
-\tikzstyle{addcone} = [draw=colorgrey, shorten <= -2pt]
+\tikzstyle{cone} = [draw=plotgrey, shorten <= -2pt]
+\tikzstyle{addcone} = [draw=plotgrey, shorten <= -2pt]
 
 
 

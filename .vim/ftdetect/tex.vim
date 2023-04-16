@@ -29,4 +29,5 @@ endfunction
 " old settings
 
 au BufNewFile,BufRead *.tex imap $ <C-r>=QuoteDelim("$")<CR>
-au BufNewFile,BufRead *.tex vnoremap $ <C-c>`>a$<C-c>`<i$<C-c>
+" au BufNewFile,BufRead *.tex vnoremap $ <C-c>`>a$<C-c>`<i$<C-c>
+" au BufNewFile,BufRead *.tex xnoremap <expr> $ mode() ==# "V" ? "<C-c>=a$^<C-c>i$<C-c>" : "<C-c>`>a$<C-c>`<i$<C-c>"
