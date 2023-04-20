@@ -115,6 +115,8 @@ alias storage="watch -n 1 --color df -h"
 
 alias latexmk="latexmk -pdf -pvc"
 function latex() { latexmk -pdf -pvc "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$' }
+function xelatex() { latexmk -pdf -pvc -xelatex "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$' }
+function lualatex() { latexmk -pdf -pvc -lualatex "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$' }
 function latexsh() { latexmk -pdf -pvc -shell-escape "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$' }
 
 function ris2bib() { ris2xml "$1" | xml2bib > "${1/%.ris/.bib}" }
@@ -157,8 +159,8 @@ function clean() {
     rm -f *.run.xml(N)
     rm -f *.toc(N)
     rm -f *.xdv(N)
-    rm -if .*.swp(N)
-    rm -if .*.swo(N)
+    # rm -if .*.swp(N)
+    # rm -if .*.swo(N)
     rm -f _minted*(N)
 }
 
