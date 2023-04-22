@@ -80,11 +80,20 @@ highlight ALEWarningLine ctermbg=none cterm=none
 highlight ALEError ctermbg=none cterm=inverse
 highlight ALEWarning ctermbg=none cterm=inverse
 
-nnoremap <C-l> :ALELint<cr>
+nnoremap <leader>l :ALELint<cr>
 
 map <C-b> <nop>
 map! <C-b> <nop>
 
+nnoremap <C-c> :noh<bar>:echo<cr><esc>
+nnoremap i :noh<bar>:echo<cr>i
+nnoremap I :noh<bar>:echo<cr>I
+nnoremap a :noh<bar>:echo<cr>a
+nnoremap A :noh<bar>:echo<cr>A
+nnoremap gi :noh<bar>:echo<cr>gi
+nnoremap gI :noh<bar>:echo<cr>gI
+nnoremap o :noh<bar>:echo<cr>o
+nnoremap O :noh<bar>:echo<cr>O
 nnoremap <silent> <bs> :noh<bar>:echo<cr>
 nnoremap <silent> <space> :noh<bar>:echo<cr>
 " nnoremap <silent> k :noh<CR>k  " might cause cursor to disappear when holding down
