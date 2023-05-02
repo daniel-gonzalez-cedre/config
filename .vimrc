@@ -94,6 +94,11 @@ nnoremap gi :noh<bar>:echo<cr>gi
 nnoremap gI :noh<bar>:echo<cr>gI
 nnoremap o :noh<bar>:echo<cr>o
 nnoremap O :noh<bar>:echo<cr>O
+nnoremap s :noh<bar>:echo<cr>s
+nnoremap S :noh<bar>:echo<cr>S
+nnoremap v :noh<bar>:echo<cr>v
+nnoremap V :noh<bar>:echo<cr>V
+nnoremap <C-v> :noh<bar>:echo<cr><C-v>
 nnoremap <silent> <bs> :noh<bar>:echo<cr>
 nnoremap <silent> <space> :noh<bar>:echo<cr>
 " nnoremap <silent> k :noh<CR>k  " might cause cursor to disappear when holding down
@@ -106,7 +111,7 @@ nnoremap <silent> <space> :noh<bar>:echo<cr>
 nnoremap <C-f> za
 nnoremap F zA
 
-imap <C-c> <esc>
+inoremap <C-c> <esc>:noh<bar>:echo<cr>
 inoremap <C-]> <del>
 inoremap <expr> <cr> pumvisible() ? !empty(v:completed_item) ? "<C-y><C-c>" : "<C-y><cr>" : "<cr>"
 
