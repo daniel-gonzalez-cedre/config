@@ -89,8 +89,8 @@ alias mv="mv -v"
 alias rm="rm -v"
 alias rsync="rsync -v --progress"
 
-alias ls="tree -h -C -N -L 1 --dirsfirst"
-alias tree="tree -C -N -h --dirsfirst"
+alias tree="tree -C -N --dirsfirst"
+alias ls="tree -L 1"
 function tree_ascii() { tree --dirsfirst -C -N -h "$1" | sed 's/├/\+/g; s/─/-/g; s/└/\\/g' }
 
 alias g++="g++ -std=c++11"
