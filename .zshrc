@@ -80,6 +80,7 @@ export GREP_OPTIONS="--color=always"  # --line-buffered
 export TERM=xterm-256color
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=/opt/homebrew/bin:/usr/local/Cellar:$PATH
+export FFPROFILE=${HOME}/Library/Application\ Support/Firefox/Profiles/4wxlb3i6.default-release
 
 alias gitfig="/usr/bin/git --git-dir=$HOME/.gitfig/ --work-tree=$HOME"     #   gitfig config --local status.showUntrackedFiles no
 
