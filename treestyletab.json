@@ -1,0 +1,46 @@
+{
+  "__ConfigsMigration__userValeusSameToDefaultAreCleared": true,
+  "autoAttachOnNewTabCommand": 1,
+  "autoCollapseExpandSubtreeOnAttach": false,
+  "autoCollapseExpandSubtreeOnSelect": false,
+  "chunkedUserStyleRules0": "Lyogc2lkZWJhciBiYWNrZ3JvdW5kICovCjpyb290LCAjYmFja2dyb3VuZCB7IGJhY2tncm91bmQ6ICMwMDAwMDA7IH0KCiN0YWJiYXIgewogIHNjcm9sbGJhci13aWR0aDogbm9uZTsKICBib3R0b206IDAgIWltcG9ydGFudDsgLyogRWxpbWluYXRlIGRlYWQgc3BhY2Ugb24gYm90dG9tICovCn0KLm5ld3RhYi1idXR0b24tYm94IHsgZGlzcGxheTogbm9uZTsgfQoKLyogc2hvdyB0aXRsZSBvZiB1bnJlYWQgdGFicyBpbiBncmV5ICovCjpyb290LnNpZGViYXIgdGFiLWl0ZW0udW5yZWFkIC5sYWJlbC1jb250ZW50IHsgY29sb3I6ICM1NTU1NTUgIWltcG9ydGFudDsgfQo6cm9vdC5zaWRlYmFyIC5sYWJlbC1jb250ZW50IHsKICBwYWRkaW5nLWxlZnQ6IDVweDsKICBjb2xvcjogI2NhYmFhOSAhaW1wb3J0YW50Owp9Cgp0YWItaXRlbSB0YWItZmF2aWNvbiB7IHBhZGRpbmctbGVmdDogMnB4OyB9CgovKiBMZXNzIHZpc2libGUgdGFiIGRpdmlkZXJzLiAKICAgQSBibGFjayBib3JkZXIgd2l0aCBhIHZlcnkgbG93IGFscGhhIHNsaWdodGx5IGRhcmtlbnMgYW55IGNvbG9yLiAqLwp0YWItaXRlbS1zdWJzdGFuY2UgewogIGJvcmRlci10b3AtbGVmdC1yYWRpdXM6IDVweDsKICBib3JkZXItYm90dG9tLWxlZnQtcmFkaXVzOiA1cHg7CiAgYm9yZGVyLXRvcDogc29saWQgMC41cHggIzI4MjgyODc1OwogIGJvcmRlci1ib3R0b206IHNvbGlkIDAuNXB4ICMyODI4Mjg3NTsKICBib3JkZXItbGVmdDogc29saWQgMXB4ICMyODI4Mjg5NTsKICBiYWNrZ3JvdW5kLWNvbG9yOiAjMTgxODE4Owp9CnRhYi1pdGVtIHRhYi1pdGVtLXN1YnN0YW5jZTpob3ZlciB7IH0KCi8qIGhpZGUgbmV3IHRhYiBidXR0b24gKi8KI3RhYmJhciAuYWZ0ZXItdGFicyB7IGRpc3BsYXk6IG5vbmUgIWltcG9ydGFudDsgfQouYWZ0ZXItdGFicyBidXR0b24geyBkaXNwbGF5OiBub25lICFpbXBvcnRhbnQ7IH0KCi8qIG1vcmUgY29tcGFjdCB0YWIgaGVpZ2h0IGFuZCBkYXJrZXIgY29sb3JzICovCi50YWIgewogIGhlaWdodDogMjVweDsKICBib3JkZXI6ICMwMDAwMDA7CiAgYmFja2dyb3VuZDogIzAwMDAwMDsKfQoKLyogaGlnaGxpZ2h0IGN1cnJlbnQgdGFiIC0tIGNhbiBiZSB1bnNldCBmb3IgcGhvdG9uIHRoZW1lICovCi50YWIuYWN0aXZlIHsgYmFja2dyb3VuZDogIzAwMDAwMDsgfQoudGFiLmFjdGl2ZSAuYmFja2dyb3VuZCB7IGJhY2tncm91bmQ6ICMyZjJkMmQ7IH0KOnJvb3QgLnRhYiAuaGlnaGxpZ2h0ZXI6OmJlZm9yZSB7IGJhY2tncm91bmQ6ICMyZjJkMmQ7IH0KdGFiLWl0ZW0uYWN0aXZlIC5jb250ZXh0dWFsLWlkZW50aXR5LW1hcmtlciB7IH0KCi8qIGhpZGUgY29sbGFwc2UgdHdpc3R5IGFycm93ICovCi8qIGNvbGxhcHNlL2V4cGFuZCBzdWJ0cmVlIHdpdGggZmF2aWNvbiAqLwp0YWItaXRlbSB0YWItdHdpc3R5IHsKICBtYXJnaW4tcmlnaHQ6IC0xZW07CiAgb3BhY2l0eTogMCAhaW1wb3J0YW50OwogIHBvc2l0aW9uOiByZWxhdGl2ZTsKICB6LWluZGV4OiAxMDAwMDsKfQoKLyogaGlkZSBbeF0gdGFiIGNsb3NlIGJ1dHRvbiB1bmxlc3MgaG92ZXJpbmcgb24gdGFiICovCi50YWI6bm90KDpob3ZlcikgLmNsb3NlYm94IHsgdmlzaWJpbGl0eTogY29sbGFwc2UgIWltcG9ydGFudDsgfQoKLnRhYjpob3ZlciB7IGJhY2tncm91bmQ6ICMwMDAwMDA7IH0KCi8qIHJlbW92ZSBzY3JvbGwgYmFyICovCi50YWIgeyBtYXJnaW4tbGVmdDogMXB4OyB9CiN0YWJiYXIgewogIG92ZXJmbG93LXg6IGhpZGRlbjsKICBvdmVyZmxvdy15OiBzY3JvbGw7Cn0KOnJvb3QubGVmdCAjdGFiYmFyLCAjdGFiQ29udGV4dE1lbnUsICN0YWJDb250ZXh0TWVudSB1bCB7IG1hcmdpbi1sZWZ0OiAxcHg7IH0=",
+  "configsVersion": 27,
+  "delayForDuplicatedTabDetection": 20,
+  "dropLinksOnTabBehavior": 2,
+  "iconColor": "dark",
+  "insertDroppedTabsAt": 0,
+  "insertNewChildAt": 0,
+  "notifiedFeaturesVersion": 9,
+  "optionsExpandedGroups": [
+    "group-allConfigs"
+  ],
+  "optionsExpandedSections": [
+    "section-appearance",
+    "section-advanced",
+    "section-newTab",
+    "section-treeBehavior",
+    "section-addons",
+    "section-debug",
+    "section-contextMenu",
+    "section-newTabWithOwner",
+    "section-drag"
+  ],
+  "parentTabOperationBehaviorMode": 1,
+  "showExpertOptions": true,
+  "simulateSelectOwnerOnClose": false,
+  "style": "proton",
+  "syncDevices": {
+    "device-1683064409974-36146": {
+      "id": "device-1683064409974-36146",
+      "name": "Firefox on macOS",
+      "icon": "device-desktop",
+      "timestamp": 1683568175364
+    }
+  },
+  "treeDoubleClickBehavior": 1,
+  "userStyleRules": "",
+  "userStyleRulesFieldHeight": "436px",
+  "userStyleRulesFieldTheme": "gruvbox-dark",
+  "warnOnCloseTabs": false,
+  "warnOnCloseTabsByClosebox": false
+}
