@@ -10,10 +10,10 @@ precmd_conda_info() {
     if [[ -n $CONDA_PREFIX ]]; then
         if [[ $(basename $CONDA_PREFIX) == "miniconda3" ]]; then
             # Without this, it would display conda version
-            CONDA_ENV="(base) "
+            CONDA_ENV="(base)"
         else
             # For all environments that aren't (base)
-            CONDA_ENV="($(basename $CONDA_PREFIX)) "
+            CONDA_ENV="($(basename $CONDA_PREFIX))"
         fi
     # When no conda environment is active, don't show anything
     else
@@ -22,8 +22,7 @@ precmd_conda_info() {
 }
 precmd_functions+=( precmd_conda_info )
 
-function git_info()
-{
+function git_info() {
     local BRANCH=$(git symbolic-ref --short HEAD 2> /dev/null) || return
     if [[ $BRANCH == "" ]];
     then
@@ -58,9 +57,9 @@ width='$(promptwidth)'
 git_branch='$(git_info)'
 # PROMPT=' %F{0}%D{%K:%M:%S} %F{11}λ%f '
 # PROMPT=' %F{3}λ%f '
-PROMPT=''' %F{3}⟩%f '
+PROMPT=''' %F{11}⟩%f '
 # RPROMPT='%F{0}${CONDA_ENV}'"%F{0}%D{%K:%M:%S} %${width}<...<%F{9}%2~%F{0} %15<...<%F{3}%m%f"
-RPROMPT='%F{0}${CONDA_ENV}'"%F{0}%D{%K:%M:%S} ${git_branch}%${width}<...<%F{9}%1~%F{0}%f"
+RPROMPT="%F{0}%D{%K:%M:%S}"' %F{12}${CONDA_ENV}%F{0} '"${git_branch}%${width}<...<%F{9}%1~%F{0}%f"
 
 function schedprompt() {
     emulate -L zsh
@@ -236,9 +235,9 @@ function condactivate() {
         eval "$__conda_setup"
     else
         if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
-            . "$HOME/miniconda3/etc/profile.d/conda.sh"
+            . "$HOME/miniconda3/etc/profile.d/conda.sh"  # commented out by conda initialize
         else
-            export PATH="$HOME/miniconda3/bin:$PATH"
+            export PATH="$HOME/miniconda3/bin:$PATH"  # commented out by conda initialize
         fi
     fi
     unset __conda_setup
