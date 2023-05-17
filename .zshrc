@@ -235,9 +235,9 @@ function condactivate() {
         eval "$__conda_setup"
     else
         if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
-            . "$HOME/miniconda3/etc/profile.d/conda.sh"  # commented out by conda initialize
+            . "$HOME/miniconda3/etc/profile.d/conda.sh"
         else
-            export PATH="$HOME/miniconda3/bin:$PATH"  # commented out by conda initialize
+            export PATH="$HOME/miniconda3/bin:$PATH"
         fi
     fi
     unset __conda_setup
