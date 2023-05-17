@@ -59,7 +59,7 @@ git_branch='$(git_info)'
 # PROMPT=' %F{3}λ%f '
 PROMPT=''' %F{11}⟩%f '
 # RPROMPT='%F{0}${CONDA_ENV}'"%F{0}%D{%K:%M:%S} %${width}<...<%F{9}%2~%F{0} %15<...<%F{3}%m%f"
-RPROMPT="%F{0}%D{%K:%M:%S}"' %F{12}${CONDA_ENV}%F{0} '"${git_branch}%${width}<...<%F{9}%1~%F{0}%f"
+RPROMPT="%F{0}%D{%K:%M:%S}"' %F{12}${CONDA_ENV}%F{0} '"${git_branch}%${width}<...<%F{9}%1~%F{6} $(hostname)%f"
 
 function schedprompt() {
     emulate -L zsh
