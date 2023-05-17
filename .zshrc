@@ -10,10 +10,10 @@ precmd_conda_info() {
     if [[ -n $CONDA_PREFIX ]]; then
         if [[ $(basename $CONDA_PREFIX) == "miniconda3" ]]; then
             # Without this, it would display conda version
-            CONDA_ENV="(base)"
+            CONDA_ENV="(base) "
         else
             # For all environments that aren't (base)
-            CONDA_ENV="($(basename $CONDA_PREFIX))"
+            CONDA_ENV="($(basename $CONDA_PREFIX)) "
         fi
     # When no conda environment is active, don't show anything
     else
@@ -59,7 +59,7 @@ git_branch='$(git_info)'
 # PROMPT=' %F{3}λ%f '
 PROMPT=''' %F{11}⟩%f '
 # RPROMPT='%F{0}${CONDA_ENV}'"%F{0}%D{%K:%M:%S} %${width}<...<%F{9}%2~%F{0} %15<...<%F{3}%m%f"
-RPROMPT="%F{0}%D{%K:%M:%S}"' %F{6}${CONDA_ENV}%F{0} '"${git_branch}%${width}<...<%F{9}%1~%F{12} $(hostname)%f"
+RPROMPT="%F{0}%D{%K:%M:%S} "'%F{6}${CONDA_ENV}%F{0}'"${git_branch}%${width}<...<%F{9}%1~%F{12} $(hostname)%f"
 
 function schedprompt() {
     emulate -L zsh
