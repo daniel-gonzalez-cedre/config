@@ -17,24 +17,20 @@
   "optionsExpandedSections": [
     "section-appearance",
     "section-advanced",
-    "section-newTab",
     "section-treeBehavior",
     "section-addons",
     "section-debug",
-    "section-contextMenu",
-    "section-newTabWithOwner",
     "section-drag"
   ],
   "parentTabOperationBehaviorMode": 1,
   "showExpertOptions": true,
-  "simulateSelectOwnerOnClose": false,
   "style": "proton",
   "syncDevices": {
     "device-1683064409974-36146": {
       "id": "device-1683064409974-36146",
       "name": "Firefox on macOS",
       "icon": "device-desktop",
-      "timestamp": 1683568175364
+      "timestamp": 1684622775778
     }
   },
   "treeDoubleClickBehavior": 1,

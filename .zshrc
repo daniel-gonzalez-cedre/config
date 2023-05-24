@@ -114,7 +114,8 @@ alias istats="watch -n 0 --color istats"
 alias storage="watch -n 1 --color df -h"
 
 alias latexmk="latexmk -pdf -pvc"
-function latex() { latexmk -pdf -pvc "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$' }
+# function latex() { latexmk -pdf -pvc "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$' }
+function latex() { latexmk -pdf -pvc "$1" | grep -i -A7 '^!.*\|^.*error.*$' }
 function xelatex() { latexmk -pdf -pvc -xelatex "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$' }
 function lualatex() { latexmk -pdf -pvc -lualatex "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$' }
 function latexsh() { latexmk -pdf -pvc -shell-escape "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$' }
