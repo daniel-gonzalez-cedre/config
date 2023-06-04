@@ -87,7 +87,8 @@ highlight ALEWarning ctermbg=none cterm=inverse
 
 autocmd! VimEnter * call s:nerdcommenter_map()
 function! s:nerdcommenter_map()
-    map <leader>cc <plug>NERDCommenterInvert
+    nmap <leader>cc <plug>NERDCommenterInvert
+    vmap <leader>cc <plug>NERDCommenterInvert gv
     map <leader>ca <plug>NERDCommenterAppend
     " map <leader>cA <plug>NERDCommenterAltDelims
 endfunction
