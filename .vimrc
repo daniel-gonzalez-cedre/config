@@ -65,7 +65,7 @@ let g:matchparen_insert_timeout = 8
 let g:NERDCommentEmptyLines = 0
 let g:NERDCompactSexyComs = 1
 " let g:NERDDefaultAlign = 'left'
-let g:NERDSpaceDelims = 1
+let g:NERDSpaceDelims = 0
 let g:NERDToggleCheckAllLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:python_highlight_all = 1
@@ -90,7 +90,7 @@ function! s:nerdcommenter_map()
     nmap <leader>cc <plug>NERDCommenterInvert
     vmap <leader>cc <plug>NERDCommenterInvert gv
     vmap <leader>c<space> <plug>NERDCommenterToggle gv
-    map <leader>ca <plug>NERDCommenterAppend
+    noremap <leader>ca A<space><C-c><plug>NERDCommenterAppend
     " map <leader>cA <plug>NERDCommenterAltDelims
 endfunction
 
