@@ -101,9 +101,11 @@ nnoremap S :noh<bar>:echo<cr>S
 nnoremap v :noh<bar>:echo<cr>v
 nnoremap V :noh<bar>:echo<cr>V
 nnoremap <C-v> :noh<bar>:echo<cr><C-v>
-" nnoremap <silent> <bs> :noh<bar>:echo<cr>
+nnoremap <silent> <bs> :noh<bar>:echo<cr>
 " nnoremap <silent> <space> :noh<bar>:echo<cr>
-nnoremap <silent> <space> @=(foldlevel('.')?'za':"\<space>")<CR>
+" nnoremap <silent> <space> @=(foldlevel('.')?'za':"\<space>")<cr>
+nnoremap <silent> <space> @=(foldlevel('.')?'za':"")<cr>:noh<bar>:echo<cr>
+
 vnoremap <space> zf
 " nnoremap <silent> k :noh<CR>k  " might cause cursor to disappear when holding down
 " nnoremap <silent> j :noh<CR>j
@@ -151,6 +153,7 @@ nnoremap = g_
 " endf
 
 vnoremap <bs> <nop>
+vnoremap <space> <nop>
 
 vnoremap " <C-c>`>a"<C-c>`<i"<C-c>
 vnoremap ' <C-c>`>a'<C-c>`<i'<C-c>
