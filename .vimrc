@@ -89,6 +89,7 @@ autocmd! VimEnter * call s:nerdcommenter_map()
 function! s:nerdcommenter_map()
     nmap <leader>cc <plug>NERDCommenterInvert
     vmap <leader>cc <plug>NERDCommenterInvert gv
+    vmap <leader>c<space> <plug>NERDCommenterToggle gv
     map <leader>ca <plug>NERDCommenterAppend
     " map <leader>cA <plug>NERDCommenterAltDelims
 endfunction
