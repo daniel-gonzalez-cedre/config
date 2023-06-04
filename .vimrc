@@ -16,10 +16,10 @@ set conceallevel=0
 set cursorline
 set display+=lastline
 set expandtab
-" set foldcolumn=1
+"set foldcolumn=1
 set foldignore=
 set foldlevelstart=99
-" set foldmethod=indent
+"set foldmethod=indent
 set foldmethod=manual
 set formatoptions-=t
 set hlsearch
@@ -52,7 +52,7 @@ set wrap
 set wrapmargin=0
 
 let g:ale_linters = {"python": ["flake8", "pylint"], "lua": ["luacheck", "luac"], "tex": ["lacheck"]}
-" tex: chktek, lacheck
+"tex: chktek, lacheck
 let g:ale_lint_on_text_changed = "never"
 let g:ale_lint_on_insert_leave = 0
 let g:haskell_indent_if = 4
@@ -64,7 +64,7 @@ let g:matchparen_timeout = 8
 let g:matchparen_insert_timeout = 8
 let g:NERDCommentEmptyLines = 0
 let g:NERDCompactSexyComs = 1
-" let g:NERDDefaultAlign = 'left'
+"let g:NERDDefaultAlign = 'left'
 let g:NERDSpaceDelims = 0
 let g:NERDToggleCheckAllLines = 1
 let g:NERDTrimTrailingWhitespace = 1
@@ -78,8 +78,8 @@ colorscheme gruvbox
 
 hi StatusLine ctermbg=none ctermfg=237 cterm=none
 hi StatusLineNC ctermbg=none ctermfg=237 cterm=none
-" highlight ALEErrorSign ctermfg=none cterm=inverse
-" highlight ALEWarningSign ctermfg=none cterm=inverse
+"highlight ALEErrorSign ctermfg=none cterm=inverse
+"highlight ALEWarningSign ctermfg=none cterm=inverse
 highlight ALEErrorLine ctermbg=234 cterm=none
 highlight ALEWarningLine ctermbg=none cterm=none
 highlight ALEError ctermbg=none cterm=inverse
@@ -88,10 +88,12 @@ highlight ALEWarning ctermbg=none cterm=inverse
 autocmd! VimEnter * call s:nerdcommenter_map()
 function! s:nerdcommenter_map()
     nmap <leader>cc <plug>NERDCommenterInvert
-    vmap <leader>cc <plug>NERDCommenterInvert gv
+    vmap <leader>cc <plug>NERDCommenterInvert
+    "vmap <leader>cc <plug>NERDCommenterInvert gv
+    nmap <leader>c<space> <plug>NERDCommenterToggle
     vmap <leader>c<space> <plug>NERDCommenterToggle gv
     noremap <leader>ca A<space><C-c><plug>NERDCommenterAppend
-    " map <leader>cA <plug>NERDCommenterAltDelims
+    "map <leader>cA <plug>NERDCommenterAltDelims
 endfunction
 
 nnoremap <leader>l :ALELint<cr>
@@ -116,17 +118,17 @@ nnoremap v :noh<bar>:echo<cr>v
 nnoremap V :noh<bar>:echo<cr>V
 nnoremap <C-v> :noh<bar>:echo<cr><C-v>
 nnoremap <silent> <bs> :noh<bar>:echo<cr>
-" nnoremap <silent> <space> :noh<bar>:echo<cr>
-" nnoremap <silent> <space> @=(foldlevel('.')?'za':"\<space>")<cr>
+"nnoremap <silent> <space> :noh<bar>:echo<cr>
+"nnoremap <silent> <space> @=(foldlevel('.')?'za':"\<space>")<cr>
 nnoremap <silent> <space> @=(foldlevel('.')?'za':"")<cr>:noh<bar>:echo<cr>
 
 vnoremap <space> zf
-" nnoremap <silent> k :noh<CR>k  " might cause cursor to disappear when holding down
-" nnoremap <silent> j :noh<CR>j
-" nnoremap <silent> h :noh<CR>h
-" nnoremap <silent> l :noh<CR>l
-" nnoremap <C-k> gk
-" nnoremap <C-j> gj
+"nnoremap <silent> k :noh<CR>k  "might cause cursor to disappear when holding down
+"nnoremap <silent> j :noh<CR>j
+"nnoremap <silent> h :noh<CR>h
+"nnoremap <silent> l :noh<CR>l
+"nnoremap <C-k> gk
+"nnoremap <C-j> gj
 
 nnoremap <C-f> za
 nnoremap F zA
@@ -143,28 +145,28 @@ inoremap ] <C-r>=ClosePair(']')<cr>
 inoremap } <C-r>=ClosePair('}')<cr>
 inoremap " <C-r>=QuoteDelim('"')<cr>
 inoremap ' <C-r>=QuoteDelim("'")<cr>
-" vnoremap ( <C-c>`>a)<C-c>`<i(<C-c>
-" vnoremap [ <C-c>`>a]<C-c>`<i[<C-c>
-" vnoremap { <C-c>`>a}<C-c>`<i{<C-c>
-" vnoremap ) <C-c>`<i(<C-c>`><right>a)<C-c>
-" vnoremap ] <C-c>`<i[<C-c>`><right>a]<C-c>
-" vnoremap } <C-c>`<i{<C-c>`><right>a}<C-c>
+"vnoremap ( <C-c>`>a)<C-c>`<i(<C-c>
+"vnoremap [ <C-c>`>a]<C-c>`<i[<C-c>
+"vnoremap { <C-c>`>a}<C-c>`<i{<C-c>
+"vnoremap ) <C-c>`<i(<C-c>`><right>a)<C-c>
+"vnoremap ] <C-c>`<i[<C-c>`><right>a]<C-c>
+"vnoremap } <C-c>`<i{<C-c>`><right>a}<C-c>
 vnoremap // y/\V<C-r>=escape(@",'/\')<cr>
 vnoremap = g_
 nnoremap = g_
 
-" think about this later
-" vnoremap <C-[> <C-c>`>a<C-r>=ReplaceDelim(']')<CR><C-c>`<i<C-r>=ReplaceDelim('[')<CR><C-c>
-" matchstr(getline('.'), '\%' . col('.') . 'c.')
-" function! ReplaceDelim(repl)
-"     let char = matchstr(getline('.'), '\%' . col('.') . 'c.')
-"     if char == "(" ||  char == "{" || char == "["
-"         return "\<DEL>".a:repl
-"     elseif char == ")" || char == "}" ||char == "]"
-"         return "\<BS>".a:repl
-"     else
-"         return a:repl
-" endf
+"think about this later
+"vnoremap <C-[> <C-c>`>a<C-r>=ReplaceDelim(']')<CR><C-c>`<i<C-r>=ReplaceDelim('[')<CR><C-c>
+"matchstr(getline('.'), '\%' . col('.') . 'c.')
+"function! ReplaceDelim(repl)
+"    let char = matchstr(getline('.'), '\%' . col('.') . 'c.')
+"    if char == "(" ||  char == "{" || char == "["
+"        return "\<DEL>".a:repl
+"    elseif char == ")" || char == "}" ||char == "]"
+"        return "\<BS>".a:repl
+"    else
+"        return a:repl
+"endf
 
 vnoremap <bs> <nop>
 vnoremap <space> <nop>
@@ -182,16 +184,16 @@ if has('clipboard')
     noremap P "+P
 endif
 
-" custom cursors
-" LINE: \e[5
-" BLOCK: 
-" UNDERLINE: \e[4
-let &t_SI="\e[5 q"  " LINE: start insert mode
-" let &t_SI="\e[4 q"  "  UNDERLINE: start insert mode
-let &t_EI="\e[1 q"  "  UNDERLINE: end insert mode
-" let &t_EI="\e[2 q"  "  BLOCK: end insert mode
+"custom cursors
+"LINE: \e[5
+"BLOCK: 
+"UNDERLINE: \e[4
+let &t_SI="\e[5 q"  "LINE: start insert mode
+"let &t_SI="\e[4 q"  "UNDERLINE: start insert mode
+let &t_EI="\e[1 q"  "UNDERLINE: end insert mode
+"let &t_EI="\e[2 q"  "BLOCK: end insert mode
 
-" auto closing of paired chars
+"auto closing of paired chars
 function ClosePair(char)
     if getline('.')[col('.') - 1] == a:char
         return "\<right>"
@@ -210,12 +212,12 @@ function QuoteDelim(char)
         return a:char.a:char."\<esc>i"
     endif
 endf
-" camel-case selected text
+"camel-case selected text
 function! TwiddleCase(str)
     return substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
 endfunction
 
-" toggle dark/light background
+"toggle dark/light background
 function! ToggleBG()
     if (&bg == "light")
         set bg=dark
@@ -241,12 +243,12 @@ map <leader>m :ALEDetail<cr>
 
 ""vnoremap // y/\V<C-r>=escape(@",'/\')<cr>
 
-" search & replace
+"search & replace
 nnoremap <leader>s :%s//gc<left><left><left>
-" search & replace visual selection
+"search & replace visual selection
 vnoremap <leader>s y`<`>:<C-u>%s/\V<C-r>=escape(@",'/\')<cr>//gc<left><left><left>
 vnoremap <leader><C-s> :%s//gc<left><left><left>
-" remove all highlighting highlighting
+"remove all highlighting highlighting
 noremap <leader>h :noh<cr>
 
 set fillchars=stl:⋅,stlnc:⋅,vert:│,fold:۰,diff:·
