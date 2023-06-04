@@ -50,8 +50,9 @@ set wildmenu
 set wildmode=list:longest,full
 set wrap
 set wrapmargin=0
-" tex: chktek, lacheck
+
 let g:ale_linters = {"python": ["flake8", "pylint"], "lua": ["luacheck", "luac"], "tex": ["lacheck"]}
+" tex: chktek, lacheck
 let g:ale_lint_on_text_changed = "never"
 let g:ale_lint_on_insert_leave = 0
 let g:haskell_indent_if = 4
@@ -72,7 +73,9 @@ let g:rainbow_active = 1
 let g:tex_flavor = "latex"
 let g:gruvbox_contrast_dark = "hard"
 let g:gruvbox_contrast_light = "hard"
+
 colorscheme gruvbox
+
 hi StatusLine ctermbg=none ctermfg=237 cterm=none
 hi StatusLineNC ctermbg=none ctermfg=237 cterm=none
 " highlight ALEErrorSign ctermfg=none cterm=inverse
@@ -82,10 +85,19 @@ highlight ALEWarningLine ctermbg=none cterm=none
 highlight ALEError ctermbg=none cterm=inverse
 highlight ALEWarning ctermbg=none cterm=inverse
 
+autocmd! VimEnter * call s:nerdcommenter_map()
+function! s:nerdcommenter_map()
+    map <leader>cc <plug>NERDCommenterInvert
+    map <leader>ca <plug>NERDCommenterAppend
+    " map <leader>cA <plug>NERDCommenterAltDelims
+endfunction
+
 nnoremap <leader>l :ALELint<cr>
 
 map <C-b> <nop>
 map! <C-b> <nop>
+
+nnoremap <leader>ca <leader>cA
 
 nnoremap <C-c> :noh<bar>:echo<cr><esc>
 nnoremap i :noh<bar>:echo<cr>i
