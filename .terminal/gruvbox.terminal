@@ -288,11 +288,11 @@
 	<key>WindowTitle</key>
 	<string>λ</string>
 	<key>columnCount</key>
-	<integer>128</integer>
+	<integer>96</integer>
 	<key>name</key>
 	<string>gruvbox</string>
 	<key>rowCount</key>
-	<integer>32</integer>
+	<integer>44</integer>
 	<key>shellExitAction</key>
 	<integer>1</integer>
 	<key>type</key>

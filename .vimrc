@@ -16,9 +16,11 @@ set conceallevel=0
 set cursorline
 set display+=lastline
 set expandtab
+" set foldcolumn=1
 set foldignore=
 set foldlevelstart=99
-set foldmethod=indent
+" set foldmethod=indent
+set foldmethod=manual
 set formatoptions-=t
 set hlsearch
 set ignorecase
@@ -99,8 +101,10 @@ nnoremap S :noh<bar>:echo<cr>S
 nnoremap v :noh<bar>:echo<cr>v
 nnoremap V :noh<bar>:echo<cr>V
 nnoremap <C-v> :noh<bar>:echo<cr><C-v>
-nnoremap <silent> <bs> :noh<bar>:echo<cr>
-nnoremap <silent> <space> :noh<bar>:echo<cr>
+" nnoremap <silent> <bs> :noh<bar>:echo<cr>
+" nnoremap <silent> <space> :noh<bar>:echo<cr>
+nnoremap <silent> <space> @=(foldlevel('.')?'za':"\<space>")<CR>
+vnoremap <space> zf
 " nnoremap <silent> k :noh<CR>k  " might cause cursor to disappear when holding down
 " nnoremap <silent> j :noh<CR>j
 " nnoremap <silent> h :noh<CR>h
