@@ -1,3 +1,5 @@
+printf '\33c\e[3J'
+
 fpath+=~/.zfunc
 autoload -Uz add-zsh-hook
 setopt prompt_subst
@@ -230,6 +232,7 @@ function resize() {
     done
 }
 
+# we should stop using conda
 function condactivate() {
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
