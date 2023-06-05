@@ -19,8 +19,7 @@ set expandtab
 "set foldcolumn=1
 set foldignore=
 set foldlevelstart=99
-"set foldmethod=indent
-set foldmethod=manual
+set foldmethod=indent
 set formatoptions-=t
 set hlsearch
 set ignorecase
@@ -85,21 +84,8 @@ highlight ALEWarningLine ctermbg=none cterm=none
 highlight ALEError ctermbg=none cterm=inverse
 highlight ALEWarning ctermbg=none cterm=inverse
 
-autocmd! VimEnter * call s:nerdcommenter_map()
-function! s:nerdcommenter_map()
-    nmap <leader>cc <plug>NERDCommenterInvert
-    vmap <leader>cc <plug>NERDCommenterInvert
-    "vmap <leader>cc <plug>NERDCommenterInvert gv
-    nmap <leader>c<space> <plug>NERDCommenterToggle
-    vmap <leader>c<space> <plug>NERDCommenterToggle gv
-    noremap <leader>ca A<space><C-c><plug>NERDCommenterAppend
-    "map <leader>cA <plug>NERDCommenterAltDelims
-endfunction
-
 map <C-b> <nop>
 map! <C-b> <nop>
-
-nnoremap <leader>ca <leader>cA
 
 nnoremap <C-c> :noh<bar>:echo<cr><esc>
 nnoremap i :noh<bar>:echo<cr>i
@@ -118,9 +104,9 @@ nnoremap <C-v> :noh<bar>:echo<cr><C-v>
 nnoremap <silent> <bs> :noh<bar>:echo<cr>
 "nnoremap <silent> <space> :noh<bar>:echo<cr>
 "nnoremap <silent> <space> @=(foldlevel('.')?'za':"\<space>")<cr>
-nnoremap <silent> <space> @=(foldlevel('.')?'za':"")<cr>:noh<bar>:echo<cr>
+"nnoremap <silent> <space> @=(foldlevel('.')?'za':"")<cr>:noh<bar>:echo<cr>
+nnoremap <silent> <space> :noh<bar>:echo<cr>
 
-vnoremap <space> zf
 "nnoremap <silent> k :noh<CR>k  "might cause cursor to disappear when holding down
 "nnoremap <silent> j :noh<CR>j
 "nnoremap <silent> h :noh<CR>h
@@ -128,8 +114,9 @@ vnoremap <space> zf
 "nnoremap <C-k> gk
 "nnoremap <C-j> gj
 
-nnoremap <C-f> za
-nnoremap F zA
+"vnoremap <space> zf
+"nnoremap <C-f> za
+"nnoremap F zA
 
 inoremap <C-c> <esc>:noh<bar>:echo<cr>
 inoremap <C-]> <del>
@@ -234,6 +221,16 @@ function! ToggleBG()
     hi StatusLineNC ctermbg=none ctermfg=237 cterm=none
 endfunction
 
+nnoremap <leader>ff zf
+nnoremap <leader>fa za
+nnoremap <leader>fo zo
+nnoremap <leader>fc zc
+nnoremap <leader>fd zd
+nnoremap <leader>fD zD
+nnoremap <leader>fE zE
+nnoremap <leader>fm :set foldmethod=manual<cr>
+nnoremap <leader>fi :set foldmethod=indent<cr>
+
 map <leader><C-t> :call ToggleBG()<cr>
 map <leader>ll :ALENextWrap<cr>
 map <leader>lL :ALEPreviousWrap<cr>
@@ -241,7 +238,7 @@ map <leader>LL :ALEPreviousWrap<cr>
 map <leader>ld :ALEDetail<cr>
 "map <leader>l :ALELint<cr>
 
-""vnoremap // y/\V<C-r>=escape(@",'/\')<cr>
+"vnoremap // y/\V<C-r>=escape(@",'/\')<cr>
 
 "search & replace
 nnoremap <leader>s :%s//gc<left><left><left>
@@ -251,4 +248,20 @@ vnoremap <leader><C-s> :%s//gc<left><left><left>
 "remove all highlighting highlighting
 noremap <leader>h :noh<cr>
 
+"NERDCommenter
+autocmd! VimEnter * call s:nerdcommenter_map()
+function! s:nerdcommenter_map()
+    nmap <leader>cc <plug>NERDCommenterInvert
+    vmap <leader>cc <plug>NERDCommenterInvert
+    "vmap <leader>cc <plug>NERDCommenterInvert gv
+    nmap <leader>c<space> <plug>NERDCommenterToggle
+    vmap <leader>c<space> <plug>NERDCommenterToggle gv
+    noremap <leader>ca A<space><C-c><plug>NERDCommenterAppend
+    "map <leader>cA <plug>NERDCommenterAltDelims
+endfunction
+
 set fillchars=stl:⋅,stlnc:⋅,vert:│,fold:۰,diff:·
+
+
+command! -nargs=+ Foldsearch exe "normal /".<q-args>."\z"
+"command! -nargs=+ Foldsearch exe "normal /".<q-args>."" | setlocal foldexpr=(getline(v:lnum)=~@/)?0:(getline(v:lnum-1)=~@/)\|\|(getline(v:lnum+1)=~@/)?1:2 foldmethod=expr foldlevel=0 foldcolumn=2
