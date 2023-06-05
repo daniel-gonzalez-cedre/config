@@ -96,8 +96,6 @@ function! s:nerdcommenter_map()
     "map <leader>cA <plug>NERDCommenterAltDelims
 endfunction
 
-nnoremap <leader>l :ALELint<cr>
-
 map <C-b> <nop>
 map! <C-b> <nop>
 
@@ -237,9 +235,11 @@ function! ToggleBG()
 endfunction
 
 map <leader><C-t> :call ToggleBG()<cr>
-map <leader>n :ALENextWrap<cr>
-map <leader>N :ALEPreviousWrap<cr>
-map <leader>m :ALEDetail<cr>
+map <leader>ll :ALENextWrap<cr>
+map <leader>lL :ALEPreviousWrap<cr>
+map <leader>LL :ALEPreviousWrap<cr>
+map <leader>ld :ALEDetail<cr>
+"map <leader>l :ALELint<cr>
 
 ""vnoremap // y/\V<C-r>=escape(@",'/\')<cr>
 
