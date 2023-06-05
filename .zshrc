@@ -1,3 +1,4 @@
+fpath+=~/.zfunc
 autoload -Uz add-zsh-hook
 setopt prompt_subst
 autoload -Uz compinit && compinit
@@ -79,6 +80,7 @@ export GREP_OPTIONS="--color=always"  # --line-buffered
 export TERM=xterm-256color
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=/opt/homebrew/bin:/usr/local/Cellar:$PATH
+export PATH=~/.local/bin:$PATH
 export FFPROFILE=${HOME}/Library/Application\ Support/Firefox/Profiles/4wxlb3i6.default-release
 
 alias gitfig="/usr/bin/git --git-dir=$HOME/.gitfig/ --work-tree=$HOME"     #   gitfig config --local status.showUntrackedFiles no
@@ -246,3 +248,7 @@ function condactivate() {
     conda activate
     conda config --set changeps1 false
 }
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
