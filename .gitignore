@@ -7,16 +7,3 @@
 ehthumbs.db
 Thumbs.db
 .viminfo
-
-!/academia/ORCiD.png
-!/LaTeX
-!/.bash
-!/.config
-/.config/*
-!/.config/htop
-!/.config/mypy
-!/.config/sc-im
-!/.fonts
-!/.terminal
-!/.vim
-!/.zsh
