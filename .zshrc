@@ -102,6 +102,7 @@ alias haskell="runhaskell"
 alias matlab="/Applications/MATLAB_R2019a.app/bin/matlab -nodesktop -nosplash"
 # alias minicondactivate="source ~/miniconda3/bin/activate"
 alias python="python3"
+
 function minicondactivate() {
 # source ~/miniconda3/bin/activate  # commented out by conda initialize
     PROMPT=" %11Fλ%f "
@@ -170,7 +171,7 @@ function clean() {
 }
 
 # computer vision
-function cv() { g++ -std=c++11 $1 $(pkg-config --cflags --libs opencv4); }
+function gcv() { g++ -std=c++11 $1 $(pkg-config --cflags --libs opencv4); }
 
 # $1 : <input_file>
 # $2 : <output_file>
@@ -182,16 +183,16 @@ function encrypt() { openssl enc -aes-256-cbc -salt -in "$1" -out "$2" }
 
 # $1 : <input>.cue
 # $2 : <input>.flac
-function flac_split() { shnsplit -f "$1" -o flac -t "flac %n. %p - %a - %t" "$2" }
+function flacsplit() { shnsplit -f "$1" -o flac -t "flac %n. %p - %a - %t" "$2" }
 
 # $1 : <input_file>
-function flac_convert() {
+function flacconvert() {
     filename=$1
     ffmpeg -i "$1" -codec:a libmp3lame -b:a 320k "${filename//flac/mp3}"
 }
 
 # converts all flac files in the current directory to mp3
-function flac_convert_all() {
+function flacall() {
     for f in ./*.flac
     do
         flac_convert "$f"
@@ -199,7 +200,7 @@ function flac_convert_all() {
 }
 
 # removes audio from all files in current directory
-function noaudio() {
+function removeaudio() {
     for f in ./*
     do
         filename="$f"
@@ -232,6 +233,46 @@ function resize() {
     done
 }
 
+# packages
+case `uname` in
+    Darwin)
+        # commands for OS X go here
+        if ! command -v brew &> /dev/null; then
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        fi
+
+        if ! command -v tmux &> /dev/null; then
+            brew install tmux
+        fi
+
+        if ! command -v pyenv &> /dev/null; then
+            brew install pyenv
+        fi
+
+        if ! command -v poetry &> /dev/null; then
+            brew install poetry
+        fi
+    ;;
+    Linux)
+        # commands for Linux go here
+    ;;
+    FreeBSD)
+        # commands for FreeBSD go here
+    ;;
+esac
+
+if command -v pyenv > /dev/null; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+fi
+
+if command -v poetry > /dev/null; then
+    export POETRY_CONFIG_DIR="$HOME/.config/pypoetry"
+fi
+
+
+# ===
 # we should stop using conda
 function condactivate() {
     # >>> conda initialize >>>
@@ -251,9 +292,3 @@ function condactivate() {
     conda activate
     conda config --set changeps1 false
 }
-
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-export POETRY_CONFIG_DIR="$HOME/.config/pypoetry"
