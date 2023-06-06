@@ -233,6 +233,9 @@ function resize() {
     done
 }
 
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
 # packages
 case `uname` in
     Darwin)
@@ -240,21 +243,25 @@ case `uname` in
         if ! command -v brew &> /dev/null; then
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         fi
-
         if ! command -v tmux &> /dev/null; then
             brew install tmux
         fi
-
         if ! command -v pyenv &> /dev/null; then
             brew install pyenv
         fi
-
         if ! command -v poetry &> /dev/null; then
-            brew install poetry
+            #brew install poetry
+            curl -sSL https://install.python-poetry.org | python3 -
         fi
     ;;
     Linux)
         # commands for Linux go here
+        if ! command -v pyenv &> /dev/null; then
+            curl https://pyenv.run | bash
+        fi
+        if ! command -v poetry &> /dev/null; then
+            curl -sSL https://install.python-poetry.org | python3 -
+        fi
     ;;
     FreeBSD)
         # commands for FreeBSD go here
@@ -262,8 +269,8 @@ case `uname` in
 esac
 
 if command -v pyenv > /dev/null; then
-    export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$PYENV_ROOT/bin:$PATH"
+    #export PYENV_ROOT="$HOME/.pyenv"
+    #export PATH="$PYENV_ROOT/bin:$PATH"
     eval "$(pyenv init -)"
 fi
 
