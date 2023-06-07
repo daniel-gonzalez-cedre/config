@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =7
+let g:netrw_dirhistcnt =8
+let g:netrw_dirhist_8='/Users/cedre/repos/gnn/data_efficient_grammar/private'
 let g:netrw_dirhist_7='/Users/danielgonzalez/LaTeX'
 let g:netrw_dirhist_6='/private/etc/ssh/ssh_config.d'
 let g:netrw_dirhist_5='/Users/danielgonzalez/repos/arXiv-template/sections'
@@ -9,4 +10,3 @@ let g:netrw_dirhist_2='/Users/danielgonzalez/.ssh'
 let g:netrw_dirhist_1='/Users/danielgonzalez/.vim/ftdetect'
 let g:netrw_dirhist_0='/Users/danielgonzalez/repos/DyVeRG/data_full/email-enron'
 let g:netrw_dirhist_9='/Users/danielgonzalez/repos/DyVeRG/data_pruned'
-let g:netrw_dirhist_8='/Users/danielgonzalez/repos/DyVeRG/data/email-dnc'
