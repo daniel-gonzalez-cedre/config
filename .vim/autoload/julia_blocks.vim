@@ -113,8 +113,8 @@ function! s:unmap(function)
     return
   endif
   let mapids = a:function =~# "^move" ? ["n", "x", "o"] :
-	\      a:function =~# "^select" ? ["x", "o"] :
-	\      ["n"]
+        \      a:function =~# "^select" ? ["x", "o"] :
+        \      ["n"]
   let fn = "julia_blocks#" . a:function
   let cmd = "<buffer> " . chars
   for m in mapids
@@ -242,8 +242,8 @@ function! julia_blocks#init_mappings()
   call julia_blocks#select_reset()
   augroup JuliaBlocks
     au!
-    au InsertEnter *.jl call julia_blocks#select_reset()
-    au CursorMoved *.jl call s:cursor_moved()
+    au InsertEnter <buffer> call julia_blocks#select_reset()
+    au CursorMoved <buffer> call s:cursor_moved()
   augroup END
 
   " we would need some autocmd event associated with exiting from
@@ -335,7 +335,7 @@ function! s:on_begin()
   let [l,c] = [line('.'), col('.')]
   normal! ^
   let patt = '\%<'.(c+1).'c\(' . b:julia_begin_keywordsm . '\)\%>'.(c-1).'c'
-  let n = search(patt, 'Wnc', l)
+  let n = search('\C' . patt, 'Wnc', l)
   call cursor(l, c)
   return n > 0
 endfunction
@@ -346,15 +346,15 @@ function! s:matchit()
 endfunction
 
 function! s:move_before_begin()
-  call search(b:julia_begin_keywordsm, 'Wbc')
+  call search('\C' . b:julia_begin_keywordsm, 'Wbc')
   normal! h
 endfunction
 
 function! s:cycle_until_end()
-  let pos = getpos('.')
+  let c = 0
   while !s:on_end()
+    let pos = getpos('.')
     call s:matchit()
-    let c = 0
     if getpos('.') == pos || c > 1000
       " shouldn't happen, but let's avoid infinite loops anyway
       return 0
@@ -378,14 +378,14 @@ function! s:moveto_block_delim(toend, backwards, ...)
       normal! bh
     endif
     while 1
-      let searchret = search(pattern, flags)
+      let searchret = search('\C' . pattern, flags)
       if !searchret
-	return ret
+        return ret
       endif
       exe "let skip = " . b:match_skip
       if !skip
-	let ret = 1
-	break
+        let ret = 1
+        break
       endif
     endwhile
   endfor
@@ -469,7 +469,7 @@ function! s:moveto_currentblock_end()
     normal! b
   endif
 
-  let ret = searchpair(b:julia_begin_keywordsm, '', b:julia_end_keywords, flags, b:match_skip)
+  let ret = searchpair('\C' . b:julia_begin_keywordsm, '', '\C' . b:julia_end_keywords, flags, b:match_skip)
   if ret <= 0
     return s:abort()
   endif
@@ -491,15 +491,15 @@ function! julia_blocks#moveblock_N()
       let start1_pos = ret_start ? getpos('.') : [0,0,0,0]
       call setpos('.', save_pos)
       if s:on_end()
-	normal! h
+        normal! h
       endif
       let ret_end = s:moveto_block_delim(1, 0, 1)
       let end1_pos = ret_end ? getpos('.')  : [0,0,0,0]
 
       if ret_start && (!ret_end || s:compare_pos(start1_pos, end1_pos) < 0)
-	call setpos('.', start1_pos)
+        call setpos('.', start1_pos)
       else
-	call setpos('.', save_pos)
+        call setpos('.', save_pos)
       endif
     endif
 
@@ -560,7 +560,7 @@ function! julia_blocks#moveblock_p()
     if s:on_begin()
       call s:move_before_begin()
       if s:on_end()
-	normal! l
+        normal! l
       endif
       let save_pos = getpos('.')
       let ret_start = s:moveto_block_delim(0, 1, 1)
@@ -570,9 +570,9 @@ function! julia_blocks#moveblock_p()
       let end1_pos = ret_end ? getpos('.') : [0,0,0,0]
 
       if ret_end && (!ret_start || s:compare_pos(start1_pos, end1_pos) < 0)
-	call setpos('.', end1_pos)
+        call setpos('.', end1_pos)
       else
-	call setpos('.', save_pos)
+        call setpos('.', save_pos)
       endif
     endif
 
@@ -675,7 +675,7 @@ function! s:find_block(current_mode)
     normal! l
     normal! b
   endif
-  let searchret = searchpair(b:julia_begin_keywordsm, '', b:julia_end_keywords, flags, b:match_skip)
+  let searchret = searchpair('\C' . b:julia_begin_keywordsm, '', '\C' . b:julia_end_keywords, flags, b:match_skip)
   if searchret <= 0
     if !b:jlblk_did_select
       return s:abort()
@@ -696,7 +696,7 @@ function! s:find_block(current_mode)
 endfunction
 
 function! s:repeated_find(ai_mode)
-  let repeat = b:jlblk_count + (a:ai_mode == 'i' && v:count1 > 1 ? 1 : 0)
+  let repeat = b:jlblk_count + (a:ai_mode == 'i' && b:jlblk_count > 1 ? 1 : 0)
   for c in range(repeat)
     let current_mode = (c < repeat - 1 ? 'a' : a:ai_mode)
     let ret_find_block = s:find_block(current_mode)
@@ -730,8 +730,8 @@ function! julia_blocks#select_a(...)
 
   let b:jlblk_doing_select = 1
 
-  " CursorMove is only triggered if end_pos
-  " end_pos is different than the staring position;
+  " CursorMoved is only triggered if end_pos
+  " is different than the staring position;
   " so when starting from the 'd' in 'end' we need to
   " force it
   if current_pos == end_pos
@@ -740,6 +740,39 @@ function! julia_blocks#select_a(...)
 
   call s:set_mark_tick()
   return [start_pos, end_pos]
+endfunction
+
+let s:bracketBlocks = '\<julia\%(\%(\%(Printf\)\?Par\|SqBra\%(Idx\)\?\|CurBra\)Block\|ParBlockInRange\|StringVars\%(Par\|SqBra\|CurBra\)\|Dollar\%(Par\|SqBra\)\|QuotedParBlockS\?\)\>'
+let s:codeBlocks = '\<julia\%(Conditional\|While\|For\|Begin\|Function\|Macro\|Quote\|\%(Mutable\)\?Struct\|Let\|Do\|Exception\|Abstract\|Primitive\)Block\>'
+
+function s:is_in_brackets(lnum, c)
+  let stack = map(synstack(a:lnum, a:c), 'synIDattr(v:val, "name")')
+  for i in range(len(stack)-1, 0, -1)
+    if stack[i] =~# s:bracketBlocks
+      return 1
+    elseif stack[i] =~# s:codeBlocks
+      return 0
+    endif
+  endfor
+  return 0
+endfunction
+
+function! s:seek_bracket_end()
+  let [lnum, c] = [line('.'), col('.')]
+  if !s:is_in_brackets(lnum, c)
+    return
+  endif
+  while c > 0 && s:is_in_brackets(lnum, c)
+    let c -= 1
+  endwhile
+  let c += 1
+  if !s:is_in_brackets(lnum, c)
+    echoerr "this is a bug, please report it"
+    return
+  end
+  call cursor(lnum, c)
+  call s:matchit()
+  return
 endfunction
 
 function! julia_blocks#select_i()
@@ -755,19 +788,32 @@ function! julia_blocks#select_i()
     return s:abort()
   endif
 
-  call setpos('.', end_pos)
-
   let b:jlblk_doing_select = 1
 
-  let start_pos[1] += 1
   call setpos('.', start_pos)
-  normal! ^
+  normal! $
+  call s:seek_bracket_end()
+  let l = getline('.')
+  while col('.') < len(l) && l[col('.'):] =~# '^\s*;'
+    normal! l
+  endwhile
+  if col('.') == len(l) || l[col('.')] =~# '\s'
+    normal! W
+  else
+    normal! l
+  endif
   let start_pos = getpos('.')
-  let end_pos[1] -= 1
-  let end_pos[2] = len(getline(end_pos[1]))
 
-  " CursorMove is only triggered if end_pos
-  " end_pos is different than the staring position;
+  call setpos('.', end_pos)
+  if end_pos[2] > 1 && getline('.')[end_pos[2]-2] =~# '\S'
+    normal! h
+  else
+    normal! gE
+  endif
+  let end_pos = getpos('.')
+
+  " CursorMoved is only triggered if end_pos
+  " is different than the staring position;
   " so when starting from the 'd' in 'end' we need to
   " force it
   if current_pos == end_pos

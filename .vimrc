@@ -33,7 +33,7 @@ set scrolloff=0
 set signcolumn=number
 set shiftround
 set shiftwidth=4
-let &showbreak=">>> "
+let &showbreak="⋅⋅⋅⋅"
 set showcmd
 set smartcase
 set smartindent
@@ -64,7 +64,7 @@ let g:matchparen_timeout = 8
 let g:matchparen_insert_timeout = 8
 let g:NERDCommentEmptyLines = 0
 let g:NERDCompactSexyComs = 1
-let g:NERDCustomDelimiters = { 'python': { 'left': '#','right': '' } }
+let g:NERDCustomDelimiters = { 'python': { 'left': '#', 'right': '' }, 'julia': { 'left': '#', 'right': '' } }
 " let g:NERDDefaultAlign = 'left'
 let g:NERDSpaceDelims = 1
 let g:NERDToggleCheckAllLines = 1
