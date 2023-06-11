@@ -132,6 +132,8 @@ inoremap ] <C-r>=ClosePair(']')<cr>
 inoremap } <C-r>=ClosePair('}')<cr>
 inoremap " <C-r>=ClosePair('"')<cr>
 inoremap ' <C-r>=ClosePair("'")<cr>
+inoremap ` <C-r>=ClosePair('`')<cr>
+inoremap $ <C-r>=ClosePair('$')<cr>
 " inoremap " <C-r>=QuoteDelim('"')<cr>
 " inoremap ' <C-r>=QuoteDelim("'")<cr>
 " vnoremap ( <C-c>`>a)<C-c>`<i(<C-c>
@@ -190,17 +192,17 @@ function ClosePair(char)
         return a:char
     endif
 endf
-" function QuoteDelim(char)
-    " let line = getline('.')
-    " let col = col('.')
-    " if line[col - 2] == "\\"
-        " return a:char
-    " elseif line[col - 1] == a:char
-        " return "\<right>"
-    " else
-        " return a:char.a:char."\<esc>i"
-    " endif
-" endf
+function QuoteDelim(char)
+    let line = getline('.')
+    let col = col('.')
+    if line[col - 2] == "\\"
+        return a:char
+    elseif line[col - 1] == a:char
+        return "\<right>"
+    else
+        return a:char.a:char."\<esc>i"
+    endif
+endf
 " camel-case selected text
 function! TwiddleCase(str)
     return substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
