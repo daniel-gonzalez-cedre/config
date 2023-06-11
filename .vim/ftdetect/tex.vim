@@ -15,10 +15,10 @@ autocmd BufNewFile,BufRead *.tikz set syntax=tex
 "         execute "normal! " . 'i\(\)<esc>'
 "     endif
 " endfunction
-function! IDollar()
-    let [l:l,l:c] = searchpairpos('\\(', '', '\\)', 'cbWn')
-    return l:l ? '\)' : '\('
-endfunction
+" function! IDollar()
+    " let [l:l,l:c] = searchpairpos('\\(', '', '\\)', 'cbWn')
+    " return l:l ? '\)' : '\('
+" endfunction
 
 " au BufNewFile,BufRead *.tex inoremap $ <C-r>=IDollar()<cr>
 " au BufNewFile,BufRead *.tex vmap $ <C-c>`>a\)<C-c>`<i$<C-c>
