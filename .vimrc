@@ -262,8 +262,10 @@ noremap <leader>h :noh<cr>
 " NERDCommenter
 autocmd! VimEnter * call s:nerdcommenter_map()
 function! s:nerdcommenter_map()
-    nmap <leader>cc <plug>NERDCommenterInvert
-    vmap <leader>cc <plug>NERDCommenterInvert
+    nmap <leader>ct <plug>NERDCommenterInvert
+    vmap <leader>ct <plug>NERDCommenterInvert
+    nmap <leader>cc <plug>NERDCommenterToggle
+    vmap <leader>cc <plug>NERDCommenterToggle
     " vmap <leader>cc <plug>NERDCommenterInvert gv
     nmap <leader>c<space> <plug>NERDCommenterToggle
     vmap <leader>c<space> <plug>NERDCommenterToggle gv
