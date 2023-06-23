@@ -3,7 +3,6 @@ silent
 syntax on
 au FileType * set conceallevel=0
 autocmd BufEnter * :syntax sync fromstart
-set autoindent
 set background=dark
 set backspace=indent,eol,start
 set breakindent
@@ -15,7 +14,6 @@ set completepopup=height:15,width:60,border:off,highlight:PMenuSbar
 set conceallevel=0
 set cursorline
 set display+=lastline
-set expandtab
 " set foldcolumn=1
 set foldignore=
 set foldlevelstart=99
@@ -32,23 +30,28 @@ set ruler
 set scrolloff=0
 set signcolumn=number
 set shiftround
-set shiftwidth=4
 let &showbreak="⋅⋅⋅⋅"
 set showcmd
 set smartcase
-set smartindent
-set softtabstop=4
 set spell
 set spelllang+=cjk
 set splitbelow
 set splitright
-set tabstop=4
 set textwidth=0
 set ttimeoutlen=10
 set wildmenu
 set wildmode=list:longest,full
 set wrap
 set wrapmargin=0
+
+" indentation
+set autoindent
+set expandtab
+set shiftwidth=4
+set smartindent
+set softtabstop=4
+set tabstop=4
+
 
 " let g:ale_linters = {"python": ["flake8", "pylint"], "lua": ["luacheck", "luac"], "tex": ["lacheck"]}
 let g:ale_linters = {"python": ["pylint"], "lua": ["luacheck", "luac"], "tex": ["lacheck"]}
