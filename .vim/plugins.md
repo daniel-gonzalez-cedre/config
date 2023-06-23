@@ -6,6 +6,7 @@
 + git@github.com:joom/latex-unicoder.vim.git
 + git@github.com:preservim/nerdcommenter.git
 + git@github.com:luochen1990/rainbow.git
++ git@github.com:tpope/vim-endwise.git
 + git@github.com:tpope/vim-repeat.git
 + git@github.com:tpope/vim-surround.git
 - git@github.com:dense-analysis/ale.git
