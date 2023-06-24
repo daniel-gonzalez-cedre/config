@@ -6,44 +6,37 @@ autocmd BufEnter * :syntax sync fromstart
 
 set background=dark
 set backspace=indent,eol,start
-set breakindent
-set breakindentopt=sbr
-set virtualedit=block
-set previewpopup=height:10,width:60,highlight:PMenuSbar
 set completeopt+=popup
 set completepopup=height:15,width:60,border:off,highlight:PMenuSbar
 set conceallevel=0
 set cursorline
 set display+=lastline
-" set foldcolumn=1
-set foldignore=
-set foldlevelstart=99
-set foldmethod=indent
-set formatoptions-=t
 set hlsearch
 set ignorecase
 set is
 set laststatus=2
-set linebreak
 set matchpairs+=<:>
-set number
+set number relativenumber
+set numberwidth=2
+set previewpopup=height:10,width:60,highlight:PMenuSbar
 set ruler
 set scrolloff=0
 set signcolumn=number
 set shiftround
-let &showbreak="⋅⋅⋅⋅"
 set showcmd
 set smartcase
 set spell
 set spelllang+=cjk
 set splitbelow
 set splitright
-set textwidth=0
 set ttimeoutlen=10
 set wildmenu
 set wildmode=list:longest,full
-set wrap
-set wrapmargin=0
+
+" folding
+set foldignore=
+set foldlevelstart=99
+set foldmethod=indent
 
 " indentation
 set autoindent
@@ -53,12 +46,25 @@ set smartindent
 set softtabstop=4
 set tabstop=4
 
+" line wrapping
+" set breakindent
+" set breakindentopt=sbr
+set formatoptions-=t
+set linebreak
+" set list
+set listchars=tab:__,nbsp:⋅,eol:⋅
+let &showbreak=" ~~ "
+set sidescroll=10
+set textwidth=0
+set wrap linebreak
+set wrapmargin=0
+
 
 " let g:ale_linters = {"python": ["flake8", "pylint"], "lua": ["luacheck", "luac"], "tex": ["lacheck"]}
-let g:ale_linters = {"python": ["pylint"], "lua": ["luacheck", "luac"], "tex": ["lacheck"]}
+let g:ale_linters = {"python": ["flake8", "pylint"], "lua": ["luacheck", "luac"], "tex": ["lacheck"]}
 " tex: chktek, lacheck
-let g:ale_lint_on_text_changed = "never"
-let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_text_changed = "always"
+let g:ale_lint_delay = 0
 let g:ale_lint_on_save = 1
 let g:ale_virtualtext_cursor = 'current'
 let g:haskell_indent_if = 4
@@ -110,11 +116,11 @@ augroup END
 
 colorscheme gruvbox
 
+" unmap tmux leader key
+map <c-b> <nop>
+map! <c-b> <nop>
 
-map <C-b> <nop>
-map! <C-b> <nop>
-
-nnoremap <C-c> :noh<bar>:echo<cr><esc>
+nnoremap <c-c> :noh<bar>:echo<cr><esc>
 nnoremap i :noh<bar>:echo<cr>i
 nnoremap I :noh<bar>:echo<cr>I
 nnoremap a :noh<bar>:echo<cr>a
@@ -127,61 +133,46 @@ nnoremap s :noh<bar>:echo<cr>s
 nnoremap S :noh<bar>:echo<cr>S
 nnoremap v :noh<bar>:echo<cr>v
 nnoremap V :noh<bar>:echo<cr>V
-nnoremap <C-v> :noh<bar>:echo<cr><C-v>
+nnoremap <c-v> :noh<bar>:echo<cr><c-v>
 nnoremap <silent> <bs> :noh<bar>:echo<cr>
 " nnoremap <silent> <space> :noh<bar>:echo<cr>
 " nnoremap <silent> <space> @=(foldlevel('.')?'za':"\<space>")<cr>
 " nnoremap <silent> <space> @=(foldlevel('.')?'za':"")<cr>:noh<bar>:echo<cr>
 nnoremap <silent> <space> :noh<bar>:echo<cr>
 
-" nnoremap <C-k> gk
-" nnoremap <C-j> gj
+" nnoremap <c-k> gk
+" nnoremap <c-j> gj
 
-inoremap <C-c> <esc>:noh<bar>:echo<cr>
-inoremap <C-]> <del>
-inoremap <expr> <cr> pumvisible() ? !empty(v:completed_item) ? "<C-y><C-c>" : "<C-y><cr>" : "<cr>"
+inoremap <c-c> <esc>:noh<bar>:echo<cr>
+inoremap <c-]> <del>
+inoremap <expr> <cr> pumvisible() ? !empty(v:completed_item) ? "<c-y><c-c>" : "<c-y><cr>" : "<cr>"
 
+
+" auto closing of paired chars
+function ClosePair(char)
+    if getline('.')[col('.') - 1] == a:char
+        return "\<right>"
+    else
+        return a:char
+    endif
+endf
 inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
-inoremap ) <C-r>=ClosePair(')')<cr>
-inoremap ] <C-r>=ClosePair(']')<cr>
-inoremap } <C-r>=ClosePair('}')<cr>
-inoremap " <C-r>=ClosePair('"')<cr>
-inoremap ' <C-r>=ClosePair("'")<cr>
-inoremap ` <C-r>=ClosePair('`')<cr>
-inoremap $ <C-r>=ClosePair('$')<cr>
-" inoremap " <C-r>=QuoteDelim('"')<cr>
-" inoremap ' <C-r>=QuoteDelim("'")<cr>
-" vnoremap ( <C-c>`>a)<C-c>`<i(<C-c>
-" vnoremap [ <C-c>`>a]<C-c>`<i[<C-c>
-" vnoremap { <C-c>`>a}<C-c>`<i{<C-c>
-" vnoremap ) <C-c>`<i(<C-c>`><right>a)<C-c>
-" vnoremap ] <C-c>`<i[<C-c>`><right>a]<C-c>
-" vnoremap } <C-c>`<i{<C-c>`><right>a}<C-c>
-vnoremap // y/\V<C-r>=escape(@",'/\')<cr>
-vnoremap = g_
-nnoremap = g_
-
-" think about this later
-" vnoremap <C-[> <C-c>`>a<C-r>=ReplaceDelim(']')<CR><C-c>`<i<C-r>=ReplaceDelim('[')<CR><C-c>
-" matchstr(getline('.'), '\%' . col('.') . 'c.')
-" function! ReplaceDelim(repl)
-   " let char = matchstr(getline('.'), '\%' . col('.') . 'c.')
-   " if char == "(" ||  char == "{" || char == "["
-       " return "\<DEL>".a:repl
-   " elseif char == ")" || char == "}" ||char == "]"
-       " return "\<BS>".a:repl
-   " else
-       " return a:repl
-" endf
+inoremap ) <c-r>=ClosePair(')')<cr>
+inoremap ] <c-r>=ClosePair(']')<cr>
+inoremap } <c-r>=ClosePair('}')<cr>
+inoremap " <c-r>=ClosePair('"')<cr>
+inoremap ' <c-r>=ClosePair("'")<cr>
+inoremap ` <c-r>=ClosePair('`')<cr>
+inoremap $ <c-r>=ClosePair('$')<cr>
+" add quotes around visual selection
+" vnoremap " <c-c>`>a"<c-c>`<i"<c-c>
+" vnoremap ' <c-c>`>a'<c-c>`<i'<c-c>
+" vnoremap ` <c-c>`>a`<c-c>`<i`<c-c>
 
 vnoremap <bs> <nop>
 vnoremap <space> <nop>
-
-vnoremap " <C-c>`>a"<C-c>`<i"<C-c>
-vnoremap ' <C-c>`>a'<C-c>`<i'<C-c>
-vnoremap ` <C-c>`>a`<C-c>`<i`<C-c>
 
 if has('clipboard')
     vnoremap y "+y
@@ -201,14 +192,6 @@ let &t_SI="\e[5 q"      " LINE: start insert mode
 let &t_EI="\e[1 q"      " UNDERLINE: end insert mode
 " let &t_EI="\e[2 q"    " BLOCK: end insert mode
 
-" auto closing of paired chars
-function ClosePair(char)
-    if getline('.')[col('.') - 1] == a:char
-        return "\<right>"
-    else
-        return a:char
-    endif
-endf
 function QuoteDelim(char)
     let line = getline('.')
     let col = col('.')
@@ -234,41 +217,23 @@ function! ToggleBG()
     endif
 endfunction
 
-function! IDollar()
-    let [l:l,l:c] = searchpairpos('\\(', '', '\\)', 'cbWn')
-    return l:l ? '\)' : '\('
-endfunction
+map <leader>tt :call ToggleBG()<cr>
 
-" nnoremap <leader>ff zf
-" nnoremap <leader>fa za
-" nnoremap <leader>fo zo
-" nnoremap <leader>fc zc
-" nnoremap <leader>fd zd
-" nnoremap <leader>fD zD
-" nnoremap <leader>fE zE
-" nnoremap <leader>fm :set foldmethod=manual<cr>
-" nnoremap <leader>fi :set foldmethod=indent<cr>
-
-" map <leader><C-t> :call ToggleBG()<cr>
-map <leader>ct :call ToggleBG()<cr>
-map <leader>ll :ALENextWrap<cr>
-map <leader>lL :ALEPreviousWrap<cr>
-map <leader>LL :ALEPreviousWrap<cr>
-map <leader>ld :ALEDetail<cr>
-" map <leader>l :ALELint<cr>
-
-" vnoremap // y/\V<C-r>=escape(@",'/\')<cr>
-
+" toggle relative line numbers
+nnoremap <leader>nn :set rnu!<cr>
+" search visual selection
+vnoremap // y/\V<c-r>=escape(@",'/\')<cr>
 " search & replace
 nnoremap <leader>s :%s//gc<left><left><left>
 " search & replace visual selection
-vnoremap <leader>s y`<`>:<C-u>%s/\V<C-r>=escape(@",'/\')<cr>//gc<left><left><left>
-vnoremap <leader><C-s> :%s//gc<left><left><left>
+vnoremap <leader>s y`<`>:<c-u>%s/\V<c-r>=escape(@",'/\')<cr>//gc<left><left><left>
 " remove all highlighting highlighting
 noremap <leader>h :noh<cr>
-" 
+" silence macro recording
 noremap <leader>q q
 map q <nop>
+
+noremap = g_
 
 " text object for current line
 xnoremap il g_o^
@@ -276,33 +241,22 @@ onoremap il :normal vil<CR>
 xnoremap al $o^
 onoremap al :normal val<CR>
 
-" NERDCommenter
-autocmd! VimEnter * call s:nerdcommenter_map()
-function! s:nerdcommenter_map()
+" NERDCommenter mappings
+autocmd! VimEnter * call s:nerdcommenter_mappings()
+function! s:nerdcommenter_mappings()
     map <leader>cc <plug>NERDCommenterToggle
     map <leader>ct <plug>NERDCommenterInvert
     map <leader>c<space> <plug>NERDCommenterInvert
     noremap <leader>ci <plug>NERDCommenterAppend
-    noremap <leader>ca A<space><C-c><plug>NERDCommenterAppend
-    noremap <leader>co o<C-c><plug>NERDCommenterAppend
-    noremap <leader>cO O<C-c><plug>NERDCommenterAppend
+    noremap <leader>ca A<space><c-c><plug>NERDCommenterAppend
+    noremap <leader>co o<c-c><plug>NERDCommenterAppend
+    noremap <leader>cO O<c-c><plug>NERDCommenterAppend
 endfunction
 
-function! JumpWithinFile(back, forw)
-    let [n, i] = [bufnr('%'), 1]
-    let p = [n] + getpos('.')[1:]
-    sil! exe 'norm!1' . a:forw
-    while 1
-        let p1 = [bufnr('%')] + getpos('.')[1:]
-        if n == p1[0] | break | endif
-        if p == p1
-            sil! exe 'norm!' . (i-1) . a:back
-            break
-        endif
-        let [p, i] = [p1, i+1]
-        sil! exe 'norm!1' . a:forw
-    endwhile
-endfunction
+" ALE mappings
+map <leader>ll :ALENextWrap<cr>
+map <leader>lL :ALEPreviousWrap<cr>
+map <leader>LL :ALEPreviousWrap<cr>
+map <leader>ld :ALEDetail<cr>
 
 set fillchars=stl:⋅,stlnc:⋅,vert:│,fold:۰,diff:·
-" command! -nargs=+ Foldsearch exe "normal /".<q-args>."\z"
