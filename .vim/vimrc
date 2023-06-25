@@ -17,7 +17,7 @@ set is
 set laststatus=2
 set matchpairs+=<:>
 set number relativenumber
-set numberwidth=2
+set numberwidth=4
 set previewpopup=height:10,width:60,highlight:PMenuSbar
 set ruler
 set scrolloff=0
@@ -61,7 +61,6 @@ set wrap linebreak
 set wrapmargin=0
 
 
-" let g:ale_linters = {"python": ["flake8", "pylint"], "lua": ["luacheck", "luac"], "tex": ["lacheck"]}
 let g:ale_linters = {"python": ["flake8", "pylint"], "lua": ["luacheck", "luac"], "tex": ["lacheck"]}
 " tex: chktek, lacheck
 let g:ale_lint_on_text_changed = "always"
@@ -92,6 +91,7 @@ let g:rainbow_active = 1
 let g:tex_flavor = "latex"
 
 function! s:gruvbox_custom()
+    highlight clear SignColumn
     hi CursorLine ctermbg=none ctermfg=none cterm=none
     hi CursorLineNR ctermbg=none
     hi StatusLine ctermbg=none cterm=none
@@ -102,16 +102,19 @@ function! s:gruvbox_custom()
     hi ALEWarningLine ctermbg=none cterm=none
     hi ALEError ctermbg=none cterm=none
     hi ALEWarning ctermbg=none cterm=none
+    hi ALEErrorSign ctermfg=167 ctermbg=none
+    hi ALEWarningSign ctermfg=214 ctermbg=none
+    hi ALEInfoSign ctermfg=109 ctermbg=none
     hi ALEVirtualTextError ctermfg=238
     hi ALEVirtualTextWarning ctermfg=238
-    highlight SignColumn ctermbg=black
+    hi SignColumn ctermbg=black
 endfunction
 function! s:gitgutter_custom()
     highlight clear SignColumn
     highlight GitGutterAdd ctermbg=black
     highlight GitGutterChange ctermbg=black
     highlight GitGutterDelete ctermbg=black
-    highlight GitGutterChangeDelete ctermbg=black
+    highlight GitGutterChangeDelete ctermfg=108 ctermbg=black
 endfunction
 
 augroup custom_colors
