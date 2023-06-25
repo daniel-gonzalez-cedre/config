@@ -1,6 +1,6 @@
 filetype plugin indent on
 silent
-syntax on
+syntax enable
 au FileType * set conceallevel=0
 autocmd BufEnter * :syntax sync fromstart
 
@@ -30,6 +30,7 @@ set spelllang+=cjk
 set splitbelow
 set splitright
 set ttimeoutlen=10
+set updatetime=200
 set wildmenu
 set wildmode=list:longest,full
 
@@ -67,6 +68,11 @@ let g:ale_lint_on_text_changed = "always"
 let g:ale_lint_delay = 0
 let g:ale_lint_on_save = 1
 let g:ale_virtualtext_cursor = 'current'
+let g:gitgutter_map_keys = 0
+let g:gruvbox_improved_warnings = 1
+let g:gruvbox_hls_cursor = "orange"
+let g:gruvbox_contrast_dark = "hard"
+let g:gruvbox_contrast_light = "hard"
 let g:haskell_indent_if = 4
 let g:haskell_indent_case = 4
 let g:haskell_indent_guard = 4
@@ -84,11 +90,6 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:python_highlight_all = 1
 let g:rainbow_active = 1
 let g:tex_flavor = "latex"
-" let g:gruvbox_improved_strings = 1
-let g:gruvbox_improved_warnings = 1
-let g:gruvbox_hls_cursor = "orange"
-let g:gruvbox_contrast_dark = "hard"
-let g:gruvbox_contrast_light = "hard"
 
 function! s:gruvbox_custom()
     hi CursorLine ctermbg=none ctermfg=none cterm=none
@@ -101,17 +102,22 @@ function! s:gruvbox_custom()
     hi ALEWarningLine ctermbg=none cterm=none
     hi ALEError ctermbg=none cterm=none
     hi ALEWarning ctermbg=none cterm=none
-    " hi ALEErrorSign ctermfg=red ctermbg=none
-    " hi ALEWarningSign ctermfg=yellow ctermbg=none
     hi ALEVirtualTextError ctermfg=238
     hi ALEVirtualTextWarning ctermfg=238
-    " au CmdLineEnter * hi Normal ctermfg=red guifg=red
-    " au CmdLineLeave * hi Normal ctermfg=white guifg=white
+    highlight SignColumn ctermbg=black
+endfunction
+function! s:gitgutter_custom()
+    highlight clear SignColumn
+    highlight GitGutterAdd ctermbg=black
+    highlight GitGutterChange ctermbg=black
+    highlight GitGutterDelete ctermbg=black
+    highlight GitGutterChangeDelete ctermbg=black
 endfunction
 
 augroup custom_colors
-  autocmd!
-  autocmd ColorScheme gruvbox call s:gruvbox_custom()
+    autocmd!
+    autocmd ColorScheme gruvbox call s:gruvbox_custom()
+    autocmd ColorScheme gruvbox call s:gitgutter_custom()
 augroup END
 
 colorscheme gruvbox
@@ -260,3 +266,9 @@ map <leader>LL :ALEPreviousWrap<cr>
 map <leader>ld :ALEDetail<cr>
 
 set fillchars=stl:⋅,stlnc:⋅,vert:│,fold:۰,diff:·
+
+function! GitStatus()
+  let [a,m,r] = GitGutterGetHunkSummary()
+  return printf('+%d ~%d -%d', a, m, r)
+endfunction
+" set statusline+=%{GitStatus()}
