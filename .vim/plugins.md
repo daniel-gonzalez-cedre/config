@@ -15,6 +15,6 @@
 # languages
 + git@github.com:bfrg/vim-cpp-modern.git
 + git@github.com:kaarmu/typst.vim.git
-+ git@github.com:vim-latex/vim-latex.git
 - git@github.com:JuliaEditorSupport/julia-vim.git
 - git@github.com:tmhedberg/SimpylFold.git
+- git@github.com:vim-latex/vim-latex.git
