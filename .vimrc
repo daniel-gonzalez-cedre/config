@@ -6,8 +6,8 @@ autocmd BufEnter * :syntax sync fromstart
 
 set background=dark
 set backspace=indent,eol,start
-set completeopt+=popup
-set completepopup=height:15,width:60,border:off,highlight:PMenuSbar
+" set completeopt+=popup
+" set completepopup=height:15,width:60,border:off,highlight:PMenuSbar
 set conceallevel=0
 set cursorline
 set display+=lastline
@@ -18,7 +18,7 @@ set laststatus=2
 set matchpairs+=<:>
 set number relativenumber
 set numberwidth=4
-set previewpopup=height:10,width:60,highlight:PMenuSbar
+" set previewpopup=height:10,width:60,highlight:PMenuSbar
 set ruler
 set scrolloff=0
 set signcolumn=number
