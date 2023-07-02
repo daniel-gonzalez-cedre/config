@@ -66,16 +66,16 @@
     },
     decorate
 }}
-\tikzcdset{arrow style=tikz, squiggle/.style={%
-    decoration={%
-        snake, 
-        amplitude=.3mm,
-        segment length=2mm,
-        post length=1mm
-    }, 
-    rounded corners=.2pt,
-    decorate
-}}
+% \tikzcdset{arrow style=tikz, squiggle/.style={%
+    % decoration={%
+        % snake,
+        % amplitude=.3mm,
+        % segment length=2mm,
+        % post length=1mm
+    % },
+    % rounded corners=.2pt,
+    % decorate
+% }}
 
 % styles
 \tikzstyle{blank} = [outer sep=8*\nodespacing, inner sep=\nodesize]
@@ -100,8 +100,8 @@
                     outer sep=\nodespacing,
                     inner sep=\nodesize,
                     text opacity=1]
-\tikzsylte{add_node} = [node, add]
-\tikzsylte{del_node} = [node, del]
+\tikzstyle{add_node} = [node, add]
+\tikzstyle{del_node} = [node, del]
 
 % edges
 \tikzstyle{edge} = [very thick, draw=pblack, opacity=1]

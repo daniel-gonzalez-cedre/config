@@ -16,6 +16,7 @@ set ignorecase
 set is
 set laststatus=2
 set matchpairs+=<:>
+set mouse=
 set number relativenumber
 set numberwidth=4
 " set previewpopup=height:10,width:60,highlight:PMenuSbar
@@ -63,7 +64,9 @@ set wrapmargin=0
 
 let g:ale_linters = {"python": ["flake8", "pylint"], "lua": ["luacheck", "luac"], "tex": ["lacheck"]}
 " tex: chktek, lacheck
-let g:ale_lint_on_text_changed = "always"
+" let g:ale_lint_on_text_changed = "always"
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_delay = 0
 let g:ale_lint_on_save = 1
 let g:ale_virtualtext_cursor = 'current'
@@ -114,7 +117,7 @@ function! s:gitgutter_custom()
     highlight GitGutterAdd ctermbg=black
     highlight GitGutterChange ctermbg=black
     highlight GitGutterDelete ctermbg=black
-    highlight GitGutterChangeDelete ctermfg=108 ctermbg=black
+    highlight GitGutterChangeDelete ctermfg=108
 endfunction
 
 augroup custom_colors
