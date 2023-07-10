@@ -540,7 +540,6 @@ Veličković's
 Veličković
 nonlinearity
 Leman
-Leman
 Betti
 Pfaltz
 Rosenfeld
@@ -569,7 +568,6 @@ Babai
 Niels
 Totient
 totient
-totient
 Lallende
 blockmodel
 blockmodels
@@ -591,3 +589,6 @@ MLP
 unmap
 tikz
 tikzpicture
+lettrines
+lettrine
+PyTorch

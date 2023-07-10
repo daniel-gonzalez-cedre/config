@@ -4,7 +4,8 @@ fpath+=~/.zfunc
 autoload -Uz add-zsh-hook
 setopt prompt_subst
 autoload -Uz compinit && compinit
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+# zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
 zstyle ':completion:*' menu select
 # setopt menu_complete
 bindkey -e
