@@ -62,7 +62,8 @@ set wrap linebreak
 set wrapmargin=0
 
 
-let g:ale_linters = {"python": ["flake8", "pylint"], "lua": ["luacheck", "luac"], "tex": ["lacheck"]}
+"ruff"
+let g:ale_linters = {"python": ["pylint", "mypy"], "lua": ["luacheck", "luac"], "tex": ["lacheck"]}
 " tex: chktek, lacheck
 " let g:ale_lint_on_text_changed = "always"
 let g:ale_lint_on_text_changed = 'never'
@@ -100,7 +101,7 @@ function! s:gruvbox_custom()
     hi StatusLine ctermbg=none cterm=none
     hi StatusLineNC ctermbg=none cterm=none
     hi MatchParen cterm=inverse
-    hi Folded ctermbg=none
+    hi Folded ctermbg=none ctermfg=238
     hi ALEErrorLine ctermbg=none cterm=none
     hi ALEWarningLine ctermbg=none cterm=none
     hi ALEError ctermbg=none cterm=none
