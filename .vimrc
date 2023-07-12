@@ -63,11 +63,11 @@ set wrapmargin=0
 
 
 "ruff"
-let g:ale_linters = {"python": ["pylint", "mypy"], "lua": ["luacheck", "luac"], "tex": ["lacheck"]}
+let g:ale_linters = {"python": ["pylint"], "lua": ["luacheck", "luac"], "tex": ["lacheck"]}
 " tex: chktek, lacheck
 " let g:ale_lint_on_text_changed = "always"
 let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_delay = 0
 let g:ale_lint_on_save = 1
 let g:ale_virtualtext_cursor = 'current'
