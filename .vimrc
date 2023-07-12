@@ -13,7 +13,7 @@ set cursorline
 set display+=lastline
 set hlsearch
 set ignorecase
-set is
+set incsearch
 set laststatus=2
 set matchpairs+=<:>
 set mouse=
@@ -57,7 +57,7 @@ set formatoptions-=t
 set linebreak
 " set list
 set listchars=tab:__,nbsp:⋅,eol:⋅
-let &showbreak=" ~~ "
+let &showbreak=' ~~ '
 set sidescroll=10
 set textwidth=0
 set wrap linebreak
@@ -65,24 +65,23 @@ set wrapmargin=0
 
 
 " plugin settings
-let g:ale_linters = {"python": ["pylint"], "lua": ["luacheck", "luac"], "tex": ["lacheck"]}
+let g:ale_linters = {'vim': ['vint'], 'python': ['pylint'], 'lua': ['luacheck', 'luac'], 'tex': ['lacheck']}
 " tex: chktek, lacheck
-" let g:ale_lint_on_text_changed = "always"
-let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_delay = 0
 let g:ale_lint_on_save = 1
 let g:ale_virtualtext_cursor = 'current'
 let g:gitgutter_map_keys = 0
 let g:gruvbox_improved_warnings = 1
-let g:gruvbox_hls_cursor = "orange"
-let g:gruvbox_contrast_dark = "hard"
-let g:gruvbox_contrast_light = "hard"
+let g:gruvbox_hls_cursor = 'orange'
+let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_contrast_light = 'hard'
 let g:haskell_indent_if = 4
 let g:haskell_indent_case = 4
 let g:haskell_indent_guard = 4
 let g:incsearch#auto_nohlsearch = 1
-let g:latex_to_unicode_file_types = ".*"
+let g:latex_to_unicode_file_types = '.*'
 let g:matchparen_timeout = 8
 let g:matchparen_insert_timeout = 8
 let g:NERDCommentEmptyLines = 0
@@ -98,7 +97,7 @@ let g:rainbow_active = 1
 " let g:spelunker_disable_account_name_checking = 1
 " let g:spelunker_disable_email_checking = 1
 " let g:spelunker_target_min_char_len = 3
-let g:tex_flavor = "latex"
+let g:tex_flavor = 'latex'
 
 map zt :setlocal spell!<cr>
 " map zt ZT
@@ -255,10 +254,10 @@ endfunction
 
 " toggle dark/light background
 function! ToggleBG()
-    if (&bg == "light")
-        set bg=dark
+    if (&background == 'light')
+        set background=dark
     else
-        set bg=light
+        set background=light
         hi SpellBad ctermbg=229 cterm=none
         hi SpellCap ctermbg=229 cterm=none
         hi SpellLocal ctermbg=229 cterm=none
@@ -303,10 +302,12 @@ function! s:nerdcommenter_mappings()
 endfunction
 
 " ALE mappings
-map <leader>ll :ALENextWrap<cr>
-map <leader>lL :ALEPreviousWrap<cr>
-map <leader>LL :ALEPreviousWrap<cr>
-map <leader>ld :ALEDetail<cr>
+map ]a :ALENextWrap<cr>
+map [a :ALENextWrap<cr>
+map <leader>an :ALENextWrap<cr>
+map <leader>aN :ALEPreviousWrap<cr>
+map <leader>aa :ALELint<cr>
+map <leader>ad :ALEDetail<cr>
 
 set fillchars=stl:⋅,stlnc:⋅,vert:│,fold:۰,diff:·
 
