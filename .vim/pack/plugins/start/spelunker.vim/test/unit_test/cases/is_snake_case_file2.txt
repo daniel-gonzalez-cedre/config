@@ -1,4 +1,0 @@
-apple
-appleBanana
-appleBananaLemon
-apple_banana_lemon

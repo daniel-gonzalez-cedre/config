@@ -1,8 +1,0 @@
-spelunkervim@github.com
-
-abc spelunkervim@github.com def
-
-ghi
-spelunkervim@github.com
-jkl
-@Annotation

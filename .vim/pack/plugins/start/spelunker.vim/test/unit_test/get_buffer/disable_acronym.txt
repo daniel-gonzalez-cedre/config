@@ -1,5 +1,0 @@
-ABCD
-abcd
-Abcd
-ABCDError
-ABCDGabrage

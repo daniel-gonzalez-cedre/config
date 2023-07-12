@@ -26,7 +26,7 @@ set signcolumn=number
 set shiftround
 set showcmd
 set smartcase
-" set nospell
+set nospell
 " set spell
 set spelllang+=cjk
 set spellsuggest=best,5
@@ -94,26 +94,39 @@ let g:NERDToggleCheckAllLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:python_highlight_all = 1
 let g:rainbow_active = 1
-let g:spelunker_disable_account_name_checking = 1
-let g:spelunker_disable_email_checking = 1
+" let g:spelunker_check_type = 1
+" let g:spelunker_disable_account_name_checking = 1
+" let g:spelunker_disable_email_checking = 1
+" let g:spelunker_target_min_char_len = 3
 let g:tex_flavor = "latex"
 
-map zt ZT
-map zn ZN
-map zN ZP
-map zl ZL
-map z= ZL
-map zg Zg
-map zug Zug
-map zG ZG
-map zuG ZUG
-map ]s ZN
-map [s ZP
+map zt :setlocal spell!<cr>
+" map zt ZT
+" map zn ZN
+" map zN ZP
+" map zl ZL
+" map z= ZL
+" map zg Zg
+" map zug Zug
+" map zG ZG
+" map zuG ZUG
+" map zw Zw
+" map zuw Zuw
 " map zW ZW
-" map zUG ZUG
+" map zUW ZUW
+" map ]s ZN
+" map [s ZP
 
 function! s:gruvbox_custom()
-    highlight clear SignColumn
+    hi clear SignColumn
+    hi clear SpellBad
+    hi clear SpellCap
+    hi clear SpellLocal
+    hi clear SpellRare
+    hi SpellBad ctermbg=235 cterm=none
+    hi SpellCap ctermbg=235 cterm=none
+    hi SpellLocal ctermbg=235 cterm=none
+    hi SpellRare ctermbg=235 cterm=none
     hi CursorLine ctermbg=none ctermfg=none cterm=none
     hi CursorLineNR ctermbg=none
     hi StatusLine ctermbg=none cterm=none
@@ -151,7 +164,8 @@ colorscheme gruvbox
 map <c-b> <nop>
 map! <c-b> <nop>
 
-nnoremap <c-c> :noh<bar>:echo<cr><esc>
+" nnoremap <c-c> :noh<bar>:echo<cr><esc>
+nnoremap <c-c> <esc>
 nnoremap i :noh<bar>:echo<cr>i
 nnoremap I :noh<bar>:echo<cr>I
 nnoremap a :noh<bar>:echo<cr>a
@@ -245,6 +259,10 @@ function! ToggleBG()
         set bg=dark
     else
         set bg=light
+        hi SpellBad ctermbg=229 cterm=none
+        hi SpellCap ctermbg=229 cterm=none
+        hi SpellLocal ctermbg=229 cterm=none
+        hi SpellRare ctermbg=229 cterm=none
     endif
 endfunction
 
@@ -293,7 +311,7 @@ map <leader>ld :ALEDetail<cr>
 set fillchars=stl:⋅,stlnc:⋅,vert:│,fold:۰,diff:·
 
 function! GitStatus()
-  let [a,m,r] = GitGutterGetHunkSummary()
-  return printf('+%d ~%d -%d', a, m, r)
+    let [a,m,r] = GitGutterGetHunkSummary()
+    return printf('+%d ~%d -%d', a, m, r)
 endfunction
 " set statusline+=%{GitStatus()}
