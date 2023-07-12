@@ -26,8 +26,10 @@ set signcolumn=number
 set shiftround
 set showcmd
 set smartcase
-set spell
+" set nospell
+" set spell
 set spelllang+=cjk
+set spellsuggest=best,5
 set splitbelow
 set splitright
 set ttimeoutlen=10
@@ -62,7 +64,7 @@ set wrap linebreak
 set wrapmargin=0
 
 
-"ruff"
+" plugin settings
 let g:ale_linters = {"python": ["pylint"], "lua": ["luacheck", "luac"], "tex": ["lacheck"]}
 " tex: chktek, lacheck
 " let g:ale_lint_on_text_changed = "always"
@@ -92,7 +94,23 @@ let g:NERDToggleCheckAllLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:python_highlight_all = 1
 let g:rainbow_active = 1
+let g:spelunker_disable_account_name_checking = 1
+let g:spelunker_disable_email_checking = 1
 let g:tex_flavor = "latex"
+
+map zt ZT
+map zn ZN
+map zN ZP
+map zl ZL
+map z= ZL
+map zg Zg
+map zug Zug
+map zG ZG
+map zuG ZUG
+map ]s ZN
+map [s ZP
+" map zW ZW
+" map zUG ZUG
 
 function! s:gruvbox_custom()
     highlight clear SignColumn
