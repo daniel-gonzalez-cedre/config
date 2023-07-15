@@ -77,17 +77,23 @@ function schedprompt() {
 schedprompt
 
 
-# export EDITOR='vim'
+export EDITOR='vim'
 # export VISUAL='vim'
 export GREP_OPTIONS="--color=always"  # --line-buffered
 
+export CONFIG=${HOME}/config
 export TERM=xterm-256color
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=/opt/homebrew/bin:/usr/local/Cellar:$PATH
 export PATH=~/.local/bin:$PATH
-export FFPROFILE=${HOME}/Library/Application\ Support/Firefox/Profiles/4wxlb3i6.default-release
 
-alias gitfig="/usr/bin/git --git-dir=$HOME/.gitfig/ --work-tree=$HOME"     #   gitfig config --local status.showUntrackedFiles no
+export FFDIR=${HOME}/Library/Application\ Support/Firefox
+for FILE in ${FFDIR}/Profiles/*
+do
+    # PATTERN=".*.........default-release"
+    PATTERN=".*.default-release"
+    [[ $FILE =~ $PATTERN ]] && export FFPROFILE=$FILE
+done
 
 alias cp="cp -v"
 alias mv="mv -v"
