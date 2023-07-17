@@ -98,7 +98,9 @@ let g:rainbow_active = 1
 " let g:spelunker_target_min_char_len = 3
 let g:tex_flavor = 'latex'
 
-map zt :setlocal spell!<cr>
+map zs :setlocal spell!<cr>
+map zt za
+map zT zA
 " map zt ZT
 " map zn ZN
 " map zN ZP
@@ -218,10 +220,12 @@ vnoremap <bs> <nop>
 vnoremap <space> <nop>
 
 if has('clipboard')
-    vnoremap y "+y
-    vnoremap Y "+Y
-    vnoremap x "+x
-    vnoremap X "+X
+    noremap y "+y
+    noremap Y "+Y
+    noremap d "+d
+    noremap D "+D
+    noremap x "+x
+    noremap X "+X
     noremap p "+p
     noremap P "+P
 endif
