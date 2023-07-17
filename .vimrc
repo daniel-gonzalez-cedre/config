@@ -46,7 +46,6 @@ set foldmethod=indent
 set autoindent
 set expandtab
 set shiftwidth=4
-set smartindent
 set softtabstop=4
 set tabstop=4
 
@@ -300,8 +299,8 @@ function! s:nerdcommenter_mappings()
     map <leader>c<space> <plug>NERDCommenterInvert
     noremap <leader>ci <plug>NERDCommenterAppend
     noremap <leader>ca A<space><c-c><plug>NERDCommenterAppend
-    noremap <leader>co o<c-c><plug>NERDCommenterAppend
-    noremap <leader>cO O<c-c><plug>NERDCommenterAppend
+    noremap <leader>co o<space><bs><c-c><plug>NERDCommenterAppend<c-o><<<c-o>$
+    noremap <leader>cO O<space><bs><c-c><plug>NERDCommenterAppend<c-o><<<c-o>$
 endfunction
 
 " ALE mappings
