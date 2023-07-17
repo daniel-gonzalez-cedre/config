@@ -1,0 +1,6 @@
+(?d).DS_Store
+(?d)*/.DS_Store
+(?d)*/*/.DS_Store
+(?d)*/*/*/.DS_Store
+.*.swp
+.*.swo
