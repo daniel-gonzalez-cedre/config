@@ -150,9 +150,9 @@ function! s:gitgutter_custom()
     highlight GitGutterChange ctermbg=none ctermfg=66
     highlight GitGutterDelete ctermbg=none ctermfg=130
     highlight GitGutterChangeDelete ctermbg=none ctermfg=96
-    " highlight GitGutterAdd ctermbg=black
-    " highlight GitGutterChange ctermbg=black
-    " highlight GitGutterDelete ctermbg=black
+    " highlight GitGutterAdd ctermbg=none
+    " highlight GitGutterChange ctermbg=none
+    " highlight GitGutterDelete ctermbg=none
     " highlight GitGutterChangeDelete ctermfg=108
 endfunction
 
