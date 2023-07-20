@@ -128,7 +128,6 @@ function! s:gruvbox_custom()
     hi SpellLocal ctermbg=235 cterm=none
     hi SpellRare ctermbg=235 cterm=none
     hi CursorLine ctermbg=none ctermfg=none cterm=none
-    " hi CursorLineNR ctermbg=none
     hi CursorLineNR ctermbg=none
     hi StatusLine ctermbg=none cterm=none
     hi StatusLineNC ctermbg=none cterm=none
@@ -138,19 +137,23 @@ function! s:gruvbox_custom()
     hi ALEWarningLine ctermbg=none cterm=none
     hi ALEError ctermbg=none cterm=none
     hi ALEWarning ctermbg=none cterm=none
-    hi ALEErrorSign ctermfg=red ctermbg=none
-    hi ALEWarningSign ctermfg=yellow ctermbg=none
-    hi ALEInfoSign ctermfg=blue ctermbg=none
+    hi ALEErrorSign ctermfg=167 ctermbg=none
+    hi ALEWarningSign ctermfg=214 ctermbg=none
+    hi ALEInfoSign ctermfg=108 ctermbg=none
     hi ALEVirtualTextError ctermfg=238
     hi ALEVirtualTextWarning ctermfg=238
     hi SignColumn ctermbg=black
 endfunction
 function! s:gitgutter_custom()
     highlight clear SignColumn
-    highlight GitGutterAdd ctermbg=black
-    highlight GitGutterChange ctermbg=black
-    highlight GitGutterDelete ctermbg=black
-    highlight GitGutterChangeDelete ctermfg=108
+    highlight GitGutterAdd ctermbg=none ctermfg=100
+    highlight GitGutterChange ctermbg=none ctermfg=66
+    highlight GitGutterDelete ctermbg=none ctermfg=130
+    highlight GitGutterChangeDelete ctermbg=none ctermfg=96
+    " highlight GitGutterAdd ctermbg=black
+    " highlight GitGutterChange ctermbg=black
+    " highlight GitGutterDelete ctermbg=black
+    " highlight GitGutterChangeDelete ctermfg=108
 endfunction
 
 augroup custom_colors
