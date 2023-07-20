@@ -46,7 +46,6 @@ set foldmethod=indent
 set autoindent
 set expandtab
 set shiftwidth=4
-set smartindent
 set softtabstop=4
 set tabstop=4
 
@@ -98,7 +97,9 @@ let g:rainbow_active = 1
 " let g:spelunker_target_min_char_len = 3
 let g:tex_flavor = 'latex'
 
-map zt :setlocal spell!<cr>
+map zs :setlocal spell!<cr>
+map zt za
+map zT zA
 " map zt ZT
 " map zn ZN
 " map zN ZP
@@ -218,10 +219,12 @@ vnoremap <bs> <nop>
 vnoremap <space> <nop>
 
 if has('clipboard')
-    vnoremap y "+y
-    vnoremap Y "+Y
-    vnoremap x "+x
-    vnoremap X "+X
+    noremap y "+y
+    noremap Y "+Y
+    noremap d "+d
+    noremap D "+D
+    noremap x "+x
+    noremap X "+X
     noremap p "+p
     noremap P "+P
 endif
@@ -296,8 +299,8 @@ function! s:nerdcommenter_mappings()
     map <leader>c<space> <plug>NERDCommenterInvert
     noremap <leader>ci <plug>NERDCommenterAppend
     noremap <leader>ca A<space><c-c><plug>NERDCommenterAppend
-    noremap <leader>co o<c-c><plug>NERDCommenterAppend
-    noremap <leader>cO O<c-c><plug>NERDCommenterAppend
+    noremap <leader>co o<space><bs><c-c><plug>NERDCommenterAppend<c-o><<<c-o>$
+    noremap <leader>cO O<space><bs><c-c><plug>NERDCommenterAppend<c-o><<<c-o>$
 endfunction
 
 " ALE mappings
