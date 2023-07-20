@@ -3,4 +3,4 @@ function UpdateFolds()
     " FastFoldUpdate!  " replace with `normal! zx` if you don't have FastFold
     normal! zx
 endfunction
-autocmd BufWritePre <buffer> call UpdateFolds()
+" autocmd BufWritePre <buffer> call UpdateFolds()

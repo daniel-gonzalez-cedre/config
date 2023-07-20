@@ -17,12 +17,13 @@ set incsearch
 set laststatus=2
 set matchpairs+=<:>
 set mouse=
-set number relativenumber
-set numberwidth=4
+" set number relativenumber
+set number
+set numberwidth=2
 " set previewpopup=height:10,width:60,highlight:PMenuSbar
 set ruler
 set scrolloff=0
-set signcolumn=number
+set signcolumn=yes
 set shiftround
 set showcmd
 set smartcase
@@ -56,7 +57,7 @@ set formatoptions-=t
 set linebreak
 " set list
 set listchars=tab:__,nbsp:⋅,eol:⋅
-let &showbreak=' ~~ '
+let &showbreak='⋅⋅⋅⋅'
 set sidescroll=10
 set textwidth=0
 set wrap linebreak
@@ -127,6 +128,7 @@ function! s:gruvbox_custom()
     hi SpellLocal ctermbg=235 cterm=none
     hi SpellRare ctermbg=235 cterm=none
     hi CursorLine ctermbg=none ctermfg=none cterm=none
+    " hi CursorLineNR ctermbg=none
     hi CursorLineNR ctermbg=none
     hi StatusLine ctermbg=none cterm=none
     hi StatusLineNC ctermbg=none cterm=none
@@ -136,9 +138,9 @@ function! s:gruvbox_custom()
     hi ALEWarningLine ctermbg=none cterm=none
     hi ALEError ctermbg=none cterm=none
     hi ALEWarning ctermbg=none cterm=none
-    hi ALEErrorSign ctermfg=167 ctermbg=none
-    hi ALEWarningSign ctermfg=214 ctermbg=none
-    hi ALEInfoSign ctermfg=109 ctermbg=none
+    hi ALEErrorSign ctermfg=red ctermbg=none
+    hi ALEWarningSign ctermfg=yellow ctermbg=none
+    hi ALEInfoSign ctermfg=blue ctermbg=none
     hi ALEVirtualTextError ctermfg=238
     hi ALEVirtualTextWarning ctermfg=238
     hi SignColumn ctermbg=black
