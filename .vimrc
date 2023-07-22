@@ -15,6 +15,7 @@ set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2
+let mapleader=','
 set matchpairs+=<:>
 set mouse=
 " set number relativenumber
@@ -275,7 +276,7 @@ endfunction
 map <leader>tt :call ToggleBG()<cr>
 
 " toggle relative line numbers
-nnoremap <leader>nn :set rnu!<cr>
+nnoremap <leader>rln :set rnu!<cr>
 " search visual selection
 vnoremap // y/\V<c-r>=escape(@",'/\')<cr>
 " search & replace
@@ -310,10 +311,10 @@ endfunction
 
 " ALE mappings
 map ]a :ALENextWrap<cr>
-map [a :ALENextWrap<cr>
+map [a :ALEPreviousWrap<cr>
 map <leader>an :ALENextWrap<cr>
 map <leader>aN :ALEPreviousWrap<cr>
-map <leader>aa :ALELint<cr>
+map <leader>al :ALELint<cr>
 map <leader>ad :ALEDetail<cr>
 
 set fillchars=stl:⋅,stlnc:⋅,vert:│,fold:۰,diff:·
