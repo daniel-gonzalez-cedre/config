@@ -11,6 +11,7 @@ set backspace=indent,eol,start
 set conceallevel=0
 set cursorline
 set display+=lastline
+set fillchars=stl:-,stlnc:⋅,vert:│,fold:\ ,diff:·
 set hlsearch
 set ignorecase
 set incsearch
@@ -29,7 +30,6 @@ set shiftround
 set showcmd
 set smartcase
 set nospell
-" set spell
 set spelllang+=cjk
 set spellsuggest=best,5
 set splitbelow
@@ -93,12 +93,15 @@ let g:NERDToggleCheckAllLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:python_highlight_all = 1
 let g:rainbow_active = 1
-" let g:spelunker_check_type = 1
-" let g:spelunker_disable_account_name_checking = 1
-" let g:spelunker_disable_email_checking = 1
-" let g:spelunker_target_min_char_len = 3
 let g:tex_flavor = 'latex'
+let g:unicoder_cancel_normal = 1
+let g:unicoder_cancel_insert = 1
+let g:unicoder_cancel_visual = 1
+nnoremap <leader>l :call unicoder#start(0)<CR>
+" inoremap <leader>l <Esc>:call unicoder#start(1)<CR>
+vnoremap <leader>l :<C-u>call unicoder#selection()<CR>
 
+map <leader>ts :setlocal spell!<cr>
 map zs :setlocal spell!<cr>
 map zt za
 map zT zA
@@ -169,8 +172,8 @@ colorscheme gruvbox
 map <c-b> <nop>
 map! <c-b> <nop>
 
-" nnoremap <c-c> :noh<bar>:echo<cr><esc>
-nnoremap <c-c> <esc>
+noremap <c-c> <esc>
+nnoremap <c-c> :noh<bar>:echo<cr><esc>
 nnoremap i :noh<bar>:echo<cr>i
 nnoremap I :noh<bar>:echo<cr>I
 nnoremap a :noh<bar>:echo<cr>a
@@ -185,18 +188,11 @@ nnoremap v :noh<bar>:echo<cr>v
 nnoremap V :noh<bar>:echo<cr>V
 nnoremap <c-v> :noh<bar>:echo<cr><c-v>
 nnoremap <silent> <bs> :noh<bar>:echo<cr>
-" nnoremap <silent> <space> :noh<bar>:echo<cr>
-" nnoremap <silent> <space> @=(foldlevel('.')?'za':"\<space>")<cr>
-" nnoremap <silent> <space> @=(foldlevel('.')?'za':"")<cr>:noh<bar>:echo<cr>
 nnoremap <silent> <space> :noh<bar>:echo<cr>
-
-" nnoremap <c-k> gk
-" nnoremap <c-j> gj
 
 inoremap <c-c> <esc>:noh<bar>:echo<cr>
 inoremap <c-]> <del>
 inoremap <expr> <cr> pumvisible() ? !empty(v:completed_item) ? "<c-y><c-c>" : "<c-y><cr>" : "<cr>"
-
 
 " auto closing of paired chars
 function ClosePair(char)
@@ -206,6 +202,7 @@ function ClosePair(char)
         return a:char
     endif
 endf
+
 inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
@@ -216,6 +213,7 @@ inoremap " <c-r>=ClosePair('"')<cr>
 inoremap ' <c-r>=ClosePair("'")<cr>
 inoremap ` <c-r>=ClosePair('`')<cr>
 inoremap $ <c-r>=ClosePair('$')<cr>
+
 " add quotes around visual selection
 " vnoremap " <c-c>`>a"<c-c>`<i"<c-c>
 " vnoremap ' <c-c>`>a'<c-c>`<i'<c-c>
@@ -255,6 +253,7 @@ function QuoteDelim(char)
         return a:char.a:char."\<esc>i"
     endif
 endf
+
 " camel-case selected text
 function! TwiddleCase(str)
     return substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
@@ -273,18 +272,20 @@ function! ToggleBG()
     endif
 endfunction
 
-map <leader>tt :call ToggleBG()<cr>
+map <leader>tbg :call ToggleBG()<cr>
 
 " toggle relative line numbers
 nnoremap <leader>rln :set rnu!<cr>
+
+" search & replace (blank)
+nnoremap <leader>s :%s//gc<left><left><left>
 " search visual selection
 vnoremap // y/\V<c-r>=escape(@",'/\')<cr>
-" search & replace
-nnoremap <leader>s :%s//gc<left><left><left>
 " search & replace visual selection
 vnoremap <leader>s y`<`>:<c-u>%s/\V<c-r>=escape(@",'/\')<cr>//gc<left><left><left>
-" remove all highlighting highlighting
+
 noremap <leader>h :noh<cr>
+
 " silence macro recording
 noremap <leader>q q
 map q <nop>
@@ -316,8 +317,6 @@ map <leader>an :ALENextWrap<cr>
 map <leader>aN :ALEPreviousWrap<cr>
 map <leader>al :ALELint<cr>
 map <leader>ad :ALEDetail<cr>
-
-set fillchars=stl:⋅,stlnc:⋅,vert:│,fold:۰,diff:·
 
 function! GitStatus()
     let [a,m,r] = GitGutterGetHunkSummary()
