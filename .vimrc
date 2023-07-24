@@ -11,7 +11,8 @@ set backspace=indent,eol,start
 set conceallevel=0
 set cursorline
 set display+=lastline
-set fillchars=stl:-,stlnc:⋅,vert:│,fold:\ ,diff:·
+set fillchars=stl:⋅,stlnc:⋅,vert:│,fold:۰,diff:·
+" set fillchars=stl:-,stlnc:⋅,vert:│,fold:\ ,diff:·
 set hlsearch
 set ignorecase
 set incsearch
@@ -21,7 +22,7 @@ set matchpairs+=<:>
 set mouse=
 " set number relativenumber
 set number
-set numberwidth=2
+set numberwidth=3
 " set previewpopup=height:10,width:60,highlight:PMenuSbar
 set ruler
 set scrolloff=0
