@@ -203,7 +203,7 @@ function flacconvert() {
 function flacall() {
     for f in ./*.flac
     do
-        flac_convert "$f"
+        flacconvert "$f"
     done
 }
 
