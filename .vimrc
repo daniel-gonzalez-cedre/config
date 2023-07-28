@@ -20,17 +20,17 @@ set laststatus=2
 let mapleader=','
 set matchpairs+=<:>
 set mouse=
+set nospell
 " set number relativenumber
 set number
 set numberwidth=3
 " set previewpopup=height:10,width:60,highlight:PMenuSbar
 set ruler
-set scrolloff=0
+set scrolloff=2
 set signcolumn=yes
 set shiftround
 set showcmd
 set smartcase
-set nospell
 set spelllang+=cjk
 set spellsuggest=best,5
 set splitbelow
@@ -98,9 +98,18 @@ let g:tex_flavor = 'latex'
 let g:unicoder_cancel_normal = 1
 let g:unicoder_cancel_insert = 1
 let g:unicoder_cancel_visual = 1
+
+" bindings for LaTeX unicoder
 nnoremap <leader>l :call unicoder#start(0)<CR>
-" inoremap <leader>l <Esc>:call unicoder#start(1)<CR>
 vnoremap <leader>l :<C-u>call unicoder#selection()<CR>
+" inoremap <leader>l <Esc>:call unicoder#start(1)<CR>
+
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
 
 map <leader>ts :setlocal spell!<cr>
 map zs :setlocal spell!<cr>
