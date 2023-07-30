@@ -104,12 +104,12 @@ nnoremap <leader>l :call unicoder#start(0)<CR>
 vnoremap <leader>l :<C-u>call unicoder#selection()<CR>
 " inoremap <leader>l <Esc>:call unicoder#start(1)<CR>
 
-nnoremap n nzz
-nnoremap N Nzz
-nnoremap * *zz
-nnoremap # #zz
-nnoremap g* g*zz
-nnoremap g# g#zz
+" nnoremap n nzz
+" nnoremap N Nzz
+" nnoremap * *zz
+" nnoremap # #zz
+" nnoremap g* g*zz
+" nnoremap g# g#zz
 
 map <leader>ts :setlocal spell!<cr>
 map zs :setlocal spell!<cr>
