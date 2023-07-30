@@ -13,7 +13,7 @@ set cursorline
 set display+=lastline
 set fillchars=stl:⋅,stlnc:⋅,vert:│,fold:۰,diff:·
 " set fillchars=stl:-,stlnc:⋅,vert:│,fold:\ ,diff:·
-set hlsearch
+set nohlsearch
 set ignorecase
 set incsearch
 set laststatus=2
@@ -294,7 +294,7 @@ vnoremap // y/\V<c-r>=escape(@",'/\')<cr>
 " search & replace visual selection
 vnoremap <leader>s y`<`>:<c-u>%s/\V<c-r>=escape(@",'/\')<cr>//gc<left><left><left>
 
-noremap <leader>h :noh<cr>
+noremap <leader>h :set nohlsearch!<cr>
 
 " silence macro recording
 noremap <leader>q q
