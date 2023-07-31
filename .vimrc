@@ -100,9 +100,12 @@ let g:unicoder_cancel_insert = 1
 let g:unicoder_cancel_visual = 1
 
 " bindings for LaTeX unicoder
-nnoremap <leader>l :call unicoder#start(0)<CR>
-vnoremap <leader>l :<C-u>call unicoder#selection()<CR>
-" inoremap <leader>l <Esc>:call unicoder#start(1)<CR>
+nnoremap <leader>l :call unicoder#start(0)<cr>
+vnoremap <leader>l :<c-u>call unicoder#selection()<cr>
+" inoremap <leader>l <esc>:call unicoder#start(1)<cr>
+
+nnoremap <c-i> <c-y>
+nnoremap <c-y> <nop>
 
 " nnoremap n nzz
 " nnoremap N Nzz
