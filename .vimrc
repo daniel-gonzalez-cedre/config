@@ -96,7 +96,7 @@ let g:python_highlight_all = 1
 let g:rainbow_active = 1
 let g:tex_flavor = 'latex'
 let g:unicoder_cancel_normal = 1
-let g:unicoder_cancel_insert = 1
+" let g:unicoder_cancel_insert = 1
 let g:unicoder_cancel_visual = 1
 
 " bindings for LaTeX unicoder
