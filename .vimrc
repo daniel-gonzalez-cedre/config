@@ -114,6 +114,7 @@ nnoremap <c-y> <nop>
 " nnoremap g* g*zz
 " nnoremap g# g#zz
 
+map <leader>w :setlocal nowrap!<cr>
 map <leader>ts :setlocal spell!<cr>
 map zs :setlocal spell!<cr>
 map zt za
