@@ -599,3 +599,5 @@ linters
 #ren/!
 unsampled
 Peano
+resample
+Tufte
