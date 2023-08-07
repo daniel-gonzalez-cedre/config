@@ -13,7 +13,8 @@ set cursorline
 set display+=lastline
 set fillchars=stl:⋅,stlnc:⋅,vert:│,fold:۰,diff:·
 " set fillchars=stl:-,stlnc:⋅,vert:│,fold:\ ,diff:·
-set nohlsearch
+" set nohlsearch
+set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2
@@ -26,7 +27,7 @@ set number
 set numberwidth=3
 " set previewpopup=height:10,width:60,highlight:PMenuSbar
 set ruler
-set scrolloff=2
+" set scrolloff=2
 set signcolumn=yes
 set shiftround
 set showcmd
@@ -186,8 +187,9 @@ colorscheme gruvbox
 map <c-b> <nop>
 map! <c-b> <nop>
 
-noremap <c-c> <esc>
-nnoremap <c-c> :noh<bar>:echo<cr><esc>
+noremap <silent> <cr> :noh<bar>:echo<cr><nop>
+noremap <silent> <c-c> <esc>
+nnoremap <silent> <c-c> :noh<bar>:echo<cr><esc>
 nnoremap i :noh<bar>:echo<cr>i
 nnoremap I :noh<bar>:echo<cr>I
 nnoremap a :noh<bar>:echo<cr>a
@@ -203,6 +205,9 @@ nnoremap V :noh<bar>:echo<cr>V
 nnoremap <c-v> :noh<bar>:echo<cr><c-v>
 nnoremap <silent> <bs> :noh<bar>:echo<cr>
 nnoremap <silent> <space> :noh<bar>:echo<cr>
+vnoremap <bs> <nop>
+vnoremap <space> <nop>
+
 
 inoremap <c-c> <esc>:noh<bar>:echo<cr>
 inoremap <c-]> <del>
@@ -232,9 +237,6 @@ inoremap $ <c-r>=ClosePair('$')<cr>
 " vnoremap " <c-c>`>a"<c-c>`<i"<c-c>
 " vnoremap ' <c-c>`>a'<c-c>`<i'<c-c>
 " vnoremap ` <c-c>`>a`<c-c>`<i`<c-c>
-
-vnoremap <bs> <nop>
-vnoremap <space> <nop>
 
 if has('clipboard')
     noremap y "+y
@@ -308,9 +310,9 @@ noremap = g_
 
 " text object for current line
 xnoremap il g_o^
-onoremap il :normal vil<CR>
+onoremap il :normal vil<cr>
 xnoremap al $o^
-onoremap al :normal val<CR>
+onoremap al :normal val<cr>
 
 " NERDCommenter mappings
 autocmd! VimEnter * call s:nerdcommenter_mappings()
