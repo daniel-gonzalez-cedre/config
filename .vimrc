@@ -187,9 +187,6 @@ colorscheme gruvbox
 map <c-b> <nop>
 map! <c-b> <nop>
 
-noremap <silent> <cr> :noh<bar>:echo<cr><nop>
-noremap <silent> <c-c> <esc>
-nnoremap <silent> <c-c> :noh<bar>:echo<cr><esc>
 nnoremap i :noh<bar>:echo<cr>i
 nnoremap I :noh<bar>:echo<cr>I
 nnoremap a :noh<bar>:echo<cr>a
@@ -202,7 +199,10 @@ nnoremap s :noh<bar>:echo<cr>s
 nnoremap S :noh<bar>:echo<cr>S
 nnoremap v :noh<bar>:echo<cr>v
 nnoremap V :noh<bar>:echo<cr>V
+noremap <silent> <c-c> <esc>
+nnoremap <silent> <c-c> :noh<bar>:echo<cr><esc>
 nnoremap <c-v> :noh<bar>:echo<cr><c-v>
+nnoremap <silent> <cr> :noh<bar>:echo<cr>
 nnoremap <silent> <bs> :noh<bar>:echo<cr>
 nnoremap <silent> <space> :noh<bar>:echo<cr>
 vnoremap <bs> <nop>
