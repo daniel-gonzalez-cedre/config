@@ -13,7 +13,8 @@ set cursorline
 set display+=lastline
 set fillchars=stl:⋅,stlnc:⋅,vert:│,fold:۰,diff:·
 " set fillchars=stl:-,stlnc:⋅,vert:│,fold:\ ,diff:·
-" set nohlsearch
+set formatoptions+=jpo/
+" set formatoptions-=t
 set hlsearch
 set ignorecase
 set incsearch
@@ -56,7 +57,6 @@ set tabstop=4
 " line wrapping
 " set breakindent
 " set breakindentopt=sbr
-set formatoptions-=t
 set linebreak
 " set list
 set listchars=tab:__,nbsp:⋅,eol:⋅
