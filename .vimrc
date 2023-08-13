@@ -6,14 +6,14 @@ autocmd BufEnter * :syntax sync fromstart
 
 set background=dark
 set backspace=indent,eol,start
-" set completeopt+=popup
+set completeopt+=popup
 " set completepopup=height:15,width:60,border:off,highlight:PMenuSbar
 set conceallevel=0
 set cursorline
 set display+=lastline
 set fillchars=stl:⋅,stlnc:⋅,vert:│,fold:۰,diff:·
 " set fillchars=stl:-,stlnc:⋅,vert:│,fold:\ ,diff:·
-set formatoptions+=jpo/
+set formatoptions+=1jp
 " set formatoptions-=t
 set hlsearch
 set ignorecase
@@ -37,7 +37,8 @@ set spelllang+=cjk
 set spellsuggest=best,5
 set splitbelow
 set splitright
-set ttimeoutlen=10
+set notimeout nottimeout
+" set timeout timeoutlen=3000 ttimeoutlen=10
 set updatetime=200
 set wildmenu
 set wildmode=list:longest,full

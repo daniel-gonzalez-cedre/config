@@ -1,4 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =2
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/Users/cedre/academia/presentations/2023-08-17_deloitte/chapters'
 let g:netrw_dirhist_2='/Users/cedre/repos/neural-grammar/data_efficient_grammar'
 let g:netrw_dirhist_1='/Users/cedre/.vim'
