@@ -95,6 +95,14 @@ do
     [[ $FILE =~ $PATTERN ]] && export FFPROFILE=$FILE
 done
 
+export LWDIR=${HOME}/Library/Application\ Support/librewolf
+for FILE in ${LWDIR}/Profiles/*
+do
+    # PATTERN=".*.........default-release"
+    PATTERN=".*.default-default"
+    [[ $FILE =~ $PATTERN ]] && export LWPROFILE=$FILE
+done
+
 alias cp="cp -v"
 alias mv="mv -v"
 alias rm="rm -v"
