@@ -179,10 +179,8 @@ if s:is_dark
   let s:bg2  = s:gb.dark0_soft
   let s:bg3  = s:gb.dark1
   let s:bg4  = s:gb.dark2
-  " let s:bg1  = s:gb.dark1
-  " let s:bg2  = s:gb.dark2
-  " let s:bg3  = s:gb.dark3
-  " let s:bg4  = s:gb.dark4
+  let s:bg5  = s:gb.dark3
+  let s:bg6  = s:gb.dark4
 
   let s:gray = s:gb.gray_245
 
@@ -577,8 +575,8 @@ else
   call s:HL('Special', s:orange, s:bg1, s:italicize_strings)
 endif
 
-call s:HL('Comment', s:gray, s:none, s:italicize_comments)
-call s:HL('Todo', s:vim_fg, s:vim_bg, s:bold . s:italic)
+call s:HL('Comment', s:bg5, s:none, s:italicize_comments)
+call s:HL('Todo', s:bg6, s:bg1, s:bold . s:italic)
 call s:HL('Error', s:red, s:vim_bg, s:bold . s:inverse)
 
 " Generic statement
@@ -599,7 +597,7 @@ hi! link Keyword GruvboxRed
 " Variable name
 hi! link Identifier GruvboxBlue
 " Function name
-hi! link Function GruvboxGreenBold
+hi! link Function GruvboxYellow
 
 " Generic preprocessor
 hi! link PreProc GruvboxAqua
