@@ -576,7 +576,7 @@ else
 endif
 
 call s:HL('Comment', s:bg5, s:none, s:italicize_comments)
-call s:HL('Todo', s:bg6, s:bg1, s:bold . s:italic)
+call s:HL('Todo', s:gb.faded_orange, s:none, s:bold . s:italic)
 call s:HL('Error', s:red, s:vim_bg, s:bold . s:inverse)
 
 " Generic statement
