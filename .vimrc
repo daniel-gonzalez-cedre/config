@@ -70,7 +70,7 @@ set wrapmargin=0
 
 " plugin settings
 let g:ale_sign_error = ' ✘'
-let g:ale_sign_warning = ' -'
+let g:ale_sign_warning = ' ⋅'
 let g:ale_linters = {'vim': ['vint'], 'python': ['pylint'], 'lua': ['luacheck', 'luac'], 'tex': ['lacheck']}  " pyright, chktek, lachek
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
