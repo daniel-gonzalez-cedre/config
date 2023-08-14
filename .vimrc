@@ -76,6 +76,7 @@ let g:ale_lint_delay = 0
 let g:ale_lint_on_save = 1
 let g:ale_virtualtext_cursor = 'current'
 let g:gitgutter_map_keys = 0
+let g:gruvbox_improved_strings = 1
 let g:gruvbox_improved_warnings = 1
 let g:gruvbox_hls_cursor = 'orange'
 let g:gruvbox_contrast_dark = 'hard'
@@ -151,7 +152,7 @@ function! s:gruvbox_custom()
     hi CursorLineNR ctermbg=none
     hi StatusLine ctermbg=none cterm=none
     hi StatusLineNC ctermbg=none cterm=none
-    hi MatchParen cterm=inverse
+    " hi MatchParen cterm=inverse
     hi Folded ctermbg=none ctermfg=238
     hi ALEErrorLine ctermbg=none cterm=none
     hi ALEWarningLine ctermbg=none cterm=none

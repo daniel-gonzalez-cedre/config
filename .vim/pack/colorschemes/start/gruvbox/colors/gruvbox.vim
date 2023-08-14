@@ -175,10 +175,14 @@ if s:is_dark
     let s:bg0  = s:gb.dark0_hard
   endif
 
-  let s:bg1  = s:gb.dark1
-  let s:bg2  = s:gb.dark2
-  let s:bg3  = s:gb.dark3
-  let s:bg4  = s:gb.dark4
+  let s:bg1  = s:gb.dark0
+  let s:bg2  = s:gb.dark0_soft
+  let s:bg3  = s:gb.dark1
+  let s:bg4  = s:gb.dark2
+  " let s:bg1  = s:gb.dark1
+  " let s:bg2  = s:gb.dark2
+  " let s:bg3  = s:gb.dark3
+  " let s:bg4  = s:gb.dark4
 
   let s:gray = s:gb.gray_245
 
@@ -616,7 +620,8 @@ hi! link Character GruvboxPurple
 if g:gruvbox_improved_strings == 0
   call s:HL('String',  s:green, s:none, s:italicize_strings)
 else
-  call s:HL('String',  s:fg1, s:bg1, s:italicize_strings)
+  " call s:HL('String',  s:fg1, s:bg1, s:italicize_strings)
+  call s:HL('String',  s:fg2, s:bg1, s:italicize_strings)
 endif
 " Boolean constant: TRUE, false
 hi! link Boolean GruvboxPurple
