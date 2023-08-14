@@ -69,6 +69,8 @@ set wrapmargin=0
 
 
 " plugin settings
+let g:ale_sign_error = ' ✘'
+let g:ale_sign_warning = ' -'
 let g:ale_linters = {'vim': ['vint'], 'python': ['pylint'], 'lua': ['luacheck', 'luac'], 'tex': ['lacheck']}  " pyright, chktek, lachek
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
@@ -167,10 +169,10 @@ function! s:gruvbox_custom()
 endfunction
 function! s:gitgutter_custom()
     highlight clear SignColumn
-    highlight GitGutterAdd ctermbg=none ctermfg=100
-    highlight GitGutterChange ctermbg=none ctermfg=66
-    highlight GitGutterDelete ctermbg=none ctermfg=130
-    highlight GitGutterChangeDelete ctermbg=none ctermfg=96
+    highlight GitGutterAdd ctermbg=none ctermfg=142
+    highlight GitGutterChange ctermbg=none ctermfg=109
+    highlight GitGutterDelete ctermbg=none ctermfg=167
+    highlight GitGutterChangeDelete ctermbg=none ctermfg=175
     " highlight GitGutterAdd ctermbg=none
     " highlight GitGutterChange ctermbg=none
     " highlight GitGutterDelete ctermbg=none
