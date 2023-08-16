@@ -22,7 +22,8 @@ set laststatus=2
 let mapleader=','
 set matchpairs+=<:>
 set mouse=
-set nospell
+set spell
+" set nospell
 " set number relativenumber
 set number
 set numberwidth=3
@@ -111,6 +112,11 @@ vnoremap <leader>l :<c-u>call unicoder#selection()<cr>
 
 nnoremap <c-i> <c-y>
 nnoremap <c-y> <nop>
+
+nnoremap ZZ <nop>
+nnoremap Zz <nop>
+nnoremap ZX <nop>
+nnoremap Zx <nop>
 
 " nnoremap n nzz
 " nnoremap N Nzz

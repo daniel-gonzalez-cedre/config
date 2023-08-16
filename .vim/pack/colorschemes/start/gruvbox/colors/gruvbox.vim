@@ -572,7 +572,8 @@ hi! link lCursor Cursor
 if g:gruvbox_improved_strings == 0
   hi! link Special GruvboxOrange
 else
-  call s:HL('Special', s:orange, s:bg1, s:italicize_strings)
+  " call s:HL('Special', s:blue, s:bg1, s:italicize_strings)
+  call s:HL('Special', s:aqua, s:bg0, s:italicize_strings)
 endif
 
 call s:HL('Comment', s:bg5, s:none, s:italicize_comments)
