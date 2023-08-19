@@ -13,6 +13,8 @@ let s:cpo_orig = &cpo
 set cpo&vim
 
 compiler typst
+"Workaround for https://github.com/typst/typst/issues/1937
+set errorformat^=\/%f:%l:%c:%m
 
 setlocal expandtab
 setlocal tabstop=8
@@ -21,9 +23,6 @@ setlocal shiftwidth=2
 
 setlocal commentstring=//%s
 setlocal comments=s1:/*,mb:*,ex:*/,://
-
-" insert bullets automatically
-setlocal comments+=b:-,b:+,b:/
 
 setlocal formatoptions+=croq
 
