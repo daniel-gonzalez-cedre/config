@@ -4,9 +4,31 @@ syntax enable
 au FileType * set conceallevel=0
 autocmd BufEnter * :syntax sync fromstart
 
+if has('nvim')
+    packadd! nvim-treesitter
+else
+    packadd! ale
+    let g:ale_sign_error = ' ✘'
+    let g:ale_sign_warning = ' ⋅'
+    let g:ale_linters = {'vim': ['vint'], 'python': ['pylint'], 'lua': ['luacheck', 'luac'], 'tex': ['lacheck']}  " pyright, chktek, lachek
+    let g:ale_lint_on_text_changed = 'normal'
+    let g:ale_lint_on_insert_leave = 1
+    let g:ale_lint_delay = 0
+    let g:ale_lint_on_save = 1
+    let g:ale_virtualtext_cursor = 'current'
+    map ]a :ALENextWrap<cr>
+    map [a :ALEPreviousWrap<cr>
+    map <leader>an :ALENextWrap<cr>
+    map <leader>aN :ALEPreviousWrap<cr>
+    map <leader>al :ALELint<cr>
+    map <leader>ad :ALEDetail<cr>
+endif
+
+packadd! vimtex
+
 set background=dark
 set backspace=indent,eol,start
-set completeopt+=popup
+" set completeopt+=popup
 " set completepopup=height:15,width:60,border:off,highlight:PMenuSbar
 set conceallevel=0
 set cursorline
@@ -70,14 +92,6 @@ set wrapmargin=0
 
 
 " plugin settings
-let g:ale_sign_error = ' ✘'
-let g:ale_sign_warning = ' ⋅'
-let g:ale_linters = {'vim': ['vint'], 'python': ['pylint'], 'lua': ['luacheck', 'luac'], 'tex': ['lacheck']}  " pyright, chktek, lachek
-let g:ale_lint_on_text_changed = 'normal'
-let g:ale_lint_on_insert_leave = 1
-let g:ale_lint_delay = 0
-let g:ale_lint_on_save = 1
-let g:ale_virtualtext_cursor = 'current'
 let g:gitgutter_map_keys = 0
 let g:gruvbox_improved_strings = 1
 let g:gruvbox_improved_warnings = 1
@@ -162,17 +176,23 @@ function! s:gruvbox_custom()
     hi StatusLineNC ctermbg=none cterm=none
     " hi MatchParen cterm=inverse
     hi Folded ctermbg=none ctermfg=238
-    hi ALEErrorLine ctermbg=none cterm=none
-    hi ALEWarningLine ctermbg=none cterm=none
-    hi ALEError ctermbg=none cterm=none
-    hi ALEWarning ctermbg=none cterm=none
-    hi ALEErrorSign ctermfg=167 ctermbg=none
-    hi ALEWarningSign ctermfg=214 ctermbg=none
-    hi ALEInfoSign ctermfg=108 ctermbg=none
-    hi ALEVirtualTextError ctermfg=238
-    hi ALEVirtualTextWarning ctermfg=238
+
+    if has('nvim')
+    else
+        hi ALEErrorLine ctermbg=none cterm=none
+        hi ALEWarningLine ctermbg=none cterm=none
+        hi ALEError ctermbg=none cterm=none
+        hi ALEWarning ctermbg=none cterm=none
+        hi ALEErrorSign ctermfg=167 ctermbg=none
+        hi ALEWarningSign ctermfg=214 ctermbg=none
+        hi ALEInfoSign ctermfg=108 ctermbg=none
+        hi ALEVirtualTextError ctermfg=238
+        hi ALEVirtualTextWarning ctermfg=238
+    endif
+
     hi SignColumn ctermbg=black
 endfunction
+
 function! s:gitgutter_custom()
     highlight clear SignColumn
     highlight GitGutterAdd ctermbg=none ctermfg=142
@@ -335,14 +355,6 @@ function! s:nerdcommenter_mappings()
     noremap <leader>co o<space><bs><c-c><plug>NERDCommenterAppend<c-o><<<c-o>$
     noremap <leader>cO O<space><bs><c-c><plug>NERDCommenterAppend<c-o><<<c-o>$
 endfunction
-
-" ALE mappings
-map ]a :ALENextWrap<cr>
-map [a :ALEPreviousWrap<cr>
-map <leader>an :ALENextWrap<cr>
-map <leader>aN :ALEPreviousWrap<cr>
-map <leader>al :ALELint<cr>
-map <leader>ad :ALEDetail<cr>
 
 function! GitStatus()
     let [a,m,r] = GitGutterGetHunkSummary()
