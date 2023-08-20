@@ -5,6 +5,9 @@
         \documentclass[nobib,justified]{tufte-book}
     \else
         \documentclass[justified]{tufte-handout}
+        \ifsyllabus
+            \usepackage{pgf-pie}
+        \fi
     \fi
 
     \setcounter{secnumdepth}{1}
