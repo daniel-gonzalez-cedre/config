@@ -1,6 +1,3 @@
-\newlist{detail}{itemize}{2}
-\setlist[detail]{label={\boldmath$\cdot$},topsep=0pt,leftmargin=*,noitemsep}
-
 \ifalgorithms
     \newcounter{nalg}[chapter]
     \renewcommand{\thenalg}{\thechapter.\arabic{nalg}}
@@ -27,72 +24,89 @@
 \else
 \fi
 
+% % new proof environment
+% \expandafter\let\expandafter\oldproof\csname\string\proof\endcsname
+% \let\oldendproof\endproof
+% \renewenvironment{proof}[1][\proofname]{%
+%     \vspace{-0.5\parskip}%
+%     \oldproof[#1]
+% }{%
+%     \renewcommand{\qedsymbol}{\sc q.e.d.}
+%     \qed
+% }
+
 % new proof environment
 \expandafter\let\expandafter\oldproof\csname\string\proof\endcsname
 \let\oldendproof\endproof
 \renewenvironment{proof}[1][\proofname]{%
-    \vspace{-0.5\parskip}%
+    % \vspace{-0.5\parskip}%
     \oldproof[#1]
 }{%
     ~\\\qed
 }
 
-\newtheoremstyle{cedretheorem} % name
-    {1ex}  % space above
-    {-1ex}  % space below
-    {\itshape}  % body font
-    {}  % indent amount
-    {\bfseries}  % theorem head font
-    {.\\}  % punctuation after theorem head
-    {.5em}  % space after theorem head
-    {}  % theorem head spec (can be left empty, meaning ‘normal’)
+% theorems
+\declaretheoremstyle[
+    headfont=\bfseries\itshape,
+    numbered=yes,
+    bodyfont=\normalfont,
+    notefont=\bfseries\itshape,
+    % spaceabove=1ex,
+    % spacebelow=-1ex,
+    headpunct={.\hfill$\urcorner$\break},
+    % postheadhook = {\hspace*{\parindent}},
+    qed=\raisebox{-1ex}{$\lrcorner$},
+]{thmstyle}
+\declaretheorem[
+    style=thmstyle,
+    within=chapter,
+]{proposition, lemma, theorem, corollary, claim}
 
-\newtheoremstyle{cedredefinition} % name
-    {1ex}  % space above
-    {-1ex}  % space below
-    {}  % body font
-    {}  % indent amount
-    {\bfseries}  % theorem head font
-    {.\\}  % punctuation after theorem head
-    {.5em}  % space after theorem head
-    {}  % theorem head spec (can be left empty, meaning ‘normal’)
+% definitions
+\declaretheoremstyle[
+    headfont=\bfseries\itshape,
+    numbered=yes,
+    bodyfont=\normalfont,
+    notefont=\bfseries\itshape,
+    % spaceabove=1ex,
+    % spacebelow=-1ex,
+    headpunct={.\hfill$\urcorner$\break},
+    % postheadhook = {\hspace*{\parindent}},
+    qed=\raisebox{-1ex}{$\lrcorner$},
+]{defnstyle}
+\declaretheorem[
+    style=defnstyle,
+    within=chapter,
+]{definition, axiom, algorithm, notation}
 
-\newtheoremstyle{cedrenote} % name
-    {}  % space above
-    {}  % space below
-    {}  % body font
-    {}  % indent amount
-    {\bfseries}  % theorem head font
-    {.}  % punctuation after theorem head
-    {.5em}  % space after theorem head
-    {}  % theorem head spec (can be left empty, meaning ‘normal’)
+% examples
+\declaretheoremstyle[
+    headfont=\bfseries\itshape,
+    numbered=no,
+    bodyfont=\normalfont,
+    notefont=\bfseries\itshape,
+    % spaceabove=1ex,
+    % spacebelow=-1ex,
+    headpunct={.\hfill$\urcorner$\break},
+]{exstyle}
+\declaretheorem[
+    style=exstyle,
+    within=chapter,
+]{exercise, example, ex, counterexample}
 
-% style for theorems
-\theoremstyle{cedretheorem}
-\newtheorem{theorem}{Theorem}
-\newtheorem{lemma}{Lemma}
-\newtheorem{proposition}{Proposition}
-\newtheorem{corollary}{Corollary}
-\newtheorem{conjecture}{Conjecture}
-\newtheorem*{claim}{Claim}
-\newtheorem*{justification}{Justification}
-% \newtheorem{code}{Code}
-
-% style for definitions
-\theoremstyle{cedredefinition}
-\newtheorem{axiom}{Axiom}
-\newtheorem{definition}{Definition}
-\newtheorem{notation}{Notation}
-\newtheorem{exercise}{Exercise}
-\newtheorem{example}{Example}
-\newtheorem*{counterexample}{Counterexample}
-
-% style for notes
-\theoremstyle{cedrenote}
-\newtheorem*{note}{Note}
-\newtheorem*{remark}{Remark}
-\newtheorem{idea}{Idea}
-\newtheorem{intuition}{Intuition}
+% notes
+\declaretheoremstyle[
+    headfont=\bfseries\itshape,
+    numbered=no,
+    bodyfont=\normalfont,
+    notefont=\bfseries\itshape,
+    % spaceabove=1ex,
+    % spacebelow=-1ex,
+]{notestyle}
+\declaretheorem[
+    style=notestyle,
+    within=chapter,
+]{note, remark, idea, intuition}
 
 \newenvironment{case}[1][Case]
     {\quote\textbf{#1:}~\\}
@@ -102,60 +116,25 @@
     {\textbf{#1:}\quote}
     {\endquote}
 
-\def\lstlistingautorefname{Algorithm}
-\def\itemautorefname{Section}
-\renewcommand{\chapterautorefname}{Chapter}
-\renewcommand{\sectionautorefname}{Section}
-\renewcommand{\theoremautorefname}{Theorem}
-\newcommand{\axiomautorefname}{Axiom}
-\newcommand{\lemmaautorefname}{Lemma}
-\newcommand{\propositionautorefname}{Proposition}
-\newcommand{\corollaryautorefname}{Corollary}
-\newcommand{\claimautorefname}{Claim}
-\newcommand{\conjectureautorefname}{Conjecture}
-\newcommand{\justificationautorefname}{Justification}
-\newcommand{\definitionautorefname}{Definition}
-\newcommand{\notationautorefname}{Notation}
-\newcommand{\exampleautorefname}{Example}
-\newcommand{\counterexampleautorefname}{Counterexample}
-\newcommand{\noteautorefname}{Note}
-\newcommand{\remarkautorefname}{Remark}
-\newcommand{\ideaautorefname}{Idea}
-\newcommand{\intuitionautorefname}{Intuition}
+% \newcommand{\concept}{\textbf{\textit{Intuition.}}\ }
 
-\ifbook
-    \renewcommand{\theequation}{\thechapter.\arabic{equation}}
-    \renewcommand{\thetheorem}{\thechapter.\arabic{theorem}}
-    \renewcommand{\thelemma}{\thechapter.\arabic{lemma}}
-    \renewcommand{\theproposition}{\thechapter.\arabic{proposition}}
-    \renewcommand{\thecorollary}{\thechapter.\arabic{corollary}}
-    \renewcommand{\theconjecture}{\thechapter.\arabic{conjecture}}
-    % \renewcommand{\theclaim}{\thechapter.\arabic{claim}}
-    % \renewcommand{\thejustification}{\thechapter.\arabic{justification}}
-    \renewcommand{\thedefinition}{\thechapter.\arabic{definition}}
-    \renewcommand{\thenotation}{\thechapter.\arabic{notation}}
-    \renewcommand{\theexample}{\thechapter.\arabic{example}}
-    % \renewcommand{\thecounterexample}{\thechapter.\arabic{counterexample}}
-    % \renewcommand{\thenote}{\thechapter.\arabic{note}}
-    % \renewcommand{\theremark}{\thechapter.\arabic{remark}}
-    \renewcommand{\theidea}{\thechapter.\arabic{idea}}
-    \renewcommand{\theintuition}{\thechapter.\arabic{intuition}}
-    \counterwithin*{equation}{chapter}
-    \counterwithin*{theorem}{chapter}
-    \counterwithin*{lemma}{chapter}
-    \counterwithin*{proposition}{chapter}
-    \counterwithin*{corollary}{chapter}
-    \counterwithin*{conjecture}{chapter}
-    % \counterwithin*{claim}{chapter}
-    % \counterwithin*{justification}{chapter}
-    \counterwithin*{definition}{chapter}
-    \counterwithin*{notation}{chapter}
-    \counterwithin*{exercise}{chapter}
-    \counterwithin*{example}{chapter}
-    % \counterwithin*{counterexample}{chapter}
-    % \counterwithin*{note}{chapter}
-    % \counterwithin*{remark}{chapter}
-    \counterwithin*{idea}{chapter}
-    \counterwithin*{intuition}{chapter}
-\else
-\fi
+% \def\lstlistingautorefname{Algorithm}
+% \def\itemautorefname{Section}
+% \renewcommand{\chapterautorefname}{Chapter}
+% \renewcommand{\sectionautorefname}{Section}
+% \renewcommand{\theoremautorefname}{Theorem}
+% \newcommand{\axiomautorefname}{Axiom}
+% \newcommand{\lemmaautorefname}{Lemma}
+% \newcommand{\propositionautorefname}{Proposition}
+% \newcommand{\corollaryautorefname}{Corollary}
+% \newcommand{\claimautorefname}{Claim}
+% \newcommand{\conjectureautorefname}{Conjecture}
+% \newcommand{\justificationautorefname}{Justification}
+% \newcommand{\definitionautorefname}{Definition}
+% \newcommand{\notationautorefname}{Notation}
+% \newcommand{\exampleautorefname}{Example}
+% \newcommand{\counterexampleautorefname}{Counterexample}
+% \newcommand{\noteautorefname}{Note}
+% \newcommand{\remarkautorefname}{Remark}
+% \newcommand{\ideaautorefname}{Idea}
+% \newcommand{\intuitionautorefname}{Intuition}

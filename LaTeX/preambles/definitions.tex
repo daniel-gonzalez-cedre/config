@@ -16,11 +16,25 @@
     \definecolor{colorchicago}{HTML}{800000}
 
     \definecolor{blue}{HTML}{1e88e5}
-    \definecolor{green}{HTML}{7ccba2}
+    \definecolor{green}{HTML}{40a26f}  % 40a26f 7ccba2
     \definecolor{yellow}{HTML}{ffc107}
-    \definecolor{orange}{HTML}{ff5733}  % ff5733, f0746e, f28522, ee7733, d65d0e
+    \definecolor{orange}{HTML}{ff421a}  % ff5733, f0746e, f28522, ee7733, d65d0e
     \definecolor{red}{HTML}{d81b60}
     \definecolor{pink}{HTML}{f0746e}
+
+    \definecolor{ablue}{HTML}{089099}
+    \definecolor{agreen}{HTML}{6ac495}
+    \definecolor{ayellow}{HTML}{fbce6b}
+    \definecolor{aorange}{HTML}{f0746e}
+    \definecolor{ared}{HTML}{dc3977}
+    \definecolor{apurple}{HTML}{912282}
+
+    \newcommand{\tableblue}[1]{\cellcolor{ablue}{\white{#1}}}
+    \newcommand{\tablegreen}[1]{\cellcolor{agreen}{\white{#1}}}
+    \newcommand{\tableyellow}[1]{\cellcolor{ayellow}{\white{#1}}}
+    \newcommand{\tableorange}[1]{\cellcolor{aorange}{\white{#1}}}
+    \newcommand{\tablered}[1]{\cellcolor{ared}{\white{#1}}}
+    \newcommand{\tablepurple}[1]{\cellcolor{apurple}{\white{#1}}}
 
     \newcommand{\white}[1]{\textcolor{white}{#1}}
     \newcommand{\grey}[1]{\textcolor{grey}{#1}}
@@ -63,6 +77,7 @@
     \newcommand{\bpink}[1]{\textcolor{pink}{\bfseries #1}}
 % END COLORS
 
+\newcommand{\blankpage}{\newpage\hbox{}\thispagestyle{empty}\newpage}
 \newcommand*{\xline}[1][3em]{\rule[0.5ex]{#1}{0.55pt}}
 
 \newcommand{\isomorphic}{\cong}
@@ -101,12 +116,12 @@
     \draw [line width=1.25, line cap=round] (-2/3, 0) -- (2/3, 0);
 \end{tikzpicture}}}
 
-\newcommand{\subgraph}{\triangleleft}
+
 \newcommand{\compose}{\circ}
 \renewcommand{\div}{\mid}
 \newcommand{\ndiv}{\nmid}
 \newcommand{\divides}{\mid}
-\newcommand{\ndivides}{\nmid}
+\newcommand{\notdivides}{\nmid}
 \newcommand{\given}{~\middle|~}
 \newcommand{\suchthat}{~\middle|~}
 \newcommand{\contradiction}{\smash{\text{\raisebox{-0.6ex}{\Large \Lightning}}}~~}
@@ -149,9 +164,6 @@
 \newcommand{\isomorphism}{\lhook\joinrel\twoheadrightarrow}
 \newcommand{\immersion}{\looprightarrow}
 
-% \newcommand{\im}{\text{im}}
-\newcommand{\im}[1]{\text{im}\pn*{#1}}
-\renewcommand{\ker}[1]{\text{ker}\pn*{#1}}
 \renewcommand{\O}[1]{\mathcal{O}\pn*{#1}}
 \renewcommand{\P}[1]{\mathbb{P}\pn*{#1}}
 \newcommand{\power}[1]{\mathcal{P}\pn*{#1}}
@@ -173,9 +185,9 @@
 \newcommand{\vide}{\textit{v.}\ }
 \newcommand{\qv}{\textit{q.v.}\ }
 \newcommand{\ifandonlyif}{\textit{iff}\ }
+\newcommand{\textiff}{\textit{iff}\ }
 
-% these may need {} after them
-\newcommand{\apriori}{\textit{a priori}}
+% these need {} after them
 \newcommand{\etal}{\textit{et al.}}
 \newcommand{\wff}{\textit{wff}}
 
@@ -193,11 +205,13 @@
 \newcommand{\kanji}[1]{\begin{CJK}{UTF8}{bkai}#1\end{CJK}}
 \newcommand{\kana}[1]{\begin{CJK}{UTF8}{min}#1\end{CJK}}
 
+% parentheses and delimiters
 \DeclarePairedDelimiterX \inner[2]{\langle}{\rangle}{#1,#2}
 \DeclarePairedDelimiter \bra{\langle}{\rvert}
 \DeclarePairedDelimiter \ket{\lvert}{\rangle}
 \DeclarePairedDelimiter \abs{\lvert}{\rvert}
 \DeclarePairedDelimiter \cardinality{\lvert}{\rvert}
+\DeclarePairedDelimiter \order{\lvert}{\rvert}
 \DeclarePairedDelimiter \norm{\lVert}{\rVert}
 \DeclarePairedDelimiter \set{\lbrace}{\rbrace}
 \DeclarePairedDelimiter \seq{\langle}{\rangle}

@@ -1,56 +1,70 @@
-% define new conditionals: \if<conditional>
-\newif\ifbook  % whether or not to use book styles
-\newif\ifdate  % whether or not to include the current date header
-\newif\ifalgorithms  % whether or not to define the algorithm environment
-\newif\ifdaggerfootnotes  % whether or not to have fnsymbol footnotes or numerical ones
+\input{config.tex}
 
-% set the conditionals: \<conditional>true / \<conditional>false
-\bookfalse
-\datefalse
-\algorithmsfalse
-\daggerfootnotestrue
+\iftufte  % Tufte settings
+    \ifbook
+        \documentclass[nobib,justified]{tufte-book}
+    \else
+        \documentclass[justified]{tufte-handout}
+    \fi
 
-\ifbook
-    \documentclass[letterpaper]{book}
+    \setcounter{secnumdepth}{1}
+    \usepackage{microtype}
     \usepackage{arydshln, chngcntr}
-\else
-    \documentclass[letterpaper]{article}
+\else  % regular LaTeX settings
+    \ifbook
+        \documentclass[letterpaper]{book}
+    \else
+        \documentclass[letterpaper]{article}
+    \fi
+    \usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+    \usepackage[math]{cellspace}
+    \cellspacetoplimit 1pt
+    \cellspacebottomlimit 1pt
 \fi
 
+
 % math
-\usepackage{amsmath, amsfonts, amssymb, amstext, amscd, amsthm, faktor, mathrsfs, mathtools, xfrac}
+\usepackage{amsmath, amsfonts, amssymb, amstext, amscd, amsthm, faktor, mathrsfs, mathtools, thmtools, xfrac}
 % fonts
 \usepackage{bbm, CJKutf8, caption, dsfont, marvosym, stmaryrd}
 % tables
 \usepackage{booktabs, colortbl, makecell}
 % colors
 \usepackage{color, soul, xcolor}
-% references
-\usepackage{xr-hyper, hyperref, url}
 % figures
-\usepackage{graphicx, float, subcaption, tikz}
+\usepackage{graphicx, float, subcaption, tikz, pgfplots}
 % headers and footers
 \usepackage{fancyhdr, lastpage}
 % miscellaneous
-\usepackage{enumerate, ifthen, lipsum, listings, makeidx, parskip, ulem, verbatim, xargs}
+\usepackage{enumerate, ifthen, lipsum, listings, imakeidx, parskip, ulem, verbatim, xargs}
+% references
+\usepackage{xr-hyper, hyperref, url}
 \usepackage[nodayofweek]{datetime}
 
-\usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
 \usepackage[group-separator={,},group-minimum-digits={3}]{siunitx}
 \usepackage[shortlabels]{enumitem}
-\setlist[enumerate]{topsep=0ex,itemsep=0ex,partopsep=1ex,parsep=1ex}
-\setlist[itemize]{topsep=0ex,itemsep=0ex,partopsep=1ex,parsep=1ex}
-
-\usepackage[math]{cellspace}
-\cellspacetoplimit 1pt
-\cellspacebottomlimit 1pt
+\setlist[enumerate]{topsep=0ex,
+                    itemsep=0ex,
+                    partopsep=1ex,
+                    parsep=1ex}
+\setlist[itemize]{topsep=0ex,
+                  itemsep=0ex,
+                  partopsep=1ex,
+                  parsep=1ex,
+                  label=$\cdot$}
 
 \hypersetup{
     colorlinks=true,
-    linkcolor=orange,
-    citecolor=red,
+    linkcolor=blue,
+    citecolor=blue,
     urlcolor=blue
 }
+% \hypersetup{
+    % colorlinks=true,
+    % linkcolor=orange,
+    % citecolor=red,
+    % urlcolor=blue
+% }
 
 \allowdisplaybreaks
 \newdateformat{verbosedate}{\ordinal{DAY} of \monthname[\THEMONTH], \THEYEAR}
@@ -83,3 +97,16 @@
 
 \delimitershortfall=-1pt
 \normalem
+
+\usepackage{epigraph}
+\usepackage{etoolbox}
+\makeatletter
+% \newlength\epitextskip
+\pretocmd{\@epitext}{\em}{}{}
+\apptocmd{\@epitext}{\em}{}{}
+\patchcmd{\epigraph}{\@epitext{#1}\\}{\vspace{-10ex}\@epitext{#1}\\}{}{}
+\makeatother
+
+\setlength\epigraphrule{0pt}
+% \setlength\epitextskip{0ex}
+\setlength\epigraphwidth{.75\textwidth}
