@@ -168,11 +168,15 @@ function clean() {
     rm -rf __pycache__/
     rm -f .DS_Store
     rm -f *.aux(N)
+    rm -f *.bbl(N)
     rm -f *.bcf(N)
     rm -f *.blg(N)
     rm -f *.brf(N)
     rm -f *.fdb_latexmk(N)
     rm -f *.fls(N)
+    rm -f *.idx(N)
+    rm -f *.ilg(N)
+    rm -f *.ind(N)
     rm -f *.lof(N)
     rm -f *.log(N)
     rm -f *.lol(N)
