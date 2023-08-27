@@ -18,7 +18,7 @@
     \definecolor{blue}{HTML}{1e88e5}
     \definecolor{green}{HTML}{4eb981}
     \definecolor{yellow}{HTML}{ffc107}
-    \definecolor{orange}{HTML}{ff421a}  % ff5733, f0746e, f28522, ee7733, d65d0e
+    \definecolor{orange}{HTML}{ff5430}  % ff5733, f0746e, f28522, ee7733, d65d0e
     \definecolor{red}{HTML}{d81b60}
     \definecolor{pink}{HTML}{f0746e}
 
@@ -124,7 +124,12 @@
 \newcommand{\notdivides}{\nmid}
 \newcommand{\given}{~\middle|~}
 \newcommand{\suchthat}{~\middle|~}
-\newcommand{\contradiction}{\smash{\text{\raisebox{-0.6ex}{\Large \Lightning}}}~~}
+
+\iftufte
+    \newcommand{\contradiction}{\smash{\text{\Large \Lightning}}~~}
+\else
+    \newcommand{\contradiction}{\smash{\text{\raisebox{-0.6ex}{\Large \Lightning}}}~~}
+\fi
 
 \newcommand{\conjugate}[1]{\overline{#1}}
 \newcommand{\mean}[1]{\overline{#1}}
@@ -184,6 +189,7 @@
 \newcommand{\viz}{\textit{viz.}\ }
 \newcommand{\vide}{\textit{v.}\ }
 \newcommand{\qv}{\textit{q.v.}\ }
+\newcommand{\vv}{\textit{vice versa}}
 \newcommand{\ifandonlyif}{\textit{iff}\ }
 \newcommand{\textiff}{\textit{iff}\ }
 

@@ -47,15 +47,12 @@
 
 % theorems
 \declaretheoremstyle[
-    headfont=\bfseries\itshape,
     numbered=yes,
+    headfont=\bfseries\itshape,
     bodyfont=\normalfont,
     notefont=\bfseries\itshape,
-    % spaceabove=1ex,
-    % spacebelow=-1ex,
-    headpunct={.\hfill$\urcorner$\break},
-    % postheadhook = {\hspace*{\parindent}},
-    qed=\raisebox{-1ex}{$\lrcorner$},
+    headpunct={.\hfill\shifttext{2ex}{$\urcorner$}\break},
+    qed=\break\shifttext{2ex}{$\lrcorner$},
 ]{thmstyle}
 \declaretheorem[
     style=thmstyle,
@@ -64,15 +61,12 @@
 
 % definitions
 \declaretheoremstyle[
-    headfont=\bfseries\itshape,
     numbered=yes,
+    headfont=\bfseries\itshape,
     bodyfont=\normalfont,
     notefont=\bfseries\itshape,
-    % spaceabove=1ex,
-    % spacebelow=-1ex,
-    headpunct={.\hfill$\urcorner$\break},
-    % postheadhook = {\hspace*{\parindent}},
-    qed=\raisebox{-1ex}{$\lrcorner$},
+    headpunct={.\hfill\shifttext{2ex}{$\urcorner$}\break},
+    qed=\raisebox{-2ex}{\shifttext{2ex}{$\lrcorner$}},
 ]{defnstyle}
 \declaretheorem[
     style=defnstyle,
@@ -81,13 +75,11 @@
 
 % examples
 \declaretheoremstyle[
-    headfont=\bfseries\itshape,
     numbered=no,
+    headfont=\bfseries\itshape,
     bodyfont=\normalfont,
     notefont=\bfseries\itshape,
-    % spaceabove=1ex,
-    % spacebelow=-1ex,
-    headpunct={.\hfill$\urcorner$\break},
+    headpunct={.\hfill\break},
 ]{exstyle}
 \declaretheorem[
     style=exstyle,
@@ -100,8 +92,6 @@
     numbered=no,
     bodyfont=\normalfont,
     notefont=\bfseries\itshape,
-    % spaceabove=1ex,
-    % spacebelow=-1ex,
 ]{notestyle}
 \declaretheorem[
     style=notestyle,

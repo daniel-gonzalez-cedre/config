@@ -142,8 +142,8 @@ nnoremap Zx <nop>
 map <leader>w :setlocal nowrap!<cr>
 map <leader>ts :setlocal spell!<cr>
 map zs :setlocal spell!<cr>
-map zt za
-map zT zA
+map <c-f> za
+map <s-f> zA
 " map zt ZT
 " map zn ZN
 " map zN ZP
