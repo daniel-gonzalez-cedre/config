@@ -272,6 +272,7 @@ if has('clipboard')
     noremap y "+y
     noremap Y "+Y
     noremap d "+d
+    noremap dd "+dd
     noremap D "+D
     noremap x "+x
     noremap X "+X
