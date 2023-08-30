@@ -124,8 +124,10 @@ nnoremap <leader>l :call unicoder#start(0)<cr>
 vnoremap <leader>l :<c-u>call unicoder#selection()<cr>
 " inoremap <leader>l <esc>:call unicoder#start(1)<cr>
 
+" <c-y> to jump forward (opposite of <c-o>)
+nnoremap <c-y> <c-i>
+" <c-i> to scroll up (opposite of <c-e>)
 nnoremap <c-i> <c-y>
-nnoremap <c-y> <nop>
 
 nnoremap ZZ <nop>
 nnoremap Zz <nop>
