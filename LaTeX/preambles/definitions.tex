@@ -81,6 +81,18 @@
     \newcommand{\bred}[1]{\textcolor{red}{\bfseries #1}}
 % END COLORS
 
+% for horizontally shifting a symbol
+\makeatletter
+\newcommand*{\shifttext}[2]{%
+    \settowidth{\@tempdima}{#2}%
+    \makebox[\@tempdima]{\hspace*{#1}#2}%
+}
+\makeatother
+
+% an asterisk for hanging above punctuation
+\newcommand{\hangasterisk}{\makebox[0pt][l]{*}}  % before punctuation
+% \newcommand{\hangasterisk}{\makebox[1pt][r]{*}}  % after punctuation with {} around
+
 \newcommand{\blankpage}{\newpage\hbox{}\thispagestyle{empty}\newpage}
 \newcommand*{\xline}[1][3em]{\rule[0.5ex]{#1}{0.55pt}}
 
