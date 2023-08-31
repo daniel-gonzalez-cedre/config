@@ -47,7 +47,6 @@
 
 % theorems
 \declaretheoremstyle[
-    numbered=yes,
     headfont=\bfseries\itshape,
     bodyfont=\normalfont,
     notefont=\bfseries\itshape,
@@ -55,13 +54,17 @@
     qed=\raisebox{-2ex}{\shifttext{2ex}{$\lrcorner$}},
 ]{thmstyle}
 \declaretheorem[
+    numbered=yes,
     style=thmstyle,
     within=chapter,
 ]{proposition, lemma, theorem, corollary, claim}
+\declaretheorem[
+    numbered=no,
+    style=thmstyle,
+]{Proposition, Lemma, Theorem, Corollary, Claim}
 
 % definitions
 \declaretheoremstyle[
-    numbered=yes,
     headfont=\bfseries\itshape,
     bodyfont=\normalfont,
     notefont=\bfseries\itshape,
@@ -69,34 +72,47 @@
     qed=\raisebox{-2ex}{\shifttext{2ex}{$\lrcorner$}},
 ]{defnstyle}
 \declaretheorem[
+    numbered=yes,
     style=defnstyle,
     within=chapter,
 ]{definition, axiom, algorithm, notation}
+\declaretheorem[
+    numbered=no,
+    style=defnstyle,
+]{Definition, Axiom, Algorithm, Notation}
 
 % examples
 \declaretheoremstyle[
-    numbered=no,
     headfont=\bfseries\itshape,
     bodyfont=\normalfont,
     notefont=\bfseries\itshape,
     headpunct={.\hfill\break},
 ]{exstyle}
 \declaretheorem[
+    numbered=yes,
     style=exstyle,
     within=chapter,
 ]{exercise, example, ex, counterexample}
+\declaretheorem[
+    numbered=no,
+    style=exstyle,
+]{Exercise, Example, Ex, Counterexample}
 
 % notes
 \declaretheoremstyle[
     headfont=\bfseries\itshape,
-    numbered=no,
     bodyfont=\normalfont,
     notefont=\bfseries\itshape,
 ]{notestyle}
 \declaretheorem[
+    numbered=yes,
     style=notestyle,
     within=chapter,
 ]{note, remark, idea, intuition}
+\declaretheorem[
+    numbered=no,
+    style=notestyle,
+]{Note, Remark, Idea, Intuition}
 
 \newenvironment{case}[1][Case]
     {\quote\textbf{#1:}~\\}
