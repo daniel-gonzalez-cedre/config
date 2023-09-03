@@ -264,6 +264,9 @@ inoremap " <c-r>=ClosePair('"')<cr>
 inoremap ' <c-r>=ClosePair("'")<cr>
 inoremap ` <c-r>=ClosePair('`')<cr>
 inoremap $ <c-r>=ClosePair('$')<cr>
+inoremap " <c-r>=QuoteDelim('"')<cr>
+inoremap ' <c-r>=QuoteDelim("'")<cr>
+inoremap ` <c-r>=QuoteDelim('`')<cr>
 
 " add quotes around visual selection
 " vnoremap " <c-c>`>a"<c-c>`<i"<c-c>

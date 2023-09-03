@@ -53,11 +53,18 @@
     headpunct={.\hfill\shifttext{2ex}{$\urcorner$}\break},
     qed=\raisebox{-2ex}{\shifttext{2ex}{$\lrcorner$}},
 ]{thmstyle}
-\declaretheorem[
-    numbered=yes,
-    style=thmstyle,
-    within=chapter,
-]{proposition, lemma, theorem, corollary, claim}
+\ifbook
+    \declaretheorem[
+        numbered=yes,
+        style=thmstyle,
+        within=chapter,
+    ]{proposition, lemma, theorem, corollary, claim}
+\else
+    \declaretheorem[
+        numbered=yes,
+        style=thmstyle,
+    ]{proposition, lemma, theorem, corollary, claim}
+\fi
 \declaretheorem[
     numbered=no,
     style=thmstyle,
@@ -71,11 +78,18 @@
     headpunct={.\hfill\shifttext{2ex}{$\urcorner$}\break},
     qed=\raisebox{-2ex}{\shifttext{2ex}{$\lrcorner$}},
 ]{defnstyle}
-\declaretheorem[
-    numbered=yes,
-    style=defnstyle,
-    within=chapter,
-]{definition, axiom, algorithm, notation}
+\ifbook
+    \declaretheorem[
+        numbered=yes,
+        style=defnstyle,
+        within=chapter,
+    ]{definition, axiom, algorithm, notation}
+\else
+    \declaretheorem[
+        numbered=yes,
+        style=defnstyle,
+    ]{definition, axiom, algorithm, notation}
+\fi
 \declaretheorem[
     numbered=no,
     style=defnstyle,
@@ -88,11 +102,18 @@
     notefont=\bfseries\itshape,
     headpunct={.\hfill\break},
 ]{exstyle}
-\declaretheorem[
-    numbered=yes,
-    style=exstyle,
-    within=chapter,
-]{exercise, example, ex, counterexample}
+\ifbook
+    \declaretheorem[
+        numbered=yes,
+        style=exstyle,
+        within=chapter,
+    ]{exercise, example, ex, counterexample}
+\else
+    \declaretheorem[
+        numbered=yes,
+        style=exstyle,
+    ]{exercise, example, ex, counterexample}
+\fi
 \declaretheorem[
     numbered=no,
     style=exstyle,
@@ -104,11 +125,18 @@
     bodyfont=\normalfont,
     notefont=\bfseries\itshape,
 ]{notestyle}
-\declaretheorem[
-    numbered=yes,
-    style=notestyle,
-    within=chapter,
-]{note, remark, idea, intuition}
+\ifbook
+    \declaretheorem[
+        numbered=yes,
+        style=notestyle,
+        within=chapter,
+    ]{note, remark, idea, intuition}
+\else
+    \declaretheorem[
+        numbered=yes,
+        style=notestyle,
+    ]{note, remark, idea, intuition}
+\fi
 \declaretheorem[
     numbered=no,
     style=notestyle,
