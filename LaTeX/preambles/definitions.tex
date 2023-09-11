@@ -107,24 +107,57 @@
 \renewcommand{\iff}{~\Leftrightarrow~}
 \newcommand{\proves}{~\vdash~}
 \newcommand{\satisfies}{~\models~}
-\renewcommand{\qedsymbol}{\sc q.e.d.}
+\renewcommand{\qedsymbol}{\scshape q.e.d.}
 
 \renewcommand{\restriction}[1]{\downharpoonright_{#1}}
 \renewcommand{\leq}{\leqslant}
 \renewcommand{\geq}{\geqslant}
 
+% for NOR
+\makeatletter
+    \providecommand*{\barvee}{%
+        \mathbin{%
+            \mathpalette\@barvee{}%
+        }%
+    }
+    \newcommand*{\@barvee}[2]{%
+        % #1: math style
+        % #2: unused
+        \sbox0{$#1\veebar\m@th$}%
+        \sbox2{%
+            \hbox to \wd0{%
+            \hss
+            \resizebox{1.05\wd0}{\height}{$#1-\m@th$}%
+            \hss
+            }%
+        }%
+        \sbox4{%
+            \resizebox{\wd0}{.7\ht0}{$#1\vee\m@th$}%
+        }%
+        \sbox6{$#1\vcenter{}$}
+        \ht2=\ht6 %
+        \vbox to \ht0{%
+            \copy2 %
+            \vss
+            \copy4 %
+        }%
+    }
+\makeatother
+
 \newcommand{\meet}{\wedge}
 \newcommand{\join}{\vee}
 \newcommand{\conjunct}{\wedge}
 \newcommand{\disjunct}{\vee}
+\newcommand{\conditional}{\rightarrow}
+\newcommand{\biconditional}{\leftrightarrow}
 \newcommand{\bigmeet}{\bigwedge}
 \newcommand{\bigjoin}{\bigvee}
 \newcommand{\bigconjunct}{\bigwedge}
 \newcommand{\bigdisjunct}{\bigvee}
 \newcommand{\defn}{\coloneqq}
-\newcommand{\xor}{\oplus}
-\newcommand{\nand}{\uparrow}
-\newcommand{\nor}{\downarrow}
+\newcommand{\xor}{\veebar}
+\newcommand{\nand}{\barwedge}
+\newcommand{\nor}{\barvee}
 \newcommand{\Plus}{\text{\begin{tikzpicture}[baseline=-0.56ex, x=1ex, y=1ex]
     \node at (-26/40, 0) {};
     \node at (26/40, 0) {};

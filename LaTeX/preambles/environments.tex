@@ -38,7 +38,7 @@
 % new proof environment
 \expandafter\let\expandafter\oldproof\csname\string\proof\endcsname
 \let\oldendproof\endproof
-\renewenvironment{proof}[1][\proofname]{%
+\renewenvironment{proof}[1][\bfseries\proofname]{%
     % \vspace{-0.5\parskip}%
     \oldproof[#1]
 }{%
