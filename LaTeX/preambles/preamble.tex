@@ -8,6 +8,28 @@
         \fi
     \fi
 
+    % part format
+    \titleformat{\part}[display]
+        {\itshape\Huge}  % format applied to label+text
+        {\thepart}  % label
+        {0ex}  % horizontal separation between label and title body
+        {\itshape\Huge}  % before the title body
+        [\vspace{1ex}]  % after the title body
+    % section format
+    \titleformat{\section}%
+        {\itshape\Large}% format applied to label+text
+        {\llap{\Large\thesection\phantom{m}}}% label
+        {0em}% horizontal separation between label and title body
+        {}% before the title body
+        []% after the title body
+    % subsection format
+    \titleformat{\subsection}%
+        {\itshape\large}% format applied to label+text
+        {\llap{\thesubsection\phantom{m}}}% label
+        {0em}% horizontal separation between label and title body
+        {}% before the title body
+        []% after the title body
+
     \makeatletter
     % Paragraph indentation and separation for normal text
     \renewcommand{\@tufte@reset@par}{%
@@ -27,10 +49,30 @@
     }
     \makeatother
 
+    % TODO: this for margintable & put in preamble
+    % Remove \FloatBarrier from marginfigure definition to prevent unwanted spaces.
+    \makeatletter
+    \renewenvironment{@tufte@margin@float}[2][-1.2ex]{%
+        %\FloatBarrier% removed because it adds unwanted white space
+        \begin{lrbox}{\@tufte@margin@floatbox}%
+            \begin{minipage}{\marginparwidth}%
+                \@tufte@caption@font
+                \def\@captype{#2}%
+                \hbox{}\vspace*{#1}%
+                \@tufte@caption@justification
+                \@tufte@margin@par
+                \noindent
+            }{%
+            \end{minipage}%
+        \end{lrbox}%
+        \marginpar{\usebox{\@tufte@margin@floatbox}}%
+    }
+    \makeatother
+
     \usepackage{microtype}
     \usepackage{arydshln, chngcntr}
     \setcounter{tocdepth}{1}
-    \setcounter{secnumdepth}{1}
+    \setcounter{secnumdepth}{2}
 \else  % regular LaTeX settings
     \ifbook
         \documentclass[letterpaper]{book}
@@ -43,9 +85,37 @@
     \cellspacebottomlimit 1pt
 \fi
 
+\AtBeginDocument{%
+    % reset AMS mathbb symbols
+    \DeclareSymbolFont{AMSb}{U}{msb}{m}{n}
+    \DeclareSymbolFontAlphabet{\mathbb}{AMSb}
+
+    % reset default math fonts
+    \DeclareSymbolFont{operators}   {OT1}{cmr} {m}{n}
+    \DeclareSymbolFont{letters}     {OML}{cmm} {m}{it}
+    \DeclareSymbolFont{symbols}     {OMS}{cmsy}{m}{n}
+    \DeclareSymbolFont{largesymbols}{OMX}{cmex}{m}{n}
+    \SetSymbolFont{operators}{bold}{OT1}{cmr} {bx}{n}
+    \SetSymbolFont{letters}  {bold}{OML}{cmm} {b}{it}
+    \SetSymbolFont{symbols}  {bold}{OMS}{cmsy}{b}{n}
+    \DeclareSymbolFontAlphabet{\mathrm}    {operators}
+    \DeclareSymbolFontAlphabet{\mathnormal}{letters}
+    \DeclareSymbolFontAlphabet{\mathcal}   {symbols}
+    \DeclareMathAlphabet      {\mathbf}{OT1}{cmr}{bx}{n}
+    \DeclareMathAlphabet      {\mathsf}{OT1}{cmss}{m}{n}
+    \DeclareMathAlphabet      {\mathit}{OT1}{cmr}{m}{it}
+    \DeclareMathAlphabet      {\mathtt}{OT1}{cmtt}{m}{n}
+
+    % \DeclareSymbolFont{letters}{OML}{ztmcm}{m}{it}
+    % \DeclareSymbolFont{operators}{OT1}{cmr} {m}{n}
+    % \DeclareSymbolFont{symbols}{OMS}{cmsy}{m}{n}
+    % \DeclareSymbolFontAlphabet{\mathrm}{operators}
+    % \DeclareSymbolFontAlphabet{\mathnormal}{letters}
+    % \DeclareSymbolFontAlphabet{\mathcal}{symbols}
+}
 
 % math
-\usepackage{amsmath, amsfonts, amssymb, amstext, amscd, amsthm, faktor, mathrsfs, mathtools, thmtools, xfrac}
+\usepackage{amsmath, amsfonts, amssymb, amstext, amscd, amsthm, bm, faktor, mathrsfs, mathtools, mdframed, thmtools, xfrac}
 % fonts
 \usepackage{bbm, CJKutf8, caption, dsfont, marvosym, stmaryrd}
 % tables
