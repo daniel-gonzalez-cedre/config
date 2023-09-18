@@ -73,6 +73,11 @@
     \usepackage{arydshln, chngcntr}
     \setcounter{tocdepth}{1}
     \setcounter{secnumdepth}{2}
+
+    \usepackage{tipa}
+    \usepackage{fancyvrb}
+    \renewcommand{\figurename}{Fig.}
+    \renewcommand{\tablename}{Tab.}
 \else  % regular LaTeX settings
     \ifbook
         \documentclass[letterpaper]{book}
@@ -83,6 +88,7 @@
     \usepackage[math]{cellspace}
     \cellspacetoplimit 1pt
     \cellspacebottomlimit 1pt
+    \usepackage{hyperref, caption, subcaption}
 \fi
 
 \AtBeginDocument{%
@@ -105,31 +111,24 @@
     \DeclareMathAlphabet      {\mathsf}{OT1}{cmss}{m}{n}
     \DeclareMathAlphabet      {\mathit}{OT1}{cmr}{m}{it}
     \DeclareMathAlphabet      {\mathtt}{OT1}{cmtt}{m}{n}
-
-    % \DeclareSymbolFont{letters}{OML}{ztmcm}{m}{it}
-    % \DeclareSymbolFont{operators}{OT1}{cmr} {m}{n}
-    % \DeclareSymbolFont{symbols}{OMS}{cmsy}{m}{n}
-    % \DeclareSymbolFontAlphabet{\mathrm}{operators}
-    % \DeclareSymbolFontAlphabet{\mathnormal}{letters}
-    % \DeclareSymbolFontAlphabet{\mathcal}{symbols}
 }
 
 % math
 \usepackage{amsmath, amsfonts, amssymb, amstext, amscd, amsthm, bm, faktor, mathrsfs, mathtools, mdframed, thmtools, xfrac}
 % fonts
-\usepackage{bbm, CJKutf8, caption, dsfont, marvosym, stmaryrd}
+\usepackage{bbm, CJKutf8, dsfont, marvosym, stmaryrd}
 % tables
 \usepackage{booktabs, colortbl, makecell}
 % colors
 \usepackage{color, soul, xcolor}
 % figures
-\usepackage{graphicx, float, subcaption, tikz, pgfplots}
+\usepackage{graphicx, float, tikz, pgfplots}
 % headers and footers
 \usepackage{fancyhdr, lastpage}
 % miscellaneous
 \usepackage{enumerate, ifthen, lipsum, listings, imakeidx, parskip, ulem, verbatim, xargs}
 % references
-\usepackage{xr-hyper, hyperref, url}
+\usepackage{url}
 \usepackage[nodayofweek]{datetime}
 
 \usepackage[group-separator={,},group-minimum-digits={3}]{siunitx}

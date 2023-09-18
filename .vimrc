@@ -4,6 +4,8 @@ syntax enable
 au FileType * set conceallevel=0
 autocmd BufEnter * :syntax sync fromstart
 
+let mapleader=','
+
 if has('nvim')
     packadd! nvim-treesitter
 else
@@ -41,7 +43,6 @@ set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2
-let mapleader=','
 set matchpairs+=<:>
 set mouse=
 set spell
