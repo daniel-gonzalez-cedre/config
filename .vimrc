@@ -265,11 +265,21 @@ inoremap " <c-r>=ClosePair('"')<cr>
 inoremap ' <c-r>=ClosePair("'")<cr>
 inoremap ` <c-r>=ClosePair('`')<cr>
 inoremap $ <c-r>=ClosePair('$')<cr>
-inoremap " <c-r>=QuoteDelim('"')<cr>
-inoremap ' <c-r>=QuoteDelim("'")<cr>
-inoremap ` <c-r>=QuoteDelim('`')<cr>
+" inoremap " <c-r>=QuoteDelim('"')<cr>
+" inoremap ' <c-r>=QuoteDelim("'")<cr>
+" inoremap ` <c-r>=QuoteDelim('`')<cr>
 
 " add quotes around visual selection
+vmap ( <s-s>)<cr>
+vmap ) <s-s>)<cr>
+vmap [ <s-s>]<cr>
+vmap ] <s-s>]<cr>
+vmap { <s-s>}<cr>
+vmap } <s-s>}<cr>
+vmap $ <s-s>$<cr>
+vmap " <s-s>"<cr>
+vmap ' <s-s>'<cr>
+vmap ` <s-s>`<cr>
 " vnoremap " <c-c>`>a"<c-c>`<i"<c-c>
 " vnoremap ' <c-c>`>a'<c-c>`<i'<c-c>
 " vnoremap ` <c-c>`>a`<c-c>`<i`<c-c>

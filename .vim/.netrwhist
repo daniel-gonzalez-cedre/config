@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =6
+let g:netrw_dirhistcnt =9
+let g:netrw_dirhist_9='/Users/cedre/repos/neural-grammar/results'
+let g:netrw_dirhist_8='/Users/cedre/repos/neural-grammar/plots'
+let g:netrw_dirhist_7='/Users/cedre/academia/pedagogy/book-discrete-math/preambles'
 let g:netrw_dirhist_6='/Users/cedre/config/LaTeX/templates/tufte-book'
 let g:netrw_dirhist_5='/Users/cedre/config/LaTeX/preambles'
 let g:netrw_dirhist_4='/Users/cedre/repos/neural-grammar/plots'
