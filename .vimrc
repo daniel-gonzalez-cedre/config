@@ -10,14 +10,16 @@ if has('nvim')
     packadd! nvim-treesitter
 else
     packadd! ale
-    let g:ale_sign_error = ' ✘'
-    let g:ale_sign_warning = ' ⋅'
-    let g:ale_linters = {'vim': ['vint'], 'python': ['pylint'], 'lua': ['luacheck', 'luac'], 'tex': ['lacheck']}  " pyright, chktek, lachek
+    " let g:ale_sign_error = ' ✘'
+    " let g:ale_sign_warning = ' ⋅'
+    let g:ale_linters = {'vim': ['vint'], 'python': ['pylint'], 'lua': ['luacheck', 'luac'], 'tex': ['lacheck', 'proselint']}  " pyright, lacheck, chktek, proselint
     let g:ale_lint_on_text_changed = 'normal'
     let g:ale_lint_on_insert_leave = 1
     let g:ale_lint_delay = 0
     let g:ale_lint_on_save = 1
     let g:ale_virtualtext_cursor = 'current'
+    map <leader>aa :ALEToggle<cr>
+    map <leader>at :ALEToggle<cr>
     map ]a :ALENextWrap<cr>
     map [a :ALEPreviousWrap<cr>
     map <leader>an :ALENextWrap<cr>
@@ -26,7 +28,14 @@ else
     map <leader>ad :ALEDetail<cr>
 endif
 
-packadd! vimtex
+" packadd vimtex
+packadd julia-vim
+" packadd! latex-unicoder
+"
+" bindings for LaTeX unicoder
+" nnoremap <leader>l :call unicoder#start(0)<cr>
+" vnoremap <leader>l :<c-u>call unicoder#selection()<cr>
+"" inoremap <leader>l <esc>:call unicoder#start(1)<cr>
 
 set background=dark
 set backspace=indent,eol,start
@@ -37,11 +46,12 @@ set cursorline
 set display+=lastline
 set fillchars=stl:⋅,stlnc:⋅,vert:│,fold:۰,diff:·
 " set fillchars=stl:-,stlnc:⋅,vert:│,fold:\ ,diff:·
-set formatoptions+=1jp
+set formatoptions+=1jro/
 " set formatoptions-=t
 set hlsearch
 set ignorecase
 set incsearch
+set nojoinspaces
 set laststatus=2
 set matchpairs+=<:>
 set mouse=
@@ -75,9 +85,9 @@ set foldmethod=indent
 " indentation
 set autoindent
 set expandtab
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
 
 " line wrapping
 " set breakindent
@@ -120,15 +130,12 @@ let g:unicoder_cancel_normal = 1
 " let g:unicoder_cancel_insert = 1
 let g:unicoder_cancel_visual = 1
 
-" bindings for LaTeX unicoder
-nnoremap <leader>l :call unicoder#start(0)<cr>
-vnoremap <leader>l :<c-u>call unicoder#selection()<cr>
-" inoremap <leader>l <esc>:call unicoder#start(1)<cr>
-
 " <c-y> to jump forward (opposite of <c-o>)
-" nnoremap <c-y> <c-i>
+nnoremap <c-y> <c-i>
+vnoremap <c-y> <c-i>
 " <c-i> to scroll up (opposite of <c-e>)
-" nnoremap <c-i> <c-y>
+nnoremap <c-i> <c-y>
+vnoremap <c-i> <c-y>
 
 nnoremap ZZ <nop>
 nnoremap Zz <nop>

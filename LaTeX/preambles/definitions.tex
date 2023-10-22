@@ -1,6 +1,12 @@
 % BEGIN COLORS
+    \definecolor{colornd}{HTML}{0c2340}
+    \definecolor{colorfiu}{HTML}{081e3f}
+    \definecolor{colorfsu}{HTML}{782f40}
+    \definecolor{colorchicago}{HTML}{800000}
+
     \definecolor{gruvred}{HTML}{cc214d}
     \definecolor{gruvorange}{HTML}{d65d0e}
+    \definecolor{gruvyellow}{HTML}{d79921}
     \definecolor{gruvaqua}{HTML}{689d6a}
     \definecolor{gruvgreen}{HTML}{98971a}
     \definecolor{gruvblue}{HTML}{458588}
@@ -8,24 +14,22 @@
 
     \newcommand{\gruvred}[1]{\textcolor{gruvred}{#1}}
     \newcommand{\gruvorange}[1]{\textcolor{gruvorange}{#1}}
+    \newcommand{\gruvyellow}[1]{\textcolor{gruvyellow}{#1}}
     \newcommand{\gruvaqua}[1]{\textcolor{gruvaqua}{#1}}
     \newcommand{\gruvgreen}[1]{\textcolor{gruvgreen}{#1}}
     \newcommand{\gruvblue}[1]{\textcolor{gruvblue}{#1}}
     \newcommand{\gruvpurple}[1]{\textcolor{gruvpurple}{#1}}
 
-    \definecolor{grey}{HTML}{888888}
     \definecolor{black}{HTML}{252422}
-    \definecolor{sepia}{HTML}{fdfbf8}
-    \definecolor{white}{HTML}{ffffff}  % fdfbf8
-
-    \definecolor{colornd}{HTML}{0C2340}
-    \definecolor{colorfiu}{HTML}{081E3F}
-    \definecolor{colorfsu}{HTML}{782F40}
-    \definecolor{colorchicago}{HTML}{800000}
+    \definecolor{brown}{HTML}{782f40}
+    \definecolor{grey}{HTML}{746864}
+    \definecolor{sepia}{HTML}{f7f0e4}  % f7f0e4 fdfbf8
+    \definecolor{white}{HTML}{fbf7f1}  % f7f0e4 fdfbf8
 
     \definecolor{blue}{HTML}{1e88e5}
-    \definecolor{green}{HTML}{4eb981}
+    \definecolor{green}{HTML}{40a26f}  % 4eb981 40a26f 7ccba2
     \definecolor{yellow}{HTML}{ffc107}
+    \definecolor{gold}{HTML}{d79921}
     \definecolor{orange}{HTML}{ff5430}  % ff5733, f0746e, f28522, ee7733, d65d0e
     \definecolor{red}{HTML}{d81b60}
     \definecolor{purple}{HTML}{7c1d6f}
@@ -37,57 +41,95 @@
     \definecolor{ared}{HTML}{dc3977}
     \definecolor{apurple}{HTML}{912282}
 
-    \newcommand{\tableblue}[1]{\cellcolor{ablue}{\white{#1}}}
-    \newcommand{\tablegreen}[1]{\cellcolor{agreen}{\white{#1}}}
-    \newcommand{\tableyellow}[1]{\cellcolor{ayellow}{\white{#1}}}
-    \newcommand{\tableorange}[1]{\cellcolor{aorange}{\white{#1}}}
-    \newcommand{\tablered}[1]{\cellcolor{ared}{\white{#1}}}
-    \newcommand{\tablepurple}[1]{\cellcolor{apurple}{\white{#1}}}
-
-    \newcommand{\white}[1]{\textcolor{white}{#1}}
-    \newcommand{\grey}[1]{\textcolor{grey}{#1}}
     \newcommand{\black}[1]{\textcolor{black}{#1}}
+    \newcommand{\brown}[1]{\textcolor{brown}{#1}}
+    \newcommand{\grey}[1]{\textcolor{grey}{#1}}
+    \newcommand{\sepia}[1]{\textcolor{sepia}{#1}}
+    \newcommand{\white}[1]{\textcolor{white}{#1}}
     \newcommand{\blue}[1]{\textcolor{blue}{#1}}
     \newcommand{\green}[1]{\textcolor{green}{#1}}
     \newcommand{\yellow}[1]{\textcolor{yellow}{#1}}
+    \newcommand{\gold}[1]{\textcolor{gold}{#1}}
     \newcommand{\orange}[1]{\textcolor{orange}{#1}}
     \newcommand{\red}[1]{\textcolor{red}{#1}}
+    \newcommand{\purple}[1]{\textcolor{purple}{#1}}
 
-    \newcommand{\mwhite}[1]{\color{white} #1 \color{black}}
-    \newcommand{\mgrey}[1]{\color{grey} #1 \color{black}}
-    \newcommand{\mblack}[1]{\color{black} #1 \color{black}}
-    \newcommand{\mblue}[1]{\color{blue} #1 \color{black}}
-    \newcommand{\mgreen}[1]{\color{green} #1 \color{black}}
-    \newcommand{\myellow}[1]{\color{yellow} #1 \color{black}}
-    \newcommand{\morange}[1]{\color{orange} #1 \color{black}}
-    \newcommand{\mred}[1]{\color{red} #1 \color{black}}
+    \newcommand{\tableblack}[1]{\cellcolor{black}{\white{#1}}}
+    \newcommand{\tablebrown}[1]{\cellcolor{brown}{\white{#1}}}
+    \newcommand{\tablegrey}[1]{\cellcolor{grey}{\white{#1}}}
+    \newcommand{\tablesepia}[1]{\cellcolor{sepia}{\black{#1}}}
+    \newcommand{\tableblue}[1]{\cellcolor{blue}{\white{#1}}}
+    \newcommand{\tablegreen}[1]{\cellcolor{green}{\white{#1}}}
+    \newcommand{\tableyellow}[1]{\cellcolor{yellow}{\white{#1}}}
+    \newcommand{\tablegold}[1]{\cellcolor{gold}{\white{#1}}}
+    \newcommand{\tableorange}[1]{\cellcolor{orange}{\white{#1}}}
+    \newcommand{\tablered}[1]{\cellcolor{red}{\white{#1}}}
+    \newcommand{\tablepurple}[1]{\cellcolor{purple}{\white{#1}}}
 
-    \newcommand{\ewhite}[1]{\emph{\textcolor{white}{#1}}}
-    \newcommand{\egrey}[1]{\emph{\textcolor{grey}{#1}}}
-    \newcommand{\eblack}[1]{\emph{\textcolor{black}{#1}}}
-    \newcommand{\eblue}[1]{\emph{\textcolor{blue}{#1}}}
-    \newcommand{\egreen}[1]{\emph{\textcolor{green}{#1}}}
-    \newcommand{\eyellow}[1]{\emph{\textcolor{yellow}{#1}}}
-    \newcommand{\eorange}[1]{\emph{\textcolor{orange}{#1}}}
-    \newcommand{\ered}[1]{\emph{\textcolor{red}{#1}}}
+    \newcommand{\mblack}[1]{\black{#1}}
+    \newcommand{\mbrown}[1]{\brown{#1}}
+    \newcommand{\mgrey}[1]{\grey{#1}}
+    \newcommand{\msepia}[1]{\sepia{#1}}
+    \newcommand{\mwhite}[1]{\white{#1}}
+    \newcommand{\mblue}[1]{\blue{#1}}
+    \newcommand{\mgreen}[1]{\green{#1}}
+    \newcommand{\myellow}[1]{\yellow{#1}}
+    \newcommand{\mgold}[1]{\gold{#1}}
+    \newcommand{\morange}[1]{\orange{#1}}
+    \newcommand{\mred}[1]{\red{#1}}
+    \newcommand{\mpurple}[1]{\purple{#1}}
 
-    \newcommand{\iwhite}[1]{\textcolor{white}{\itshape #1}}
-    \newcommand{\igrey}[1]{\textcolor{grey}{\itshape #1}}
-    \newcommand{\iblack}[1]{\textcolor{black}{\itshape #1}}
-    \newcommand{\iblue}[1]{\textcolor{blue}{\itshape #1}}
-    \newcommand{\igreen}[1]{\textcolor{green}{\itshape #1}}
-    \newcommand{\iyellow}[1]{\textcolor{yellow}{\itshape #1}}
-    \newcommand{\iorange}[1]{\textcolor{orange}{\itshape #1}}
-    \newcommand{\ired}[1]{\textcolor{red}{\itshape #1}}
+    \newcommand{\eblack}[1]{\emph{\black{#1}}}
+    \newcommand{\ebrown}[1]{\emph{\brown{#1}}}
+    \newcommand{\egrey}[1]{\emph{\grey{#1}}}
+    \newcommand{\esepia}[1]{\emph{\sepia{#1}}}
+    \newcommand{\ewhite}[1]{\emph{\white{#1}}}
+    \newcommand{\eblue}[1]{\emph{\blue{#1}}}
+    \newcommand{\egreen}[1]{\emph{\green{#1}}}
+    \newcommand{\eyellow}[1]{\emph{\yellow{#1}}}
+    \newcommand{\egold}[1]{\emph{\gold{#1}}}
+    \newcommand{\eorange}[1]{\emph{\orange{#1}}}
+    \newcommand{\ered}[1]{\emph{\red{#1}}}
+    \newcommand{\epurple}[1]{\emph{\purple{#1}}}
 
-    \newcommand{\bwhite}[1]{\textcolor{white}{\bfseries #1}}
-    \newcommand{\bgrey}[1]{\textcolor{grey}{\bfseries #1}}
-    \newcommand{\bblack}[1]{\textcolor{black}{\bfseries #1}}
-    \newcommand{\bblue}[1]{\textcolor{blue}{\bfseries #1}}
-    \newcommand{\bgreen}[1]{\textcolor{green}{\bfseries #1}}
-    \newcommand{\byellow}[1]{\textcolor{yellow}{\bfseries #1}}
-    \newcommand{\borange}[1]{\textcolor{orange}{\bfseries #1}}
-    \newcommand{\bred}[1]{\textcolor{red}{\bfseries #1}}
+    \newcommand{\iblack}[1]{\textit{\black{#1}}}
+    \newcommand{\ibrown}[1]{\textit{\brown{#1}}}
+    \newcommand{\igrey}[1]{\textit{\grey{#1}}}
+    \newcommand{\isepia}[1]{\textit{\sepia{#1}}}
+    \newcommand{\iwhite}[1]{\textit{\white{#1}}}
+    \newcommand{\iblue}[1]{\textit{\blue{#1}}}
+    \newcommand{\igreen}[1]{\textit{\green{#1}}}
+    \newcommand{\iyellow}[1]{\textit{\yellow{#1}}}
+    \newcommand{\igold}[1]{\textit{\gold{#1}}}
+    \newcommand{\iorange}[1]{\textit{\orange{#1}}}
+    \newcommand{\ired}[1]{\textit{\red{#1}}}
+    \newcommand{\ipurple}[1]{\textit{\purple{#1}}}
+
+    \newcommand{\bblack}[1]{\textbf{\black{#1}}}
+    \newcommand{\bbrown}[1]{\textbf{\brown{#1}}}
+    \newcommand{\bgrey}[1]{\textbf{\grey{#1}}}
+    \newcommand{\bsepia}[1]{\textbf{\sepia{#1}}}
+    \newcommand{\bwhite}[1]{\textbf{\white{#1}}}
+    \newcommand{\bblue}[1]{\textbf{\blue{#1}}}
+    \newcommand{\bgreen}[1]{\textbf{\green{#1}}}
+    \newcommand{\byellow}[1]{\textbf{\yellow{#1}}}
+    \newcommand{\bgold}[1]{\textbf{\gold{#1}}}
+    \newcommand{\borange}[1]{\textbf{\orange{#1}}}
+    \newcommand{\bred}[1]{\textbf{\red{#1}}}
+    \newcommand{\bpurple}[1]{\textbf{\purple{#1}}}
+
+    \newcommand{\scblack}[1]{\textsc{\black{#1}}}
+    \newcommand{\scbrown}[1]{\textsc{\brown{#1}}}
+    \newcommand{\scgrey}[1]{\textsc{\grey{#1}}}
+    \newcommand{\scsepia}[1]{\textsc{\sepia{#1}}}
+    \newcommand{\scwhite}[1]{\textsc{\white{#1}}}
+    \newcommand{\scblue}[1]{\textsc{\blue{#1}}}
+    \newcommand{\scgreen}[1]{\textsc{\green{#1}}}
+    \newcommand{\scyellow}[1]{\textsc{\yellow{#1}}}
+    \newcommand{\scgold}[1]{\textsc{\gold{#1}}}
+    \newcommand{\scorange}[1]{\textsc{\orange{#1}}}
+    \newcommand{\scred}[1]{\textsc{\red{#1}}}
+    \newcommand{\scpurple}[1]{\textsc{\purple{#1}}}
 % END COLORS
 
 % for horizontally shifting a symbol
@@ -106,9 +148,6 @@
 \newcommand*{\xline}[1][3em]{\rule[0.5ex]{#1}{0.55pt}}
 
 \newcommand{\isomorphic}{\cong}
-\newcommand{\defniff}{~\mathrel{\vcentcolon\Leftrightarrow}~}
-\newcommand{\iffdefn}{~\mathrel{\vcentcolon\Leftrightarrow}~}
-\newcommand{\iffbydefn}{\(\mathrel{\vcentcolon\Leftrightarrow}\)\ }
 \newcommand{\niff}{\mathrel{{\ooalign{\hidewidth$\not\phantom{"}$\hidewidth\cr$\iff$}}}}
 \newcommand{\nimplies}{~\not\Rightarrow~}
 \renewcommand{\implies}{~\Rightarrow~}
@@ -165,6 +204,7 @@
 \newcommand{\bigconjunct}{\bigwedge}
 \newcommand{\bigdisjunct}{\bigvee}
 \newcommand{\defn}{\coloneqq}
+\newcommand{\bydefn}{~\mathrel{\vcentcolon\Leftrightarrow}~}
 \newcommand{\xor}{\veebar}
 \newcommand{\nand}{\barwedge}
 \newcommand{\nor}{\barvee}
