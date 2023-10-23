@@ -149,10 +149,10 @@
 
 \newcommand{\isomorphic}{\cong}
 \newcommand{\niff}{\mathrel{{\ooalign{\hidewidth$\not\phantom{"}$\hidewidth\cr$\iff$}}}}
-\newcommand{\nimplies}{~\not\Rightarrow~}
-\renewcommand{\implies}{~\Rightarrow~}
-\renewcommand{\impliedby}{~\Leftarrow~}
-\renewcommand{\iff}{~\Leftrightarrow~}
+\newcommand{\nimplies}{\not\Rightarrow}
+\renewcommand{\implies}{\Rightarrow}
+\renewcommand{\impliedby}{\Leftarrow}
+\renewcommand{\iff}{\Leftrightarrow}
 \newcommand{\proves}{~\vdash~}
 \newcommand{\notproves}{~\nvdash~}
 \newcommand{\satisfies}{~\models~}
@@ -193,6 +193,10 @@
     }
 \makeatother
 
+\renewcommand{\land}{~\wedge~}
+\renewcommand{\lor}{~\vee~}
+\newcommand{\AND}{~\wedge~}
+\newcommand{\OR}{~\vee~}
 \newcommand{\meet}{\wedge}
 \newcommand{\join}{\vee}
 \newcommand{\conjunct}{\wedge}
@@ -223,12 +227,8 @@
 \newcommand{\notdivides}{\nmid}
 \newcommand{\given}{~\middle|~}
 \newcommand{\suchthat}{~\middle|~}
-
-\iftufte
-    \newcommand{\contradiction}{\smash{\text{\Large \Lightning}}~~}
-\else
-    \newcommand{\contradiction}{\smash{\text{\raisebox{-0.6ex}{\Large \Lightning}}}~~}
-\fi
+% \newcommand{\contradiction}{\smash{\text{\raisebox{-0.6ex}{\Large \Lightning}}}~~}
+\newcommand{\contradiction}{\smash{\text{\raisebox{-0.5ex}{\Large \Lightning}}}~}
 
 \newcommand{\conjugate}[1]{\overline{#1}}
 \newcommand{\mean}[1]{\overline{#1}}
@@ -272,11 +272,11 @@
 \renewcommand{\P}[1]{\mathbb{P}\pn*{#1}}
 \newcommand{\power}[1]{\mathfrak{P}\pn*{#1}}
 \newcommand{\successor}[1]{\mathcal{S}\pn*{#1}}
-\newcommand{\complex}{\mathbb{C}}
 \newcommand{\naturals}{\mathbb{N}}
+\newcommand{\integers}{\mathbb{Z}}
 \newcommand{\rationals}{\mathbb{Q}}
 \newcommand{\reals}{\mathbb{R}}
-\newcommand{\ints}{\mathbb{Z}}
+\newcommand{\complex}{\mathbb{C}}
 
 % these don't need {} after them since they should be followed by text
 \newcommand{\cf}{\textit{cf.},\ }
