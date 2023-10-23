@@ -46,7 +46,7 @@ set cursorline
 set display+=lastline
 set fillchars=stl:⋅,stlnc:⋅,vert:│,fold:۰,diff:·
 " set fillchars=stl:-,stlnc:⋅,vert:│,fold:\ ,diff:·
-set formatoptions+=1jro/
+set formatoptions+=1jr/
 " set formatoptions-=t
 set hlsearch
 set ignorecase
