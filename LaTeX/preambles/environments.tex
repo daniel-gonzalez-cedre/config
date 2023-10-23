@@ -1,3 +1,155 @@
+% % new proof environment
+% \expandafter\let\expandafter\oldproof\csname\string\proof\endcsname
+% \let\oldendproof\endproof
+% \renewenvironment{proof}[1][\proofname]{%
+%     \vspace{-0.5\parskip}%
+%     \oldproof[#1]
+% }{%
+%     \renewcommand{\qedsymbol}{\sc q.e.d.}
+%     \qed
+% }
+
+% NEW PROOF ENVIRONMENT
+\expandafter\let\expandafter\oldproof\csname\string\proof\endcsname
+\let\oldendproof\endproof
+\renewenvironment{proof}[1][\bfseries\proofname]{%
+    \vspace{-0.5\baselineskip}%
+    \oldproof[#1]
+}{%
+    ~\\\qed
+}
+
+% STYLE FOR THEOREMS
+\declaretheoremstyle[
+    headfont=\bfseries\itshape,
+    bodyfont=\normalfont,
+    notefont=,
+    % headpunct={.\hfill\shifttext{2ex}{$\urcorner$}\break},
+    headpunct={.\hfill\break},
+    % headformat={\makebox[0pt][r]{\NAME\ \NUMBER}\NOTE},
+    % headformat={\llap{\NAME} \NUMBER \NOTE},
+    % qed=\raisebox{-2ex}{\shifttext{2ex}{$\lrcorner$}},
+]{theoremstyle}
+\ifbook
+    \declaretheorem[
+        numbered=yes,
+        style=theoremstyle,
+        within=chapter,
+    ]{theorem, corollary, proposition, lemma, claim}
+\else
+    \declaretheorem[
+        numbered=yes,
+        style=theoremstyle,
+    ]{theorem, corollary, proposition, lemma, claim}
+\fi
+\declaretheorem[
+    numbered=no,
+    style=theoremstyle,
+]{Theorem, Corollary, Proposition, Lemma, Claim}
+
+% STYLE FOR AXIOMS
+\declaretheoremstyle[
+    headfont=\bfseries\itshape,
+    bodyfont=\normalfont,
+    notefont=,
+    % headpunct={.\hfill\shifttext{2ex}{$\urcorner$}\break},
+    headpunct={.\hfill\break},
+    % headformat={\llap{\NAME} \NUMBER \NOTE},
+    % qed=\raisebox{-2ex}{\shifttext{2ex}{$\lrcorner$}},
+]{axiomstyle}
+\declaretheorem[
+    numbered=yes,
+    style=axiomstyle,
+    % within=chapter,
+]{axiom}
+\declaretheorem[
+    numbered=no,
+    style=axiomstyle,
+]{Axiom}
+
+% STYLE FOR DEFINITIONS
+\declaretheoremstyle[
+    headfont=\bfseries\itshape,
+    bodyfont=\normalfont,
+    notefont=,
+    % headpunct={.\hfill\shifttext{2ex}{$\urcorner$}\break},
+    headpunct={.\hfill\break},
+    % headformat={\llap{\NAME} \NUMBER \NOTE},
+    % qed=\raisebox{-2ex}{\shifttext{2ex}{$\lrcorner$}},
+]{definitionstyle}
+\ifbook
+    \declaretheorem[
+        numbered=yes,
+        style=definitionstyle,
+        within=chapter,
+    ]{definition, notation, algorithm}
+\else
+    \declaretheorem[
+        numbered=yes,
+        style=definitionstyle,
+    ]{definition, notation, algorithm}
+\fi
+\declaretheorem[
+    numbered=no,
+    style=definitionstyle,
+]{Definition, Notation, Algorithm}
+
+% STYLE FOR EXAMPLES
+\declaretheoremstyle[
+    headfont=\bfseries\itshape,
+    bodyfont=\normalfont,
+    notefont=\bfseries\itshape,
+    headpunct={.\hfill\break},
+]{examplestyle}
+\ifbook
+    \declaretheorem[
+        numbered=yes,
+        style=examplestyle,
+        within=chapter,
+    ]{exercise, example, ex, counterexample}
+\else
+    \declaretheorem[
+        numbered=yes,
+        style=examplestyle,
+    ]{exercise, example, ex, counterexample}
+\fi
+\declaretheorem[
+    numbered=no,
+    style=examplestyle,
+]{Exercise, Example, Ex, Counterexample}
+
+% STYLE FOR REMARKS
+\declaretheoremstyle[
+    headfont=\bfseries\itshape,
+    bodyfont=\normalfont,
+    notefont=\bfseries\itshape,
+    headformat={\llap{\NAME} \NUMBER \NOTE},
+]{notestyle}
+\ifbook
+    \declaretheorem[
+        numbered=yes,
+        style=notestyle,
+        within=chapter,
+    ]{note, remark, idea, intuition}
+\else
+    \declaretheorem[
+        numbered=yes,
+        style=notestyle,
+    ]{note, remark, idea, intuition}
+\fi
+\declaretheorem[
+    numbered=no,
+    style=notestyle,
+]{Note, Remark, Idea, Intuition}
+
+\newenvironment{case}[1][Case]
+    {\par\textit{#1:}\hfill\break}
+    {}
+
+\newenvironment{code}[1][Code]
+    {\textbf{#1:}\quote}
+    {\endquote}
+
 \ifalgorithms
     \newcounter{nalg}[chapter]
     \renewcommand{\thenalg}{\thechapter.\arabic{nalg}}
@@ -23,305 +175,3 @@
     {}
 \else
 \fi
-
-% % new proof environment
-% \expandafter\let\expandafter\oldproof\csname\string\proof\endcsname
-% \let\oldendproof\endproof
-% \renewenvironment{proof}[1][\proofname]{%
-%     \vspace{-0.5\parskip}%
-%     \oldproof[#1]
-% }{%
-%     \renewcommand{\qedsymbol}{\sc q.e.d.}
-%     \qed
-% }
-
-% new proof environment
-\expandafter\let\expandafter\oldproof\csname\string\proof\endcsname
-\let\oldendproof\endproof
-\renewenvironment{proof}[1][\bfseries\proofname]{%
-    % \vspace{-0.5\parskip}%
-    \oldproof[#1]
-}{%
-    ~\\\qed
-}
-
-% theorems
-\declaretheoremstyle[
-    headfont=\bfseries\itshape,
-    bodyfont=\normalfont,
-    notefont=,
-    % headpunct={.\hfill\shifttext{2ex}{$\urcorner$}\break},
-    headpunct={.\hfill\break},
-    % headformat={\makebox[0pt][r]{\NAME\ \NUMBER}\NOTE},
-    headformat={Thm \NUMBER \NOTE},
-    qed=\raisebox{-2ex}{\shifttext{2ex}{$\lrcorner$}},
-]{thmstyle}
-\ifbook
-    \declaretheorem[
-        numbered=yes,
-        style=thmstyle,
-        within=chapter,
-    ]{theorem}
-\else
-    \declaretheorem[
-        numbered=yes,
-        style=thmstyle,
-    ]{theorem}
-\fi
-\declaretheoremstyle[
-    headfont=\bfseries\itshape,
-    bodyfont=\normalfont,
-    notefont=,
-    % headpunct={.\hfill\shifttext{2ex}{$\urcorner$}\break},
-    headpunct={.\hfill\break},
-    % headformat={\makebox[0pt][r]{\NAME\ \NUMBER}\NOTE},
-    headformat={Thm\NOTE},
-    qed=\raisebox{-2ex}{\shifttext{2ex}{$\lrcorner$}},
-]{Thmstyle}
-\declaretheorem[
-    numbered=no,
-    style=Thmstyle,
-]{Theorem}
-
-\declaretheoremstyle[
-    headfont=\bfseries\itshape,
-    bodyfont=\normalfont,
-    notefont=,
-    % headpunct={.\hfill\shifttext{2ex}{$\urcorner$}\break},
-    headpunct={.\hfill\break},
-    % headformat={\makebox[0pt][r]{\NAME\ \NUMBER}\NOTE},
-    headformat={Cor \NUMBER \NOTE},
-    qed=\raisebox{-2ex}{\shifttext{2ex}{$\lrcorner$}},
-]{corstyle}
-\ifbook
-    \declaretheorem[
-        numbered=yes,
-        style=corstyle,
-        within=chapter,
-    ]{corollary}
-\else
-    \declaretheorem[
-        numbered=yes,
-        style=corstyle,
-    ]{corollary}
-\fi
-\declaretheoremstyle[
-    headfont=\bfseries\itshape,
-    bodyfont=\normalfont,
-    notefont=,
-    % headpunct={.\hfill\shifttext{2ex}{$\urcorner$}\break},
-    headpunct={.\hfill\break},
-    % headformat={\makebox[0pt][r]{\NAME\ \NUMBER}\NOTE},
-    headformat={Cor\NOTE},
-    qed=\raisebox{-2ex}{\shifttext{2ex}{$\lrcorner$}},
-]{Corstyle}
-\declaretheorem[
-    numbered=no,
-    style=Corstyle,
-]{Corollary}
-
-\declaretheoremstyle[
-    headfont=\bfseries\itshape,
-    bodyfont=\normalfont,
-    notefont=,
-    % headpunct={.\hfill\shifttext{2ex}{$\urcorner$}\break},
-    headpunct={.\hfill\break},
-    % headformat={\makebox[0pt][r]{\NAME\ \NUMBER}\NOTE},
-    headformat={\llap{\NAME} \NUMBER \NOTE},
-    qed=\raisebox{-2ex}{\shifttext{2ex}{$\lrcorner$}},
-]{theoremstyle}
-\ifbook
-    \declaretheorem[
-        numbered=yes,
-        style=theoremstyle,
-        within=chapter,
-    ]{proposition, lemma, claim}
-\else
-    \declaretheorem[
-        numbered=yes,
-        style=theoremstyle,
-    ]{proposition, lemma, claim}
-\fi
-\declaretheorem[
-    numbered=no,
-    style=theoremstyle,
-]{Proposition, Lemma, Claim}
-
-% definitions
-\declaretheoremstyle[
-    headfont=\bfseries\itshape,
-    bodyfont=\normalfont,
-    notefont=,
-    % headpunct={.\hfill\shifttext{2ex}{$\urcorner$}\break},
-    headpunct={.\hfill\break},
-    headformat={Def \NUMBER \NOTE},
-    qed=\raisebox{-2ex}{\shifttext{2ex}{$\lrcorner$}},
-]{defstyle}
-\ifbook
-    \declaretheorem[
-        numbered=yes,
-        style=defstyle,
-        within=chapter,
-    ]{definition}
-\else
-    \declaretheorem[
-        numbered=yes,
-        style=defstyle,
-    ]{definition}
-\fi
-\declaretheoremstyle[
-    headfont=\bfseries\itshape,
-    bodyfont=\normalfont,
-    notefont=,
-    % headpunct={.\hfill\shifttext{2ex}{$\urcorner$}\break},
-    headpunct={.\hfill\break},
-    headformat={Def\NOTE},
-    qed=\raisebox{-2ex}{\shifttext{2ex}{$\lrcorner$}},
-]{Defstyle}
-\declaretheorem[
-    numbered=no,
-    style=Defstyle,
-]{Definition}
-
-\declaretheoremstyle[
-    headfont=\bfseries\itshape,
-    bodyfont=\normalfont,
-    notefont=,
-    % headpunct={.\hfill\shifttext{2ex}{$\urcorner$}\break},
-    headpunct={.\hfill\break},
-    headformat={Axiom \NUMBER \NOTE},
-    qed=\raisebox{-2ex}{\shifttext{2ex}{$\lrcorner$}},
-]{axmstyle}
-\ifbook
-    \declaretheorem[
-        numbered=yes,
-        style=axmstyle,
-        % within=chapter,
-    ]{axiom}
-\else
-    \declaretheorem[
-        numbered=yes,
-        style=axmstyle,
-    ]{axiom}
-\fi
-\declaretheoremstyle[
-    headfont=\bfseries\itshape,
-    bodyfont=\normalfont,
-    notefont=,
-    % headpunct={.\hfill\shifttext{2ex}{$\urcorner$}\break},
-    headpunct={.\hfill\break},
-    headformat={Axiom\NOTE},
-    qed=\raisebox{-2ex}{\shifttext{2ex}{$\lrcorner$}},
-]{Axmstyle}
-\declaretheorem[
-    numbered=no,
-    style=Axmstyle,
-]{Axiom}
-
-\declaretheoremstyle[
-    headfont=\bfseries\itshape,
-    bodyfont=\normalfont,
-    notefont=,
-    % headpunct={.\hfill\shifttext{2ex}{$\urcorner$}\break},
-    headpunct={.\hfill\break},
-    headformat={\llap{\NAME} \NUMBER \NOTE},
-    qed=\raisebox{-2ex}{\shifttext{2ex}{$\lrcorner$}},
-]{definitionstyle}
-\ifbook
-    \declaretheorem[
-        numbered=yes,
-        style=definitionstyle,
-        within=chapter,
-    ]{algorithm, notation}
-\else
-    \declaretheorem[
-        numbered=yes,
-        style=definitionstyle,
-    ]{algorithm, notation}
-\fi
-\declaretheorem[
-    numbered=no,
-    style=definitionstyle,
-]{Algorithm, Notation}
-
-% examples
-\declaretheoremstyle[
-    headfont=\bfseries\itshape,
-    bodyfont=\normalfont,
-    notefont=\bfseries\itshape,
-    headpunct={.\hfill\break},
-]{examplestyle}
-\ifbook
-    \declaretheorem[
-        numbered=yes,
-        style=examplestyle,
-        within=chapter,
-    ]{exercise, example, ex, counterexample}
-\else
-    \declaretheorem[
-        numbered=yes,
-        style=examplestyle,
-    ]{exercise, example, ex, counterexample}
-\fi
-\declaretheorem[
-    numbered=no,
-    style=examplestyle,
-]{Exercise, Example, Ex, Counterexample}
-
-% notes
-\declaretheoremstyle[
-    headfont=\bfseries\itshape,
-    bodyfont=\normalfont,
-    notefont=\bfseries\itshape,
-    headformat={\llap{\NAME} \NUMBER \NOTE},
-]{notestyle}
-\ifbook
-    \declaretheorem[
-        numbered=yes,
-        style=notestyle,
-        within=chapter,
-    ]{note, remark, idea, intuition}
-\else
-    \declaretheorem[
-        numbered=yes,
-        style=notestyle,
-    ]{note, remark, idea, intuition}
-\fi
-\declaretheorem[
-    numbered=no,
-    style=notestyle,
-]{Note, Remark, Idea, Intuition}
-
-% \newenvironment{case}[1][Case]
-    % {\textit{#1:}\quote}
-    % {\endquote}
-\newenvironment{case}[1][Case]
-    {\par\textit{#1:}\hfill\break}
-    {}
-
-\newenvironment{code}[1][Code]
-    {\textbf{#1:}\quote}
-    {\endquote}
-
-% \newcommand{\concept}{\textbf{\textit{Intuition.}}\ }
-
-% \def\lstlistingautorefname{Algorithm}
-% \def\itemautorefname{Section}
-% \renewcommand{\chapterautorefname}{Chapter}
-% \renewcommand{\sectionautorefname}{Section}
-% \renewcommand{\theoremautorefname}{Theorem}
-% \newcommand{\axiomautorefname}{Axiom}
-% \newcommand{\lemmaautorefname}{Lemma}
-% \newcommand{\propositionautorefname}{Proposition}
-% \newcommand{\corollaryautorefname}{Corollary}
-% \newcommand{\claimautorefname}{Claim}
-% \newcommand{\conjectureautorefname}{Conjecture}
-% \newcommand{\justificationautorefname}{Justification}
-% \newcommand{\definitionautorefname}{Definition}
-% \newcommand{\notationautorefname}{Notation}
-% \newcommand{\exampleautorefname}{Example}
-% \newcommand{\counterexampleautorefname}{Counterexample}
-% \newcommand{\noteautorefname}{Note}
-% \newcommand{\remarkautorefname}{Remark}
-% \newcommand{\ideaautorefname}{Idea}
-% \newcommand{\intuitionautorefname}{Intuition}
