@@ -28,14 +28,10 @@ else
     map <leader>ad :ALEDetail<cr>
 endif
 
-" packadd vimtex
 packadd julia-vim
-" packadd! latex-unicoder
-"
-" bindings for LaTeX unicoder
-" nnoremap <leader>l :call unicoder#start(0)<cr>
-" vnoremap <leader>l :<c-u>call unicoder#selection()<cr>
-"" inoremap <leader>l <esc>:call unicoder#start(1)<cr>
+" packadd vimtex
+let g:Tex_SmartQuoteOpen = "``"
+let g:Tex_SmartQuoteClose = "''"
 
 set background=dark
 set backspace=indent,eol,start

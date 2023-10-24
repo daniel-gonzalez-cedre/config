@@ -20,7 +20,7 @@ set cpoptions&vim
 
 setlocal autoindent
 setlocal indentexpr=VimtexIndentExpr()
-" setlocal indentkeys=!^F,o,O,0(,0),],},\&,0=\\item\ ,0=\\item[,0=\\else,0=\\fi
+setlocal indentkeys=!^F,o,O,0(,0),],},\&,0=\\item\ ,0=\\item[,0=\\else,0=\\fi
 
 " Add standard closing math delimiters to indentkeys
 for s:delim in [
@@ -64,7 +64,7 @@ function! VimtexIndent(lnum) abort " {{{1
 
   " Indent environments, delimiters, and conditionals
   let l:ind += s:indent_envs(l:line, l:prev_line)
-  " let l:ind += s:indent_items(l:line, a:lnum, l:prev_line, l:prev_lnum)
+  let l:ind += s:indent_items(l:line, a:lnum, l:prev_line, l:prev_lnum)
   let l:ind += s:indent_delims(l:line, a:lnum, l:prev_line, l:prev_lnum)
   let l:ind += s:indent_conditionals(l:line, a:lnum, l:prev_line, l:prev_lnum)
 
@@ -232,11 +232,11 @@ function! s:indent_items(line, lnum, prev_line, prev_lnum) abort " {{{1
 endfunction
 
 let s:envs_lists = join(g:vimtex_indent_lists, '\|')
-" let s:envs_item = '^\s*\\item\>'
+let s:envs_item = '^\s*\\item\>'
 let s:envs_beglist = '\\begin{\%(' . s:envs_lists . '\)'
 let s:envs_endlist =   '\\end{\%(' . s:envs_lists . '\)'
-" let s:envs_begitem = s:envs_item . '\|' . s:envs_beglist
-" let s:envs_enditem = s:envs_item . '\|' . s:envs_endlist
+let s:envs_begitem = s:envs_item . '\|' . s:envs_beglist
+let s:envs_enditem = s:envs_item . '\|' . s:envs_endlist
 
 " }}}1
 function! s:indent_delims(line, lnum, prev_line, prev_lnum) abort " {{{1
