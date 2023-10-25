@@ -32,6 +32,7 @@ packadd julia-vim
 " packadd vimtex
 let g:Tex_SmartQuoteOpen = "``"
 let g:Tex_SmartQuoteClose = "''"
+" set g:Imap_FreezeImap=1
 
 set background=dark
 set backspace=indent,eol,start
@@ -227,12 +228,20 @@ nnoremap i :noh<bar>:echo<cr>i
 nnoremap I :noh<bar>:echo<cr>I
 nnoremap a :noh<bar>:echo<cr>a
 nnoremap A :noh<bar>:echo<cr>A
-nnoremap gi :noh<bar>:echo<cr>gi
-nnoremap gI :noh<bar>:echo<cr>gI
 nnoremap o :noh<bar>:echo<cr>o
 nnoremap O :noh<bar>:echo<cr>O
+nnoremap gi :noh<bar>:echo<cr>gi
+nnoremap gI :noh<bar>:echo<cr>gI
 nnoremap s :noh<bar>:echo<cr>s
 nnoremap S :noh<bar>:echo<cr>S
+nnoremap r :noh<bar>:echo<cr>r
+nnoremap R :noh<bar>:echo<cr>R
+nnoremap c :noh<bar>:echo<cr>c
+nnoremap C :noh<bar>:echo<cr>C
+nnoremap d :noh<bar>:echo<cr>d
+nnoremap D :noh<bar>:echo<cr>D
+nnoremap x :noh<bar>:echo<cr>d
+nnoremap X :noh<bar>:echo<cr>D
 nnoremap v :noh<bar>:echo<cr>v
 nnoremap V :noh<bar>:echo<cr>V
 noremap <silent> <c-c> <esc>

@@ -116,6 +116,8 @@ function tree_ascii() { tree --dirsfirst -C -N -h "$1" | sed 's/├/\+/g; s/─/
 alias g++="g++ -std=c++11"
 alias ghc="ghc -no-keep-hi-files -no-keep-o-files"
 alias haskell="runhaskell"
+alias lisp="sbcl"
+alias lisps="sbcl --script"
 alias matlab="/Applications/MATLAB_R2019a.app/bin/matlab -nodesktop -nosplash"
 # alias minicondactivate="source ~/miniconda3/bin/activate"
 alias python="python3"
