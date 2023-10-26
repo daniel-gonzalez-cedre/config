@@ -32,7 +32,6 @@ packadd julia-vim
 " packadd vimtex
 let g:Tex_SmartQuoteOpen = "``"
 let g:Tex_SmartQuoteClose = "''"
-" set g:Imap_FreezeImap=1
 
 set background=dark
 set backspace=indent,eol,start
@@ -100,6 +99,9 @@ set wrapmargin=0
 
 
 " plugin settings
+let g:fanfingtastic_all_inclusive = 1
+let g:fanfingtastic_fix_t = 1
+let g:fanfingtastic_ignorecase = 1
 let g:gitgutter_map_keys = 0
 let g:gruvbox_improved_strings = 1
 let g:gruvbox_improved_warnings = 1

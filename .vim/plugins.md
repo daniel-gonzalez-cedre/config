@@ -7,6 +7,7 @@
 + git@github.com:preservim/nerdcommenter.git
 + git@github.com:luochen1990/rainbow.git
 + git@github.com:tpope/vim-endwise.git
++ git@github.com:dahu/vim-fanfingtastic.git
 + git@github.com:embear/vim-foldsearch.git
 + git@github.com:airblade/vim-gitgutter.git
 + git@github.com:tpope/vim-repeat.git
