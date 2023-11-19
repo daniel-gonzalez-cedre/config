@@ -1,8 +1,11 @@
 % BEGIN COLORS
-    \definecolor{colornd}{HTML}{0c2340}
-    \definecolor{colorfiu}{HTML}{081e3f}
-    \definecolor{colorfsu}{HTML}{782f40}
-    \definecolor{colorchicago}{HTML}{800000}
+    \definecolor{nd}{HTML}{0c2340}
+    \definecolor{ndblue}{HTML}{0c2340}
+    \definecolor{ndgold}{HTML}{ae9142}
+    \definecolor{ndgolddark}{HTML}{8c7535}
+    \definecolor{fiu}{HTML}{081e3f}
+    \definecolor{fsu}{HTML}{782f40}
+    \definecolor{uchicago}{HTML}{800000}
 
     \definecolor{gruvred}{HTML}{cc214d}
     \definecolor{gruvorange}{HTML}{d65d0e}
@@ -147,15 +150,36 @@
 \newcommand{\blankpage}{\newpage\hbox{}\thispagestyle{empty}\newpage}
 \newcommand*{\xline}[1][3em]{\rule[0.5ex]{#1}{0.55pt}}
 
+\newcommand{\Equiv}{~\equiv~}
 \newcommand{\isomorphic}{\cong}
-\newcommand{\niff}{\mathrel{{\ooalign{\hidewidth$\not\phantom{"}$\hidewidth\cr$\iff$}}}}
-\newcommand{\nimplies}{\not\Rightarrow}
-\renewcommand{\implies}{\Rightarrow}
-\renewcommand{\impliedby}{\Leftarrow}
+\newcommand{\Isomorphic}{~\cong~}
 \renewcommand{\iff}{\Leftrightarrow}
-\newcommand{\proves}{~\vdash~}
-\newcommand{\notproves}{~\nvdash~}
-\newcommand{\satisfies}{~\models~}
+\newcommand{\Iff}{~\iff~}
+\newcommand{\bydefn}{\mathrel{\vcentcolon\Leftrightarrow}}
+\newcommand{\byDefn}{~\mathrel{\vcentcolon\Leftrightarrow}~}
+\renewcommand{\implies}{\Rightarrow}
+\newcommand{\Implies}{~\implies~}
+\renewcommand{\impliedby}{\Leftarrow}
+\newcommand{\Impliedby}{~\impliedby~}
+\newcommand{\proves}{\vdash}
+\newcommand{\Proves}{~\proves~}
+\newcommand{\satisfies}{\models}
+\newcommand{\Satisfies}{~\satisfies~}
+
+\newcommand{\notEquiv}{~\not\equiv~}
+\newcommand{\notisomorphic}{\not\cong}
+\newcommand{\notIsomorphic}{~\not\isomorphic~}
+\newcommand{\notimplies}{\not\Rightarrow}
+\newcommand{\notImplies}{~\notimplies~}
+\newcommand{\notimpliedby}{\not\Leftarrow}
+\newcommand{\notImpliedby}{~\not\impliedby~}
+\newcommand{\notiff}{\mathrel{{\ooalign{\hidewidth$\not\phantom{"}$\hidewidth\cr$\iff$}}}}
+\newcommand{\notIff}{~\notiff~}
+\newcommand{\notproves}{\nvdash}
+\newcommand{\notProves}{~\proves~}
+\newcommand{\notsatisfies}{\not\models}
+\newcommand{\notSatisfies}{~\not\satisfies~}
+
 \renewcommand{\qedsymbol}{\scshape q.e.d.}
 
 \renewcommand{\restriction}[1]{\downharpoonright_{#1}}
@@ -208,7 +232,6 @@
 \newcommand{\bigconjunct}{\bigwedge}
 \newcommand{\bigdisjunct}{\bigvee}
 \newcommand{\defn}{\coloneqq}
-\newcommand{\bydefn}{~\mathrel{\vcentcolon\Leftrightarrow}~}
 \newcommand{\xor}{\veebar}
 \newcommand{\nand}{\barwedge}
 \newcommand{\nor}{\barvee}
@@ -247,15 +270,30 @@
 \newcommand{\prtm}[3]{\frac{\partial^{#3}{#1}}{\partial{#2}}}
 \newcommand{\modulo}[3]{#1 \equiv #2 ~\pn*{\mathrm{mod}~#3}}
 \newcommand{\congruent}[3]{#1 \equiv #2 ~\pn*{\mathrm{mod}~#3}}
+\newcommand{\Z}[1]{\ensuremath{\sfrac{\mathbb{Z}}{#1\mathbb{Z}}}}
+\newcommand{\z}[1]{\ensuremath{\sfrac{\mathbb{Z}}{#1\mathbb{Z}}}}
+\newcommand{\zmod}[1]{\ensuremath{\mathbb{Z}/#1\mathbb{Z}}}
 \newcommand*\id{\text{id}}
+% better pmod
+\makeatletter
+\DeclarePairedDelimiterX{\pmodx}[1]{(}{)}{{\operator@font mod}\mkern6mu#1}
+\renewcommand{\pmod}{%
+  \allowbreak
+  \if@display\mkern18mu\else\mkern8mu\fi
+  \pmodx
+}
+\makeatother
 
 \newcommand{\inj}{\hookrightarrow}
+\newcommand{\inject}{\hookrightarrow}
 \newcommand{\injection}{\hookrightarrow}
 
 \newcommand{\surj}{\twoheadrightarrow}
+\newcommand{\surject}{\twoheadrightarrow}
 \newcommand{\surjection}{\twoheadrightarrow}
 
 \newcommand{\bij}{\lhook\joinrel\twoheadrightarrow}
+\newcommand{\biject}{\lhook\joinrel\twoheadrightarrow}
 \newcommand{\bijection}{\lhook\joinrel\twoheadrightarrow}
 
 \newcommand{\monic}{\hookrightarrow}
@@ -322,6 +360,9 @@
 \DeclarePairedDelimiter \seq{\langle}{\rangle}
 \DeclarePairedDelimiter \pn{(}{)}
 \DeclarePairedDelimiter \sq{[}{]}
+\DeclarePairedDelimiter \class{[}{]}
+\DeclarePairedDelimiter \range{[}{]}
+\DeclarePairedDelimiter \cardinal{[}{]}
 \DeclarePairedDelimiter \curly{\lbrace}{\rbrace}
 \DeclarePairedDelimiter \bracket{\langle}{\rangle}
 

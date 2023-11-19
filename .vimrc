@@ -29,7 +29,7 @@ else
 endif
 
 packadd julia-vim
-" packadd vimtex
+packadd vimtex
 let g:Tex_SmartQuoteOpen = "``"
 let g:Tex_SmartQuoteClose = "''"
 
@@ -151,8 +151,8 @@ nnoremap Zx <nop>
 map <leader>w :setlocal nowrap!<cr>
 map <leader>ts :setlocal spell!<cr>
 map zs :setlocal spell!<cr>
+map <leader><c-f> zA
 map <c-f> za
-map <s-f> zA
 " map zt ZT
 " map zn ZN
 " map zN ZP
