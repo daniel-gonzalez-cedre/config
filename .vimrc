@@ -4,7 +4,9 @@ syntax enable
 au FileType * set conceallevel=0
 autocmd BufEnter * :syntax sync fromstart
 
-let mapleader=','
+nnoremap <space> <nop>
+vnoremap <space> <nop>
+let mapleader=' '
 
 if has('nvim')
     packadd! nvim-treesitter
@@ -251,9 +253,7 @@ nnoremap <silent> <c-c> :noh<bar>:echo<cr><esc>
 nnoremap <c-v> :noh<bar>:echo<cr><c-v>
 nnoremap <silent> <cr> :noh<bar>:echo<cr>
 nnoremap <silent> <bs> :noh<bar>:echo<cr>
-nnoremap <silent> <space> :noh<bar>:echo<cr>
 vnoremap <bs> <nop>
-vnoremap <space> <nop>
 
 
 inoremap <c-c> <esc>:noh<bar>:echo<cr>
