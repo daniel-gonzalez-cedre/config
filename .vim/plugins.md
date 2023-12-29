@@ -1,5 +1,5 @@
 # colorschemes
-+ git@github.com:morhetz/gruvbox.git 
++ git@github.com:daniel-gonzalez-cedre/gruvbox.git
 
 # plugins
 + git@github.com:dense-analysis/ale.git
@@ -14,6 +14,7 @@
 + git@github.com:tpope/vim-surround.git
 
 # languages
++ git@github.com:jlapolla/vim-coq-plugin.git
 + git@github.com:bfrg/vim-cpp-modern.git
 + git@github.com:lervag/vimtex.git
 + git@github.com:kaarmu/typst.vim.git

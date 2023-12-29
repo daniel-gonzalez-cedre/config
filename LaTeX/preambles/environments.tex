@@ -14,7 +14,7 @@
 \let\oldendproof\endproof
 \renewenvironment{proof}[1][\bfseries\proofname]{%
     \vspace{-0.5\baselineskip}%
-    \oldproof[#1]
+    \oldproof[\bfseries #1]
 }{%
     ~\\\qed
 }

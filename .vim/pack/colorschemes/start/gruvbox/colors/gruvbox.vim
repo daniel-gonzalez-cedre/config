@@ -506,7 +506,7 @@ endif
 hi! link NonText GruvboxBg2
 hi! link SpecialKey GruvboxBg2
 
-call s:HL('Visual',    s:none,  s:bg3, s:invert_selection)
+call s:HL('Visual',    s:none,  s:bg0, s:invert_selection)
 hi! link VisualNOS Visual
 
 call s:HL('Search',    s:yellow, s:bg0, s:inverse)
@@ -544,7 +544,7 @@ hi! link WarningMsg GruvboxRedBold
 " Gutter: {{{
 
 " Line number for :number and :# commands
-call s:HL('LineNr', s:bg4, s:number_column)
+call s:HL('LineNr', s:bg2, s:number_column)
 
 " Column where signs are displayed
 call s:HL('SignColumn', s:none, s:sign_column)
@@ -576,7 +576,7 @@ else
   call s:HL('Special', s:aqua, s:bg0, s:italicize_strings)
 endif
 
-call s:HL('Comment', s:bg5, s:none, s:italicize_comments)
+call s:HL('Comment', s:bg3, s:none, s:italicize_comments)
 call s:HL('Todo', s:gray, s:none, s:bold . s:italic)
 call s:HL('Error', s:red, s:vim_bg, s:bold . s:inverse)
 
@@ -620,7 +620,7 @@ if g:gruvbox_improved_strings == 0
   call s:HL('String',  s:green, s:none, s:italicize_strings)
 else
   " call s:HL('String',  s:fg1, s:bg1, s:italicize_strings)
-  call s:HL('String',  s:fg2, s:bg1, s:italicize_strings)
+  call s:HL('String',  s:fg4, s:bg0, s:italicize_strings)
 endif
 " Boolean constant: TRUE, false
 hi! link Boolean GruvboxPurple
@@ -670,12 +670,12 @@ call s:HL('DiffText',   s:yellow, s:bg0, s:inverse)
 if has("spell")
   " Not capitalised word, or compile warnings
   if g:gruvbox_improved_warnings == 0
-    call s:HL('SpellCap',   s:none, s:none, s:undercurl, s:red)
+    call s:HL('SpellCap',   s:none, s:none, s:undercurl, s:blue)
   else
-    call s:HL('SpellCap',   s:green, s:none, s:bold . s:italic)
+    call s:HL('SpellCap',   s:red, s:none, s:bold . s:italic)
   endif
   " Not recognized word
-  call s:HL('SpellBad',   s:none, s:none, s:undercurl, s:blue)
+  call s:HL('SpellBad',   s:none, s:none, s:undercurl, s:red)
   " Wrong spelling for selected region
   call s:HL('SpellLocal', s:none, s:none, s:undercurl, s:aqua)
   " Rare word
