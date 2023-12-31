@@ -312,6 +312,14 @@ autocmd BufEnter * :syntax sync fromstart
     endif
   endfunction
 
+  " echoes the highlight group under the cursor
+  function! SynStack()
+    if !exists("*synstack")
+      return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+  endfunc
+
   function! ToggleBackground()
     if (&background == 'light')
       set background=dark
@@ -363,6 +371,11 @@ autocmd BufEnter * :syntax sync fromstart
     hi SpellCap ctermbg=234 cterm=underline
     hi SpellLocal ctermbg=234 cterm=none
     hi SpellRare ctermbg=234 cterm=none
+
+    hi clear texArg
+    hi clear texStyleItal
+    hi texArg ctermfg=137 ctermbg=none cterm=none
+    hi texStyleItal ctermfg=137 ctermbg=none cterm=none
 
     if has('nvim')
     else
