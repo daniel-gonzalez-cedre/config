@@ -219,6 +219,8 @@ autocmd BufEnter * :syntax sync fromstart
   " movement
   noremap j gj
   noremap k gk
+  noremap gj j
+  noremap gk k
   vnoremap g[ {
   vnoremap g] }
   vnoremap g{ {
@@ -332,9 +334,13 @@ autocmd BufEnter * :syntax sync fromstart
     if (maparg('j') ==# 'gj') || (maparg('k') ==# 'gk')
       unmap j
       unmap k
+      unmap gj
+      unmap gk
     else
       noremap j gj
       noremap k gk
+      noremap gj j
+      noremap gk k
     endif
   endfunction
 
