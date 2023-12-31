@@ -4,9 +4,10 @@ syntax enable
 au FileType * set conceallevel=0
 autocmd BufEnter * :syntax sync fromstart
 
-nnoremap <space> <nop>
-vnoremap <space> <nop>
-let mapleader=' '
+" LEADER
+  nnoremap <space> <nop>
+  vnoremap <space> <nop>
+  let mapleader=' '
 
 " NOP MAPPINGS
   " silence macro recording
@@ -120,7 +121,7 @@ let mapleader=' '
     " set breakindentopt=sbr
     " let &showbreak='⋅⋅⋅⋅'
 
-" plugin settings
+" PLUGIN SETTINGS
   let g:fanfingtastic_all_inclusive = 1
   let g:fanfingtastic_fix_t = 1
   let g:fanfingtastic_ignorecase = 1
@@ -151,30 +152,20 @@ let mapleader=' '
   " let g:unicoder_cancel_insert = 1
   let g:unicoder_cancel_visual = 1
 
-" <c-y> to jump forward (opposite of <c-o>)
-" nnoremap <c-y> <c-i>
-" vnoremap <c-y> <c-i>
-" <c-i> to scroll up (opposite of <c-e>)
-" nnoremap <c-i> <c-y>
-" vnoremap <c-i> <c-y>
 
-" nnoremap n nzz
-" nnoremap N Nzz
-" nnoremap * *zz
-" nnoremap # #zz
-" nnoremap g* g*zz
-" nnoremap g# g#zz
+" TOGGLE MAPPINGS
+  noremap <leader>h :noh<bar>:echo<cr>
+  noremap <leader>th :set nohlsearch!<cr>
+  map <leader>tw :setlocal nowrap!<cr>
+  map <leader>tb :call ToggleBackground()<cr>
+  map <leader>tg :call ToggleGMove()<cr>
+  map <leader>ts :setlocal spell!<cr>
+  " relative line numbers
+  nnoremap <leader>rln :set rnu!<cr>
 
-" toggle maps
-noremap <leader>h :noh<bar>:echo<cr>
-noremap <leader>th :set nohlsearch!<cr>
-map <leader>tw :setlocal nowrap!<cr>
-map <leader>tbg :call ToggleBG()<cr>
-map <leader>ts :setlocal spell!<cr>
 
-map zs :setlocal spell!<cr>
+" map zs :setlocal spell!<cr>
 " map <leader><c-f> zA
-map <c-f> za
 " map zt ZT
 " map zn ZN
 " map zN ZP
@@ -191,36 +182,190 @@ map <c-f> za
 " map ]s ZN
 " map [s ZP
 
-function! s:gruvbox_custom()
-  hi Comment ctermfg=237
-  " hi Folded ctermfg=95 ctermbg=234
-  hi Folded ctermfg=235 ctermbg=234
-  hi String ctermfg=137 ctermbg=234 cterm=none
 
-  hi StatusLine ctermfg=238 ctermbg=none cterm=none
-  hi StatusLineNC ctermfg=237 ctermbg=none cterm=none
+" CLEAR MAPPINGS
+  nnoremap i :noh<bar>:echo<cr>i
+  nnoremap I :noh<bar>:echo<cr>I
+  nnoremap a :noh<bar>:echo<cr>a
+  nnoremap A :noh<bar>:echo<cr>A
+  nnoremap o :noh<bar>:echo<cr>o
+  nnoremap O :noh<bar>:echo<cr>O
+  nnoremap gi :noh<bar>:echo<cr>gi
+  nnoremap gI :noh<bar>:echo<cr>gI
+  nnoremap s :noh<bar>:echo<cr>s
+  nnoremap S :noh<bar>:echo<cr>S
+  nnoremap r :noh<bar>:echo<cr>r
+  nnoremap R :noh<bar>:echo<cr>R
+  nnoremap c :noh<bar>:echo<cr>c
+  nnoremap C :noh<bar>:echo<cr>C
+  " nnoremap d :noh<bar>:echo<cr>d
+  " nnoremap D :noh<bar>:echo<cr>D
+  " nnoremap x :noh<bar>:echo<cr>x
+  " nnoremap X :noh<bar>:echo<cr>X
+  nnoremap v :noh<bar>:echo<cr>v
+  nnoremap V :noh<bar>:echo<cr>V
 
-  hi MatchParen cterm=inverse
-  hi Visual ctermfg=none ctermbg=234 cterm=inverse
 
-  hi clear SignColumn
-  hi LineNR ctermfg=237 cterm=none
-  hi CursorLine ctermbg=none ctermfg=none cterm=none
-  hi CursorLineNR ctermbg=none
+" SEARCH MAPPINGS
+  " search & replace (blank)
+  nnoremap <leader>s :%s//gc<left><left><left>
+  " search visual selection
+  vnoremap // y/\V<c-r>=escape(@",'/\')<cr>
+  " search & replace visual selection
+  vnoremap <leader>s y`<`>:<c-u>%s/\V<c-r>=escape(@",'/\')<cr>//gc<left><left><left>
 
-  " hi SpellBad ctermfg=131 ctermbg=234 cterm=underline
-  " hi SpellCap ctermfg=66 ctermbg=234 cterm=underline
-  hi clear SpellBad
-  hi clear SpellCap
-  hi clear SpellLocal
-  hi clear SpellRare
-  hi SpellBad ctermbg=234 cterm=underline
-  hi SpellCap ctermbg=234 cterm=underline
-  hi SpellLocal ctermbg=234 cterm=none
-  hi SpellRare ctermbg=234 cterm=none
 
-  if has('nvim')
-  else
+" QUALITY OF LIFE MAPPINGS
+  " movement
+  noremap j gj
+  noremap k gk
+  vnoremap g[ {
+  vnoremap g] }
+  vnoremap g{ {
+  vnoremap g} }
+  noremap <c-y> <c-i>
+  noremap <c-i> <c-y>
+
+  " text object for current line
+  xnoremap il g_o^
+  onoremap il :normal vil<cr>
+  xnoremap al $o^
+  onoremap al :normal val<cr>
+
+  " status bar auto-clearing
+  noremap <silent> <c-c> <esc>
+  nnoremap <silent> <c-c> :noh<bar>:echo<cr><esc>
+  inoremap <silent> <c-c> <esc>:noh<bar>:echo<cr>
+  nnoremap <c-v> :noh<bar>:echo<cr><c-v>
+  nnoremap <silent> <cr> :noh<bar>:echo<cr>
+  nnoremap <silent> <bs> :noh<bar>:echo<cr>
+
+  " misc
+  map <c-f> za
+  map <leader><c-f> zA
+  inoremap <c-]> <del>
+  inoremap <expr> <cr> pumvisible() ? !empty(v:completed_item) ? "<c-y><c-c>" : "<c-y><cr>" : "<cr>"
+
+
+  if has('clipboard')
+    noremap y "+y
+    noremap Y "+Y
+    noremap d "+d
+    noremap dd "+dd
+    noremap D "+D
+    vnoremap x "+x
+    vnoremap X "+X
+    noremap p "+p
+    noremap P "+P
+  endif
+
+
+" DELIMITER MAPPINGS
+  inoremap ( ()<left>
+  inoremap [ []<left>
+  inoremap { {}<left>
+  inoremap ) <c-r>=ClosePair(')')<cr>
+  inoremap ] <c-r>=ClosePair(']')<cr>
+  inoremap } <c-r>=ClosePair('}')<cr>
+  inoremap > <c-r>=ClosePair('>')<cr>
+  inoremap " <c-r>=ClosePair('"')<cr>
+  inoremap ' <c-r>=ClosePair("'")<cr>
+  inoremap ` <c-r>=ClosePair('`')<cr>
+  inoremap $ <c-r>=ClosePair('$')<cr>
+  " inoremap " <c-r>=QuoteDelim('"')<cr>
+  " inoremap ' <c-r>=QuoteDelim("'")<cr>
+  " inoremap ` <c-r>=QuoteDelim('`')<cr>
+
+  vmap ( <s-s>)<cr>
+  vmap ) <s-s>)<cr>
+  vmap [ <s-s>]<cr>
+  vmap ] <s-s>]<cr>
+  vmap { <s-s>}<cr>
+  vmap } <s-s>}<cr>
+  vmap $ <s-s>$<cr>
+  vmap " <s-s>"<cr>
+  vmap ' <s-s>'<cr>
+  vmap ` <s-s>`<cr>
+  " vnoremap " <c-c>`>a"<c-c>`<i"<c-c>
+  " vnoremap ' <c-c>`>a'<c-c>`<i'<c-c>
+  " vnoremap ` <c-c>`>a`<c-c>`<i`<c-c>
+
+
+" FUNCTIONS
+  function ClosePair(char)
+    if getline('.')[col('.') - 1] == a:char
+      return "\<right>"
+    else
+      return a:char
+    endif
+  endfunction
+
+  function QuoteDelim(char)
+    let line = getline('.')
+    let col = col('.')
+    if line[col - 2] == "\\"
+      return a:char
+    elseif line[col - 1] == a:char
+      return "\<right>"
+    else
+      return a:char.a:char."\<esc>i"
+    endif
+  endfunction
+
+  function! ToggleBackground()
+    if (&background == 'light')
+      set background=dark
+    else
+      set background=light
+    endif
+  endfunction
+
+  function! ToggleGMove()
+    if (maparg('j') ==# 'gj') || (maparg('k') ==# 'gk')
+      unmap j
+      unmap k
+    else
+      noremap j gj
+      noremap k gk
+    endif
+  endfunction
+
+  function! TwiddleCase(str)
+    return substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
+  endfunction
+
+
+" COLORS
+  function! s:gruvbox_custom()
+    hi Comment ctermfg=237 ctermbg=none cterm=none
+    " hi Folded ctermfg=95 ctermbg=234
+    hi Folded ctermfg=235 ctermbg=none cterm=none
+    hi String ctermfg=137 ctermbg=none cterm=none
+
+    hi StatusLine ctermfg=238 ctermbg=none cterm=none
+    hi StatusLineNC ctermfg=237 ctermbg=none cterm=none
+
+    hi MatchParen cterm=inverse
+    hi Visual ctermfg=none ctermbg=none cterm=inverse
+
+    hi clear SignColumn
+    hi LineNR ctermfg=237 cterm=none
+    hi CursorLine ctermfg=none ctermbg=none cterm=none
+    hi CursorLineNR ctermbg=none
+
+    " hi SpellBad ctermfg=131 ctermbg=234 cterm=underline
+    " hi SpellCap ctermfg=66 ctermbg=234 cterm=underline
+    hi clear SpellBad
+    hi clear SpellCap
+    hi clear SpellLocal
+    hi clear SpellRare
+    hi SpellBad ctermbg=234 cterm=underline
+    hi SpellCap ctermbg=234 cterm=underline
+    hi SpellLocal ctermbg=234 cterm=none
+    hi SpellRare ctermbg=234 cterm=none
+
+    if has('nvim')
+    else
       hi ALEErrorLine ctermbg=none cterm=none
       hi ALEWarningLine ctermbg=none cterm=none
       hi ALEError ctermbg=none cterm=none
@@ -230,170 +375,35 @@ function! s:gruvbox_custom()
       hi ALEInfoSign ctermfg=108 ctermbg=none
       hi ALEVirtualTextError ctermfg=238
       hi ALEVirtualTextWarning ctermfg=238
-  endif
+    endif
 
-  hi SignColumn ctermbg=black
-endfunction
+    hi SignColumn ctermbg=black
+  endfunction
 
-function! s:gitgutter_custom()
-  highlight clear SignColumn
-  highlight GitGutterAdd ctermbg=none ctermfg=142
-  highlight GitGutterChange ctermbg=none ctermfg=109
-  highlight GitGutterDelete ctermbg=none ctermfg=167
-  highlight GitGutterChangeDelete ctermbg=none ctermfg=175
-  " highlight GitGutterAdd ctermbg=none
-  " highlight GitGutterChange ctermbg=none
-  " highlight GitGutterDelete ctermbg=none
-  " highlight GitGutterChangeDelete ctermfg=108
-endfunction
+  function! s:gitgutter_custom()
+    highlight clear SignColumn
+    highlight GitGutterAdd ctermfg=142 ctermbg=none
+    highlight GitGutterChange ctermfg=109 ctermbg=none
+    highlight GitGutterDelete ctermfg=167 ctermbg=none
+    highlight GitGutterChangeDelete ctermfg=175 ctermbg=none
+  endfunction
 
-augroup custom_colors
-  autocmd!
-  autocmd ColorScheme gruvbox call s:gruvbox_custom()
-  autocmd ColorScheme gruvbox call s:gitgutter_custom()
-augroup END
+  augroup custom_colors
+    autocmd!
+    autocmd ColorScheme gruvbox call s:gruvbox_custom()
+    autocmd ColorScheme gruvbox call s:gitgutter_custom()
+  augroup END
 
-colorscheme gruvbox
+  colorscheme gruvbox
 
-nnoremap i :noh<bar>:echo<cr>i
-nnoremap I :noh<bar>:echo<cr>I
-nnoremap a :noh<bar>:echo<cr>a
-nnoremap A :noh<bar>:echo<cr>A
-nnoremap o :noh<bar>:echo<cr>o
-nnoremap O :noh<bar>:echo<cr>O
-nnoremap gi :noh<bar>:echo<cr>gi
-nnoremap gI :noh<bar>:echo<cr>gI
-nnoremap s :noh<bar>:echo<cr>s
-nnoremap S :noh<bar>:echo<cr>S
-nnoremap r :noh<bar>:echo<cr>r
-nnoremap R :noh<bar>:echo<cr>R
-nnoremap c :noh<bar>:echo<cr>c
-nnoremap C :noh<bar>:echo<cr>C
-" nnoremap d :noh<bar>:echo<cr>d
-" nnoremap D :noh<bar>:echo<cr>D
-" nnoremap x :noh<bar>:echo<cr>x
-" nnoremap X :noh<bar>:echo<cr>X
-nnoremap v :noh<bar>:echo<cr>v
-nnoremap V :noh<bar>:echo<cr>V
-
-noremap <silent> <c-c> <esc>
-nnoremap <silent> <c-c> :noh<bar>:echo<cr><esc>
-inoremap <silent> <c-c> <esc>:noh<bar>:echo<cr>
-
-nnoremap <c-v> :noh<bar>:echo<cr><c-v>
-nnoremap <silent> <cr> :noh<bar>:echo<cr>
-nnoremap <silent> <bs> :noh<bar>:echo<cr>
-
-inoremap <c-]> <del>
-inoremap <expr> <cr> pumvisible() ? !empty(v:completed_item) ? "<c-y><c-c>" : "<c-y><cr>" : "<cr>"
-
-" auto closing of paired chars
-function ClosePair(char)
-  if getline('.')[col('.') - 1] == a:char
-      return "\<right>"
-  else
-      return a:char
-  endif
-endf
-
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap ) <c-r>=ClosePair(')')<cr>
-inoremap ] <c-r>=ClosePair(']')<cr>
-inoremap } <c-r>=ClosePair('}')<cr>
-inoremap > <c-r>=ClosePair('>')<cr>
-inoremap " <c-r>=ClosePair('"')<cr>
-inoremap ' <c-r>=ClosePair("'")<cr>
-inoremap ` <c-r>=ClosePair('`')<cr>
-inoremap $ <c-r>=ClosePair('$')<cr>
-" inoremap " <c-r>=QuoteDelim('"')<cr>
-" inoremap ' <c-r>=QuoteDelim("'")<cr>
-" inoremap ` <c-r>=QuoteDelim('`')<cr>
-
-" add quotes around visual selection
-vmap ( <s-s>)<cr>
-vmap ) <s-s>)<cr>
-vmap [ <s-s>]<cr>
-vmap ] <s-s>]<cr>
-vmap { <s-s>}<cr>
-vmap } <s-s>}<cr>
-vmap $ <s-s>$<cr>
-vmap " <s-s>"<cr>
-vmap ' <s-s>'<cr>
-vmap ` <s-s>`<cr>
-" vnoremap " <c-c>`>a"<c-c>`<i"<c-c>
-" vnoremap ' <c-c>`>a'<c-c>`<i'<c-c>
-" vnoremap ` <c-c>`>a`<c-c>`<i`<c-c>
-
-if has('clipboard')
-  noremap y "+y
-  noremap Y "+Y
-  noremap d "+d
-  noremap dd "+dd
-  noremap D "+D
-  vnoremap x "+x
-  vnoremap X "+X
-  noremap p "+p
-  noremap P "+P
-endif
-
-" custom cursors
-" LINE: \e[5
-" BLOCK:
-" UNDERLINE: \e[4
-let &t_SI="\e[5 q"      " LINE: start insert mode
-" let &t_SI="\e[4 q"    " UNDERLINE: start insert mode
-let &t_EI="\e[1 q"      " UNDERLINE: end insert mode
-" let &t_EI="\e[2 q"    " BLOCK: end insert mode
-
-function QuoteDelim(char)
-  let line = getline('.')
-  let col = col('.')
-  if line[col - 2] == "\\"
-      return a:char
-  elseif line[col - 1] == a:char
-      return "\<right>"
-  else
-      return a:char.a:char."\<esc>i"
-  endif
-endf
-
-" camel-case selected text
-function! TwiddleCase(str)
-  return substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
-endfunction
-
-" toggle dark/light background
-function! ToggleBG()
-  if (&background == 'light')
-      set background=dark
-  else
-      set background=light
-      hi SpellBad ctermbg=229 cterm=none
-      hi SpellCap ctermbg=229 cterm=none
-      hi SpellLocal ctermbg=229 cterm=none
-      hi SpellRare ctermbg=229 cterm=none
-  endif
-endfunction
-
-" toggle relative line numbers
-nnoremap <leader>rln :set rnu!<cr>
-
-" search & replace (blank)
-nnoremap <leader>s :%s//gc<left><left><left>
-" search visual selection
-vnoremap // y/\V<c-r>=escape(@",'/\')<cr>
-" search & replace visual selection
-vnoremap <leader>s y`<`>:<c-u>%s/\V<c-r>=escape(@",'/\')<cr>//gc<left><left><left>
-
-noremap = g_
-
-" text object for current line
-xnoremap il g_o^
-onoremap il :normal vil<cr>
-xnoremap al $o^
-onoremap al :normal val<cr>
+" CUSTOM CURSORS
+  " LINE: \e[5
+  " BLOCK:
+  " UNDERLINE: \e[4
+  let &t_SI="\e[5 q"      " LINE: start insert mode
+  " let &t_SI="\e[4 q"    " UNDERLINE: start insert mode
+  let &t_EI="\e[1 q"      " UNDERLINE: end insert mode
+  " let &t_EI="\e[2 q"    " BLOCK: end insert mode
 
 " NERDCommenter mappings
 autocmd! VimEnter * call s:nerdcommenter_mappings()
