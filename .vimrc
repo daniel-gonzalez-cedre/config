@@ -378,10 +378,12 @@ autocmd BufEnter * :syntax sync fromstart
     hi SpellLocal ctermbg=234 cterm=none
     hi SpellRare ctermbg=234 cterm=none
 
-    hi clear texArg
     hi clear texStyleItal
-    hi texArg ctermfg=137 ctermbg=none cterm=none
-    hi texStyleItal ctermfg=137 ctermbg=none cterm=none
+    hi clear texCmdSize
+    hi clear texCmdStyle
+    hi texStyleItal ctermfg=214 ctermbg=none cterm=none
+    hi texCmdSize ctermfg=208 ctermbg=none cterm=none
+    hi texCmdStyle ctermfg=208 ctermbg=none cterm=none
 
     if has('nvim')
     else
