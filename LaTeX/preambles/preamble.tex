@@ -1,6 +1,10 @@
 \iftufte  % Tufte settings
     \ifbook
+      \ifdraft
+        \documentclass[draft,nobib,justified,openany]{tufte-book}
+      \else
         \documentclass[nobib,justified,openany]{tufte-book}
+      \fi
     \else
         \documentclass[nobib,justified]{tufte-handout}
         \ifsyllabus
@@ -72,7 +76,7 @@
     \usepackage{microtype}
     \usepackage{arydshln, chngcntr}
     \setcounter{tocdepth}{1}
-    \setcounter{secnumdepth}{2}
+    \setcounter{secnumdepth}{1}
 
     \usepackage{tipa}
     \usepackage{fancyvrb}
@@ -92,25 +96,25 @@
 \fi
 
 \AtBeginDocument{%
-    % reset AMS mathbb symbols
+    % % reset AMS mathbb symbols
     \DeclareSymbolFont{AMSb}{U}{msb}{m}{n}
     \DeclareSymbolFontAlphabet{\mathbb}{AMSb}
 
-    % reset default math fonts
-    \DeclareSymbolFont{operators}   {OT1}{cmr} {m}{n}
-    \DeclareSymbolFont{letters}     {OML}{cmm} {m}{it}
-    \DeclareSymbolFont{symbols}     {OMS}{cmsy}{m}{n}
-    \DeclareSymbolFont{largesymbols}{OMX}{cmex}{m}{n}
-    \SetSymbolFont{operators}{bold}{OT1}{cmr} {bx}{n}
-    \SetSymbolFont{letters}  {bold}{OML}{cmm} {b}{it}
-    \SetSymbolFont{symbols}  {bold}{OMS}{cmsy}{b}{n}
-    \DeclareSymbolFontAlphabet{\mathrm}    {operators}
-    \DeclareSymbolFontAlphabet{\mathnormal}{letters}
-    \DeclareSymbolFontAlphabet{\mathcal}   {symbols}
-    \DeclareMathAlphabet      {\mathbf}{OT1}{cmr}{bx}{n}
-    \DeclareMathAlphabet      {\mathsf}{OT1}{cmss}{m}{n}
-    \DeclareMathAlphabet      {\mathit}{OT1}{cmr}{m}{it}
-    \DeclareMathAlphabet      {\mathtt}{OT1}{cmtt}{m}{n}
+    % % reset default math fonts
+    % \DeclareSymbolFont{operators}   {OT1}{cmr} {m}{n}
+    % \DeclareSymbolFont{letters}     {OML}{cmm} {m}{it}
+    % \DeclareSymbolFont{symbols}     {OMS}{cmsy}{m}{n}
+    % \DeclareSymbolFont{largesymbols}{OMX}{cmex}{m}{n}
+    % \SetSymbolFont{operators}{bold}{OT1}{cmr} {bx}{n}
+    % \SetSymbolFont{letters}  {bold}{OML}{cmm} {b}{it}
+    % \SetSymbolFont{symbols}  {bold}{OMS}{cmsy}{b}{n}
+    % \DeclareSymbolFontAlphabet{\mathrm}    {operators}
+    % \DeclareSymbolFontAlphabet{\mathnormal}{letters}
+    % \DeclareSymbolFontAlphabet{\mathcal}   {symbols}
+    % \DeclareMathAlphabet      {\mathbf}{OT1}{cmr}{bx}{n}
+    % \DeclareMathAlphabet      {\mathsf}{OT1}{cmss}{m}{n}
+    % \DeclareMathAlphabet      {\mathit}{OT1}{cmr}{m}{it}
+    % \DeclareMathAlphabet      {\mathtt}{OT1}{cmtt}{m}{n}
 }
 
 % math
@@ -143,90 +147,99 @@
                   parsep=1ex,
                   label=$\cdot$}
 
-\hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    citecolor=blue,
-    urlcolor=blue
-}
-% \hypersetup{
-    % colorlinks=true,
-    % linkcolor=orange,
-    % citecolor=red,
-    % urlcolor=blue
-% }
-
 \allowdisplaybreaks
 \newdateformat{verbosedate}{\ordinal{DAY} of \monthname[\THEMONTH], \THEYEAR}
 \verbosedate
 
-\newcounter{daggerfootnote}
-\newcommand*{\daggerfootnote}[2][]{%
-  \setcounter{daggerfootnote}{\value{footnote}}%
-  \renewcommand*{\thefootnote}{\fnsymbol{footnote}}%
-  \footnote[#1]{#2}%
-  \setcounter{footnote}{\value{daggerfootnote}}%
-  \renewcommand*{\thefootnote}{\arabic{footnote}}%
-}
-
-\iftufte
-  \newcounter{daggersidenote}
-  \newcommand*{\daggersidenote}[2][]{%
-    \setcounter{daggersidenote}{\value{footnote}}%
-    \renewcommand*{\thefootnote}{\fnsymbol{footnote}}%
-    \footnote[#1]{#2}%
-    \setcounter{footnote}{\value{daggersidenote}}%
-    \renewcommand*{\thefootnote}{\arabic{footnote}}%
-  }
-\else
-\fi
-
 \pagestyle{fancy}
+% \fancyfoot[C]{--~\thepage~--}
+\fancyfoot[C]{\tiny \thepage\ / \pageref*{LastPage}}
+\ifbook
+    \fancypagestyle{plain}{%
+        \fancyhead[L]{}
+        \ifdate
+            \fancyhead[R]{\textit{\today}}
+        \else
+            \fancyhead[R]{}
+        \fi
+        \renewcommand{\headrulewidth}{0pt}
+    }
 
-\ifheaders
-    \ifbook
+    \let\cleardoublepage=\clearpage
+\else
+    \ifsyllabus
         \fancypagestyle{plain}{%
             \fancyhead[L]{}
             \ifdate
-                \fancyhead[R]{\today}
+                \fancyhead[R]{\textit{\today}}
             \else
                 \fancyhead[R]{}
             \fi
             \renewcommand{\headrulewidth}{0pt}
         }
-
-        \let\cleardoublepage=\clearpage
     \else
-        \ifsyllabus
-            \fancypagestyle{plain}{%
-                \fancyhead[L]{}
-                \ifdate
-                    \fancyhead[R]{\today}
-                \else
-                    \fancyhead[R]{}
-                \fi
-                \renewcommand{\headrulewidth}{0pt}
-            }
-        \else
-            \fancypagestyle{plain}{}
-            \renewcommand{\headrulewidth}{0pt}
-        \fi
+        \fancypagestyle{plain}{}
+        \renewcommand{\headrulewidth}{0pt}
     \fi
-\else
-    \fancypagestyle{plain}{}
-    \fancyhead[L]{}
-    \fancyhead[R]{}
-    \renewcommand{\headrulewidth}{0pt}
 \fi
 
-\iffooters
-    \fancyfoot[C]{\tiny \thepage\ / \pageref*{LastPage}}
-    % \fancyfoot[C]{--~\thepage~--}
+% stacked asterisk symbol \stars{n}
+\makeatletter
+  \newcommand{\stars}{}% just for safety
+  \DeclareRobustCommand{\stars}[1]{\stars@{#1}}
+  \newcommand{\stars@}[1]{%
+    \ifcase#1\relax\or\stars@one\or\stars@two\or\stars@three\or\stars@four\or\stars@five\or\stars@six
+    \else ??\fi
+  }
+  \newcommand{\stars@char}{\text{*}}
+  \newcommand{\stars@base}[1]{%
+    $\m@th\vcenter{\offinterlineskip\lineskip=-0.65ex\ialign{\hfil##\hfil\cr#1\crcr}}$%
+  }
+  \newcommand{\stars@one}{%
+    \stars@base{\stars@char}%
+  }
+  \newcommand{\stars@two}{%
+    \stars@base{\stars@char\cr\stars@char}%
+  }
+  \newcommand{\stars@three}{%
+    \stars@base{\stars@char\cr\stars@char\stars@char}%
+  }
+  \newcommand{\stars@four}{%
+    \stars@base{\stars@char\stars@char\cr\stars@char\stars@char}%
+  }
+  \newcommand{\stars@five}{%
+    \stars@base{\stars@char\stars@char\cr\stars@char\stars@char\stars@char}%
+  }
+  \newcommand{\stars@six}{%
+    \stars@base{\stars@char\cr\stars@char\stars@char\cr\stars@char\stars@char\stars@char}%
+  }
+\makeatother
+
+% new footnote symbols
+\makeatletter
+\def\ssymbol#1{\expandafter\@ssymbol\csname c@#1\endcsname}
+\def\@ssymbol#1{%
+  \ifcase#1\or\textdagger%
+           \or\textdaggerdbl%
+           \or\stars{1}%
+           \or\stars{2}%
+           \or\stars{3}%
+           \or\stars{4}%
+           \or\stars{5}%
+           \or\stars{6}%
+           % \or\textdagger\textdagger%
+           \or\textdaggerdbl\textdaggerdbl%
+           \else\@ctrerr\fi}
+\makeatother
+
+\ifsymbolfootnotes
+  \renewcommand*{\thefootnote}{\ssymbol{footnote}}%
+  % \renewcommand*{\thefootnote}{\fnsymbol{footnote}}%
 \else
-    \fancyfoot[C]{}
+  \renewcommand*{\thefootnote}{\arabic{footnote}}%
 \fi
 
-\delimitershortfall=-1pt
+\delimitershortfall=-0.5pt
 \normalem
 
 \usepackage{epigraph}
@@ -241,3 +254,17 @@
 \setlength\epigraphrule{0pt}
 % \setlength\epitextskip{0ex}
 \setlength\epigraphwidth{.75\textwidth}
+
+\usepackage[nameinlink]{cleveref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=purple,
+    citecolor=green,
+    urlcolor=blue
+}
+% \hypersetup{
+    % colorlinks=true,
+    % linkcolor=orange,
+    % citecolor=red,
+    % urlcolor=blue
+% }

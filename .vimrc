@@ -60,7 +60,7 @@ autocmd BufEnter * :syntax sync fromstart
     set conceallevel=0
     set cursorline
     set display+=lastline
-    set fillchars=stl:⋅,stlnc:⋅,vert:\|,fold:\ 
+    " set fillchars=stl:⋅,stlnc:⋅,vert:\|,fold:\
     " set fillchars=stl:-,stlnc:⋅,vert:│,fold:\ ,diff:·
     set formatoptions+=1jr/
     " set formatoptions-=t
@@ -68,10 +68,10 @@ autocmd BufEnter * :syntax sync fromstart
     set ignorecase
     set incsearch
     set nojoinspaces
-    set laststatus=2
+    set laststatus=1
     set matchpairs+=<:>
     set mouse=
-    " set spell
+    set spell
     set number
     set numberwidth=3
     set ruler
@@ -217,10 +217,10 @@ autocmd BufEnter * :syntax sync fromstart
 
 " QUALITY OF LIFE MAPPINGS
   " movement
-  noremap j gj
-  noremap k gk
-  noremap gj j
-  noremap gk k
+  nnoremap j gj
+  nnoremap k gk
+  nnoremap gj j
+  nnoremap gk k
   vnoremap g[ {
   vnoremap g] }
   vnoremap g{ {
@@ -337,10 +337,10 @@ autocmd BufEnter * :syntax sync fromstart
       unmap gj
       unmap gk
     else
-      noremap j gj
-      noremap k gk
-      noremap gj j
-      noremap gk k
+      nnoremap j gj
+      nnoremap k gk
+      nnoremap gj j
+      nnoremap gk k
     endif
   endfunction
 
