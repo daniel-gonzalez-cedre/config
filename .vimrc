@@ -68,7 +68,7 @@ autocmd BufEnter * :syntax sync fromstart
     set ignorecase
     set incsearch
     set nojoinspaces
-    set laststatus=1
+    set laststatus=2
     set matchpairs+=<:>
     set mouse=
     set spell
