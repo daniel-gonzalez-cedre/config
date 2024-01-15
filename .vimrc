@@ -71,7 +71,7 @@ autocmd BufEnter * :syntax sync fromstart
     set laststatus=2
     set matchpairs+=<:>
     set mouse=
-    set spell
+    " set spell
     set number
     set numberwidth=3
     set ruler
