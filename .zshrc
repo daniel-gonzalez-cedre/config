@@ -1,3 +1,4 @@
+# clear the screen
 printf '\33c\e[3J'
 
 fpath+=~/.zfunc
@@ -365,3 +366,6 @@ function condactivate() {
   conda activate
   conda config --set changeps1 false
 }
+
+# launch tmux at login
+if [ "$TMUX" = "" ]; then tmux; fi
