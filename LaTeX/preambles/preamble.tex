@@ -155,32 +155,22 @@
 % \fancyfoot[C]{--~\thepage~--}
 \fancyfoot[C]{\tiny \thepage\ / \pageref*{LastPage}}
 \ifbook
-    \fancypagestyle{plain}{%
-        \fancyhead[L]{}
-        \ifdate
-            \fancyhead[R]{\textit{\today}}
-        \else
-            \fancyhead[R]{}
-        \fi
-        \renewcommand{\headrulewidth}{0pt}
-    }
-
-    \let\cleardoublepage=\clearpage
+  \let\cleardoublepage=\clearpage
 \else
-    \ifsyllabus
-        \fancypagestyle{plain}{%
-            \fancyhead[L]{}
-            \ifdate
-                \fancyhead[R]{\textit{\today}}
-            \else
-                \fancyhead[R]{}
-            \fi
-            \renewcommand{\headrulewidth}{0pt}
-        }
-    \else
-        \fancypagestyle{plain}{}
-        \renewcommand{\headrulewidth}{0pt}
-    \fi
+  \ifsyllabus
+    \fancypagestyle{plain}{%
+      \fancyhead[L]{}
+      \ifdate
+        \fancyhead[R]{\textit{\today}}
+      \else
+        \fancyhead[R]{}
+      \fi
+      \renewcommand{\headrulewidth}{0pt}
+    }
+  \else
+    \fancypagestyle{plain}{}
+    \renewcommand{\headrulewidth}{0pt}
+  \fi
 \fi
 
 % stacked asterisk symbol \stars{n}
@@ -232,12 +222,12 @@
            \else\@ctrerr\fi}
 \makeatother
 
-\ifsymbolfootnotes
-  \renewcommand*{\thefootnote}{\ssymbol{footnote}}%
-  % \renewcommand*{\thefootnote}{\fnsymbol{footnote}}%
-\else
-  \renewcommand*{\thefootnote}{\arabic{footnote}}%
-\fi
+% \ifsymbolfootnotes
+  % \renewcommand*{\thefootnote}{\ssymbol{footnote}}%
+  % % \renewcommand*{\thefootnote}{\fnsymbol{footnote}}%
+% \else
+  % \renewcommand*{\thefootnote}{\arabic{footnote}}%
+% \fi
 
 \delimitershortfall=-0.5pt
 \normalem
@@ -257,10 +247,10 @@
 
 \usepackage[nameinlink]{cleveref}
 \hypersetup{
-    colorlinks=true,
-    linkcolor=purple,
-    citecolor=green,
-    urlcolor=blue
+  colorlinks=true,
+  linkcolor=purple,
+  citecolor=green,
+  urlcolor=blue
 }
 % \hypersetup{
     % colorlinks=true,
@@ -268,3 +258,13 @@
     % citecolor=red,
     % urlcolor=blue
 % }
+
+% GIVES ALIGN ENVIRONMENTS THEIR OWN COUNTER THAT RESETS EVERY TIME
+\newcounter{temp}
+\AtBeginEnvironment{align}{%
+  \setcounter{temp}{\value{equation}}%
+  \setcounter{equation}{0}%
+}
+\AfterEndEnvironment{align}{%
+  \setcounter{equation}{\value{temp}}%
+}

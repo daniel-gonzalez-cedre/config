@@ -31,7 +31,8 @@
   \definecolor{blue}{HTML}{1e88e5}
   \definecolor{green}{HTML}{22ac7b}  % 4eb981 40a26f 7ccba2
   \definecolor{yellow}{HTML}{ffc107}
-  \definecolor{gold}{HTML}{d79921}
+  \definecolor{gold}{HTML}{ff9807}  % d79921 ff9800
+  \definecolor{rust}{HTML}{d78a21}
   \definecolor{orange}{HTML}{ff5430}  % ff5733, f0746e, f28522, ee7733, d65d0e
   \definecolor{red}{HTML}{d81b60}
   \definecolor{purple}{HTML}{7c1d6f}
@@ -52,6 +53,7 @@
   \newcommand{\green}[1]{\textcolor{green}{#1}}
   \newcommand{\yellow}[1]{\textcolor{yellow}{#1}}
   \newcommand{\gold}[1]{\textcolor{gold}{#1}}
+  \newcommand{\rust}[1]{\textcolor{rust}{#1}}
   \newcommand{\orange}[1]{\textcolor{orange}{#1}}
   \newcommand{\red}[1]{\textcolor{red}{#1}}
   \newcommand{\purple}[1]{\textcolor{purple}{#1}}
@@ -77,6 +79,7 @@
   \newcommand{\egreen}[1]{\emph{\green{#1}}}
   \newcommand{\eyellow}[1]{\emph{\yellow{#1}}}
   \newcommand{\egold}[1]{\emph{\gold{#1}}}
+  \newcommand{\erust}[1]{\emph{\rust{#1}}}
   \newcommand{\eorange}[1]{\emph{\orange{#1}}}
   \newcommand{\ered}[1]{\emph{\red{#1}}}
   \newcommand{\epurple}[1]{\emph{\purple{#1}}}
@@ -123,7 +126,10 @@
 
 \colorlet{hi}{gold}
 \newcommand{\hi}[1]{\textcolor{hi}{#1}}
-\newcommand{\high}[1]{\emph{\hi{#1}}}
+\newcommand{\high}[1]{\textcolor{hi}{\itshape #1}}
+
+\colorlet{defn}{red}
+\newcommand{\defn}[1]{\textcolor{defn}{\itshape #1}}
 
 
 % for horizontally shifting a symbol
@@ -202,7 +208,7 @@
 \newcommand{\bigconjunct}{\bigwedge}
 \newcommand{\bigdisjunct}{\bigvee}
 
-\newcommand{\defn}{\coloneqq}
+\newcommand{\defeq}{\coloneqq}
 \newcommand{\xor}{\veebar}
 \newcommand{\nand}{\barwedge}
 \newcommand{\nor}{\barvee}
