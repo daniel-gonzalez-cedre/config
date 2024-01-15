@@ -6,50 +6,51 @@
         \documentclass[nobib,justified,openany]{tufte-book}
       \fi
     \else
-        \documentclass[nobib,justified]{tufte-handout}
-        \ifsyllabus
-            \usepackage{pgf-pie}
-        \fi
+      \documentclass[nobib,justified]{tufte-handout}
+      \ifsyllabus
+        \usepackage{pgf-pie}
+      \else
+      \fi
     \fi
 
     % part format
     \titleformat{\part}[display]
-        {\itshape\Huge}  % format applied to label+text
-        {\thepart}  % label
-        {0ex}  % horizontal separation between label and title body
-        {\itshape\Huge}  % before the title body
-        [\vspace{1ex}]  % after the title body
+      {\itshape\Huge}  % format applied to label+text
+      {\thepart}  % label
+      {0ex}  % horizontal separation between label and title body
+      {\itshape\Huge}  % before the title body
+      [\vspace{1ex}]  % after the title body
     % section format
     \titleformat{\section}%
-        {\itshape\Large}% format applied to label+text
-        {\llap{\Large\thesection\phantom{m}}}% label
-        {0em}% horizontal separation between label and title body
-        {}% before the title body
-        []% after the title body
+      {\itshape\Large}% format applied to label+text
+      {\llap{\Large\thesection\phantom{m}}}% label
+      {0em}% horizontal separation between label and title body
+      {}% before the title body
+      []% after the title body
     % subsection format
     \titleformat{\subsection}%
-        {\itshape\large}% format applied to label+text
-        {\llap{\thesubsection\phantom{m}}}% label
-        {0em}% horizontal separation between label and title body
-        {}% before the title body
-        []% after the title body
+      {\itshape\large}% format applied to label+text
+      {\llap{\thesubsection\phantom{m}}}% label
+      {0em}% horizontal separation between label and title body
+      {}% before the title body
+      []% after the title body
 
     \makeatletter
     % Paragraph indentation and separation for normal text
     \renewcommand{\@tufte@reset@par}{%
-        \setlength{\RaggedRightParindent}{0.0pc}%
-        \setlength{\JustifyingParindent}{0.0pc}%
-        \setlength{\parindent}{0.0pc}%
-        \setlength{\parskip}{0.25\baselineskip}%
+      \setlength{\RaggedRightParindent}{0.0pc}%
+      \setlength{\JustifyingParindent}{0.0pc}%
+      \setlength{\parindent}{0.0pc}%
+      \setlength{\parskip}{0.25\baselineskip}%
     }
     \@tufte@reset@par
 
     % Paragraph indentation and separation for marginal text
     \renewcommand{\@tufte@margin@par}{%
-        \setlength{\RaggedRightParindent}{0.0pc}%
-        \setlength{\JustifyingParindent}{0.0pc}%
-        \setlength{\parindent}{0.0pc}%
-        \setlength{\parskip}{0.25\baselineskip}%
+      \setlength{\RaggedRightParindent}{0.0pc}%
+      \setlength{\JustifyingParindent}{0.0pc}%
+      \setlength{\parindent}{0.0pc}%
+      \setlength{\parskip}{0.25\baselineskip}%
     }
     \makeatother
 
@@ -57,19 +58,19 @@
     % Remove \FloatBarrier from marginfigure definition to prevent unwanted spaces.
     \makeatletter
     \renewenvironment{@tufte@margin@float}[2][-1.2ex]{%
-        %\FloatBarrier% removed because it adds unwanted white space
-        \begin{lrbox}{\@tufte@margin@floatbox}%
-            \begin{minipage}{\marginparwidth}%
-                \@tufte@caption@font
-                \def\@captype{#2}%
-                \hbox{}\vspace*{#1}%
-                \@tufte@caption@justification
-                \@tufte@margin@par
-                \noindent
-            }{%
-            \end{minipage}%
-        \end{lrbox}%
-        \marginpar{\usebox{\@tufte@margin@floatbox}}%
+      %\FloatBarrier% removed because it adds unwanted white space
+      \begin{lrbox}{\@tufte@margin@floatbox}%
+        \begin{minipage}{\marginparwidth}%
+          \@tufte@caption@font
+          \def\@captype{#2}%
+          \hbox{}\vspace*{#1}%
+          \@tufte@caption@justification
+          \@tufte@margin@par
+          \noindent
+        }{%
+        \end{minipage}%
+      \end{lrbox}%
+      \marginpar{\usebox{\@tufte@margin@floatbox}}%
     }
     \makeatother
 
@@ -248,9 +249,9 @@
 \usepackage[nameinlink]{cleveref}
 \hypersetup{
   colorlinks=true,
-  linkcolor=purple,
-  citecolor=green,
-  urlcolor=blue
+  linkcolor=blue,
+  citecolor=orange,
+  urlcolor=green
 }
 % \hypersetup{
     % colorlinks=true,

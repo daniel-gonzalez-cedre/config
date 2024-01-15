@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =5
+let g:netrw_dirhistcnt =8
+let g:netrw_dirhist_8='/Users/cedre/academia/pedagogy/2024-spring-discrete-math/syllabus/preambles'
+let g:netrw_dirhist_7='/Users/cedre/config/LaTeX/templates/tufte_book'
+let g:netrw_dirhist_6='/Users/cedre/config/LaTeX/templates/tufte_syllabus'
 let g:netrw_dirhist_5='/Users/cedre/repos/neural-grammar/plots'
 let g:netrw_dirhist_4='/Users/cedre/config/.vim/pack/colorschemes/start/gruvbox/colors'
 let g:netrw_dirhist_3='/Users/cedre/academia/pedagogy/2023-spring-discrete-math/exams/exam-2.1.0'
@@ -7,6 +10,3 @@ let g:netrw_dirhist_2='/Users/cedre/academia/pedagogy/2022-spring-discrete-math/
 let g:netrw_dirhist_1='/Users/cedre/academia/pedagogy/2023-spring-discrete-math/exams/exam-f.1.0'
 let g:netrw_dirhist_0='/Users/cedre/config/LaTeX/preambles'
 let g:netrw_dirhist_9='/Users/cedre/repos/neural-grammar/results'
-let g:netrw_dirhist_8='/Users/cedre/repos/neural-grammar/plots'
-let g:netrw_dirhist_7='/Users/cedre/academia/pedagogy/book-discrete-math/preambles'
-let g:netrw_dirhist_6='/Users/cedre/config/LaTeX/templates/tufte-book'
