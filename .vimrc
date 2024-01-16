@@ -354,7 +354,7 @@ autocmd BufEnter * :syntax sync fromstart
     hi Comment ctermfg=237 ctermbg=none cterm=none
     " hi Folded ctermfg=95 ctermbg=234
     hi Folded ctermfg=235 ctermbg=none cterm=none
-    hi String ctermfg=137 ctermbg=none cterm=none
+    hi String ctermfg=223 ctermbg=none cterm=none
 
     hi StatusLine ctermfg=238 ctermbg=none cterm=none
     hi StatusLineNC ctermfg=237 ctermbg=none cterm=none
@@ -373,10 +373,10 @@ autocmd BufEnter * :syntax sync fromstart
     hi clear SpellCap
     hi clear SpellLocal
     hi clear SpellRare
-    hi SpellBad ctermbg=234 cterm=underline
-    hi SpellCap ctermbg=234 cterm=underline
-    hi SpellLocal ctermbg=234 cterm=none
-    hi SpellRare ctermbg=234 cterm=none
+    hi SpellBad ctermbg=none cterm=underline
+    hi SpellCap ctermbg=none cterm=underline
+    hi SpellLocal ctermbg=none cterm=none
+    hi SpellRare ctermbg=none cterm=none
 
     hi clear texStyleItal
     hi clear texCmdSize
