@@ -104,6 +104,7 @@ autocmd BufEnter * :syntax sync fromstart
 
   " INDENTATION
     set autoindent
+    set breakindent
     set expandtab
     set shiftwidth=2
     set softtabstop=2
