@@ -142,13 +142,19 @@
   \newcommand{\scpurple}[1]{\textsc{\purple{#1}}}
 % END COLORS
 
+\ifpaper
+  \pagecolor{cream}
+\else
+\fi
+
 \colorlet{hi}{gold}
 \newcommand{\hi}[1]{\textcolor{hi}{#1}}
 \newcommand{\high}[1]{\textcolor{hi}{\itshape #1}}
 
 \colorlet{defn}{red}
+\colorlet{said}{blue}
 \newcommand{\defn}[1]{\textcolor{defn}{\itshape #1}}
-
+\newcommand{\said}[1]{\textcolor{said}{\itshape #1}}
 
 % for horizontally shifting a symbol
 \makeatletter

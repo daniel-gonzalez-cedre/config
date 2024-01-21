@@ -62,14 +62,14 @@ autocmd BufEnter * :syntax sync fromstart
     set display+=lastline
     " set fillchars=stl:⋅,stlnc:⋅,vert:\|,fold:\
     " set fillchars=stl:-,stlnc:⋅,vert:│,fold:\ ,diff:·
-    set formatoptions+=1jr/
-    " set formatoptions-=t
+    set formatoptions+=1jr/  " use <c-U> to remove comment symbol
     set hlsearch
     set ignorecase
     set incsearch
     set nojoinspaces
     set laststatus=2
     set matchpairs+=<:>
+    " set matchpairs+=`:'
     set mouse=
     " set spell
     set number
@@ -104,23 +104,23 @@ autocmd BufEnter * :syntax sync fromstart
 
   " INDENTATION
     set autoindent
-    set breakindent
+    " set smartindent
+    set smartindent
+
     set expandtab
     set shiftwidth=2
     set softtabstop=2
-    set tabstop=2
+    set tabstop=8
 
   " LINES & WRAPPING
-    " set list
-    set listchars=tab:--,nbsp:_,eol:⋅
+    set breakindent
+    set breakindentopt=sbr
     set linebreak
+    " let &showbreak='>'
     set sidescroll=10
     set textwidth=0
-    " set wrap linebreak
-    " set wrapmargin=0
-    " set breakindent
-    set breakindentopt=sbr
-    let &showbreak='>'
+    " set list
+    " set listchars=tab:--,nbsp:_,eol:⋅
 
 " PLUGIN SETTINGS
   let g:fanfingtastic_all_inclusive = 1
@@ -185,26 +185,26 @@ autocmd BufEnter * :syntax sync fromstart
 
 
 " CLEAR MAPPINGS
-  nnoremap i :noh<bar>:echo<cr>i
-  nnoremap I :noh<bar>:echo<cr>I
-  nnoremap a :noh<bar>:echo<cr>a
-  nnoremap A :noh<bar>:echo<cr>A
-  nnoremap o :noh<bar>:echo<cr>o
-  nnoremap O :noh<bar>:echo<cr>O
-  nnoremap gi :noh<bar>:echo<cr>gi
-  nnoremap gI :noh<bar>:echo<cr>gI
-  nnoremap s :noh<bar>:echo<cr>s
-  nnoremap S :noh<bar>:echo<cr>S
-  nnoremap r :noh<bar>:echo<cr>r
-  nnoremap R :noh<bar>:echo<cr>R
-  nnoremap c :noh<bar>:echo<cr>c
-  nnoremap C :noh<bar>:echo<cr>C
+  nnoremap i i
+  nnoremap I I
+  nnoremap a a
+  nnoremap A A
+  nnoremap o o
+  nnoremap O O
+  nnoremap gi gi
+  nnoremap gI gI
+  nnoremap s s
+  nnoremap S S
+  nnoremap r r
+  nnoremap R R
+  nnoremap c c
+  nnoremap C C
   " nnoremap d :noh<bar>:echo<cr>d
   " nnoremap D :noh<bar>:echo<cr>D
-  " nnoremap x :noh<bar>:echo<cr>x
-  " nnoremap X :noh<bar>:echo<cr>X
-  nnoremap v :noh<bar>:echo<cr>v
-  nnoremap V :noh<bar>:echo<cr>V
+  " vnoremap x x<c-C>
+  " vnoremap X X<c-C>
+  nnoremap v v
+  nnoremap V V
 
 
 " SEARCH MAPPINGS
@@ -445,3 +445,24 @@ function! GitStatus()
   return printf('+%d ~%d -%d', a, m, r)
 endfunction
 " set statusline+=%{GitStatus()}
+
+let g:currentmode={
+	\ 'n'  : 'Normal',
+	\ 'no' : 'Operator Pending',
+	\ 'v'  : 'Visual',
+	\ 'V'  : 'Visual Line',
+	\ '' : 'Visual Block',
+	\ 's'  : 'Select',
+	\ 'S'  : 'S·Line',
+	\ '' : 'S·Block',
+	\ 'i'  : 'Insert',
+	\ 'R'  : 'Replace',
+	\ 'Rv' : 'Visual Replace',
+	\ 'c'  : 'Command',
+	\ 'cv' : 'Vim Ex',
+	\ 'ce' : 'Ex',
+	\ 'r'  : 'Prompt',
+	\ 'rm' : 'More',
+	\ 'r?' : 'Confirm',
+	\ '!'  : 'Shell',
+	\}
