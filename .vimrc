@@ -119,8 +119,8 @@ autocmd BufEnter * :syntax sync fromstart
     " set wrap linebreak
     " set wrapmargin=0
     " set breakindent
-    " set breakindentopt=sbr
-    " let &showbreak='⋅⋅⋅⋅'
+    set breakindentopt=sbr
+    let &showbreak='>'
 
 " PLUGIN SETTINGS
   let g:fanfingtastic_all_inclusive = 1
@@ -220,8 +220,8 @@ autocmd BufEnter * :syntax sync fromstart
   " movement
   nnoremap j gj
   nnoremap k gk
-  nnoremap gj j
-  nnoremap gk k
+  " nnoremap gj j
+  " nnoremap gk k
   vnoremap g[ {
   vnoremap g] }
   vnoremap g{ {
