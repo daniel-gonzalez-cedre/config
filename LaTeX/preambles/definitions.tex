@@ -202,6 +202,11 @@
 \renewcommand{\leq}{\leqslant}
 \renewcommand{\geq}{\geqslant}
 
+\let\oldtop\top
+\let\oldbot\bot
+\renewcommand{\top}{\vcenter{\hbox{$\oldtop$}}}
+% \renewcommand{\bot}{\vcenter{\hbox{$\oldbot$}}}
+
 % NOR operation
 \makeatletter
   \providecommand*{\barvee}{\mathbin{\mathpalette\@barvee{}}}
