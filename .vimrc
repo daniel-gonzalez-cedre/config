@@ -355,7 +355,7 @@ autocmd BufEnter * :syntax sync fromstart
     hi Comment ctermfg=237 ctermbg=none cterm=none
     " hi Folded ctermfg=95 ctermbg=234
     hi Folded ctermfg=235 ctermbg=none cterm=none
-    hi String ctermfg=223 ctermbg=none cterm=none
+    hi String ctermfg=142 ctermbg=none cterm=none
 
     hi StatusLine ctermfg=238 ctermbg=none cterm=none
     hi StatusLineNC ctermfg=237 ctermbg=none cterm=none

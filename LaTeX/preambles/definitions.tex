@@ -26,7 +26,7 @@
   \definecolor{brown}{HTML}{782f40}
   \definecolor{grey}{HTML}{685D5A}
   \definecolor{sepia}{HTML}{f7f0e4}  % f7f0e4 fdfbf8
-  \definecolor{cream}{HTML}{fdfbf8}  % f7f0e4 fbf7f1 fdfbf8
+  \definecolor{cream}{HTML}{fbf7f1}  % f7f0e4 fbf7f1 fdfbf8
   \definecolor{white}{HTML}{ffffff}  % f7f0e4 fdfbf8
 
   \definecolor{blue}{HTML}{1e88e5}
@@ -37,12 +37,17 @@
   \definecolor{red}{HTML}{d81b60}
   \definecolor{purple}{HTML}{7c1d6f}
 
-  \definecolor{ablue}{HTML}{089099}
-  \definecolor{agreen}{HTML}{6ac495}
-  \definecolor{ayellow}{HTML}{fbce6b}
-  \definecolor{aorange}{HTML}{f0746e}
-  \definecolor{ared}{HTML}{dc3977}
-  \definecolor{apurple}{HTML}{912282}
+  \ifpaper
+    \pagecolor{cream}
+    \colorlet{foreground}{black}
+    \colorlet{background}{cream}
+  \else
+    \colorlet{foreground}{black}
+    \colorlet{background}{white}
+  \fi
+
+  \newcommand{\foreground}[1]{\textcolor{foreground}{#1}}
+  \newcommand{\background}[1]{\textcolor{background}{#1}}
 
   \newcommand{\black}[1]{\textcolor{black}{#1}}
   \newcommand{\brown}[1]{\textcolor{brown}{#1}}
@@ -58,18 +63,25 @@
   \newcommand{\red}[1]{\textcolor{red}{#1}}
   \newcommand{\purple}[1]{\textcolor{purple}{#1}}
 
-  \newcommand{\tblack}[1]{\cellcolor{black}{\white{#1}}}
-  \newcommand{\tbrown}[1]{\cellcolor{brown}{\white{#1}}}
-  \newcommand{\tgrey}[1]{\cellcolor{grey}{\white{#1}}}
-  \newcommand{\tcream}[1]{\cellcolor{cream}{\black{#1}}}
-  \newcommand{\tsepia}[1]{\cellcolor{sepia}{\black{#1}}}
-  \newcommand{\tblue}[1]{\cellcolor{blue}{\white{#1}}}
-  \newcommand{\tgreen}[1]{\cellcolor{green}{\white{#1}}}
-  \newcommand{\tyellow}[1]{\cellcolor{yellow}{\white{#1}}}
-  \newcommand{\tgold}[1]{\cellcolor{gold}{\white{#1}}}
-  \newcommand{\torange}[1]{\cellcolor{orange}{\white{#1}}}
-  \newcommand{\tred}[1]{\cellcolor{red}{\white{#1}}}
-  \newcommand{\tpurple}[1]{\cellcolor{purple}{\white{#1}}}
+  \definecolor{ablue}{HTML}{089099}
+  \definecolor{agreen}{HTML}{6ac495}
+  \definecolor{ayellow}{HTML}{fbce6b}
+  \definecolor{aorange}{HTML}{f0746e}
+  \definecolor{ared}{HTML}{dc3977}
+  \definecolor{apurple}{HTML}{912282}
+
+  \newcommand{\tblack}[1]{\cellcolor{black}{\background{#1}}}
+  \newcommand{\tbrown}[1]{\cellcolor{brown}{\background{#1}}}
+  \newcommand{\tgrey}[1]{\cellcolor{grey}{\background{#1}}}
+  \newcommand{\tcream}[1]{\cellcolor{cream}{\foreground{#1}}}
+  \newcommand{\tsepia}[1]{\cellcolor{sepia}{\foreground{#1}}}
+  \newcommand{\tblue}[1]{\cellcolor{blue}{\background{#1}}}
+  \newcommand{\tgreen}[1]{\cellcolor{green}{\background{#1}}}
+  \newcommand{\tyellow}[1]{\cellcolor{yellow}{\background{#1}}}
+  \newcommand{\tgold}[1]{\cellcolor{gold}{\background{#1}}}
+  \newcommand{\torange}[1]{\cellcolor{orange}{\background{#1}}}
+  \newcommand{\tred}[1]{\cellcolor{red}{\background{#1}}}
+  \newcommand{\tpurple}[1]{\cellcolor{purple}{\background{#1}}}
 
   \newcommand{\eblack}[1]{\emph{\black{#1}}}
   \newcommand{\ebrown}[1]{\emph{\brown{#1}}}
@@ -141,11 +153,6 @@
   \newcommand{\scred}[1]{\textsc{\red{#1}}}
   \newcommand{\scpurple}[1]{\textsc{\purple{#1}}}
 % END COLORS
-
-\ifpaper
-  \pagecolor{cream}
-\else
-\fi
 
 \colorlet{hi}{gold}
 \newcommand{\hi}[1]{\textcolor{hi}{#1}}

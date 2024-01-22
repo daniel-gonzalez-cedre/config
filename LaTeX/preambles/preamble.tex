@@ -129,7 +129,8 @@
 % figures
 \usepackage{graphicx, float, tikz, pgfplots}
 % headers and footers
-\usepackage{fancyhdr, lastpage}
+\usepackage{fancyhdr, lastpage, perpage}
+\MakePerPage{footnote}
 % miscellaneous
 \usepackage{enumerate, ifthen, lipsum, listings, imakeidx, parskip, ulem, verbatim, xargs}
 % references
@@ -247,9 +248,9 @@
 \setlength\epigraphwidth{.75\textwidth}
 
 \usepackage[nameinlink]{cleveref}
-\hypersetup{
+\hypersetup{%
   colorlinks=true,
-  linkcolor=grey,
+  linkcolor=black,
   citecolor=orange,
   urlcolor=green
 }
