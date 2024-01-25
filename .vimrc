@@ -4,6 +4,15 @@ syntax enable
 au FileType * set conceallevel=0
 autocmd BufEnter * :syntax sync fromstart
 
+if !isdirectory($HOME."/.vim")
+  call mkdir($HOME."/.vim", "", 0770)
+endif
+if !isdirectory($HOME."/.vim/undodir")
+  call mkdir($HOME."/.vim/undodir", "", 0700)
+endif
+set undodir=~/.vim/undodir
+set undofile
+
 " LEADER
   nnoremap <space> <nop>
   vnoremap <space> <nop>
