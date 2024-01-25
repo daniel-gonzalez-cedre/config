@@ -226,8 +226,14 @@ autocmd BufEnter * :syntax sync fromstart
   vnoremap g] }
   vnoremap g{ {
   vnoremap g} }
-  noremap <c-y> <c-i>
-  noremap <c-i> <c-y>
+
+  nnoremap <silent> <c-o> :call JumpWithinFile ("\<c-i>", "\<c-o>")<cr>
+  nnoremap <silent> <c-i> :call JumpWithinFile ("\<c-o>", "\<c-i>")<cr>
+
+  nnoremap <silent> <leader>o :call JumpWithinFile ("\<c-i>", "\<c-o>")<cr>
+  nnoremap <silent> <leader>i :call JumpWithinFile ("\<c-o>", "\<c-i>")<cr>
+
+  nnoremap <c-t> <c-y>
 
   " text object for current line
   xnoremap il g_o^
@@ -295,6 +301,22 @@ autocmd BufEnter * :syntax sync fromstart
 
 
 " FUNCTIONS
+  function! JumpWithinFile(back, forw)
+    let [n, i] = [bufnr('%'), 1]
+    let p = [n] + getpos('.')[1:]
+    sil! exe 'norm!1' . a:forw
+    while 1
+      let p1 = [bufnr('%')] + getpos('.')[1:]
+      if n == p1[0] | break | endif
+      if p == p1
+        sil! exe 'norm!' . (i-1) . a:back
+        break
+      endif
+      let [p, i] = [p1, i+1]
+      sil! exe 'norm!1' . a:forw
+    endwhile
+  endfunction
+
   function ClosePair(char)
     if getline('.')[col('.') - 1] == a:char
       return "\<right>"
