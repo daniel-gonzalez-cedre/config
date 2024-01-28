@@ -368,4 +368,7 @@ function condactivate() {
 }
 
 # launch tmux at login
-if [ "$TMUX" = "" ]; then tmux; fi
+if [ "$TMUX" = "" ]; then
+  # tmux new -A -s new;
+  tmux;
+fi

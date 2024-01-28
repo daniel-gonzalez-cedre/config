@@ -1,7 +1,7 @@
 \iftufte  % Tufte settings
     \ifbook
       \ifdraft
-        \documentclass[draft,nobib,justified,openany]{tufte-book}
+        \documentclass[nobib,justified,openany,draft]{tufte-book}
       \else
         \documentclass[nobib,justified,openany]{tufte-book}
       \fi
@@ -76,7 +76,7 @@
 
     \usepackage{microtype}
     \usepackage{arydshln, chngcntr}
-    \setcounter{tocdepth}{1}
+    \setcounter{tocdepth}{2}
     \setcounter{secnumdepth}{1}
 
     \usepackage{tipa}
@@ -93,7 +93,7 @@
     \usepackage[math]{cellspace}
     \cellspacetoplimit 1pt
     \cellspacebottomlimit 1pt
-    \usepackage{hyperref, caption, subcaption}
+    \usepackage{caption, subcaption, hyperref}
 \fi
 
 \AtBeginDocument{%
@@ -252,7 +252,7 @@
   colorlinks=true,
   linkcolor=black,
   citecolor=orange,
-  urlcolor=green
+  urlcolor=green,
 }
 % \hypersetup{
     % colorlinks=true,

@@ -20,127 +20,88 @@
 }
 
 % STYLE FOR THEOREMS
-\declaretheoremstyle[
-    headfont=\bfseries\itshape,
-    bodyfont=\normalfont,
-    notefont=,
-    % headpunct={.\hfill\shifttext{2ex}{$\urcorner$}\break},
-    headpunct={.\hfill\break},
-    % headformat={\makebox[0pt][r]{\NAME\ \NUMBER}\NOTE},
-    % headformat={\llap{\NAME} \NUMBER \NOTE},
-    % qed=\raisebox{-2ex}{\shifttext{2ex}{$\lrcorner$}},
-]{theoremstyle}
-\ifbook
-    \declaretheorem[
-        numbered=yes,
-        style=theoremstyle,
-        within=chapter,
-    ]{theorem, corollary, proposition, lemma, claim}
-\else
-    \declaretheorem[
-        numbered=yes,
-        style=theoremstyle,
-    ]{theorem, corollary, proposition, lemma, claim}
-\fi
-\declaretheorem[
-    numbered=no,
-    style=theoremstyle,
-]{Theorem, Corollary, Proposition, Lemma, Claim}
+\declaretheoremstyle[headfont=\bfseries\itshape,
+                     bodyfont=\normalfont,
+                     notefont=,
+                     headpunct={.\hfill\break},
+                     qed=\kanji{定理},  % 定理結束
+                     prefoothook={\hfill\break}
+                     ]{theoremstyle}
+\declaretheoremstyle[headfont=\bfseries\itshape,
+                     bodyfont=\normalfont,
+                     notefont=,
+                     headpunct={.\hfill\break},
+                     qed=\kanji{推論},  % 推論結束
+                     prefoothook={\hfill\break}
+                     ]{corollarystyle}
+\declaretheoremstyle[headfont=\bfseries\itshape,
+                     bodyfont=\normalfont,
+                     notefont=,
+                     headpunct={.\hfill\break},
+                     qed=\kanji{引理},  % 引理結束
+                     prefoothook={\hfill\break}
+                     ]{lemmastyle}
+\declaretheoremstyle[headfont=\bfseries\itshape,
+                     bodyfont=\normalfont,
+                     notefont=,
+                     headpunct={.\hfill\break},
+                     % qed=\kanji{定義},  % 定義結束
+                     % prefoothook={\hfill\break}
+                     ]{definitionstyle}
+\declaretheoremstyle[headfont=\bfseries\itshape,
+                     bodyfont=\normalfont,
+                     notefont=,
+                     headpunct={.\hfill\break},
+                     qed=\kanji{公理},  % 公理結束
+                     prefoothook={\hfill\break}
+                     ]{axiomstyle}
+\declaretheoremstyle[headfont=\bfseries\itshape,
+                     bodyfont=\normalfont,
+                     notefont=\bfseries\itshape,
+                     headpunct={.\hfill\break},
+                     qed=\kanji{範例},  % 範例結束
+                     prefoothook={\hfill\break}
+                     ]{examplestyle}
+\declaretheoremstyle[headfont=\bfseries\itshape,
+                     bodyfont=\normalfont,
+                     notefont=\bfseries\itshape,
+                     headpunct={.\hfill\break},
+                     qed=\kanji{演算法},  % 演算法結束
+                     prefoothook={\hfill\break}
+                     ]{algorithmstyle}
+\declaretheoremstyle[headfont=\bfseries\itshape,
+                     bodyfont=\normalfont,
+                     notefont=\bfseries\itshape,
+                     qed=\kanji{直覺},  % 直覺結束
+                     prefoothook={\hfill\break}]{ideastyle}
 
-% STYLE FOR AXIOMS
-\declaretheoremstyle[
-    headfont=\bfseries\itshape,
-    bodyfont=\normalfont,
-    notefont=,
-    % headpunct={.\hfill\shifttext{2ex}{$\urcorner$}\break},
-    headpunct={.\hfill\break},
-    % headformat={\llap{\NAME} \NUMBER \NOTE},
-    % qed=\raisebox{-2ex}{\shifttext{2ex}{$\lrcorner$}},
-]{axiomstyle}
-\declaretheorem[
-    numbered=yes,
-    style=axiomstyle,
-    % within=chapter,
-]{axiom}
-\declaretheorem[
-    numbered=no,
-    style=axiomstyle,
-]{Axiom}
-
-% STYLE FOR DEFINITIONS
-\declaretheoremstyle[
-    headfont=\bfseries\itshape,
-    bodyfont=\normalfont,
-    notefont=,
-    % headpunct={.\hfill\shifttext{2ex}{$\urcorner$}\break},
-    headpunct={.\hfill\break},
-    % headformat={\llap{\NAME} \NUMBER \NOTE},
-    % qed=\raisebox{-2ex}{\shifttext{2ex}{$\lrcorner$}},
-]{definitionstyle}
 \ifbook
-    \declaretheorem[
-        numbered=yes,
-        style=definitionstyle,
-        within=chapter,
-    ]{definition, notation, algorithm}
+  \declaretheorem[numbered=yes, style=theoremstyle, within=chapter]{theorem}
+  \declaretheorem[numbered=yes, style=corollarystyle, within=chapter]{corollary}
+  \declaretheorem[numbered=yes, style=lemmastyle, within=chapter]{lemma}
+  \declaretheorem[numbered=yes, style=definitionstyle, within=chapter]{definition}
+  \declaretheorem[numbered=yes, style=examplestyle, within=chapter]{exercise, example, counterexample}
+  \declaretheorem[numbered=yes, style=examplestyle, within=chapter]{algorithm}
+  \declaretheorem[numbered=yes, style=examplestyle, within=chapter]{idea}
 \else
-    \declaretheorem[
-        numbered=yes,
-        style=definitionstyle,
-    ]{definition, notation, algorithm}
+  \declaretheorem[numbered=yes, style=theoremstyle]{theorem}
+  \declaretheorem[numbered=yes, style=corollarystyle]{corollary}
+  \declaretheorem[numbered=yes, style=lemmastyle]{lemma}
+  \declaretheorem[numbered=yes, style=definitionstyle]{definition}
+  \declaretheorem[numbered=yes, style=examplestyle]{exercise, example, counterexample}
+  \declaretheorem[numbered=yes, style=examplestyle]{algorithm}
+  \declaretheorem[numbered=yes, style=examplestyle]{idea}
 \fi
-\declaretheorem[
-    numbered=no,
-    style=definitionstyle,
-]{Definition, Notation, Algorithm}
+\declaretheorem[numbered=yes, style=axiomstyle]{axiom}
 
-% STYLE FOR EXAMPLES
-\declaretheoremstyle[
-    headfont=\bfseries\itshape,
-    bodyfont=\normalfont,
-    notefont=\bfseries\itshape,
-    headpunct={.\hfill\break},
-]{examplestyle}
-\ifbook
-    \declaretheorem[
-        numbered=yes,
-        style=examplestyle,
-        within=chapter,
-    ]{exercise, example, ex, counterexample}
-\else
-    \declaretheorem[
-        numbered=yes,
-        style=examplestyle,
-    ]{exercise, example, ex, counterexample}
-\fi
-\declaretheorem[
-    numbered=no,
-    style=examplestyle,
-]{Exercise, Example, Ex, Counterexample}
-
-% STYLE FOR REMARKS
-\declaretheoremstyle[
-    headfont=\bfseries\itshape,
-    bodyfont=\normalfont,
-    notefont=\bfseries\itshape,
-    % headformat={\llap{\NAME} \NUMBER \NOTE},
-]{notestyle}
-\ifbook
-    \declaretheorem[
-        numbered=yes,
-        style=notestyle,
-        within=chapter,
-    ]{note, remark, idea, intuition}
-\else
-    \declaretheorem[
-        numbered=yes,
-        style=notestyle,
-    ]{note, remark, idea, intuition}
-\fi
-\declaretheorem[
-    numbered=no,
-    style=notestyle,
-]{Note, Remark, Idea, Intuition}
+\declaretheorem[numbered=no, style=theoremstyle]{Theorem}
+\declaretheorem[numbered=no, style=corollarystyle]{Corollary}
+\declaretheorem[numbered=no, style=lemmastyle]{Lemma}
+\declaretheorem[numbered=no, style=definitionstyle]{Definition}
+\declaretheorem[numbered=no, style=axiomstyle]{Axiom}
+\declaretheorem[numbered=no, style=examplestyle]{Exercise, Example, Counterexample}
+\declaretheorem[numbered=no, style=examplestyle]{Algorithm}
+\declaretheorem[numbered=no, style=examplestyle]{Idea}
 
 \newenvironment{case}[1][Case]
     {\par\textit{#1:}\hfill\break}
@@ -151,16 +112,15 @@
     {\endquote}
 
 \ifalgorithms
-    \newcounter{nalg}[chapter]
-    \renewcommand{\thenalg}{\thechapter.\arabic{nalg}}
-    \DeclareCaptionLabelFormat{algocaption}{\it Algorithm \thenalg}
+  \newcounter{nalg}[chapter]
+  \renewcommand{\thenalg}{\thechapter.\arabic{nalg}}
+  \DeclareCaptionLabelFormat{algocaption}{\it Algorithm \thenalg}
 
-    \lstnewenvironment{algorithm}[1][]
-    {
-        \refstepcounter{nalg}
-        \captionsetup{labelformat=algocaption,labelsep=colon}
-        \lstset{
-            mathescape=true,
+  \lstnewenvironment{algorithm}[1][]
+  {
+    \refstepcounter{nalg}
+    \captionsetup{labelformat=algocaption,labelsep=colon}
+    \lstset{mathescape=true,
             frame=tB,
             numbers=left,
             numberstyle=\tiny,
@@ -169,9 +129,8 @@
             keywords={,input, output, return, datatype, function, in, if, else, elif, for, foreach, while, not, begin, end, true, false, null, break, continue, let, and, or, }
             numbers=left,
             xleftmargin=.04\textwidth,
-            #1
-        }
-    }
-    {}
+            #1}
+  }
+  {}
 \else
 \fi

@@ -62,7 +62,14 @@ set undofile
     let g:Tex_SmartQuoteOpen = "``"
     let g:Tex_SmartQuoteClose = "''"
 
-" SET STATEMENTS
+" SET OPTIONS
+  " FILETYPE SPECIFIC
+    augroup python_settings | au!
+      au Filetype python setlocal shiftwidth=2
+      au Filetype python setlocal softtabstop=2
+      au Filetype python setlocal tabstop=8
+    augroup END
+
   " GENERAL
     set background=dark
     set backspace=indent,eol,start
@@ -72,7 +79,8 @@ set undofile
     " set fillchars=stl:⋅,stlnc:⋅,vert:\|,fold:\
     " set fillchars=stl:-,stlnc:⋅,vert:│,fold:\ ,diff:·
     set formatoptions+=1jr/  " use <c-U> to remove comment symbol
-    set hlsearch
+    " set hlsearch
+    set nohlsearch
     set ignorecase
     set incsearch
     set nojoinspaces
@@ -236,11 +244,14 @@ set undofile
   vnoremap g{ {
   vnoremap g} }
 
-  nnoremap <silent> <c-o> :call JumpWithinFile ("\<c-i>", "\<c-o>")<cr>
-  nnoremap <silent> <c-i> :call JumpWithinFile ("\<c-o>", "\<c-i>")<cr>
+  vnoremap <expr> i mode()=~'\cv' ? 'i' : 'I'
+  vnoremap <expr> a mode()=~'\cv' ? 'a' : 'A'
 
-  nnoremap <silent> <leader>o :call JumpWithinFile ("\<c-i>", "\<c-o>")<cr>
-  nnoremap <silent> <leader>i :call JumpWithinFile ("\<c-o>", "\<c-i>")<cr>
+  " nnoremap <silent> <c-o> :call JumpWithinFile ("\<c-i>", "\<c-o>")<cr>
+  " nnoremap <silent> <c-i> :call JumpWithinFile ("\<c-o>", "\<c-i>")<cr>
+
+  " nnoremap <silent> <leader>o :call JumpWithinFile ("\<c-i>", "\<c-o>")<cr>
+  " nnoremap <silent> <leader>i :call JumpWithinFile ("\<c-o>", "\<c-i>")<cr>
 
   nnoremap <c-t> <c-y>
 
@@ -310,21 +321,21 @@ set undofile
 
 
 " FUNCTIONS
-  function! JumpWithinFile(back, forw)
-    let [n, i] = [bufnr('%'), 1]
-    let p = [n] + getpos('.')[1:]
-    sil! exe 'norm!1' . a:forw
-    while 1
-      let p1 = [bufnr('%')] + getpos('.')[1:]
-      if n == p1[0] | break | endif
-      if p == p1
-        sil! exe 'norm!' . (i-1) . a:back
-        break
-      endif
-      let [p, i] = [p1, i+1]
-      sil! exe 'norm!1' . a:forw
-    endwhile
-  endfunction
+  " function! JumpWithinFile(back, forw)
+    " let [n, i] = [bufnr('%'), 1]
+    " let p = [n] + getpos('.')[1:]
+    " sil! exe 'norm!1' . a:forw
+    " while 1
+      " let p1 = [bufnr('%')] + getpos('.')[1:]
+      " if n == p1[0] | break | endif
+      " if p == p1
+        " sil! exe 'norm!' . (i-1) . a:back
+        " break
+      " endif
+      " let [p, i] = [p1, i+1]
+      " sil! exe 'norm!1' . a:forw
+    " endwhile
+  " endfunction
 
   function ClosePair(char)
     if getline('.')[col('.') - 1] == a:char
@@ -441,10 +452,9 @@ set undofile
     highlight GitGutterChangeDelete ctermfg=175 ctermbg=none
   endfunction
 
-  augroup custom_colors
-    autocmd!
-    autocmd ColorScheme gruvbox call s:gruvbox_custom()
-    autocmd ColorScheme gruvbox call s:gitgutter_custom()
+  augroup custom_colors | au!
+    au ColorScheme gruvbox call s:gruvbox_custom()
+    au ColorScheme gruvbox call s:gitgutter_custom()
   augroup END
 
   colorscheme gruvbox
@@ -497,3 +507,5 @@ let g:currentmode={
 	\ 'r?' : 'Confirm',
 	\ '!'  : 'Shell',
 	\}
+
+autocmd VimEnter * :clearjumps
