@@ -137,7 +137,7 @@ function! s:wrap(string,char,type,removed,special)
   else
     let initspaces = matchstr(getline('.'),'\%^\s*')
   endif
-  let pairs = "b()B{}c{}r[]a<>q`'"
+  let pairs = "b()B{}c{}r[]a<>"
   let extraspace = ""
   if newchar =~ '^ '
     let newchar = strpart(newchar,1)
@@ -389,9 +389,9 @@ function! s:dosurround(...) " {{{1
   if char == 'a'
     let char = '>'
   endif
-  " if char == 'c'
-    " let char = '}'
-  " endif
+  if char == 'c'
+    let char = '}'
+  endif
   if char == 'r'
     let char = ']'
   endif
