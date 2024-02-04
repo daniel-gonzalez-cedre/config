@@ -242,9 +242,11 @@ set undofile
 
   noremap <up> <c-y>
   noremap <down> <c-e>
+  noremap <left> zh
+  noremap <right> zl
 
-  nnoremap <c-i> <c-y>
-  nnoremap <c-y> <c-i>
+  " nnoremap <c-i> <c-y>
+  " nnoremap <c-y> <c-i>
 
   vnoremap g[ {
   vnoremap g] }
@@ -264,9 +266,9 @@ set undofile
 
   " text object for current line
   xnoremap il g_o^
-  onoremap il :normal vil<cr>
+  onoremap <silent> il :normal vil<cr>
   xnoremap al $o^
-  onoremap al :normal val<cr>
+  onoremap <silent> al :normal val<cr>
 
   " status bar auto-clearing
   noremap <silent> <c-c> <esc>

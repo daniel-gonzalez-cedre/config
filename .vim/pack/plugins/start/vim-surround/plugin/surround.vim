@@ -137,7 +137,7 @@ function! s:wrap(string,char,type,removed,special)
   else
     let initspaces = matchstr(getline('.'),'\%^\s*')
   endif
-  let pairs = "b()B{}r[]a<>"
+  let pairs = "b()B{}c{}r[]a<>q`'"
   let extraspace = ""
   if newchar =~ '^ '
     let newchar = strpart(newchar,1)
@@ -164,7 +164,7 @@ function! s:wrap(string,char,type,removed,special)
   elseif newchar ==# ':'
     let before = ':'
     let after = ''
-  elseif newchar =~# "[tT\<C-T><]"
+  elseif newchar =~# "[tT\<C-T>]"
     let dounmapp = 0
     let dounmapb = 0
     if !maparg(">","c")
@@ -209,7 +209,13 @@ function! s:wrap(string,char,type,removed,special)
         endif
       endif
     endif
-  elseif newchar ==# 'l' || newchar == '\'
+  " elseif newchar ==# 'l' || newchar == '\'
+  elseif newchar ==# 'q'
+    " LaTeX
+    let before = '``'
+    let after  = "''"
+  elseif newchar ==# 'e' || newchar == '\'
+  " elseif newchar == '\'
     " LaTeX
     let env = input('\begin{')
     if env != ""
@@ -383,6 +389,9 @@ function! s:dosurround(...) " {{{1
   if char == 'a'
     let char = '>'
   endif
+  " if char == 'c'
+    " let char = '}'
+  " endif
   if char == 'r'
     let char = ']'
   endif
@@ -594,6 +603,9 @@ function! s:closematch(str) " {{{1
   endif
 endfunction " }}}1
 
+vmap s <nop>
+xmap s <nop>
+
 nnoremap <silent> <Plug>SurroundRepeat .
 nnoremap <silent> <Plug>Dsurround  :<C-U>call <SID>dosurround(<SID>inputtarget())<CR>
 nnoremap <silent> <Plug>Csurround  :<C-U>call <SID>changesurround()<CR>
@@ -602,6 +614,8 @@ nnoremap <expr>   <Plug>Yssurround '^'.v:count1.<SID>opfunc('setup').'g_'
 nnoremap <expr>   <Plug>YSsurround <SID>opfunc2('setup').'_'
 nnoremap <expr>   <Plug>Ysurround  <SID>opfunc('setup')
 nnoremap <expr>   <Plug>YSurround  <SID>opfunc2('setup')
+vnoremap <silent> <Plug>Vsurround  :<C-U>call <SID>opfunc(visualmode(),visualmode() ==# 'V' ? 1 : 0)<CR>
+vnoremap <silent> <Plug>Vgsurround :<C-U>call <SID>opfunc(visualmode(),visualmode() ==# 'V' ? 0 : 1)<CR>
 vnoremap <silent> <Plug>VSurround  :<C-U>call <SID>opfunc(visualmode(),visualmode() ==# 'V' ? 1 : 0)<CR>
 vnoremap <silent> <Plug>VgSurround :<C-U>call <SID>opfunc(visualmode(),visualmode() ==# 'V' ? 0 : 1)<CR>
 inoremap <silent> <Plug>Isurround  <C-R>=<SID>insert()<CR>
@@ -616,6 +630,8 @@ if !exists("g:surround_no_mappings") || ! g:surround_no_mappings
   nmap yss <Plug>Yssurround
   nmap ySs <Plug>YSsurround
   nmap ySS <Plug>YSsurround
+  xmap s   <Plug>Vsurround
+  xmap gs  <Plug>Vgsurround
   xmap S   <Plug>VSurround
   xmap gS  <Plug>VgSurround
   if !exists("g:surround_no_insert_mappings") || ! g:surround_no_insert_mappings

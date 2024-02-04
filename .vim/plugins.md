@@ -11,7 +11,7 @@
 + git@github.com:embear/vim-foldsearch.git
 + git@github.com:airblade/vim-gitgutter.git
 + git@github.com:tpope/vim-repeat.git
-+ git@github.com:tpope/vim-surround.git
++ git@github.com:daniel-gonzalez-cedre/vim-surround.git
 
 # languages
 + git@github.com:jlapolla/vim-coq-plugin.git
