@@ -13,7 +13,6 @@ disable=
     R0915, # too-many-statements
     R1705, # no-else-return
     R1711, # useless-return
-    W0311, # Bad indentation.
     W0703, # broad-except
     W1514, # unspecified-encoding
 
@@ -70,10 +69,10 @@ persistent=yes
 
 # Minimum Python version to use for version dependent checks. Will default to
 # the version used to run pylint.
-py-version=3.9
+py-version=
 
 # Discover python modules and packages in the file system subtree.
-recursive=no
+recursive=yes
 
 # When enabled, pylint would attempt to guess common misconfiguration and emit
 # user-friendly hints instead of false-positive error messages.
@@ -144,7 +143,7 @@ output-format=text
 reports=no
 
 # Activate the evaluation score.
-score=yes
+score=no
 
 
 [REFACTORING]
@@ -161,12 +160,10 @@ never-returning-functions=sys.exit,argparse.parse_error
 
 [LOGGING]
 
-# The type of string formatting that logging methods do. `old` means using %
-# formatting, `new` is for `{}` formatting.
+# The type of string formatting that logging methods do. `old` means using % formatting, `new` is for `{}` formatting.
 logging-format-style=old
 
-# Logging modules to check that the string format arguments are in logging
-# function parameter format.
+# Logging modules to check that the string format arguments are in logging function parameter format.
 logging-modules=logging
 
 
@@ -197,9 +194,10 @@ spelling-store-unknown-words=no
 [MISCELLANEOUS]
 
 # List of note tags to take in consideration, separated by a comma.
-notes=FIXME,
-      XXX,
-      TODO
+# notes=FIXME,
+#       XXX,
+#       TODO
+notes=
 
 # Regular expression of note tags to take in consideration.
 #notes-rgx=
@@ -306,14 +304,16 @@ expected-line-ending-format=
 ignore-long-lines=
 
 # Number of spaces of indent required inside a hanging or continued line.
-indent-after-paren=4
+# indent-after-paren=4
+indent-after-paren=2
 
 # String used as indentation unit. This is usually "    " (4 spaces) or "\t" (1
 # tab).
-indent-string='    '
+# indent-string='    '
+indent-string='  '
 
 # Maximum number of characters on a single line.
-max-line-length=100
+max-line-length=256
 
 # Maximum number of lines in a module.
 max-module-lines=10000
@@ -349,7 +349,7 @@ min-similarity-lines=4
 
 # This flag controls whether inconsistent-quotes generates a warning when the
 # character used as a quote delimiter is used inconsistently within a module.
-check-quote-consistency=no
+check-quote-consistency=yes
 
 # This flag controls whether the implicit-str-concat should generate a warning
 # on implicit string concatenation in sequences defined over several lines.
@@ -574,10 +574,10 @@ max-attributes=100
 max-bool-expr=100
 
 # Maximum number of branch for function / method body.
-max-branches=12
+max-branches=16
 
 # Maximum number of locals for function / method body.
-max-locals=30
+max-locals=32
 
 # Maximum number of parents for a class (see R0901).
 max-parents=7
@@ -592,7 +592,7 @@ max-returns=100
 max-statements=100
 
 # Minimum number of public methods for a class (see R0903).
-min-public-methods=2
+min-public-methods=0
 
 
 [EXCEPTIONS]

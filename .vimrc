@@ -38,7 +38,7 @@ set undofile
     packadd! ale
     let g:ale_sign_error = ' ×'
     let g:ale_sign_warning = ' ⋅'
-    let g:ale_linters = {'vim': ['vint'], 'python': ['pylint'], 'lua': ['luacheck', 'luac'], 'tex': ['lacheck', 'proselint']}  " ruff, pylint, pyright, lacheck, chktek, proselint
+    let g:ale_linters = {'vim': ['vint'], 'python': ['mypy', 'pylint'], 'lua': ['luacheck', 'luac'], 'tex': ['lacheck']}  " ruff, pylint, pyright, lacheck, chktek, proselint
     let g:ale_lint_on_text_changed = 'normal'
     let g:ale_lint_on_insert_leave = 1
     let g:ale_lint_delay = 0
@@ -239,6 +239,13 @@ set undofile
   nnoremap k gk
   " nnoremap gj j
   " nnoremap gk k
+
+  noremap <up> <c-y>
+  noremap <down> <c-e>
+
+  nnoremap <c-i> <c-y>
+  nnoremap <c-y> <c-i>
+
   vnoremap g[ {
   vnoremap g] }
   vnoremap g{ {
@@ -253,7 +260,7 @@ set undofile
   " nnoremap <silent> <leader>o :call JumpWithinFile ("\<c-i>", "\<c-o>")<cr>
   " nnoremap <silent> <leader>i :call JumpWithinFile ("\<c-o>", "\<c-i>")<cr>
 
-  nnoremap <c-t> <c-y>
+  " nnoremap <c-t> <c-y>
 
   " text object for current line
   xnoremap il g_o^
