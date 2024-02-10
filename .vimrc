@@ -58,16 +58,35 @@ set undofile
   endif
 
   packadd julia-vim
+
   packadd vimtex
-    let g:Tex_SmartQuoteOpen = "``"
-    let g:Tex_SmartQuoteClose = "''"
+    let g:vimtex_compiler_enabled = 0
+    let g:vimtex_complete_enabled = 0
+    let g:vimtex_fold_enabled = 1
+    let g:vimtex_imaps_enabled = 0
+    let g:vimtex_mappings_enabled = 0
+    let g:vimtex_quickfix_enabled = 0
+    let g:vimtex_syntax_nospell_comments = 1
+    let g:vimtex_view_enabled = 0
 
 " SET OPTIONS
   " FILETYPE SPECIFIC
+    " PYTHON
     augroup python_settings | au!
       au Filetype python setlocal shiftwidth=2
       au Filetype python setlocal softtabstop=2
       au Filetype python setlocal tabstop=8
+    augroup END
+    
+    " LaTeX
+    augroup latex_settings | au!
+      " au Filetype tex packadd vimtex
+      let g:Tex_SmartQuoteOpen = "``"
+      let g:Tex_SmartQuoteClose = "''"
+      " let g:tex_flavor="latex"
+      " let g:tex_fold_enabled=1
+
+      " au Filetype tex set foldmethod=syntax
     augroup END
 
   " GENERAL
