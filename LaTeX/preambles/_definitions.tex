@@ -179,7 +179,6 @@
 \newcommand*{\xline}[1][3em]{\rule[0.5ex]{#1}{0.55pt}}
 
 \newcommand{\bydefn}{\DOTSB\;\mathrel{\vcentcolon\Leftrightarrow}\;}
-\newcommand{\iffbydefn}{\DOTSB\;\mathrel{\vcentcolon\Leftrightarrow}\;}
 
 \newcommand{\proves}{\DOTSB\;\vdash\;}
 \newcommand{\satisfies}{\DOTSB\;\models\;}
@@ -262,8 +261,8 @@
 \newcommand{\ndiv}{\nmid}
 \newcommand{\divides}{\mid}
 \newcommand{\notdivides}{\nmid}
-\newcommand{\given}{\;\vert\;}
-\newcommand{\suchthat}{\;\vert\;}
+\newcommand{\given}{~\middle|~}
+\newcommand{\suchthat}{~\middle|~}
 % \newcommand{\contradiction}{\smash{\text{\raisebox{-0.6ex}{\Large \Lightning}}}~~}
 \newcommand{\contradiction}{\smash{\text{\raisebox{-0.5ex}{\Large \Lightning}}}~}
 
@@ -320,11 +319,10 @@
 \newcommand{\isomorphism}{\lhook\joinrel\twoheadrightarrow}
 \newcommand{\immersion}{\looprightarrow}
 
-\renewcommand{\S}[1]{\mathcal{S}\pn*{#1}}
 \renewcommand{\O}[1]{\mathcal{O}\pn*{#1}}
 \renewcommand{\P}[1]{\mathbb{P}\pn*{#1}}
-\newcommand{\successor}[1]{\mathcal{S}\pn*{#1}}
 \newcommand{\power}[1]{\mathcal{P}\pn*{#1}}
+\newcommand{\successor}[1]{\mathcal{S}\pn*{#1}}
 \newcommand{\naturals}{\mathbb{N}}
 \newcommand{\integers}{\mathbb{Z}}
 \newcommand{\rationals}{\mathbb{Q}}
@@ -367,33 +365,21 @@
 
 % parentheses and delimiters
 \DeclarePairedDelimiterX \inner[2]{\langle}{\rangle}{#1,#2}
-\DeclarePairedDelimiter \bracket{\langle}{\rangle}
 \DeclarePairedDelimiter \bra{\langle}{\rvert}
 \DeclarePairedDelimiter \ket{\lvert}{\rangle}
 \DeclarePairedDelimiter \abs{\lvert}{\rvert}
-\DeclarePairedDelimiter \norm{\lVert}{\rVert}
-\DeclarePairedDelimiter \order{\lvert}{\rvert}
-\DeclarePairedDelimiter \size{\lvert}{\rvert}
 \DeclarePairedDelimiter \cardinality{\lvert}{\rvert}
-
-\DeclarePairedDelimiterX \set[1]{\lbrace}{\rbrace}{%
-  \renewcommand{\suchthat}{\;\delimsize\vert\nonscript\;\mathopen{}}%
-  \renewcommand{\given}{\;\delimsize\vert\nonscript\;\mathopen{}}#1%
-}
-\DeclarePairedDelimiterX \term[1]{(}{)}{%
-  \renewcommand{\suchthat}{\;\delimsize\vert\nonscript\;\mathopen{}}%
-  \renewcommand{\given}{\;\delimsize\vert\nonscript\;\mathopen{}}#1%
-}
-
-\DeclarePairedDelimiter \sequence{\langle}{\rangle}
+\DeclarePairedDelimiter \order{\lvert}{\rvert}
+\DeclarePairedDelimiter \norm{\lVert}{\rVert}
+\DeclarePairedDelimiter \set{\lbrace}{\rbrace}
 \DeclarePairedDelimiter \seq{\langle}{\rangle}
 \DeclarePairedDelimiter \pn{(}{)}
 \DeclarePairedDelimiter \sq{[}{]}
-\DeclarePairedDelimiter \nat{[}{]}  % for natural numbers
 \DeclarePairedDelimiter \class{[}{]}
 \DeclarePairedDelimiter \range{[}{]}
 \DeclarePairedDelimiter \cardinal{[}{]}
 \DeclarePairedDelimiter \curly{\lbrace}{\rbrace}
+\DeclarePairedDelimiter \bracket{\langle}{\rangle}
 
 \let\oldemptyset\emptyset
 \let\emptyset\varnothing

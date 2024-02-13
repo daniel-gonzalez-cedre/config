@@ -103,24 +103,13 @@
 \declaretheorem[numbered=no, style=algorithmsylte]{Algorithm}
 \declaretheorem[numbered=no, style=ideastyle]{Idea}
 
-\crefname{figure}{\emph{figure}}{\emph{Figure}}
-\crefname{table}{\emph{table}}{\emph{Table}}
-
-\crefname{theorem}{\emph{theorem}}{\emph{Theorem}}
-\crefname{corollary}{\emph{corollary}}{\emph{Corollary}}
-\crefname{lemma}{\emph{lemma}}{\emph{Lemma}}
-\crefname{definition}{\emph{definition}}{\emph{Definition}}
-\crefname{axiom}{\emph{axiom}}{\emph{Axiom}}
-\crefname{exercise}{exercise}{Exercise}
-\crefname{example}{example}{Example}
-
 \newenvironment{case}[1][Case]
-  {\par\textit{#1:}\hfill\break}
-  {}
+    {\par\textit{#1:}\hfill\break}
+    {}
 
 \newenvironment{code}[1][Code]
-  {\textbf{#1:}\quote}
-  {\endquote}
+    {\textbf{#1:}\quote}
+    {\endquote}
 
 \ifalgorithms
   \newcounter{nalg}[chapter]

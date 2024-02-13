@@ -62,9 +62,9 @@ set undofile
   packadd vimtex
     let g:vimtex_compiler_enabled = 0
     let g:vimtex_complete_enabled = 0
-    let g:vimtex_fold_enabled = 1
+    " let g:vimtex_fold_enabled = 1
     let g:vimtex_imaps_enabled = 0
-    let g:vimtex_mappings_enabled = 0
+    " let g:vimtex_mappings_enabled = 0
     let g:vimtex_quickfix_enabled = 0
     let g:vimtex_syntax_nospell_comments = 1
     let g:vimtex_view_enabled = 0
