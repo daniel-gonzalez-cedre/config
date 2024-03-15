@@ -82,14 +82,13 @@
   padding: 5px;
   border-radius: 5px;
 }
-tab-item-substance {
+#tabbar tab-item-substance {
   background-color: var(--tab-item-substance-background-color);
-  border: solid 1px var(--tab-item-substance-border-color);
-  margin: 0px;
   padding: 5px;
   border-radius: 6px;
+  border: solid 1px var(--tab-item-substance-border-color);
 }
-tab-item tab-item-substance:hover {  }
+#tabbar tab-item tab-item-substance:hover {  }
 
 /* tab label styling */
 :root.sidebar .label-content {
