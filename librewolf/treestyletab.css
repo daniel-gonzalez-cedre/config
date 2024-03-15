@@ -1,178 +1,156 @@
 @media (prefers-color-scheme: dark) {
-    /* sidebar background */
-    :root, #background { background: #000000; }
-
-    #tabbar {
-        scrollbar-width: none;
-        top: 0px;
-        bottom: 0px;
-        /* bottom: 0 !important; Eliminate dead space on bottom */
-    }
-    .newtab-button-box { display: none; }
-
-    /* show title of unread tabs in grey */
-    :root.sidebar tab-item.unread .label-content { color: #555555 !important; }
-    :root.sidebar .label-content {
-        line-height: 12px;
-        padding-left: 5px;
-        padding-top: 0px;
-        padding-bottom: 0px;
-        margin: 0px;
-        color: #cabaa9 !important;
-    }
-
-    tab-item tab-favicon { padding-left: 0px; }
-
-    /* Less visible tab dividers. 
-        A black border with a very low alpha slightly darkens any color. */
-    tab-item-substance {
-        padding: 5px;
-        border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
-        border-top: solid 0.5px #28282875;
-        border-bottom: solid 0.5px #28282875;
-        border-left: solid 1px #28282895;
-        background-color: #181818;
-    }
-    tab-item tab-item-substance:hover { }
-
-    /* hide new tab button */
-    #tabbar .after-tabs { display: none !important; }
-    .after-tabs button { display: none !important; }
-
-    /* more compact tab height and darker colors */
-    .tab {
-        top: 0px;
-        padding: 0px;
-        height: 25px;
-        border: #000000;
-        background: #000000;
-    }
-
-    /* highlight current tab -- can be unset for photon theme */
-    /* .tab.active { background: #000000; } */
-    .tab.active .background { background: #2f2d2d; }
-    /* :root .tab .highlighter::before { background: #2f2d2d; } */
-    tab-item.active .contextual-identity-marker { }
-
-    /* hide collapse twisty arrow */
-    /* collapse/expand subtree with favicon */
-    tab-item tab-twisty {
-        margin-right: -1em;
-        opacity: 0 !important;
-        position: relative;
-        z-index: 10000;
-    }
-    tab-item:hover .background {
-        background: #2f2d2d;
-    }
-
-    /* hide [x] tab close button unless hovering on tab */
-    .tab:hover .closebox {
-        background: #4a4a4a;
-        border-radius: 3px;
-    }
-    .tab:not(:hover) .closebox { visibility: collapse !important; }
-
-    .tab:hover {
-        background: #000000;
-    }
-
-    /* remove scroll bar */
-    .tab { margin-left: 1px; }
-    #tabbar {
-        overflow-x: hidden;
-        overflow-y: scroll;
-    }
-    :root.left #tabbar, #tabContextMenu, #tabContextMenu ul { margin-left: 0px; }
+  :root {
+    --background-color: #000000;
+    --label-color: #cabaa9;
+    --tab-item-substance-border-color: #00000075;
+    --tab-item-substance-background-color: #181818;
+    --tab-item-hover-background-color: #222020;
+    --tab-item-active-background-color: #4f4d4d;
+    --closebox-color: #4f4d4d00;
+    --unread-label-color: #555555;
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-color: #ffffff;
+    --label-color: #121212;
+    --tab-item-substance-border-color: #00000025;
+    --tab-item-substance-background-color: #ffffff;
+    --tab-item-hover-background-color: #f0f0f0;
+    --tab-item-active-background-color: #f0f0f0;
+    --closebox-color: #d3d3d300;
+    --unread-label-color: #bbbbbb;
+  }
 }
 
+:root, #background { background: var(--background-color); }
+:root.sidebar .label-content { color: var(--label-color) !important; }
 
-@media (prefers-color-scheme: light) {
-    /* sidebar background */
-    :root, #background { background: #ffffff; }
+/* remove scroll bar */
+:root.left #tabbar, #tabContextMenu, #tabContextMenu ul { margin-left: -100px; }
+#tabbar .tab { margin-left: 101px; }
+#tabbar {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  top: 0px !important;
+  bottom: 0px !important;
+}
 
-    #tabbar {
-        scrollbar-width: none;
-        top: 0px !important;
-        bottom: 0px !important ;
-        /* bottom: 0 !important; Eliminate dead space on bottom */
-    }
-    .newtab-button-box { display: none; }
+/* hide new tab button */
+#tabbar .after-tabs { display: none !important; }
+#tabbar .after-tabs button { display: none !important; }
+#tabbar .newtab-button-box { display: none !important; }
 
-    /* show title of unread tabs in grey */
-    :root.sidebar tab-item.unread .label-content { color: #bbbbbb !important; }
-    :root.sidebar .label-content {
-        line-height: 12px;
-        padding-left: 5px;
-        padding-top: 0px;
-        padding-bottom: 0px;
-        margin: 0px;
-        color: #000000 !important;
-    }
+/* autohide animations */
+#tabbar .tab {
+  transition: 0.2s width;
+  width: 255px;
+  /* width: 125px; */
+}
+#tabbar:not(:hover) .tab {
+  transition-delay: 0.05s;
+  width: 31px;
+}
+#tabbar:not(:hover) tab-item[data-level] tab-item-substance { margin-left: 0% !important; }
 
-    tab-item tab-favicon { padding-left: 0px; }
+/* tab sizing and styling */
+#tabbar .tab {
+  top: 0px;
+  padding: 0px;
+  height: 32px;
+  border: #00000000;  /* transparent */
+  background: #00000000;  /* transparent */
+}
+#tabbar .tab.active .background{
+  background: var(--tab-item-active-background-color); 
+  margin: 2px;
+  padding: 5px;
+  border-radius: 5px;
+}
+#tabbar .tab:hover { background: #00000000;  /* transparent */ }
 
-    /* Less visible tab dividers. 
-        A black border with a very low alpha slightly darkens any color. */
-    tab-item-substance {
-        padding: 5px;
-        border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
-        border-top: solid 0.5px #dddddd;
-        border-bottom: solid 0.5px #dddddd;
-        border-left: solid 1px #dddddd;
-        background-color: #ffffff;
-    }
-    tab-item tab-item-substance:hover { }
+/* tab item sizing and styling */
+#tabbar tab-item {
+  margin: 0px;
+  padding: 0px;
+  border-radius: 6px;
+}
+#tabbar tab-item:hover .background {
+  background: var(--tab-item-hover-background-color); 
+  margin: 2px;
+  padding: 5px;
+  border-radius: 5px;
+}
+tab-item-substance {
+  background-color: var(--tab-item-substance-background-color);
+  border: solid 1px var(--tab-item-substance-border-color);
+  margin: 0px;
+  padding: 5px;
+  border-radius: 6px;
+}
+tab-item tab-item-substance:hover {  }
 
-    /* hide new tab button */
-    #tabbar .after-tabs { display: none !important; }
-    .after-tabs button { display: none !important; }
+/* tab label styling */
+:root.sidebar .label-content {
+  font-size: 12px;
+  line-height: 13px;
+  padding-left: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin: 0px;
+}
 
-    /* more compact tab height and darker colors */
-    .tab {
-        top: 0px;
-        padding: 0px;
-        height: 25px;
-        border: #ffffff;
-        background: #ffffff;
-    }
+/* tab favicon stylings */
+#tabbar tab-item tab-favicon {
+  margin: 0px 8px 0px 1px;
+  padding: 0px;
+}
+#tabbar tab-item.active tab-favicon { filter: grayscale(0); }
+#tabbar tab-item:hover tab-favicon { /* filter: grayscale(0); */ }
+:root.sidebar tab-item.unread .label-content { color: #var(--unread-label-color) !important; }
+:root.sidebar tab-item.unread tab-favicon { filter: grayscale(1); }
 
-    /* highlight current tab -- can be unset for photon theme */
-    /* .tab.active { background: #eeeeee; } */
-    .tab.active .background { background: #f0f0f0; }
-    /* :root .tab .highlighter::before { background: #efefef; } */
-    tab-item.active .contextual-identity-marker { }
+/* blank favicon and label for new tabs */
+#tabbar tab-item:not(.loading):-moz-any([data-current-uri="about:newtab"], [data-current-uri="about:home"], [data-current-uri="about:blank"]) .label-content,
+#tabbar tab-item:not(.loading):-moz-any([data-current-uri="about:newtab"], [data-current-uri="about:home"], [data-current-uri="about:blank"]) tab-favicon {
+  visibility: collapse !important;
+}
 
-    /* hide collapse twisty arrow */
-    /* collapse/expand subtree with favicon */
-    tab-item tab-twisty {
-        margin-right: -1em;
-        opacity: 0 !important;
-        position: relative;
-        z-index: 10000;
-    }
-        tab-item:hover .background {
-        background: #f0f0f0;
-    }
+/* hide twisty arrow for collapsing subtrees */
+#tabbar tab-item tab-twisty {
+  visibility: collapse !important;
+  margin-right: -1em;
+  opacity: 0 !important;
+  position: relative;
+  z-index: 10000;
+}
 
-    /* hide [x] tab close button unless hovering on tab */
-    .tab:hover .closebox {
-        background: #d3d3d3;
-        border-radius: 3px;
-    }
-    .tab:not(:hover) .closebox { visibility: collapse !important; }
+/* style and hide [x] tab close button until hover */
+#tabbar .tab:hover .closebox {
+  background: var(--closebox-color);
+  border-radius: 4px;
+  margin: 0px -15px 0px 5px;
+  padding: 0px;
+}
+#tabbar .tab:not(:hover) .closebox {
+  border-radius: 4px;
+  margin: 0px -15px 0px 5px;
+  padding: 0px;
+  display: none;
+}
 
-    .tab:hover {
-        background: #ffffff;
-    }
-
-    /* remove scroll bar */
-    .tab { margin-left: 1px; }
-    #tabbar {
-        overflow-x: hidden;
-        overflow-y: scroll;
-    }
-    :root.left #tabbar, #tabContextMenu, #tabContextMenu ul { margin-left: 0px; }
+/* remove active tab indicator bar */
+:root .tab .highlighter::before {
+  display: none;
+  border-radius: 6px;
+  /* background: #2f2d2d; */
+  /* margin-top: 5px; */
+  /* margin-bottom: 5px; */
+  /* margin-left: 25px; */
+  /* padding: 0px; */
+}
+#tabbar tab-item.active .contextual-identity-marker {
+  visibility: collapse !important;
+  display: none !important;
 }
