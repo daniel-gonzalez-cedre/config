@@ -27,15 +27,15 @@
 :root.sidebar .label-content { color: var(--label-color) !important; }
 
 /* remove scroll bar */
-:root.left #tabbar, #tabContextMenu, #tabContextMenu ul { margin-left: -100px; }
-#tabbar .tab { margin-left: 101px; }
+:root.left #tabbar, #tabContextMenu, #tabContextMenu ul { margin-left: 0px; }
+#tabbar .tab { margin-left: 1px; }
 #tabbar {
   overflow-x: hidden;
-  overflow-y: hidden;
-  scrollbar-width: none;
+  overflow-y: scroll;
   top: 0px !important;
   bottom: 0px !important;
 }
+#normal-tabs-container { scrollbar-width: none; }
 
 /* hide new tab button */
 #tabbar .after-tabs { display: none !important; }
@@ -107,14 +107,19 @@
 }
 #tabbar tab-item.active tab-favicon { filter: grayscale(0); }
 #tabbar tab-item:hover tab-favicon { /* filter: grayscale(0); */ }
-:root.sidebar tab-item.unread .label-content { color: #var(--unread-label-color) !important; }
+:root.sidebar tab-item.unread .label-content { color: var(--unread-label-color) !important; }
 :root.sidebar tab-item.unread tab-favicon { filter: grayscale(1); }
 
 /* blank favicon and label for new tabs */
-#tabbar tab-item:not(.loading):-moz-any([data-current-uri="about:newtab"], [data-current-uri="about:home"], [data-current-uri="about:blank"]) .label-content,
-#tabbar tab-item:not(.loading):-moz-any([data-current-uri="about:newtab"], [data-current-uri="about:home"], [data-current-uri="about:blank"]) tab-favicon {
-  visibility: collapse !important;
-}
+#tabbar tab-item:not(.loading):-moz-any([data-current-uri*="blanktab"],
+                                        [data-current-uri="about:newtab"], [data-current-uri="about:home"],
+                                        [data-current-uri="about:blank"])
+                                        .label-content { visibility: collapse !important; }
+#tabbar tab-item:not(.loading):-moz-any([data-current-uri*="blanktab"],
+                                        [data-current-uri="about:newtab"],
+                                        [data-current-uri="about:home"],
+                                        [data-current-uri="about:blank"])
+                                        tab-favicon { visibility: collapse !important; }
 
 /* hide twisty arrow for collapsing subtrees */
 #tabbar tab-item tab-twisty {
