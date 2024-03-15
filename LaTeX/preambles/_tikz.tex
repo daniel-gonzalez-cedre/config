@@ -1,0 +1,125 @@
+\usepackage{tikz, pgfplots}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{angles}
+\usetikzlibrary{arrows}
+\usetikzlibrary{backgrounds,fit,positioning}
+\usetikzlibrary{calc}
+\usetikzlibrary{math}
+\usetikzlibrary{hobby}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shapes}
+\usetikzlibrary{decorations.markings,decorations.pathmorphing}
+\usetikzlibrary{shapes.arrows,shapes.geometric}
+
+\tikzset{textnode/.style={inner sep=0pt,outer sep=0,execute at begin node={\strut}}}
+\tikzstyle{state} = [textnode, circle, draw, inner sep=0pt, outer sep=0]
+
+\usetikzlibrary{pgfplots.groupplots}
+\usepgfplotslibrary{groupplots}
+\usepgfplotslibrary{fillbetween}
+                    
+\pgfplotsset{every axis/.append style={
+                    xlabel={$x$},          % default put x on x-axis
+                    ylabel={$y$},          % default put y on y-axis
+                    % label style={font=\sffamily\small},
+                    % tick label style={font=\sffamily\small},
+                    % xticklabel style = {font=\sffamily\small},
+                    % title style = {font=\footnotesize\sffamily},
+                    ylabel near ticks,
+                    % y label style={font=\sffamily\small},
+                    xlabel near ticks,
+                    % x label style={font=\sffamily\small},
+                    legend cell align={left},
+                    % legend style={draw=none, font=\sffamily\normalsize},
+                    },
+                    legend image code/.code={
+                    \draw[mark repeat=2,mark phase=2]
+                        plot coordinates {
+                        (0cm,0cm)
+                        (0.15cm,0cm)        %% default is (0.3cm,0cm)
+                        (0.3cm,0cm)         %% default is (0.6cm,0cm)
+                        };%
+                    }
+                    }
+\pgfplotsset{compat=newest}  
+
+\tikzmath{%
+    \figscale = 1.75;
+    \nodesize = 0.06cm;
+    \nodespacing = 1.5pt;
+    \radbig = 360/5;
+    \radtri = 360/3;
+    \rottri = 360/6;
+    \radpent = 360/5;
+    \rotpent = 360/10;
+    \arccurve = 0.5cm;
+    \arcstraight = 0.0cm;
+}
+
+\tikzset{snake it/.style={%
+    decoration={%
+        snake, 
+        amplitude = 0.2mm,
+        segment length = 1mm,
+        post length=1mm
+    },
+    decorate
+}}
+% \tikzcdset{arrow style=tikz, squiggle/.style={%
+    % decoration={%
+        % snake,
+        % amplitude=.3mm,
+        % segment length=2mm,
+        % post length=1mm
+    % },
+    % rounded corners=.2pt,
+    % decorate
+% }}
+
+% styles
+\tikzstyle{blank} = [outer sep=8*\nodespacing, inner sep=\nodesize]
+\tikzstyle{wavy} = [decorate,
+                    decoration={%
+                        snake,
+                        amplitude=0.25mm,
+                        segment length=2.7mm,
+                        post length=0.0mm,
+                        pre length=0.0mm
+                    }]
+\tikzstyle{cone} = [draw=pgrey, shorten <= -2pt]
+
+\tikzstyle{add} = [blue, draw opacity=1]
+\tikzstyle{del} = [red, draw opacity=1]
+
+% nodes
+\tikzstyle{node} = [very thick,
+                    circle,
+                    draw=black,
+                    fill=black,
+                    outer sep=\nodespacing,
+                    inner sep=\nodesize,
+                    text opacity=1]
+\tikzstyle{add_node} = [node, add]
+\tikzstyle{del_node} = [node, del]
+
+% edges
+\tikzstyle{edge} = [very thick, draw=black, opacity=1]
+\tikzstyle{add_edge} = [edge, add, densely dotted]
+\tikzstyle{del_edge} = [edge, del, densely dotted, wavy]
+
+% text
+\tikzstyle{text} = [draw=black,  % circle?
+                    fill=grey,
+                    outer sep=\nodespacing,
+                    inner sep=\nodesize,
+                    fill opacity=1,
+                    draw opacity=1,
+                    text opacity=1]
+\tikzstyle{add_text} = [text, fill=ablue, fill opacity=0.25]
+\tikzstyle{del_text} = [text, fill=ared, fill opacity=0.25]
+
+\tikzstyle{nts} = [text,
+                   rectancle
+                   rounded corners=0.5mm,
+                   very thick]
+\tikzstyle{lhs} = [nts, outer sep=4*\nodespacing]
