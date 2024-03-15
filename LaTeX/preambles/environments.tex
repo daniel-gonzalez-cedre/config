@@ -13,11 +13,10 @@
 \expandafter\let\expandafter\oldproof\csname\string\proof\endcsname
 \let\oldendproof\endproof
 \renewenvironment{proof}[1][\bfseries\proofname]{%
-    \vspace{-0.5\baselineskip}%
-    \oldproof[\bfseries #1]
-}{%
-    ~\\\qed
-}
+  \vspace{-2ex}%
+  % \vspace{-0.75\baselineskip}%
+  \oldproof[\bfseries #1]
+}{\qed}
 
 % STYLE FOR THEOREMS
 \declaretheoremstyle[headfont=\bfseries\itshape,
@@ -25,27 +24,27 @@
                      notefont=,
                      headpunct={.\hfill\break},
                      qed=\kanji{定理},  % 定理結束
-                     prefoothook={\hfill\break}
+                     % prefoothook={\hfill\break}
                      ]{theoremstyle}
 \declaretheoremstyle[headfont=\bfseries\itshape,
                      bodyfont=\normalfont,
                      notefont=,
                      headpunct={.\hfill\break},
                      qed=\kanji{推論},  % 推論結束
-                     prefoothook={\hfill\break}
+                     % prefoothook={\hfill\break}
                      ]{corollarystyle}
 \declaretheoremstyle[headfont=\bfseries\itshape,
                      bodyfont=\normalfont,
                      notefont=,
                      headpunct={.\hfill\break},
                      qed=\kanji{引理},  % 引理結束
-                     prefoothook={\hfill\break}
+                     % prefoothook={\hfill\break}
                      ]{lemmastyle}
 \declaretheoremstyle[headfont=\bfseries\itshape,
                      bodyfont=\normalfont,
                      notefont=,
                      headpunct={.\hfill\break},
-                     % qed=\kanji{定義},  % 定義結束
+                     qed=\kanji{定義},  % 定義結束
                      % prefoothook={\hfill\break}
                      ]{definitionstyle}
 \declaretheoremstyle[headfont=\bfseries\itshape,
@@ -53,27 +52,28 @@
                      notefont=,
                      headpunct={.\hfill\break},
                      qed=\kanji{公理},  % 公理結束
-                     prefoothook={\hfill\break}
+                     % prefoothook={\hfill\break}
                      ]{axiomstyle}
 \declaretheoremstyle[headfont=\bfseries\itshape,
                      bodyfont=\normalfont,
                      notefont=\bfseries\itshape,
                      headpunct={.\hfill\break},
                      qed=\kanji{範例},  % 範例結束
-                     prefoothook={\hfill\break}
+                     % prefoothook={\hfill\break}
                      ]{examplestyle}
 \declaretheoremstyle[headfont=\bfseries\itshape,
                      bodyfont=\normalfont,
                      notefont=\bfseries\itshape,
                      headpunct={.\hfill\break},
                      qed=\kanji{演算法},  % 演算法結束
-                     prefoothook={\hfill\break}
+                     % prefoothook={\hfill\break}
                      ]{algorithmstyle}
 \declaretheoremstyle[headfont=\bfseries\itshape,
                      bodyfont=\normalfont,
                      notefont=\bfseries\itshape,
                      qed=\kanji{直覺},  % 直覺結束
-                     prefoothook={\hfill\break}]{ideastyle}
+                     % prefoothook={\hfill\break}
+                     ]{ideastyle}
 
 \ifbook
   \declaretheorem[numbered=yes, style=theoremstyle, within=chapter]{theorem}

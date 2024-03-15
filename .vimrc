@@ -33,9 +33,9 @@ set undofile
 
 " PACKAGES
   if has('nvim')
-    packadd! nvim-treesitter
+    " packadd! nvim-treesitter
   else
-    packadd! ale
+    " packadd! ale
     let g:ale_sign_error = ' ×'
     let g:ale_sign_warning = ' ⋅'
     let g:ale_linters = {'vim': ['vint'], 'python': ['mypy', 'pylint'], 'lua': ['luacheck', 'luac'], 'tex': ['lacheck']}  " ruff, pylint, pyright, lacheck, chktek, proselint
@@ -107,7 +107,7 @@ set undofile
     set matchpairs+=<:>
     " set matchpairs+=`:'
     set mouse=
-    " set spell
+    set spell
     set number
     set numberwidth=3
     set ruler

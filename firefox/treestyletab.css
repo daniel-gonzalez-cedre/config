@@ -117,7 +117,6 @@ tab-item tab-item-substance:hover {  }
   visibility: collapse !important;
 }
 
-
 /* hide twisty arrow for collapsing subtrees */
 #tabbar tab-item tab-twisty {
   visibility: collapse !important;

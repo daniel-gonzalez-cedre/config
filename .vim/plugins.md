@@ -2,7 +2,7 @@
 + git@github.com:daniel-gonzalez-cedre/gruvbox.git
 
 # plugins
-+ git@github.com:dense-analysis/ale.git
+- git@github.com:dense-analysis/ale.git
 + git@github.com:joom/latex-unicoder.vim.git
 + git@github.com:preservim/nerdcommenter.git
 + git@github.com:luochen1990/rainbow.git
