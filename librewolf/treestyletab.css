@@ -1,12 +1,28 @@
+/* remove animations */
+/* @keyframes * {} */
+@keyframes throbber {}
+@keyframes tab-burst-animation {}
+@keyframes tab-burst-animation-light {}
+@keyframes blink {}
+
+:root {
+  --tab-height: 32px;
+  --tab-min-width: 32px;
+  --tab-max-width: 256px;
+  --closebox-color: #4f4d4d00;
+  --closebox-hover-color: #fb4934;
+  --twisty-color: #4f4d4d00;
+  --twisty-hover-color: #fe8019;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background-color: #000000;
-    --label-color: #cabaa9;
+    --label-color: #bbbbbb;  /* #cabaa9; */
     --tab-item-substance-border-color: #00000075;
     --tab-item-substance-background-color: #181818;
     --tab-item-hover-background-color: #222020;
     --tab-item-active-background-color: #4f4d4d;
-    --closebox-color: #4f4d4d00;
     --unread-label-color: #555555;
   }
 }
@@ -18,7 +34,6 @@
     --tab-item-substance-background-color: #ffffff;
     --tab-item-hover-background-color: #f0f0f0;
     --tab-item-active-background-color: #f0f0f0;
-    --closebox-color: #d3d3d300;
     --unread-label-color: #bbbbbb;
   }
 }
@@ -26,51 +41,38 @@
 :root, #background { background: var(--background-color); }
 :root.sidebar .label-content { color: var(--label-color) !important; }
 
-/* remove scroll bar */
-:root.left #tabbar, #tabContextMenu, #tabContextMenu ul { margin-left: 0px; }
-#tabbar .tab { margin-left: 1px; }
+/* tabbar styling */
+/* :root.left #tabbar, #tabContextMenu, #tabContextMenu ul { margin: 0px; } */
 #tabbar {
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: hidden;
   top: 0px !important;
+  left: 0px !important;
+  right: 0px !important;
   bottom: 0px !important;
+  margin: 0px 1px 2px 2px;
 }
-#normal-tabs-container { scrollbar-width: none; }
+#normal-tabs-container { scrollbar-width: none; }  /* remove scroll bar */
 
-/* hide new tab button */
-#tabbar .after-tabs { display: none !important; }
-#tabbar .after-tabs button { display: none !important; }
-#tabbar .newtab-button-box { display: none !important; }
-
-/* autohide animations */
+/* tab styling */
 #tabbar .tab {
-  transition: 0.2s width;
-  width: 255px;
-  /* width: 125px; */
-}
-#tabbar:not(:hover) .tab {
-  transition-delay: 0.05s;
-  width: 31px;
-}
-#tabbar:not(:hover) tab-item[data-level] tab-item-substance { margin-left: 0% !important; }
-
-/* tab sizing and styling */
-#tabbar .tab {
-  top: 0px;
+  height: var(--tab-height);
+  width: var(--tab-max-width);
+  margin: 0px;
   padding: 0px;
-  height: 32px;
-  border: #00000000;  /* transparent */
-  background: #00000000;  /* transparent */
+  transition: 0.25s width;
 }
+#tabbar:not(:hover) .tab { width: var(--tab-min-width); }
+
+/* active tab styling */
 #tabbar .tab.active .background{
   background: var(--tab-item-active-background-color); 
   margin: 2px;
   padding: 5px;
   border-radius: 5px;
 }
-#tabbar .tab:hover { background: #00000000;  /* transparent */ }
 
-/* tab item sizing and styling */
+/* tab item styling */
 #tabbar tab-item {
   margin: 0px;
   padding: 0px;
@@ -82,37 +84,37 @@
   padding: 5px;
   border-radius: 5px;
 }
+
+/* tab item substance styling */
 #tabbar tab-item-substance {
   background-color: var(--tab-item-substance-background-color);
   padding: 5px;
   border-radius: 6px;
   border: solid 1px var(--tab-item-substance-border-color);
+  transition: 0.25s margin;
 }
-#tabbar tab-item tab-item-substance:hover {  }
+#tabbar tab-item tab-item-substance:hover { }
+#tabbar:not(:hover) tab-item[data-level] tab-item-substance { margin-left: 0% !important; }
 
 /* tab label styling */
-:root.sidebar .label-content {
-  font-size: 12px;
-  line-height: 13px;
-  padding-left: 0px;
-  padding-top: 0px;
-  padding-bottom: 0px;
+.label-content {
   margin: 0px;
+  padding: 0px;
+  font-size: 12px;
+  line-height: var(--tab-height);
 }
+#tabbar tab-item.unread .label-content { color: var(--unread-label-color) !important; }  /* grey text for unread tabs */
 
 /* tab favicon stylings */
-#tabbar tab-item tab-favicon {
-  margin: 0px 8px 0px 1px;
-  padding: 0px;
-}
-#tabbar tab-item.active tab-favicon { filter: grayscale(0); }
-#tabbar tab-item:hover tab-favicon { /* filter: grayscale(0); */ }
-:root.sidebar tab-item.unread .label-content { color: var(--unread-label-color) !important; }
-:root.sidebar tab-item.unread tab-favicon { filter: grayscale(1); }
+#tabbar tab-item tab-favicon { margin: 0px 8px 0px 2px; }
+#tabbar tab-item.active tab-favicon { filter: grayscale(0); }  /* full color favicons on active tab */
+#tabbar tab-item.unread tab-favicon { filter: grayscale(1); }  /* gray favicons for unread tabs */
+#tabbar tab-item:hover tab-favicon { opacity: 0; }  /* hide favicons on hover */
 
-/* blank favicon and label for new tabs */
+/* blank tab favicon and label */
 #tabbar tab-item:not(.loading):-moz-any([data-current-uri*="blanktab"],
-                                        [data-current-uri="about:newtab"], [data-current-uri="about:home"],
+                                        [data-current-uri="about:newtab"],
+                                        [data-current-uri="about:home"],
                                         [data-current-uri="about:blank"])
                                         .label-content { visibility: collapse !important; }
 #tabbar tab-item:not(.loading):-moz-any([data-current-uri*="blanktab"],
@@ -121,40 +123,61 @@
                                         [data-current-uri="about:blank"])
                                         tab-favicon { visibility: collapse !important; }
 
-/* hide twisty arrow for collapsing subtrees */
-#tabbar tab-item tab-twisty {
-  visibility: collapse !important;
-  margin-right: -1em;
-  opacity: 0 !important;
-  position: relative;
-  z-index: 10000;
+/* [x] closebox styling for closing tabs */
+#tabbar tab-item tab-closebox {
+  order: -1;
+  margin: 0px -19px 0px 1px;
+  padding: 1px;
+  border-radius: 4px;
+}
+#tabbar .tab:hover .closebox { }
+#tabbar .tab:not(:hover) .closebox { display: none; }
+#tabbar tab-item tab-closebox:not(:hover) {
+  opacity: 0.5;
+  background: var(--closebox-color);
+}
+#tabbar tab-item tab-closebox:hover { background: var(--closebox-hover-color); }
+#tabbar tab-item tab-closebox { transition: 0.25s background; }
+
+/* [>] twisty styling for collapsed tab trees */
+#tabbar tab-twisty {
+  order: 10000;
+  padding: 0px;
+  margin: 0px;
+  opacity: 0;
+  border-radius: 4px;
+  transition: all 0.25s;
+}
+#tabbar tab-twisty::before { margin: 1px 0px -1px 0px; }
+#tabbar:hover tab-twisty {
+  background: var(--twisty-color);
+  opacity: 0.5;
+}
+#tabbar tab-twisty:hover {
+  background: var(--twisty-hover-color);
+  opacity: 1;
 }
 
-/* style and hide [x] tab close button until hover */
-#tabbar .tab:hover .closebox {
-  background: var(--closebox-color);
-  border-radius: 4px;
-  margin: 0px -15px 0px 5px;
-  padding: 0px;
-}
-#tabbar .tab:not(:hover) .closebox {
-  border-radius: 4px;
-  margin: 0px -15px 0px 5px;
-  padding: 0px;
-  display: none;
+/* tab counter styling for collapsed tab trees */
+#tabbar tab-item tab-counter {
+  display: none !important;
+  visibility: collapse !important;
 }
 
 /* remove active tab indicator bar */
-:root .tab .highlighter::before {
+:root .tab .highlighter {
+  visibility: collapse !important;
   display: none;
-  border-radius: 6px;
-  /* background: #2f2d2d; */
-  /* margin-top: 5px; */
-  /* margin-bottom: 5px; */
-  /* margin-left: 25px; */
-  /* padding: 0px; */
+  opacity: 0;
 }
 #tabbar tab-item.active .contextual-identity-marker {
   visibility: collapse !important;
   display: none !important;
+  opacity: 0;
 }
+
+/* hide new tab button */
+.after-tabs { display: none !important; }
+.after-tabs button { display: none !important; }
+.newtab-button { display: none !important; }
+.newtab-button-box { display: none !important; }

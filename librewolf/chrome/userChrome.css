@@ -1,15 +1,3 @@
-/* OLD CONFIG */
-/* #sidebar { */
-    /* [> width: 100%; <] */
-    /* max-width: 128px !important; */
-    /* min-width: 32px !important; */
-/* } */
-/* #sidebar-box { */
-    /* max-width: 128px !important; */
-    /* min-width: 32px !important; */
-/* } */
-
-/* NEW CONFIG */
 /* remove bottom status text (popup url) */
 #statuspanel { display: none !important; }
 
@@ -24,37 +12,42 @@
 
 /* setup size of side tab bar */
 :root {
-  --wide-tab-width: 256px;  /* 128px */
-  --thin-tab-width: 32px;  /* 128px */
+  --sidebar-min-width: 35px;  /* 128px */
+  --sidebar-max-width: 259px;  /* 128px */
 }
 #sidebar {
-  max-width: none !important;
-  min-width: 0px !important;
+  min-width: var(--sidebar-min-width) !important;
+  max-width: var(--sidebar-max-width) !important;
 }
 
-/* animation; autohide sidebar; expand on hover */
-#sidebar-box:not([sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]) {
-  max-width: none !important;
-  min-width: var(--wide-tab-width) !important;
-}
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] {
+#sidebar-box {
   overflow-x: hidden !important;
-  overflow-y: scroll !important;
-  position: relative !important;
-  transition: all 300ms !important;
-  /*transition: all 0ms 0s !important;*/
-  max-width: var(--thin-tab-width) !important;
-  min-width: var(--thin-tab-width) !important;
+  overflow-y: hidden !important;
+  /* position: relative !important; */
+}
+
+#sidebar-box:not([sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]) {
+  min-width: var(--sidebar-max-width) !important;
+  max-width: var(--sidebar-max-width) !important;
+}
+
+/* contract sidebar on hover */
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] {
+  transition: all 0.25s !important;
+  min-width: var(--sidebar-min-width) !important;
+  max-width: var(--sidebar-min-width) !important;
   z-index: 2;
 }
+/* expand sidebar on hover */
 #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover,
 #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar {
-  /*transition-delay: 0s !important;*/
-  transition: all 300ms !important;
-  max-width: var(--wide-tab-width) !important;
-  min-width: var(--wide-tab-width) !important;
+  transition: all 0.25s !important;
+  min-width: var(--sidebar-max-width) !important;
+  max-width: var(--sidebar-max-width) !important;
   z-index: 1;
 }
+
+/* prevent window content from moving on sidebar resize */
 #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover {
-  margin-right: calc((var(--wide-tab-width) - var(--thin-tab-width)) * -1) !important;
+  margin-right: calc((var(--sidebar-max-width) - var(--sidebar-min-width)) * -1) !important;
 }
