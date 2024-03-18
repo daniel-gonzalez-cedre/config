@@ -276,7 +276,7 @@
 \newcommand{\compose}{\circ}
 \renewcommand{\div}{\mid}
 \newcommand{\ndiv}{\nmid}
-\newcommand{\divides}{\mid}
+\newcommand{\divides}{\mathrel{\mid}}
 \newcommand{\notdivides}{\nmid}
 \newcommand{\given}{\;\vert\;}
 \newcommand{\suchthat}{\;\vert\;}
@@ -335,7 +335,11 @@
 \newcommand{\isomorphism}{\lhook\joinrel\twoheadrightarrow}
 \newcommand{\immersion}{\looprightarrow}
 
-\renewcommand{\s}[1]{\mathfrak{s}\term*{#1}}
+\ifstandalone
+  \newcommand{\s}[1]{\mathfrak{s}\term*{#1}}
+\else
+  \renewcommand{\s}[1]{\mathfrak{s}\term*{#1}}
+\fi
 \renewcommand{\S}[1]{\mathcal{S}\term*{#1}}
 \renewcommand{\O}[1]{\mathcal{O}\term*{#1}}
 \renewcommand{\P}[1]{\mathbb{P}\term*{#1}}

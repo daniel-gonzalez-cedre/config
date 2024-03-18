@@ -115,8 +115,17 @@
 \crefname{example}{example}{Example}
 
 \newenvironment{case}[1][Case]
-  {\par\textit{#1:}\hfill\break}
-  {}
+  % {\par\textit{#1:}\hfill\break}
+  {\quote\textit{#1:}}
+  % {\par\begin{mdframed}[backgroundcolor=background,
+      % linecolor=background,
+      % % hidealllines,
+      % fontcolor=foreground,
+      % roundcorner=5pt]%
+  % \begin{mdframed}[backgroundcolor=foreground, fontcolor=background, roundcorner=5pt]
+    % \textit{#1:}}
+  % {\end{mdframed}
+  {\endquote}
 
 \newenvironment{code}[1][Code]
   {\textbf{#1:}\quote}
