@@ -1,0 +1,149 @@
+% new proof environment
+\expandafter\let\expandafter\oldproof\csname\string\proof\endcsname
+\let\oldendproof\endproof
+\renewenvironment{proof}[1][\bfseries\proofname]{%
+  \vspace{\ProofSpacing}%
+  % \vspace{-2ex}%
+  % \vspace{-0.75\baselineskip}%
+  \oldproof[\bfseries #1]
+}{\qed}
+
+% style for theorems
+\declaretheoremstyle[headfont=\bfseries\itshape,
+                     bodyfont=\normalfont,
+                     notefont=,
+                     headpunct={.\hfill\break},
+                     qed=\kanji{定理},  % 定理結束
+                     % prefoothook={\hfill\break}
+                     ]{theoremstyle}
+\declaretheoremstyle[headfont=\bfseries\itshape,
+                     bodyfont=\normalfont,
+                     notefont=,
+                     headpunct={.\hfill\break},
+                     qed=\kanji{推論},  % 推論結束
+                     % prefoothook={\hfill\break}
+                     ]{corollarystyle}
+\declaretheoremstyle[headfont=\bfseries\itshape,
+                     bodyfont=\normalfont,
+                     notefont=,
+                     headpunct={.\hfill\break},
+                     qed=\kanji{引理},  % 引理結束
+                     % prefoothook={\hfill\break}
+                     ]{lemmastyle}
+\declaretheoremstyle[headfont=\bfseries\itshape,
+                     bodyfont=\normalfont,
+                     notefont=,
+                     headpunct={.\hfill\break},
+                     qed=\kanji{定義},  % 定義結束
+                     % prefoothook={\hfill\break}
+                     ]{definitionstyle}
+\declaretheoremstyle[headfont=\bfseries\itshape,
+                     bodyfont=\normalfont,
+                     notefont=,
+                     headpunct={.\hfill\break},
+                     qed=\kanji{公理},  % 公理結束
+                     % prefoothook={\hfill\break}
+                     ]{axiomstyle}
+\declaretheoremstyle[headfont=\bfseries\itshape,
+                     bodyfont=\normalfont,
+                     notefont=\bfseries\itshape,
+                     headpunct={.\hfill\break},
+                     qed=\kanji{範例},  % 範例結束
+                     % prefoothook={\hfill\break}
+                     ]{examplestyle}
+\declaretheoremstyle[headfont=\bfseries\itshape,
+                     bodyfont=\normalfont,
+                     notefont=\bfseries\itshape,
+                     headpunct={.\hfill\break},
+                     qed=\kanji{演算法},  % 演算法結束
+                     % prefoothook={\hfill\break}
+                     ]{algorithmstyle}
+\declaretheoremstyle[headfont=\bfseries\itshape,
+                     bodyfont=\normalfont,
+                     notefont=\bfseries\itshape,
+                     qed=\kanji{直覺},  % 直覺結束
+                     % prefoothook={\hfill\break}
+                     ]{ideastyle}
+
+\declaretheorem[numbered=yes,style=theoremstyle,within=\BookChapterOption]{theorem}
+\declaretheorem[numbered=yes,style=corollarystyle,within=\BookChapterOption]{corollary}
+\declaretheorem[numbered=yes,style=lemmastyle,within=\BookChapterOption]{lemma}
+\declaretheorem[numbered=yes,style=definitionstyle,within=\BookChapterOption]{definition}
+\declaretheorem[numbered=yes,style=axiomstyle]{axiom}
+\declaretheorem[numbered=yes,style=examplestyle,within=\BookChapterOption]{exercise, example, counterexample}
+\declaretheorem[numbered=yes,style=algorithmstyle,within=\BookChapterOption]{algorithm}
+\declaretheorem[numbered=yes,style=ideastyle,within=\BookChapterOption]{idea}
+
+\declaretheorem[numbered=no,style=theoremstyle]{Theorem}
+\declaretheorem[numbered=no,style=corollarystyle]{Corollary}
+\declaretheorem[numbered=no,style=lemmastyle]{Lemma}
+\declaretheorem[numbered=no,style=definitionstyle]{Definition}
+\declaretheorem[numbered=no,style=axiomstyle]{Axiom}
+\declaretheorem[numbered=no,style=examplestyle]{Exercise, Example, Counterexample}
+\declaretheorem[numbered=no,style=algorithmsylte]{Algorithm}
+\declaretheorem[numbered=no,style=ideastyle]{Idea}
+
+\crefname{theorem}{\emph{theorem}}{\emph{Theorem}}
+\crefname{corollary}{\emph{corollary}}{\emph{Corollary}}
+\crefname{lemma}{\emph{lemma}}{\emph{Lemma}}
+\crefname{definition}{\emph{definition}}{\emph{Definition}}
+\crefname{axiom}{\emph{axiom}}{\emph{Axiom}}
+\crefname{exercise}{exercise}{Exercise}
+\crefname{example}{example}{Example}
+
+\crefname{figure}{\emph{figure}}{\emph{Figure}}
+\crefname{table}{\emph{table}}{\emph{Table}}
+
+\newenvironment{code}[1][Code]
+  {\textbf{#1:}\quote}
+  {\endquote}
+
+\newenvironment{case}[1][Case]
+  % {\par\textit{#1:}\hfill\break}
+  {\quote\textit{#1:}}
+  % {\par\begin{mdframed}[backgroundcolor=background,
+      % linecolor=background,
+      % % hidealllines,
+      % fontcolor=foreground,
+      % roundcorner=5pt]%
+  % \begin{mdframed}[backgroundcolor=foreground, fontcolor=background, roundcorner=5pt]
+    % \textit{#1:}}
+  % {\end{mdframed}
+  {\endquote}
+
+\iftufte
+  % align-optional cases environment
+  \makeatletter
+    \renewenvironment{cases}[1][l]{\matrix@check\cases\env@cases{#1}}{\endarray\right.}
+    \def\env@cases#1{%
+      \let\@ifnextchar\new@ifnextchar
+      \left\lbrace\def\arraystretch{1.2}%
+      \array{@{}#1@{~}l@{}}}
+  \makeatother
+\else
+\fi
+
+% TODO: axe this
+% \ifalgorithms
+  % \newcounter{nalg}[chapter]
+  % \renewcommand{\thenalg}{\thechapter.\arabic{nalg}}
+  % \DeclareCaptionLabelFormat{algocaption}{\it Algorithm \thenalg}
+
+  % \lstnewenvironment{algorithm}[1][]
+  % {
+    % \refstepcounter{nalg}
+    % \captionsetup{labelformat=algocaption,labelsep=colon}
+    % \lstset{mathescape=true,
+            % frame=tB,
+            % numbers=left,
+            % numberstyle=\tiny,
+            % basicstyle=\scriptsize,
+            % keywordstyle=\color{black}\bfseries\em,
+            % keywords={,input, output, return, datatype, function, in, if, else, elif, for, foreach, while, not, begin, end, true, false, null, break, continue, let, and, or, }
+            % numbers=left,
+            % xleftmargin=.04\textwidth,
+            % #1}
+  % }
+  % {}
+% \else
+% \fi

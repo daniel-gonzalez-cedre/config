@@ -1,0 +1,301 @@
+% left margin notes
+\long\def\gutternote#1{%
+  % \vspace{-0.65\baselineskip}\vadjust{\llap{\smash{\vtop{%
+  \vspace{-2ex}\vadjust{\llap{\smash{\vtop{%
+    \parindent=0pt
+    \hsize=0.6in
+    \parfillskip=0pt
+    \leftskip=0pt
+    \baselineskip=0pt\flushleft\footnotesize\itshape\vglue-\ht\strutbox #1}}\kern1em}}%
+% \vspace{0.65\baselineskip}}
+\vspace{2ex}}
+
+% for horizontally shifting a symbol
+\makeatletter
+\newcommand*{\shifttext}[2]{%
+  \settowidth{\@tempdima}{#2}%
+  \makebox[\@tempdima]{\hspace*{#1}#2}%
+}
+\makeatother
+
+\newcommand{\blankpage}{\newpage\hbox{}\thispagestyle{empty}\newpage}
+\newcommand*{\xline}[1][3em]{\rule[0.5ex]{#1}{0.55pt}}
+
+\newcommand{\bydefn}{\DOTSB\;\mathrel{\vcentcolon\Leftrightarrow}\;}
+\newcommand{\iffbydefn}{\DOTSB\;\mathrel{\vcentcolon\Leftrightarrow}\;}
+\newcommand{\defiff}{\DOTSB\;\mathrel{\vcentcolon\Leftrightarrow}\;}
+
+\newcommand{\proves}{\DOTSB\,\vdash\,}
+\newcommand{\satisfies}{\DOTSB\,\models\,}
+% \renewcommand{\implies}{\DOTSB\,\Rightarrow\,}
+\renewcommand{\implies}{\mathrel{\Rightarrow}}
+% \renewcommand{\impliedby}{\DOTSB\,\Leftarrow\,}
+\renewcommand{\impliedby}{\mathrel{\Leftarrow}}
+% \renewcommand{\iff}{\DOTSB\,\Leftrightarrow\,}
+\renewcommand{\iff}{\mathrel{\Leftrightarrow}}
+\newcommand{\lequiv}{\DOTSB\,\equiv\,}
+% \newcommand{\isomorphic}{\DOTSB\,\cong\,}
+\newcommand{\isomorphic}{\mathrel{\cong}}
+
+\newcommand{\notproves}{\DOTSB\,\nvdash\,}
+\newcommand{\notsatisfies}{\DOTSB\,\not\models\,}
+\newcommand{\notlequiv}{\DOTSB\,\not\equiv\,}
+\newcommand{\notimplies}{\DOTSB\,\not\Rightarrow\,}
+\newcommand{\notimpliedby}{\DOTSB\,\not\Leftarrow\,}
+\newcommand{\notiff}{\mathrel{{\ooalign{\hidewidth$\not\phantom{"}$\hidewidth\cr$\iff$}}}}
+\newcommand{\notisomorphic}{\DOTSB\,\not\cong\,}
+
+\renewcommand{\qedsymbol}{\scshape q.e.d.}
+
+\renewcommand{\restriction}[1]{\downharpoonright_{#1}}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+
+\let\oldtop\top
+\let\oldbot\bot
+\renewcommand{\top}{\vcenter{\hbox{$\oldtop$}}}
+% \renewcommand{\bot}{\vcenter{\hbox{$\oldbot$}}}
+
+% NOR operation
+\makeatletter
+  \providecommand*{\barvee}{\mathbin{\mathpalette\@barvee{}}}
+  \newcommand*{\@barvee}[2]{%
+    \sbox0{$#1\veebar\m@th$}%
+    \sbox2{\hbox to \wd0 {\hss\resizebox{1.05\wd0}{\height}{$#1-\m@th$}\hss}}
+    \sbox4{\resizebox{\wd0}{.7\ht0}{$#1\vee\m@th$}}%
+    \sbox6{$#1\vcenter{}$}
+    \ht2=\ht6
+    \vbox to \ht0{\copy2\vss\copy4}
+  }
+\makeatother
+
+\newcommand{\conditional}{\rightarrow}
+\newcommand{\biconditional}{\leftrightarrow}
+
+\renewcommand{\land}{\mathrel{\wedge}}
+\renewcommand{\lor}{\mathrel{\vee}}
+\newcommand{\lif}{\mathrel{\rightarrow}}
+\newcommand{\lifthen}{\mathrel{\rightarrow}}
+\newcommand{\liff}{\mathrel{\leftrightarrow}}
+
+\newcommand{\Land}{\DOTSB\,\wedge\,}
+\newcommand{\Lor}{\DOTSB\,\vee\,}
+\newcommand{\Lif}{\DOTSB\,\rightarrow\,}
+\newcommand{\Liff}{\DOTSB\,\leftrightarrow\,}
+
+\newcommand{\bigand}{\bigwedge}
+\newcommand{\bigor}{\bigwedge}
+
+\newcommand{\meet}{\wedge}
+\newcommand{\join}{\vee}
+\newcommand{\bigmeet}{\bigwedge}
+\newcommand{\bigjoin}{\bigvee}
+
+\newcommand{\conjunct}{\wedge}
+\newcommand{\disjunct}{\vee}
+\newcommand{\bigconjunct}{\bigwedge}
+\newcommand{\bigdisjunct}{\bigvee}
+
+\newcommand{\defeq}{\mathrel{\coloneqq}}
+\newcommand{\xor}{\mathrel{\veebar}}
+\newcommand{\nand}{\mathrel{\barwedge}}
+\newcommand{\nor}{\mathrel{\barvee}}
+\newcommand{\Plus}{\text{\begin{tikzpicture}[baseline=-0.56ex, x=1ex, y=1ex]
+    \node at (-26/40, 0) {};
+    \node at (26/40, 0) {};
+    \draw [line width=1.25, line cap=round] (0, -2/3) -- (0, 2/3);
+    \draw [line width=1.25, line cap=round] (-2/3, 0) -- (2/3, 0);
+\end{tikzpicture}}}
+\newcommand{\tetrate}{\mathrel{\uparrow\uparrow}}
+\newcommand{\tetration}{\mathrel{\uparrow\uparrow}}
+
+
+\newcommand{\compose}{\circ}
+\renewcommand{\div}{\mid}
+\newcommand{\ndiv}{\nmid}
+\newcommand{\divides}{\mathrel{\mid}}
+\newcommand{\notdivides}{\nmid}
+\newcommand{\given}{\;\vert\;}
+\newcommand{\suchthat}{\;\vert\;}
+\newcommand{\contradiction}{\smash{\textnormal{\raisebox{-0.25ex}{\Large \Lightning}}} }
+
+\newcommand{\conjugate}[1]{\overline{#1}}
+\newcommand{\mean}[1]{\overline{#1}}
+
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand{\integral}[1]{\smashoperator{\int_{#1}}}
+\newcommand{\E}[1]{\mathbb{E}\sq*{#1}}
+\newcommand{\Esub}[2]{\mathbb{E}_{#1}\sq*{#2}}
+\newcommand{\var}[1]{\mathrm{Var}\term*{#1}}
+\newcommand{\cov}[2]{\mathrm{Cov}\term*{#1, #2}}
+\newcommand{\der}[2]{\frac{\diff{#1}}{\diff{#2}}}
+\newcommand{\dern}[3]{\frac{\diff^{#3}{#1}}{\diff{#2}^{#3}}}
+\newcommand{\derm}[3]{\frac{\diff^{#3}{#1}}{\diff{#2}}}
+\newcommand{\prt}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\prtn}[3]{\frac{\partial^{#3}{#1}}{\partial{#2}^{#3}}}
+\newcommand{\prtm}[3]{\frac{\partial^{#3}{#1}}{\partial{#2}}}
+\newcommand{\modulo}[3]{#1 \equiv #2 ~\term*{\mathrm{mod}~#3}}
+\newcommand{\congruent}[3]{#1 \equiv #2 ~\term*{\mathrm{mod}~#3}}
+\newcommand{\Z}[1]{\ensuremath{\sfrac{\mathbb{Z}}{#1\mathbb{Z}}}}
+\newcommand{\z}[1]{\ensuremath{\sfrac{\mathbb{Z}}{#1\mathbb{Z}}}}
+\newcommand{\zmod}[1]{\ensuremath{\mathbb{Z}/#1\mathbb{Z}}}
+\newcommand*\id{\text{id}}
+% better pmod
+\makeatletter
+\DeclarePairedDelimiterX{\pmodx}[1]{(}{)}{{\operator@font mod}\mkern6mu#1}
+\renewcommand{\pmod}{%
+  \allowbreak
+  \if@display\mkern18mu\else\mkern8mu\fi
+  \pmodx
+}
+\makeatother
+
+\newcommand{\inj}{\hookrightarrow}
+\newcommand{\inject}{\hookrightarrow}
+\newcommand{\injection}{\hookrightarrow}
+
+\newcommand{\surj}{\twoheadrightarrow}
+\newcommand{\surject}{\twoheadrightarrow}
+\newcommand{\surjection}{\twoheadrightarrow}
+
+\newcommand{\bij}{\lhook\joinrel\twoheadrightarrow}
+\newcommand{\biject}{\lhook\joinrel\twoheadrightarrow}
+\newcommand{\bijection}{\lhook\joinrel\twoheadrightarrow}
+
+\newcommand{\monic}{\hookrightarrow}
+\newcommand{\monomorphism}{\hookrightarrow}
+
+\newcommand{\epic}{\twoheadrightarrow}
+\newcommand{\epimorphism}{\twoheadrightarrow}
+
+\newcommand{\iso}{\lhook\joinrel\twoheadrightarrow}
+\newcommand{\isomorphism}{\lhook\joinrel\twoheadrightarrow}
+\newcommand{\immersion}{\looprightarrow}
+
+% \ifstandalone
+  % \newcommand{\s}[1]{\mathfrak{s}\term*{#1}}
+% \else
+  \renewcommand{\s}[1]{\mathfrak{s}\term*{#1}}
+% \fi
+\renewcommand{\S}[1]{\mathcal{S}\term*{#1}}
+\renewcommand{\O}[1]{\mathcal{O}\term*{#1}}
+\renewcommand{\P}[1]{\mathbb{P}\term*{#1}}
+% \newcommand{\succ}[1]{\s}
+\newcommand{\successor}[1]{\textsc{suc}\term*{#1}}
+% \newcommand{\successor}[1]{\mathcal{S}\term*{#1}}
+% \newcommand{\power}[1]{\mathcal{P}\term*{#1}}
+\newcommand{\power}[1]{\mathbb{P}\term*{#1}}  % TODO
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\rationals}{\mathbb{Q}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complex}{\mathbb{C}}
+
+% these don't need {} after them since they should be followed by text
+\newcommand{\cf}{\textit{cf.},\ }
+\newcommand{\eg}{\textit{e.g.},\ }
+\newcommand{\ie}{\textit{i.e.},\ }
+% \newcommand{\etc}{\textit{etc.}\ }  % TODO: already defined? check this
+\newcommand{\aka}{\textit{a.k.a.}\ }
+\newcommand{\sic}{\textit{sic.}\ }
+\newcommand{\viz}{\textit{viz.}\ }
+\newcommand{\vide}{\textit{v.}\ }
+\newcommand{\qv}{\textit{q.v.}\ }
+\newcommand{\vv}{\textit{vice versa}}
+\newcommand{\ca}{ca.\ }
+\newcommand{\circa}{ca.\ }
+\newcommand{\ifandonlyif}{\textit{iff}\ }
+\newcommand{\textiff}{\textit{iff}\ }
+
+% these need {} after them
+\newcommand{\etal}{\textit{et al.}}
+\newcommand{\wff}{\textit{wff}}
+
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator*{\argmin}{arg\!\min}
+\DeclareMathOperator*{\argmax}{arg\!\max}
+
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+\newcommand{\zh}[1]{\begin{CJK}{UTF8}{min}#1\end{CJK}}
+\newcommand{\hanzi}[1]{\begin{CJK}{UTF8}{gkai}#1\end{CJK}}
+\newcommand{\kanji}[1]{\begin{CJK}{UTF8}{bkai}#1\end{CJK}}
+\newcommand{\kana}[1]{\begin{CJK}{UTF8}{min}#1\end{CJK}}
+
+% parentheses and delimiters
+\DeclarePairedDelimiterX \inner[2]{\langle}{\rangle}{#1,#2}
+\DeclarePairedDelimiter \bracket{\langle}{\rangle}
+\DeclarePairedDelimiter \bra{\langle}{\rvert}
+\DeclarePairedDelimiter \ket{\lvert}{\rangle}
+\DeclarePairedDelimiter \abs{\lvert}{\rvert}
+\DeclarePairedDelimiter \norm{\lVert}{\rVert}
+\DeclarePairedDelimiter \order{\lvert}{\rvert}
+\DeclarePairedDelimiter \size{\lvert}{\rvert}
+\DeclarePairedDelimiter \cardinality{\lvert}{\rvert}
+
+\DeclarePairedDelimiterX \set[1]{\lbrace}{\rbrace}{%
+  \renewcommand{\suchthat}{\;\delimsize\vert\nonscript\;\mathopen{}}%
+  \renewcommand{\given}{\;\delimsize\vert\nonscript\;\mathopen{}}#1%
+}
+\DeclarePairedDelimiterX \term[1]{(}{)}{%
+  \renewcommand{\suchthat}{\;\delimsize\vert\nonscript\;\mathopen{}}%
+  \renewcommand{\given}{\;\delimsize\vert\nonscript\;\mathopen{}}#1%
+}
+
+\DeclarePairedDelimiter \sequence{\langle}{\rangle}
+\DeclarePairedDelimiter \seq{\langle}{\rangle}
+\DeclarePairedDelimiter \pn{(}{)}
+\DeclarePairedDelimiter \sq{[}{]}
+\DeclarePairedDelimiter \nat{\llbracket}{\rrbracket}  % for natural numbers
+\DeclarePairedDelimiter \class{[}{]}
+\DeclarePairedDelimiter \range{[}{]}
+\DeclarePairedDelimiter \cardinal{[}{]}
+\DeclarePairedDelimiter \curly{\lbrace}{\rbrace}
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+\let\union\cup
+\let\Union\bigcup
+\let\intersection\cap
+\let\intersect\cap
+\let\Intersection\bigcap
+\let\Intersect\bigcap
+
+% an asterisk for hanging above punctuation
+\newcommand{\hangasterisk}{\makebox[0pt][l]{*}}  % before punctuation
+% \newcommand{\hangasterisk}{\makebox[1pt][r]{*}}  % after punctuation with {} around
+
+% stacked asterisk symbol \stars{n}
+\makeatletter
+  \newcommand{\stars}{}% just for safety
+  \DeclareRobustCommand{\stars}[1]{\stars@{#1}}
+  \newcommand{\stars@}[1]{%
+    \ifcase#1\relax\or\stars@one\or\stars@two\or\stars@three\or\stars@four\or\stars@five\or\stars@six
+    \else ??\fi
+  }
+  \newcommand{\stars@char}{\text{*}}
+  \newcommand{\stars@base}[1]{%
+    $\m@th\vcenter{\offinterlineskip\lineskip=-0.65ex\ialign{\hfil##\hfil\cr#1\crcr}}$%
+  }
+  \newcommand{\stars@one}{%
+    \stars@base{\stars@char}%
+  }
+  \newcommand{\stars@two}{%
+    \stars@base{\stars@char\cr\stars@char}%
+  }
+  \newcommand{\stars@three}{%
+    \stars@base{\stars@char\cr\stars@char\stars@char}%
+  }
+  \newcommand{\stars@four}{%
+    \stars@base{\stars@char\stars@char\cr\stars@char\stars@char}%
+  }
+  \newcommand{\stars@five}{%
+    \stars@base{\stars@char\stars@char\cr\stars@char\stars@char\stars@char}%
+  }
+  \newcommand{\stars@six}{%
+    \stars@base{\stars@char\cr\stars@char\stars@char\cr\stars@char\stars@char\stars@char}%
+  }
+\makeatother

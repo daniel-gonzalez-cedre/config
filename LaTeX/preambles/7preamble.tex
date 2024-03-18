@@ -1,0 +1,114 @@
+
+% \pagestyle{fancy}
+% % \fancyfoot[C]{--~\thepage~--}
+% \fancyfoot[C]{\tiny \thepage\ / \pageref*{LastPage}}
+% \ifsyllabus
+  % \fancypagestyle{plain}{%
+    % \fancyhead[L]{}
+    % \ifdate
+      % \fancyhead[R]{\textit{\today}}
+    % \else
+      % \fancyhead[R]{}
+    % \fi
+    % \renewcommand{\headrulewidth}{0pt}
+  % }
+% \else
+  % \fancypagestyle{plain}{}
+  % \renewcommand{\headrulewidth}{0pt}
+% \fi
+
+% % stacked asterisk symbol \stars{n}
+% \makeatletter
+  % \newcommand{\stars}{}% just for safety
+  % \DeclareRobustCommand{\stars}[1]{\stars@{#1}}
+  % \newcommand{\stars@}[1]{%
+    % \ifcase#1\relax\or\stars@one\or\stars@two\or\stars@three\or\stars@four\or\stars@five\or\stars@six
+    % \else ??\fi
+  % }
+  % \newcommand{\stars@char}{\text{*}}
+  % \newcommand{\stars@base}[1]{%
+    % $\m@th\vcenter{\offinterlineskip\lineskip=-0.65ex\ialign{\hfil##\hfil\cr#1\crcr}}$%
+  % }
+  % \newcommand{\stars@one}{%
+    % \stars@base{\stars@char}%
+  % }
+  % \newcommand{\stars@two}{%
+    % \stars@base{\stars@char\cr\stars@char}%
+  % }
+  % \newcommand{\stars@three}{%
+    % \stars@base{\stars@char\cr\stars@char\stars@char}%
+  % }
+  % \newcommand{\stars@four}{%
+    % \stars@base{\stars@char\stars@char\cr\stars@char\stars@char}%
+  % }
+  % \newcommand{\stars@five}{%
+    % \stars@base{\stars@char\stars@char\cr\stars@char\stars@char\stars@char}%
+  % }
+  % \newcommand{\stars@six}{%
+    % \stars@base{\stars@char\cr\stars@char\stars@char\cr\stars@char\stars@char\stars@char}%
+  % }
+% \makeatother
+
+% % new footnote symbols
+% \makeatletter
+% \def\ssymbol#1{\expandafter\@ssymbol\csname c@#1\endcsname}
+% \def\@ssymbol#1{%
+  % \ifcase#1\or\textdagger%
+           % \or\textdaggerdbl%
+           % \or\stars{1}%
+           % \or\stars{2}%
+           % \or\stars{3}%
+           % \or\stars{4}%
+           % \or\stars{5}%
+           % \or\stars{6}%
+           % % \or\textdagger\textdagger%
+           % \or\textdaggerdbl\textdaggerdbl%
+           % \else\@ctrerr\fi}
+% \makeatother
+
+% \ifsymbolfootnotes
+  % \renewcommand*{\thefootnote}{\ssymbol{footnote}}%
+  % % \renewcommand*{\thefootnote}{\fnsymbol{footnote}}%
+% \else
+  % \renewcommand*{\thefootnote}{\arabic{footnote}}%
+% \fi
+
+% \delimitershortfall=-0.5pt
+% \normalem
+
+% \makeatletter
+% % \newlength\epitextskip
+% \pretocmd{\@epitext}{\em}{}{}
+% \apptocmd{\@epitext}{\em}{}{}
+% \patchcmd{\epigraph}{\@epitext{#1}\\}{\vspace{-10ex}\@epitext{#1}\\}{}{}
+% \makeatother
+
+% \setlength\epigraphrule{0pt}
+% % \setlength\epitextskip{0ex}
+% \setlength\epigraphwidth{.75\textwidth}
+
+% \hypersetup{%
+  % % pdfpagemode=FullScreen,
+  % % pdfpagemode=UseOutline,
+  % pdfauthor=Daniel Gonzalez Cedre,
+  % colorlinks=true,
+  % linkcolor=pumice,
+  % citecolor=orange,
+  % urlcolor=green,
+% }
+% % \hypersetup{
+    % % colorlinks=true,
+    % % linkcolor=orange,
+    % % citecolor=red,
+    % % urlcolor=blue
+% % }
+
+% % GIVES ALIGN ENVIRONMENTS THEIR OWN COUNTER THAT RESETS EVERY TIME
+% \newcounter{temp}
+% \AtBeginEnvironment{align}{%
+  % \setcounter{temp}{\value{equation}}%
+  % \setcounter{equation}{0}%
+% }
+% \AfterEndEnvironment{align}{%
+  % \setcounter{equation}{\value{temp}}%
+% }
