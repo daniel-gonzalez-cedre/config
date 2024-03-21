@@ -1,0 +1,57 @@
+\documentclass[\ClassOptions]{\ClassType}  % SET DOCUMENT CLASS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SATUS TUFTE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \iftufte  %============================================================
+    \usepackage{tipa}  % IPA fonts
+    \usepackage{microtype}  % better font rendering
+    \usepackage{fancyvrb}  % better verbatim environments
+    \usepackage{arydshln}  % draw dashed lines in some environments
+    \ifbook  % ----------------------------------------------------------
+      % \usepackage[utf8]{inputenc}  % utf8 input encoding
+      \usepackage[greek,english]{babel}  % greek fonts
+      \usepackage{yfonts}  % better fraktur fonts
+    \else  % ------------------------------------------------------------
+    \fi  % --------------------------------------------------------------
+  \else  %===============================================================
+    \usepackage[top=2cm,
+                bottom=2cm,
+                left=2cm,
+                right=2cm,
+                bindingoffset=0cm]{geometry}  % page margins
+    \usepackage[math]{cellspace}  % better cell spacing for tables
+    \usepackage{caption, subcaption}  % figures and subfigures
+  \fi  %=================================================================
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FINEM TUFTE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SATUS GENERAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % MATH
+  \usepackage{amsmath, amsfonts, amssymb, amstext, amscd, amsthm}
+  \usepackage{bm, faktor, mathrsfs, mathtools, thmtools, xfrac}
+  % FONTS
+  \usepackage{bbm, CJKutf8, dsfont, marvosym, stmaryrd}
+  % FORMATTING
+  \usepackage{enumerate, listings, parskip, verbatim}
+  \usepackage[shortlabels]{enumitem}
+  \usepackage[framemethod=TikZ]{mdframed}
+  \usepackage[group-separator={,},group-minimum-digits={3}]{siunitx}
+  % COLORS
+  \usepackage{color, soul, xcolor}
+  % TABLES
+  \usepackage{booktabs, colortbl, makecell}
+  % FIGURES
+  \usepackage{graphicx, float}
+  % HEADERS / FOOTERS
+  \usepackage{fancyhdr, lastpage, perpage}
+  % MISCELLANEOUS
+  \usepackage[nodayofweek]{datetime}
+  \usepackage{chngcntr, epigraph, lipsum, imakeidx, ulem}
+  % PROGRAMMING
+  \usepackage{etoolbox, ifthen, xargs}
+  % REFERENCES
+  \usepackage{url}
+  \usepackage{hyperref}
+  \usepackage[nameinlink]{cleveref}
+  % TIKZ
+  \usepackage{tikz}
+  \usepackage{pgfplots}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FINEM GENERAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -221,26 +221,26 @@ set undofile
 
 
 " CLEAR MAPPINGS
-  nnoremap i i
-  nnoremap I I
-  nnoremap a a
-  nnoremap A A
-  nnoremap o o
-  nnoremap O O
-  nnoremap gi gi
-  nnoremap gI gI
-  nnoremap s s
-  nnoremap S S
-  nnoremap r r
-  nnoremap R R
-  nnoremap c c
-  nnoremap C C
+  nmap i i
+  nmap I I
+  nmap a a
+  nmap A A
+  nmap o o
+  nmap O O
+  nmap gi gi
+  nmap gI gI
+  nmap s s
+  nmap S S
+  nmap r r
+  nmap R R
+  nmap c c
+  nmap C C
   " nnoremap d :noh<bar>:echo<cr>d
   " nnoremap D :noh<bar>:echo<cr>D
   " vnoremap x x<c-C>
   " vnoremap X X<c-C>
-  nnoremap v v
-  nnoremap V V
+  nmap v v
+  nmap V V
 
 
 " SEARCH MAPPINGS
@@ -253,6 +253,11 @@ set undofile
 
 
 " QUALITY OF LIFE MAPPINGS
+  noremap \| $
+  noremap! \| $
+  noremap <c-\> \|
+  noremap! <c-\> \|
+
   " movement
   nnoremap j gj
   nnoremap k gk
@@ -496,7 +501,7 @@ set undofile
   let &t_EI="\e[1 q"      " UNDERLINE: end insert mode
   " let &t_EI="\e[2 q"    " BLOCK: end insert mode
 
-" NERDCommenter mappings
+" NERDCommenter MAPPINGS
 autocmd! VimEnter * call s:nerdcommenter_mappings()
 function! s:nerdcommenter_mappings()
   map <leader>cc <plug>NERDCommenterToggle

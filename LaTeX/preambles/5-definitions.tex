@@ -47,7 +47,6 @@
 
 \renewcommand{\qedsymbol}{\scshape q.e.d.}
 
-\renewcommand{\restriction}[1]{\downharpoonright_{#1}}
 \renewcommand{\leq}{\leqslant}
 \renewcommand{\geq}{\geqslant}
 
@@ -119,36 +118,48 @@
 \newcommand{\suchthat}{\;\vert\;}
 \newcommand{\contradiction}{\smash{\textnormal{\raisebox{-0.25ex}{\Large \Lightning}}} }
 
-\newcommand{\conjugate}[1]{\overline{#1}}
 \newcommand{\mean}[1]{\overline{#1}}
+\newcommand{\conjugate}[1]{\overline{#1}}
+% \newcommand{\complement}[1]{\overline{#1}}  % already defined lol?
 
 \newcommand*\diff{\mathop{}\!\mathrm{d}}
 \newcommand{\integral}[1]{\smashoperator{\int_{#1}}}
-\newcommand{\E}[1]{\mathbb{E}\sq*{#1}}
-\newcommand{\Esub}[2]{\mathbb{E}_{#1}\sq*{#2}}
-\newcommand{\var}[1]{\mathrm{Var}\term*{#1}}
-\newcommand{\cov}[2]{\mathrm{Cov}\term*{#1, #2}}
 \newcommand{\der}[2]{\frac{\diff{#1}}{\diff{#2}}}
 \newcommand{\dern}[3]{\frac{\diff^{#3}{#1}}{\diff{#2}^{#3}}}
 \newcommand{\derm}[3]{\frac{\diff^{#3}{#1}}{\diff{#2}}}
 \newcommand{\prt}[2]{\frac{\partial{#1}}{\partial{#2}}}
 \newcommand{\prtn}[3]{\frac{\partial^{#3}{#1}}{\partial{#2}^{#3}}}
 \newcommand{\prtm}[3]{\frac{\partial^{#3}{#1}}{\partial{#2}}}
-\newcommand{\modulo}[3]{#1 \equiv #2 ~\term*{\mathrm{mod}~#3}}
-\newcommand{\congruent}[3]{#1 \equiv #2 ~\term*{\mathrm{mod}~#3}}
-\newcommand{\Z}[1]{\ensuremath{\sfrac{\mathbb{Z}}{#1\mathbb{Z}}}}
-\newcommand{\z}[1]{\ensuremath{\sfrac{\mathbb{Z}}{#1\mathbb{Z}}}}
-\newcommand{\zmod}[1]{\ensuremath{\mathbb{Z}/#1\mathbb{Z}}}
-\newcommand*\id{\text{id}}
+
+\DeclarePairedDelimiterXPP{\E}[1]{\mathbb{E}}{[}{]}{}{#1}
+\DeclarePairedDelimiterXPP{\Esub}[2]{\mathbb{E}}{[}{]}{#1}{#2}{}
+% \newcommand{\E}[1]{\mathbb{E}\sq*{#1}}
+% \newcommand{\Esub}[2]{\mathbb{E}_{#1}\sq*{#2}}
+\DeclarePairedDelimiterXPP{\var}[1]{\mathrm{Var}}{(}{)}{}{#1}
+\DeclarePairedDelimiterXPP{\cov}[2]{\mathrm{Cov}}{(}{)}{}{#1, #2}
+% \newcommand{\var}[1]{\mathrm{Var}\term*{#1}}
+% \newcommand{\cov}[2]{\mathrm{Cov}\term*{#1, #2}}
+
 % better pmod
 \makeatletter
-\DeclarePairedDelimiterX{\pmodx}[1]{(}{)}{{\operator@font mod}\mkern6mu#1}
-\renewcommand{\pmod}{%
-  \allowbreak
-  \if@display\mkern18mu\else\mkern8mu\fi
-  \pmodx
-}
+  \DeclarePairedDelimiterX{\pmodx}[1]{(}{)}{{\operator@font mod}\mkern6mu#1}
+  \renewcommand{\pmod}{%
+    \allowbreak
+    \if@display\mkern18mu\else\mkern8mu\fi
+    \pmodx
+  }
 \makeatother
+\newcommand{\modulo}[3]{#1 \equiv #2 ~\term*{\mathrm{mod}~#3}}
+\newcommand{\congruent}[3]{#1 \equiv #2 ~\term*{\mathrm{mod}~#3}}
+
+\newcommand{\zmod}[1]{\ensuremath{\mathbb{Z}/#1\mathbb{Z}}}
+\newcommand{\Z}[1]{\ensuremath{\sfrac{\mathbb{Z}}{#1\mathbb{Z}}}}
+\newcommand{\z}[1]{\ensuremath{\sfrac{\mathbb{Z}}{#1\mathbb{Z}}}}
+
+\renewcommand{\restriction}[1]{\downharpoonright_{#1}}
+\newcommand{\restricted}[2]{#1\downharpoonright_{#2}}
+% \newcommand*\id{\mathrm{id}}
+\newcommand*\id{\text{\normalshape \tt id}}
 
 \newcommand{\inj}{\hookrightarrow}
 \newcommand{\inject}{\hookrightarrow}
@@ -175,16 +186,17 @@
 % \ifstandalone
   % \newcommand{\s}[1]{\mathfrak{s}\term*{#1}}
 % \else
-  \renewcommand{\s}[1]{\mathfrak{s}\term*{#1}}
+  % \renewcommand{\s}[1]{\mathfrak{s}\term*{#1}}
+\let\olds\s
+\let\s\relax
+\DeclarePairedDelimiterXPP{\s}[1]{\mathfrak{s}}{(}{)}{}{#1}
 % \fi
 \renewcommand{\S}[1]{\mathcal{S}\term*{#1}}
 \renewcommand{\O}[1]{\mathcal{O}\term*{#1}}
 \renewcommand{\P}[1]{\mathbb{P}\term*{#1}}
-% \newcommand{\succ}[1]{\s}
-\newcommand{\successor}[1]{\textsc{suc}\term*{#1}}
-% \newcommand{\successor}[1]{\mathcal{S}\term*{#1}}
-% \newcommand{\power}[1]{\mathcal{P}\term*{#1}}
-\newcommand{\power}[1]{\mathbb{P}\term*{#1}}  % TODO
+\DeclarePairedDelimiterXPP{\successor}[1]{\textsc{suc}}{(}{)}{}{#1}
+\DeclarePairedDelimiterXPP{\power}[1]{\mathbb{P}}{(}{)}{}{#1}
+
 \newcommand{\naturals}{\mathbb{N}}
 \newcommand{\integers}{\mathbb{Z}}
 \newcommand{\rationals}{\mathbb{Q}}
@@ -208,8 +220,8 @@
 \newcommand{\textiff}{\textit{iff}\ }
 
 % these need {} after them
-\newcommand{\etal}{\textit{et al.}}
-\newcommand{\wff}{\textit{wff}}
+\newcommand*{\etal}{\textit{et al.}}
+\newcommand*{\wff}{\textit{wff}}
 
 \DeclareMathOperator{\lcm}{lcm}
 \DeclareMathOperator*{\argmin}{arg\!\min}
@@ -220,21 +232,24 @@
 \renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
 \renewcommand{\right}{\aftergroup\egroup\originalright}
 
+% chinese and japanese fonts
 \newcommand{\zh}[1]{\begin{CJK}{UTF8}{min}#1\end{CJK}}
 \newcommand{\hanzi}[1]{\begin{CJK}{UTF8}{gkai}#1\end{CJK}}
 \newcommand{\kanji}[1]{\begin{CJK}{UTF8}{bkai}#1\end{CJK}}
 \newcommand{\kana}[1]{\begin{CJK}{UTF8}{min}#1\end{CJK}}
 
 % parentheses and delimiters
-\DeclarePairedDelimiterX \inner[2]{\langle}{\rangle}{#1,#2}
-\DeclarePairedDelimiter \bracket{\langle}{\rangle}
-\DeclarePairedDelimiter \bra{\langle}{\rvert}
-\DeclarePairedDelimiter \ket{\lvert}{\rangle}
-\DeclarePairedDelimiter \abs{\lvert}{\rvert}
-\DeclarePairedDelimiter \norm{\lVert}{\rVert}
-\DeclarePairedDelimiter \order{\lvert}{\rvert}
-\DeclarePairedDelimiter \size{\lvert}{\rvert}
+\DeclarePairedDelimiterX \abs[1]{\lvert}{\rvert}{\ifblank{#1}{\:\cdot\:}{#1}}
+\DeclarePairedDelimiterX \norm[1]{\lVert}{\rVert}{\ifblank{#1}{\:\cdot\:}{#1}}
+\DeclarePairedDelimiterX \inner[2]{\langle}{\rangle}{\ifblank{#1}{\:\cdot\:}{#1},\ifblank{#2}{\:\cdot\:}{#2}}
+\DeclarePairedDelimiterX \bracket[1]{\langle}{\rangle}{\ifblank{#1}{\:\cdot\:}{#1}}
+\DeclarePairedDelimiterX \bra[1]{\langle}{\rvert}{\ifblank{#1}{\:\cdot\:}{#1}}
+\DeclarePairedDelimiterX \ket[1]{\lvert}{\rangle}{\ifblank{#1}{\:\cdot\:}{#1}}
+
+\DeclarePairedDelimiter \card{\lvert}{\rvert}
 \DeclarePairedDelimiter \cardinality{\lvert}{\rvert}
+\DeclarePairedDelimiter \order{\lvert}{\rvert}
+\DeclarePairedDelimiter \size{\lVert}{\rVert}
 
 \DeclarePairedDelimiterX \set[1]{\lbrace}{\rbrace}{%
   \renewcommand{\suchthat}{\;\delimsize\vert\nonscript\;\mathopen{}}%

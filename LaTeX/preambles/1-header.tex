@@ -1,0 +1,92 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SATUS SETUP %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \makeatletter
+    % some sensible defaults
+    \gdef\DraftOption{}
+    \gdef\BookChapterOption{}
+    \gdef\DateHeaderText{}
+    \gdef\ProofSpacing{-0.75\baselineskip}
+
+    \newif\ifdraft
+    \newif\iftufte
+    \newif\ifbook
+    \newif\ifAMSsymbols
+    \newif\iffootnotesymbols
+
+    % setDraft
+    \def\setDraft@yes{\gdef\DraftOption{draft}}
+    \def\setDraft@no{\gdef\DraftOption{}}
+
+    % setDocument Tufte styles
+    \def\setDocument@yesarticle{%
+      \bookfalse%
+      \tuftetrue%
+      \gdef\ClassType{tufte-handout}%
+      \gdef\ClassOptions{nobib,justified,\DraftOption}%
+    }
+    \def\setDocument@yesbook{%
+      \booktrue%
+      \tuftetrue%
+      \gdef\ClassType{tufte-book}%
+      \gdef\ClassOptions{nobib,justified,openany,\DraftOption}%
+      \gdef\BookChapterOption{chapter}
+    }
+    \def\setDocument@yesproblemset{%
+      \bookfalse%
+      \tuftetrue%
+      \gdef\ClassType{tufte-handout}%
+      \gdef\ClassOptions{nobib,justified,\DraftOption}%
+    }
+    \def\setDocument@yessolutionset{%
+      \bookfalse%
+      \tuftetrue%
+      \gdef\ClassType{tufte-handout}%
+      \gdef\ClassOptions{nobib,justified,\DraftOption}%
+      \gdef\ProofSpacing{-0.5\baselineskip}
+    }
+    % setDocument non-Tufte styles
+    \def\setDocument@book{%
+      \booktrue%
+      \tuftefalse%
+      \gdef\ClassType{book}%
+    }
+    \def\setDocument@standalone{%
+      \bookfalse%
+      \tuftefalse%
+      \gdef\ClassType{standalone}\tuftefalse
+    }
+
+    % setPaper
+    \def\setPaper@white{\gdef\PaperColor{white}}
+    \def\setPaper@natural{\gdef\PaperColor{cream}}
+
+    % setDate
+    \def\setDate@yes{%
+      \gdef\DateHeaderText{\textit{\today}}%
+      \gdef\DateBookText{\today}%
+    }
+    \def\setDate@no{\gdef\DateHeaderText{}}
+
+    % setMathSymbols
+    \def\setMathSymbols@{\AMSsymbolstrue}
+    \def\setMathSymbols@old{\AMSsymbolstrue}
+    \def\setMathSymbols@new{\AMSsymbolsfalse}
+
+    % setFootnoteMark
+    \def\setFootnoteMark@numbers{\footnotesymbolsfalse}
+    \def\setFootnoteMark@symbols{\footnotesymbolstrue}
+
+    \newcommand{\setup}[7]{
+      \csname setDraft@#1\endcsname
+      \csname setDocument@#2#3\endcsname
+
+      \csname setPaper@#4\endcsname
+      \csname setDate@#5\endcsname
+
+      \csname setMathSymbols@#6\endcsname
+      \csname setFootnoteMark@#7\endcsname
+    }
+  \makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FINEM SETUP %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%       #1         #2         #3        #4         #5        #6               #7
+\setup{\optDraft}{\optTufte}{\optType}{\optPaper}{\optDate}{\optMathSymbols}{\optFootnoteMark}

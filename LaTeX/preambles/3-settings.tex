@@ -1,20 +1,23 @@
-% BEGIN BOOK SETTINGS %%%%%%%%%%%%%
-  \ifbook  %=======================
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SATUS BOOK %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \ifbook  %============================================================
     \let\cleardoublepage=\clearpage
     \setcounter{tocdepth}{2}
     \setcounter{secnumdepth}{1}
-  \else  %=========================
+  \else  %==============================================================
     \fancypagestyle{plain}{%
-      \fancyhead[L]{}
-      \fancyhead[R]{\DateHeaderText}
+      \fancyhead[L]{\DateHeaderText}
+      % \fancyhead[R]{}
     }
+    \pagestyle{fancy}
+    \fancyfoot[C]{\tiny \thepage\ / \pageref*{LastPage}}
+    % \fancyfoot[C]{--~\thepage~--}
     % \fancypagestyle{plain}{}
     \renewcommand{\headrulewidth}{0pt}
-  \fi  %===========================
-% END BOOK SETTINGS %%%%%%%%%%%%%%%
+  \fi  %================================================================
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FINEM BOOK %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% BEGIN TUFTE SETTINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \iftufte  %====================================================
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SATUS TUFTE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \iftufte  %============================================================
     % part format
     \titleformat{\part}[display]
       {\itshape\Huge}  % format applied to label+text
@@ -81,14 +84,14 @@
 
     \renewcommand{\figurename}{Fig.}
     \renewcommand{\tablename}{Tab.}
-  \else  %=======================================================
+  \else  %===============================================================
     % better spacing for table cells
     \cellspacetoplimit 1pt
     \cellspacebottomlimit 1pt
-  \fi  %=========================================================
-% END TUFTE SETTINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \fi  %=================================================================
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FINEM TUFTE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% BEGIN GENERAL SETTINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SATUS GENERAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \allowdisplaybreaks
 
   % nested parentheses scaling
@@ -138,48 +141,53 @@
 
   % specify AMS math symbols
   \AtBeginDocument{%
-    \ifAMSsymbols %-----------------------------------------------------------------
+    \ifAMSsymbols %--------------------------------------------------------
       \DeclareSymbolFontAlphabet{\mathrm}     {operators}
       \DeclareSymbolFontAlphabet{\mathnormal} {letters}
       \DeclareSymbolFontAlphabet{\mathcal}    {symbols}
 
-      \DeclareMathAlphabet      {\mathbf}                       {OT1}{cmr}  {bx}{n}
-      \DeclareMathAlphabet      {\mathsf}                       {OT1}{cmss} {m} {n}
-      \DeclareMathAlphabet      {\mathit}                       {OT1}{cmr}  {m} {it}
-      \DeclareMathAlphabet      {\mathtt}                       {OT1}{cmtt} {m} {n}
+      \DeclareMathAlphabet      {\mathbf}                      {OT1}{cmr} {bx}{n}
+      \DeclareMathAlphabet      {\mathsf}                      {OT1}{cmss}{m} {n}
+      \DeclareMathAlphabet      {\mathit}                      {OT1}{cmr} {m} {it}
+      \DeclareMathAlphabet      {\mathtt}                      {OT1}{cmtt}{m} {n}
 
-      \DeclareSymbolFont                      {operators}       {OT1} {cmr} {m} {n}
-      \DeclareSymbolFont                      {letters}         {OML} {cmm} {m} {it}
-      \DeclareSymbolFont                      {symbols}         {OMS} {cmsy}{m} {n}
-      \DeclareSymbolFont                      {largesymbols}    {OMX} {cmex}{m} {n}
+      \DeclareSymbolFont                      {operators}      {OT1}{cmr} {m} {n}
+      \DeclareSymbolFont                      {letters}        {OML}{cmm} {m} {it}
+      \DeclareSymbolFont                      {symbols}        {OMS}{cmsy}{m} {n}
+      \DeclareSymbolFont                      {largesymbols}   {OMX}{cmex}{m} {n}
 
-      \SetSymbolFont                          {operators} {bold}{OT1} {cmr} {bx}{n}
-      \SetSymbolFont                          {letters}   {bold}{OML} {cmm} {b} {it}
-      \SetSymbolFont                          {symbols}   {bold}{OMS} {cmsy}{b} {n}
-    \else  %------------------------------------------------------------------------
+      \SetSymbolFont                          {operators}{bold}{OT1}{cmr} {bx}{n}
+      \SetSymbolFont                          {letters}  {bold}{OML}{cmm} {b} {it}
+      \SetSymbolFont                          {symbols}  {bold}{OMS}{cmsy}{b} {n}
+    \else  %---------------------------------------------------------------
       \DeclareSymbolFontAlphabet{\mathbb} {AMSb}
       \DeclareMathAlphabet      {\mathbb}           {U}{bbold}{m}{n}
       \DeclareSymbolFont                  {AMSb}    {U}{msb}  {m}{n}
-    \fi  % -------------------------------------------------------------------------
+    \fi  % ----------------------------------------------------------------
   }
 
   % symbolic footnote marks
-  \iffootnotesymbols  % ------------------------------------------------------------
-    \makeatletter
-      \def\ssymbol#1{\expandafter\@ssymbol\csname c@#1\endcsname}
-      \def\@ssymbol#1{%
-        \ifcase#1\or\textdagger%
-                  \or\textdaggerdbl%
-                  \or\stars{1}%
-                  \or\stars{2}%
-                  \or\stars{3}%
-                  \or\stars{4}%
-                  \or\stars{5}%
-                  \or\stars{6}%
-                  % \or\textdagger\textdagger%
-                  \or\textdaggerdbl\textdaggerdbl%
-                  \else\@ctrerr\fi}
-    \makeatother
-  \else  % -------------------------------------------------------------------------
-  \fi  % ---------------------------------------------------------------------------
-% END GENERAL SETTINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \makeatletter
+    \def\@ssymbol#1{%
+      \ifcase#1\or\textdagger%
+               \or\textdaggerdbl%
+               \or\textdagger\textdagger%
+               \or\textdaggerdbl\textdaggerdbl%
+               \or\stars{1}%
+               \or\stars{2}%
+               \or\stars{3}%
+               \or\stars{4}%
+               \or\stars{5}%
+               \or\stars{6}%
+               \or\textreferencemark%
+               \else\@ctrerr\fi%
+    }
+    \def\ssymbol#1{\expandafter\@ssymbol\csname c@#1\endcsname}
+  \makeatother
+  \iffootnotesymbols  % ---------------------------------------------------
+    \renewcommand*{\thefootnote}{\ssymbol{footnote}}%
+    % \renewcommand*{\thefootnote}{\fnsymbol{footnote}}%
+  \else  % ----------------------------------------------------------------
+    \renewcommand*{\thefootnote}{\arabic{footnote}}%
+  \fi  % ------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FINEM GENERAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
