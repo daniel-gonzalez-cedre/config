@@ -6,24 +6,31 @@
 
 :root {
   --tab-height: 32px;
+  --tab-width: 160px;
   --tab-min-width: 32px;
   --tab-max-width: 256px;
   --closebox-color: #4f4d4d00;
   --closebox-hover-color: #fb4934;
   --twisty-color: #4f4d4d00;
   --twisty-hover-color: #fe8019;
-  --loading-color: #282423;
+  
+  --active-color: #a89984aa;
+  --unread-color: #a8998455;
+  --discarded-color: #22202055;
+  --loading-color: #a8998455;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background-color: #000000;
-    --label-color: #bbbbbb;  /* #cabaa9; */
+    --label-color: #cccccc;  /* #cabaa9; */
     --tab-active-background-color: #4f4d4d;
     --tab-background-color: #181818;
     --tab-item-hover-background-color: #222020;
-    --tab-item-substance-border-color: #00000075;
+    --tab-item-substance-border-color: #000000;
     --tab-item-substance-background-color: #181818;
+    --discarded-background-color: #101010;
+    --discarded-label-color: #444444;
     --unread-label-color: #555555;
   }
 }
@@ -58,23 +65,33 @@
 /* tab styling */
 #tabbar .tab {
   height: var(--tab-height);
-  width: var(--tab-max-width);
+  width: var(--tab-width);  /* max */
   margin: 0px;
   padding: 0px;
   transition: 0.25s width;
 }
-#tabbar:not(:hover) .tab { width: var(--tab-min-width); }
+#tabbar:not(:hover) .tab { width: var(--tab-width); }  /* min */
 
 /* tab background styling */
-#tabbar .tab .background{
+#tabbar .tab .background {
   background: var(--tab-background-color);
   margin: 2px;
   padding: 5px;
   border-radius: 4px;
   transition: 0.25s background;
 }
-#tabbar .tab.active .background{ background: var(--tab-active-background-color); }
-#tabbar tab-item:hover .background { background: var(--tab-item-hover-background-color); }
+#tabbar .tab.active .background {
+  /* background: var(--tab-active-background-color); */
+  background: var(--active-color);
+}
+#tabbar .tab.active:hover tab-item-substance {
+  background: var(--tab-active-background-color);
+  transition: 0.25s background;
+}
+#tabbar .tab.active:hover .background {
+  /* background: var(--tab-active-background-color); */
+}
+#tabbar tab-item:hover tab-item-substance { background: var(--tab-item-hover-background-color); }
 
 /* tab item styling */
 #tabbar tab-item { }
@@ -85,7 +102,7 @@
   padding: 5px;
   border-radius: 6px;
   border: solid 1px var(--tab-item-substance-border-color);
-  transition: 0.25s margin;
+  transition: all 0.25s !important;
 }
 #tabbar tab-item tab-item-substance:hover { }
 #tabbar:not(:hover) tab-item[data-level] tab-item-substance { margin-left: 0% !important; }
@@ -97,32 +114,32 @@
   font-size: 12px;
   line-height: var(--tab-height);
 }
-#tabbar tab-item.unread .label-content { color: var(--unread-label-color) !important; }  /* grey text for unread tabs */
 
 /* tab favicon stylings */
+#tabbar tab-item.active tab-favicon { filter: grayscale(0); }  /* full color favicons on active tab */
+#tabbar tab-item:hover tab-favicon { opacity: 0; }  /* hide favicons on hover */
 #tabbar tab-item tab-favicon {
-  margin: 0px 8px 0px 2px;
+  margin: 0px 6px 0px 2px;
   transition: 0.25s opacity;
 }
-#tabbar tab-item.active tab-favicon { filter: grayscale(0); }  /* full color favicons on active tab */
-#tabbar tab-item.unread tab-favicon { filter: grayscale(1); }  /* gray favicons for unread tabs */
-#tabbar tab-item:hover tab-favicon { opacity: 0; }  /* hide favicons on hover */
+
+/* styling for unread and discarded tabs */
+#tabbar tab-item.unread, #tabbar tab-item.discarded { opacity: 0.75; }
+#tabbar tab-item.unread:hover tab-item-substance, #tabbar tab-item.discarded:hover tab-item-substance { background: var(--discarded-color); }
+#tabbar tab-item.unread, #tabbar tab-item.discarded tab-favicon { filter: grayscale(1); }
+#tabbar tab-item.discarded .label-content { opacity: 0.25 !important; }
 
 /* blank tab  and loading behavior */
-#tabbar tab-item:not(.loading):-moz-any([data-current-uri*="blanktab"],
-                                        [data-current-uri="about:home"],
-                                        [data-current-uri="about:blank"],
-                                        [data-current-uri="about:newtab"])
-                                        .label-content { visibility: collapse !important; }
-#tabbar tab-item:not(.loading):-moz-any([data-current-uri*="blanktab"],
-                                        [data-current-uri="about:home"],
-                                        [data-current-uri="about:blank"],
-                                        [data-current-uri="about:newtab"])
-                                        tab-favicon { visibility: collapse !important; }
-#tabbar tab-item.loading .label-content,
-#tabbar tab-item.loading tab-favicon { visibility: collapse !important; }
-#tabbar tab-item.loading tab-item-substance { background: var(--loading-color); }
-/* #tabbar tab-item.loading .background { background: var(--loading-color); } */
+#tabbar .loading tab-favicon { visibility: collapse !important; }
+#tabbar .loading .label-content { visibility: collapse !important; }
+#tabbar .loading tab-item-substance { background: var(--loading-color); !important }
+
+#tabbar tab-item:not(.loading):-moz-any([data-current-uri*="blanktab"], [data-current-uri="about:home"], [data-current-uri="about:blank"], [data-current-uri="about:newtab"]) .label-content,
+#tabbar tab-item:not(.loading):-moz-any([data-current-uri*="blanktab"], [data-current-uri="about:home"], [data-current-uri="about:blank"], [data-current-uri="about:newtab"]) tab-favicon,
+#tabbar tab-item.loading:-moz-any([data-current-uri*="blanktab"], [data-current-uri="about:home"], [data-current-uri="about:blank"], [data-current-uri="about:newtab"]) .label-content,
+#tabbar tab-item.loading:-moz-any([data-current-uri*="blanktab"], [data-current-uri="about:home"], [data-current-uri="about:blank"], [data-current-uri="about:newtab"]) tab-favicon {
+  visibility: collapse !important;
+}
 
 
 /* [x] closebox styling for closing tabs */
@@ -146,13 +163,12 @@
   order: 10000;
   padding: 0px;
   margin: 0px;
-  opacity: 0;
+  opacity: 0.5;
   border-radius: 4px;
   transition: all 0.25s;
 }
 #tabbar tab-twisty::before { margin: 1px 0px -1px 0px; }
 #tabbar:hover tab-twisty {
-  background: var(--twisty-color);
   opacity: 0.5;
 }
 #tabbar tab-twisty:hover {
