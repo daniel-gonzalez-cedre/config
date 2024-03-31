@@ -14,35 +14,30 @@
   --twisty-color: #4f4d4d00;
   --twisty-hover-color: #fe8019;
   
-  --active-color: #a89984aa;
+  --loading-color: #a8998455;
   --unread-color: #a8998455;
   --discarded-color: #22202055;
-  --loading-color: #a8998455;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background-color: #000000;
     --label-color: #cccccc;  /* #cabaa9; */
-    --tab-active-background-color: #4f4d4d;
+    --background-color: #000000;
+    --tab-active-background-color: #a89984aa;
     --tab-background-color: #181818;
     --tab-item-hover-background-color: #222020;
     --tab-item-substance-border-color: #000000;
     --tab-item-substance-background-color: #181818;
-    --discarded-background-color: #101010;
-    --discarded-label-color: #444444;
-    --unread-label-color: #555555;
   }
 }
 @media (prefers-color-scheme: light) {
   :root {
-    --background-color: #ffffff;
     --label-color: #121212;
+    --background-color: #ffffff;
+    --tab-active-background-color: #f0f0f0;
+    --tab-item-hover-background-color: #f0f0f0;
     --tab-item-substance-border-color: #00000025;
     --tab-item-substance-background-color: #ffffff;
-    --tab-item-hover-background-color: #f0f0f0;
-    --tab-active-background-color: #f0f0f0;
-    --unread-label-color: #bbbbbb;
   }
 }
 
@@ -82,7 +77,7 @@
 }
 #tabbar .tab.active .background {
   /* background: var(--tab-active-background-color); */
-  background: var(--active-color);
+  background: var(--tab-active-background-color);
 }
 #tabbar .tab.active:hover tab-item-substance {
   background: var(--tab-active-background-color);
