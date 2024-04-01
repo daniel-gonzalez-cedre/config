@@ -23,7 +23,8 @@
   :root {
     --label-color: #cccccc;  /* #cabaa9; */
     --background-color: #000000;
-    --tab-active-background-color: #a89984aa;
+    /* --tab-active-background-color: #a89984aa; */
+    --tab-active-background-color: #3f3d3daa;
     --tab-background-color: #181818;
     --tab-item-hover-background-color: #222020;
     --tab-item-substance-border-color: #000000;

@@ -117,7 +117,8 @@
 \newcommand{\notdivides}{\nmid}
 \newcommand{\given}{\;\vert\;}
 \newcommand{\suchthat}{\;\vert\;}
-\newcommand{\contradiction}{\smash{\textnormal{\raisebox{-0.25ex}{\Large \Lightning}}} }
+% \newcommand{\contradiction}{\smash{\textnormal{\raisebox{-0.25ex}{\Large \Lightning}}} }
+\newcommand{\contradiction}{\smash{\textnormal{\faBolt}}\, }
 
 \newcommand{\mean}[1]{\overline{#1}}
 \newcommand{\conjugate}[1]{\overline{#1}}
@@ -133,7 +134,7 @@
 \newcommand{\prtm}[3]{\frac{\partial^{#3}{#1}}{\partial{#2}}}
 
 \DeclarePairedDelimiterXPP{\E}[1]{\mathbb{E}}{[}{]}{}{#1}
-\DeclarePairedDelimiterXPP{\Esub}[2]{\mathbb{E}}{[}{]}{#1}{#2}{}
+\DeclarePairedDelimiterXPP{\Esub}[2]{\mathbb{E}}{[}{]}{#1}{#2}
 % \newcommand{\E}[1]{\mathbb{E}\sq*{#1}}
 % \newcommand{\Esub}[2]{\mathbb{E}_{#1}\sq*{#2}}
 \DeclarePairedDelimiterXPP{\var}[1]{\mathrm{Var}}{(}{)}{}{#1}
@@ -246,6 +247,16 @@
 \DeclarePairedDelimiterX \bracket[1]{\langle}{\rangle}{\ifblank{#1}{\:\cdot\:}{#1}}
 \DeclarePairedDelimiterX \bra[1]{\langle}{\rvert}{\ifblank{#1}{\:\cdot\:}{#1}}
 \DeclarePairedDelimiterX \ket[1]{\lvert}{\rangle}{\ifblank{#1}{\:\cdot\:}{#1}}
+\DeclarePairedDelimiterX \floor[1]{\lfloor}{\rfloor}{\ifblank{#1}{\:\cdot\:}{#1}}
+\DeclarePairedDelimiterX \ceil[1]{\lceil}{\rceil}{\ifblank{#1}{\:\cdot\:}{#1}}
+\DeclarePairedDelimiterX \ceiling[1]{\lceil}{\rceil}{\ifblank{#1}{\:\cdot\:}{#1}}
+
+\let\olddeg\deg
+\let\deg\relax
+% \DeclarePairedDelimiterX \deg[1]{\lvert}{\rvert}{\ifblank{#1}{\:\cdot\:}{#1}}
+\DeclarePairedDelimiterXPP{\deg}[1]{\texttt{deg}}{(}{#1}{)}{}
+\DeclarePairedDelimiterXPP{\degsub}[2]{\texttt{deg}_{#1}}{(}{#2}{)}{}
+% \DeclarePairedDelimiterXPP{\degin}[2]{\mathbb{E}}  {[} {]} {#1}{#2}{}
 
 \DeclarePairedDelimiter \card{\lvert}{\rvert}
 \DeclarePairedDelimiter \cardinality{\lvert}{\rvert}
@@ -279,6 +290,9 @@
 \let\intersect\cap
 \let\Intersection\bigcap
 \let\Intersect\bigcap
+
+% TODO: maybe implement this
+% \newcommand{\smashsum}[2][]{\smashoperator{\sum_{\ifblank{#1}{#1}{#1}}^{\ifblank{#2}}}}
 
 % an asterisk for hanging above punctuation
 \newcommand{\hangasterisk}{\makebox[0pt][l]{*}}  % before punctuation

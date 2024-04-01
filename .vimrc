@@ -253,10 +253,10 @@ set undofile
 
 
 " QUALITY OF LIFE MAPPINGS
-  noremap \| $
-  noremap! \| $
-  noremap <c-\> \|
-  noremap! <c-\> \|
+  " noremap \| $
+  " noremap! \| $
+  noremap <c-\> $
+  noremap! <c-\> $
 
   " movement
   nnoremap j gj

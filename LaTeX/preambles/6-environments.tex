@@ -3,8 +3,6 @@
 \let\oldendproof\endproof
 \renewenvironment{proof}[1][\bfseries\proofname]{%
   \vspace{\ProofSpacing}%
-  % \vspace{-2ex}%
-  % \vspace{-0.75\baselineskip}%
   \oldproof[\bfseries #1]
 }{\qed}
 
