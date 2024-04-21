@@ -8,5 +8,7 @@
 autocmd BufNewFile,BufRead *.tex inoremap $ <c-r>=QuoteDelim('$')<cr>
 autocmd BufNewFile,BufRead *.tex inoremap <c-\> <c-r>=QuoteDelim('$')<cr>
 autocmd BufNewFile,BufRead *.tikz inoremap <c-\> <c-r>=QuoteDelim('$')<cr>
+autocmd BufNewFile,BufRead *.tex inoremap <c-f> <c-r>=QuoteDelim('$')<cr>
+autocmd BufNewFile,BufRead *.tikz inoremap <c-f> <c-r>=QuoteDelim('$')<cr>
 autocmd BufNewFile,BufRead *.tex iunmap `
 autocmd BufNewFile,BufRead *.tikz iunmap `

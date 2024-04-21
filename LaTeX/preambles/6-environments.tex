@@ -96,9 +96,12 @@
   {\textbf{#1:}\quote}
   {\endquote}
 
-\newenvironment{case}[1][Case]
+
+% \ifblank{#1}{\:\cdot\:}{#1}
+
+\newenvironment{case}[1][]
   % {\par\textit{#1:}\hfill\break}
-  {\quote\textit{#1:}}
+  {\quote\textit{\ifblank{#1}{}{#1:\hfill\break}}}
   % {\par\begin{mdframed}[backgroundcolor=background,
       % linecolor=background,
       % % hidealllines,

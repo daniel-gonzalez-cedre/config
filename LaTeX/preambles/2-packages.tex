@@ -23,16 +23,23 @@
   \fi  %=================================================================
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FINEM TUFTE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SATUS STANDALONE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \ifstandalone
+    % \usepackage[showframe]{geometry}
+  \else
+    \usepackage[framemethod=TikZ]{mdframed}
+  \fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FINEM STANDALONE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SATUS GENERAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   % MATH
   \usepackage{amsmath, amsfonts, amssymb, amstext, amscd, amsthm}
-  \usepackage{bm, faktor, mathrsfs, mathtools, thmtools, xfrac}
+  \usepackage{bm, faktor, mathrsfs, mathtools, pict2e, thmtools, xfrac}
   % FONTS
   \usepackage{bbm, CJKutf8, dsfont, fontawesome, marvosym, stmaryrd}
   % FORMATTING
   \usepackage{enumerate, listings, parskip, verbatim}
   \usepackage[shortlabels]{enumitem}
-  \usepackage[framemethod=TikZ]{mdframed}
   \usepackage[group-separator={,},group-minimum-digits={3}]{siunitx}
   % COLORS
   \usepackage{color, soul, xcolor}
@@ -46,12 +53,15 @@
   \usepackage[nodayofweek]{datetime}
   \usepackage{chngcntr, epigraph, lipsum, imakeidx, ulem}
   % PROGRAMMING
-  \usepackage{etoolbox, ifthen, xargs}
+  \usepackage{etoolbox, ifthen, pgffor, xargs}
+  % \usepackage[nomessages]{fp}
+  \usepackage{xfp}
   % REFERENCES
   \usepackage{url}
   \usepackage{hyperref}
   \usepackage[nameinlink]{cleveref}
   % TIKZ
   \usepackage{tikz}
+  \usepackage{tikz-3dplot}
   \usepackage{pgfplots}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FINEM GENERAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

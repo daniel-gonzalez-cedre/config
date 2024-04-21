@@ -603,8 +603,8 @@ function! s:closematch(str) " {{{1
   endif
 endfunction " }}}1
 
-vmap s <nop>
-xmap s <nop>
+" vmap s <nop>
+" xmap s <nop>
 
 nnoremap <silent> <Plug>SurroundRepeat .
 nnoremap <silent> <Plug>Dsurround  :<C-U>call <SID>dosurround(<SID>inputtarget())<CR>
@@ -622,18 +622,18 @@ inoremap <silent> <Plug>Isurround  <C-R>=<SID>insert()<CR>
 inoremap <silent> <Plug>ISurround  <C-R>=<SID>insert(1)<CR>
 
 if !exists("g:surround_no_mappings") || ! g:surround_no_mappings
-  nmap ds  <Plug>Dsurround
-  nmap cs  <Plug>Csurround
-  nmap cS  <Plug>CSurround
-  nmap ys  <Plug>Ysurround
-  nmap yS  <Plug>YSurround
-  nmap yss <Plug>Yssurround
-  nmap ySs <Plug>YSsurround
-  nmap ySS <Plug>YSsurround
-  xmap s   <Plug>Vsurround
-  xmap gs  <Plug>Vgsurround
-  xmap S   <Plug>VSurround
-  xmap gS  <Plug>VgSurround
+  nmap ds     <Plug>Dsurround
+  nmap cs     <Plug>Csurround
+  nmap cS     <Plug>CSurround
+  nmap ys     <Plug>Ysurround
+  nmap yS     <Plug>YSurround
+  nmap yss    <Plug>Yssurround
+  nmap ySs    <Plug>YSsurround
+  nmap ySS    <Plug>YSsurround
+  xmap <c-s>  <Plug>Vsurround
+  xmap gs     <Plug>Vgsurround
+  xmap S      <Plug>VSurround
+  xmap gS     <Plug>VgSurround
   if !exists("g:surround_no_insert_mappings") || ! g:surround_no_insert_mappings
     if !hasmapto("<Plug>Isurround","i") && "" == mapcheck("<C-S>","i")
       imap    <C-S> <Plug>Isurround

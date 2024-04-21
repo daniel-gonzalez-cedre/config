@@ -1,3 +1,10 @@
+% TODO: work on this later
+\AtBeginDocument{
+  \let\oldnameref\nameref
+  \let\nameref\relax
+  \newcommand{\nameref}[1]{\emph{\oldnameref*{#1}}}
+}
+
 % left margin notes
 \long\def\gutternote#1{%
   % \vspace{-0.65\baselineskip}\vadjust{\llap{\smash{\vtop{%
@@ -25,15 +32,15 @@
 \newcommand{\iffbydefn}{\DOTSB\;\mathrel{\vcentcolon\Leftrightarrow}\;}
 \newcommand{\defiff}{\DOTSB\;\mathrel{\vcentcolon\Leftrightarrow}\;}
 
-\newcommand{\proves}{\DOTSB\,\vdash\,}
-\newcommand{\satisfies}{\DOTSB\,\models\,}
+\newcommand{\proves}{\DOTSB\:\vdash\:}
+\newcommand{\satisfies}{\DOTSB\:\models\:}
 % \renewcommand{\implies}{\DOTSB\,\Rightarrow\,}
-\renewcommand{\implies}{\mathrel{\Rightarrow}}
+\renewcommand{\implies}{\DOTSB\:\mathrel{\Rightarrow}\:}
 % \renewcommand{\impliedby}{\DOTSB\,\Leftarrow\,}
-\renewcommand{\impliedby}{\mathrel{\Leftarrow}}
+\renewcommand{\impliedby}{\DOTSB\:\mathrel{\Leftarrow}\:}
 % \renewcommand{\iff}{\DOTSB\,\Leftrightarrow\,}
-\renewcommand{\iff}{\mathrel{\Leftrightarrow}}
-\newcommand{\lequiv}{\DOTSB\,\equiv\,}
+\renewcommand{\iff}{\mathrel{\DOTSB\:\Leftrightarrow}\:}
+\newcommand{\lequiv}{\DOTSB\:\equiv\:}
 % \newcommand{\isomorphic}{\DOTSB\,\cong\,}
 \newcommand{\isomorphic}{\mathrel{\cong}}
 
@@ -66,6 +73,23 @@
     \ht2=\ht6
     \vbox to \ht0{\copy2\vss\copy4}
   }
+\makeatother
+
+% string concatenation operation
+\makeatletter
+\newcommand{\concat}{\mathbin{\mathpalette\conc@t\relax}}
+\newcommand{\conc@t}[2]{%
+  \vcenter{\hbox{%
+    \sbox\z@{$\m@th#1-$}%
+    \setlength{\unitlength}{\wd\z@}%
+    \begin{picture}(1,1)
+    \roundcap
+    \put(0.1,0.5){\line(1,0){0.8}}
+    \put(0.35,0.1){\line(0,1){0.8}}
+    \put(0.65,0.1){\line(0,1){0.8}}
+    \end{picture}%
+  }}%
+}
 \makeatother
 
 \newcommand{\conditional}{\rightarrow}
@@ -150,18 +174,31 @@
     \if@display\mkern18mu\else\mkern8mu\fi
     \pmodx
   }
+  % \newcommand{\modulo}{%
+    % \allowbreak
+    % \if@display\mkern18mu\else\mkern8mu\fi
+    % \pmodx
+  % }
 \makeatother
+
 \newcommand{\modulo}[3]{#1 \equiv #2 ~\term*{\mathrm{mod}~#3}}
 \newcommand{\congruent}[3]{#1 \equiv #2 ~\term*{\mathrm{mod}~#3}}
 
-\newcommand{\zmod}[1]{\ensuremath{\mathbb{Z}/#1\mathbb{Z}}}
-\newcommand{\Z}[1]{\ensuremath{\sfrac{\mathbb{Z}}{#1\mathbb{Z}}}}
-\newcommand{\z}[1]{\ensuremath{\sfrac{\mathbb{Z}}{#1\mathbb{Z}}}}
+\newcommand{\quotient}[2]{\ensuremath{{#1}/{#2}}}
+\newcommand{\zmod}[1]{\ensuremath{\mathbb{Z}/{#1}\mathbb{Z}}}
+\newcommand{\Z}[1]{\ensuremath{\sfrac{\mathbb{Z}}{{#1}\mathbb{Z}}}}
+\newcommand{\z}[1]{\ensuremath{\sfrac{\mathbb{Z}}{{#1}\mathbb{Z}}}}
 
+\newcommand{\chr}[1]{\texttt{#1}}
+\newcommand{\str}[1]{\texttt{"#1"}}
 \renewcommand{\restriction}[1]{\downharpoonright_{#1}}
 \newcommand{\restricted}[2]{#1\downharpoonright_{#2}}
-% \newcommand*\id{\mathrm{id}}
 \newcommand*\id{\text{\normalshape \tt id}}
+
+\let\oldker\ker
+\let\ker\relax
+\DeclarePairedDelimiterXPP{\ker}[1]{\text{\normalshape \tt ker}}{(}{)}{}{#1}
+\DeclarePairedDelimiterXPP{\ran}[1]{\text{\normalshape \tt ran}}{(}{)}{}{#1}
 
 \newcommand{\inj}{\hookrightarrow}
 \newcommand{\inject}{\hookrightarrow}
@@ -198,6 +235,18 @@
 \renewcommand{\P}[1]{\mathbb{P}\term*{#1}}
 \DeclarePairedDelimiterXPP{\successor}[1]{\textsc{suc}}{(}{)}{}{#1}
 \DeclarePairedDelimiterXPP{\power}[1]{\mathbb{P}}{(}{)}{}{#1}
+
+\newcommand{\graph}[1]{#1}
+\newcommand{\vertices}[1]{\textnormal{\texttt{V}}_{#1}}
+\newcommand{\nodes}[1]{\textnormal{\texttt{V}}_{#1}}
+\newcommand{\edges}[1]{\textnormal{\texttt{E}}_{#1}}
+\DeclarePairedDelimiterXPP{\neighborhood}[2]{\textnormal{\texttt{N}}_{#1}}{(}{)}{}{#2}
+\DeclarePairedDelimiterXPP{\incidence}[2]{\textnormal{\texttt{I}}_{#1}}{(}{)}{}{#2}
+
+\let\olddeg\deg
+\let\deg\relax
+\DeclarePairedDelimiterXPP{\deg}[1]{\texttt{deg}}{(}{#1}{)}{}
+\DeclarePairedDelimiterXPP{\degree}[2]{\texttt{deg}_{#1}}{(}{#2}{)}{}
 
 \newcommand{\naturals}{\mathbb{N}}
 \newcommand{\integers}{\mathbb{Z}}
@@ -251,12 +300,8 @@
 \DeclarePairedDelimiterX \ceil[1]{\lceil}{\rceil}{\ifblank{#1}{\:\cdot\:}{#1}}
 \DeclarePairedDelimiterX \ceiling[1]{\lceil}{\rceil}{\ifblank{#1}{\:\cdot\:}{#1}}
 
-\let\olddeg\deg
-\let\deg\relax
-% \DeclarePairedDelimiterX \deg[1]{\lvert}{\rvert}{\ifblank{#1}{\:\cdot\:}{#1}}
-\DeclarePairedDelimiterXPP{\deg}[1]{\texttt{deg}}{(}{#1}{)}{}
-\DeclarePairedDelimiterXPP{\degsub}[2]{\texttt{deg}_{#1}}{(}{#2}{)}{}
-% \DeclarePairedDelimiterXPP{\degin}[2]{\mathbb{E}}  {[} {]} {#1}{#2}{}
+\newcommand{\falling}[1]{^{\underline{\ifblank{#1}{\:\cdot\!\;}{#1}}}}
+\newcommand{\rising}[1]{^{\overline{\ifblank{#1}{\:\cdot\!\;}{#1}}}}
 
 \DeclarePairedDelimiter \card{\lvert}{\rvert}
 \DeclarePairedDelimiter \cardinality{\lvert}{\rvert}
@@ -278,6 +323,7 @@
 \DeclarePairedDelimiter \sq{[}{]}
 \DeclarePairedDelimiter \nat{\llbracket}{\rrbracket}  % for natural numbers
 \DeclarePairedDelimiter \class{[}{]}
+\DeclarePairedDelimiterXPP{\eqclass}[2]{}{[}{]}{_{#2}}{#1}
 \DeclarePairedDelimiter \range{[}{]}
 \DeclarePairedDelimiter \cardinal{[}{]}
 \DeclarePairedDelimiter \curly{\lbrace}{\rbrace}

@@ -16,22 +16,24 @@
 -- capslock, fn
 
 local function pressFn(mods, key)
-	if key == nil then
-		key = mods
-		mods = {}
-	end
+  if key == nil then
+    key = mods
+    mods = {}
+  end
 
-	return function() hs.eventtap.keyStroke(mods, key, 1000) end
+  return function() hs.eventtap.keyStroke(mods, key, 1000) end
 end
 
 local function remap(mods, key, pressFn)
-	hs.hotkey.bind(mods, key, pressFn, nil, pressFn)	
+  hs.hotkey.bind(mods, key, pressFn, nil, pressFn)	
 end
 
 -- remap('capslock', pressFn({'ctrl'}))
 
 -- remap({'ctrl'}, 'space', pressFn('l'))
 remap({'ctrl'}, 'delete', pressFn('forwarddelete'))
+
+-- remap({'ctrl'}, 'f', pressFn('left'))
 
 remap({'ctrl'}, 'h', pressFn('left'))
 remap({'ctrl'}, 'j', pressFn('down'))

@@ -4,15 +4,24 @@
     \setcounter{tocdepth}{2}
     \setcounter{secnumdepth}{1}
   \else  %==============================================================
-    \fancypagestyle{plain}{%
-      \fancyhead[L]{\DateHeaderText}
-      % \fancyhead[R]{}
-    }
-    \pagestyle{fancy}
-    \fancyfoot[C]{\tiny \thepage\ / \pageref*{LastPage}}
-    % \fancyfoot[C]{--~\thepage~--}
-    % \fancypagestyle{plain}{}
     \renewcommand{\headrulewidth}{0pt}
+    \fancypagestyle{plain}{%
+      \ifheaders
+        \fancyhead[L]{\DateHeaderText}
+        % \fancyhead[R]{}
+      \else
+      \fi
+    }
+
+    \pagestyle{fancy}
+
+    \iffooters
+      \fancyfoot[C]{\tiny \thepage\ / \pageref*{LastPage}}
+      % \fancyfoot[C]{--~\thepage~--}
+      % \fancypagestyle{plain}{}
+    \else
+      \fancyfoot{}
+    \fi
   \fi  %================================================================
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FINEM BOOK %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -25,22 +34,60 @@
       {0ex}  % horizontal separation between label and title body
       {\itshape\Huge}  % before the title body
       [\vspace{1ex}]  % after the title body
+    \titlecontents{part}
+      [0em]  % distance from left margin
+      {\vspace{1.5\baselineskip}\begin{fullwidth}\LARGE\rmfamily\itshape}  % above (global formatting of entry)
+      {\contentslabel{2em}}  % before w/label (label = ``II'')
+      {}  % before w/o label
+      {}  % {\rmfamily\upshape\qquad\thecontentspage}  % filler + page (leaders and page num)
+      [\end{fullwidth}]  % after
+
+    \titleformat{\chapter}
+      [display]  % shape
+      {\relax\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\begin{fullwidth}}{}}  % format applied to label+text
+      {\itshape\huge\thechapter}  % label
+      {0pt}  % horizontal separation between label and title body
+      {\huge\rmfamily\itshape}  % before the title body
+      [\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\end{fullwidth}}{}]  % after the title body
+    \titlecontents{chapter}
+      [0em]  % distance from left margin
+      {\vspace{1.5\baselineskip}\begin{fullwidth}\LARGE\rmfamily\itshape}  % above (global formatting of entry)
+      {\hspace*{0em}\contentslabel{2em}}  % before w/label (label = ``2'')
+      {\hspace*{0em}}  % before w/o label
+      {\rmfamily\upshape\hfill\thecontentspage}  % {\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+      [\end{fullwidth}]  % after
 
     % section format
     \titleformat{\section}
+      [hang]  % shape
       {\bfseries\itshape\Large}  % format applied to label+text
       {\llap{\Large\thesection\phantom{m}}}  % label
       {0em}  % horizontal separation between label and title body
       {}  % before the title body
       []  % after the title body
+    \titlecontents{section}
+      [0em]  % distance from left margin
+      {\vspace{0\baselineskip}\begin{fullwidth}\Large\rmfamily\itshape}  % above (global formatting of entry)
+      {\hspace*{2em}\contentslabel{2em}}  % before w/label (label = ``2.6'')
+      {\hspace*{2em}}  % before w/o label
+      {\normalsize\rmfamily\upshape\hfill\thecontentspage}  % {\rmfamily\upshape\qquad\thecontentspage}  % filler + page (leaders and page num)
+      [\end{fullwidth}]  % after
 
     % subsection format
     \titleformat{\subsection}
+      [hang]  % shape
       {\bfseries\itshape\large}  % format applied to label+text
       {\llap{\thesubsection\phantom{m}}}  % label
       {0em}  % horizontal separation between label and title body
       {}  % before the title body
       []  % after the title body
+    \titlecontents{subsection}
+      [0em]  % distance from left margin
+      {\vspace{0\baselineskip}\begin{fullwidth}\large\rmfamily\itshape}  % above (global formatting of entry)
+      {\hspace*{4em}\contentslabel{4em}}  % before w/label (label = ``2.6.1'')
+      {\hspace*{4em}}  % before w/o label
+      {\normalsize\rmfamily\upshape\hfill\thecontentspage}  % {\rmfamily\upshape\qquad\thecontentspage}  % filler + page (leaders and page num)
+      [\end{fullwidth}]  % after
 
     % paragraph indentation and spacing for normal text
     \makeatletter

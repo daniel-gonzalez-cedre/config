@@ -257,6 +257,7 @@ set undofile
   " noremap! \| $
   noremap <c-\> $
   noremap! <c-\> $
+  inoremap <c-f> $
 
   " movement
   nnoremap j gj

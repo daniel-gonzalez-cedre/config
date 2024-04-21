@@ -7,8 +7,12 @@
     \gdef\ProofSpacing{-0.75\baselineskip}
 
     \newif\ifdraft
-    \newif\iftufte
     \newif\ifbook
+    \newif\iftufte
+    \newif\ifstandalone
+    \newif\ifheaders
+    \newif\iffooters
+
     \newif\ifAMSsymbols
     \newif\iffootnotesymbols
 
@@ -20,12 +24,18 @@
     \def\setDocument@yesarticle{%
       \bookfalse%
       \tuftetrue%
+      \standalonefalse%
+      \headerstrue%
+      \footerstrue%
       \gdef\ClassType{tufte-handout}%
       \gdef\ClassOptions{nobib,justified,\DraftOption}%
     }
     \def\setDocument@yesbook{%
       \booktrue%
       \tuftetrue%
+      \standalonefalse%
+      \headerstrue%
+      \footerstrue%
       \gdef\ClassType{tufte-book}%
       \gdef\ClassOptions{nobib,justified,openany,\DraftOption}%
       \gdef\BookChapterOption{chapter}
@@ -33,6 +43,9 @@
     \def\setDocument@yesproblemset{%
       \bookfalse%
       \tuftetrue%
+      \standalonefalse%
+      \headerstrue%
+      \footerstrue%
       \gdef\ClassType{tufte-handout}%
       \gdef\ClassOptions{nobib,justified,\DraftOption}%
       \gdef\ProofSpacing{-0.5\baselineskip}
@@ -40,20 +53,33 @@
     \def\setDocument@yessolutionset{%
       \bookfalse%
       \tuftetrue%
+      \standalonefalse%
+      \headerstrue%
+      \footerstrue%
       \gdef\ClassType{tufte-handout}%
       \gdef\ClassOptions{nobib,justified,\DraftOption}%
       \gdef\ProofSpacing{-0.5\baselineskip}
     }
     % setDocument non-Tufte styles
-    \def\setDocument@book{%
+    \def\setDocument@nobook{%
       \booktrue%
       \tuftefalse%
+      \standalonefalse%
+      \headerstrue%
+      \footerstrue%
       \gdef\ClassType{book}%
+      \gdef\ClassOptions{}%
     }
-    \def\setDocument@standalone{%
+    \def\setDocument@nostandalone{%
       \bookfalse%
       \tuftefalse%
-      \gdef\ClassType{standalone}\tuftefalse
+      \standalonetrue%
+      \headersfalse%
+      \footersfalse%
+      \gdef\ClassType{standalone}%
+      % \gdef\ClassOptions{multi=tikzpicture,varwidth=false}%
+      \gdef\ClassOptions{}%
+% class=minimal,border=0pt
     }
 
     % setPaper
