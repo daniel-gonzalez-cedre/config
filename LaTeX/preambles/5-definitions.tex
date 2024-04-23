@@ -166,7 +166,7 @@
 % \newcommand{\var}[1]{\mathrm{Var}\term*{#1}}
 % \newcommand{\cov}[2]{\mathrm{Cov}\term*{#1, #2}}
 
-% better pmod
+% better modular congruence
 \makeatletter
   \DeclarePairedDelimiterX{\pmodx}[1]{(}{)}{{\operator@font mod}\mkern6mu#1}
   \renewcommand{\pmod}{%
@@ -174,15 +174,17 @@
     \if@display\mkern18mu\else\mkern8mu\fi
     \pmodx
   }
-  % \newcommand{\modulo}{%
-    % \allowbreak
-    % \if@display\mkern18mu\else\mkern8mu\fi
-    % \pmodx
-  % }
+  \DeclarePairedDelimiterXPP{\modulo}[3]{%
+    {#1}\equiv{#2}
+    \allowbreak
+    \if@display\mkern18mu\else\mkern8mu\fi
+  }{(}{)}{}{{\operator@font mod}\mkern6mu#3}
+  \DeclarePairedDelimiterXPP{\congruent}[3]{%
+    {#1}\equiv{#2}
+    \allowbreak
+    \if@display\mkern18mu\else\mkern8mu\fi
+  }{(}{)}{}{{\operator@font mod}\mkern6mu#3}
 \makeatother
-
-\newcommand{\modulo}[3]{#1 \equiv #2 ~\term*{\mathrm{mod}~#3}}
-\newcommand{\congruent}[3]{#1 \equiv #2 ~\term*{\mathrm{mod}~#3}}
 
 \newcommand{\quotient}[2]{\ensuremath{{#1}/{#2}}}
 \newcommand{\zmod}[1]{\ensuremath{\mathbb{Z}/{#1}\mathbb{Z}}}
@@ -191,6 +193,9 @@
 
 \newcommand{\chr}[1]{\texttt{#1}}
 \newcommand{\str}[1]{\texttt{"#1"}}
+\newcommand{\substr}[2]{\text{\normalshape \tt [}\ifblank{#1}{\!}{#1}\!:\!\ifblank{#2}{\!}{#2}\text{\normalshape \tt ]}}
+\newcommand{\slice}[2]{\text{\normalshape \tt [}\ifblank{#1}{\!}{#1}\!:\!\ifblank{#2}{\!}{#2}\text{\normalshape \tt ]}}
+
 \renewcommand{\restriction}[1]{\downharpoonright_{#1}}
 \newcommand{\restricted}[2]{#1\downharpoonright_{#2}}
 \newcommand*\id{\text{\normalshape \tt id}}
