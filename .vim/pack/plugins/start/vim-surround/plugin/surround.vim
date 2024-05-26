@@ -210,7 +210,7 @@ function! s:wrap(string,char,type,removed,special)
       endif
     endif
   " elseif newchar ==# 'l' || newchar == '\'
-  elseif newchar ==# 'q'
+  elseif newchar ==# 'Q'
     " LaTeX
     let before = '``'
     let after  = "''"

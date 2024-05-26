@@ -95,7 +95,7 @@ set undofile
     set conceallevel=0
     set cursorline
     set display+=lastline
-    " set fillchars=stl:⋅,stlnc:⋅,vert:\|,fold:\
+    set fillchars=stl:⋅,stlnc:⋅,vert:\|,fold:-
     " set fillchars=stl:-,stlnc:⋅,vert:│,fold:\ ,diff:·
     set formatoptions+=1jr/  " use <c-U> to remove comment symbol
     " set hlsearch
@@ -253,11 +253,10 @@ set undofile
 
 
 " QUALITY OF LIFE MAPPINGS
-  " noremap \| $
-  " noremap! \| $
-  noremap <c-\> $
-  noremap! <c-\> $
-  inoremap <c-f> $
+  noremap <c-f> $
+  noremap! <c-f> $
+  noremap <c-\> ^
+  noremap! <c-\> ^
 
   " movement
   nnoremap j gj
@@ -269,14 +268,6 @@ set undofile
   noremap <down> <c-e>
   noremap <left> zh
   noremap <right> zl
-
-  " nnoremap <c-i> <c-y>
-  " nnoremap <c-y> <c-i>
-
-  vnoremap g[ {
-  vnoremap g] }
-  vnoremap g{ {
-  vnoremap g} }
 
   vnoremap <expr> i mode()=~'\cv' ? 'i' : 'I'
   vnoremap <expr> a mode()=~'\cv' ? 'a' : 'A'
@@ -304,8 +295,9 @@ set undofile
   nnoremap <silent> <bs> :noh<bar>:echo<cr>
 
   " misc
-  map <c-f> za
-  map <leader><c-f> zA
+  nmap <tab> za
+  " map <c-f> za
+  " map <leader><c-f> zA
   inoremap <c-]> <del>
   inoremap <expr> <cr> pumvisible() ? !empty(v:completed_item) ? "<c-y><c-c>" : "<c-y><cr>" : "<cr>"
 
@@ -335,20 +327,34 @@ set undofile
   inoremap ' <c-r>=ClosePair("'")<cr>
   inoremap ` <c-r>=ClosePair('`')<cr>
   inoremap $ <c-r>=ClosePair('$')<cr>
+  inoremap <c-f> <c-r>=ClosePair('$')<cr>
   " inoremap " <c-r>=QuoteDelim('"')<cr>
   " inoremap ' <c-r>=QuoteDelim("'")<cr>
   " inoremap ` <c-r>=QuoteDelim('`')<cr>
 
-  vmap ( <s-s>)<cr>
-  vmap ) <s-s>)<cr>
-  vmap [ <s-s>]<cr>
-  vmap ] <s-s>]<cr>
-  vmap { <s-s>}<cr>
-  vmap } <s-s>}<cr>
-  vmap $ <s-s>$<cr>
-  vmap " <s-s>"<cr>
-  vmap ' <s-s>'<cr>
-  vmap ` <s-s>`<cr>
+  vmap <leader>p <s-s>)<cr>
+  vmap <leader>( <s-s>)<cr>
+  vmap <leader>) <s-s>)<cr>
+
+  vmap <leader>r <s-s>]<cr>
+  vmap <leader>[ <s-s>]<cr>
+  vmap <leader>] <s-s>]<cr>
+
+  vmap <leader>b <s-s>}<cr>
+  vmap <leader>{ <s-s>}<cr>
+  vmap <leader>} <s-s>}<cr>
+
+  vmap <leader>a <s-s>><cr>
+  vmap <leader>< <s-s>><cr>
+  vmap <leader>> <s-s>><cr>
+
+  vmap <leader>m <s-s>$<cr>
+  vmap <leader>$ <s-s>$<cr>
+
+  vmap <leader>Q <s-s>Q<cr>
+  vmap <leader>" <s-s>"<cr>
+  vmap <leader>' <s-s>'<cr>
+  vmap <leader>` <s-s>`<cr>
   " vnoremap " <c-c>`>a"<c-c>`<i"<c-c>
   " vnoremap ' <c-c>`>a'<c-c>`<i'<c-c>
   " vnoremap ` <c-c>`>a`<c-c>`<i`<c-c>
@@ -428,12 +434,12 @@ set undofile
 
 " COLORS
   function! s:gruvbox_custom()
-    hi Comment ctermfg=237 ctermbg=none cterm=none
+    hi Comment ctermfg=240 ctermbg=none cterm=none
     " hi Folded ctermfg=95 ctermbg=234
-    hi Folded ctermfg=235 ctermbg=none cterm=none
+    hi Folded ctermfg=237 ctermbg=none cterm=none
     hi String ctermfg=142 ctermbg=none cterm=none
 
-    hi StatusLine ctermfg=238 ctermbg=none cterm=none
+    hi StatusLine ctermfg=237 ctermbg=none cterm=none
     hi StatusLineNC ctermfg=237 ctermbg=none cterm=none
 
     hi MatchParen cterm=inverse

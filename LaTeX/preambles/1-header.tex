@@ -7,8 +7,10 @@
     \gdef\ProofSpacing{-0.75\baselineskip}
 
     \newif\ifdraft
-    \newif\ifbook
+
     \newif\iftufte
+    \newif\ifbook
+    \newif\ifexam
     \newif\ifstandalone
     \newif\ifheaders
     \newif\iffooters
@@ -22,8 +24,9 @@
 
     % setDocument Tufte styles
     \def\setDocument@yesarticle{%
-      \bookfalse%
       \tuftetrue%
+      \bookfalse%
+      \examfalse%
       \standalonefalse%
       \headerstrue%
       \footerstrue%
@@ -31,8 +34,9 @@
       \gdef\ClassOptions{nobib,justified,\DraftOption}%
     }
     \def\setDocument@yesbook{%
-      \booktrue%
       \tuftetrue%
+      \booktrue%
+      \examfalse%
       \standalonefalse%
       \headerstrue%
       \footerstrue%
@@ -40,9 +44,21 @@
       \gdef\ClassOptions{nobib,justified,openany,\DraftOption}%
       \gdef\BookChapterOption{chapter}
     }
-    \def\setDocument@yesproblemset{%
-      \bookfalse%
+    \def\setDocument@yesexam{%
       \tuftetrue%
+      \bookfalse%
+      \examtrue%
+      \standalonefalse%
+      \headerstrue%
+      \footerstrue%
+      \gdef\ClassType{tufte-handout}%
+      \gdef\ClassOptions{nobib,justified,\DraftOption}%
+      \gdef\ProofSpacing{-0.5\baselineskip}
+    }
+    \def\setDocument@yesproblemset{%
+      \tuftetrue%
+      \bookfalse%
+      \examfalse%
       \standalonefalse%
       \headerstrue%
       \footerstrue%
@@ -51,8 +67,9 @@
       \gdef\ProofSpacing{-0.5\baselineskip}
     }
     \def\setDocument@yessolutionset{%
-      \bookfalse%
       \tuftetrue%
+      \bookfalse%
+      \examfalse%
       \standalonefalse%
       \headerstrue%
       \footerstrue%
@@ -62,8 +79,9 @@
     }
     % setDocument non-Tufte styles
     \def\setDocument@nobook{%
-      \booktrue%
       \tuftefalse%
+      \booktrue%
+      \examfalse%
       \standalonefalse%
       \headerstrue%
       \footerstrue%

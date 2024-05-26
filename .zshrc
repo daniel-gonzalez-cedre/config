@@ -94,6 +94,7 @@ export PATH=~/.local/bin:$PATH
 export PATH="$PYENV_ROOT/bin:$PATH"
 
 export PYENV_ROOT="$HOME/.pyenv"
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 export FFDIR=${HOME}/Library/Application\ Support/Firefox
 for FILE in ${FFDIR}/Profiles/*

@@ -184,6 +184,11 @@
     \allowbreak
     \if@display\mkern18mu\else\mkern8mu\fi
   }{(}{)}{}{{\operator@font mod}\mkern6mu#3}
+  \DeclarePairedDelimiterXPP{\notcongruent}[3]{%
+    {#1}\not\equiv{#2}
+    \allowbreak
+    \if@display\mkern18mu\else\mkern8mu\fi
+  }{(}{)}{}{{\operator@font mod}\mkern6mu#3}
 \makeatother
 
 \newcommand{\quotient}[2]{\ensuremath{{#1}/{#2}}}
@@ -193,8 +198,10 @@
 
 \newcommand{\chr}[1]{\texttt{#1}}
 \newcommand{\str}[1]{\texttt{"#1"}}
-\newcommand{\substr}[2]{\text{\normalshape \tt [}\ifblank{#1}{\!}{#1}\!:\!\ifblank{#2}{\!}{#2}\text{\normalshape \tt ]}}
-\newcommand{\slice}[2]{\text{\normalshape \tt [}\ifblank{#1}{\!}{#1}\!:\!\ifblank{#2}{\!}{#2}\text{\normalshape \tt ]}}
+\newcommand{\substr}[2]{\text{\normalshape \tt [}\ifblank{#1}{\!}{#1}:\ifblank{#2}{\!}{#2}\text{\normalshape \tt ]}}
+\newcommand{\slice}[2]{\text{\normalshape \tt [}\ifblank{#1}{\!}{#1}:\ifblank{#2}{\!}{#2}\text{\normalshape \tt ]}}
+
+% \DeclarePairedDelimiterXPP{\slice}[2]{}{\texttt{[}}{\texttt{]}}{}{\ifblank{#1}{\!}{#1}\!:\!\ifblank{#2}{\!}{#2}}
 
 \renewcommand{\restriction}[1]{\downharpoonright_{#1}}
 \newcommand{\restricted}[2]{#1\downharpoonright_{#2}}
@@ -227,17 +234,23 @@
 \newcommand{\isomorphism}{\lhook\joinrel\twoheadrightarrow}
 \newcommand{\immersion}{\looprightarrow}
 
-% \ifstandalone
-  % \newcommand{\s}[1]{\mathfrak{s}\term*{#1}}
-% \else
-  % \renewcommand{\s}[1]{\mathfrak{s}\term*{#1}}
 \let\olds\s
 \let\s\relax
 \DeclarePairedDelimiterXPP{\s}[1]{\mathfrak{s}}{(}{)}{}{#1}
-% \fi
-\renewcommand{\S}[1]{\mathcal{S}\term*{#1}}
-\renewcommand{\O}[1]{\mathcal{O}\term*{#1}}
-\renewcommand{\P}[1]{\mathbb{P}\term*{#1}}
+\let\oldS\S
+\let\S\relax
+\DeclarePairedDelimiterXPP{\S}[1]{\mathcal{S}}{(}{)}{}{#1}
+\let\oldO\O
+\let\O\relax
+\DeclarePairedDelimiterXPP{\O}[1]{\mathcal{O}}{(}{)}{}{#1}
+\let\oldP\P
+\let\P\relax
+\DeclarePairedDelimiterXPP{\P}[1]{\mathcal{P}}{(}{)}{}{#1}
+\let\oldP\P
+\let\P\relax
+\DeclarePairedDelimiterXPP{\F}[1]{\mathcal{F}}{(}{)}{}{#1}
+\DeclarePairedDelimiterXPP{\fib}[1]{\mathcal{F}}{(}{)}{}{#1}
+\DeclarePairedDelimiterXPP{\fibonacci}[1]{\mathcal{F}}{(}{)}{}{#1}
 \DeclarePairedDelimiterXPP{\successor}[1]{\textsc{suc}}{(}{)}{}{#1}
 \DeclarePairedDelimiterXPP{\power}[1]{\mathbb{P}}{(}{)}{}{#1}
 
@@ -322,16 +335,21 @@
   \renewcommand{\given}{\;\delimsize\vert\nonscript\;\mathopen{}}#1%
 }
 
-\DeclarePairedDelimiter \sequence{\langle}{\rangle}
-\DeclarePairedDelimiter \seq{\langle}{\rangle}
 \DeclarePairedDelimiter \pn{(}{)}
-\DeclarePairedDelimiter \sq{[}{]}
+\DeclarePairedDelimiter \parens{(}{)}
+
+\DeclarePairedDelimiter \braces{\{}{\}}
+\DeclarePairedDelimiter \curly{\{}{\}}
+
+\DeclarePairedDelimiter \sq{\lbrack}{\rbrack}
+\DeclarePairedDelimiter \brackets{\lbrack}{\rbrack}
+\DeclarePairedDelimiter \range{\lbrack}{\rbrack}
+\DeclarePairedDelimiter \class{\lbrack}{\rbrack}
+\DeclarePairedDelimiterXPP{\eqclass}[2]{}{\lbrack}{\rbrack}{_{#2}}{#1}
 \DeclarePairedDelimiter \nat{\llbracket}{\rrbracket}  % for natural numbers
-\DeclarePairedDelimiter \class{[}{]}
-\DeclarePairedDelimiterXPP{\eqclass}[2]{}{[}{]}{_{#2}}{#1}
-\DeclarePairedDelimiter \range{[}{]}
-\DeclarePairedDelimiter \cardinal{[}{]}
-\DeclarePairedDelimiter \curly{\lbrace}{\rbrace}
+
+\DeclarePairedDelimiter \seq{\langle}{\rangle}
+\DeclarePairedDelimiter \sequence{\langle}{\rangle}
 
 \let\oldemptyset\emptyset
 \let\emptyset\varnothing

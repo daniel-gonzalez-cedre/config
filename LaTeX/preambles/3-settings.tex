@@ -1,8 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SATUS BOOK %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \ifbook  %============================================================
     \let\cleardoublepage=\clearpage
-    \setcounter{tocdepth}{2}
-    \setcounter{secnumdepth}{1}
   \else  %==============================================================
     \renewcommand{\headrulewidth}{0pt}
     \fancypagestyle{plain}{%
@@ -25,8 +23,23 @@
   \fi  %================================================================
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FINEM BOOK %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SATUS EXAM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \ifexam  %============================================================
+    \usepackage{wasysym}
+    \newcommand{\chooseone}{{\Large$\Circle$\ \ }}
+    \newcommand{\choosemany}{{\Large$\Square$\ \ }}
+
+    \fancyhead[R]{\textsc{name:} \uline{\hfill}
+    \textsc{netid:} \uline{\hfill}}
+  \else  %==============================================================
+  \fi  %================================================================
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FINEM EXAM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SATUS TUFTE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \iftufte  %============================================================
+    \setcounter{tocdepth}{2}
+    \setcounter{secnumdepth}{1}
+
     % part format
     \titleformat{\part}[display]
       {\itshape\Huge}  % format applied to label+text
