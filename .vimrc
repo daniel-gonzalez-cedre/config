@@ -35,10 +35,10 @@ set undofile
   if has('nvim')
     " packadd! nvim-treesitter
   else
-    " packadd! ale
+    packadd! ale
     let g:ale_sign_error = ' ×'
     let g:ale_sign_warning = ' ⋅'
-    let g:ale_linters = {'vim': ['vint'], 'python': ['mypy', 'pylint'], 'lua': ['luacheck', 'luac'], 'tex': ['lacheck']}  " ruff, pylint, pyright, lacheck, chktek, proselint
+    let g:ale_linters = {'vim': ['vint'], 'python': ['mypy', 'pylint'], 'lua': ['luacheck', 'luac'], 'tex': ['lacheck']}  " ruff, mypy, pylint, pyright, lacheck, chktek, proselint
     let g:ale_lint_on_text_changed = 'normal'
     let g:ale_lint_on_insert_leave = 1
     let g:ale_lint_delay = 0
@@ -98,8 +98,8 @@ set undofile
     set fillchars=stl:⋅,stlnc:⋅,vert:\|,fold:-
     " set fillchars=stl:-,stlnc:⋅,vert:│,fold:\ ,diff:·
     set formatoptions+=1jr/  " use <c-U> to remove comment symbol
-    " set hlsearch
-    set nohlsearch
+    set hlsearch
+    " set nohlsearch
     set ignorecase
     set incsearch
     set nojoinspaces
@@ -107,7 +107,8 @@ set undofile
     set matchpairs+=<:>
     " set matchpairs+=`:'
     set mouse=
-    set spell
+    " set spell
+    set nospell
     set number
     set numberwidth=3
     set ruler
@@ -124,7 +125,6 @@ set undofile
     set updatetime=200
     set wildmenu
     set wildmode=list:longest,full
-    " set nospell
     " set number relativenumber
     " set scrolloff=2
 
@@ -244,19 +244,19 @@ set undofile
 
 
 " SEARCH MAPPINGS
-  " search & replace (blank)
-  nnoremap <leader>s :%s//gc<left><left><left>
   " search visual selection
-  vnoremap // y/\V<c-r>=escape(@",'/\')<cr>
+  vnoremap <leader>/ y/\V<c-r>=escape(@",'/\')<cr>
+  " search & replace without selection
+  nnoremap <leader>s :%s//gc<left><left><left>
   " search & replace visual selection
   vnoremap <leader>s y`<`>:<c-u>%s/\V<c-r>=escape(@",'/\')<cr>//gc<left><left><left>
 
 
 " QUALITY OF LIFE MAPPINGS
-  noremap <c-f> $
-  noremap! <c-f> $
-  noremap <c-\> ^
-  noremap! <c-\> ^
+  noremap <c-f> g_
+  noremap! <c-f> g_
+  noremap <c-g> ^
+  noremap! <c-g> ^
 
   " movement
   nnoremap j gj
@@ -295,7 +295,7 @@ set undofile
   nnoremap <silent> <bs> :noh<bar>:echo<cr>
 
   " misc
-  nmap <tab> za
+  nnoremap <leader><tab> za
   " map <c-f> za
   " map <leader><c-f> zA
   inoremap <c-]> <del>
@@ -332,20 +332,21 @@ set undofile
   " inoremap ' <c-r>=QuoteDelim("'")<cr>
   " inoremap ` <c-r>=QuoteDelim('`')<cr>
 
+  vmap <leader>b <s-s>)<cr>
   vmap <leader>p <s-s>)<cr>
-  vmap <leader>( <s-s>)<cr>
+  vmap <leader>( <s-s>(<cr>
   vmap <leader>) <s-s>)<cr>
 
   vmap <leader>r <s-s>]<cr>
-  vmap <leader>[ <s-s>]<cr>
+  vmap <leader>[ <s-s>[<cr>
   vmap <leader>] <s-s>]<cr>
 
-  vmap <leader>b <s-s>}<cr>
-  vmap <leader>{ <s-s>}<cr>
+  vmap <leader>B <s-s>}<cr>
+  vmap <leader>{ <s-s>{<cr>
   vmap <leader>} <s-s>}<cr>
 
   vmap <leader>a <s-s>><cr>
-  vmap <leader>< <s-s>><cr>
+  vmap <leader>< <s-s><<cr>
   vmap <leader>> <s-s>><cr>
 
   vmap <leader>m <s-s>$<cr>
