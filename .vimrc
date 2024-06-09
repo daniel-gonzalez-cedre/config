@@ -32,33 +32,26 @@ set undofile
   map! <c-b> <nop>
 
 " PACKAGES
-  if has('nvim')
-    " packadd! nvim-treesitter
-  else
-    packadd! ale
-    let g:ale_sign_error = ' ×'
-    let g:ale_sign_warning = ' ⋅'
-    let g:ale_linters = {'vim': ['vint'], 'python': ['mypy', 'pylint'], 'lua': ['luacheck', 'luac'], 'tex': ['lacheck']}  " ruff, mypy, pylint, pyright, lacheck, chktek, proselint
-    let g:ale_lint_on_text_changed = 'normal'
-    let g:ale_lint_on_insert_leave = 1
-    let g:ale_lint_delay = 0
-    let g:ale_lint_on_save = 1
-    let b:ale_virtualtext_prefix = ' '
-    let g:ale_virtualtext_cursor = 'current'
-    let g:ale_virtualtext_delay = 0
-    let g:ale_echo_cursor = 0
-    map <leader>aa :ALEToggle<cr>
-    map <leader>at :ALEToggle<cr>
-    map ]a :ALENextWrap<cr>
-    map [a :ALEPreviousWrap<cr>
-    map <leader>an :ALENextWrap<cr>
-    map <leader>aN :ALEPreviousWrap<cr>
-    map <leader>al :ALELint<cr>
-    map <leader>ad :ALEDetail<cr>
-  endif
+  packadd vim-gitgutter
+    let g:gitgutter_map_keys = 1
+
+    let g:gitgutter_sign_added = '⋅ '
+    let g:gitgutter_sign_modified = '⋅ '
+    let g:gitgutter_sign_removed = '- '
+    " let g:gitgutter_sign_removed_first_line = '  '
+    " let g:gitgutter_sign_removed_above_and_below = '  '
+    let g:gitgutter_sign_modified_removed = '⋅ '
+    call gitgutter#highlight#define_signs()
+
+    nmap ]h <Plug>(GitGutterNextHunk)
+    nmap [h <Plug>(GitGutterPrevHunk)
+    omap ih <Plug>(GitGutterTextObjectInnerPending)
+    omap ah <Plug>(GitGutterTextObjectOuterPending)
+    xmap ih <Plug>(GitGutterTextObjectInnerVisual)
+    xmap ah <Plug>(GitGutterTextObjectOuterVisual)
+    nmap <leader>hf :GitGutterFold<cr>
 
   packadd julia-vim
-
   packadd vimtex
     let g:vimtex_compiler_enabled = 0
     let g:vimtex_complete_enabled = 0
@@ -68,6 +61,39 @@ set undofile
     let g:vimtex_quickfix_enabled = 0
     let g:vimtex_syntax_nospell_comments = 1
     let g:vimtex_view_enabled = 0
+
+  if has('nvim')
+    " packadd! nvim-treesitter
+  else
+    packadd! ale
+    " let g:ale_sign_error = '×⟩'
+    " let g:ale_sign_warning = '⋅⟩'
+    let g:ale_sign_error = ' ×'
+    let g:ale_sign_warning = ' ×'
+    let g:ale_linters = {'vim': ['vint'], 'python': [ 'pylint', 'mypy', 'pyright'], 'lua': ['luacheck', 'luac'], 'tex': ['lacheck']}  " ruff, mypy, pylint, pyright, lacheck, chktek, proselint
+    let g:ale_lint_on_text_changed = 'normal'
+    let g:ale_lint_on_insert_leave = 1
+    let g:ale_lint_delay = 0
+    let g:ale_lint_on_save = 1
+    let b:ale_virtualtext_prefix = ' '
+    let g:ale_virtualtext_cursor = 'current'
+    let g:ale_virtualtext_delay = 0
+    let g:ale_echo_cursor = 0
+    map ]a :ALENextWrap<cr>
+    map [a :ALEPreviousWrap<cr>
+    map ]e <Plug>(ale_next_wrap_error)
+    map [e <Plug>(ale_previous_wrap_error)
+    map ]w <Plug>(ale_next_wrap_warning)
+    map [w <Plug>(ale_previous_wrap_warning)
+    map <leader>an :ALENextWrap<cr>
+    map <leader>aN :ALEPreviousWrap<cr>
+    map <leader>ae <Plug>(ale_next_wrap_error)
+    map <leader>aE <Plug>(ale_previous_wrap_error)
+    map <leader>aw <Plug>(ale_next_wrap_warning)
+    map <leader>aW <Plug>(ale_previous_wrap_warning)
+    map <leader>al :ALELint<cr>
+    map <leader>ad :ALEDetail<cr>
+  endif
 
 " SET OPTIONS
   " FILETYPE SPECIFIC
@@ -122,7 +148,7 @@ set undofile
     set splitbelow
     set splitright
     set notimeout nottimeout
-    set updatetime=200
+    set updatetime=100
     set wildmenu
     set wildmode=list:longest,full
     " set number relativenumber
@@ -162,7 +188,6 @@ set undofile
   let g:fanfingtastic_all_inclusive = 1
   let g:fanfingtastic_fix_t = 1
   let g:fanfingtastic_ignorecase = 1
-  let g:gitgutter_map_keys = 0
   let g:gruvbox_improved_strings = 1
   let g:gruvbox_improved_warnings = 1
   let g:gruvbox_hls_cursor = 'orange'
@@ -191,14 +216,18 @@ set undofile
 
 
 " TOGGLE MAPPINGS
-  noremap <leader>h :noh<bar>:echo<cr>
+  " noremap <leader>h :noh<bar>:echo<cr>
   noremap <leader>th :set nohlsearch!<cr>
   map <leader>tw :setlocal nowrap!<cr>
-  map <leader>tb :call ToggleBackground()<cr>
-  map <leader>tg :call ToggleGMove()<cr>
   map <leader>ts :setlocal spell!<cr>
+  map <leader>tb :call ToggleBackground()<cr>
+  map <leader>tgm :call ToggleGMove()<cr>
+
+  map <leader>ta :ALEToggle<cr>
+  map <leader>tgit :GitGutterToggle<cr>
+
   " relative line numbers
-  nnoremap <leader>rln :set rnu!<cr>
+  nnoremap <leader>tln :set rnu!<cr>
 
 
 " map zs :setlocal spell!<cr>
@@ -253,10 +282,10 @@ set undofile
 
 
 " QUALITY OF LIFE MAPPINGS
-  noremap <c-f> g_
-  noremap! <c-f> g_
-  noremap <c-g> ^
-  noremap! <c-g> ^
+  noremap <c-g> g_
+  noremap! <c-g> g_
+  noremap <c-f> ^
+  noremap! <c-f> ^
 
   " movement
   nnoremap j gj
@@ -471,15 +500,24 @@ set undofile
 
     if has('nvim')
     else
-      hi ALEErrorLine ctermbg=none cterm=none
-      hi ALEWarningLine ctermbg=none cterm=none
-      hi ALEError ctermbg=none cterm=none
-      hi ALEWarning ctermbg=none cterm=none
+      hi clear ALEError
+      hi clear ALEWarning
+      hi clear ALEErrorSign
+      hi clear ALEWarningSign
+      hi clear ALEErrorLine
+      hi clear ALEWarningLine
+      hi clear ALEInfoSign
+      hi clear ALEVirtualTextError
+      hi clear ALEVirtualTextWarning
+      " hi ALEErrorLine ctermbg=none cterm=none
+      " hi ALEWarningLine ctermbg=none cterm=none
+      " hi ALEError ctermbg=167
+      " hi ALEWarning ctermfg=214
       hi ALEErrorSign ctermfg=167 ctermbg=none
       hi ALEWarningSign ctermfg=214 ctermbg=none
       hi ALEInfoSign ctermfg=108 ctermbg=none
-      hi ALEVirtualTextError ctermfg=238
-      hi ALEVirtualTextWarning ctermfg=238
+      hi ALEVirtualTextError ctermfg=167
+      hi ALEVirtualTextWarning ctermfg=214
     endif
 
     hi SignColumn ctermbg=black
@@ -513,9 +551,9 @@ set undofile
 autocmd! VimEnter * call s:nerdcommenter_mappings()
 function! s:nerdcommenter_mappings()
   map <leader>cc <plug>NERDCommenterToggle
-  map <leader>ct <plug>NERDCommenterInvert
-  map <leader>c<space> <plug>NERDCommenterInvert
-  noremap <leader>ci <plug>NERDCommenterAppend
+  map <leader>ci <plug>NERDCommenterInvert
+  " map <leader>c<space> <plug>NERDCommenterInvert
+  noremap <leader>cA <plug>NERDCommenterAppend
   noremap <leader>ca A<space><c-c><plug>NERDCommenterAppend
   noremap <leader>cl A<c-c><plug>NERDCommenterAppend<bs><left><bs><right><c-c>
   noremap <leader>co o<space><bs><c-c><plug>NERDCommenterAppend<c-o><<<c-o>$

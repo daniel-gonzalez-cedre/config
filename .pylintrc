@@ -1,5 +1,5 @@
 [MASTER]
-init-hook='import sys; sys.path.append("."); sys.path.append("./repos"); sys.path.append("./repos/DyVeRG"); sys.path.append("./repos/DyVeRG/cnrg"); sys.path.append("./repos/DyVeRG/src")'
+init-hook='import sys; sys.path.append("."); sys.path.append("./repos"); sys.path.append("./repos/DyVeRG"); sys.path.append("./repos/DyVeRG/cnrg"); sys.path.append("./repos/DyVeRG/src"); sys.path.append("./repos/neural-grammar/"); sys.path.append("./repos/neural-grammar/src"); sys.path.append("./repos/neural-grammar/src/grammar"); sys.path.append("./repos/neural-grammar/src/model")'
 
 disable=
     C0114, # missing-module-docstring
@@ -62,14 +62,14 @@ limit-inference-results=100
 
 # List of plugins (as comma separated values of python module names) to load,
 # usually to register additional checkers.
-load-plugins=
+# load-plugins=
 
 # Pickle collected data for later comparisons.
 persistent=yes
 
 # Minimum Python version to use for version dependent checks. Will default to
 # the version used to run pylint.
-py-version=
+# py-version=
 
 # Discover python modules and packages in the file system subtree.
 recursive=yes
@@ -88,7 +88,7 @@ unsafe-load-any-extension=no
 # Only show warnings with the listed confidence levels. Leave empty to show
 # all. Valid levels: HIGH, CONTROL_FLOW, INFERENCE, INFERENCE_FAILURE,
 # UNDEFINED.
-confidence=
+# confidence=
 
 # Disable the message, report, category or checker with the given id(s). You
 # can either give multiple identifiers separated by comma (,) or put this
@@ -197,10 +197,10 @@ spelling-store-unknown-words=no
 # notes=FIXME,
 #       XXX,
 #       TODO
-notes=
+# notes=
 
 # Regular expression of note tags to take in consideration.
-#notes-rgx=
+# notes-rgx=
 
 
 [TYPECHECK]
@@ -240,7 +240,7 @@ ignored-classes=optparse.Values,thread._local,_thread._local
 # (useful for modules/projects where namespaces are manipulated during runtime
 # and thus existing member attributes cannot be deduced by static analysis). It
 # supports qualified module names, as well as Unix pattern matching.
-ignored-modules=
+# ignored-modules=
 
 # Show a hint with possible names when a member name was not found. The aspect
 # of finding the hint is based on edit distance.

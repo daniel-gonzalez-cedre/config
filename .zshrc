@@ -89,11 +89,12 @@ export CONFIG=${HOME}/config
 export TERM=xterm-256color
 
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-export PATH=/opt/homebrew/bin:/usr/local/Cellar:$PATH
+export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/Cellar:$PATH
+export PATH=/usr/local/Cellar:$PATH
 export PATH=~/.local/bin:$PATH
-export PATH="$PYENV_ROOT/bin:$PATH"
+# export PATH="$PYENV_ROOT/bin:$PATH"
 
-export PYENV_ROOT="$HOME/.pyenv"
+# export PYENV_ROOT="$HOME/.pyenv"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 export FFDIR=${HOME}/Library/Application\ Support/Firefox
@@ -316,9 +317,9 @@ case `uname` in
     if ! command -v tree &> /dev/null; then
       brew install tree
     fi
-    if ! command -v pyenv &> /dev/null; then
-      brew install pyenv
-    fi
+    # if ! command -v pyenv &> /dev/null; then
+      # brew install pyenv
+    # fi
     # if ! command -v poetry &> /dev/null; then
       # #brew install poetry
       # curl -sSL https://install.python-poetry.org | python3 -
@@ -336,15 +337,15 @@ case `uname` in
   ;;
 esac
 
-if command -v pyenv > /dev/null; then
-  #export PYENV_ROOT="$HOME/.pyenv"
-  #export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init -)"
-fi
+# if command -v pyenv > /dev/null; then
+  # #export PYENV_ROOT="$HOME/.pyenv"
+  # #export PATH="$PYENV_ROOT/bin:$PATH"
+  # eval "$(pyenv init -)"
+# fi
 
-if command -v poetry > /dev/null; then
-  export POETRY_CONFIG_DIR="$HOME/.config/pypoetry"
-fi
+# if command -v poetry > /dev/null; then
+  # export POETRY_CONFIG_DIR="$HOME/.config/pypoetry"
+# fi
 
 
 # ===
