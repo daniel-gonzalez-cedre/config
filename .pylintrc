@@ -1,5 +1,5 @@
 [MASTER]
-init-hook='import sys; sys.path.append("."); sys.path.append("./repos"); sys.path.append("./repos/DyVeRG"); sys.path.append("./repos/DyVeRG/cnrg"); sys.path.append("./repos/DyVeRG/src"); sys.path.append("./repos/neural-grammar/"); sys.path.append("./repos/neural-grammar/src"); sys.path.append("./repos/neural-grammar/src/grammar"); sys.path.append("./repos/neural-grammar/src/model")'
+init-hook='import sys; sys.path.append(".")'
 
 disable=
     C0114, # missing-module-docstring
@@ -599,5 +599,5 @@ min-public-methods=0
 
 # Exceptions that will emit a warning when being caught. Defaults to
 # "BaseException, Exception".
-overgeneral-exceptions=BaseException,
-                       Exception
+# overgeneral-exceptions=BaseException,
+#                        Exception
