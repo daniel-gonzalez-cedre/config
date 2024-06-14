@@ -289,32 +289,37 @@ set undofile
 
 
 " QUALITY OF LIFE MAPPINGS
-  noremap <c-g> g_
-  noremap! <c-g> g_
-  noremap <c-f> ^
-  noremap! <c-f> ^
+  nnoremap <c-g> g_
+  vnoremap <c-g> g_
+  nnoremap <c-f> ^
+  vnoremap <c-f> ^
 
   " movement
+  inoremap <left> <c-g>U<left>
+  inoremap <right> <c-g>U<right>
+
   nnoremap j gj
   nnoremap k gk
   " nnoremap gj j
   " nnoremap gk k
 
-  noremap <up> <c-y>
-  noremap <down> <c-e>
-  noremap <left> zh
-  noremap <right> zl
+  nnoremap <up> <c-y>
+  vnoremap <up> <c-y>
+  nnoremap <down> <c-e>
+  vnoremap <down> <c-e>
+  nnoremap <left> zh
+  vnoremap <left> zh
+  nnoremap <right> zl
+  vnoremap <right> zl
 
-  vnoremap <expr> i mode()=~'\cv' ? 'i' : 'I'
-  vnoremap <expr> a mode()=~'\cv' ? 'a' : 'A'
+  " vnoremap <expr> i mode()=~'\cv' ? 'i' : 'I'
+  " vnoremap <expr> a mode()=~'\cv' ? 'a' : 'A'
 
   " nnoremap <silent> <c-o> :call JumpWithinFile ("\<c-i>", "\<c-o>")<cr>
   " nnoremap <silent> <c-i> :call JumpWithinFile ("\<c-o>", "\<c-i>")<cr>
 
   " nnoremap <silent> <leader>o :call JumpWithinFile ("\<c-i>", "\<c-o>")<cr>
   " nnoremap <silent> <leader>i :call JumpWithinFile ("\<c-o>", "\<c-i>")<cr>
-
-  " nnoremap <c-t> <c-y>
 
   " text object for current line
   xnoremap il g_o^
@@ -352,9 +357,9 @@ set undofile
 
 
 " DELIMITER MAPPINGS
-  inoremap ( ()<left>
-  inoremap [ []<left>
-  inoremap { {}<left>
+  inoremap ( ()<c-g>U<left>
+  inoremap [ []<c-g>U<left>
+  inoremap { {}<c-g>U<left>
   inoremap ) <c-r>=ClosePair(')')<cr>
   inoremap ] <c-r>=ClosePair(']')<cr>
   inoremap } <c-r>=ClosePair('}')<cr>
@@ -416,7 +421,7 @@ set undofile
 
   function ClosePair(char)
     if getline('.')[col('.') - 1] == a:char
-      return "\<right>"
+      return "\<c-g>U\<right>"
     else
       return a:char
     endif
@@ -428,7 +433,7 @@ set undofile
     if line[col - 2] == "\\"
       return a:char
     elseif line[col - 1] == a:char
-      return "\<right>"
+      return "\<c-g>U\<right>"
     else
       return a:char.a:char."\<esc>i"
     endif
@@ -562,7 +567,7 @@ function! s:nerdcommenter_mappings()
   " map <leader>c<space> <plug>NERDCommenterInvert
   noremap <leader>cA <plug>NERDCommenterAppend
   noremap <leader>ca A<space><c-c><plug>NERDCommenterAppend
-  noremap <leader>cl A<c-c><plug>NERDCommenterAppend<bs><left><bs><right><c-c>
+  noremap <leader>cl A<c-c><plug>NERDCommenterAppend<bs><c-g>U<left><bs><right><c-c>
   noremap <leader>co o<space><bs><c-c><plug>NERDCommenterAppend<c-o><<<c-o>$
   noremap <leader>cO O<space><bs><c-c><plug>NERDCommenterAppend<c-o><<<c-o>$
 endfunction
