@@ -414,10 +414,6 @@ set undofile
     " endwhile
   " endfunction
 
-  function GitRoot()
-    return system("git rev-parse --show-toplevel")
-  endfunction
-
   function ClosePair(char)
     if getline('.')[col('.') - 1] == a:char
       return "\<right>"
