@@ -12,6 +12,7 @@
 + git@github.com:airblade/vim-gitgutter.git
 + git@github.com:tpope/vim-repeat.git
 + git@github.com:daniel-gonzalez-cedre/vim-surround.git
++ git@github.com:godlygeek/tabular.git
 
 # languages
 + git@github.com:jlapolla/vim-coq-plugin.git

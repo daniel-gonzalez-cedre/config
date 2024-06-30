@@ -1,22 +1,27 @@
-filetype plugin indent on
-silent
-syntax enable
-au FileType * set conceallevel=0
-autocmd BufEnter * :syntax sync fromstart
+" initialization
+  filetype plugin indent on
+  silent
+  syntax enable
 
-if !isdirectory($HOME."/.vim")
-  call mkdir($HOME."/.vim", "", 0770)
-endif
-if !isdirectory($HOME."/.vim/undodir")
-  call mkdir($HOME."/.vim/undodir", "", 0700)
-endif
-set undodir=~/.vim/undodir
-set undofile
+  augroup init_settings | au!
+    au FileType * set conceallevel=0
+    au BufEnter * :syntax sync fromstart
+  augroup END
+
+  if !isdirectory($HOME.'/.vim')
+    call mkdir($HOME.'/.vim', '', 0770)
+  endif
+
+  if !isdirectory($HOME.'/.vim/undodir')
+    call mkdir($HOME.'/.vim/undodir', '', 0700)
+  endif
+  set undodir=~/.vim/undodir
+  set undofile
 
 " LEADER
   nnoremap <space> <nop>
   vnoremap <space> <nop>
-  let mapleader=' '
+  let mapleader = ' '
 
 " NOP MAPPINGS
   " silence macro recording
@@ -32,6 +37,19 @@ set undofile
   map! <c-b> <nop>
 
 " PACKAGES
+  " tabularize
+    nnoremap <tab> :Tabularize /
+    vnoremap <tab> :Tabularize /
+    vnoremap <tab><space> :Tabularize /\zs<left><left><left>
+    " vnoremap <tab>\ :Tabularize /\zs<left><left><left>
+    vnoremap <tab>= :Tabularize /=<cr>
+    vnoremap <tab>( :Tabularize /(<cr>
+    vnoremap <tab>{ :Tabularize /{<cr>
+    vnoremap <tab>[ :Tabularize /[<cr>
+    vnoremap <tab>: :Tabularize /:<cr>
+    vnoremap <tab>, :Tabularize /,<cr>
+    " vnoremap <leader><tab>| :Tabularize /|<cr>
+
   packadd vim-gitgutter
     let g:gitgutter_map_keys = 1
 
@@ -52,55 +70,57 @@ set undofile
     nmap <leader>hf :GitGutterFold<cr>
 
   packadd julia-vim
-  packadd vimtex
-    let g:vimtex_compiler_enabled = 0
-    let g:vimtex_complete_enabled = 0
-    " let g:vimtex_fold_enabled = 1
-    let g:vimtex_imaps_enabled = 0
-    " let g:vimtex_mappings_enabled = 0
-    let g:vimtex_quickfix_enabled = 0
-    let g:vimtex_syntax_nospell_comments = 1
-    let g:vimtex_view_enabled = 0
 
-  if has('nvim')
+  " if has('nvim')
     " packadd! nvim-treesitter
-  else
-    packadd! ale
-    " let g:ale_sign_error = '×⟩'
-    " let g:ale_sign_warning = '⋅⟩'
-    let g:ale_sign_error = ' ×'
-    let g:ale_sign_warning = ' ×'
-    " ruff, mypy, pylint, pyright, lacheck, chktek, proselint
-    let g:ale_linters = {
-          \ 'vim': ['vint'],
-          \ 'python': ['pylint', 'mypy'],
-          \ 'lua': ['luacheck', 'luac'],
-          \ 'tex': ['lacheck']
-          \ }
-    let g:ale_lint_on_text_changed = 'normal'
-    let g:ale_lint_on_insert_leave = 1
-    let g:ale_lint_delay = 0
-    let g:ale_lint_on_save = 1
-    let b:ale_virtualtext_prefix = ' '
-    let g:ale_virtualtext_cursor = 'current'
-    let g:ale_virtualtext_delay = 0
-    let g:ale_echo_cursor = 0
-    let g:ale_python_pylint_options = "--init-hook=\"import sys; sys.path.append(\'" . trim(system('git rev-parse --show-toplevel')) . "\')\""
-    map ]a :ALENextWrap<cr>
-    map [a :ALEPreviousWrap<cr>
-    map ]e <Plug>(ale_next_wrap_error)
-    map [e <Plug>(ale_previous_wrap_error)
-    map ]w <Plug>(ale_next_wrap_warning)
-    map [w <Plug>(ale_previous_wrap_warning)
-    map <leader>an :ALENextWrap<cr>
-    map <leader>aN :ALEPreviousWrap<cr>
-    map <leader>ae <Plug>(ale_next_wrap_error)
-    map <leader>aE <Plug>(ale_previous_wrap_error)
-    map <leader>aw <Plug>(ale_next_wrap_warning)
-    map <leader>aW <Plug>(ale_previous_wrap_warning)
-    map <leader>al :ALELint<cr>
-    map <leader>ad :ALEDetail<cr>
-  endif
+  " else
+    " packadd! ale
+  " endif
+  augroup ale_settings | au!
+    au Filetype python call s:setup_ale()
+    au Filetype lua call s:setup_ale()
+    au Filetype vim call s:setup_ale()
+    au Filetype tex call s:setup_ale()
+
+    " linters: ruff, mypy, pylint, pyright, lacheck, chktek, proselint
+    function! s:setup_ale()
+      packadd ale
+      " let g:ale_sign_error = '×⟩'
+      " let g:ale_sign_warning = '⋅⟩'
+      let g:ale_sign_error = ' ×'
+      let g:ale_sign_warning = ' ×'
+      let g:ale_linters = {
+            \ 'vim': ['vint'],
+            \ 'python': ['pylint', 'mypy'],
+            \ 'lua': ['luacheck', 'luac'],
+            \ 'tex': ['lacheck']
+            \ }
+      let g:ale_lint_on_text_changed = 'normal'
+      let g:ale_lint_on_insert_leave = 1
+      let g:ale_lint_delay = 0
+      let g:ale_lint_on_save = 1
+      let b:ale_virtualtext_prefix = ' '
+      let g:ale_virtualtext_cursor = 'current'
+      let g:ale_virtualtext_delay = 0
+      let g:ale_echo_cursor = 0
+      let g:ale_python_pylint_options = "--init-hook=\"import sys; sys.path.append(\'" . trim(system('git rev-parse --show-toplevel')) . "\')\""
+
+      map ]a :ALENextWrap<cr>
+      map [a :ALEPreviousWrap<cr>
+      map ]e <Plug>(ale_next_wrap_error)
+      map [e <Plug>(ale_previous_wrap_error)
+      map ]w <Plug>(ale_next_wrap_warning)
+      map [w <Plug>(ale_previous_wrap_warning)
+      map <leader>an :ALENextWrap<cr>
+      map <leader>aN :ALEPreviousWrap<cr>
+      map <leader>ae <Plug>(ale_next_wrap_error)
+      map <leader>aE <Plug>(ale_previous_wrap_error)
+      map <leader>aw <Plug>(ale_next_wrap_warning)
+      map <leader>aW <Plug>(ale_previous_wrap_warning)
+      map <leader>al :ALELint<cr>
+      map <leader>ad :ALEDetail<cr>
+    endfunction
+  augroup END
 
 " SET OPTIONS
   " FILETYPE SPECIFIC
@@ -113,11 +133,20 @@ set undofile
     
     " LaTeX
     augroup latex_settings | au!
-      " au Filetype tex packadd vimtex
-      let g:Tex_SmartQuoteOpen = "``"
+      au Filetype tex packadd vimtex
+      au Filetype tex let g:vimtex_compiler_enabled = 0
+      au Filetype tex let g:vimtex_complete_enabled = 0
+      au Filetype tex " let g:vimtex_fold_enabled = 1
+      au Filetype tex let g:vimtex_imaps_enabled = 0
+      au Filetype tex " let g:vimtex_mappings_enabled = 0
+      au Filetype tex let g:vimtex_quickfix_enabled = 0
+      au Filetype tex let g:vimtex_syntax_nospell_comments = 1
+      au Filetype tex let g:vimtex_view_enabled = 0
+
+      let g:Tex_SmartQuoteOpen = '``'
       let g:Tex_SmartQuoteClose = "''"
-      " let g:tex_flavor="latex"
-      " let g:tex_fold_enabled=1
+      " let g:tex_flavor = 'latex'
+      " let g:tex_fold_enabled = 1
 
       " au Filetype tex set foldmethod=syntax
     augroup END
@@ -564,6 +593,7 @@ autocmd! VimEnter * call s:nerdcommenter_mappings()
 function! s:nerdcommenter_mappings()
   map <leader>cc <plug>NERDCommenterToggle
   map <leader>ci <plug>NERDCommenterInvert
+  map <leader>ct <plug>NERDCommenterInvert
   " map <leader>c<space> <plug>NERDCommenterInvert
   noremap <leader>cA <plug>NERDCommenterAppend
   noremap <leader>ca A<space><c-c><plug>NERDCommenterAppend
@@ -578,7 +608,7 @@ function! GitStatus()
 endfunction
 " set statusline+=%{GitStatus()}
 
-let g:currentmode={
+let g:currentmode = {
 	\ 'n'  : 'Normal',
 	\ 'no' : 'Operator Pending',
 	\ 'v'  : 'Visual',
