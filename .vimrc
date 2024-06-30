@@ -323,9 +323,15 @@
   nnoremap <c-f> ^
   vnoremap <c-f> ^
 
+  noremap <leader>b :call ScratchBuffer()<cr>
+
   " movement
   inoremap <left> <c-g>U<left>
   inoremap <right> <c-g>U<right>
+  " noremap \h <c-w>h
+  " noremap \j <c-w>j
+  " noremap \k <c-w>k
+  " noremap \l <c-w>l
 
   nnoremap j gj
   nnoremap k gk
@@ -448,6 +454,17 @@
     " endwhile
   " endfunction
 
+  function! ScratchBuffer()
+    let l:prevft = &filetype
+    split
+    noswapfile hide enew
+    setlocal buftype=nofile
+    setlocal bufhidden=delete
+    setlocal nobuflisted
+    let &l:filetype=l:prevft
+    file scratch
+  endfunction
+
   function ClosePair(char)
     if getline('.')[col('.') - 1] == a:char
       return "\<c-g>U\<right>"
@@ -504,7 +521,7 @@
 
 
 " COLORS
-  function! s:gruvbox_custom()
+  function! s:gruvbox_colors()
     hi Comment ctermfg=240 ctermbg=none cterm=none
     " hi Folded ctermfg=95 ctermbg=234
     hi Folded ctermfg=237 ctermbg=none cterm=none
@@ -564,7 +581,7 @@
     hi SignColumn ctermbg=black
   endfunction
 
-  function! s:gitgutter_custom()
+  function! s:gitgutter_colors()
     highlight clear SignColumn
     highlight GitGutterAdd ctermfg=142 ctermbg=none
     highlight GitGutterChange ctermfg=109 ctermbg=none
@@ -572,9 +589,9 @@
     highlight GitGutterChangeDelete ctermfg=175 ctermbg=none
   endfunction
 
-  augroup custom_colors | au!
-    au ColorScheme gruvbox call s:gruvbox_custom()
-    au ColorScheme gruvbox call s:gitgutter_custom()
+  augroup setup_colors | au!
+    au ColorScheme gruvbox call s:gruvbox_colors()
+    au ColorScheme gruvbox call s:gitgutter_colors()
   augroup END
 
   colorscheme gruvbox
