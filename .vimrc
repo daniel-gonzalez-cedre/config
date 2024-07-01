@@ -85,25 +85,6 @@
     " linters: ruff, mypy, pylint, pyright, lacheck, chktek, proselint
     function! s:setup_ale()
       packadd ale
-      " let g:ale_sign_error = '×⟩'
-      " let g:ale_sign_warning = '⋅⟩'
-      let g:ale_sign_error = ' ×'
-      let g:ale_sign_warning = ' ×'
-      let g:ale_linters = {
-            \ 'vim': ['vint'],
-            \ 'python': ['pylint', 'mypy'],
-            \ 'lua': ['luacheck', 'luac'],
-            \ 'tex': ['lacheck']
-            \ }
-      let g:ale_lint_on_text_changed = 'normal'
-      let g:ale_lint_on_insert_leave = 1
-      let g:ale_lint_delay = 0
-      let g:ale_lint_on_save = 1
-      let g:ale_virtualtext_prefix = ' '
-      let g:ale_virtualtext_cursor = 'current'
-      let g:ale_virtualtext_delay = 0
-      let g:ale_echo_cursor = 0
-      let g:ale_python_pylint_options = "--init-hook=\"import sys; sys.path.append(\'" . trim(system('git rev-parse --show-toplevel')) . "\')\""
 
       map ]a :ALENextWrap<cr>
       map [a :ALEPreviousWrap<cr>
@@ -120,6 +101,26 @@
       map <leader>al :ALELint<cr>
       map <leader>ad :ALEDetail<cr>
     endfunction
+
+    let g:ale_sign_error='×⟩'
+    let g:ale_sign_warning='⋅⟩'
+    " let g:ale_sign_error=' ×'
+    " let g:ale_sign_warning=' ×'
+    let g:ale_linters={
+          \ 'vim': ['vint'],
+          \ 'python': ['pylint', 'mypy'],
+          \ 'lua': ['luacheck', 'luac'],
+          \ 'tex': ['lacheck']
+          \ }
+    let g:ale_lint_on_text_changed='normal'
+    let g:ale_lint_on_insert_leave=1
+    let g:ale_lint_delay=0
+    let g:ale_lint_on_save=1
+    let g:ale_virtualtext_prefix=' '
+    let g:ale_virtualtext_cursor='current'
+    let g:ale_virtualtext_delay=0
+    let g:ale_echo_cursor=0
+    let g:ale_python_pylint_options="--init-hook=\"import sys; sys.path.append(\'" . trim(system('git rev-parse --show-toplevel')) . "\')\""
   augroup END
 
 " SET OPTIONS
