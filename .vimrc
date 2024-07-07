@@ -26,7 +26,7 @@
 " NOP MAPPINGS
   " silence macro recording
   map q <nop>
-  noremap <leader>q q
+  noremap <leader><c-q> q
   vnoremap <bs> <nop>
   nnoremap ZZ <nop>
   nnoremap Zz <nop>
@@ -38,7 +38,7 @@
 
 " PACKAGES
   " tabularize
-    nnoremap <tab> :Tabularize /
+    nnoremap <leader><tab> :Tabularize /
     vnoremap <tab> :Tabularize /
     vnoremap <tab><space> :Tabularize /\zs<left><left><left>
     " vnoremap <tab>\ :Tabularize /\zs<left><left><left>
@@ -161,8 +161,8 @@
     set fillchars=stl:⋅,stlnc:⋅,vert:\|,fold:-
     " set fillchars=stl:-,stlnc:⋅,vert:│,fold:\ ,diff:·
     set formatoptions+=1jr/  " use <c-U> to remove comment symbol
-    set hlsearch
-    " set nohlsearch
+    " set hlsearch
+    set nohlsearch
     set ignorecase
     set incsearch
     set nojoinspaces
@@ -254,14 +254,17 @@
 
 " TOGGLE MAPPINGS
   " noremap <leader>h :noh<bar>:echo<cr>
-  noremap <leader>th :set nohlsearch!<cr>
-  map <leader>tw :setlocal nowrap!<cr>
-  map <leader>ts :setlocal spell!<cr>
-  map <leader>tb :call ToggleBackground()<cr>
-  map <leader>tgm :call ToggleGMove()<cr>
+  nnoremap <leader>th :set nohlsearch!<cr>
+  nnoremap <leader>tw :setlocal nowrap!<cr>
+  nnoremap <leader>ts :setlocal spell!<cr>
+  nnoremap <leader>tb :call ToggleBackground()<cr>
+  nnoremap <leader>tgm :call ToggleGMove()<cr>
+  nnoremap <leader>tq :call ToggleQuote()<cr>
+  nnoremap <leader>t' :call ToggleQuote()<cr>
+  nnoremap <leader>t" :call ToggleQuote()<cr>
 
-  map <leader>ta :ALEToggle<cr>
-  map <leader>tgit :GitGutterToggle<cr>
+  nnoremap <leader>ta :ALEToggle<cr>
+  nnoremap <leader>tgit :GitGutterToggle<cr>
 
   " relative line numbers
   nnoremap <leader>tln :set rnu!<cr>
@@ -284,29 +287,6 @@
 " map zUW ZUW
 " map ]s ZN
 " map [s ZP
-
-
-" CLEAR MAPPINGS
-  nmap i i
-  nmap I I
-  nmap a a
-  nmap A A
-  nmap o o
-  nmap O O
-  nmap gi gi
-  nmap gI gI
-  nmap s s
-  nmap S S
-  nmap r r
-  nmap R R
-  nmap c c
-  nmap C C
-  " nnoremap d :noh<bar>:echo<cr>d
-  " nnoremap D :noh<bar>:echo<cr>D
-  " vnoremap x x<c-C>
-  " vnoremap X X<c-C>
-  nmap v v
-  nmap V V
 
 
 " SEARCH MAPPINGS
@@ -364,31 +344,34 @@
   onoremap <silent> al :normal val<cr>
 
   " status bar auto-clearing
-  noremap <silent> <c-c> <esc>
-  nnoremap <silent> <c-c> :noh<bar>:echo<cr><esc>
-  inoremap <silent> <c-c> <esc>:noh<bar>:echo<cr>
-  nnoremap <c-v> :noh<bar>:echo<cr><c-v>
+  noremap <silent> <c-c> <esc><esc>
+  nnoremap <silent> <c-c> :noh<bar>:echo<cr><esc><esc>
+  inoremap <silent> <c-c> <esc><esc>:noh<bar>:echo<cr>
+  " nnoremap <c-v> :noh<bar>:echo<cr><c-v>
   nnoremap <silent> <cr> :noh<bar>:echo<cr>
   nnoremap <silent> <bs> :noh<bar>:echo<cr>
 
   " misc
-  nnoremap <leader><tab> za
-  " map <c-f> za
-  " map <leader><c-f> zA
+  nnoremap <leader>ff za
+  nnoremap <leader>F zA
   inoremap <c-]> <del>
-  inoremap <expr> <cr> pumvisible() ? !empty(v:completed_item) ? "<c-y><c-c>" : "<c-y><cr>" : "<cr>"
-
+  " inoremap <expr> <cr> pumvisible() ? !empty(v:completed_item) ? "<c-y><c-c>" : "<c-y><cr>" : "<cr>"
 
   if has('clipboard')
     noremap y "+y
-    noremap Y "+Y
     noremap d "+d
-    noremap dd "+dd
-    noremap D "+D
-    vnoremap x "+x
-    vnoremap X "+X
     noremap p "+p
-    noremap P "+P
+    noremap x "+x:noh<bar>:echo<cr>
+    noremap X "+X:noh<bar>:echo<cr>
+
+    nnoremap Y "+Y
+    nnoremap D "+D
+    nnoremap P "+P
+    nnoremap yy "+yy
+    nnoremap dd "+dd
+  else
+    noremap x x:noh<bar>:echo<cr>
+    noremap X X:noh<bar>:echo<cr>
   endif
 
 
@@ -400,14 +383,12 @@
   inoremap ] <c-r>=ClosePair(']')<cr>
   inoremap } <c-r>=ClosePair('}')<cr>
   inoremap > <c-r>=ClosePair('>')<cr>
-  inoremap " <c-r>=ClosePair('"')<cr>
-  inoremap ' <c-r>=ClosePair("'")<cr>
-  inoremap ` <c-r>=ClosePair('`')<cr>
   inoremap $ <c-r>=ClosePair('$')<cr>
   inoremap <c-f> <c-r>=ClosePair('$')<cr>
-  " inoremap " <c-r>=QuoteDelim('"')<cr>
-  " inoremap ' <c-r>=QuoteDelim("'")<cr>
-  " inoremap ` <c-r>=QuoteDelim('`')<cr>
+  inoremap " <c-r>=QuoteDelim('"')<cr>
+  inoremap ' <c-r>=QuoteDelim("'")<cr>
+  inoremap ` <c-r>=QuoteDelim('`')<cr>
+  inoremap <c-q> ``''<left><left>
 
   vmap <leader>b <s-s>)<cr>
   vmap <leader>p <s-s>)<cr>
@@ -454,6 +435,21 @@
       " sil! exe 'norm!1' . a:forw
     " endwhile
   " endfunction
+
+  let quoteStatus = 0
+  function! ToggleQuote()
+    if quoteStatus == 0
+      let quoteStatus = 1
+      inoremap " <c-r>=ClosePair('"')<cr>
+      inoremap ' <c-r>=ClosePair("'")<cr>
+      inoremap ` <c-r>=ClosePair('`')<cr>
+    else
+      let quoteStatus = 0
+      inoremap " <c-r>=QuoteDelim('"')<cr>
+      inoremap ' <c-r>=QuoteDelim("'")<cr>
+      inoremap ` <c-r>=QuoteDelim('`')<cr>
+    endif
+  endfunction
 
   function! ScratchBuffer()
     let l:prevft = &filetype
