@@ -346,7 +346,8 @@
   " status bar auto-clearing
   noremap <silent> <c-c> <esc><esc>
   nnoremap <silent> <c-c> :noh<bar>:echo<cr><esc><esc>
-  inoremap <silent> <c-c> <esc><esc>:noh<bar>:echo<cr>
+  inoremap <silent> <c-c> <esc><esc><right>:noh<bar>:echo<cr>
+  vnoremap <silent> <c-c> <c-c><c-c>`<
   " nnoremap <c-v> :noh<bar>:echo<cr><c-v>
   nnoremap <silent> <cr> :noh<bar>:echo<cr>
   nnoremap <silent> <bs> :noh<bar>:echo<cr>
@@ -358,17 +359,19 @@
   " inoremap <expr> <cr> pumvisible() ? !empty(v:completed_item) ? "<c-y><c-c>" : "<c-y><cr>" : "<cr>"
 
   if has('clipboard')
-    noremap y "+y
     noremap d "+d
     noremap p "+p
     noremap x "+x:noh<bar>:echo<cr>
     noremap X "+X:noh<bar>:echo<cr>
 
+    nnoremap y "+y
     nnoremap Y "+Y
     nnoremap D "+D
     nnoremap P "+P
     nnoremap yy "+yy
     nnoremap dd "+dd
+
+    vnoremap y "+y`<
   else
     noremap x x:noh<bar>:echo<cr>
     noremap X X:noh<bar>:echo<cr>
@@ -436,21 +439,6 @@
     " endwhile
   " endfunction
 
-  let quoteStatus = 0
-  function! ToggleQuote()
-    if quoteStatus == 0
-      let quoteStatus = 1
-      inoremap " <c-r>=ClosePair('"')<cr>
-      inoremap ' <c-r>=ClosePair("'")<cr>
-      inoremap ` <c-r>=ClosePair('`')<cr>
-    else
-      let quoteStatus = 0
-      inoremap " <c-r>=QuoteDelim('"')<cr>
-      inoremap ' <c-r>=QuoteDelim("'")<cr>
-      inoremap ` <c-r>=QuoteDelim('`')<cr>
-    endif
-  endfunction
-
   function! ScratchBuffer()
     let l:prevft = &filetype
     split
@@ -509,6 +497,21 @@
       nnoremap k gk
       nnoremap gj j
       nnoremap gk k
+    endif
+  endfunction
+
+  let quoteStatus = 0
+  function! ToggleQuote()
+    if g:quoteStatus == 0
+      let g:quoteStatus = 1
+      inoremap " <c-r>=ClosePair('"')<cr>
+      inoremap ' <c-r>=ClosePair("'")<cr>
+      inoremap ` <c-r>=ClosePair('`')<cr>
+    else
+      let g:quoteStatus = 0
+      inoremap " <c-r>=QuoteDelim('"')<cr>
+      inoremap ' <c-r>=QuoteDelim("'")<cr>
+      inoremap ` <c-r>=QuoteDelim('`')<cr>
     endif
   endfunction
 
@@ -605,15 +608,18 @@
 " NERDCommenter MAPPINGS
 autocmd! VimEnter * call s:nerdcommenter_mappings()
 function! s:nerdcommenter_mappings()
-  map <leader>cc <plug>NERDCommenterToggle
-  map <leader>ci <plug>NERDCommenterInvert
-  map <leader>ct <plug>NERDCommenterInvert
+  nmap <leader>cc <plug>NERDCommenterToggle
+  nmap <leader>ci <plug>NERDCommenterInvert
+  nmap <leader>ct <plug>NERDCommenterInvert
+  vmap <leader>cc <plug>NERDCommenterToggle `<
+  vmap <leader>ci <plug>NERDCommenterInvert `<
+  vmap <leader>ct <plug>NERDCommenterInvert `<
   " map <leader>c<space> <plug>NERDCommenterInvert
-  noremap <leader>cA <plug>NERDCommenterAppend
-  noremap <leader>ca A<space><c-c><plug>NERDCommenterAppend
-  noremap <leader>cl A<c-c><plug>NERDCommenterAppend<bs><c-g>U<left><bs><right><c-c>
-  noremap <leader>co o<space><bs><c-c><plug>NERDCommenterAppend<c-o><<<c-o>$
-  noremap <leader>cO O<space><bs><c-c><plug>NERDCommenterAppend<c-o><<<c-o>$
+  nnoremap <leader>cA <plug>NERDCommenterAppend
+  nnoremap <leader>ca A<space><c-c><plug>NERDCommenterAppend
+  nnoremap <leader>cl A<c-c><plug>NERDCommenterAppend<bs><c-g>U<left><bs><right><c-c>
+  nnoremap <leader>co o<space><bs><c-c><plug>NERDCommenterAppend<c-o><<<c-o>$
+  nnoremap <leader>cO O<space><bs><c-c><plug>NERDCommenterAppend<c-o><<<c-o>$
 endfunction
 
 function! GitStatus()
