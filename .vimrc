@@ -304,7 +304,7 @@
   nnoremap <c-f> ^
   vnoremap <c-f> ^
 
-  noremap <leader>b :call ScratchBuffer()<cr>
+  noremap <leader>nn :call ScratchBuffer()<cr>
 
   " movement
   inoremap <left> <c-g>U<left>
@@ -346,7 +346,7 @@
   " status bar auto-clearing
   noremap <silent> <c-c> <esc><esc>
   nnoremap <silent> <c-c> :noh<bar>:echo<cr><esc><esc>
-  inoremap <silent> <c-c> <esc><esc><right>:noh<bar>:echo<cr>
+  inoremap <silent> <c-c> <esc><esc>:noh<bar>:echo<cr>
   vnoremap <silent> <c-c> <c-c><c-c>`<
   " nnoremap <c-v> :noh<bar>:echo<cr><c-v>
   nnoremap <silent> <cr> :noh<bar>:echo<cr>
