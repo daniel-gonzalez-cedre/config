@@ -354,8 +354,11 @@
 
   " misc
   nnoremap <leader>ff za
+  vnoremap <leader>ff za
   nnoremap <leader>fa zA
+  vnoremap <leader>fa zA
   nnoremap <leader>F zA
+  vnoremap <leader>F zA
   inoremap <c-]> <del>
   " inoremap <expr> <cr> pumvisible() ? !empty(v:completed_item) ? "<c-y><c-c>" : "<c-y><cr>" : "<cr>"
 

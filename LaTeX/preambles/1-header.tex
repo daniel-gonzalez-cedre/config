@@ -77,6 +77,16 @@
       \gdef\ClassOptions{nobib,justified,\DraftOption}%
       \gdef\ProofSpacing{-0.5\baselineskip}
     }
+    \def\setDocument@yessyllabus{%
+      \tuftetrue%
+      \bookfalse%
+      \examfalse%
+      \standalonefalse%
+      \headerstrue%
+      \footerstrue%
+      \gdef\ClassType{tufte-handout}%
+      \gdef\ClassOptions{nobib,justified,\DraftOption}%
+    }
     % setDocument non-Tufte styles
     \def\setDocument@nobook{%
       \tuftefalse%
@@ -97,7 +107,7 @@
       \gdef\ClassType{standalone}%
       % \gdef\ClassOptions{multi=tikzpicture,varwidth=false}%
       \gdef\ClassOptions{}%
-% class=minimal,border=0pt
+      % class=minimal,border=0pt
     }
 
     % setPaper
