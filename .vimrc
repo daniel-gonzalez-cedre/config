@@ -77,10 +77,10 @@
     " packadd! ale
   " endif
   augroup ale_settings | au!
-    au Filetype python call s:setup_ale()
-    au Filetype lua call s:setup_ale()
-    au Filetype vim call s:setup_ale()
-    au Filetype tex call s:setup_ale()
+    au FileType python call s:setup_ale()
+    au FileType lua call s:setup_ale()
+    au FileType vim call s:setup_ale()
+    au FileType tex call s:setup_ale()
 
     " linters: ruff, mypy, pylint, pyright, lacheck, chktek, proselint
     function! s:setup_ale()
@@ -127,29 +127,31 @@
   " FILETYPE SPECIFIC
     " PYTHON
     augroup python_settings | au!
-      au Filetype python setlocal shiftwidth=2
-      au Filetype python setlocal softtabstop=2
-      au Filetype python setlocal tabstop=8
+      au FileType python setlocal shiftwidth=2
+      au FileType python setlocal softtabstop=2
+      au FileType python setlocal tabstop=8
     augroup END
     
     " LaTeX
     augroup latex_settings | au!
-      au Filetype tex packadd vimtex
-      au Filetype tex let g:vimtex_compiler_enabled = 0
-      au Filetype tex let g:vimtex_complete_enabled = 0
-      au Filetype tex " let g:vimtex_fold_enabled = 1
-      au Filetype tex let g:vimtex_imaps_enabled = 0
-      au Filetype tex " let g:vimtex_mappings_enabled = 0
-      au Filetype tex let g:vimtex_quickfix_enabled = 0
-      au Filetype tex let g:vimtex_syntax_nospell_comments = 1
-      au Filetype tex let g:vimtex_view_enabled = 0
+      packadd vim-latex
+      packadd vimtex
+
+      au FileType tex let g:vimtex_compiler_enabled = 0
+      au FileType tex let g:vimtex_complete_enabled = 0
+      au FileType tex " let g:vimtex_fold_enabled = 1
+      au FileType tex let g:vimtex_imaps_enabled = 0
+      au FileType tex " let g:vimtex_mappings_enabled = 0
+      au FileType tex let g:vimtex_quickfix_enabled = 0
+      au FileType tex let g:vimtex_syntax_nospell_comments = 1
+      au FileType tex let g:vimtex_view_enabled = 0
 
       let g:Tex_SmartQuoteOpen = '``'
       let g:Tex_SmartQuoteClose = "''"
       " let g:tex_flavor = 'latex'
       " let g:tex_fold_enabled = 1
 
-      " au Filetype tex set foldmethod=syntax
+      " au FileType tex set foldmethod=syntax
     augroup END
 
   " GENERAL
