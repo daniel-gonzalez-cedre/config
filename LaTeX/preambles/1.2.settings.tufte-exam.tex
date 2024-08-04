@@ -1,0 +1,232 @@
+\gdef\ProofSpacing{-0.5\baselineskip}
+
+\usepackage{wasysym}
+\newcommand{\chooseone}{{\Large$\Circle$\ \ }}
+\newcommand{\choosemany}{{\Large$\Square$\ \ }}
+
+\renewcommand{\headrulewidth}{0pt}
+\fancypagestyle{plain}{%
+  \ifheaders
+    \fancyhead[L]{\DateHeaderText}
+    % \fancyhead[R]{}
+  \else
+  \fi
+}
+
+\pagestyle{fancy}
+
+\iffooters
+  \fancyfoot[C]{\tiny \thepage\ / \pageref*{LastPage}}
+  % \fancyfoot[C]{--~\thepage~--}
+  % \fancypagestyle{plain}{}
+\else
+  \fancyfoot{}
+\fi
+
+\fancyhead[R]{%
+  \textsc{name:} \uline{\hfill}%
+  \textsc{netid:} \uline{\hfill}%
+}
+
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{1}
+
+% part format
+\titleformat{\part}[display]
+  {\itshape\Huge}  % format applied to label+text
+  {\thepart}  % label
+  {0ex}  % horizontal separation between label and title body
+  {\itshape\Huge}  % before the title body
+  [\vspace{1ex}]  % after the title body
+\titlecontents{part}
+  [0em]  % distance from left margin
+  {\vspace{1.5\baselineskip}\begin{fullwidth}\LARGE\rmfamily\itshape}  % above (global formatting of entry)
+  {\contentslabel{2em}}  % before w/label (label = ``II'')
+  {}  % before w/o label
+  {}  % {\rmfamily\upshape\qquad\thecontentspage}  % filler + page (leaders and page num)
+  [\end{fullwidth}]  % after
+
+\titleformat{\chapter}
+  [display]  % shape
+  {\relax\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\begin{fullwidth}}{}}  % format applied to label+text
+  {\itshape\huge\thechapter}  % label
+  {0pt}  % horizontal separation between label and title body
+  {\huge\rmfamily\itshape}  % before the title body
+  [\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\end{fullwidth}}{}]  % after the title body
+\titlecontents{chapter}
+  [0em]  % distance from left margin
+  {\vspace{1.5\baselineskip}\begin{fullwidth}\LARGE\rmfamily\itshape}  % above (global formatting of entry)
+  {\hspace*{0em}\contentslabel{2em}}  % before w/label (label = ``2'')
+  {\hspace*{0em}}  % before w/o label
+  {\rmfamily\upshape\hfill\thecontentspage}  % {\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+  [\end{fullwidth}]  % after
+
+% section format
+\titleformat{\section}
+  [hang]  % shape
+  {\bfseries\itshape\Large}  % format applied to label+text
+  {\llap{\Large\thesection\phantom{m}}}  % label
+  {0em}  % horizontal separation between label and title body
+  {}  % before the title body
+  []  % after the title body
+\titlecontents{section}
+  [0em]  % distance from left margin
+  {\vspace{0\baselineskip}\begin{fullwidth}\Large\rmfamily\itshape}  % above (global formatting of entry)
+  {\hspace*{2em}\contentslabel{2em}}  % before w/label (label = ``2.6'')
+  {\hspace*{2em}}  % before w/o label
+  {\normalsize\rmfamily\upshape\hfill\thecontentspage}  % {\rmfamily\upshape\qquad\thecontentspage}  % filler + page (leaders and page num)
+  [\end{fullwidth}]  % after
+
+% subsection format
+\titleformat{\subsection}
+  [hang]  % shape
+  {\bfseries\itshape\large}  % format applied to label+text
+  {\llap{\thesubsection\phantom{m}}}  % label
+  {0em}  % horizontal separation between label and title body
+  {}  % before the title body
+  []  % after the title body
+\titlecontents{subsection}
+  [0em]  % distance from left margin
+  {\vspace{0\baselineskip}\begin{fullwidth}\large\rmfamily\itshape}  % above (global formatting of entry)
+  {\hspace*{4em}\contentslabel{4em}}  % before w/label (label = ``2.6.1'')
+  {\hspace*{4em}}  % before w/o label
+  {\normalsize\rmfamily\upshape\hfill\thecontentspage}  % {\rmfamily\upshape\qquad\thecontentspage}  % filler + page (leaders and page num)
+  [\end{fullwidth}]  % after
+
+% paragraph indentation and spacing for normal text
+\makeatletter
+  \renewcommand{\@tufte@reset@par}{%
+    \setlength{\RaggedRightParindent}{0.0pc}%
+    \setlength{\JustifyingParindent}{0.0pc}%
+    \setlength{\parindent}{0.0pc}%
+    % \setlength{\parskip}{0.25\baselineskip}%
+  }
+  \@tufte@reset@par
+\makeatother
+
+% paragraph indentation and spacing for marginal text
+\makeatletter
+  \renewcommand{\@tufte@margin@par}{%
+    \setlength{\RaggedRightParindent}{0.0pc}%
+    \setlength{\JustifyingParindent}{0.0pc}%
+    \setlength{\parindent}{0.0pc}%
+    % \setlength{\parskip}{0.25\baselineskip}%
+  }
+\makeatother
+
+% TODO: remake this for margintable as well
+% better marginfigure spacing by removing \FloatBarrier
+\makeatletter
+  \renewenvironment{@tufte@margin@float}[2][-1.2ex]{%
+    \begin{lrbox}{\@tufte@margin@floatbox}%
+      \begin{minipage}{\marginparwidth}%
+        \@tufte@caption@font
+        \def\@captype{#2}%
+        \hbox{}\vspace*{#1}%
+        \@tufte@caption@justification
+        \@tufte@margin@par
+        \noindent
+      }{%
+      \end{minipage}%
+    \end{lrbox}%
+    \marginpar{\usebox{\@tufte@margin@floatbox}}%
+  }
+\makeatother
+
+\renewcommand{\figurename}{Fig.}
+\renewcommand{\tablename}{Tab.}
+
+\allowdisplaybreaks
+
+% nested parentheses scaling
+\delimitershortfall=-0.5pt
+\normalem
+
+% resets the equation counter for align environments every time
+\newcounter{temp}
+\AtBeginEnvironment{align}{%
+  \setcounter{temp}{\value{equation}}%
+  \setcounter{equation}{0}%
+}
+\AfterEndEnvironment{align}{%
+  \setcounter{equation}{\value{temp}}%
+}
+
+% resets the footnote counter every page
+\MakePerPage{footnote}
+
+% set verbose date formatting
+\newdateformat{verbosedate}{\ordinal{DAY} of \monthname[\THEMONTH], \THEYEAR}
+\verbosedate
+
+% epigraph formatting
+% \setlength\epitextskip{0ex}
+\setlength\epigraphrule{0pt}
+\setlength\epigraphwidth{.75\textwidth}
+\makeatletter
+  \pretocmd{\@epitext}{\em}{}{}
+  \apptocmd{\@epitext}{\em}{}{}
+  \patchcmd{\epigraph}{\@epitext{#1}\\}{\vspace{-10ex}\@epitext{#1}\\}{}{}
+\makeatother
+
+\setlist[enumerate]{topsep=0ex,itemsep=0ex,partopsep=1ex,parsep=1ex}
+\setlist[itemize]{topsep=0ex,itemsep=0ex,partopsep=1ex,parsep=1ex,label=$\cdot$}
+
+\hypersetup{%
+  % pdfpagemode=FullScreen,
+  % pdfpagemode=UseOutline,
+  % pdfauthor=\Author,
+  colorlinks=true,
+  linkcolor=pumice,  % orange
+  citecolor=orange,  % red
+  urlcolor=green,  % blue
+}
+
+% specify AMS math symbols
+\AtBeginDocument{%
+  \ifAMSsymbols %--------------------------------------------------------
+    \DeclareSymbolFontAlphabet{\mathrm}     {operators}
+    \DeclareSymbolFontAlphabet{\mathnormal} {letters}
+    \DeclareSymbolFontAlphabet{\mathcal}    {symbols}
+    \DeclareMathAlphabet      {\mathbf}                      {OT1}{cmr} {bx}{n}
+    \DeclareMathAlphabet      {\mathsf}                      {OT1}{cmss}{m} {n}
+    \DeclareMathAlphabet      {\mathit}                      {OT1}{cmr} {m} {it}
+    \DeclareMathAlphabet      {\mathtt}                      {OT1}{cmtt}{m} {n}
+    \DeclareSymbolFont                      {operators}      {OT1}{cmr} {m} {n}
+    \DeclareSymbolFont                      {letters}        {OML}{cmm} {m} {it}
+    \DeclareSymbolFont                      {symbols}        {OMS}{cmsy}{m} {n}
+    \DeclareSymbolFont                      {largesymbols}   {OMX}{cmex}{m} {n}
+    \SetSymbolFont                          {operators}{bold}{OT1}{cmr} {bx}{n}
+    \SetSymbolFont                          {letters}  {bold}{OML}{cmm} {b} {it}
+    \SetSymbolFont                          {symbols}  {bold}{OMS}{cmsy}{b} {n}
+  \else  %---------------------------------------------------------------
+    \DeclareSymbolFontAlphabet{\mathbb} {AMSb}
+    \DeclareMathAlphabet      {\mathbb}           {U}{bbold}{m}{n}
+    \DeclareSymbolFont                  {AMSb}    {U}{msb}  {m}{n}
+  \fi  % ----------------------------------------------------------------
+}
+
+% symbolic footnote marks
+\makeatletter
+  \def\@ssymbol#1{%
+    \ifcase#1\or\textdagger%
+              \or\textdaggerdbl%
+              \or\textdagger\textdagger%
+              \or\textdaggerdbl\textdaggerdbl%
+              \or\stars{1}%
+              \or\stars{2}%
+              \or\stars{3}%
+              \or\stars{4}%
+              \or\stars{5}%
+              \or\stars{6}%
+              \or\textreferencemark%
+              \else\@ctrerr\fi%
+  }
+  \def\ssymbol#1{\expandafter\@ssymbol\csname c@#1\endcsname}
+\makeatother
+\iffootnotesymbols  % ---------------------------------------------------
+  \renewcommand*{\thefootnote}{\ssymbol{footnote}}%
+  % \renewcommand*{\thefootnote}{\fnsymbol{footnote}}%
+\else  % ----------------------------------------------------------------
+  \renewcommand*{\thefootnote}{\arabic{footnote}}%
+\fi  % ------------------------------------------------------------------

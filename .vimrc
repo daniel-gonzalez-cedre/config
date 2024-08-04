@@ -134,14 +134,20 @@
     
     " LaTeX
     augroup latex_settings | au!
-      packadd vim-latex
+      " packadd vim-latex
       packadd vimtex
+
+      autocmd BufNewFile,BufRead *.bib,*.tex,*.tikz setfiletype tex
+      autocmd BufNewFile,BufRead *.bib,*.tex,*.tikz set syntax=tex
+
+      au BufNewFile,BufRead *.bib,*.tex,*.tikz imap ` <nop>
+      au BufNewFile,BufRead *.bib,*.tex,*.tikz iunmap `
 
       au FileType tex let g:vimtex_compiler_enabled = 0
       au FileType tex let g:vimtex_complete_enabled = 0
-      au FileType tex " let g:vimtex_fold_enabled = 1
+      " au FileType tex let g:vimtex_fold_enabled = 1
       au FileType tex let g:vimtex_imaps_enabled = 0
-      au FileType tex " let g:vimtex_mappings_enabled = 0
+      " au FileType tex let g:vimtex_mappings_enabled = 0
       au FileType tex let g:vimtex_quickfix_enabled = 0
       au FileType tex let g:vimtex_syntax_nospell_comments = 1
       au FileType tex let g:vimtex_view_enabled = 0
@@ -394,6 +400,7 @@
   inoremap > <c-r>=ClosePair('>')<cr>
   inoremap $ <c-r>=ClosePair('$')<cr>
   inoremap <c-f> <c-r>=ClosePair('$')<cr>
+  inoremap <c-\> <c-r>=QuoteDelim('$')<cr>
   inoremap " <c-r>=QuoteDelim('"')<cr>
   inoremap ' <c-r>=QuoteDelim("'")<cr>
   inoremap ` <c-r>=QuoteDelim('`')<cr>

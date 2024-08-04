@@ -63,23 +63,26 @@
                      % prefoothook={\hfill\break}
                      ]{ideastyle}
 
-\declaretheorem[numbered=yes,style=theoremstyle,within=\BookChapterOption]{theorem}
-\declaretheorem[numbered=yes,style=corollarystyle,within=\BookChapterOption]{corollary}
-\declaretheorem[numbered=yes,style=lemmastyle,within=\BookChapterOption]{lemma}
-\declaretheorem[numbered=yes,style=definitionstyle,within=\BookChapterOption]{definition}
-\declaretheorem[numbered=yes,style=axiomstyle]{axiom}
-\declaretheorem[numbered=yes,style=examplestyle,within=\BookChapterOption]{exercise, example, counterexample}
-\declaretheorem[numbered=yes,style=algorithmstyle,within=\BookChapterOption]{algorithm}
-\declaretheorem[numbered=yes,style=ideastyle,within=\BookChapterOption]{idea}
+\ifbeamer
+\else
+  \declaretheorem[numbered=yes,style=theoremstyle,within=\BookChapterOption]{theorem}
+  \declaretheorem[numbered=yes,style=corollarystyle,within=\BookChapterOption]{corollary}
+  \declaretheorem[numbered=yes,style=lemmastyle,within=\BookChapterOption]{lemma}
+  \declaretheorem[numbered=yes,style=definitionstyle,within=\BookChapterOption]{definition}
+  \declaretheorem[numbered=yes,style=axiomstyle]{axiom}
+  \declaretheorem[numbered=yes,style=examplestyle,within=\BookChapterOption]{exercise, example, counterexample}
+  \declaretheorem[numbered=yes,style=algorithmstyle,within=\BookChapterOption]{algorithm}
+  \declaretheorem[numbered=yes,style=ideastyle,within=\BookChapterOption]{idea}
 
-\declaretheorem[numbered=no,style=theoremstyle]{Theorem}
-\declaretheorem[numbered=no,style=corollarystyle]{Corollary}
-\declaretheorem[numbered=no,style=lemmastyle]{Lemma}
-\declaretheorem[numbered=no,style=definitionstyle]{Definition}
-\declaretheorem[numbered=no,style=axiomstyle]{Axiom}
-\declaretheorem[numbered=no,style=examplestyle]{Exercise, Example, Counterexample}
-\declaretheorem[numbered=no,style=algorithmsylte]{Algorithm}
-\declaretheorem[numbered=no,style=ideastyle]{Idea}
+  \declaretheorem[numbered=no,style=theoremstyle]{Theorem}
+  \declaretheorem[numbered=no,style=corollarystyle]{Corollary}
+  \declaretheorem[numbered=no,style=lemmastyle]{Lemma}
+  \declaretheorem[numbered=no,style=definitionstyle]{Definition}
+  \declaretheorem[numbered=no,style=axiomstyle]{Axiom}
+  \declaretheorem[numbered=no,style=examplestyle]{Exercise, Example, Counterexample}
+  \declaretheorem[numbered=no,style=algorithmsylte]{Algorithm}
+  \declaretheorem[numbered=no,style=ideastyle]{Idea}
+\fi
 
 \crefname{theorem}{\emph{theorem}}{\emph{Theorem}}
 \crefname{corollary}{\emph{corollary}}{\emph{Corollary}}
@@ -112,17 +115,14 @@
   % {\end{mdframed}
   {\endquote}
 
-\iftufte
-  % align-optional cases environment
-  \makeatletter
-    \renewenvironment{cases}[1][l]{\matrix@check\cases\env@cases{#1}}{\endarray\right.}
-    \def\env@cases#1{%
-      \let\@ifnextchar\new@ifnextchar
-      \left\lbrace\def\arraystretch{1.2}%
-      \array{@{}#1@{~}l@{}}}
-  \makeatother
-\else
-\fi
+% align-optional cases environment
+\makeatletter
+  \renewenvironment{cases}[1][l]{\matrix@check\cases\env@cases{#1}}{\endarray\right.}
+  \def\env@cases#1{%
+    \let\@ifnextchar\new@ifnextchar
+    \left\lbrace\def\arraystretch{1.2}%
+    \array{@{}#1@{~}l@{}}}
+\makeatother
 
 % TODO: axe this
 % \ifalgorithms

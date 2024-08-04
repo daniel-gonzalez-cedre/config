@@ -1,0 +1,33 @@
+\let\bfseries\mdseries  % disable all bold fonts
+\usefonttheme{serif}
+
+\usetheme[background=light,
+          % block=transparent,
+          % titleformat=allsmallcaps,
+          % titleformat title=allsmallcaps,
+          % titleformat section=allsmallcaps,
+          % titleformat subtitle=allsmallcaps,
+          % titleformat frame=allsmallcaps,
+          section page=progressbar,
+          subsection page=none,
+          progressbar=frametitle]{metropolis}
+
+\setbeamercovered{transparent}
+\setbeamercolor{normal text}{fg=foreground, bg=background}
+\setbeamercolor{alerted text}{fg=orange, bg=orange}
+\setbeamercolor{example text}{fg=blue, bg=blue}
+% % \setbeamercolor{example text}{fg=gruvaqua, bg=gruvaqua}
+% % \setbeamercolor{alerted text}{fg=gruvorange, bg=gruvorange}
+\setbeamercolor{block title}{fg=foreground, bg=background}
+\setbeamercolor{block body}{bg=background}
+\setbeamercolor{block title alerted}{bg=background}
+\setbeamercolor{block body alerted}{bg=background}
+\setbeamercolor{block title example}{bg=background}
+\setbeamercolor{block body example}{bg=background}
+\setbeamertemplate{blocks}[rounded]
+
+% otherwise latex crases
+\makeatletter
+  \def\Hy@PageAnchorSlidesPlain{}%
+  \def\Hy@PageAnchorSlide{}%
+\makeatother
