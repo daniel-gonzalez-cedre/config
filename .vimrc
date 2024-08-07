@@ -108,11 +108,11 @@
     " let g:ale_sign_warning=' ×'
     let g:ale_linters={
           \ 'vim': ['vint'],
-          \ 'python': ['pylint', 'mypy'],
+          \ 'python': ['ruff', 'mypy'],
           \ 'lua': ['luacheck', 'luac'],
           \ 'tex': ['lacheck']
           \ }
-    let g:ale_lint_on_text_changed='normal'
+    let g:ale_lint_on_text_changed='always'
     let g:ale_lint_on_insert_leave=1
     let g:ale_lint_delay=0
     let g:ale_lint_on_save=1
