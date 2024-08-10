@@ -34,7 +34,7 @@ function git_info() {
   then
     :
   else
-    echo "%F{6}$BRANCH%F{8}::%f"
+    echo "%F{14}$BRANCH%F{8}::%f"
   fi
   # local STATUS=''
   # local FLAGS
@@ -66,9 +66,9 @@ git_branch='$(git_info)'
 # PROMPT=' %F{0}%D{%K:%M:%S} %F{11}λ%f '
 # PROMPT=' %F{3}λ%f '
 # PROMPT=''' %F{11}⟩%f '
-PROMPT=''' %F{3}λ%f '
-# RPROMPT="%F{8}%D{%K:%M:%S} "'%F{6}${CONDA_ENV}%F{0}'"${git_branch}%${width}<...<%F{4}%1~%F{9} $USER%f"
-RPROMPT="%F{8}%D{%K:%M:%S} "'%F{6}${CONDA_ENV}%F{0}'"${git_branch}%${width}<...<%F{4}%1~%F{9} $(hostname)%f"
+PROMPT=''' %F{11}λ%f '
+# RPROMPT="%F{8}%D{%K:%M:%S} "'%F{6}${CONDA_ENV}%F{0}'"${git_branch}%${width}<...<%F{12}%1~%F{9} $(hostname)%f"
+RPROMPT="%F{237}%D{%K:%M:%S} "'%F{6}${CONDA_ENV}%F{0}'"${git_branch}%${width}<...<%F{12}%1~%F{9} $USER%f"
 
 function schedprompt() {
   emulate -L zsh
@@ -370,7 +370,7 @@ function condactivate() {
 }
 
 # launch tmux at login
-if [ "$TMUX" = "" ]; then
-  # tmux new -A -s 新;
-  tmux;
-fi
+# if [ "$TMUX" = "" ]; then
+  # # tmux new -A -s 新;
+  # tmux;
+# fi

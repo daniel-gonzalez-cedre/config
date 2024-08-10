@@ -18,6 +18,30 @@
   set undodir=~/.vim/undodir
   set undofile
 
+  " "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+  " "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+  " "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+  " " if (empty($TMUX) && getenv('TERM_PROGRAM') != 'Apple_Terminal')
+  " if getenv('TERM_PROGRAM') != 'Apple_Terminal'
+    " if (has("nvim"))
+      " "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+      " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+    " endif
+    " "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+    " "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+    " " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+    " set termguicolors
+  " endif
+
+  " if $TERM_PROGRAM !=# 'Apple_Terminal' || $TMUX !=? ''
+  if $TERM_PROGRAM !=# 'Apple_Terminal'
+    if (has("nvim"))
+      "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+      let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+    endif
+    set termguicolors
+  endif
+
 " LEADER
   nnoremap <space> <nop>
   vnoremap <space> <nop>
@@ -27,14 +51,34 @@
   " silence macro recording
   map q <nop>
   noremap <leader><c-q> q
-  vnoremap <bs> <nop>
+
   nnoremap ZZ <nop>
   nnoremap Zz <nop>
   nnoremap ZX <nop>
   nnoremap Zx <nop>
+
   " unmap tmux leader key
   map <c-b> <nop>
   map! <c-b> <nop>
+
+  nmap <s-cr> <cr>
+  vmap <s-cr> <cr>
+  " nmap <c-cr> <cr>
+  " vmap <c-cr> <cr>
+  " nmap <s-bs> <bs>
+  " vmap <s-bs> <bs>
+  " nmap <c-bs> <bs>
+  " vmap <c-bs> <bs>
+
+  nnoremap <silent> <cr> :noh<bar>:echo<cr>
+  nnoremap <silent> <bs> :noh<bar>:echo<cr>
+  vnoremap <silent> <bs> <nop>
+
+  noremap <silent> <c-c> <esc><esc>
+  nnoremap <silent> <c-c> :noh<bar>:echo<cr><esc><esc>
+  inoremap <silent> <c-c> <esc><esc>:noh<bar>:echo<cr>
+  " vnoremap <silent> <c-c> <c-c><c-c>`<
+
 
 " PACKAGES
   " tabularize
@@ -170,7 +214,7 @@
     set conceallevel=0
     set cursorline
     set display+=lastline
-    set fillchars=stl:⋅,stlnc:⋅,vert:\|,fold:-
+    set fillchars=stl:⋅,stlnc:⋅,vert:\|,fold:⋅
     " set fillchars=stl:-,stlnc:⋅,vert:│,fold:\ ,diff:·
     set formatoptions+=1jr/  " use <c-U> to remove comment symbol
     " set hlsearch
@@ -240,7 +284,7 @@
   let g:gruvbox_improved_strings = 1
   let g:gruvbox_improved_warnings = 1
   let g:gruvbox_hls_cursor = 'orange'
-  let g:gruvbox_contrast_dark = 'hard'
+  " let g:gruvbox_contrast_dark = 'hard'
   let g:gruvbox_contrast_light = 'hard'
   let g:haskell_indent_if = 2
   let g:haskell_indent_case = 4
@@ -354,15 +398,6 @@
   onoremap <silent> il :normal vil<cr>
   xnoremap al $o^
   onoremap <silent> al :normal val<cr>
-
-  " status bar auto-clearing
-  noremap <silent> <c-c> <esc><esc>
-  nnoremap <silent> <c-c> :noh<bar>:echo<cr><esc><esc>
-  inoremap <silent> <c-c> <esc><esc>:noh<bar>:echo<cr>
-  vnoremap <silent> <c-c> <c-c><c-c>`<
-  " nnoremap <c-v> :noh<bar>:echo<cr><c-v>
-  nnoremap <silent> <cr> :noh<bar>:echo<cr>
-  nnoremap <silent> <bs> :noh<bar>:echo<cr>
 
   " misc
   nnoremap <leader>ff za
@@ -539,22 +574,33 @@
 
 " COLORS
   function! s:gruvbox_colors()
-    hi Comment ctermfg=242 ctermbg=none cterm=none
+    hi clear Comment
+    hi clear Folded
+    hi Comment ctermfg=240 ctermbg=none cterm=none
     " hi Folded ctermfg=95 ctermbg=234
     hi Folded ctermfg=237 ctermbg=none cterm=none
-    hi String ctermfg=142 ctermbg=none cterm=none
+    " hi String ctermfg=142 ctermbg=none cterm=none
 
+    hi clear StatusLine
+    hi clear StatusLineNC
     hi StatusLine ctermfg=237 ctermbg=none cterm=none
     hi StatusLineNC ctermfg=237 ctermbg=none cterm=none
 
-    hi MatchParen cterm=inverse
-    hi Visual ctermbg=238 cterm=none
+    " hi clear Visual
     " hi Visual ctermfg=none ctermbg=none cterm=inverse
+    hi Visual ctermbg=238
+
+    " hi clear Matchparen
+    " hi MatchParen cterm=inverse
+    hi MatchParen guibg=#504945 ctermfg=0 ctermbg=240
 
     hi clear SignColumn
+    hi clear LineNR
+    hi clear CursorLine
+    " hi clear CursorLineNR
     hi LineNR ctermfg=237 cterm=none
     hi CursorLine ctermfg=none ctermbg=none cterm=none
-    hi CursorLineNR ctermbg=none
+    hi CursorLineNR ctermfg=214 ctermbg=none
 
     " hi SpellBad ctermfg=131 ctermbg=234 cterm=underline
     " hi SpellCap ctermfg=66 ctermbg=234 cterm=underline
@@ -592,21 +638,23 @@
       hi ALEErrorSign ctermfg=167 ctermbg=none
       hi ALEWarningSign ctermfg=214 ctermbg=none
       hi ALEInfoSign ctermfg=108 ctermbg=none
-      hi ALEVirtualTextError ctermfg=240
-      hi ALEVirtualTextWarning ctermfg=240
-      " hi ALEVirtualTextError ctermfg=167
-      " hi ALEVirtualTextWarning ctermfg=214
+      " hi ALEVirtualTextError ctermfg=237
+      " hi ALEVirtualTextWarning ctermfg=237
+      hi ALEVirtualTextError ctermfg=167
+      hi ALEVirtualTextWarning ctermfg=214
     endif
 
     hi SignColumn ctermbg=black
   endfunction
 
   function! s:gitgutter_colors()
-    hi clear SignColumn
-    hi GitGutterAdd ctermfg=142 ctermbg=none
-    hi GitGutterChange ctermfg=109 ctermbg=none
-    hi GitGutterDelete ctermfg=167 ctermbg=none
-    hi GitGutterChangeDelete ctermfg=175 ctermbg=none
+    if $TERM_PROGRAM !=# 'Apple_Terminal'
+      hi clear SignColumn
+      hi GitGutterAdd ctermfg=142 ctermbg=none
+      hi GitGutterChange ctermfg=109 ctermbg=none
+      hi GitGutterDelete ctermfg=167 ctermbg=none
+      hi GitGutterChangeDelete ctermfg=175 ctermbg=none
+    endif
   endfunction
 
   augroup setup_colors | au!
