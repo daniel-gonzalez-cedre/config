@@ -131,14 +131,18 @@
       au FileType python setlocal softtabstop=2
       au FileType python setlocal tabstop=8
     augroup END
+
+    augroup html_settings | au!
+      au BufNewFile,BufRead *.svg set filetype=html
+    augroup END
     
     " LaTeX
     augroup latex_settings | au!
       " packadd vim-latex
       packadd vimtex
 
-      autocmd BufNewFile,BufRead *.bib,*.tex,*.tikz setfiletype tex
-      autocmd BufNewFile,BufRead *.bib,*.tex,*.tikz set syntax=tex
+      au BufNewFile,BufRead *.bib,*.tex,*.tikz set filetype=tex
+      au BufNewFile,BufRead *.bib,*.tex,*.tikz set syntax=tex
 
       au BufNewFile,BufRead *.bib,*.tex,*.tikz imap ` <nop>
       au BufNewFile,BufRead *.bib,*.tex,*.tikz iunmap `
@@ -535,7 +539,7 @@
 
 " COLORS
   function! s:gruvbox_colors()
-    hi Comment ctermfg=240 ctermbg=none cterm=none
+    hi Comment ctermfg=242 ctermbg=none cterm=none
     " hi Folded ctermfg=95 ctermbg=234
     hi Folded ctermfg=237 ctermbg=none cterm=none
     hi String ctermfg=142 ctermbg=none cterm=none
@@ -544,7 +548,8 @@
     hi StatusLineNC ctermfg=237 ctermbg=none cterm=none
 
     hi MatchParen cterm=inverse
-    hi Visual ctermfg=none ctermbg=none cterm=inverse
+    hi Visual ctermbg=238 cterm=none
+    " hi Visual ctermfg=none ctermbg=none cterm=inverse
 
     hi clear SignColumn
     hi LineNR ctermfg=237 cterm=none
@@ -587,19 +592,21 @@
       hi ALEErrorSign ctermfg=167 ctermbg=none
       hi ALEWarningSign ctermfg=214 ctermbg=none
       hi ALEInfoSign ctermfg=108 ctermbg=none
-      hi ALEVirtualTextError ctermfg=167
-      hi ALEVirtualTextWarning ctermfg=214
+      hi ALEVirtualTextError ctermfg=240
+      hi ALEVirtualTextWarning ctermfg=240
+      " hi ALEVirtualTextError ctermfg=167
+      " hi ALEVirtualTextWarning ctermfg=214
     endif
 
     hi SignColumn ctermbg=black
   endfunction
 
   function! s:gitgutter_colors()
-    highlight clear SignColumn
-    highlight GitGutterAdd ctermfg=142 ctermbg=none
-    highlight GitGutterChange ctermfg=109 ctermbg=none
-    highlight GitGutterDelete ctermfg=167 ctermbg=none
-    highlight GitGutterChangeDelete ctermfg=175 ctermbg=none
+    hi clear SignColumn
+    hi GitGutterAdd ctermfg=142 ctermbg=none
+    hi GitGutterChange ctermfg=109 ctermbg=none
+    hi GitGutterDelete ctermfg=167 ctermbg=none
+    hi GitGutterChangeDelete ctermfg=175 ctermbg=none
   endfunction
 
   augroup setup_colors | au!
@@ -611,12 +618,10 @@
 
 " CUSTOM CURSORS
   " LINE: \e[5
-  " BLOCK:
+  " BLOCK: \e[2
   " UNDERLINE: \e[4
-  let &t_SI="\e[5 q"      " LINE: start insert mode
-  " let &t_SI="\e[4 q"    " UNDERLINE: start insert mode
-  let &t_EI="\e[1 q"      " UNDERLINE: end insert mode
-  " let &t_EI="\e[2 q"    " BLOCK: end insert mode
+  let &t_SI="\e[5 q"  " start insert mode
+  let &t_EI="\e[2 q"  " end insert mode
 
 " NERDCommenter MAPPINGS
 autocmd! VimEnter * call s:nerdcommenter_mappings()

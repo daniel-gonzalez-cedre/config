@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =0
+let g:netrw_dirhistcnt =2
+let g:netrw_dirhist_2='/Users/cedre/repos/explain_gnn_grammar/src/experiments'
+let g:netrw_dirhist_1='/Users/cedre/.tmux'
 let g:netrw_dirhist_0='/Users/cedre/repos/explain_gnn_grammar/src/experiments'
 let g:netrw_dirhist_9='/Users/cedre/cv/sections'
 let g:netrw_dirhist_8='/Users/cedre/repos/neural-grammar'
@@ -8,5 +10,3 @@ let g:netrw_dirhist_6='/Users/cedre/repos/neural-grammar/src'
 let g:netrw_dirhist_5='/Users/cedre/repos/neural-grammar/src/grammar/__pycache__'
 let g:netrw_dirhist_4='/Users/cedre/repos/neural-grammar/src/model/__pycache__'
 let g:netrw_dirhist_3='/Users/cedre/config/.vim/pack/plugins/start/vim-surround'
-let g:netrw_dirhist_2='/Users/cedre/academia/pedagogy/2023-fall-discrete-math/exams/exam-f.2.2'
-let g:netrw_dirhist_1='/Users/cedre/academia/pedagogy/2024-spring-discrete-math/exams/exam-2.0.2024.spring'

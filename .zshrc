@@ -34,7 +34,7 @@ function git_info() {
   then
     :
   else
-    echo "%F{3}$BRANCH -> %f"
+    echo "%F{6}$BRANCH%F{8}::%f"
   fi
   # local STATUS=''
   # local FLAGS
@@ -66,9 +66,9 @@ git_branch='$(git_info)'
 # PROMPT=' %F{0}%D{%K:%M:%S} %F{11}λ%f '
 # PROMPT=' %F{3}λ%f '
 # PROMPT=''' %F{11}⟩%f '
-PROMPT=''' %F{11}λ%f '
-# RPROMPT='%F{0}${CONDA_ENV}'"%F{0}%D{%K:%M:%S} %${width}<...<%F{9}%2~%F{0} %15<...<%F{3}%m%f"
-RPROMPT="%F{0}%D{%K:%M:%S} "'%F{6}${CONDA_ENV}%F{0}'"${git_branch}%${width}<...<%F{9}%1~%F{12} $(hostname)%f"
+PROMPT=''' %F{3}λ%f '
+# RPROMPT="%F{8}%D{%K:%M:%S} "'%F{6}${CONDA_ENV}%F{0}'"${git_branch}%${width}<...<%F{4}%1~%F{9} $USER%f"
+RPROMPT="%F{8}%D{%K:%M:%S} "'%F{6}${CONDA_ENV}%F{0}'"${git_branch}%${width}<...<%F{4}%1~%F{9} $(hostname)%f"
 
 function schedprompt() {
   emulate -L zsh
