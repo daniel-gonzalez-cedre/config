@@ -50,7 +50,10 @@ config.font = wezterm.font_with_fallback {
   'Berkeley Mono',
   'Fira Code Retina'
 }
+config.harfbuzz_features = {"calt=0", "clig=0", "liga=0"}
 -- config.font = wezterm.font 'Berkeley Mono'
+
+config.default_cursor_style = "SteadyBlock"
 
 -- set color scheme
 config.color_scheme = 'GruvboxDark'

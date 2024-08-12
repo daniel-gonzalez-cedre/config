@@ -113,7 +113,7 @@
     xmap ah <Plug>(GitGutterTextObjectOuterVisual)
     nmap <leader>hf :GitGutterFold<cr>
 
-  packadd julia-vim
+  packadd! julia-vim
 
   " if has('nvim')
     " packadd! nvim-treesitter
@@ -136,6 +136,7 @@
       map [e <Plug>(ale_previous_wrap_error)
       map ]w <Plug>(ale_next_wrap_warning)
       map [w <Plug>(ale_previous_wrap_warning)
+      map <leader>at :ALEToggle<cr>
       map <leader>an :ALENextWrap<cr>
       map <leader>aN :ALEPreviousWrap<cr>
       map <leader>ae <Plug>(ale_next_wrap_error)
@@ -160,12 +161,35 @@
     let g:ale_lint_on_insert_leave=1
     let g:ale_lint_delay=0
     let g:ale_lint_on_save=1
-    let g:ale_virtualtext_prefix=' '
+    let g:ale_virtualtext_prefix='  '
     let g:ale_virtualtext_cursor='current'
     let g:ale_virtualtext_delay=0
     let g:ale_echo_cursor=0
+    " let g:ale_echo_detail=1
+    " let g:ale_echo_delay=0
     let g:ale_python_pylint_options="--init-hook=\"import sys; sys.path.append(\'" . trim(system('git rev-parse --show-toplevel')) . "\')\""
   augroup END
+
+  " NERDCommenter MAPPINGS
+    augroup nerdcommender_settings | au!
+      au! VimEnter * call s:nerdcommenter_mappings()
+
+      function! s:nerdcommenter_mappings()
+        nmap <leader>cc <plug>NERDCommenterToggle
+        nmap <leader>ci <plug>NERDCommenterInvert
+        nmap <leader>ct <plug>NERDCommenterInvert
+        vmap <leader>cc <plug>NERDCommenterToggle `<
+        vmap <leader>ci <plug>NERDCommenterInvert `<
+        vmap <leader>ct <plug>NERDCommenterInvert `<
+        " map <leader>c<space> <plug>NERDCommenterInvert
+        nnoremap <leader>cA <plug>NERDCommenterAppend
+        nnoremap <leader>ca A<space><esc><plug>NERDCommenterAppend
+        nnoremap <leader>cl A<esc><plug>NERDCommenterAppend<bs><c-g>U<left><bs><right><esc>
+        nnoremap <leader>co o<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
+        nnoremap <leader>cO O<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
+      endfunction
+    augroup END
+
 
 " SET OPTIONS
   " FILETYPE SPECIFIC
@@ -217,8 +241,8 @@
     set fillchars=stl:⋅,stlnc:⋅,vert:\|,fold:⋅
     " set fillchars=stl:-,stlnc:⋅,vert:│,fold:\ ,diff:·
     set formatoptions+=1jr/  " use <c-U> to remove comment symbol
-    " set hlsearch
-    set nohlsearch
+    set hlsearch
+    " set nohlsearch
     set ignorecase
     set incsearch
     set nojoinspaces
@@ -284,8 +308,8 @@
   let g:gruvbox_improved_strings = 1
   let g:gruvbox_improved_warnings = 1
   let g:gruvbox_hls_cursor = 'orange'
-  " let g:gruvbox_contrast_dark = 'hard'
-  let g:gruvbox_contrast_light = 'hard'
+  let g:gruvbox_contrast_dark = 'medium'  " soft, medium, hard
+  let g:gruvbox_contrast_light = 'hard'  " soft, medium, hard
   let g:haskell_indent_if = 2
   let g:haskell_indent_case = 4
   let g:haskell_indent_guard = 5
@@ -319,7 +343,6 @@
   nnoremap <leader>t' :call ToggleQuote()<cr>
   nnoremap <leader>t" :call ToggleQuote()<cr>
 
-  nnoremap <leader>ta :ALEToggle<cr>
   nnoremap <leader>tgit :GitGutterToggle<cr>
 
   " relative line numbers
@@ -346,12 +369,32 @@
 
 
 " SEARCH MAPPINGS
-  " search visual selection
-  vnoremap <leader>/ y/\V<c-r>=escape(@",'/\')<cr>
-  " search & replace without selection
   nnoremap <leader>s :%s//gc<left><left><left>
-  " search & replace visual selection
+  nnoremap ? /<up>
+
+  vnoremap <leader>/ y/\V<c-r>=escape(@",'/\')<cr>
+  vnoremap <leader>F y/\V<c-r>=escape(@",'/\')<cr>
   vnoremap <leader>s y`<`>:<c-u>%s/\V<c-r>=escape(@",'/\')<cr>//gc<left><left><left>
+
+  " toggle highlighting on search
+  augroup search_highlight_toggling | au!
+    au CmdlineEnter /,\? :set hlsearch
+    au CmdlineEnter /,\? hi clear Search
+    au CmdlineEnter /,\? hi Search guifg=#fabd2f guibg=#504945 ctermfg=15 ctermbg=239 cterm=none
+    " au CmdlineEnter /,\? hi Search guifg=#fabd2f cterm=inverse
+    " au CmdlineEnter /,\? hi Search guifg=#d79921 cterm=inverse
+
+    au CmdlineLeave /,\? :set nohlsearch
+    " au CmdlineLeave /,\? hi clear Search
+    " au CmdlineLeave /,\? hi Search guifg=#fabd2f guibg=#504945 ctermfg=15 ctermbg=239 cterm=none
+  augroup END
+
+
+" COMMAND MAPPINGS
+  cnoremap <tab> <c-g>
+  cnoremap <s-tab> <c-t>
+  cnoremap <c-a> <home>
+  cnoremap <c-e> <end>
 
 
 " QUALITY OF LIFE MAPPINGS
@@ -360,7 +403,8 @@
   nnoremap <c-f> ^
   vnoremap <c-f> ^
 
-  noremap <leader>nn :call ScratchBuffer()<cr>
+  noremap <leader>b :call ScratchBuffer()<cr>
+  noremap <leader>nb :call ScratchBuffer()<cr>
 
   " movement
   inoremap <left> <c-g>U<left>
@@ -370,8 +414,8 @@
   " noremap \k <c-w>k
   " noremap \l <c-w>l
 
-  nnoremap j gj
-  nnoremap k gk
+  " nnoremap j gj
+  " nnoremap k gk
   " nnoremap gj j
   " nnoremap gk k
 
@@ -404,8 +448,6 @@
   vnoremap <leader>ff za
   nnoremap <leader>fa zA
   vnoremap <leader>fa zA
-  nnoremap <leader>F zA
-  vnoremap <leader>F zA
   inoremap <c-]> <del>
   " inoremap <expr> <cr> pumvisible() ? !empty(v:completed_item) ? "<c-y><c-c>" : "<c-y><cr>" : "<cr>"
 
@@ -538,6 +580,20 @@
     endif
   endfunction
 
+  function! MoveMap()
+    if (maparg('h') ==# ':noh<bar>:echo<cr>h') || (maparg('j') ==# ':noh<bar>:echo<cr>j') || (maparg('k') ==# ':noh<bar>:echo<cr>k') || (maparg('l') ==# ':noh<bar>:echo<cr>l')
+      unmap h
+      unmap j
+      unmap k
+      unmap l
+    else
+      nnoremap h :noh<bar>:echo<cr>h
+      nnoremap j :noh<bar>:echo<cr>j
+      nnoremap k :noh<bar>:echo<cr>k
+      nnoremap l :noh<bar>:echo<cr>l
+    endif
+  endfunction
+
   function! ToggleGMove()
     if (maparg('j') ==# 'gj') || (maparg('k') ==# 'gk')
       unmap j
@@ -574,33 +630,42 @@
 
 " COLORS
   function! s:gruvbox_colors()
-    hi clear Comment
+    " hi clear Comment
+    " hi Comment ctermfg=243 ctermbg=none cterm=none
+
     hi clear Folded
-    hi Comment ctermfg=240 ctermbg=none cterm=none
-    " hi Folded ctermfg=95 ctermbg=234
-    hi Folded ctermfg=237 ctermbg=none cterm=none
+    hi Folded guifg=#504945 ctermfg=240 ctermbg=none cterm=none
+
+    " hi clear String
     " hi String ctermfg=142 ctermbg=none cterm=none
 
     hi clear StatusLine
     hi clear StatusLineNC
-    hi StatusLine ctermfg=237 ctermbg=none cterm=none
-    hi StatusLineNC ctermfg=237 ctermbg=none cterm=none
+    hi StatusLine guifg=#504945 ctermfg=240 ctermbg=none cterm=none
+    hi StatusLineNC guifg=#504945 ctermfg=240 ctermbg=none cterm=none
 
-    " hi clear Visual
+    hi clear Visual
     " hi Visual ctermfg=none ctermbg=none cterm=inverse
-    hi Visual ctermbg=238
+    " hi Visual ctermbg=238
+    hi Visual guibg=#504945 ctermbg=239 cterm=none
+    " hi Visual guifg=#ebdbb2 guibg=#504945 ctermfg=15 ctermbg=239 cterm=none
 
-    " hi clear Matchparen
+    " hi clear Search
+    " hi Search guifg=#d79921 cterm=inverse
+    " hi Search guibg=#504945 ctermbg=239 cterm=none
+
+    hi clear Matchparen
+    " hi MatchParen guibg=#504945 ctermfg=0 ctermbg=240
     " hi MatchParen cterm=inverse
-    hi MatchParen guibg=#504945 ctermfg=0 ctermbg=240
+    hi MatchParen cterm=bold
 
     hi clear SignColumn
     hi clear LineNR
-    hi clear CursorLine
+    " hi clear CursorLine
     " hi clear CursorLineNR
-    hi LineNR ctermfg=237 cterm=none
-    hi CursorLine ctermfg=none ctermbg=none cterm=none
-    hi CursorLineNR ctermfg=214 ctermbg=none
+    hi LineNR guifg=#504945 ctermfg=240 cterm=none
+    " hi CursorLine ctermfg=none ctermbg=235 cterm=none
+    " hi CursorLineNR guifg=#ebdbb2 ctermfg=214 cterm=none
 
     " hi SpellBad ctermfg=131 ctermbg=234 cterm=underline
     " hi SpellCap ctermfg=66 ctermbg=234 cterm=underline
@@ -665,28 +730,18 @@
   colorscheme gruvbox
 
 " CUSTOM CURSORS
-  " LINE: \e[5
-  " BLOCK: \e[2
-  " UNDERLINE: \e[4
-  let &t_SI="\e[5 q"  " start insert mode
-  let &t_EI="\e[2 q"  " end insert mode
-
-" NERDCommenter MAPPINGS
-autocmd! VimEnter * call s:nerdcommenter_mappings()
-function! s:nerdcommenter_mappings()
-  nmap <leader>cc <plug>NERDCommenterToggle
-  nmap <leader>ci <plug>NERDCommenterInvert
-  nmap <leader>ct <plug>NERDCommenterInvert
-  vmap <leader>cc <plug>NERDCommenterToggle `<
-  vmap <leader>ci <plug>NERDCommenterInvert `<
-  vmap <leader>ct <plug>NERDCommenterInvert `<
-  " map <leader>c<space> <plug>NERDCommenterInvert
-  nnoremap <leader>cA <plug>NERDCommenterAppend
-  nnoremap <leader>ca A<space><c-c><plug>NERDCommenterAppend
-  nnoremap <leader>cl A<c-c><plug>NERDCommenterAppend<bs><c-g>U<left><bs><right><c-c>
-  nnoremap <leader>co o<space><bs><c-c><plug>NERDCommenterAppend<c-o><<<c-o>$
-  nnoremap <leader>cO O<space><bs><c-c><plug>NERDCommenterAppend<c-o><<<c-o>$
-endfunction
+  " BLINKING BLOCK:     \e[0
+  " BLINKING BLOCK:     \e[1
+  " STEADY BLOCK:       \e[2
+  " BLINKING UNDERLINE: \e[3
+  " STEADY UNDERLINE:   \e[4
+  " BLINKING BAR:       \e[5
+  " STEADY BAR:         \e[6
+  augroup custom_cursors | au! 
+    let &t_SI="\e[6 q"  " start insert mode
+    let &t_EI="\e[2 q"  " end insert mode
+    autocmd VimEnter * silent !echo \ne "\e[2 q"
+  augroup END
 
 function! GitStatus()
   let [a,m,r] = GitGutterGetHunkSummary()

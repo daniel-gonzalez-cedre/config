@@ -506,7 +506,7 @@ endif
 hi! link NonText GruvboxBg2
 hi! link SpecialKey GruvboxBg2
 
-call s:HL('Visual',    s:none,  s:bg2)
+call s:HL('Visual',    s:none,  s:bg3, s:invert_selection)
 hi! link VisualNOS Visual
 
 call s:HL('Search',    s:yellow, s:bg0, s:inverse)
@@ -572,12 +572,13 @@ hi! link lCursor Cursor
 if g:gruvbox_improved_strings == 0
   hi! link Special GruvboxOrange
 else
+  call s:HL('Special', s:orange, s:bg1, s:italicize_strings)
   " call s:HL('Special', s:blue, s:bg1, s:italicize_strings)
-  call s:HL('Special', s:aqua, s:bg0, s:italicize_strings)
+  " call s:HL('Special', s:aqua, s:bg0, s:italicize_strings)
 endif
 
-call s:HL('Comment', s:bg3, s:none, s:italicize_comments)
-call s:HL('Todo', s:gray, s:none, s:bold . s:italic)
+call s:HL('Comment', s:gray, s:none, s:italicize_comments)
+call s:HL('Todo', s:vim_fg, s:vim_bg, s:bold . s:italic)
 call s:HL('Error', s:red, s:vim_bg, s:bold . s:inverse)
 
 " Generic statement
@@ -620,7 +621,7 @@ if g:gruvbox_improved_strings == 0
   call s:HL('String',  s:green, s:none, s:italicize_strings)
 else
   " call s:HL('String',  s:fg1, s:bg1, s:italicize_strings)
-  call s:HL('String',  s:fg4, s:bg0, s:italicize_strings)
+  call s:HL('String',  s:fg1, s:bg1, s:italicize_strings)
 endif
 " Boolean constant: TRUE, false
 hi! link Boolean GruvboxPurple
