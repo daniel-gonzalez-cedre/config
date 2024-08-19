@@ -49,7 +49,7 @@
 
 " NOP MAPPINGS
   " silence macro recording
-  map q <nop>
+  noremap q <nop>
   noremap <leader><c-q> q
 
   nnoremap ZZ <nop>
@@ -58,8 +58,8 @@
   nnoremap Zx <nop>
 
   " unmap tmux leader key
-  map <c-b> <nop>
-  map! <c-b> <nop>
+  noremap <c-b> <nop>
+  noremap! <c-b> <nop>
 
   nmap <s-cr> <cr>
   vmap <s-cr> <cr>
@@ -69,6 +69,15 @@
   " vmap <s-bs> <bs>
   " nmap <c-bs> <bs>
   " vmap <c-bs> <bs>
+
+  nnoremap <s-up> <nop>
+  nnoremap <s-down> <nop>
+  nnoremap <s-left> <nop>
+  nnoremap <s-right> <nop>
+  inoremap <s-up> <nop>
+  inoremap <s-down> <nop>
+  inoremap <s-left> <nop>
+  inoremap <s-right> <nop>
 
   nnoremap <silent> <cr> :noh<bar>:echo<cr>
   nnoremap <silent> <bs> :noh<bar>:echo<cr>
@@ -113,12 +122,12 @@
     xmap ah <Plug>(GitGutterTextObjectOuterVisual)
     nmap <leader>hf :GitGutterFold<cr>
 
-  packadd! julia-vim
+  packadd julia-vim
 
   " if has('nvim')
-    " packadd! nvim-treesitter
+    " packadd nvim-treesitter
   " else
-    " packadd! ale
+    " packadd ale
   " endif
   augroup ale_settings | au!
     au FileType python call s:setup_ale()
@@ -153,7 +162,7 @@
     " let g:ale_sign_warning=' ×'
     let g:ale_linters={
           \ 'vim': ['vint'],
-          \ 'python': ['ruff', 'mypy'],
+          \ 'python': ['ruff', 'pylint', 'mypy'],
           \ 'lua': ['luacheck', 'luac'],
           \ 'tex': ['lacheck']
           \ }
@@ -241,14 +250,13 @@
     set fillchars=stl:⋅,stlnc:⋅,vert:\|,fold:⋅
     " set fillchars=stl:-,stlnc:⋅,vert:│,fold:\ ,diff:·
     set formatoptions+=1jr/  " use <c-U> to remove comment symbol
-    set hlsearch
     " set nohlsearch
+    set hlsearch
     set ignorecase
     set incsearch
     set nojoinspaces
     set laststatus=2
     set matchpairs+=<:>
-    " set matchpairs+=`:'
     set mouse=
     " set spell
     set nospell
@@ -334,7 +342,7 @@
 
 " TOGGLE MAPPINGS
   " noremap <leader>h :noh<bar>:echo<cr>
-  nnoremap <leader>th :set nohlsearch!<cr>
+  " nnoremap <leader>th :set nohlsearch!<cr>
   nnoremap <leader>tw :setlocal nowrap!<cr>
   nnoremap <leader>ts :setlocal spell!<cr>
   nnoremap <leader>tb :call ToggleBackground()<cr>
@@ -384,9 +392,14 @@
     " au CmdlineEnter /,\? hi Search guifg=#fabd2f cterm=inverse
     " au CmdlineEnter /,\? hi Search guifg=#d79921 cterm=inverse
 
-    au CmdlineLeave /,\? :set nohlsearch
-    " au CmdlineLeave /,\? hi clear Search
+    " au CmdlineLeave /,\? :set nohlsearch
+    au CmdlineLeave /,\? hi clear Search
     " au CmdlineLeave /,\? hi Search guifg=#fabd2f guibg=#504945 ctermfg=15 ctermbg=239 cterm=none
+    au CmdlineLeave /,\? hi Search guibg=#504945 ctermbg=239 cterm=none
+
+    " au CursorMoved * :noh<cr>
+    " au CursorMoved * call feedkeys("\<Cmd>noh\<cr>" , 'n')
+    au InsertEnter * call feedkeys("\<cmd>noh\<cr>" , 'n')
   augroup END
 
 
@@ -636,8 +649,8 @@
     hi clear Folded
     hi Folded guifg=#504945 ctermfg=240 ctermbg=none cterm=none
 
-    " hi clear String
-    " hi String ctermfg=142 ctermbg=none cterm=none
+    hi clear String
+    hi String guifg=#b8bb26 ctermfg=142 cterm=none
 
     hi clear StatusLine
     hi clear StatusLineNC
@@ -661,11 +674,11 @@
 
     hi clear SignColumn
     hi clear LineNR
-    " hi clear CursorLine
-    " hi clear CursorLineNR
+    hi clear CursorLine
+    hi clear CursorLineNR
     hi LineNR guifg=#504945 ctermfg=240 cterm=none
     " hi CursorLine ctermfg=none ctermbg=235 cterm=none
-    " hi CursorLineNR guifg=#ebdbb2 ctermfg=214 cterm=none
+    hi CursorLineNR guifg=#7c6f64 ctermfg=244 cterm=none
 
     " hi SpellBad ctermfg=131 ctermbg=234 cterm=underline
     " hi SpellCap ctermfg=66 ctermbg=234 cterm=underline
@@ -705,8 +718,10 @@
       hi ALEInfoSign ctermfg=108 ctermbg=none
       " hi ALEVirtualTextError ctermfg=237
       " hi ALEVirtualTextWarning ctermfg=237
-      hi ALEVirtualTextError ctermfg=167
-      hi ALEVirtualTextWarning ctermfg=214
+      hi ALEVirtualTextError guifg=#504945 ctermfg=240
+      " hi ALEVirtualTextError ctermfg=167
+      hi ALEVirtualTextWarning guifg=#504945 ctermfg=240
+      " hi ALEVirtualTextWarning ctermfg=214
     endif
 
     hi SignColumn ctermbg=black

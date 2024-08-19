@@ -3,7 +3,8 @@ printf '\33c\e[3J'
 
 fpath+=~/.zfunc
 autoload -Uz add-zsh-hook
-setopt prompt_subst
+setopt promptsubst
+setopt promptpercent
 autoload -Uz compinit && compinit
 _comp_options+=(globdots)
 # zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -12,30 +13,30 @@ zstyle ':completion:*' menu select
 # setopt menu_complete
 bindkey -e
 
-precmd_conda_info() {
-  if [[ -n $CONDA_PREFIX ]]; then
-    if [[ $(basename $CONDA_PREFIX) == "miniconda3" ]]; then
-      # Without this, it would display conda version
-      CONDA_ENV="(base) "
-    else
-      # For all environments that aren't (base)
-      CONDA_ENV="($(basename $CONDA_PREFIX)) "
-    fi
-  # When no conda environment is active, don't show anything
-  else
-    CONDA_ENV=""
-  fi
-}
-precmd_functions+=( precmd_conda_info )
+# precmd_conda_info() {
+  # if [[ -n $CONDA_PREFIX ]]; then
+    # if [[ $(basename $CONDA_PREFIX) == "miniconda3" ]]; then
+      # # Without this, it would display conda version
+      # CONDA_ENV="(base) "
+    # else
+      # # For all environments that aren't (base)
+      # CONDA_ENV="($(basename $CONDA_PREFIX)) "
+    # fi
+  # # When no conda environment is active, don't show anything
+  # else
+    # CONDA_ENV=""
+  # fi
+# }
+# # precmd_functions+=( precmd_conda_info )
 
 function git_info() {
-  local BRANCH=$(git symbolic-ref --short HEAD 2> /dev/null) || return
-  if [[ $BRANCH == "" ]];
-  then
-    :
-  else
-    echo "%F{14}$BRANCH%F{238}::%f"
-  fi
+  # local BRANCH=$(git symbolic-ref --short HEAD 2> /dev/null) || return
+  # if [[ -n $BRANCH ]]; then
+    # print -P "%{${fg_coaqua}%}$BRANCH %{${fg_dark}%}:: %{${color_clear}%}"
+  # else
+    # print -P ""
+    # # echo "%F{14}$BRANCH%F{237}::%f"
+  # fi
   # local STATUS=''
   # local FLAGS
   # FLAGS=('--porcelain')
@@ -58,17 +59,164 @@ function git_info() {
   # echo "$BRANCH$GIT_STAR"
 }
 
-function promptwidth() {
-  echo $(( ${COLUMNS} - 25 - 10))
+function path_info() {
+  # if [ ${#${PWD:h}} -eq ${#${str}} ]; then
+  # if [[ $PWD:h == $str_root ]]; then
+  if [[ $PWD:h == "/" ]]; then
+    echo ""
+  else
+    if [[ $PWD == $HOME ]]; then
+      echo ""
+    else
+      print -P '${${PWD:h}/$HOME/~} '
+    fi
+  fi
 }
-width='$(promptwidth)'
-git_branch='$(git_info)'
-# PROMPT=' %F{0}%D{%K:%M:%S} %F{11}λ%f '
-# PROMPT=' %F{3}λ%f '
-# PROMPT=''' %F{11}⟩%f '
-PROMPT=''' %F{11}λ%f '
-# RPROMPT="%F{8}%D{%K:%M:%S} "'%F{6}${CONDA_ENV}%F{0}'"${git_branch}%${width}<...<%F{12}%1~%F{9} $(hostname)%f"
-RPROMPT="%F{238}%D{%K:%M:%S} "'%F{6}${CONDA_ENV}%F{0}'"${git_branch}%${width}<...<%F{12}%1~%F{9} $USER%f"
+
+fg_black="%F{1}"
+fg_red="%F{1}"
+fg_green="%F{2}"
+fg_yellow="%F{3}"
+fg_blue="%F{4}"
+fg_purple="%F{5}"
+fg_aqua="%F{6}"
+fg_white="%F{7}"
+
+fg_coblack="%F{8}"
+fg_cored="%F{9}"
+fg_cogreen="%F{10}"
+fg_coyellow="%F{11}"
+fg_coblue="%F{12}"
+fg_copurple="%F{13}"
+fg_coaqua="%F{14}"
+fg_cowhite="%F{15}"
+
+fg_bg="%F{0}"
+fg_fg="%F{15}"
+fg_text="%F{15}"
+
+fg_silver="%F{7}"
+fg_grey="%F{8}"
+fg_dark="%F{238}"
+fg_darker="%F{236}"
+fg_darkest="%F{235}"
+
+fg_clear="%f"
+bg_clear="%k"
+color_clear="%f%k"
+markup_clear="%b%u%s"
+
+function strlen() {
+  foo=$1
+  local invisible='%([BSUbfksu]|([FB]|){*})' # (1)
+  bar=${#${(S%%)foo//$~invisible/}}
+  echo $bar
+}
+
+function max() {
+  echo $(( $1 > $2 ? $1 : $2 ))
+}
+
+function min() {
+  echo $(( $1 < $2 ? $1 : $2 ))
+}
+
+(){ # local scope
+  local UL="${fg_darker}┏╸${color_clear}"
+  local BL="${fg_darker}┗━━╸${color_clear}"
+  local UR="${fg_darker}╺┓${color_clear}"
+  local BR="${fg_darker}╺┛${color_clear}"
+
+  # fourth
+  local function userlimiter() { echo $(( $COLUMNS - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅ ⋅⋅⋅⋅⋅⋅ ╺┓ ⋅⋅⋅ ") )) }
+  local userlimit='$(max $(userlimiter) 1)'
+  local user="${fg_coyellow}%${userlimit}<⋅⋅⋅<%n%<<${color_clear}"
+
+  # fifth
+  local function machinelimiter() { echo $(( $COLUMNS - $(strlen " ┏╸ ⋅⋅⋅⋅⋅⋅ ⋅⋅⋅⋅⋅⋅ ╺┓ ⋅⋅⋅ ") )) }
+  local machinelimit='$(max $(machinelimiter) 1)'
+  local machine="${fg_cored}%${machinelimit}<⋅⋅⋅<%m%<<${color_clear}"
+
+  local linefeed="${fg_coyellow}λ${color_clear}"
+  local timestamp="${fg_dark}%D{%K:%M:%S}${color_clear}"
+
+  # third
+  local function gitlimiter() { echo $(( $COLUMNS - $(strlen ${USER}) - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅ ╺┓ ⋅⋅⋅ ") )) }
+  local gitlimit='$(max $(gitlimiter) 1)'
+  local gitbranch='$(git symbolic-ref --short HEAD 2> /dev/null)'
+  # local gitsuffix=" ::"
+  # local git="${fg_coaqua}%${gitlimit}<⋅⋅⋅<${gitbranch}%<<${fg_dark}${gitsuffix}${color_clear}"
+  local git="${fg_coaqua}%${gitlimit}<⋅⋅⋅<${gitbranch}%<<${color_clear}"
+
+  # first
+  local function prefixlimiter() { echo $(( $COLUMNS - $(strlen ${${PWD:t}/$HOME/~}) - $(strlen ${USER}) - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅ ╺┓ master") )) }
+  local prefixlimit='$(max $(prefixlimiter) 1)'
+  local pathprefix='$(path_info)'
+
+  # second
+  local function suffixlimiter() { echo $(( $COLUMNS - $(strlen ${USER}) - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅⋅⋅⋅ ╺┓ master") )) }
+  local suffixlimit='$(max $(suffixlimiter) 1)'
+  local pathsuffix='%1~'
+
+  local path="${fg_dark}%${prefixlimit}<⋅⋅⋅<${pathprefix}%<<${fg_coblue}%${suffixlimit}<⋅⋅⋅<${pathsuffix}%<<${color_clear}"
+
+  # local gitbranch gitsuffix
+  # local gitcheck=$(git symbolic-ref --short HEAD 2> /dev/null)
+  # if [[ -n $(git symbolic-ref --short HEAD 2> /dev/null) ]]; then
+    # gitbranch+='$(git symbolic-ref --short HEAD 2> /dev/null)'
+    # gitsuffix+=" ::"
+  # fi
+  local left="${UL} ${path}"
+  # left+=" ${git}"
+
+  local right="${git} ${user} ${machine} ${UR}"
+    # Virtualenv.
+    # right+='${VIRTUAL_ENV:+venv }'
+
+    # Editing mode. $ZLE_MODE shouldn't contain %, no need to escape
+    # ZLE_MODE=insert
+    # right+='%K{green} $ZLE_MODE'
+
+  # Combine left and right prompt with spacing in between.
+  local pattern='%([BSUbfksu]|([FBK]|){*})'
+  local zero='%([BSUbfksu]|([FK]|){*})'
+
+  local leftspace=${(S)left//${~pattern}}
+  local rightspace=${(S)right//${~pattern}}
+  local spacing="\${(l,COLUMNS-2-\${#\${(%):-${leftspace}${rightspace}}},)}"
+
+  local function toplinelimiter() { echo $(( $COLUMNS - 20 )) }
+  local toplinelimit='$(max $(toplinelimiter) 1)'
+  local topline="%${toplinelimit}>> ${left}${spacing}${right} %>>%{"$'\n'"%}"
+
+  local botline=" ${BL} ${linefeed} "
+
+  PROMPT="${topline}${botline}"
+  RPROMPT="${timestamp} ${BR}"
+}
+
+# autoload vcs_info
+# precmd() vcs_info
+
+# update-mode() {
+  # case $KEYMAP in
+    # (main)
+      # case $ZLE_STATE in
+        # (*insert*) ZLE_MODE=insert;;
+        # (*) ZLE_MODE=overwrite
+      # esac;;
+    # (*) ZLE_MODE=$KEYMAP
+  # esac
+  # [[ $ZLE_MODE = $oldmode ]] || zle reset-prompt
+# }
+
+# overwrite-mode() {
+   # zle ".$WIDGET"
+   # update-mode
+# }
+# zle -N overwrite-mode
+# zle -N zle-keymap-select update-mode
+
 
 function schedprompt() {
   emulate -L zsh
@@ -119,8 +267,8 @@ alias rm="rm -v"
 alias diff="grc diff"
 alias rsync="rsync -v --progress"
 
-alias tree="tree -C -N --dirsfirst"
-alias ls="tree -L 1"
+alias tree="tree -C -N --dirsfirst --noreport"
+alias ls="tree -L 1 --dirsfirst --noreport"
 function tree_ascii() {
   tree --dirsfirst -C -N -h "$1" | sed 's/├/\+/g; s/─/-/g; s/└/\\/g'
 }

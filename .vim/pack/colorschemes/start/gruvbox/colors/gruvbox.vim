@@ -620,7 +620,6 @@ hi! link Character GruvboxPurple
 if g:gruvbox_improved_strings == 0
   call s:HL('String',  s:green, s:none, s:italicize_strings)
 else
-  " call s:HL('String',  s:fg1, s:bg1, s:italicize_strings)
   call s:HL('String',  s:fg1, s:bg1, s:italicize_strings)
 endif
 " Boolean constant: TRUE, false
