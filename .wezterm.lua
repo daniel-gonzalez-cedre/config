@@ -52,6 +52,7 @@ config.font_size = 12
 -- config.font = wezterm.font 'Berkeley Mono'
 config.font = wezterm.font_with_fallback {
   'Berkeley Mono',
+  'CommitMono-400-01111-00000011000',
   'Fira Code Retina'
 }
 -- config.harfbuzz_features = {"calt=0", "clig=0", "liga=0"}
@@ -59,18 +60,18 @@ config.font = wezterm.font_with_fallback {
 -- set color scheme
 -- config.color_scheme = 'GruvboxDark'
 -- config.color_scheme = 'GruvboxDarkHard'
--- config.color_scheme = 'Gruvbox dark, pale (base16)'
+config.color_scheme = 'Gruvbox dark, pale (base16)'
 -- config.color_scheme = 'Gruvbox dark, medium (base16)'
 -- config.color_scheme = 'Gruvbox dark, hard (base16)'
-config.color_scheme = 'Gruvbox Dark (Gogh)'
+-- config.color_scheme = 'Gruvbox Dark (Gogh)'
 
-local scheme = wezterm.color.get_builtin_schemes()['Gruvbox dark, pale (base16)']
-scheme.black = '#282828'
-wezterm.on('window-config-reloaded', function(window, pane)
-  window:set_config_overrides {
-    color_scheme = scheme,
-  }
-end)
+-- local scheme = wezterm.color.get_builtin_schemes()['Gruvbox dark, pale (base16)']
+-- scheme.black = '#282828'
+-- wezterm.on('window-config-reloaded', function(window, pane)
+  -- window:set_config_overrides {
+    -- color_scheme = scheme,
+  -- }
+-- end)
 
 config.bold_brightens_ansi_colors = 'BrightAndBold'
 
@@ -80,7 +81,7 @@ config.colors = {
     -- background = '#1d2021',
     active_tab = {
       bg_color = '#282828',
-      fg_color = '#bdae93',
+      fg_color = '#d4be98',
 
       italic = false,
       strikethrough = false,
@@ -99,9 +100,9 @@ config.colors = {
   },
   -- foreground = '#ebdbb2',
   -- -- background = '#1d2021'
-  -- background = '#282828',
+  background = '#262626',
   -- ansi = {
-    -- '#282828',  -- ----
+    -- '#262626',  -- black
     -- '#ff8700',  -- orange
     -- '#afaf00',  -- green
     -- '#ffaf00',  -- yellow
@@ -158,12 +159,12 @@ config.keys = {
       end),
     },
   },
-  { key = 'LeftArrow',
-    mods = 'SHIFT',
+  { key = 'p',
+    mods = 'CMD|SHIFT',
     action = wezterm.action.MoveTabRelative(-1),
   },
-  { key = 'RightArrow',
-    mods = 'SHIFT',
+  { key = 'n',
+    mods = 'CMD|SHIFT',
     action = wezterm.action.MoveTabRelative(1),
   }
 }

@@ -1,4 +1,4 @@
-" initialization
+" INIT
   filetype plugin indent on
   silent
   syntax enable
@@ -8,44 +8,49 @@
     au BufEnter * :syntax sync fromstart
   augroup END
 
+  " set home config directory
   if !isdirectory($HOME.'/.vim')
     call mkdir($HOME.'/.vim', '', 0770)
   endif
 
+  " set undo directory
   if !isdirectory($HOME.'/.vim/undodir')
     call mkdir($HOME.'/.vim/undodir', '', 0700)
   endif
   set undodir=~/.vim/undodir
   set undofile
 
-  " "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
-  " "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
-  " "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-  " " if (empty($TMUX) && getenv('TERM_PROGRAM') != 'Apple_Terminal')
-  " if getenv('TERM_PROGRAM') != 'Apple_Terminal'
-    " if (has("nvim"))
-      " "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-      " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  " TODO: clean this up
+    " "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+    " "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+    " "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+    " " if (empty($TMUX) && getenv('TERM_PROGRAM') != 'Apple_Terminal')
+    " if getenv('TERM_PROGRAM') != 'Apple_Terminal'
+      " if (has("nvim"))
+        " "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+        " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+      " endif
+      " "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+      " "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+      " " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+      " set termguicolors
     " endif
-    " "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-    " "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-    " " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-    " set termguicolors
-  " endif
 
+  " make sure colors are set correctly
   " if $TERM_PROGRAM !=# 'Apple_Terminal' || $TMUX !=? ''
   if $TERM_PROGRAM !=# 'Apple_Terminal'
-    if (has("nvim"))
+    if (has('nvim'))
       "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
       let $NVIM_TUI_ENABLE_TRUE_COLOR=1
     endif
     set termguicolors
   endif
 
-" LEADER
+" LEADER KEY
   nnoremap <space> <nop>
   vnoremap <space> <nop>
   let mapleader = ' '
+
 
 " NOP MAPPINGS
   " silence macro recording
@@ -89,8 +94,208 @@
   " vnoremap <silent> <c-c> <c-c><c-c>`<
 
 
+" COLORS
+  function! s:active_window()
+    setlocal ruler
+    setlocal showcmd
+    setlocal laststatus=2
+    hi! link SignColumn NONE
+    hi! link LineNR NONE
+    " hi! link CursorLine NONE
+    hi! link CursorLineNR NONE
+  endfunction
+
+  function! s:inactive_window()
+    setlocal noruler
+    setlocal noshowcmd
+    setlocal laststatus=0
+    hi Blank guifg=#262626 guibg=#262626 ctermfg=0 ctermbg=0
+    hi! link SignColumn Blank
+    hi! link LineNR Blank
+    " hi! link CursorLine Blank
+    hi! link CursorLineNR Blank
+    echo @%
+  endfunction
+
+  augroup active_focused_window | au!
+
+    au FocusGained * call s:active_window()
+    au FocusGained * if g:gitgutter_is_loaded | GitGutterBufferEnable | endif
+    " au FocusGained * GitGutterBufferEnable
+    au FocusGained * if g:ale_is_loaded | ALEEnableBuffer | endif
+    " au FocusGained * ALEEnableBuffer
+
+    au FocusLost * call s:inactive_window()
+    au FocusLost * if g:gitgutter_is_loaded | GitGutterBufferDisable | endif
+    " au FocusLost * GitGutterBufferDisable
+    au FocusLost * if g:ale_is_loaded | ALEDisableBuffer | endif
+    " au FocusLost * ALEDisableBuffer
+  augroup END
+
+  function! s:gruvbox_colors()
+    hi clear Folded
+    hi Folded guifg=#504945 ctermfg=240 ctermbg=none cterm=none
+
+    " hi clear Comment
+    " hi Comment ctermfg=243 ctermbg=none cterm=none
+
+    hi clear String
+    hi String guifg=#b8bb26 ctermfg=142 cterm=none
+
+    hi clear StatusLine
+    hi clear StatusLineNC
+    hi StatusLine guifg=#504945 ctermfg=240 ctermbg=none cterm=none
+    hi StatusLineNC guifg=#504945 ctermfg=240 ctermbg=none cterm=none
+
+    hi clear Visual
+    " hi Visual ctermfg=none ctermbg=none cterm=inverse
+    " hi Visual ctermbg=238
+    hi Visual guibg=#504945 ctermbg=239 cterm=none
+    " hi Visual guifg=#ebdbb2 guibg=#504945 ctermfg=15 ctermbg=239 cterm=none
+
+    hi clear Matchparen
+    " hi MatchParen guibg=#504945 ctermfg=0 ctermbg=240
+    " hi MatchParen cterm=inverse
+    hi MatchParen cterm=bold
+
+    hi clear SignColumn
+    hi clear LineNR
+    hi clear CursorLine
+    hi clear CursorLineNR
+    hi LineNR guifg=#504945 ctermfg=240 cterm=none
+    " hi CursorLine ctermfg=none ctermbg=235 cterm=none
+    hi CursorLineNR guifg=#7c6f64 ctermfg=244 cterm=none
+
+    " hi SpellBad ctermfg=131 ctermbg=234 cterm=underline
+    " hi SpellCap ctermfg=66 ctermbg=234 cterm=underline
+    hi clear SpellBad
+    hi clear SpellCap
+    hi clear SpellLocal
+    hi clear SpellRare
+    hi SpellBad ctermbg=none cterm=underline
+    hi SpellCap ctermbg=none cterm=underline
+    hi SpellLocal ctermbg=none cterm=none
+    hi SpellRare ctermbg=none cterm=none
+
+    hi clear texStyleItal
+    hi clear texCmdSize
+    hi clear texCmdStyle
+    hi texStyleItal ctermfg=214 ctermbg=none cterm=none
+    hi texCmdSize ctermfg=208 ctermbg=none cterm=none
+    hi texCmdStyle ctermfg=208 ctermbg=none cterm=none
+
+    if has('nvim')
+    else
+      hi clear ALEError
+      hi clear ALEWarning
+      hi clear ALEErrorSign
+      hi clear ALEWarningSign
+      hi clear ALEErrorLine
+      hi clear ALEWarningLine
+      hi clear ALEInfoSign
+      hi clear ALEVirtualTextError
+      hi clear ALEVirtualTextWarning
+      " hi ALEErrorLine ctermbg=none cterm=none
+      " hi ALEWarningLine ctermbg=none cterm=none
+      " hi ALEError ctermbg=167
+      " hi ALEWarning ctermfg=214
+      hi ALEErrorSign ctermfg=167 ctermbg=none
+      hi ALEWarningSign ctermfg=214 ctermbg=none
+      hi ALEInfoSign ctermfg=108 ctermbg=none
+      " hi ALEVirtualTextError ctermfg=237
+      " hi ALEVirtualTextWarning ctermfg=237
+      hi ALEVirtualTextError guifg=#504945 ctermfg=240
+      " hi ALEVirtualTextError ctermfg=167
+      hi ALEVirtualTextWarning guifg=#504945 ctermfg=240
+      " hi ALEVirtualTextWarning ctermfg=214
+    endif
+
+    hi SignColumn ctermbg=black
+  endfunction
+
+  function! s:gruvbox_material_colors()
+    let l:palette = gruvbox_material#get_palette('medium', 'material', {})
+
+    " call gruvbox_material#highlight('Function', l:palette.orange, l:palette.none)
+    call gruvbox_material#highlight('Folded', l:palette.bg5, l:palette.none)
+    call gruvbox_material#highlight('String', l:palette.fg0, l:palette.none, 'bold')
+
+    call gruvbox_material#highlight('Todo', l:palette.grey1, l:palette.none, 'bold')
+
+    call gruvbox_material#highlight('ErrorText', l:palette.none, l:palette.none, 'undercurl', l:palette.red)
+    call gruvbox_material#highlight('WarningText', l:palette.none, l:palette.none, 'undercurl', l:palette.yellow)
+    call gruvbox_material#highlight('InfoText', l:palette.none, l:palette.none, 'undercurl', l:palette.blue)
+    call gruvbox_material#highlight('HintText', l:palette.none, l:palette.none, 'undercurl', l:palette.green)
+
+    call gruvbox_material#highlight('CursorLine', l:palette.none, ['#282828',   '235'])
+    call gruvbox_material#highlight('CursorLineNr', l:palette.grey1, ['#282828',   '235'])
+    " call gruvbox_material#highlight('StatusLine', l:palette.bg2, l:palette.none)
+    " call gruvbox_material#highlight('StatusLineNC', l:palette.bg2, l:palette.none)
+
+    call gruvbox_material#highlight('MatchParen', l:palette.none, l:palette.none, 'bold')
+  endfunction
+
+  function! s:gitgutter_colors()
+    if $TERM_PROGRAM !=# 'Apple_Terminal'
+      hi clear SignColumn
+      hi GitGutterAdd ctermfg=142 ctermbg=none
+      hi GitGutterChange ctermfg=109 ctermbg=none
+      hi GitGutterDelete ctermfg=167 ctermbg=none
+      hi GitGutterChangeDelete ctermfg=175 ctermbg=none
+    endif
+  endfunction
+
+  augroup setup_colors | au!
+    " gruvbox
+    let g:gruvbox_improved_strings = 1  " (0), 1
+    let g:gruvbox_improved_warnings = 1  " (0), 1
+    let g:gruvbox_hls_cursor = 'orange'
+    let g:gruvbox_contrast_dark = 'medium'  " soft, (medium), hard
+    let g:gruvbox_contrast_light = 'hard'  " soft, (medium), hard
+    au ColorScheme gruvbox call s:gruvbox_colors()
+
+    " gruvbox-material
+    let g:gruvbox_material_background = 'medium'  " soft, (medium), hard
+    let g:gruvbox_material_foreground = 'material'  " (material), mix, original
+    let g:gruvbox_material_enable_bold = 0  " (0), 1
+    let g:gruvbox_material_enable_italic = 0  " (0), 1
+    let g:gruvbox_material_disable_italic_comment = 0  " (0), 1
+    let g:gruvbox_material_visual = 'grey background'  " (grey background), red background, green background, blue background, reverse
+    let g:gruvbox_material_menu_selection_background = 'yellow'  " (grey), red, orange, yellow, green, aqua, blue, purple
+    let g:gruvbox_material_spell_foreground = 'colored'  " (none), colored
+    let g:gruvbox_material_ui_contrast = 'low'  " (low), high
+    let g:gruvbox_material_float_style = 'bright'  " (bright), dim
+    let g:gruvbox_material_diagnostic_text_highlight = 0  " (0), 1
+    let g:gruvbox_material_diagnostic_line_highlight = 0  " (0), 1
+    let g:gruvbox_material_diagnostic_virtual_text = 'colored'  " (grey), colored, highlighted
+    let g:gruvbox_material_better_performance = 1  " (0), 1
+    let g:gruvbox_material_colors_override = {'bg0': ['#262626', '235']}
+    au ColorScheme gruvbox-material call s:gruvbox_material_colors()
+
+    " gitgutter
+    au ColorScheme gruvbox call s:gitgutter_colors()
+    " au ColorScheme gruvbox,gruvbox-material call s:gitgutter_colors()
+  augroup END
+
+  packadd! gruvbox-material
+  colorscheme gruvbox-material
+
 " PACKAGES
-  " tabularize
+  packadd lightline.vim
+    set noshowmode
+    let g:lightline = { 'colorscheme': 'gruvbox_material', }
+
+  packadd vim-polyglot
+
+  packadd julia-vim
+
+  packadd NrrwRgn
+  vunmap <leader>nr
+  vmap <leader>be :NR<cr>
+  vmap <leader>bc :NR<cr>
+  vmap <leader>bs :NR<cr>
+
+  packadd tabular  " tabularize
     nnoremap <leader><tab> :Tabularize /
     vnoremap <tab> :Tabularize /
     vnoremap <tab><space> :Tabularize /\zs<left><left><left>
@@ -103,7 +308,9 @@
     vnoremap <tab>, :Tabularize /,<cr>
     " vnoremap <leader><tab>| :Tabularize /|<cr>
 
+  let g:gitgutter_is_loaded = 0
   packadd vim-gitgutter
+    let g:gitgutter_is_loaded = 1
     let g:gitgutter_map_keys = 1
 
     let g:gitgutter_sign_added = '⋅ '
@@ -122,40 +329,14 @@
     xmap ah <Plug>(GitGutterTextObjectOuterVisual)
     nmap <leader>hf :GitGutterFold<cr>
 
-  packadd julia-vim
-
-  " if has('nvim')
-    " packadd nvim-treesitter
-  " else
-    " packadd ale
-  " endif
-  augroup ale_settings | au!
-    au FileType python call s:setup_ale()
-    au FileType lua call s:setup_ale()
-    au FileType vim call s:setup_ale()
-    au FileType tex call s:setup_ale()
-
-    " linters: ruff, mypy, pylint, pyright, lacheck, chktek, proselint
-    function! s:setup_ale()
-      packadd ale
-
-      map ]a :ALENextWrap<cr>
-      map [a :ALEPreviousWrap<cr>
-      map ]e <Plug>(ale_next_wrap_error)
-      map [e <Plug>(ale_previous_wrap_error)
-      map ]w <Plug>(ale_next_wrap_warning)
-      map [w <Plug>(ale_previous_wrap_warning)
-      map <leader>at :ALEToggle<cr>
-      map <leader>an :ALENextWrap<cr>
-      map <leader>aN :ALEPreviousWrap<cr>
-      map <leader>ae <Plug>(ale_next_wrap_error)
-      map <leader>aE <Plug>(ale_previous_wrap_error)
-      map <leader>aw <Plug>(ale_next_wrap_warning)
-      map <leader>aW <Plug>(ale_previous_wrap_warning)
-      map <leader>al :ALELint<cr>
-      map <leader>ad :ALEDetail<cr>
+    function! GitStatus()
+      let [a,m,r] = GitGutterGetHunkSummary()
+      return printf('+%d ~%d -%d', a, m, r)
     endfunction
+    " set statusline+=%{GitStatus()}
 
+  let g:ale_is_loaded = 0
+  augroup ale_settings | au!
     let g:ale_sign_error='×⟩'
     let g:ale_sign_warning='⋅⟩'
     " let g:ale_sign_error=' ×'
@@ -177,32 +358,51 @@
     " let g:ale_echo_detail=1
     " let g:ale_echo_delay=0
     let g:ale_python_pylint_options="--init-hook=\"import sys; sys.path.append(\'" . trim(system('git rev-parse --show-toplevel')) . "\')\""
+
+    au FileType python call s:setup_ale()
+    au FileType lua call s:setup_ale()
+    au FileType vim call s:setup_ale()
+    au FileType tex call s:setup_ale()
+
+    " linters: ruff, mypy, pylint, pyright, lacheck, chktek, proselint
+    function! s:setup_ale()
+      packadd ale
+      let g:ale_is_loaded = 1
+
+      map ]a :ALENextWrap<cr>
+      map [a :ALEPreviousWrap<cr>
+      map ]e <Plug>(ale_next_wrap_error)
+      map [e <Plug>(ale_previous_wrap_error)
+      map ]w <Plug>(ale_next_wrap_warning)
+      map [w <Plug>(ale_previous_wrap_warning)
+      nmap <leader>at :ALEToggle<cr>
+      nmap <leader>al :ALELint<cr>
+      map <leader>bd :ALEDetail<cr>
+    endfunction
   augroup END
 
-  " NERDCommenter MAPPINGS
-    augroup nerdcommender_settings | au!
-      au! VimEnter * call s:nerdcommenter_mappings()
+  augroup nerdcommender_settings | au!
+    au! VimEnter * call s:nerdcommenter_mappings()
 
-      function! s:nerdcommenter_mappings()
-        nmap <leader>cc <plug>NERDCommenterToggle
-        nmap <leader>ci <plug>NERDCommenterInvert
-        nmap <leader>ct <plug>NERDCommenterInvert
-        vmap <leader>cc <plug>NERDCommenterToggle `<
-        vmap <leader>ci <plug>NERDCommenterInvert `<
-        vmap <leader>ct <plug>NERDCommenterInvert `<
-        " map <leader>c<space> <plug>NERDCommenterInvert
-        nnoremap <leader>cA <plug>NERDCommenterAppend
-        nnoremap <leader>ca A<space><esc><plug>NERDCommenterAppend
-        nnoremap <leader>cl A<esc><plug>NERDCommenterAppend<bs><c-g>U<left><bs><right><esc>
-        nnoremap <leader>co o<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
-        nnoremap <leader>cO O<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
-      endfunction
-    augroup END
+    function! s:nerdcommenter_mappings()
+      nmap <leader>cc <plug>NERDCommenterToggle
+      nmap <leader>ci <plug>NERDCommenterInvert
+      nmap <leader>ct <plug>NERDCommenterInvert
+      vmap <leader>cc <plug>NERDCommenterToggle `<
+      vmap <leader>ci <plug>NERDCommenterInvert `<
+      vmap <leader>ct <plug>NERDCommenterInvert `<
+      " map <leader>c<space> <plug>NERDCommenterInvert
+      nnoremap <leader>cA <plug>NERDCommenterAppend
+      nnoremap <leader>ca A<space><esc><plug>NERDCommenterAppend
+      nnoremap <leader>cl A<esc><plug>NERDCommenterAppend<bs><c-g>U<left><bs><right><esc>
+      nnoremap <leader>co o<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
+      nnoremap <leader>cO O<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
+    endfunction
+  augroup END
 
 
 " SET OPTIONS
   " FILETYPE SPECIFIC
-    " PYTHON
     augroup python_settings | au!
       au FileType python setlocal shiftwidth=2
       au FileType python setlocal softtabstop=2
@@ -213,7 +413,6 @@
       au BufNewFile,BufRead *.svg set filetype=html
     augroup END
     
-    " LaTeX
     augroup latex_settings | au!
       " packadd vim-latex
       packadd vimtex
@@ -242,27 +441,32 @@
     augroup END
 
   " GENERAL
+    augroup set_settings | au!
+      autocmd BufNewFile,BufRead * setlocal formatoptions-=c
+      autocmd BufNewFile,BufRead * setlocal formatoptions-=o
+      autocmd BufNewFile,BufRead * setlocal formatoptions+=r
+    augroup END
     set background=dark
     set backspace=indent,eol,start
     set conceallevel=0
     set cursorline
     set display+=lastline
-    set fillchars=stl:⋅,stlnc:⋅,vert:\|,fold:⋅
-    " set fillchars=stl:-,stlnc:⋅,vert:│,fold:\ ,diff:·
-    set formatoptions+=1jr/  " use <c-U> to remove comment symbol
-    " set nohlsearch
+    " set fillchars=stl:⋅,stlnc:⋅,vert:\|,fold:⋅
+    set formatoptions-=c
+    set formatoptions-=o
+    set formatoptions+=r
     set hlsearch
     set ignorecase
     set incsearch
     set nojoinspaces
     set laststatus=2
     set matchpairs+=<:>
-    set mouse=
+    set mouse=""
     " set spell
     set nospell
     set number
     set numberwidth=3
-    set ruler
+    " set ruler
     set signcolumn=yes
     set shiftround
     set showcmd
@@ -279,7 +483,7 @@
     " set number relativenumber
     " set scrolloff=2
 
-  " POP-UP WINDOW
+  " " POP-UP WINDOW
     " set completeopt+=popup
     " set completepopup=height:15,width:60,border:off,highlight:PMenuSbar
     " set previewpopup=height:10,width:60,highlight:PMenuSbar
@@ -313,11 +517,6 @@
   let g:fanfingtastic_all_inclusive = 1
   let g:fanfingtastic_fix_t = 1
   let g:fanfingtastic_ignorecase = 1
-  let g:gruvbox_improved_strings = 1
-  let g:gruvbox_improved_warnings = 1
-  let g:gruvbox_hls_cursor = 'orange'
-  let g:gruvbox_contrast_dark = 'medium'  " soft, medium, hard
-  let g:gruvbox_contrast_light = 'hard'  " soft, medium, hard
   let g:haskell_indent_if = 2
   let g:haskell_indent_case = 4
   let g:haskell_indent_guard = 5
@@ -386,20 +585,13 @@
 
   " toggle highlighting on search
   augroup search_highlight_toggling | au!
-    au CmdlineEnter /,\? :set hlsearch
-    au CmdlineEnter /,\? hi clear Search
-    au CmdlineEnter /,\? hi Search guifg=#fabd2f guibg=#504945 ctermfg=15 ctermbg=239 cterm=none
-    " au CmdlineEnter /,\? hi Search guifg=#fabd2f cterm=inverse
-    " au CmdlineEnter /,\? hi Search guifg=#d79921 cterm=inverse
+    " au CmdlineEnter /,\? :set hlsearch
 
-    " au CmdlineLeave /,\? :set nohlsearch
-    au CmdlineLeave /,\? hi clear Search
-    " au CmdlineLeave /,\? hi Search guifg=#fabd2f guibg=#504945 ctermfg=15 ctermbg=239 cterm=none
-    au CmdlineLeave /,\? hi Search guibg=#504945 ctermbg=239 cterm=none
+    " au CmdlineEnter /,\? hi clear Search
+    " au CmdlineEnter /,\? hi Search guifg=#fabd2f guibg=#504945 ctermfg=15 ctermbg=239 cterm=none
 
-    " au CursorMoved * :noh<cr>
-    " au CursorMoved * call feedkeys("\<Cmd>noh\<cr>" , 'n')
     au InsertEnter * call feedkeys("\<cmd>noh\<cr>" , 'n')
+    au TextChanged * call feedkeys("\<cmd>noh\<cr>" , 'n')
   augroup END
 
 
@@ -416,8 +608,8 @@
   nnoremap <c-f> ^
   vnoremap <c-f> ^
 
-  noremap <leader>b :call ScratchBuffer()<cr>
-  noremap <leader>nb :call ScratchBuffer()<cr>
+  noremap <leader>bb :call ScratchBuffer()<cr>
+  " noremap <leader>bs :call ScratchBuffer()<cr>
 
   " movement
   inoremap <left> <c-g>U<left>
@@ -513,17 +705,18 @@
   vmap <leader>{ <s-s>{<cr>
   vmap <leader>} <s-s>}<cr>
 
-  vmap <leader>a <s-s>><cr>
+  " vmap <leader>a <s-s>><cr>
+  vmap <leader>k <s-s>><cr>
   vmap <leader>< <s-s><<cr>
   vmap <leader>> <s-s>><cr>
 
   vmap <leader>m <s-s>$<cr>
   vmap <leader>$ <s-s>$<cr>
 
-  vmap <leader>Q <s-s>Q<cr>
   vmap <leader>" <s-s>"<cr>
   vmap <leader>' <s-s>'<cr>
   vmap <leader>` <s-s>`<cr>
+  vmap <leader><c-q> <s-s><c-q><cr>
   " vnoremap " <c-c>`>a"<c-c>`<i"<c-c>
   " vnoremap ' <c-c>`>a'<c-c>`<i'<c-c>
   " vnoremap ` <c-c>`>a`<c-c>`<i`<c-c>
@@ -579,7 +772,7 @@
 
   " echoes the highlight group under the cursor
   function! SynStack()
-    if !exists("*synstack")
+    if !exists('*synstack')
       return
     endif
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
@@ -640,110 +833,6 @@
     return substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
   endfunction
 
-
-" COLORS
-  function! s:gruvbox_colors()
-    " hi clear Comment
-    " hi Comment ctermfg=243 ctermbg=none cterm=none
-
-    hi clear Folded
-    hi Folded guifg=#504945 ctermfg=240 ctermbg=none cterm=none
-
-    hi clear String
-    hi String guifg=#b8bb26 ctermfg=142 cterm=none
-
-    hi clear StatusLine
-    hi clear StatusLineNC
-    hi StatusLine guifg=#504945 ctermfg=240 ctermbg=none cterm=none
-    hi StatusLineNC guifg=#504945 ctermfg=240 ctermbg=none cterm=none
-
-    hi clear Visual
-    " hi Visual ctermfg=none ctermbg=none cterm=inverse
-    " hi Visual ctermbg=238
-    hi Visual guibg=#504945 ctermbg=239 cterm=none
-    " hi Visual guifg=#ebdbb2 guibg=#504945 ctermfg=15 ctermbg=239 cterm=none
-
-    " hi clear Search
-    " hi Search guifg=#d79921 cterm=inverse
-    " hi Search guibg=#504945 ctermbg=239 cterm=none
-
-    hi clear Matchparen
-    " hi MatchParen guibg=#504945 ctermfg=0 ctermbg=240
-    " hi MatchParen cterm=inverse
-    hi MatchParen cterm=bold
-
-    hi clear SignColumn
-    hi clear LineNR
-    hi clear CursorLine
-    hi clear CursorLineNR
-    hi LineNR guifg=#504945 ctermfg=240 cterm=none
-    " hi CursorLine ctermfg=none ctermbg=235 cterm=none
-    hi CursorLineNR guifg=#7c6f64 ctermfg=244 cterm=none
-
-    " hi SpellBad ctermfg=131 ctermbg=234 cterm=underline
-    " hi SpellCap ctermfg=66 ctermbg=234 cterm=underline
-    hi clear SpellBad
-    hi clear SpellCap
-    hi clear SpellLocal
-    hi clear SpellRare
-    hi SpellBad ctermbg=none cterm=underline
-    hi SpellCap ctermbg=none cterm=underline
-    hi SpellLocal ctermbg=none cterm=none
-    hi SpellRare ctermbg=none cterm=none
-
-    hi clear texStyleItal
-    hi clear texCmdSize
-    hi clear texCmdStyle
-    hi texStyleItal ctermfg=214 ctermbg=none cterm=none
-    hi texCmdSize ctermfg=208 ctermbg=none cterm=none
-    hi texCmdStyle ctermfg=208 ctermbg=none cterm=none
-
-    if has('nvim')
-    else
-      hi clear ALEError
-      hi clear ALEWarning
-      hi clear ALEErrorSign
-      hi clear ALEWarningSign
-      hi clear ALEErrorLine
-      hi clear ALEWarningLine
-      hi clear ALEInfoSign
-      hi clear ALEVirtualTextError
-      hi clear ALEVirtualTextWarning
-      " hi ALEErrorLine ctermbg=none cterm=none
-      " hi ALEWarningLine ctermbg=none cterm=none
-      " hi ALEError ctermbg=167
-      " hi ALEWarning ctermfg=214
-      hi ALEErrorSign ctermfg=167 ctermbg=none
-      hi ALEWarningSign ctermfg=214 ctermbg=none
-      hi ALEInfoSign ctermfg=108 ctermbg=none
-      " hi ALEVirtualTextError ctermfg=237
-      " hi ALEVirtualTextWarning ctermfg=237
-      hi ALEVirtualTextError guifg=#504945 ctermfg=240
-      " hi ALEVirtualTextError ctermfg=167
-      hi ALEVirtualTextWarning guifg=#504945 ctermfg=240
-      " hi ALEVirtualTextWarning ctermfg=214
-    endif
-
-    hi SignColumn ctermbg=black
-  endfunction
-
-  function! s:gitgutter_colors()
-    if $TERM_PROGRAM !=# 'Apple_Terminal'
-      hi clear SignColumn
-      hi GitGutterAdd ctermfg=142 ctermbg=none
-      hi GitGutterChange ctermfg=109 ctermbg=none
-      hi GitGutterDelete ctermfg=167 ctermbg=none
-      hi GitGutterChangeDelete ctermfg=175 ctermbg=none
-    endif
-  endfunction
-
-  augroup setup_colors | au!
-    au ColorScheme gruvbox call s:gruvbox_colors()
-    au ColorScheme gruvbox call s:gitgutter_colors()
-  augroup END
-
-  colorscheme gruvbox
-
 " CUSTOM CURSORS
   " BLINKING BLOCK:     \e[0
   " BLINKING BLOCK:     \e[1
@@ -758,11 +847,9 @@
     autocmd VimEnter * silent !echo \ne "\e[2 q"
   augroup END
 
-function! GitStatus()
-  let [a,m,r] = GitGutterGetHunkSummary()
-  return printf('+%d ~%d -%d', a, m, r)
-endfunction
-" set statusline+=%{GitStatus()}
+" UNDERCURL SUPPORT FOR WEZTERM
+  let &t_Cs = "\e[4:3m"
+  let &t_Ce = "\e[4:0m"
 
 let g:currentmode = {
 	\ 'n'  : 'Normal',
@@ -785,4 +872,6 @@ let g:currentmode = {
 	\ '!'  : 'Shell',
 	\}
 
-autocmd VimEnter * :clearjumps
+augroup jump_settings | au!
+  autocmd VimEnter * :clearjumps
+augroup END

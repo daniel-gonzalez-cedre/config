@@ -2,17 +2,19 @@
 init-hook='import sys; sys.path.append(".")'
 
 disable=
+    R0912, # too-many-branches
+    R0914, # too-many-locals
+    R0915, # too-many-statements
+    R1705, # no-else-return
+    R1711, # useless-return
     C0114, # missing-module-docstring
     C0115, # missing-class-docstring
     C0116, # missing-function-docstring
     C0206, # consider-using-dict-items
     C3001, # unnecessary-lambda-assignment
     C0413, # wrong-import-position
-    R0912, # too-many-branches
-    R0914, # too-many-locals
-    R0915, # too-many-statements
-    R1705, # no-else-return
-    R1711, # useless-return
+    C0415, # import-outside-toplevel
+    W0611, # unused-import
     W0703, # broad-except
     W1514, # unspecified-encoding
 

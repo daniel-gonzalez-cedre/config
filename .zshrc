@@ -156,7 +156,7 @@ function min() {
   # second
   local function suffixlimiter() { echo $(( $COLUMNS - $(strlen ${USER}) - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅⋅⋅⋅ ╺┓ master") )) }
   local suffixlimit='$(max $(suffixlimiter) 1)'
-  local pathsuffix='%1~'
+  local pathsuffix='%B%1~%b'
 
   local path="${fg_dark}%${prefixlimit}<⋅⋅⋅<${pathprefix}%<<${fg_coblue}%${suffixlimit}<⋅⋅⋅<${pathsuffix}%<<${color_clear}"
 
