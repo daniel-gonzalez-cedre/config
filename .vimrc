@@ -95,42 +95,73 @@
 
 
 " COLORS
+  function! s:set_lightline_colorscheme(name) abort
+    let g:lightline.colorscheme = a:name
+    call lightline#init()
+    call lightline#colorscheme()
+    call lightline#update()
+  endfunction
+
   function! s:active_window()
     setlocal ruler
     setlocal showcmd
-    setlocal laststatus=2
+    " setlocal laststatus=2
     hi! link SignColumn NONE
     hi! link LineNR NONE
-    " hi! link CursorLine NONE
     hi! link CursorLineNR NONE
+
+    call s:set_lightline_colorscheme('gruvbox_material')
   endfunction
 
   function! s:inactive_window()
     setlocal noruler
     setlocal noshowcmd
-    setlocal laststatus=0
+    " setlocal laststatus=0
     hi Blank guifg=#262626 guibg=#262626 ctermfg=0 ctermbg=0
     hi! link SignColumn Blank
     hi! link LineNR Blank
-    " hi! link CursorLine Blank
     hi! link CursorLineNR Blank
+
+    call s:set_lightline_colorscheme('blank')
     echo @%
   endfunction
 
   augroup active_focused_window | au!
+    " autocmd FocusGained * call s:lightline_clear()
+    " au FocusGained * let g:lightline = { 'colorscheme': 'gruvbox_material', }
+    " au FocusLost * let g:lightline = { 'colorscheme': 'blank', }
+    " au FocusGained * call lightline#enable()
+    " au FocusLost * call lightline#disable()
 
     au FocusGained * call s:active_window()
     au FocusGained * if g:gitgutter_is_loaded | GitGutterBufferEnable | endif
-    " au FocusGained * GitGutterBufferEnable
     au FocusGained * if g:ale_is_loaded | ALEEnableBuffer | endif
-    " au FocusGained * ALEEnableBuffer
 
     au FocusLost * call s:inactive_window()
     au FocusLost * if g:gitgutter_is_loaded | GitGutterBufferDisable | endif
-    " au FocusLost * GitGutterBufferDisable
     au FocusLost * if g:ale_is_loaded | ALEDisableBuffer | endif
-    " au FocusLost * ALEDisableBuffer
   augroup END
+
+  function! s:lightline_clear() abort
+    " transparent background in statusbar
+    let g:lightline = { 'colorscheme': 'blank', }
+    " let l:palette = lightline#palette()
+    " let l:palette.normal.left = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+    " let l:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+    " let l:palette.normal.right = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+    " let l:palette.inactive.left = l:palette.normal.middle
+    " let l:palette.inactive.middle = l:palette.normal.middle
+    " let l:palette.inactive.right = l:palette.normal.middle
+    " let l:palette.tabline.left = l:palette.normal.middle
+    " let l:palette.tabline.middle = l:palette.normal.middle
+    " let l:palette.tabline.right = l:palette.normal.middle
+
+    call lightline#colorscheme()
+  endfunction
+  function! s:lightline_reset() abort
+    let g:lightline = { 'colorscheme': 'gruvbox_material', }
+    call lightline#colorscheme()
+  endfunction
 
   function! s:gruvbox_colors()
     hi clear Folded
@@ -283,7 +314,9 @@
 " PACKAGES
   packadd lightline.vim
     set noshowmode
-    let g:lightline = { 'colorscheme': 'gruvbox_material', }
+    let g:lightline = {
+          \ 'colorscheme': 'gruvbox_material', 
+          \ }
 
   packadd vim-polyglot
 
