@@ -20,22 +20,6 @@
   set undodir=~/.vim/undodir
   set undofile
 
-  " TODO: clean this up
-    " "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
-    " "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
-    " "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-    " " if (empty($TMUX) && getenv('TERM_PROGRAM') != 'Apple_Terminal')
-    " if getenv('TERM_PROGRAM') != 'Apple_Terminal'
-      " if (has("nvim"))
-        " "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-        " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-      " endif
-      " "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-      " "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-      " " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-      " set termguicolors
-    " endif
-
   " make sure colors are set correctly
   " if $TERM_PROGRAM !=# 'Apple_Terminal' || $TMUX !=? ''
   if $TERM_PROGRAM !=# 'Apple_Terminal'
@@ -45,6 +29,7 @@
     endif
     set termguicolors
   endif
+
 
 " LEADER KEY
   nnoremap <space> <nop>
@@ -105,63 +90,44 @@
   function! s:active_window()
     setlocal ruler
     setlocal showcmd
-    " setlocal laststatus=2
     hi! link SignColumn NONE
     hi! link LineNR NONE
     hi! link CursorLineNR NONE
 
     call s:set_lightline_colorscheme('gruvbox_material')
+
+    if g:gitgutter_is_loaded
+      GitGutterBufferEnable
+    endif
+    " if g:ale_is_loaded
+      " ALEEnableBuffer
+    " endif
   endfunction
 
   function! s:inactive_window()
     setlocal noruler
     setlocal noshowcmd
-    " setlocal laststatus=0
     hi Blank guifg=#262626 guibg=#262626 ctermfg=0 ctermbg=0
     hi! link SignColumn Blank
     hi! link LineNR Blank
     hi! link CursorLineNR Blank
 
     call s:set_lightline_colorscheme('blank')
+
+    if g:gitgutter_is_loaded
+      GitGutterBufferDisable
+    endif
+    " if g:ale_is_loaded
+      " ALEDisableBuffer
+    " endif
+
     echo @%
   endfunction
 
   augroup active_focused_window | au!
-    " autocmd FocusGained * call s:lightline_clear()
-    " au FocusGained * let g:lightline = { 'colorscheme': 'gruvbox_material', }
-    " au FocusLost * let g:lightline = { 'colorscheme': 'blank', }
-    " au FocusGained * call lightline#enable()
-    " au FocusLost * call lightline#disable()
-
     au FocusGained * call s:active_window()
-    au FocusGained * if g:gitgutter_is_loaded | GitGutterBufferEnable | endif
-    au FocusGained * if g:ale_is_loaded | ALEEnableBuffer | endif
-
     au FocusLost * call s:inactive_window()
-    au FocusLost * if g:gitgutter_is_loaded | GitGutterBufferDisable | endif
-    au FocusLost * if g:ale_is_loaded | ALEDisableBuffer | endif
   augroup END
-
-  function! s:lightline_clear() abort
-    " transparent background in statusbar
-    let g:lightline = { 'colorscheme': 'blank', }
-    " let l:palette = lightline#palette()
-    " let l:palette.normal.left = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
-    " let l:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
-    " let l:palette.normal.right = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
-    " let l:palette.inactive.left = l:palette.normal.middle
-    " let l:palette.inactive.middle = l:palette.normal.middle
-    " let l:palette.inactive.right = l:palette.normal.middle
-    " let l:palette.tabline.left = l:palette.normal.middle
-    " let l:palette.tabline.middle = l:palette.normal.middle
-    " let l:palette.tabline.right = l:palette.normal.middle
-
-    call lightline#colorscheme()
-  endfunction
-  function! s:lightline_reset() abort
-    let g:lightline = { 'colorscheme': 'gruvbox_material', }
-    call lightline#colorscheme()
-  endfunction
 
   function! s:gruvbox_colors()
     hi clear Folded
@@ -215,8 +181,7 @@
     hi texCmdSize ctermfg=208 ctermbg=none cterm=none
     hi texCmdStyle ctermfg=208 ctermbg=none cterm=none
 
-    if has('nvim')
-    else
+    if g:ale_is_loaded
       hi clear ALEError
       hi clear ALEWarning
       hi clear ALEErrorSign
@@ -302,32 +267,37 @@
     let g:gruvbox_material_better_performance = 1  " (0), 1
     let g:gruvbox_material_colors_override = {'bg0': ['#262626', '235']}
     au ColorScheme gruvbox-material call s:gruvbox_material_colors()
-
-    " gitgutter
-    au ColorScheme gruvbox call s:gitgutter_colors()
-    " au ColorScheme gruvbox,gruvbox-material call s:gitgutter_colors()
   augroup END
 
   packadd! gruvbox-material
   colorscheme gruvbox-material
 
+
 " PACKAGES
+  let g:lightline_is_loaded = 0
+  let g:nrrwrgn_is_loaded = 0
+  let g:tabular_is_loaded = 0
+  let g:fanfingtastic_is_loaded = 0
+  let g:polyglot_is_loaded = 0
+  let g:juliavim_is_loaded = 0
+  let g:gitgutter_is_loaded = 0
+  let g:nerdcommenter_is_loaded = 0
+  let g:ale_is_loaded = 0
+  let g:vimtex_is_loaded = 0
+
+  let g:lightline_is_loaded = 1
   packadd lightline.vim
+    let g:lightline = { 'colorscheme': 'gruvbox_material', }
     set noshowmode
-    let g:lightline = {
-          \ 'colorscheme': 'gruvbox_material', 
-          \ }
 
-  packadd vim-polyglot
-
-  packadd julia-vim
-
+  let g:nrrwrgn_is_loaded = 1
   packadd NrrwRgn
-  vunmap <leader>nr
-  vmap <leader>be :NR<cr>
-  vmap <leader>bc :NR<cr>
-  vmap <leader>bs :NR<cr>
+    vunmap <leader>nr
+    vmap <leader>be :NR<cr>
+    vmap <leader>bc :NR<cr>
+    vmap <leader>bs :NR<cr>
 
+  let g:tabular_is_loaded = 1
   packadd tabular  " tabularize
     nnoremap <leader><tab> :Tabularize /
     vnoremap <tab> :Tabularize /
@@ -341,11 +311,22 @@
     vnoremap <tab>, :Tabularize /,<cr>
     " vnoremap <leader><tab>| :Tabularize /|<cr>
 
-  let g:gitgutter_is_loaded = 0
-  packadd vim-gitgutter
-    let g:gitgutter_is_loaded = 1
-    let g:gitgutter_map_keys = 1
+  let g:fanfingtastic_is_loaded = 1
+  packadd vim-fanfingtastic
+    let g:fanfingtastic_all_inclusive = 1
+    let g:fanfingtastic_fix_t = 1
+    let g:fanfingtastic_ignorecase = 1
 
+  let g:polyglot_is_loaded = 1
+  packadd vim-polyglot
+
+  let g:juliavim_is_loaded = 1
+  packadd julia-vim
+
+  let g:gitgutter_is_loaded = 1
+  packadd vim-gitgutter
+  augroup gitgutter_settings | au!
+    let g:gitgutter_map_keys = 1
     let g:gitgutter_sign_added = '⋅ '
     let g:gitgutter_sign_modified = '⋅ '
     let g:gitgutter_sign_removed = '⋅ '
@@ -354,43 +335,76 @@
     let g:gitgutter_sign_modified_removed = '⋅ '
     call gitgutter#highlight#define_signs()
 
-    nmap ]h <Plug>(GitGutterNextHunk)
-    nmap [h <Plug>(GitGutterPrevHunk)
-    omap ih <Plug>(GitGutterTextObjectInnerPending)
-    omap ah <Plug>(GitGutterTextObjectOuterPending)
-    xmap ih <Plug>(GitGutterTextObjectInnerVisual)
-    xmap ah <Plug>(GitGutterTextObjectOuterVisual)
-    nmap <leader>hf :GitGutterFold<cr>
+    if g:gitgutter_is_loaded
+      au ColorScheme gruvbox call s:gitgutter_colors()
+    endif
+
+    nmap ]g <Plug>(GitGutterNextHunk)
+    nmap [g <Plug>(GitGutterPrevHunk)
+    omap ig <Plug>(GitGutterTextObjectInnerPending)
+    omap ag <Plug>(GitGutterTextObjectOuterPending)
+    xmap ig <Plug>(GitGutterTextObjectInnerVisual)
+    xmap ag <Plug>(GitGutterTextObjectOuterVisual)
+    nmap <leader>gf :GitGutterFold<cr>
 
     function! GitStatus()
       let [a,m,r] = GitGutterGetHunkSummary()
       return printf('+%d ~%d -%d', a, m, r)
     endfunction
     " set statusline+=%{GitStatus()}
+  augroup END
 
-  let g:ale_is_loaded = 0
+  let nerdcommenter_is_loaded = 1
+  packadd nerdcommenter
+  augroup nerdcommenter_settings | au!
+    let g:NERDCommentEmptyLines = 0
+    let g:NERDCompactSexyComs = 1
+    let g:NERDCustomDelimiters = {
+          \ 'python': { 'left': '#', 'right': '' },
+          \ 'julia': { 'left': '#', 'right': '' },
+          \ 'typst': { 'left': '//', 'right': '' }
+          \ }
+    " let g:NERDDefaultAlign = 'left'
+    let g:NERDSpaceDelims = 1
+    let g:NERDToggleCheckAllLines = 1
+    let g:NERDTrimTrailingWhitespace = 1
+    au! VimEnter * call s:nerdcommenter_mappings()
+
+    function! s:nerdcommenter_mappings()
+      nmap <leader>cc <plug>NERDCommenterToggle
+      nmap <leader>ci <plug>NERDCommenterInvert
+      nmap <leader>ct <plug>NERDCommenterInvert
+      vmap <leader>cc <plug>NERDCommenterToggle `<
+      vmap <leader>ci <plug>NERDCommenterInvert `<
+      vmap <leader>ct <plug>NERDCommenterInvert `<
+      nnoremap <leader>cA <plug>NERDCommenterAppend
+      nnoremap <leader>ca A<space><esc><plug>NERDCommenterAppend
+      nnoremap <leader>cl A<esc><plug>NERDCommenterAppend<bs><c-g>U<left><bs><right><esc>
+      nnoremap <leader>co o<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
+      nnoremap <leader>cO O<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
+    endfunction
+  augroup END
+
   augroup ale_settings | au!
-    let g:ale_sign_error='×⟩'
-    let g:ale_sign_warning='⋅⟩'
-    " let g:ale_sign_error=' ×'
-    " let g:ale_sign_warning=' ×'
-    let g:ale_linters={
+    let g:ale_sign_error = '×⟩'
+    let g:ale_sign_warning = '~⟩'
+    let g:ale_linters = {
           \ 'vim': ['vint'],
           \ 'python': ['ruff', 'pylint', 'mypy'],
           \ 'lua': ['luacheck', 'luac'],
           \ 'tex': ['lacheck']
           \ }
-    let g:ale_lint_on_text_changed='always'
-    let g:ale_lint_on_insert_leave=1
-    let g:ale_lint_delay=0
-    let g:ale_lint_on_save=1
-    let g:ale_virtualtext_prefix='  '
-    let g:ale_virtualtext_cursor='current'
-    let g:ale_virtualtext_delay=0
-    let g:ale_echo_cursor=0
-    " let g:ale_echo_detail=1
-    " let g:ale_echo_delay=0
-    let g:ale_python_pylint_options="--init-hook=\"import sys; sys.path.append(\'" . trim(system('git rev-parse --show-toplevel')) . "\')\""
+    let g:ale_lint_on_text_changed = 'always'
+    let g:ale_lint_on_insert_leave = 1
+    let g:ale_lint_delay = 0
+    let g:ale_lint_on_save = 1
+    let g:ale_virtualtext_prefix = '  '
+    let g:ale_virtualtext_cursor = 'current'
+    let g:ale_virtualtext_delay = 0
+    let g:ale_echo_cursor = 0
+    " let g:ale_echo_detail = 1
+    " let g:ale_echo_delay = 0
+    let g:ale_python_pylint_options = "--init-hook=\"import sys; sys.path.append(\'" . trim(system('git rev-parse --show-toplevel')) . "\')\""
 
     au FileType python call s:setup_ale()
     au FileType lua call s:setup_ale()
@@ -414,25 +428,6 @@
     endfunction
   augroup END
 
-  augroup nerdcommender_settings | au!
-    au! VimEnter * call s:nerdcommenter_mappings()
-
-    function! s:nerdcommenter_mappings()
-      nmap <leader>cc <plug>NERDCommenterToggle
-      nmap <leader>ci <plug>NERDCommenterInvert
-      nmap <leader>ct <plug>NERDCommenterInvert
-      vmap <leader>cc <plug>NERDCommenterToggle `<
-      vmap <leader>ci <plug>NERDCommenterInvert `<
-      vmap <leader>ct <plug>NERDCommenterInvert `<
-      " map <leader>c<space> <plug>NERDCommenterInvert
-      nnoremap <leader>cA <plug>NERDCommenterAppend
-      nnoremap <leader>ca A<space><esc><plug>NERDCommenterAppend
-      nnoremap <leader>cl A<esc><plug>NERDCommenterAppend<bs><c-g>U<left><bs><right><esc>
-      nnoremap <leader>co o<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
-      nnoremap <leader>cO O<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
-    endfunction
-  augroup END
-
 
 " SET OPTIONS
   " FILETYPE SPECIFIC
@@ -444,11 +439,13 @@
 
     augroup html_settings | au!
       au BufNewFile,BufRead *.svg set filetype=html
+      au FileType html inoremap < <><c-g>U<left>
     augroup END
     
     augroup latex_settings | au!
       " packadd vim-latex
       packadd vimtex
+      let g:vimtex_is_loaded = 1
 
       au BufNewFile,BufRead *.bib,*.tex,*.tikz set filetype=tex
       au BufNewFile,BufRead *.bib,*.tex,*.tikz set syntax=tex
@@ -464,6 +461,10 @@
       au FileType tex let g:vimtex_quickfix_enabled = 0
       au FileType tex let g:vimtex_syntax_nospell_comments = 1
       au FileType tex let g:vimtex_view_enabled = 0
+
+      au FileType tex inoremap $ <c-r>=ClosePair('$')<cr>
+      au FileType tex inoremap <c-f> <c-r>=ClosePair('$')<cr>
+      " au FileType tex inoremap <c-\> <c-r>=QuoteDelim('$')<cr>
 
       let g:Tex_SmartQuoteOpen = '``'
       let g:Tex_SmartQuoteClose = "''"
@@ -546,10 +547,8 @@
     " set list
     " set listchars=tab:--,nbsp:_,eol:⋅
 
+
 " PLUGIN SETTINGS
-  let g:fanfingtastic_all_inclusive = 1
-  let g:fanfingtastic_fix_t = 1
-  let g:fanfingtastic_ignorecase = 1
   let g:haskell_indent_if = 2
   let g:haskell_indent_case = 4
   let g:haskell_indent_guard = 5
@@ -557,13 +556,6 @@
   let g:latex_to_unicode_file_types = '.*'
   let g:matchparen_timeout = 8
   let g:matchparen_insert_timeout = 8
-  let g:NERDCommentEmptyLines = 0
-  let g:NERDCompactSexyComs = 1
-  let g:NERDCustomDelimiters = { 'python': { 'left': '#', 'right': '' }, 'julia': { 'left': '#', 'right': '' }, 'typst': { 'left': '//', 'right': '' }}
-  " let g:NERDDefaultAlign = 'left'
-  let g:NERDSpaceDelims = 1
-  let g:NERDToggleCheckAllLines = 1
-  let g:NERDTrimTrailingWhitespace = 1
   let g:python_highlight_all = 1
   let g:rainbow_active = 1
   let g:tex_flavor = 'latex'
@@ -573,39 +565,40 @@
 
 
 " TOGGLE MAPPINGS
-  " noremap <leader>h :noh<bar>:echo<cr>
-  " nnoremap <leader>th :set nohlsearch!<cr>
   nnoremap <leader>tw :setlocal nowrap!<cr>
   nnoremap <leader>ts :setlocal spell!<cr>
-  nnoremap <leader>tb :call ToggleBackground()<cr>
   nnoremap <leader>tgm :call ToggleGMove()<cr>
   nnoremap <leader>tq :call ToggleQuote()<cr>
   nnoremap <leader>t' :call ToggleQuote()<cr>
   nnoremap <leader>t" :call ToggleQuote()<cr>
+  " noremap <leader>h :noh<bar>:echo<cr>
+  " nnoremap <leader>th :set nohlsearch!<cr>
+  " nnoremap <leader>tb :call ToggleBackground()<cr>
 
   nnoremap <leader>tgit :GitGutterToggle<cr>
 
   " relative line numbers
-  nnoremap <leader>tln :set rnu!<cr>
+  nnoremap <leader>trln :set rnu!<cr>
 
 
-" map zs :setlocal spell!<cr>
-" map <leader><c-f> zA
-" map zt ZT
-" map zn ZN
-" map zN ZP
-" map zl ZL
-" map z= ZL
-" map zg Zg
-" map zug Zug
-" map zG ZG
-" map zuG ZUG
-" map zw Zw
-" map zuw Zuw
-" map zW ZW
-" map zUW ZUW
-" map ]s ZN
-" map [s ZP
+" Z MAPPINGS
+  " map zs :setlocal spell!<cr>
+  " map <leader><c-f> zA
+  " map zt ZT
+  " map zn ZN
+  " map zN ZP
+  " map zl ZL
+  " map z= ZL
+  " map zg Zg
+  " map zug Zug
+  " map zG ZG
+  " map zuG ZUG
+  " map zw Zw
+  " map zuw Zuw
+  " map zW ZW
+  " map zUW ZUW
+  " map ]s ZN
+  " map [s ZP
 
 
 " SEARCH MAPPINGS
@@ -636,10 +629,14 @@
 
 
 " QUALITY OF LIFE MAPPINGS
-  nnoremap <c-g> g_
-  vnoremap <c-g> g_
-  nnoremap <c-f> ^
-  vnoremap <c-f> ^
+  nnoremap + <c-a>
+  vnoremap + <c-a>
+  nnoremap <c-_> <c-x>
+  vnoremap <c-_> <c-x>
+  nnoremap <c-a> ^
+  vnoremap <c-a> ^
+  nnoremap <c-e> g_
+  vnoremap <c-e> g_
 
   noremap <leader>bb :call ScratchBuffer()<cr>
   " noremap <leader>bs :call ScratchBuffer()<cr>
@@ -710,16 +707,14 @@
 
 
 " DELIMITER MAPPINGS
+  inoremap <c-f> $
   inoremap ( ()<c-g>U<left>
   inoremap [ []<c-g>U<left>
   inoremap { {}<c-g>U<left>
   inoremap ) <c-r>=ClosePair(')')<cr>
   inoremap ] <c-r>=ClosePair(']')<cr>
-  inoremap } <c-r>=ClosePair('}')<cr>
+  inoremap } <c-r>=ClosePair('}')<cr> () {} <> {}
   inoremap > <c-r>=ClosePair('>')<cr>
-  inoremap $ <c-r>=ClosePair('$')<cr>
-  inoremap <c-f> <c-r>=ClosePair('$')<cr>
-  inoremap <c-\> <c-r>=QuoteDelim('$')<cr>
   inoremap " <c-r>=QuoteDelim('"')<cr>
   inoremap ' <c-r>=QuoteDelim("'")<cr>
   inoremap ` <c-r>=QuoteDelim('`')<cr>
@@ -883,27 +878,6 @@
 " UNDERCURL SUPPORT FOR WEZTERM
   let &t_Cs = "\e[4:3m"
   let &t_Ce = "\e[4:0m"
-
-let g:currentmode = {
-	\ 'n'  : 'Normal',
-	\ 'no' : 'Operator Pending',
-	\ 'v'  : 'Visual',
-	\ 'V'  : 'Visual Line',
-	\ '' : 'Visual Block',
-	\ 's'  : 'Select',
-	\ 'S'  : 'S·Line',
-	\ '' : 'S·Block',
-	\ 'i'  : 'Insert',
-	\ 'R'  : 'Replace',
-	\ 'Rv' : 'Visual Replace',
-	\ 'c'  : 'Command',
-	\ 'cv' : 'Vim Ex',
-	\ 'ce' : 'Ex',
-	\ 'r'  : 'Prompt',
-	\ 'rm' : 'More',
-	\ 'r?' : 'Confirm',
-	\ '!'  : 'Shell',
-	\}
 
 augroup jump_settings | au!
   autocmd VimEnter * :clearjumps

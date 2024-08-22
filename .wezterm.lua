@@ -51,8 +51,8 @@ config.default_cursor_style = "SteadyBlock"
 config.font_size = 12
 -- config.font = wezterm.font 'Berkeley Mono'
 config.font = wezterm.font_with_fallback {
-  'Berkeley Mono',
   'CommitMono-400-01111-00000011000',
+  'Berkeley Mono',
   'Fira Code Retina'
 }
 -- config.harfbuzz_features = {"calt=0", "clig=0", "liga=0"}
@@ -143,9 +143,8 @@ config.colors = {
   -- }
 }
 
--- command for setting custom tab titles
 config.keys = {
-  { key = 'r',
+  { key = 'r',  -- command for setting custom tab titles
     mods = 'CMD|SHIFT',
     action = wezterm.action.PromptInputLine {
       description = 'Enter new name for tab',
@@ -159,14 +158,22 @@ config.keys = {
       end),
     },
   },
-  { key = 'p',
+  { key = 'p',  -- command for moving tab left
     mods = 'CMD|SHIFT',
     action = wezterm.action.MoveTabRelative(-1),
   },
-  { key = 'n',
+  { key = 'n',  -- command for moving tab right
     mods = 'CMD|SHIFT',
     action = wezterm.action.MoveTabRelative(1),
-  }
+  },
+  { key = '-',  -- disable font decrease mapping
+    mods = 'CTRL',
+    action = wezterm.action.DisableDefaultAssignment,
+  },
+  { key = '=',  -- disable font increase mapping
+    mods = 'CTRL',
+    action = wezterm.action.DisableDefaultAssignment,
+  },
 }
 
 return config

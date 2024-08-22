@@ -73,7 +73,7 @@ function path_info() {
   fi
 }
 
-fg_black="%F{1}"
+fg_black="%F{0}"
 fg_red="%F{1}"
 fg_green="%F{2}"
 fg_yellow="%F{3}"
@@ -97,6 +97,7 @@ fg_text="%F{15}"
 
 fg_silver="%F{7}"
 fg_grey="%F{8}"
+fg_shade="%F{239}"
 fg_dark="%F{238}"
 fg_darker="%F{236}"
 fg_darkest="%F{235}"
@@ -126,6 +127,16 @@ function min() {
   local BL="${fg_darker}┗━━╸${color_clear}"
   local UR="${fg_darker}╺┓${color_clear}"
   local BR="${fg_darker}╺┛${color_clear}"
+  # local UL="${fg_shade}┌╴${color_clear}"
+  # local BL="${fg_shade}└──╴${color_clear}"
+  # local UL="${fg_shade}╭╴${color_clear}"
+  # local BL="${fg_shade}╰╴${color_clear}"
+  # local UR="${fg_shade}╶╮${color_clear}"
+  # local BR="${fg_shade}╶╯${color_clear}"
+  # local UL="${fg_dark}┏╸${color_clear}"
+  # local BL="${fg_dark}┗━━┫${color_clear}"
+  # local UR="${fg_dark}╺┓${color_clear}"
+  # local BR="${fg_dark}╺┛${color_clear}"
 
   # fourth
   local function userlimiter() { echo $(( $COLUMNS - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅ ⋅⋅⋅⋅⋅⋅ ╺┓ ⋅⋅⋅ ") )) }
@@ -158,7 +169,7 @@ function min() {
   local suffixlimit='$(max $(suffixlimiter) 1)'
   local pathsuffix='%B%1~%b'
 
-  local path="${fg_dark}%${prefixlimit}<⋅⋅⋅<${pathprefix}%<<${fg_coblue}%${suffixlimit}<⋅⋅⋅<${pathsuffix}%<<${color_clear}"
+  local path="${fg_shade}%${prefixlimit}<⋅⋅⋅<${pathprefix}%<<${fg_coblue}%${suffixlimit}<⋅⋅⋅<${pathsuffix}%<<${color_clear}"
 
   # local gitbranch gitsuffix
   # local gitcheck=$(git symbolic-ref --short HEAD 2> /dev/null)
