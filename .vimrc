@@ -621,23 +621,24 @@
   augroup END
 
 
-" COMMAND MAPPINGS
-  cnoremap <tab> <c-g>
-  cnoremap <s-tab> <c-t>
-  cnoremap <c-a> <home>
-  cnoremap <c-e> <end>
-
-
 " QUALITY OF LIFE MAPPINGS
-  nnoremap + <c-a>
-  vnoremap + <c-a>
-  nnoremap <c-_> <c-x>
-  vnoremap <c-_> <c-x>
-  nnoremap <c-a> ^
-  vnoremap <c-a> ^
-  nnoremap <c-e> g_
-  vnoremap <c-e> g_
+  " COMMAND MAPPINGS
+    " cnoremap <tab> <c-g>
+    " cnoremap <s-tab> <c-t>
+    nnoremap <c-\> <c-a>
+    vnoremap <c-\> <c-a>
+    nnoremap <c-_> <c-x>
+    vnoremap <c-_> <c-x>
 
+    nnoremap <c-a> ^
+    vnoremap <c-a> ^
+    cnoremap <c-a> <home>
+
+    nnoremap <c-e> g_
+    vnoremap <c-e> g_
+    cnoremap <c-e> <end>
+
+  " BUFFER MAPPINGS
   noremap <leader>bb :call ScratchBuffer()<cr>
   " noremap <leader>bs :call ScratchBuffer()<cr>
 
