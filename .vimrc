@@ -13,6 +13,12 @@
     call mkdir($HOME.'/.vim', '', 0770)
   endif
 
+  " set swap file directory
+  if !isdirectory($HOME.'/.vim/swapfiles')
+    call mkdir($HOME.'/.vim/swapfiles', '', 0700)
+  endif
+  set directory=~/.vim/swapfiles//
+
   " set undo directory
   if !isdirectory($HOME.'/.vim/undodir')
     call mkdir($HOME.'/.vim/undodir', '', 0700)
@@ -28,6 +34,17 @@
       let $NVIM_TUI_ENABLE_TRUE_COLOR=1
     endif
     set termguicolors
+  endif
+
+  " reload if file has been edited elsewhere
+  redir => capture
+  silent autocmd CursorHold
+  redir END
+  if match(capture, 'checktime') == -1
+    augroup reload_settings
+      au!
+      au CursorHold * silent! checktime
+    augroup END
   endif
 
 
@@ -87,7 +104,8 @@
     call lightline#update()
   endfunction
 
-  function! s:active_window()
+  " TODO: not working when refocussing after closing pane with <c-d>
+  function! s:focus_gained_buffer()
     setlocal ruler
     setlocal showcmd
     hi! link SignColumn NONE
@@ -99,12 +117,13 @@
     if g:gitgutter_is_loaded
       GitGutterBufferEnable
     endif
-    " if g:ale_is_loaded
-      " ALEEnableBuffer
-    " endif
+    if g:ale_is_loaded
+      ALELint
+    endif
   endfunction
 
-  function! s:inactive_window()
+  " TODO: not working when tmux split pane
+  function! s:focus_lost_buffer()
     setlocal noruler
     setlocal noshowcmd
     hi Blank guifg=#262626 guibg=#262626 ctermfg=0 ctermbg=0
@@ -117,16 +136,16 @@
     if g:gitgutter_is_loaded
       GitGutterBufferDisable
     endif
-    " if g:ale_is_loaded
-      " ALEDisableBuffer
-    " endif
+    if g:ale_is_loaded
+      ALEReset
+    endif
 
     echo @%
   endfunction
 
   augroup active_focused_window | au!
-    au FocusGained * call s:active_window()
-    au FocusLost * call s:inactive_window()
+    au FocusGained * call s:focus_gained_buffer()
+    au FocusLost * call s:focus_lost_buffer()
   augroup END
 
   function! s:gruvbox_colors()
@@ -214,7 +233,8 @@
 
     " call gruvbox_material#highlight('Function', l:palette.orange, l:palette.none)
     call gruvbox_material#highlight('Folded', l:palette.bg5, l:palette.none)
-    call gruvbox_material#highlight('String', l:palette.fg0, l:palette.none, 'bold')
+    " call gruvbox_material#highlight('String', l:palette.fg1, l:palette.none, 'bold')
+    call gruvbox_material#highlight('String', l:palette.fg1, l:palette.none, 'bold')
 
     call gruvbox_material#highlight('Todo', l:palette.grey1, l:palette.none, 'bold')
 
@@ -223,12 +243,18 @@
     call gruvbox_material#highlight('InfoText', l:palette.none, l:palette.none, 'undercurl', l:palette.blue)
     call gruvbox_material#highlight('HintText', l:palette.none, l:palette.none, 'undercurl', l:palette.green)
 
-    call gruvbox_material#highlight('CursorLine', l:palette.none, ['#282828',   '235'])
-    call gruvbox_material#highlight('CursorLineNr', l:palette.grey1, ['#282828',   '235'])
+    " call gruvbox_material#highlight('CursorLine', l:palette.none, ['#2a2a2a',   '235'])
+    " call gruvbox_material#highlight('CursorLineNr', l:palette.grey1, ['#2a2a2a',   '235'])
+    " call gruvbox_material#highlight('CursorLine', l:palette.none, l:palette.bg1)
+    " call gruvbox_material#highlight('CursorLineNr', l:palette.grey1, l:palette.bg1)
+    call gruvbox_material#highlight('CursorLine', l:palette.none, l:palette.none)
+    call gruvbox_material#highlight('CursorLineNr', l:palette.grey1, l:palette.none)
     " call gruvbox_material#highlight('StatusLine', l:palette.bg2, l:palette.none)
     " call gruvbox_material#highlight('StatusLineNC', l:palette.bg2, l:palette.none)
 
-    call gruvbox_material#highlight('MatchParen', l:palette.none, l:palette.none, 'bold')
+    " call gruvbox_material#highlight('MatchParen', l:palette.red, l:palette.none, 'bold')
+    " call gruvbox_material#highlight('MatchParen', l:palette.none, l:palette.none, 'bold')
+    call gruvbox_material#highlight('MatchParen', l:palette.none, l:palette.bg0, 'bold')
   endfunction
 
   function! s:gitgutter_colors()
@@ -274,21 +300,70 @@
 
 
 " PACKAGES
+  let g:matchup_is_loaded = 0
   let g:lightline_is_loaded = 0
   let g:nrrwrgn_is_loaded = 0
   let g:tabular_is_loaded = 0
   let g:fanfingtastic_is_loaded = 0
   let g:polyglot_is_loaded = 0
   let g:juliavim_is_loaded = 0
+  let g:rainbow_is_loaded=0
   let g:gitgutter_is_loaded = 0
   let g:nerdcommenter_is_loaded = 0
   let g:ale_is_loaded = 0
   let g:vimtex_is_loaded = 0
 
+  let g:matchup_is_loaded = 1
+  packadd vim-matchup
+  augroup matchup_settings | au!
+    let g:matchup_matchparen_offscreen = {'method': 'popup'}
+    " let g:matchup_matchparen_offscreen = {}
+    let g:matchup_matchparen_stopline = 50
+    let g:matchup_matchparen_deferred = 1
+    let g:matchup_matchparen_deferred_show_delay = 0
+    let g:matchup_matchparen_deferred_hide_delay = 0
+    let g:matchup_matchparen_hi_surround_always = 1
+    let g:matchup_matchparen_timeout = 50
+    let g:matchup_matchparen_insert_timeout = 10
+
+    let g:palette = gruvbox_material#get_palette('medium', 'material', {})
+    au ColorScheme * hi MatchParenCur gui=bold cterm=bold
+    au ColorScheme * hi MatchWordCur gui=bold cterm=bold
+    au ColorScheme * hi MatchWord gui=bold cterm=bold
+  augroup END
+
   let g:lightline_is_loaded = 1
   packadd lightline.vim
-    let g:lightline = { 'colorscheme': 'gruvbox_material', }
     set noshowmode
+    function! LightlineFilenameAndMod()
+      let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+      let modified = &modified ? ' +' : ''
+      return filename . modified
+    endfunction
+
+    let g:lightline = { 
+          \ 'colorscheme': 'gruvbox_material', 
+          \ 'active': {
+          \   'left': [ [ 'mode', 'paste' ],
+          \             [ 'caps', 'filenameAndMod' ] ],
+          \   'right': [ [ 'lineinfo' ],
+          \              [ 'percent' ],
+          \              [ 'readonly', 'filetype' ] ]
+          \ },
+          \ 'component_function': {
+          \   'filenameAndMod': 'LightlineFilenameAndMod',
+          \ },
+          \ 'component_expand': {
+          \   'caps': 'CapsLockStatusline',
+          \ },
+          \ 'component_type': {
+          \   'caps': 'warning',
+          \ },
+          \ }
+
+  " vim-capslock
+    nnoremap <silent> <c-g>c <plug>CapsLockToggle:call lightline#update()<cr>
+    inoremap <silent> <c-g>c <c-o><plug>CapsLockToggle<c-o>:call lightline#update()<cr>
 
   let g:nrrwrgn_is_loaded = 1
   packadd NrrwRgn
@@ -318,10 +393,23 @@
     let g:fanfingtastic_ignorecase = 1
 
   let g:polyglot_is_loaded = 1
+  let g:polyglot_disabled = ['ftdetect', 'sensible']
+  " let g:polyglot_disabled = ['ftdetect']
   packadd vim-polyglot
+    " let g:polyglot_disabled = ['sensible']
 
   let g:juliavim_is_loaded = 1
   packadd julia-vim
+
+  let g:rainbow_is_loaded = 1
+  let g:rainbow_active = 1
+  let g:rainbow_conf = {
+    \ 'guifgs': ['#ea6962', '#e78a4e', '#d8a657', '#a9b665', '#89b482', '#7daea3', '#d3869b'],
+  \ }
+    " \ 'guifgs': ['#89b482', '#d8a657', '#e78a4e', '#7daea3', '#a9b665', '#ea6962'],
+    " \ 'guifgs': ['#7daea3', '#89b482', '#a9b665', '#d8a657', '#e78a4e', '#ea6962', '#d3869b'],
+    " \ 'guifgs': ['#ea6962', '#e78a4e', '#d8a657', '#a9b665', '#89b482', '#7daea3', '#d3869b'],
+  packadd rainbow
 
   let g:gitgutter_is_loaded = 1
   packadd vim-gitgutter
@@ -378,7 +466,7 @@
       vmap <leader>ci <plug>NERDCommenterInvert `<
       vmap <leader>ct <plug>NERDCommenterInvert `<
       nnoremap <leader>cA <plug>NERDCommenterAppend
-      nnoremap <leader>ca A<space><esc><plug>NERDCommenterAppend
+      nnoremap <leader>ca A<space><c-c><plug>NERDCommenterAppend
       nnoremap <leader>cl A<esc><plug>NERDCommenterAppend<bs><c-g>U<left><bs><right><esc>
       nnoremap <leader>co o<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
       nnoremap <leader>cO O<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
@@ -390,15 +478,16 @@
     let g:ale_sign_warning = '~⟩'
     let g:ale_linters = {
           \ 'vim': ['vint'],
-          \ 'python': ['ruff', 'pylint', 'mypy'],
+          \ 'python': ['ruff', 'mypy'],
           \ 'lua': ['luacheck', 'luac'],
           \ 'tex': ['lacheck']
           \ }
-    let g:ale_lint_on_text_changed = 'always'
+    " let g:ale_lint_on_text_changed = 'always'
     let g:ale_lint_on_insert_leave = 1
     let g:ale_lint_delay = 0
     let g:ale_lint_on_save = 1
-    let g:ale_virtualtext_prefix = '  '
+    " let g:ale_virtualtext_prefix = '  '
+    let g:ale_virtualtext_prefix = ' ⟨⋅ '
     let g:ale_virtualtext_cursor = 'current'
     let g:ale_virtualtext_delay = 0
     let g:ale_echo_cursor = 0
@@ -443,9 +532,8 @@
     augroup END
     
     augroup latex_settings | au!
-      " packadd vim-latex
-      packadd vimtex
-      let g:vimtex_is_loaded = 1
+      " packadd vimtex
+      " let g:vimtex_is_loaded = 1
 
       au BufNewFile,BufRead *.bib,*.tex,*.tikz set filetype=tex
       au BufNewFile,BufRead *.bib,*.tex,*.tikz set syntax=tex
@@ -453,25 +541,28 @@
       au BufNewFile,BufRead *.bib,*.tex,*.tikz imap ` <nop>
       au BufNewFile,BufRead *.bib,*.tex,*.tikz iunmap `
 
-      au FileType tex let g:vimtex_compiler_enabled = 0
-      au FileType tex let g:vimtex_complete_enabled = 0
-      " au FileType tex let g:vimtex_fold_enabled = 1
-      au FileType tex let g:vimtex_imaps_enabled = 0
-      " au FileType tex let g:vimtex_mappings_enabled = 0
-      au FileType tex let g:vimtex_quickfix_enabled = 0
-      au FileType tex let g:vimtex_syntax_nospell_comments = 1
-      au FileType tex let g:vimtex_view_enabled = 0
-
       au FileType tex inoremap $ <c-r>=ClosePair('$')<cr>
       au FileType tex inoremap <c-f> <c-r>=ClosePair('$')<cr>
       " au FileType tex inoremap <c-\> <c-r>=QuoteDelim('$')<cr>
 
-      let g:Tex_SmartQuoteOpen = '``'
-      let g:Tex_SmartQuoteClose = "''"
-      " let g:tex_flavor = 'latex'
-      " let g:tex_fold_enabled = 1
-
       " au FileType tex set foldmethod=syntax
+
+      if g:vimtex_is_loaded
+        au FileType tex let g:vimtex_compiler_enabled = 0
+        au FileType tex let g:vimtex_complete_enabled = 0
+        " au FileType tex let g:vimtex_fold_enabled = 1
+        au FileType tex let g:vimtex_imaps_enabled = 0
+        " au FileType tex let g:vimtex_mappings_enabled = 0
+        au FileType tex let g:vimtex_quickfix_enabled = 0
+        au FileType tex let g:vimtex_syntax_nospell_comments = 1
+        au FileType tex let g:vimtex_view_enabled = 0
+
+        let g:Tex_SmartQuoteOpen = '``'
+        let g:Tex_SmartQuoteClose = "''"
+        " let g:tex_flavor = 'latex'
+        " let g:tex_fold_enabled = 1
+      endif
+
     augroup END
 
   " GENERAL
@@ -479,6 +570,7 @@
       autocmd BufNewFile,BufRead * setlocal formatoptions-=c
       autocmd BufNewFile,BufRead * setlocal formatoptions-=o
       autocmd BufNewFile,BufRead * setlocal formatoptions+=r
+      autocmd BufNewFile,BufRead * setlocal formatoptions+=j
     augroup END
     set background=dark
     set backspace=indent,eol,start
@@ -489,6 +581,7 @@
     set formatoptions-=c
     set formatoptions-=o
     set formatoptions+=r
+    set formatoptions+=j
     set hlsearch
     set ignorecase
     set incsearch
@@ -557,7 +650,6 @@
   let g:matchparen_timeout = 8
   let g:matchparen_insert_timeout = 8
   let g:python_highlight_all = 1
-  let g:rainbow_active = 1
   let g:tex_flavor = 'latex'
   let g:unicoder_cancel_normal = 1
   " let g:unicoder_cancel_insert = 1
@@ -565,6 +657,9 @@
 
 
 " TOGGLE MAPPINGS
+  if g:rainbow_is_loaded
+    nnoremap <leader>tr :RainbowToggle<cr>
+  endif
   nnoremap <leader>tw :setlocal nowrap!<cr>
   nnoremap <leader>ts :setlocal spell!<cr>
   nnoremap <leader>tgm :call ToggleGMove()<cr>
@@ -578,7 +673,7 @@
   nnoremap <leader>tgit :GitGutterToggle<cr>
 
   " relative line numbers
-  nnoremap <leader>trln :set rnu!<cr>
+  " nnoremap <leader>trln :set rnu!<cr>
 
 
 " Z MAPPINGS
@@ -625,17 +720,32 @@
   " COMMAND MAPPINGS
     " cnoremap <tab> <c-g>
     " cnoremap <s-tab> <c-t>
-    nnoremap <c-\> <c-a>
-    vnoremap <c-\> <c-a>
-    nnoremap <c-_> <c-x>
-    vnoremap <c-_> <c-x>
+    nmap <c-f> %
+    vmap <c-f> %
 
-    nnoremap <c-a> ^
-    vnoremap <c-a> ^
+    nmap [<c-f> [%
+    nmap ]<c-f> ]%
+
+    vmap i<c-f> i%
+    vmap a<c-f> a%
+
+    omap i<c-f> i%
+    omap a<c-f> a%
+
+    xmap i<c-f> i%
+    xmap a<c-f> a%
+
+    " nnoremap <c-\> <c-a>
+    " vnoremap <c-\> <c-a>
+    " nnoremap <c-_> <c-x>
+    " vnoremap <c-_> <c-x>
+
+    nnoremap ga ^
+    vnoremap ga ^
     cnoremap <c-a> <home>
 
-    nnoremap <c-e> g_
-    vnoremap <c-e> g_
+    nnoremap ge g_
+    vnoremap ge g_
     cnoremap <c-e> <end>
 
   " BUFFER MAPPINGS
@@ -650,10 +760,10 @@
   " noremap \k <c-w>k
   " noremap \l <c-w>l
 
-  " nnoremap j gj
-  " nnoremap k gk
-  " nnoremap gj j
-  " nnoremap gk k
+  nnoremap j gj
+  nnoremap k gk
+  nnoremap gj j
+  nnoremap gk k
 
   nnoremap <up> <c-y>
   vnoremap <up> <c-y>

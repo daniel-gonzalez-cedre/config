@@ -51,8 +51,8 @@ config.default_cursor_style = "SteadyBlock"
 config.font_size = 12
 -- config.font = wezterm.font 'Berkeley Mono'
 config.font = wezterm.font_with_fallback {
-  'CommitMono-400-01111-00000011000',
   'Berkeley Mono',
+  'CommitMono-400-01111-00000011000',
   'Fira Code Retina'
 }
 -- config.harfbuzz_features = {"calt=0", "clig=0", "liga=0"}

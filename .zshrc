@@ -240,6 +240,7 @@ function schedprompt() {
 schedprompt
 
 
+export CLICOLOR=1
 export EDITOR='vim'
 # export VISUAL='vim'
 export GREP_OPTIONS="--color=always"  # --line-buffered
@@ -278,11 +279,11 @@ alias rm="rm -v"
 alias diff="grc diff"
 alias rsync="rsync -v --progress"
 
-alias tree="tree -C -N --dirsfirst --noreport"
 alias ls="tree -L 1 --dirsfirst --noreport"
-function tree_ascii() {
-  tree --dirsfirst -C -N -h "$1" | sed 's/├/\+/g; s/─/-/g; s/└/\\/g'
-}
+alias tree="tree -N --dirsfirst --noreport"
+# function tree_ascii() {
+  # tree --dirsfirst -C -N -h "$1" | sed 's/├/\+/g; s/─/-/g; s/└/\\/g'
+# }
 
 alias g++="g++ -std=c++11"
 alias ghc="ghc -no-keep-hi-files -no-keep-o-files"
