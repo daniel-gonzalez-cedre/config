@@ -300,6 +300,7 @@
 
 
 " PACKAGES
+  let g:autocomplpop_is_loaded = 0
   let g:matchup_is_loaded = 0
   let g:lightline_is_loaded = 0
   let g:nrrwrgn_is_loaded = 0
@@ -312,6 +313,22 @@
   let g:nerdcommenter_is_loaded = 0
   let g:ale_is_loaded = 0
   let g:vimtex_is_loaded = 0
+
+  let g:autocomplpop_is_loaded = 0
+  " packadd AutoComplPop
+  if g:autocomplpop_is_loaded
+    let g:acp_behaviorKeywordLength = 3
+    inoremap <expr> <cr> pumvisible() ? "\<c-g>u\<cr>" : "\<cr>"
+    inoremap <expr> <tab> pumvisible() ? "\<c-y>" : "\<tab>"
+  else
+    set completeopt=longest,menuone,popup
+    " inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
+    inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<cr>"
+    inoremap <expr> <tab> pumvisible() ? "\<c-y>" : "\<tab>"
+    inoremap <expr> <c-n> pumvisible() ? '<c-n>' : '<c-n><c-r>=pumvisible() ? "\<lt>down>" : ""<cr>'
+    " set completepopup=height:15,width:60,border:off,highlight:PMenuSbar
+    " set previewpopup=height:10,width:60,highlight:PMenuSbar
+  endif
 
   let g:matchup_is_loaded = 1
   packadd vim-matchup
@@ -474,14 +491,15 @@
   augroup END
 
   augroup ale_settings | au!
-    let g:ale_sign_error = '×⟩'
-    let g:ale_sign_warning = '~⟩'
+    " linters: ruff, mypy, pylint, pyright, lacheck, chktek, proselint
     let g:ale_linters = {
           \ 'vim': ['vint'],
           \ 'python': ['ruff', 'mypy'],
           \ 'lua': ['luacheck', 'luac'],
           \ 'tex': ['lacheck']
           \ }
+    let g:ale_sign_error = '×⟩'
+    let g:ale_sign_warning = '~⟩'
     " let g:ale_lint_on_text_changed = 'always'
     let g:ale_lint_on_insert_leave = 1
     let g:ale_lint_delay = 0
@@ -500,13 +518,14 @@
     au FileType vim call s:setup_ale()
     au FileType tex call s:setup_ale()
 
-    " linters: ruff, mypy, pylint, pyright, lacheck, chktek, proselint
     function! s:setup_ale()
       packadd ale
       let g:ale_is_loaded = 1
 
-      map ]a :ALENextWrap<cr>
-      map [a :ALEPreviousWrap<cr>
+      map ]a <plug>(ale_next_wrap)
+      map [a <plug>(ale_previous_wrap)
+      map ]l <plug>(ale_next_wrap)
+      map [l <plug>(ale_previous_wrap)
       map ]e <Plug>(ale_next_wrap_error)
       map [e <Plug>(ale_previous_wrap_error)
       map ]w <Plug>(ale_next_wrap_warning)
@@ -610,10 +629,7 @@
     " set number relativenumber
     " set scrolloff=2
 
-  " " POP-UP WINDOW
-    " set completeopt+=popup
-    " set completepopup=height:15,width:60,border:off,highlight:PMenuSbar
-    " set previewpopup=height:10,width:60,highlight:PMenuSbar
+  " POP-UP WINDOW
 
   " FOLDING
     set foldignore=
@@ -795,7 +811,6 @@
   nnoremap <leader>fa zA
   vnoremap <leader>fa zA
   inoremap <c-]> <del>
-  " inoremap <expr> <cr> pumvisible() ? !empty(v:completed_item) ? "<c-y><c-c>" : "<c-y><cr>" : "<cr>"
 
   if has('clipboard')
     noremap d "+d
