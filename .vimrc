@@ -314,22 +314,6 @@
   let g:ale_is_loaded = 0
   let g:vimtex_is_loaded = 0
 
-  let g:autocomplpop_is_loaded = 0
-  " packadd AutoComplPop
-  if g:autocomplpop_is_loaded
-    let g:acp_behaviorKeywordLength = 3
-    inoremap <expr> <cr> pumvisible() ? "\<c-g>u\<cr>" : "\<cr>"
-    inoremap <expr> <tab> pumvisible() ? "\<c-y>" : "\<tab>"
-  else
-    set completeopt=longest,menuone,popup
-    " inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
-    inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<cr>"
-    inoremap <expr> <tab> pumvisible() ? "\<c-y>" : "\<tab>"
-    inoremap <expr> <c-n> pumvisible() ? '<c-n>' : '<c-n><c-r>=pumvisible() ? "\<lt>down>" : ""<cr>'
-    " set completepopup=height:15,width:60,border:off,highlight:PMenuSbar
-    " set previewpopup=height:10,width:60,highlight:PMenuSbar
-  endif
-
   let g:matchup_is_loaded = 1
   packadd vim-matchup
   augroup matchup_settings | au!
@@ -428,6 +412,7 @@
   let g:rainbow_active = 1
   let g:rainbow_conf = {
     \ 'guifgs': ['#ea6962', '#e78a4e', '#d8a657', '#a9b665', '#89b482', '#7daea3', '#d3869b'],
+    \ 'ctermfgs': ['167', '208', '214', '142', '108', '109', '175'],
   \ }
     " \ 'guifgs': ['#89b482', '#d8a657', '#e78a4e', '#7daea3', '#a9b665', '#ea6962'],
     " \ 'guifgs': ['#7daea3', '#89b482', '#a9b665', '#d8a657', '#e78a4e', '#ea6962', '#d3869b'],
@@ -1004,7 +989,7 @@
   augroup custom_cursors | au! 
     let &t_SI="\e[6 q"  " start insert mode
     let &t_EI="\e[2 q"  " end insert mode
-    autocmd VimEnter * silent !echo \ne "\e[2 q"
+    " autocmd VimEnter * silent !echo \ne "\e[2 q"
   augroup END
 
 " UNDERCURL SUPPORT FOR WEZTERM

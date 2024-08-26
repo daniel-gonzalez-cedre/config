@@ -1,11 +1,15 @@
 # clear the screen
 printf '\33c\e[3J'
+# fpath+=~/.zfunc
 
-fpath+=~/.zfunc
 autoload -Uz add-zsh-hook
+autoload -Uz compinit && compinit
+# source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source /opt/homebrew/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+
 setopt promptsubst
 setopt promptpercent
-autoload -Uz compinit && compinit
 _comp_options+=(globdots)
 # zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
