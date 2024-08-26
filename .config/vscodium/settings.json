@@ -1,0 +1,27 @@
+{
+    "keyboard.touchbar.enabled": false,
+
+    "workbench.activityBar.location": "hidden",
+    "workbench.colorTheme": "Gruvbox Material Dark",
+    "workbench.preferredDarkColorTheme": "Gruvbox Material Dark",
+    "workbench.preferredHighContrastColorTheme": "Gruvbox Dark Medium",
+    "gruvboxMaterial.darkWorkbench": "flat",
+
+    "editor.fontFamily": "Berkeley Mono, CommitMono-400-01111-00000011000, Menlo, Monaco, 'Courier New', monospace",
+    "editor.cursorStyle": "block",
+    "editor.wordWrap": "on",
+    "editor.tabSize": 2,
+    "editor.lightbulb.enabled": "off",
+    "editor.codeActionWidget.includeNearbyQuickFixes": false,
+
+    "vim.cursorStylePerMode.insert": "line-thin",
+    "vim.cursorStylePerMode.normal": "block",
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.editor.tabSizing": "fixed",
+    "workbench.editor.tabSizingFixedMaxWidth": 128,
+    "workbench.editor.tabSizingFixedMinWidth": 64,
+    "workbench.editor.wrapTabs": true,
+    "terminal.integrated.tabs.hideCondition": "never",
+    "terminal.integrated.tabStopWidth": 2,
+    "editor.acceptSuggestionOnEnter": "smart",
+}

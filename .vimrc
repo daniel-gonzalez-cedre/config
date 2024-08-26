@@ -336,12 +336,18 @@
     let g:matchup_matchparen_offscreen = {'method': 'popup'}
     " let g:matchup_matchparen_offscreen = {}
     let g:matchup_matchparen_stopline = 50
+     
+    " au FileType python let g:matchup_matchparen_deferred = 1
+    " au FileType python let g:matchup_matchparen_deferred_show_delay = 0
+    " au FileType python let g:matchup_matchparen_deferred_hide_delay = 0
+    " au FileType python let g:matchup_matchparen_hi_surround_always = 1
+
     let g:matchup_matchparen_deferred = 1
     let g:matchup_matchparen_deferred_show_delay = 0
     let g:matchup_matchparen_deferred_hide_delay = 0
     let g:matchup_matchparen_hi_surround_always = 1
     let g:matchup_matchparen_timeout = 50
-    let g:matchup_matchparen_insert_timeout = 10
+    let g:matchup_matchparen_insert_timeout = 50
 
     let g:palette = gruvbox_material#get_palette('medium', 'material', {})
     au ColorScheme * hi MatchParenCur gui=bold cterm=bold
@@ -839,7 +845,7 @@
   inoremap { {}<c-g>U<left>
   inoremap ) <c-r>=ClosePair(')')<cr>
   inoremap ] <c-r>=ClosePair(']')<cr>
-  inoremap } <c-r>=ClosePair('}')<cr> () {} <> {}
+  inoremap } <c-r>=ClosePair('}')<cr>
   inoremap > <c-r>=ClosePair('>')<cr>
   inoremap " <c-r>=QuoteDelim('"')<cr>
   inoremap ' <c-r>=QuoteDelim("'")<cr>

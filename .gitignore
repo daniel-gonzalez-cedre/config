@@ -6,5 +6,10 @@
 .Spotlight-V100
 ehthumbs.db
 Thumbs.db
+.config/fontforge
+.config/qBittorrent
 .viminfo
+.vim/.netrwhist
+.vim/swapfiles
 .vim/undodir
+.vim/trash
