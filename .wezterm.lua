@@ -48,7 +48,8 @@ config.show_new_tab_button_in_tab_bar = false
 config.default_cursor_style = "SteadyBlock"
 
 -- set font
-config.font_size = 11
+-- config.font_size = 11
+config.font_size = 18
 -- config.font = wezterm.font 'Berkeley Mono'
 config.font = wezterm.font_with_fallback {
   'Berkeley Mono',

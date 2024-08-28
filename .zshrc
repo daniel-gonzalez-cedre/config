@@ -4,9 +4,9 @@ printf '\33c\e[3J'
 
 autoload -Uz add-zsh-hook
 autoload -Uz compinit && compinit
-# source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-# source /opt/homebrew/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+# # source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+# source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# # source /opt/homebrew/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 setopt promptsubst
 setopt promptpercent

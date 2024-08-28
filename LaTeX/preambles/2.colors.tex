@@ -8,12 +8,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FINEM UNIVERSITY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SATUS GRUVBOX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \definecolor{gruvred}{HTML}{fb4934}
-  \definecolor{gruvorange}{HTML}{fe8019}
-  \definecolor{gruvyellow}{HTML}{fabd2f}
-  \definecolor{gruvaqua}{HTML}{8ec07c}
-  \definecolor{gruvgreen}{HTML}{b8bb26}
-  \definecolor{gruvblue}{HTML}{83a598}
+  \definecolor{gruvfg}{HTML}{ddc7a1}
+  \definecolor{gruvred}{HTML}{ea6962}
+  \definecolor{gruvorange}{HTML}{e78a4e}
+  \definecolor{gruvyellow}{HTML}{d8a657}
+  \definecolor{gruvaqua}{HTML}{89b482}
+  \definecolor{gruvgreen}{HTML}{a9b665}
+  \definecolor{gruvblue}{HTML}{7daea3}
   \definecolor{gruvpurple}{HTML}{d3869b}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FINEM GRUVBOX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -55,6 +56,26 @@
   \colorlet{foreground}{black}
   \colorlet{background}{\PaperColor}
   \pagecolor{background}
+
+  % tcolorbox settings
+  \newcommand{\keymod}[1]{{\tcbox{\textcolor{background}{\resizebox{!}{1ex}{\vphantom{hg}\texttt{#1}}}}}}
+  \newcommand{\keychar}[1]{{\tcbox{\textcolor{background}{\resizebox{!}{1ex}{\vphantom{hg}\texttt{#1}}}}}}
+  % \newcommand{\keychar}[1]{{\footnotesize\tcbox{\textcolor{background}{
+  % \vbox to 1.5ex {\vfil
+  % \hbox to 1ex{\vphantom{hg}\texttt{\centering #1}}%
+  % \vfil
+  % }}}}}
+  \newcommand{\inline}[1]{{\tcbox{\textcolor{gruvfg}{\resizebox{!}{1ex}{\texttt{\vphantom{hg}#1}}}}}}
+  \newcommand{\snip}[1]{{\tcbox{\textcolor{gruvfg}{\resizebox{!}{1ex}{\texttt{\vphantom{hg}#1}}}}}}
+  \tcbset{%
+    on line, 
+    boxsep=2pt,
+    top=0pt,
+    bottom=0pt,
+    left=0pt,
+    right=0pt,
+    colframe=foreground,colback=foreground,
+  }
 
   \newcommand{\hi}[1]{\textcolor{high}{#1}}
   \newcommand{\high}[1]{\textcolor{high}{\itshape #1}}

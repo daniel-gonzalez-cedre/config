@@ -108,6 +108,7 @@
   function! s:focus_gained_buffer()
     setlocal ruler
     setlocal showcmd
+    hi! link FoldColumn NONE
     hi! link SignColumn NONE
     hi! link LineNR NONE
     hi! link CursorLineNR NONE
@@ -127,6 +128,7 @@
     setlocal noruler
     setlocal noshowcmd
     hi Blank guifg=#262626 guibg=#262626 ctermfg=0 ctermbg=0
+    hi! link FoldColumn Blank
     hi! link SignColumn Blank
     hi! link LineNR Blank
     hi! link CursorLineNR Blank
@@ -243,6 +245,8 @@
     call gruvbox_material#highlight('InfoText', l:palette.none, l:palette.none, 'undercurl', l:palette.blue)
     call gruvbox_material#highlight('HintText', l:palette.none, l:palette.none, 'undercurl', l:palette.green)
 
+    call gruvbox_material#highlight('FoldColumn', l:palette.grey1, l:palette.none)
+
     " call gruvbox_material#highlight('CursorLine', l:palette.none, ['#2a2a2a',   '235'])
     " call gruvbox_material#highlight('CursorLineNr', l:palette.grey1, ['#2a2a2a',   '235'])
     " call gruvbox_material#highlight('CursorLine', l:palette.none, l:palette.bg1)
@@ -300,6 +304,7 @@
 
 
 " PACKAGES
+  let g:highlightedyank_is_loaded=0
   let g:autocomplpop_is_loaded = 0
   let g:matchup_is_loaded = 0
   let g:lightline_is_loaded = 0
@@ -314,30 +319,54 @@
   let g:ale_is_loaded = 0
   let g:vimtex_is_loaded = 0
 
-  let g:matchup_is_loaded = 1
-  packadd vim-matchup
-  augroup matchup_settings | au!
-    let g:matchup_matchparen_offscreen = {'method': 'popup'}
-    " let g:matchup_matchparen_offscreen = {}
-    let g:matchup_matchparen_stopline = 50
-     
-    " au FileType python let g:matchup_matchparen_deferred = 1
-    " au FileType python let g:matchup_matchparen_deferred_show_delay = 0
-    " au FileType python let g:matchup_matchparen_deferred_hide_delay = 0
-    " au FileType python let g:matchup_matchparen_hi_surround_always = 1
+  let g:highlightedyank_is_loaded=1
+  packadd vim-highlightedyank
+    let g:highlightedyank_highlight_duration = 50
+    let g:highlightedyank_highlight_in_visual = 0
 
-    let g:matchup_matchparen_deferred = 1
-    let g:matchup_matchparen_deferred_show_delay = 0
-    let g:matchup_matchparen_deferred_hide_delay = 0
-    let g:matchup_matchparen_hi_surround_always = 1
-    let g:matchup_matchparen_timeout = 50
-    let g:matchup_matchparen_insert_timeout = 50
+  " let g:autocomplpop_is_loaded = 1
+  " packadd AutoComplPop
+  if g:autocomplpop_is_loaded
+    let g:acp_behaviorKeywordLength = 3
+    inoremap <expr> <cr> pumvisible() ? "\<c-g>u\<cr>" : "\<cr>"
+    inoremap <expr> <tab> pumvisible() ? "\<c-y>" : "\<tab>"
+  else
+    set completeopt=longest,menuone,popup
+    " inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
+    inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<cr>"
+    inoremap <expr> <tab> pumvisible() ? "\<c-y>" : "\<tab>"
+    inoremap <expr> <c-n> pumvisible() ? '<c-n>' : '<c-n><c-r>=pumvisible() ? "\<lt>down>" : ""<cr>'
+    " set completepopup=height:15,width:60,border:off,highlight:PMenuSbar
+    " set previewpopup=height:10,width:60,highlight:PMenuSbar
+  endif
 
-    let g:palette = gruvbox_material#get_palette('medium', 'material', {})
-    au ColorScheme * hi MatchParenCur gui=bold cterm=bold
-    au ColorScheme * hi MatchWordCur gui=bold cterm=bold
-    au ColorScheme * hi MatchWord gui=bold cterm=bold
-  augroup END
+
+  " let g:matchup_is_loaded = 0
+  " if g:matchup_is_loaded
+    " packadd vim-matchup
+    " augroup matchup_settings | au!
+      " let g:matchup_matchparen_offscreen = {'method': 'popup'}
+      " " let g:matchup_matchparen_offscreen = {}
+      " let g:matchup_matchparen_stopline = 50
+
+      " " au FileType python let g:matchup_matchparen_deferred = 1
+      " " au FileType python let g:matchup_matchparen_deferred_show_delay = 0
+      " " au FileType python let g:matchup_matchparen_deferred_hide_delay = 0
+      " " au FileType python let g:matchup_matchparen_hi_surround_always = 1
+
+      " let g:matchup_matchparen_deferred = 1
+      " let g:matchup_matchparen_deferred_show_delay = 0
+      " let g:matchup_matchparen_deferred_hide_delay = 0
+      " let g:matchup_matchparen_hi_surround_always = 1
+      " let g:matchup_matchparen_timeout = 50
+      " let g:matchup_matchparen_insert_timeout = 50
+
+      " let g:palette = gruvbox_material#get_palette('medium', 'material', {})
+      " au ColorScheme * hi MatchParenCur gui=bold cterm=bold
+      " au ColorScheme * hi MatchWordCur gui=bold cterm=bold
+      " au ColorScheme * hi MatchWord gui=bold cterm=bold
+    " augroup END
+  " endif
 
   let g:lightline_is_loaded = 1
   packadd lightline.vim
@@ -400,8 +429,8 @@
     let g:fanfingtastic_ignorecase = 1
 
   let g:polyglot_is_loaded = 1
-  let g:polyglot_disabled = ['ftdetect', 'sensible']
-  " let g:polyglot_disabled = ['ftdetect']
+  " let g:polyglot_disabled = ['ftdetect', 'sensible']
+  let g:polyglot_disabled = ['markdown', 'ftdetect', 'sensible']
   packadd vim-polyglot
     " let g:polyglot_disabled = ['sensible']
 
@@ -491,7 +520,7 @@
           \ }
     let g:ale_sign_error = '×⟩'
     let g:ale_sign_warning = '~⟩'
-    " let g:ale_lint_on_text_changed = 'always'
+    let g:ale_lint_on_text_changed = 'always'
     let g:ale_lint_on_insert_leave = 1
     let g:ale_lint_delay = 0
     let g:ale_lint_on_save = 1
@@ -513,17 +542,17 @@
       packadd ale
       let g:ale_is_loaded = 1
 
-      map ]a <plug>(ale_next_wrap)
-      map [a <plug>(ale_previous_wrap)
-      map ]l <plug>(ale_next_wrap)
-      map [l <plug>(ale_previous_wrap)
-      map ]e <Plug>(ale_next_wrap_error)
-      map [e <Plug>(ale_previous_wrap_error)
-      map ]w <Plug>(ale_next_wrap_warning)
-      map [w <Plug>(ale_previous_wrap_warning)
-      nmap <leader>at :ALEToggle<cr>
-      nmap <leader>al :ALELint<cr>
-      map <leader>bd :ALEDetail<cr>
+      noremap ]a <plug>(ale_next_wrap)
+      noremap [a <plug>(ale_previous_wrap)
+      noremap ]l <plug>(ale_next_wrap)
+      noremap [l <plug>(ale_previous_wrap)
+      noremap ]e <plug>(ale_next_wrap_error)
+      noremap [e <plug>(ale_previous_wrap_error)
+      noremap ]w <plug>(ale_next_wrap_warning)
+      noremap [w <plug>(ale_previous_wrap_warning)
+      noremap <leader>bd <plug>(ale_detail)
+      nnoremap <leader>ta <plug>(ale_toggle)
+      nnoremap <leader>ll <plug>(ale_lint)
     endfunction
   augroup END
 
@@ -542,22 +571,22 @@
     augroup END
     
     augroup latex_settings | au!
-      " packadd vimtex
-      " let g:vimtex_is_loaded = 1
-
       au BufNewFile,BufRead *.bib,*.tex,*.tikz set filetype=tex
       au BufNewFile,BufRead *.bib,*.tex,*.tikz set syntax=tex
 
       au BufNewFile,BufRead *.bib,*.tex,*.tikz imap ` <nop>
       au BufNewFile,BufRead *.bib,*.tex,*.tikz iunmap `
 
-      au FileType tex inoremap $ <c-r>=ClosePair('$')<cr>
-      au FileType tex inoremap <c-f> <c-r>=ClosePair('$')<cr>
+      au FileType tex inoremap $ <c-r>=QuoteDelim('$')<cr>
+      au FileType tex inoremap <c-f> <c-r>=QuoteDelim('$')<cr>
       " au FileType tex inoremap <c-\> <c-r>=QuoteDelim('$')<cr>
 
-      " au FileType tex set foldmethod=syntax
+
+      let g:vimtex_is_loaded = 1
+      packadd vimtex
 
       if g:vimtex_is_loaded
+        " au FileType tex set foldmethod=syntax
         au FileType tex let g:vimtex_compiler_enabled = 0
         au FileType tex let g:vimtex_complete_enabled = 0
         " au FileType tex let g:vimtex_fold_enabled = 1
@@ -623,9 +652,19 @@
   " POP-UP WINDOW
 
   " FOLDING
+    set foldopen-=search
+    set foldopen+=undo
+    set foldcolumn=1
     set foldignore=
     set foldlevelstart=99
-    set foldmethod=indent
+    set foldmethod=manual
+    " set fillchars+=foldsep:│,foldclose:╶
+    " set fillchars+=foldopen:├,foldsep:│,foldclose:╶
+    " set fillchars+=foldopen:┣,foldsep:┃,foldclose:╺
+    " set fillchars+=foldopen:┏,foldsep:┃,foldclose:╺
+    " set fillchars+=foldopen:▾,foldsep:│,foldclose:▸
+    " set fillchars+=foldopen:▿,foldsep:│,foldclose:▷
+    " set foldmethod=indent
 
   " INDENTATION
     set autoindent
@@ -673,6 +712,7 @@
   nnoremap <leader>tq :call ToggleQuote()<cr>
   nnoremap <leader>t' :call ToggleQuote()<cr>
   nnoremap <leader>t" :call ToggleQuote()<cr>
+  nnoremap <leader>at :ALEToggle<cr>
   " noremap <leader>h :noh<bar>:echo<cr>
   " nnoremap <leader>th :set nohlsearch!<cr>
   " nnoremap <leader>tb :call ToggleBackground()<cr>
@@ -707,8 +747,8 @@
   nnoremap <leader>s :%s//gc<left><left><left>
   nnoremap ? /<up>
 
-  vnoremap <leader>/ y/\V<c-r>=escape(@",'/\')<cr>
-  vnoremap <leader>F y/\V<c-r>=escape(@",'/\')<cr>
+  " vnoremap <leader>/ y/\V<c-r>=escape(@",'/\')<cr>
+  vnoremap <leader>* y/\V<c-r>=escape(@",'/\')<cr>
   vnoremap <leader>s y`<`>:<c-u>%s/\V<c-r>=escape(@",'/\')<cr>//gc<left><left><left>
 
   " toggle highlighting on search
@@ -724,7 +764,7 @@
 
 
 " QUALITY OF LIFE MAPPINGS
-  " COMMAND MAPPINGS
+  " MATCH MAPPINGS
     " cnoremap <tab> <c-g>
     " cnoremap <s-tab> <c-t>
     nmap <c-f> %
@@ -747,39 +787,84 @@
     " nnoremap <c-_> <c-x>
     " vnoremap <c-_> <c-x>
 
-    nnoremap ga ^
-    vnoremap ga ^
+  " BUFFER MAPPINGS
+    noremap <leader>bb :call ScratchBuffer()<cr>
+    " noremap <leader>bs :call ScratchBuffer()<cr>
+
+  " MOVEMENT
+    inoremap <left> <c-g>U<left>
+    inoremap <right> <c-g>U<right>
+    " noremap \h <c-w>h
+    " noremap \j <c-w>j
+    " noremap \k <c-w>k
+    " noremap \l <c-w>l
+
+    nnoremap j gj
+    nnoremap k gk
+    nnoremap gj j
+    nnoremap gk k
+
+    nnoremap <up> <c-y>
+    vnoremap <up> <c-y>
+    nnoremap <down> <c-e>
+    vnoremap <down> <c-e>
+    nnoremap <left> zh
+    vnoremap <left> zh
+    nnoremap <right> zl
+    vnoremap <right> zl
+
+  " LINES
+    " beginning of line
+    nnoremap g<c-a> ^
+    vnoremap g<c-a> ^
+    onoremap g<c-a> ^
+    " beginning of wrapped line
+    nnoremap ga g^
+    vnoremap ga g^
+    onoremap ga g^
+    " operator pending to beginning of line
+    onoremap <c-a> ^
+    " beginning of command line
     cnoremap <c-a> <home>
 
-    nnoremap ge g_
-    vnoremap ge g_
+    " end of line
+    nnoremap g<c-e> g_
+    vnoremap g<c-e> g_
+    onoremap g<c-e> g_
+    " end of wrapped line
+    nnoremap ge g$
+    vnoremap ge g$
+    onoremap ge g$
+    " operator pending to end of line
+    onoremap <c-e> g_
+    " end of command line
     cnoremap <c-e> <end>
 
-  " BUFFER MAPPINGS
-  noremap <leader>bb :call ScratchBuffer()<cr>
-  " noremap <leader>bs :call ScratchBuffer()<cr>
+    " text object inside current line
+    xnoremap il g_o^
+    onoremap <silent> il :normal vil<cr>
+    " text object around current line
+    xnoremap al $o^
+    onoremap <silent> al :normal val<cr>
 
-  " movement
-  inoremap <left> <c-g>U<left>
-  inoremap <right> <c-g>U<right>
-  " noremap \h <c-w>h
-  " noremap \j <c-w>j
-  " noremap \k <c-w>k
-  " noremap \l <c-w>l
+  " MISCELLANEOUS
+    nnoremap <leader>ff zf
+    vnoremap <leader>ff zf
+    nnoremap <leader>fd zd
+    vnoremap <leader>fd zd
 
-  nnoremap j gj
-  nnoremap k gk
-  nnoremap gj j
-  nnoremap gk k
+    nnoremap <leader>fa za
+    vnoremap <leader>fa za
+    nnoremap <leader>fA zA
+    vnoremap <leader>fA zA
 
-  nnoremap <up> <c-y>
-  vnoremap <up> <c-y>
-  nnoremap <down> <c-e>
-  vnoremap <down> <c-e>
-  nnoremap <left> zh
-  vnoremap <left> zh
-  nnoremap <right> zl
-  vnoremap <right> zl
+    nnoremap <leader>fo zo
+    vnoremap <leader>fo zo
+
+    nnoremap <leader>fc zc
+    vnoremap <leader>fc zc
+
+    inoremap <c-]> <del>
 
   " vnoremap <expr> i mode()=~'\cv' ? 'i' : 'I'
   " vnoremap <expr> a mode()=~'\cv' ? 'a' : 'A'
@@ -790,37 +875,26 @@
   " nnoremap <silent> <leader>o :call JumpWithinFile ("\<c-i>", "\<c-o>")<cr>
   " nnoremap <silent> <leader>i :call JumpWithinFile ("\<c-o>", "\<c-i>")<cr>
 
-  " text object for current line
-  xnoremap il g_o^
-  onoremap <silent> il :normal vil<cr>
-  xnoremap al $o^
-  onoremap <silent> al :normal val<cr>
 
-  " misc
-  nnoremap <leader>ff za
-  vnoremap <leader>ff za
-  nnoremap <leader>fa zA
-  vnoremap <leader>fa zA
-  inoremap <c-]> <del>
+  " COPY AND PASTE
+    if has('clipboard')
+      noremap d "+d
+      noremap p "+p
+      noremap x "+x:noh<bar>:echo<cr>
+      noremap X "+X:noh<bar>:echo<cr>
 
-  if has('clipboard')
-    noremap d "+d
-    noremap p "+p
-    noremap x "+x:noh<bar>:echo<cr>
-    noremap X "+X:noh<bar>:echo<cr>
+      nnoremap y "+y
+      nnoremap Y "+Y
+      nnoremap D "+D
+      nnoremap P "+P
+      nnoremap yy "+yy
+      nnoremap dd "+dd
 
-    nnoremap y "+y
-    nnoremap Y "+Y
-    nnoremap D "+D
-    nnoremap P "+P
-    nnoremap yy "+yy
-    nnoremap dd "+dd
-
-    vnoremap y "+y`<
-  else
-    noremap x x:noh<bar>:echo<cr>
-    noremap X X:noh<bar>:echo<cr>
-  endif
+      vnoremap y "+y`<
+    else
+      noremap x x:noh<bar>:echo<cr>
+      noremap X X:noh<bar>:echo<cr>
+    endif
 
 
 " DELIMITER MAPPINGS
