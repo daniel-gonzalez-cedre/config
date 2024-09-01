@@ -8,6 +8,12 @@
     au BufEnter * :syntax sync fromstart
   augroup END
 
+  augroup remember_folds
+    autocmd!
+    autocmd BufWinLeave * mkview
+    autocmd BufWinEnter * silent! loadview
+  augroup END
+
   " set home config directory
   if !isdirectory($HOME.'/.vim')
     call mkdir($HOME.'/.vim', '', 0770)
@@ -914,8 +920,13 @@
   " FOLDS
     nnoremap <leader>ff zf
     vnoremap <leader>ff zf
+
     nnoremap <leader>fd zd
     vnoremap <leader>fd zd
+    nnoremap <leader>fD zD
+    vnoremap <leader>fD zD
+    nnoremap <leader>fE zE
+    vnoremap <leader>fE zE
 
     nnoremap <leader>fa za
     vnoremap <leader>fa za
