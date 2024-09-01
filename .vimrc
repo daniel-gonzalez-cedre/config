@@ -265,7 +265,8 @@
 
     " call gruvbox_material#highlight('MatchParen', l:palette.red, l:palette.none, 'bold')
     " call gruvbox_material#highlight('MatchParen', l:palette.none, l:palette.none, 'bold')
-    call gruvbox_material#highlight('MatchParen', l:palette.none, l:palette.bg0, 'bold')
+    " call gruvbox_material#highlight('MatchParen', l:palette.none, l:palette.bg0, 'bold')
+    call gruvbox_material#highlight('MatchParen', l:palette.none, l:palette.none, 'bold')
   endfunction
 
   function! s:gitgutter_colors()
