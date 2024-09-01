@@ -534,18 +534,19 @@
       au ColorScheme gruvbox call s:gitgutter_colors()
     endif
 
-    nmap ]g <Plug>(GitGutterNextHunk)
-    nmap [g <Plug>(GitGutterPrevHunk)
-    omap ig <Plug>(GitGutterTextObjectInnerPending)
-    omap ag <Plug>(GitGutterTextObjectOuterPending)
-    xmap ig <Plug>(GitGutterTextObjectInnerVisual)
-    xmap ag <Plug>(GitGutterTextObjectOuterVisual)
-    nmap <leader>gf :GitGutterFold<cr>
+    " nmap ]g <Plug>(GitGutterNextHunk)
+    " nmap [g <Plug>(GitGutterPrevHunk)
+    " omap ig <Plug>(GitGutterTextObjectInnerPending)
+    " omap ag <Plug>(GitGutterTextObjectOuterPending)
+    " xmap ig <Plug>(GitGutterTextObjectInnerVisual)
+    " xmap ag <Plug>(GitGutterTextObjectOuterVisual)
+    " nmap <leader>gf :GitGutterFold<cr>
+    nmap <leader>fg :GitGutterFold<cr>
 
-    function! GitStatus()
-      let [a,m,r] = GitGutterGetHunkSummary()
-      return printf('+%d ~%d -%d', a, m, r)
-    endfunction
+    " function! GitStatus()
+      " let [a,m,r] = GitGutterGetHunkSummary()
+      " return printf('+%d ~%d -%d', a, m, r)
+    " endfunction
     " set statusline+=%{GitStatus()}
   augroup END
 
@@ -782,35 +783,16 @@
   nnoremap <leader>tq :call ToggleQuote()<cr>
   nnoremap <leader>t' :call ToggleQuote()<cr>
   nnoremap <leader>t" :call ToggleQuote()<cr>
-  nnoremap <leader>at :ALEToggle<cr>
   " noremap <leader>h :noh<bar>:echo<cr>
   " nnoremap <leader>th :set nohlsearch!<cr>
   " nnoremap <leader>tb :call ToggleBackground()<cr>
 
+  nnoremap <leader>at :ALEToggle<cr>
+  nnoremap <leader>tale :ALEToggle<cr>
   nnoremap <leader>tgit :GitGutterToggle<cr>
 
   " relative line numbers
   " nnoremap <leader>trln :set rnu!<cr>
-
-
-" Z MAPPINGS
-  " map zs :setlocal spell!<cr>
-  " map <leader><c-f> zA
-  " map zt ZT
-  " map zn ZN
-  " map zN ZP
-  " map zl ZL
-  " map z= ZL
-  " map zg Zg
-  " map zug Zug
-  " map zG ZG
-  " map zuG ZUG
-  " map zw Zw
-  " map zuw Zuw
-  " map zW ZW
-  " map zUW ZUW
-  " map ]s ZN
-  " map [s ZP
 
 
 " SEARCH MAPPINGS

@@ -14,11 +14,11 @@
     "connected" : "",
     "disconnected" : "",
     "slow" : "",
-    "volume" : 0.7
+    "volume" : 0.0
   },
   "fadeSeconds" : {
-    "connected" : 5,
+    "connected" : 2.5,
     "disconnected" : 0,
-    "slow" : 10
+    "slow" : 5
   }
 }
