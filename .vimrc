@@ -108,9 +108,9 @@
   function! s:focus_gained_buffer()
     setlocal ruler
     setlocal showcmd
-    hi! link FoldColumn NONE
-    hi! link SignColumn NONE
-    hi! link LineNR NONE
+    " hi! link FoldColumn NONE
+    " hi! link SignColumn NONE
+    " hi! link LineNR NONE
     hi! link CursorLineNR NONE
 
     call s:set_lightline_colorscheme('gruvbox_material')
@@ -128,9 +128,9 @@
     setlocal noruler
     setlocal noshowcmd
     hi Blank guifg=#262626 guibg=#262626 ctermfg=0 ctermbg=0
-    hi! link FoldColumn Blank
-    hi! link SignColumn Blank
-    hi! link LineNR Blank
+    " hi! link FoldColumn Blank
+    " hi! link SignColumn Blank
+    " hi! link LineNR Blank
     hi! link CursorLineNR Blank
 
     call s:set_lightline_colorscheme('blank')
@@ -245,7 +245,8 @@
     call gruvbox_material#highlight('InfoText', l:palette.none, l:palette.none, 'undercurl', l:palette.blue)
     call gruvbox_material#highlight('HintText', l:palette.none, l:palette.none, 'undercurl', l:palette.green)
 
-    call gruvbox_material#highlight('FoldColumn', l:palette.grey1, l:palette.none)
+    call gruvbox_material#highlight('FoldColumn', l:palette.bg5, l:palette.none)
+    " call gruvbox_material#highlight('FoldColumn', l:palette.grey1, l:palette.none)
 
     " call gruvbox_material#highlight('CursorLine', l:palette.none, ['#2a2a2a',   '235'])
     " call gruvbox_material#highlight('CursorLineNr', l:palette.grey1, ['#2a2a2a',   '235'])
@@ -283,6 +284,7 @@
     " gruvbox-material
     let g:gruvbox_material_background = 'medium'  " soft, (medium), hard
     let g:gruvbox_material_foreground = 'material'  " (material), mix, original
+    let g:gruvbox_material_transparent_background = 1
     let g:gruvbox_material_enable_bold = 0  " (0), 1
     let g:gruvbox_material_enable_italic = 0  " (0), 1
     let g:gruvbox_material_disable_italic_comment = 0  " (0), 1
@@ -307,6 +309,7 @@
   let g:highlightedyank_is_loaded=0
   let g:autocomplpop_is_loaded = 0
   let g:matchup_is_loaded = 0
+  let g:foldsearch_is_loaded = 0
   let g:lightline_is_loaded = 0
   let g:tmuxline_is_loaded = 0
   let g:nrrwrgn_is_loaded = 0
@@ -367,6 +370,9 @@
     " au ColorScheme * hi MatchWord gui=bold cterm=bold
   " augroup END
 
+  let g:foldsearch_is_loaded = 0
+  " packadd vim-foldsearch
+
   let g:lightline_is_loaded = 1
   packadd lightline.vim
     set noshowmode
@@ -411,6 +417,7 @@
   endif
   if g:vim_is_in_tmux == 1 && !has('win32')
     " let g:tmuxline_powerline_separators = 0
+    let g:tmuxline_status_justify = 'left'
     let g:tmuxline_theme = 'lightline'
     let g:tmuxline_preset = {
           \'a'    : '#S',
@@ -420,6 +427,31 @@
           \'y'    : '%h %d',
           \'z'    : '%R'
           \}
+    " let g:tmuxline_preset = {
+          " \'a'    : '#S',
+          " \'b'    : '#{b:pane_current_path}',
+          " \'win'  : '#W',
+          " \'cwin' : '#W',
+          " \'x'    : '%a',
+          " \'y'    : '%h %d',
+          " \'z'    : '%R'
+          " \}
+    " let g:tmuxline_preset = {
+          " \'a'    : '#S',
+          " \'b'    : '#{d:pane_current_path}',
+          " \'c'    : '#{b:pane_current_path}',
+          " \'win'  : '#W',
+          " \'cwin' : '#W',
+          " \'x'    : '%a',
+          " \'y'    : '%h %d',
+          " \'z'    : '%R'
+          " \}
+    let g:tmuxline_separators = {
+          \ 'left' : '',
+          \ 'left_alt': '',
+          \ 'right' : '',
+          \ 'right_alt' : '',
+          \ 'space' : ' '}
     " let g:tmuxline_theme = {
           " \   'a'    : [ 236, 103 ],
           " \   'b'    : [ 253, 239 ],
@@ -431,12 +463,6 @@
           " \   'cwin' : [ 236, 103 ],
           " \   'bg'   : [ 244, 236 ],
           " \ }
-    " let g:tmuxline_separators = {
-          " \ 'left' : '',
-          " \ 'left_alt': '',
-          " \ 'right' : '',
-          " \ 'right_alt' : '',
-          " \ 'space' : ' '}
   endif
 
   let g:nrrwrgn_is_loaded = 1
@@ -885,7 +911,7 @@
     xnoremap al $o^
     onoremap <silent> al :normal val<cr>
 
-  " MISCELLANEOUS
+  " FOLDS
     nnoremap <leader>ff zf
     vnoremap <leader>ff zf
     nnoremap <leader>fd zd
@@ -901,6 +927,9 @@
 
     nnoremap <leader>fc zc
     vnoremap <leader>fc zc
+
+    nnoremap [f zk
+    nnoremap ]f zj
 
     inoremap <c-]> <del>
 

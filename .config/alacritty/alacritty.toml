@@ -7,6 +7,14 @@ bindings = [
    { key = "Tab", mods = "Control|Shift", action = "SelectPreviousTab" }
 ]
 
+[window]
+dimensions = { columns = 128, lines = 48 }
+padding = { x = 4, y = 4 }
+dynamic_padding = true
+# decorations = "None"
+# decorations = "Transparent"
+decorations = "Buttonless"
+
 [font]
 # size = 11.0
 size = 12.0
