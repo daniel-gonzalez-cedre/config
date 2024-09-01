@@ -1,0 +1,33 @@
+import = ["~/.config/alacritty/themes/gruvbox_material_medium_dark.toml"]
+
+[keyboard]
+bindings = [
+   # { key = "n", mods = "Command|Shift", action = "SpawnNewInstance" }
+   { key = "Tab", mods = "Control", action = "SelectNextTab" },
+   { key = "Tab", mods = "Control|Shift", action = "SelectPreviousTab" }
+]
+
+[font]
+# size = 11.0
+size = 12.0
+# size = 18.0
+
+[font.normal]
+family="Berkeley Mono"
+# family="CommitMono-450-01111-00000011000"
+style="Regular"
+
+[font.bold]
+family="Berkeley Mono"
+# family="CommitMono-450-01111-00000011000"
+style="Bold"
+
+[font.italic]
+family="Berkeley Mono"
+# family="CommitMono-450-01111-00000011000"
+style="Italic"
+
+[font.bold_italic]
+family="Berkeley Mono"
+# family="CommitMono-450-01111-00000011000"
+style="Bold Italic"

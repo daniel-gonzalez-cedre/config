@@ -14,6 +14,8 @@ config.tab_bar_at_bottom = false
 config.use_fancy_tab_bar = false
 config.show_new_tab_button_in_tab_bar = false
 
+config.audible_bell = "Disabled"
+
 -- function tab_title(tab_info)
   -- local title = tab_info.tab_title
   -- -- if the tab title is explicitly set, take that
@@ -48,8 +50,7 @@ config.show_new_tab_button_in_tab_bar = false
 config.default_cursor_style = "SteadyBlock"
 
 -- set font
--- config.font_size = 11
-config.font_size = 18
+config.font_size = 11
 -- config.font = wezterm.font 'Berkeley Mono'
 config.font = wezterm.font_with_fallback {
   'Berkeley Mono',
@@ -144,8 +145,16 @@ config.colors = {
   -- }
 }
 
+config.native_macos_fullscreen_mode = true
+
 config.keys = {
-  { key = 'r',  -- command for setting custom tab titles
+  {
+    key = 'f',
+    mods = 'CMD|CTRL',
+    action = wezterm.action.ToggleFullScreen,
+  },
+  {
+    key = 'r',  -- command for setting custom tab titles
     mods = 'CMD|SHIFT',
     action = wezterm.action.PromptInputLine {
       description = 'Enter new name for tab',
@@ -159,22 +168,31 @@ config.keys = {
       end),
     },
   },
-  { key = 'p',  -- command for moving tab left
+  {
+    key = 'p',  -- command for moving tab left
     mods = 'CMD|SHIFT',
     action = wezterm.action.MoveTabRelative(-1),
   },
-  { key = 'n',  -- command for moving tab right
+  {
+    key = 'n',  -- command for moving tab right
     mods = 'CMD|SHIFT',
     action = wezterm.action.MoveTabRelative(1),
   },
-  { key = '-',  -- disable font decrease mapping
+  {
+    key = '-',  -- disable font decrease mapping
     mods = 'CTRL',
     action = wezterm.action.DisableDefaultAssignment,
   },
-  { key = '=',  -- disable font increase mapping
+  {
+    key = '=',  -- disable font increase mapping
     mods = 'CTRL',
     action = wezterm.action.DisableDefaultAssignment,
   },
 }
+
+-- -- teaching config
+-- config.font_size = 18
+-- config.initial_rows = 30
+-- config.initial_cols = 100
 
 return config

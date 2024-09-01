@@ -126,89 +126,167 @@ function min() {
   echo $(( $1 < $2 ? $1 : $2 ))
 }
 
-(){ # local scope
-  local UL="${fg_darker}┏╸${color_clear}"
-  local BL="${fg_darker}┗━━╸${color_clear}"
-  local UR="${fg_darker}╺┓${color_clear}"
-  local BR="${fg_darker}╺┛${color_clear}"
-  # local UL="${fg_shade}┌╴${color_clear}"
-  # local BL="${fg_shade}└──╴${color_clear}"
-  # local UL="${fg_shade}╭╴${color_clear}"
-  # local BL="${fg_shade}╰╴${color_clear}"
-  # local UR="${fg_shade}╶╮${color_clear}"
-  # local BR="${fg_shade}╶╯${color_clear}"
-  # local UL="${fg_dark}┏╸${color_clear}"
-  # local BL="${fg_dark}┗━━┫${color_clear}"
-  # local UR="${fg_dark}╺┓${color_clear}"
-  # local BR="${fg_dark}╺┛${color_clear}"
+PROMPTTYPE="complex"
+# PROMPTTYPE="simple"
 
-  # fourth
-  local function userlimiter() { echo $(( $COLUMNS - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅ ⋅⋅⋅⋅⋅⋅ ╺┓ ⋅⋅⋅ ") )) }
-  local userlimit='$(max $(userlimiter) 1)'
-  local user="${fg_coyellow}%${userlimit}<⋅⋅⋅<%n%<<${color_clear}"
+if [[ $PROMPTTYPE == "simple" ]]; then
+  # PROMPT="${topline}${botline}"
+  # RPROMPT="${timestamp} ${BR}"
+  (){ # local scope
 
-  # fifth
-  local function machinelimiter() { echo $(( $COLUMNS - $(strlen " ┏╸ ⋅⋅⋅⋅⋅⋅ ⋅⋅⋅⋅⋅⋅ ╺┓ ⋅⋅⋅ ") )) }
-  local machinelimit='$(max $(machinelimiter) 1)'
-  local machine="${fg_cored}%${machinelimit}<⋅⋅⋅<%m%<<${color_clear}"
+    # fourth
+    local function userlimiter() { echo $(( $COLUMNS - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅ ⋅⋅⋅⋅⋅⋅ ╺┓ ⋅⋅⋅ ") )) }
+    local userlimit='$(max $(userlimiter) 1)'
+    local user="${fg_coyellow}%${userlimit}<⋅⋅⋅<%n%<<${color_clear}"
 
-  local linefeed="${fg_coyellow}λ${color_clear}"
-  local timestamp="${fg_dark}%D{%K:%M:%S}${color_clear}"
+    # fifth
+    local function machinelimiter() { echo $(( $COLUMNS - $(strlen " ┏╸ ⋅⋅⋅⋅⋅⋅ ⋅⋅⋅⋅⋅⋅ ╺┓ ⋅⋅⋅ ") )) }
+    local machinelimit='$(max $(machinelimiter) 1)'
+    local machine="${fg_cored}%${machinelimit}<⋅⋅⋅<%m%<<${color_clear}"
 
-  # third
-  local function gitlimiter() { echo $(( $COLUMNS - $(strlen ${USER}) - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅ ╺┓ ⋅⋅⋅ ") )) }
-  local gitlimit='$(max $(gitlimiter) 1)'
-  local gitbranch='$(git symbolic-ref --short HEAD 2> /dev/null)'
-  # local gitsuffix=" ::"
-  # local git="${fg_coaqua}%${gitlimit}<⋅⋅⋅<${gitbranch}%<<${fg_dark}${gitsuffix}${color_clear}"
-  local git="${fg_coaqua}%${gitlimit}<⋅⋅⋅<${gitbranch}%<<${color_clear}"
+    local linefeed="${fg_coyellow}λ${color_clear}"
+    local timestamp="${fg_dark}%D{%K:%M:%S}${color_clear}"
 
-  # first
-  local function prefixlimiter() { echo $(( $COLUMNS - $(strlen ${${PWD:t}/$HOME/~}) - $(strlen ${USER}) - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅ ╺┓ master") )) }
-  local prefixlimit='$(max $(prefixlimiter) 1)'
-  local pathprefix='$(path_info)'
+    # third
+    local function gitlimiter() { echo $(( $COLUMNS - $(strlen ${USER}) - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅ ╺┓ ⋅⋅⋅ ") )) }
+    local gitlimit='$(max $(gitlimiter) 1)'
+    local gitbranch='$(git symbolic-ref --short HEAD 2> /dev/null)'
+    # local gitsuffix=" ::"
+    # local git="${fg_coaqua}%${gitlimit}<⋅⋅⋅<${gitbranch}%<<${fg_dark}${gitsuffix}${color_clear}"
+    local git="${fg_coaqua}%${gitlimit}<⋅⋅⋅<${gitbranch}%<<${color_clear}"
 
-  # second
-  local function suffixlimiter() { echo $(( $COLUMNS - $(strlen ${USER}) - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅⋅⋅⋅ ╺┓ master") )) }
-  local suffixlimit='$(max $(suffixlimiter) 1)'
-  local pathsuffix='%B%1~%b'
+    # first
+    local function prefixlimiter() { echo $(( $COLUMNS - $(strlen ${${PWD:t}/$HOME/~}) - $(strlen ${USER}) - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅ ╺┓ master") )) }
+    local prefixlimit='$(max $(prefixlimiter) 1)'
+    local pathprefix='$(path_info)'
 
-  local path="${fg_shade}%${prefixlimit}<⋅⋅⋅<${pathprefix}%<<${fg_coblue}%${suffixlimit}<⋅⋅⋅<${pathsuffix}%<<${color_clear}"
+    # second
+    local function suffixlimiter() { echo $(( $COLUMNS - $(strlen ${USER}) - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅⋅⋅⋅ ╺┓ master") )) }
+    local suffixlimit='$(max $(suffixlimiter) 1)'
+    local pathsuffix='%B%1~%b'
 
-  # local gitbranch gitsuffix
-  # local gitcheck=$(git symbolic-ref --short HEAD 2> /dev/null)
-  # if [[ -n $(git symbolic-ref --short HEAD 2> /dev/null) ]]; then
-    # gitbranch+='$(git symbolic-ref --short HEAD 2> /dev/null)'
-    # gitsuffix+=" ::"
-  # fi
-  local left="${UL} ${path}"
-  # left+=" ${git}"
+    local path="${fg_shade}%${prefixlimit}<⋅⋅⋅<${pathprefix}%<<${fg_coblue}%${suffixlimit}<⋅⋅⋅<${pathsuffix}%<<${color_clear}"
 
-  local right="${git} ${user} ${machine} ${UR}"
-    # Virtualenv.
-    # right+='${VIRTUAL_ENV:+venv }'
+    # local gitbranch gitsuffix
+    # local gitcheck=$(git symbolic-ref --short HEAD 2> /dev/null)
+    # if [[ -n $(git symbolic-ref --short HEAD 2> /dev/null) ]]; then
+      # gitbranch+='$(git symbolic-ref --short HEAD 2> /dev/null)'
+      # gitsuffix+=" ::"
+    # fi
+    local left="${path}"
+    # left+=" ${git}"
 
-    # Editing mode. $ZLE_MODE shouldn't contain %, no need to escape
-    # ZLE_MODE=insert
-    # right+='%K{green} $ZLE_MODE'
+    local right="${git} ${user} ${machine}"
+      # Virtualenv.
+      # right+='${VIRTUAL_ENV:+venv }'
 
-  # Combine left and right prompt with spacing in between.
-  local pattern='%([BSUbfksu]|([FBK]|){*})'
-  local zero='%([BSUbfksu]|([FK]|){*})'
+      # Editing mode. $ZLE_MODE shouldn't contain %, no need to escape
+      # ZLE_MODE=insert
+      # right+='%K{green} $ZLE_MODE'
 
-  local leftspace=${(S)left//${~pattern}}
-  local rightspace=${(S)right//${~pattern}}
-  local spacing="\${(l,COLUMNS-2-\${#\${(%):-${leftspace}${rightspace}}},)}"
+    # Combine left and right prompt with spacing in between.
+    local pattern='%([BSUbfksu]|([FBK]|){*})'
+    local zero='%([BSUbfksu]|([FK]|){*})'
 
-  local function toplinelimiter() { echo $(( $COLUMNS - 20 )) }
-  local toplinelimit='$(max $(toplinelimiter) 1)'
-  local topline="%${toplinelimit}>> ${left}${spacing}${right} %>>%{"$'\n'"%}"
+    local leftspace=${(S)left//${~pattern}}
+    local rightspace=${(S)right//${~pattern}}
+    local spacing="\${(l,COLUMNS-2-\${#\${(%):-${leftspace}${rightspace}}},)}"
 
-  local botline=" ${BL} ${linefeed} "
+    local function toplinelimiter() { echo $(( $COLUMNS - 20 )) }
+    local toplinelimit='$(max $(toplinelimiter) 1)'
+    local topline="%${toplinelimit}>> ${left}${spacing}${right} %>>%{"$'\n'"%}"
 
-  PROMPT="${topline}${botline}"
-  RPROMPT="${timestamp} ${BR}"
-}
+    local botline=" ${linefeed} "
+
+    PROMPT="%${toplinelimit}>> ${left} ${linefeed} "
+    RPROMPT="${right}"
+  }
+else
+  (){ # local scope
+    local UL="${fg_darker}┏╸${color_clear}"
+    local BL="${fg_darker}┗━━╸${color_clear}"
+    local UR="${fg_darker}╺┓${color_clear}"
+    local BR="${fg_darker}╺┛${color_clear}"
+    # local UL="${fg_shade}┌╴${color_clear}"
+    # local BL="${fg_shade}└──╴${color_clear}"
+    # local UL="${fg_shade}╭╴${color_clear}"
+    # local BL="${fg_shade}╰╴${color_clear}"
+    # local UR="${fg_shade}╶╮${color_clear}"
+    # local BR="${fg_shade}╶╯${color_clear}"
+    # local UL="${fg_dark}┏╸${color_clear}"
+    # local BL="${fg_dark}┗━━┫${color_clear}"
+    # local UR="${fg_dark}╺┓${color_clear}"
+    # local BR="${fg_dark}╺┛${color_clear}"
+
+    # fourth
+    local function userlimiter() { echo $(( $COLUMNS - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅ ⋅⋅⋅⋅⋅⋅ ╺┓ ⋅⋅⋅ ") )) }
+    local userlimit='$(max $(userlimiter) 1)'
+    local user="${fg_coyellow}%${userlimit}<⋅⋅⋅<%n%<<${color_clear}"
+
+    # fifth
+    local function machinelimiter() { echo $(( $COLUMNS - $(strlen " ┏╸ ⋅⋅⋅⋅⋅⋅ ⋅⋅⋅⋅⋅⋅ ╺┓ ⋅⋅⋅ ") )) }
+    local machinelimit='$(max $(machinelimiter) 1)'
+    local machine="${fg_cored}%${machinelimit}<⋅⋅⋅<%m%<<${color_clear}"
+
+    local linefeed="${fg_coyellow}λ${color_clear}"
+    local timestamp="${fg_dark}%D{%K:%M:%S}${color_clear}"
+
+    # third
+    local function gitlimiter() { echo $(( $COLUMNS - $(strlen ${USER}) - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅ ╺┓ ⋅⋅⋅ ") )) }
+    local gitlimit='$(max $(gitlimiter) 1)'
+    local gitbranch='$(git symbolic-ref --short HEAD 2> /dev/null)'
+    # local gitsuffix=" ::"
+    # local git="${fg_coaqua}%${gitlimit}<⋅⋅⋅<${gitbranch}%<<${fg_dark}${gitsuffix}${color_clear}"
+    local git="${fg_coaqua}%${gitlimit}<⋅⋅⋅<${gitbranch}%<<${color_clear}"
+
+    # first
+    local function prefixlimiter() { echo $(( $COLUMNS - $(strlen ${${PWD:t}/$HOME/~}) - $(strlen ${USER}) - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅ ╺┓ master") )) }
+    local prefixlimit='$(max $(prefixlimiter) 1)'
+    local pathprefix='$(path_info)'
+
+    # second
+    local function suffixlimiter() { echo $(( $COLUMNS - $(strlen ${USER}) - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅⋅⋅⋅ ╺┓ master") )) }
+    local suffixlimit='$(max $(suffixlimiter) 1)'
+    local pathsuffix='%B%1~%b'
+
+    local path="${fg_shade}%${prefixlimit}<⋅⋅⋅<${pathprefix}%<<${fg_coblue}%${suffixlimit}<⋅⋅⋅<${pathsuffix}%<<${color_clear}"
+
+    # local gitbranch gitsuffix
+    # local gitcheck=$(git symbolic-ref --short HEAD 2> /dev/null)
+    # if [[ -n $(git symbolic-ref --short HEAD 2> /dev/null) ]]; then
+      # gitbranch+='$(git symbolic-ref --short HEAD 2> /dev/null)'
+      # gitsuffix+=" ::"
+    # fi
+    local left="${UL} ${path}"
+    # left+=" ${git}"
+
+    local right="${git} ${user} ${machine} ${UR}"
+      # Virtualenv.
+      # right+='${VIRTUAL_ENV:+venv }'
+
+      # Editing mode. $ZLE_MODE shouldn't contain %, no need to escape
+      # ZLE_MODE=insert
+      # right+='%K{green} $ZLE_MODE'
+
+    # Combine left and right prompt with spacing in between.
+    local pattern='%([BSUbfksu]|([FBK]|){*})'
+    local zero='%([BSUbfksu]|([FK]|){*})'
+
+    local leftspace=${(S)left//${~pattern}}
+    local rightspace=${(S)right//${~pattern}}
+    local spacing="\${(l,COLUMNS-2-\${#\${(%):-${leftspace}${rightspace}}},)}"
+
+    local function toplinelimiter() { echo $(( $COLUMNS - 20 )) }
+    local toplinelimit='$(max $(toplinelimiter) 1)'
+    local topline="%${toplinelimit}>> ${left}${spacing}${right} %>>%{"$'\n'"%}"
+
+    local botline=" ${BL} ${linefeed} "
+
+    PROMPT="${topline}${botline}"
+    RPROMPT="${timestamp} ${BR}"
+  }
+fi
+
 
 # autoload vcs_info
 # precmd() vcs_info

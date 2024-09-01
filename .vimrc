@@ -308,6 +308,7 @@
   let g:autocomplpop_is_loaded = 0
   let g:matchup_is_loaded = 0
   let g:lightline_is_loaded = 0
+  let g:tmuxline_is_loaded = 0
   let g:nrrwrgn_is_loaded = 0
   let g:tabular_is_loaded = 0
   let g:fanfingtastic_is_loaded = 0
@@ -341,32 +342,30 @@
   endif
 
 
-  " let g:matchup_is_loaded = 0
-  " if g:matchup_is_loaded
-    " packadd vim-matchup
-    " augroup matchup_settings | au!
-      " let g:matchup_matchparen_offscreen = {'method': 'popup'}
-      " " let g:matchup_matchparen_offscreen = {}
-      " let g:matchup_matchparen_stopline = 50
+  " let g:matchup_is_loaded = 1
+  " packadd vim-matchup
+  " augroup matchup_settings | au!
+    " " let g:matchup_matchparen_offscreen = {'method': 'popup'}
+    " let g:matchup_matchparen_offscreen = {}
+    " let g:matchup_matchparen_stopline = 50
 
-      " " au FileType python let g:matchup_matchparen_deferred = 1
-      " " au FileType python let g:matchup_matchparen_deferred_show_delay = 0
-      " " au FileType python let g:matchup_matchparen_deferred_hide_delay = 0
-      " " au FileType python let g:matchup_matchparen_hi_surround_always = 1
+    " " au FileType python let g:matchup_matchparen_deferred = 1
+    " " au FileType python let g:matchup_matchparen_deferred_show_delay = 0
+    " " au FileType python let g:matchup_matchparen_deferred_hide_delay = 0
+    " " au FileType python let g:matchup_matchparen_hi_surround_always = 1
 
-      " let g:matchup_matchparen_deferred = 1
-      " let g:matchup_matchparen_deferred_show_delay = 0
-      " let g:matchup_matchparen_deferred_hide_delay = 0
-      " let g:matchup_matchparen_hi_surround_always = 1
-      " let g:matchup_matchparen_timeout = 50
-      " let g:matchup_matchparen_insert_timeout = 50
+    " let g:matchup_matchparen_deferred = 1
+    " let g:matchup_matchparen_deferred_show_delay = 0
+    " let g:matchup_matchparen_deferred_hide_delay = 0
+    " let g:matchup_matchparen_hi_surround_always = 1
+    " let g:matchup_matchparen_timeout = 50
+    " let g:matchup_matchparen_insert_timeout = 100
 
-      " let g:palette = gruvbox_material#get_palette('medium', 'material', {})
-      " au ColorScheme * hi MatchParenCur gui=bold cterm=bold
-      " au ColorScheme * hi MatchWordCur gui=bold cterm=bold
-      " au ColorScheme * hi MatchWord gui=bold cterm=bold
-    " augroup END
-  " endif
+    " let g:palette = gruvbox_material#get_palette('medium', 'material', {})
+    " au ColorScheme * hi MatchParenCur gui=bold cterm=bold
+    " au ColorScheme * hi MatchWordCur gui=bold cterm=bold
+    " au ColorScheme * hi MatchWord gui=bold cterm=bold
+  " augroup END
 
   let g:lightline_is_loaded = 1
   packadd lightline.vim
@@ -400,6 +399,45 @@
   " vim-capslock
     nnoremap <silent> <c-g>c <plug>CapsLockToggle:call lightline#update()<cr>
     inoremap <silent> <c-g>c <c-o><plug>CapsLockToggle<c-o>:call lightline#update()<cr>
+
+  let g:tmuxline_is_loaded = 1
+  packadd tmuxline.vim
+  if executable('tmux') && filereadable(expand('~/.zshrc')) && $TMUX !=# ''
+    let g:vim_is_in_tmux = 1
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  else
+    let g:vim_is_in_tmux = 0
+  endif
+  if g:vim_is_in_tmux == 1 && !has('win32')
+    " let g:tmuxline_powerline_separators = 0
+    let g:tmuxline_theme = 'lightline'
+    let g:tmuxline_preset = {
+          \'a'    : '#S',
+          \'win'  : '#W',
+          \'cwin' : '#W',
+          \'x'    : '%a',
+          \'y'    : '%h %d',
+          \'z'    : '%R'
+          \}
+    " let g:tmuxline_theme = {
+          " \   'a'    : [ 236, 103 ],
+          " \   'b'    : [ 253, 239 ],
+          " \   'c'    : [ 244, 236 ],
+          " \   'x'    : [ 244, 236 ],
+          " \   'y'    : [ 253, 239 ],
+          " \   'z'    : [ 236, 103 ],
+          " \   'win'  : [ 103, 236 ],
+          " \   'cwin' : [ 236, 103 ],
+          " \   'bg'   : [ 244, 236 ],
+          " \ }
+    " let g:tmuxline_separators = {
+          " \ 'left' : '',
+          " \ 'left_alt': '',
+          " \ 'right' : '',
+          " \ 'right_alt' : '',
+          " \ 'space' : ' '}
+  endif
 
   let g:nrrwrgn_is_loaded = 1
   packadd NrrwRgn
