@@ -1,27 +1,27 @@
 # This is Git's per-user configuration file.
 # daniel-gonzalez-cedre
 [user]
-    name = cedré
-    user = daniel-gonzalez-cedre
-    email = 39937561+daniel-gonzalez-cedre@users.noreply.github.com
-    mail = 39937561+daniel-gonzalez-cedre@users.noreply.github.com
+  name = cedré
+  user = daniel-gonzalez-cedre
+  email = 39937561+daniel-gonzalez-cedre@users.noreply.github.com
+  mail = 39937561+daniel-gonzalez-cedre@users.noreply.github.com
 [alias]
-    lol = log --graph --decorate --pretty=oneline --abbrev-commit
-    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 [color]
-    branch = auto
-    diff = auto
-    interactive = auto
-    status = auto
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
 [core]
-    editor = vim
-	excludesfile = /Users/cedre/.config/git/ignore
+  editor = vim
+  excludesfile = /Users/cedre/.config/git/ignore
 [pull]
-	rebase = false
+  rebase = false
 [init]
-	defaultBranch = master
+  defaultBranch = master
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true

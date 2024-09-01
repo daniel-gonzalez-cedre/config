@@ -6,8 +6,11 @@
 .DS_Store?
 .Spotlight-V100
 .Trashes
+
 ehthumbs.db
 Thumbs.db
+_minted*/
+__pycache__/
 
 *.aux
 *.bbl
@@ -28,5 +31,15 @@ Thumbs.db
 *.toc
 *.xdv
 
-_minted*/
-__pycache__/
+.config/fontforge
+.config/qBittorrent
+
+.*.swp
+.*.swo
+.viminfo
+.vim/.netrwhist
+.vim/swapfiles
+.vim/undodir
+.vim/view
+
+.vim/trash
