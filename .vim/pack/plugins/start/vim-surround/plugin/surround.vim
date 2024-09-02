@@ -210,6 +210,14 @@ function! s:wrap(string,char,type,removed,special)
       endif
     endif
   " elseif newchar ==# 'l' || newchar == '\'
+  elseif newchar == "m"
+    " LaTeX
+    let before = '$'
+    let after  = '$'
+  elseif newchar == "q"
+    " LaTeX
+    let before = '``'
+    let after  = "''"
   elseif newchar == "\<C-Q>"
     " LaTeX
     let before = '``'

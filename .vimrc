@@ -3,6 +3,11 @@
   silent
   syntax enable
 
+  " let &t_fe = "\<Esc>[?1004h"
+  " let &t_fd = "\<Esc>[?1004l"
+  " execute "set <FocusGained>=\<Esc>[I"
+  " execute "set <FocusLost>=\<Esc>[O"
+
   augroup init_settings | au!
     au FileType * set conceallevel=0
     au BufEnter * :syntax sync fromstart
@@ -57,7 +62,7 @@
 " LEADER KEY
   nnoremap <space> <nop>
   vnoremap <space> <nop>
-  let mapleader = ' '
+  let mapleader = "\<space>"
 
 
 " NOP MAPPINGS
@@ -151,7 +156,20 @@
     echo @%
   endfunction
 
-  augroup active_focused_window | au!
+  " function! s:toggle_focus()
+    " if g:focus_status == 0
+      " let g:focus_status = 1
+      " call s:focus_gained_buffer()
+    " else
+      " let g:focus_status = 0
+      " call s:focus_lost_buffer()
+    " endif
+  " endfunction
+
+  augroup focus | au!
+    " let g:focus_status = 0
+    " au VimResized * call s:toggle_focus()
+
     au FocusGained * call s:focus_gained_buffer()
     au FocusLost * call s:focus_lost_buffer()
   augroup END
@@ -481,17 +499,19 @@
 
   let g:tabular_is_loaded = 1
   packadd tabular  " tabularize
-    nnoremap <leader><tab> :Tabularize /
-    vnoremap <tab> :Tabularize /
-    vnoremap <tab><space> :Tabularize /\zs<left><left><left>
-    " vnoremap <tab>\ :Tabularize /\zs<left><left><left>
+    " nnoremap <leader><tab> :Tabularize /
+    nnoremap <tab><tab> :Tabularize /
+    vnoremap <tab><tab> :Tabularize /
+    " vnoremap <tab> :Tabularize /
+    " vnoremap <tab><space> :Tabularize /\zs<left><left><left>
     vnoremap <tab>= :Tabularize /=<cr>
     vnoremap <tab>( :Tabularize /(<cr>
     vnoremap <tab>{ :Tabularize /{<cr>
     vnoremap <tab>[ :Tabularize /[<cr>
     vnoremap <tab>: :Tabularize /:<cr>
     vnoremap <tab>, :Tabularize /,<cr>
-    " vnoremap <leader><tab>| :Tabularize /|<cr>
+    vnoremap <tab>t :Tabularize /\|<cr>
+    " vnoremap <tab>\ :Tabularize /\zs<left><left><left>
 
   let g:fanfingtastic_is_loaded = 1
   packadd vim-fanfingtastic
@@ -650,7 +670,7 @@
       au BufNewFile,BufRead *.bib,*.tex,*.tikz iunmap `
 
       au FileType tex inoremap $ <c-r>=QuoteDelim('$')<cr>
-      au FileType tex inoremap <c-f> <c-r>=QuoteDelim('$')<cr>
+      au FileType tex inoremap <c-g>m <c-r>=QuoteDelim('$')<cr>
       " au FileType tex inoremap <c-\> <c-r>=QuoteDelim('$')<cr>
 
 
@@ -866,6 +886,27 @@
     nnoremap <right> zl
     vnoremap <right> zl
 
+    nnoremap ]p }
+    vnoremap ]p }
+    onoremap ]p }
+    xnoremap ]p }
+
+    nnoremap [p {
+    vnoremap [p {
+    onoremap [p {
+    xnoremap [p {
+
+    " nnoremap ]] }
+    " vnoremap ]] }
+    " onoremap ]] }
+    " xnoremap ]] }
+
+    " nnoremap [[ {
+    " vnoremap [[ {
+    " onoremap [[ {
+    " xnoremap [[ {
+
+
   " LINES
     " beginning of line
     nnoremap g<c-a> ^
@@ -959,7 +1000,7 @@
 
 
 " DELIMITER MAPPINGS
-  inoremap <c-f> $
+  inoremap <c-g>m $
   inoremap ( ()<c-g>U<left>
   inoremap [ []<c-g>U<left>
   inoremap { {}<c-g>U<left>
@@ -970,17 +1011,23 @@
   inoremap " <c-r>=QuoteDelim('"')<cr>
   inoremap ' <c-r>=QuoteDelim("'")<cr>
   inoremap ` <c-r>=QuoteDelim('`')<cr>
-  inoremap <c-q> ``''<left><left>
+  inoremap <c-g>q ``''<left><left>
 
+  vmap ( <s-s>(<cr>
+  vmap ) <s-s>)<cr>
   vmap <leader>b <s-s>)<cr>
   vmap <leader>p <s-s>)<cr>
   vmap <leader>( <s-s>(<cr>
   vmap <leader>) <s-s>)<cr>
 
+  vmap [ <s-s>[<cr>
+  vmap ] <s-s>]<cr>
   vmap <leader>r <s-s>]<cr>
   vmap <leader>[ <s-s>[<cr>
   vmap <leader>] <s-s>]<cr>
 
+  vmap { <s-s>{<cr>
+  vmap } <s-s>}<cr>
   vmap <leader>B <s-s>}<cr>
   vmap <leader>{ <s-s>{<cr>
   vmap <leader>} <s-s>}<cr>
@@ -990,13 +1037,18 @@
   vmap <leader>< <s-s><<cr>
   vmap <leader>> <s-s>><cr>
 
+  vmap <c-g>m <s-s>$<cr>
   vmap <leader>m <s-s>$<cr>
   vmap <leader>$ <s-s>$<cr>
 
+  vmap " <s-s>"<cr>
+  vmap ' <s-s>'<cr>
+  vmap ` <s-s>`<cr>
+  vmap <c-g>q <s-s><c-q><cr>
   vmap <leader>" <s-s>"<cr>
   vmap <leader>' <s-s>'<cr>
   vmap <leader>` <s-s>`<cr>
-  vmap <leader><c-q> <s-s><c-q><cr>
+  vmap <leader>q <s-s><c-q><cr>
   " vnoremap " <c-c>`>a"<c-c>`<i"<c-c>
   " vnoremap ' <c-c>`>a'<c-c>`<i'<c-c>
   " vnoremap ` <c-c>`>a`<c-c>`<i`<c-c>
