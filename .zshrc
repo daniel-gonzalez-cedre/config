@@ -126,8 +126,8 @@ function min() {
   echo $(( $1 < $2 ? $1 : $2 ))
 }
 
-PROMPTTYPE="complex"
-# PROMPTTYPE="simple"
+PROMPTTYPE="simple"
+# PROMPTTYPE="complex"
 
 if [[ $PROMPTTYPE == "simple" ]]; then
   # PROMPT="${topline}${botline}"
@@ -328,11 +328,20 @@ export EDITOR='vim'
 export GREP_OPTIONS="--color=always"  # --line-buffered
 
 export CONFIG=${HOME}/config
-export TERM=xterm-256color
 
+# if [ "$TMUX" = "" ]; then
+  # # tmux new -A -s 新;
+  # tmux;
+# fi
+if [ "$TERM_PROGRAM" != "Apple_Terminal" ] && [ "$TERM_PROGRAM" != "WezTerm" ] && [ "$TERM_PROGRAM" != "iTerm.app" ]; then
+  export TERM=alacritty
+else
+  export TERM=xterm-256color
+fi
+
+export HOMEBREW_AUTO_UPDATE_SECS="86400"
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/Cellar:$PATH
-export PATH=/usr/local/Cellar:$PATH
 export PATH=~/.local/bin:$PATH
 # export PATH="$PYENV_ROOT/bin:$PATH"
 
@@ -342,17 +351,17 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 export FFDIR=${HOME}/Library/Application\ Support/Firefox
 for FILE in ${FFDIR}/Profiles/*
 do
-    # PATTERN=".*.........default-release"
-    PATTERN=".*.default-release"
-    [[ $FILE =~ $PATTERN ]] && export FFPROFILE=$FILE
+  # PATTERN=".*.........default-release"
+  PATTERN=".*.default-release"
+  [[ $FILE =~ $PATTERN ]] && export FFPROFILE=$FILE
 done
 
 export LWDIR=${HOME}/Library/Application\ Support/librewolf
 for FILE in ${LWDIR}/Profiles/*
 do
-    # PATTERN=".*.........default-release"
-    PATTERN=".*.default-default"
-    [[ $FILE =~ $PATTERN ]] && export LWPROFILE=$FILE
+  # PATTERN=".*.........default-release"
+  PATTERN=".*.default-default"
+  [[ $FILE =~ $PATTERN ]] && export LWPROFILE=$FILE
 done
 
 alias cp="cp -v"

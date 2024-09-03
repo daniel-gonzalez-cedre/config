@@ -39,4 +39,5 @@
     "editor.occurrencesHighlight": "off",
     "editor.renderLineHighlightOnlyWhenFocus": true,
     "git.openRepositoryInParentFolders": "never",
+    "window.confirmSaveUntitledWorkspace": false,
 }

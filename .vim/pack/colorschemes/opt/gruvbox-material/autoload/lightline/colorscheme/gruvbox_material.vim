@@ -16,12 +16,12 @@ endif
 "}}}
 " Definition: {{{
 if s:configuration.statusline_style ==# 'original' "{{{
-  let s:tab_l_fg = s:palette.grey2
+  let s:tab_l_fg = s:palette.grey1
   let s:tab_l_bg = s:palette.bg_statusline3
   let s:tab_r_fg = s:palette.bg0
-  let s:tab_r_bg = s:palette.grey2
+  let s:tab_r_bg = s:palette.grey1
   let s:tab_sel_fg = s:palette.bg0
-  let s:tab_sel_bg = s:palette.grey2
+  let s:tab_sel_bg = s:palette.grey1
   let s:tab_middle_fg = s:palette.grey1
   let s:tab_middle_bg = s:palette.bg0
 
@@ -31,14 +31,14 @@ if s:configuration.statusline_style ==# 'original' "{{{
   let s:errorbg = s:palette.red
 
   let s:normal_l1_fg = s:palette.bg0
-  let s:normal_l1_bg = s:palette.grey2
-  let s:normal_l2_fg = s:palette.grey2
+  let s:normal_l1_bg = s:palette.grey1
+  let s:normal_l2_fg = s:palette.grey1
   let s:normal_l2_bg = s:palette.bg_statusline3
   let s:normal_r1_fg = s:palette.bg0
-  let s:normal_r1_bg = s:palette.grey2
-  let s:normal_r2_fg = s:palette.grey2
+  let s:normal_r1_bg = s:palette.grey1
+  let s:normal_r2_fg = s:palette.grey1
   let s:normal_r2_bg = s:palette.bg_statusline3
-  let s:normal_middle_fg = s:palette.grey2
+  let s:normal_middle_fg = s:palette.grey1
   let s:normal_middle_bg = s:palette.bg_statusline2
 
   let s:insert_l1_fg = s:palette.bg0
@@ -96,24 +96,24 @@ if s:configuration.statusline_style ==# 'original' "{{{
   let s:terminal_middle_fg = s:palette.fg1
   let s:terminal_middle_bg = s:palette.bg_statusline3
 
-  let s:inactive_l1_fg = s:palette.grey2
+  let s:inactive_l1_fg = s:palette.grey1
   let s:inactive_l1_bg = s:palette.bg_statusline1
-  let s:inactive_l2_fg = s:palette.grey2
+  let s:inactive_l2_fg = s:palette.grey1
   let s:inactive_l2_bg = s:palette.bg_statusline1
-  let s:inactive_r1_fg = s:palette.grey2
+  let s:inactive_r1_fg = s:palette.grey1
   let s:inactive_r1_bg = s:palette.bg_statusline1
-  let s:inactive_r2_fg = s:palette.grey2
+  let s:inactive_r2_fg = s:palette.grey1
   let s:inactive_r2_bg = s:palette.bg_statusline1
-  let s:inactive_middle_fg = s:palette.grey2
+  let s:inactive_middle_fg = s:palette.grey1
   let s:inactive_middle_bg = s:palette.bg_statusline1 "}}}
 elseif s:configuration.statusline_style ==# 'mix' "{{{
-  let s:tab_l_fg = s:palette.grey2
+  let s:tab_l_fg = s:palette.grey1
   let s:tab_l_bg = s:palette.bg_statusline3
   let s:tab_r_fg = s:palette.bg0
-  let s:tab_r_bg = s:palette.grey2
+  let s:tab_r_bg = s:palette.grey1
   let s:tab_sel_fg = s:palette.bg0
-  let s:tab_sel_bg = s:palette.grey2
-  let s:tab_middle_fg = s:palette.grey2
+  let s:tab_sel_bg = s:palette.grey1
+  let s:tab_middle_fg = s:palette.grey1
   let s:tab_middle_bg = s:palette.bg_statusline2
 
   let s:warningfg = s:palette.bg0
@@ -122,14 +122,14 @@ elseif s:configuration.statusline_style ==# 'mix' "{{{
   let s:errorbg = s:palette.bg_red
 
   let s:normal_l1_fg = s:palette.bg0
-  let s:normal_l1_bg = s:palette.grey2
-  let s:normal_l2_fg = s:palette.grey2
+  let s:normal_l1_bg = s:palette.grey1
+  let s:normal_l2_fg = s:palette.grey1
   let s:normal_l2_bg = s:palette.bg_statusline3
   let s:normal_r1_fg = s:palette.bg0
-  let s:normal_r1_bg = s:palette.grey2
-  let s:normal_r2_fg = s:palette.grey2
+  let s:normal_r1_bg = s:palette.grey1
+  let s:normal_r2_fg = s:palette.grey1
   let s:normal_r2_bg = s:palette.bg_statusline3
-  let s:normal_middle_fg = s:palette.grey2
+  let s:normal_middle_fg = s:palette.grey1
   let s:normal_middle_bg = s:palette.bg_statusline2
 
   let s:insert_l1_fg = s:palette.bg0
@@ -187,23 +187,23 @@ elseif s:configuration.statusline_style ==# 'mix' "{{{
   let s:terminal_middle_fg = s:palette.fg1
   let s:terminal_middle_bg = s:palette.bg_statusline2
 
-  let s:inactive_l1_fg = s:palette.grey2
+  let s:inactive_l1_fg = s:palette.grey1
   let s:inactive_l1_bg = s:palette.bg_statusline1
-  let s:inactive_l2_fg = s:palette.grey2
+  let s:inactive_l2_fg = s:palette.grey1
   let s:inactive_l2_bg = s:palette.bg_statusline1
-  let s:inactive_r1_fg = s:palette.grey2
+  let s:inactive_r1_fg = s:palette.grey1
   let s:inactive_r1_bg = s:palette.bg_statusline1
-  let s:inactive_r2_fg = s:palette.grey2
+  let s:inactive_r2_fg = s:palette.grey1
   let s:inactive_r2_bg = s:palette.bg_statusline1
-  let s:inactive_middle_fg = s:palette.grey2
+  let s:inactive_middle_fg = s:palette.grey1
   let s:inactive_middle_bg = s:palette.bg_statusline1 "}}}
 else "{{{
   let s:tab_l_fg = s:palette.fg1
   let s:tab_l_bg = s:palette.bg_statusline3
   let s:tab_r_fg = s:palette.bg0
-  let s:tab_r_bg = s:palette.grey2
+  let s:tab_r_bg = s:palette.grey1
   let s:tab_sel_fg = s:palette.bg0
-  let s:tab_sel_bg = s:palette.grey2
+  let s:tab_sel_bg = s:palette.grey1
   let s:tab_middle_fg = s:palette.fg1
   let s:tab_middle_bg = s:palette.bg_statusline1
 
@@ -213,22 +213,22 @@ else "{{{
   let s:errorbg = s:palette.bg_red
 
   let s:normal_l1_fg = s:palette.bg0
-  let s:normal_l1_bg = s:palette.grey2
+  let s:normal_l1_bg = s:palette.fg1
   let s:normal_l2_fg = s:palette.fg1
   let s:normal_l2_bg = s:palette.bg_statusline3
   let s:normal_r1_fg = s:palette.bg0
-  let s:normal_r1_bg = s:palette.grey2
+  let s:normal_r1_bg = s:palette.fg1
   let s:normal_r2_fg = s:palette.fg1
   let s:normal_r2_bg = s:palette.bg_statusline3
   let s:normal_middle_fg = s:palette.fg1
   let s:normal_middle_bg = s:palette.bg_statusline1
 
   let s:insert_l1_fg = s:palette.bg0
-  let s:insert_l1_bg = s:palette.bg_green
+  let s:insert_l1_bg = s:palette.aqua
   let s:insert_l2_fg = s:palette.fg1
   let s:insert_l2_bg = s:palette.bg_statusline3
   let s:insert_r1_fg = s:palette.bg0
-  let s:insert_r1_bg = s:palette.bg_green
+  let s:insert_r1_bg = s:palette.aqua
   let s:insert_r2_fg = s:palette.fg1
   let s:insert_r2_bg = s:palette.bg_statusline3
   let s:insert_middle_fg = s:palette.fg1
@@ -257,11 +257,11 @@ else "{{{
   let s:replace_middle_bg = s:palette.bg_statusline1
 
   let s:command_l1_fg = s:palette.bg0
-  let s:command_l1_bg = s:palette.blue
+  let s:command_l1_bg = s:palette.bg_green
   let s:command_l2_fg = s:palette.fg1
   let s:command_l2_bg = s:palette.bg_statusline3
   let s:command_r1_fg = s:palette.bg0
-  let s:command_r1_bg = s:palette.blue
+  let s:command_r1_bg = s:palette.bg_green
   let s:command_r2_fg = s:palette.fg1
   let s:command_r2_bg = s:palette.bg_statusline3
   let s:command_middle_fg = s:palette.fg1
@@ -278,15 +278,15 @@ else "{{{
   let s:terminal_middle_fg = s:palette.fg1
   let s:terminal_middle_bg = s:palette.bg_statusline1
 
-  let s:inactive_l1_fg = s:palette.grey2
+  let s:inactive_l1_fg = s:palette.grey1
   let s:inactive_l1_bg = s:palette.bg_statusline1
-  let s:inactive_l2_fg = s:palette.grey2
+  let s:inactive_l2_fg = s:palette.grey1
   let s:inactive_l2_bg = s:palette.bg_statusline1
-  let s:inactive_r1_fg = s:palette.grey2
+  let s:inactive_r1_fg = s:palette.grey1
   let s:inactive_r1_bg = s:palette.bg_statusline1
-  let s:inactive_r2_fg = s:palette.grey2
+  let s:inactive_r2_fg = s:palette.grey1
   let s:inactive_r2_bg = s:palette.bg_statusline1
-  let s:inactive_middle_fg = s:palette.grey2
+  let s:inactive_middle_fg = s:palette.grey1
   let s:inactive_middle_bg = s:palette.bg_statusline1
 endif "}}}
 "}}}

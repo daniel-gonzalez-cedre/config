@@ -11,6 +11,9 @@
   augroup init_settings | au!
     au FileType * set conceallevel=0
     au BufEnter * :syntax sync fromstart
+    au BufEnter * :set spell
+    " set spell
+    " set nospell
   augroup END
 
   augroup remember_folds
@@ -119,12 +122,13 @@
   function! s:focus_gained_buffer()
     setlocal ruler
     setlocal showcmd
-    " hi! link FoldColumn NONE
-    " hi! link SignColumn NONE
-    " hi! link LineNR NONE
+    hi! link FoldColumn NONE
+    hi! link SignColumn NONE
+    hi! link LineNR NONE
     hi! link CursorLineNR NONE
 
-    call s:set_lightline_colorscheme('gruvbox_material')
+    " call s:set_lightline_colorscheme('gruvbox_material')
+    call lightline#toggle()
 
     if g:gitgutter_is_loaded
       GitGutterBufferEnable
@@ -138,13 +142,15 @@
   function! s:focus_lost_buffer()
     setlocal noruler
     setlocal noshowcmd
-    hi Blank guifg=#262626 guibg=#262626 ctermfg=0 ctermbg=0
-    " hi! link FoldColumn Blank
-    " hi! link SignColumn Blank
-    " hi! link LineNR Blank
+    " hi Blank guifg=#262626 guibg=#262626 ctermfg=0 ctermbg=0
+    hi Blank guifg=#262626 guibg=NONE ctermfg=0 ctermbg=NONE
+    hi! link FoldColumn Blank
+    hi! link SignColumn Blank
+    hi! link LineNR Blank
     hi! link CursorLineNR Blank
 
-    call s:set_lightline_colorscheme('blank')
+    " call s:set_lightline_colorscheme('blank')
+    call lightline#toggle()
 
     if g:gitgutter_is_loaded
       GitGutterBufferDisable
@@ -153,7 +159,8 @@
       ALEReset
     endif
 
-    echo @%
+    " echo @%
+    echo ''
   endfunction
 
   " function! s:toggle_focus()
@@ -425,6 +432,8 @@
           \ 'component_type': {
           \   'caps': 'warning',
           \ },
+          \ 'separator': {'left': '', 'right': ''},
+          \ 'subseparator': { 'left': '', 'right': ''}
           \ }
 
   " vim-capslock
@@ -446,6 +455,7 @@
     let g:tmuxline_theme = 'lightline'
     let g:tmuxline_preset = {
           \'a'    : '#S',
+          \'b'    : '#P',
           \'win'  : '#W',
           \'cwin' : '#W',
           \'x'    : '%a',
@@ -473,9 +483,9 @@
           " \}
     let g:tmuxline_separators = {
           \ 'left' : '',
-          \ 'left_alt': '',
+          \ 'left_alt': '',
           \ 'right' : '',
-          \ 'right_alt' : '',
+          \ 'right_alt' : '',
           \ 'space' : ' '}
     " let g:tmuxline_theme = {
           " \   'a'    : [ 236, 103 ],
@@ -720,8 +730,6 @@
     set laststatus=2
     set matchpairs+=<:>
     set mouse=""
-    " set spell
-    set nospell
     set number
     set numberwidth=3
     " set ruler
@@ -808,8 +816,8 @@
   " nnoremap <leader>th :set nohlsearch!<cr>
   " nnoremap <leader>tb :call ToggleBackground()<cr>
 
-  nnoremap <leader>at :ALEToggle<cr>
-  nnoremap <leader>tale :ALEToggle<cr>
+  nnoremap <leader>at <plug>(ale_toggle)
+  nnoremap <leader>tale <plug>(ale_toggle)
   nnoremap <leader>tgit :GitGutterToggle<cr>
 
   " relative line numbers
