@@ -17,22 +17,6 @@ zstyle ':completion:*' menu select
 # setopt menu_complete
 bindkey -e
 
-# precmd_conda_info() {
-  # if [[ -n $CONDA_PREFIX ]]; then
-    # if [[ $(basename $CONDA_PREFIX) == "miniconda3" ]]; then
-      # # Without this, it would display conda version
-      # CONDA_ENV="(base) "
-    # else
-      # # For all environments that aren't (base)
-      # CONDA_ENV="($(basename $CONDA_PREFIX)) "
-    # fi
-  # # When no conda environment is active, don't show anything
-  # else
-    # CONDA_ENV=""
-  # fi
-# }
-# # precmd_functions+=( precmd_conda_info )
-
 function git_info() {
   # local BRANCH=$(git symbolic-ref --short HEAD 2> /dev/null) || return
   # if [[ -n $BRANCH ]]; then
@@ -126,14 +110,44 @@ function min() {
   echo $(( $1 < $2 ? $1 : $2 ))
 }
 
-PROMPTTYPE="simple"
-# PROMPTTYPE="complex"
+# prompt parameters
+PROMPTTYPE="simple"  # "simple", "complex"
+NEWLINE=0  # 0,1
+PIPES=0  # 0, 1
 
+if [[ ${NEWLINE} -eq 0 ]]; then
+  NEWLINE_CHAR=''
+else
+  NEWLINE_CHAR="%{"$'\n'"%}"
+fi
+
+if [[ ${PIPES} -eq 0 ]]; then
+  UL=''
+  BL=''
+  UR=''
+  BR=''
+else
+  UL="${fg_darker}┏╸${color_clear} "
+  BL="${fg_darker}┗━━╸${color_clear} "
+  UR=" ${fg_darker}╺┓${color_clear}"
+  BR=" ${fg_darker}╺┛${color_clear}"
+  # UL="${fg_shade}┌╴${color_clear} "
+  # BL="${fg_shade}└──╴${color_clear} "
+  # UL="${fg_shade}╭╴${color_clear} "
+  # BL="${fg_shade}╰╴${color_clear} "
+  # UR=" ${fg_shade}╶╮${color_clear}"
+  # BR=" ${fg_shade}╶╯${color_clear}"
+  # UL="${fg_dark}┏╸${color_clear} "
+  # BL="${fg_dark}┗━━┫${color_clear} "
+  # UR=" ${fg_dark}╺┓${color_clear}"
+  # BR=" ${fg_dark}╺┛${color_clear}"
+fi
+
+# prompt setup
 if [[ $PROMPTTYPE == "simple" ]]; then
   # PROMPT="${topline}${botline}"
   # RPROMPT="${timestamp} ${BR}"
   (){ # local scope
-
     # fourth
     local function userlimiter() { echo $(( $COLUMNS - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅ ⋅⋅⋅⋅⋅⋅ ╺┓ ⋅⋅⋅ ") )) }
     local userlimit='$(max $(userlimiter) 1)'
@@ -167,12 +181,6 @@ if [[ $PROMPTTYPE == "simple" ]]; then
 
     local path="${fg_shade}%${prefixlimit}<⋅⋅⋅<${pathprefix}%<<${fg_coblue}%${suffixlimit}<⋅⋅⋅<${pathsuffix}%<<${color_clear}"
 
-    # local gitbranch gitsuffix
-    # local gitcheck=$(git symbolic-ref --short HEAD 2> /dev/null)
-    # if [[ -n $(git symbolic-ref --short HEAD 2> /dev/null) ]]; then
-      # gitbranch+='$(git symbolic-ref --short HEAD 2> /dev/null)'
-      # gitsuffix+=" ::"
-    # fi
     local left="${path}"
     # left+=" ${git}"
 
@@ -198,26 +206,11 @@ if [[ $PROMPTTYPE == "simple" ]]; then
 
     local botline=" ${linefeed} "
 
-    PROMPT="%${toplinelimit}>> ${left} ${linefeed} "
+    PROMPT="${NEWLINE_CHAR}%${toplinelimit}>> ${left} ${linefeed} "
     RPROMPT="${right}"
   }
 else
   (){ # local scope
-    local UL="${fg_darker}┏╸${color_clear}"
-    local BL="${fg_darker}┗━━╸${color_clear}"
-    local UR="${fg_darker}╺┓${color_clear}"
-    local BR="${fg_darker}╺┛${color_clear}"
-    # local UL="${fg_shade}┌╴${color_clear}"
-    # local BL="${fg_shade}└──╴${color_clear}"
-    # local UL="${fg_shade}╭╴${color_clear}"
-    # local BL="${fg_shade}╰╴${color_clear}"
-    # local UR="${fg_shade}╶╮${color_clear}"
-    # local BR="${fg_shade}╶╯${color_clear}"
-    # local UL="${fg_dark}┏╸${color_clear}"
-    # local BL="${fg_dark}┗━━┫${color_clear}"
-    # local UR="${fg_dark}╺┓${color_clear}"
-    # local BR="${fg_dark}╺┛${color_clear}"
-
     # fourth
     local function userlimiter() { echo $(( $COLUMNS - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅ ⋅⋅⋅⋅⋅⋅ ╺┓ ⋅⋅⋅ ") )) }
     local userlimit='$(max $(userlimiter) 1)'
@@ -257,10 +250,10 @@ else
       # gitbranch+='$(git symbolic-ref --short HEAD 2> /dev/null)'
       # gitsuffix+=" ::"
     # fi
-    local left="${UL} ${path}"
+    local left="${UL}${path}"
     # left+=" ${git}"
 
-    local right="${git} ${user} ${machine} ${UR}"
+    local right="${git} ${user} ${machine}${UR}"
       # Virtualenv.
       # right+='${VIRTUAL_ENV:+venv }'
 
@@ -278,12 +271,12 @@ else
 
     local function toplinelimiter() { echo $(( $COLUMNS - 20 )) }
     local toplinelimit='$(max $(toplinelimiter) 1)'
-    local topline="%${toplinelimit}>> ${left}${spacing}${right} %>>%{"$'\n'"%}"
+    local topline=" %${toplinelimit}>>${left}${spacing}${right} %>>%{"$'\n'"%}"
 
-    local botline=" ${BL} ${linefeed} "
+    local botline=" ${BL}${linefeed} "
 
-    PROMPT="${topline}${botline}"
-    RPROMPT="${timestamp} ${BR}"
+    PROMPT="${NEWLINE_CHAR}${topline}${botline}"
+    RPROMPT="${timestamp}${BR}"
   }
 fi
 
@@ -407,15 +400,30 @@ function latexsh() {
   latexmk -pdf -pvc -shell-escape "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$'
 }
 
-function minicondactivate() {
-# source ~/miniconda3/bin/activate  # commented out by conda initialize
-  PROMPT=" %11Fλ%f "
-  RPROMPT="%0F%10<(...<$CONDA_PROMPT_MODIFIER%<<$RPROMPT"
-  # ask_conda="$(PROMPT="${PROMPT:-}" __conda_exe shell.posix activate)" || \return
-  # echo "$ask_conda"
-
-  # ask_conda="$(PS1="${PS1:-}" __conda_exe shell.posix "$@")" || \return
-}
+# conda
+  # precmd_conda_info() {
+    # if [[ -n $CONDA_PREFIX ]]; then
+      # if [[ $(basename $CONDA_PREFIX) == "miniconda3" ]]; then
+        # # Without this, it would display conda version
+        # CONDA_ENV="(base) "
+      # else
+        # # For all environments that aren't (base)
+        # CONDA_ENV="($(basename $CONDA_PREFIX)) "
+      # fi
+    # # When no conda environment is active, don't show anything
+    # else
+      # CONDA_ENV=""
+    # fi
+  # }
+  # # precmd_functions+=( precmd_conda_info )
+  # function minicondactivate() {
+  # # source ~/miniconda3/bin/activate  # commented out by conda initialize
+    # PROMPT=" %11Fλ%f "
+    # RPROMPT="%0F%10<(...<$CONDA_PROMPT_MODIFIER%<<$RPROMPT"
+    # # ask_conda="$(PROMPT="${PROMPT:-}" __conda_exe shell.posix activate)" || \return
+    # # echo "$ask_conda"
+    # # ask_conda="$(PS1="${PS1:-}" __conda_exe shell.posix "$@")" || \return
+  # }
 
 function ris2bib() {
   ris2xml "$1" | xml2bib > "${1/%.ris/.bib}"
