@@ -9,11 +9,10 @@
   " execute "set <FocusLost>=\<Esc>[O"
 
   augroup init_settings | au!
-    au FileType * set conceallevel=0
+    au BufEnter * set nospell
     au BufEnter * :syntax sync fromstart
-    au BufEnter * :set spell
-    " set spell
-    " set nospell
+    au FileType * set conceallevel=0
+    au FileType text,markdown,html,tex set spell
   augroup END
 
   augroup remember_folds
@@ -267,7 +266,10 @@
     " call gruvbox_material#highlight('Function', l:palette.orange, l:palette.none)
     call gruvbox_material#highlight('Folded', l:palette.bg5, l:palette.none)
     " call gruvbox_material#highlight('String', l:palette.fg1, l:palette.none, 'bold')
-    call gruvbox_material#highlight('String', l:palette.fg1, l:palette.none, 'bold')
+    " call gruvbox_material#highlight('String', ['#e2cca9', '223'], l:palette.none, 'bold')
+    " call gruvbox_material#highlight('String', l:palette.yellow, l:palette.none, 'bold')
+    call gruvbox_material#highlight('String', l:palette.fg1, l:palette.bg1, 'bold')
+    " highlight! link String YellowBold
 
     call gruvbox_material#highlight('Todo', l:palette.grey1, l:palette.none, 'bold')
 
@@ -290,8 +292,7 @@
 
     " call gruvbox_material#highlight('MatchParen', l:palette.red, l:palette.none, 'bold')
     " call gruvbox_material#highlight('MatchParen', l:palette.none, l:palette.none, 'bold')
-    " call gruvbox_material#highlight('MatchParen', l:palette.none, l:palette.bg0, 'bold')
-    call gruvbox_material#highlight('MatchParen', l:palette.none, l:palette.none, 'bold')
+    call gruvbox_material#highlight('MatchParen', l:palette.none, l:palette.bg0, 'bold')
   endfunction
 
   function! s:gitgutter_colors()
@@ -317,7 +318,7 @@
     let g:gruvbox_material_background = 'medium'  " soft, (medium), hard
     let g:gruvbox_material_foreground = 'material'  " (material), mix, original
     let g:gruvbox_material_transparent_background = 1
-    let g:gruvbox_material_enable_bold = 0  " (0), 1
+    let g:gruvbox_material_enable_bold = 1  " (0), 1
     let g:gruvbox_material_enable_italic = 0  " (0), 1
     let g:gruvbox_material_disable_italic_comment = 0  " (0), 1
     let g:gruvbox_material_visual = 'grey background'  " (grey background), red background, green background, blue background, reverse
@@ -510,17 +511,17 @@
   let g:tabular_is_loaded = 1
   packadd tabular  " tabularize
     " nnoremap <leader><tab> :Tabularize /
-    nnoremap <tab><tab> :Tabularize /
-    vnoremap <tab><tab> :Tabularize /
+    nnoremap <leader><tab> :Tabularize /
+    vnoremap <leader><tab> :Tabularize /
     " vnoremap <tab> :Tabularize /
     " vnoremap <tab><space> :Tabularize /\zs<left><left><left>
-    vnoremap <tab>= :Tabularize /=<cr>
-    vnoremap <tab>( :Tabularize /(<cr>
-    vnoremap <tab>{ :Tabularize /{<cr>
-    vnoremap <tab>[ :Tabularize /[<cr>
-    vnoremap <tab>: :Tabularize /:<cr>
-    vnoremap <tab>, :Tabularize /,<cr>
-    vnoremap <tab>t :Tabularize /\|<cr>
+    vnoremap <leader><tab>= :Tabularize /=<cr>
+    vnoremap <leader><tab>( :Tabularize /(<cr>
+    vnoremap <leader><tab>{ :Tabularize /{<cr>
+    vnoremap <leader><tab>[ :Tabularize /[<cr>
+    vnoremap <leader><tab>: :Tabularize /:<cr>
+    vnoremap <leader><tab>, :Tabularize /,<cr>
+    vnoremap <leader><tab>t :Tabularize /\|<cr>
     " vnoremap <tab>\ :Tabularize /\zs<left><left><left>
 
   let g:fanfingtastic_is_loaded = 1
@@ -529,11 +530,10 @@
     let g:fanfingtastic_fix_t = 1
     let g:fanfingtastic_ignorecase = 1
 
-  let g:polyglot_is_loaded = 1
+  " let g:polyglot_is_loaded = 1
   " let g:polyglot_disabled = ['ftdetect', 'sensible']
-  let g:polyglot_disabled = ['markdown', 'ftdetect', 'sensible']
-  packadd vim-polyglot
-    " let g:polyglot_disabled = ['sensible']
+  " packadd vim-polyglot
+    " " let g:polyglot_disabled = ['sensible']
 
   let g:juliavim_is_loaded = 1
   packadd julia-vim
@@ -635,7 +635,7 @@
     " let g:ale_echo_delay = 0
     let g:ale_python_pylint_options = "--init-hook=\"import sys; sys.path.append(\'" . trim(system('git rev-parse --show-toplevel')) . "\')\""
 
-    au FileType python call s:setup_ale()
+    " au FileType python call s:setup_ale()
     au FileType lua call s:setup_ale()
     au FileType vim call s:setup_ale()
     au FileType tex call s:setup_ale()
@@ -738,6 +738,7 @@
     set showcmd
     set showtabline=1
     set smartcase
+    " set nospell
     set spelllang+=cjk
     set spellsuggest=best,5
     set splitbelow
