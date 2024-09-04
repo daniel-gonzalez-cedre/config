@@ -341,7 +341,7 @@ fi
 
 export HOMEBREW_AUTO_UPDATE_SECS="86400"
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/Cellar:$PATH
+export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
 export PATH=~/.local/bin:$PATH
 # export PATH="$PYENV_ROOT/bin:$PATH"
 
