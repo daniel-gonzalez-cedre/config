@@ -27,6 +27,7 @@
   \definecolor{grey}{HTML}{685d5a}
   \definecolor{sepia}{HTML}{f7f0e4}  % f7f0e4 fdfbf8
   \definecolor{cream}{HTML}{fbf7f1}  % f7f0e4 fbf7f1 fdfbf8
+  \definecolor{butter}{HTML}{f3e8d5}  % f7f0e4 fdfbf8
   \definecolor{white}{HTML}{ffffff}  % f7f0e4 fdfbf8
 
   \definecolor{blue}{HTML}{1e88e5}
@@ -56,26 +57,6 @@
   \colorlet{foreground}{black}
   \colorlet{background}{\PaperColor}
   \pagecolor{background}
-
-  % tcolorbox settings
-  \newcommand{\keymod}[1]{{\tcbox{\textcolor{background}{\resizebox{!}{1ex}{\vphantom{hg}\texttt{#1}}}}}}
-  \newcommand{\keychar}[1]{{\tcbox{\textcolor{background}{\resizebox{!}{1ex}{\vphantom{hg}\texttt{#1}}}}}}
-  % \newcommand{\keychar}[1]{{\footnotesize\tcbox{\textcolor{background}{
-  % \vbox to 1.5ex {\vfil
-  % \hbox to 1ex{\vphantom{hg}\texttt{\centering #1}}%
-  % \vfil
-  % }}}}}
-  \newcommand{\inline}[1]{{\tcbox{\textcolor{gruvfg}{\resizebox{!}{1ex}{\texttt{\vphantom{hg}\Verb!#1!}}}}}}
-  \newcommand{\snip}[1]{{\tcbox{\textcolor{gruvfg}{\resizebox{!}{1ex}{\texttt{\vphantom{hg}#1}}}}}}
-  \tcbset{%
-    on line, 
-    boxsep=2pt,
-    top=0pt,
-    bottom=0pt,
-    left=0pt,
-    right=0pt,
-    colframe=foreground,colback=foreground,
-  }
 
   \newcommand{\hi}[1]{\textcolor{high}{#1}}
   \newcommand{\high}[1]{\textcolor{high}{\itshape #1}}

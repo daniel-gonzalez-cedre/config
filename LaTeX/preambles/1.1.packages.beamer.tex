@@ -15,7 +15,13 @@
 \usepackage[group-separator={,},group-minimum-digits={3}]{siunitx}
 
 % COLORS
-\usepackage{color, soul, tcolorbox, xcolor}
+\usepackage{color, soul, xcolor}
+\usepackage[\MintedOption]{tcolorbox}
+\tcbuselibrary{hooks}
+\ifminted
+  \usepackage{minted}
+\else
+\fi
 
 % TABLES
 \usepackage{booktabs, colortbl, makecell, multirow}

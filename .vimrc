@@ -1,7 +1,7 @@
 " INIT
   filetype plugin indent on
-  silent
   syntax enable
+  silent
 
   " let &t_fe = "\<Esc>[?1004h"
   " let &t_fd = "\<Esc>[?1004l"
@@ -533,7 +533,7 @@
   " let g:polyglot_is_loaded = 1
   " let g:polyglot_disabled = ['ftdetect', 'sensible']
   " packadd vim-polyglot
-    " " let g:polyglot_disabled = ['sensible']
+  " let g:polyglot_disabled = ['ftdetect', 'sensible']
 
   let g:juliavim_is_loaded = 1
   packadd julia-vim
@@ -636,9 +636,12 @@
     let g:ale_python_pylint_options = "--init-hook=\"import sys; sys.path.append(\'" . trim(system('git rev-parse --show-toplevel')) . "\')\""
 
     " au FileType python call s:setup_ale()
-    au FileType lua call s:setup_ale()
-    au FileType vim call s:setup_ale()
-    au FileType tex call s:setup_ale()
+    " au FileType lua call s:setup_ale()
+    " au FileType vim call s:setup_ale()
+    " au FileType tex call s:setup_ale()
+
+    au FileType python,lua,vim,tex call s:setup_ale()
+    au FileType python,lua,vim,tex ALEDisable
 
     function! s:setup_ale()
       packadd ale
@@ -769,9 +772,6 @@
 
   " INDENTATION
     set autoindent
-    " set smartindent
-    set smartindent
-
     set expandtab
     set shiftwidth=2
     set softtabstop=2
@@ -794,9 +794,9 @@
   let g:haskell_indent_guard = 5
   let g:incsearch#auto_nohlsearch = 1
   let g:latex_to_unicode_file_types = '.*'
+  let g:python_highlight_all = 1
   let g:matchparen_timeout = 8
   let g:matchparen_insert_timeout = 8
-  let g:python_highlight_all = 1
   let g:tex_flavor = 'latex'
   let g:unicoder_cancel_normal = 1
   " let g:unicoder_cancel_insert = 1
@@ -1013,13 +1013,13 @@
   inoremap ( ()<c-g>U<left>
   inoremap [ []<c-g>U<left>
   inoremap { {}<c-g>U<left>
-  inoremap ) <c-r>=ClosePair(')')<cr>
-  inoremap ] <c-r>=ClosePair(']')<cr>
-  inoremap } <c-r>=ClosePair('}')<cr>
-  inoremap > <c-r>=ClosePair('>')<cr>
-  inoremap " <c-r>=QuoteDelim('"')<cr>
-  inoremap ' <c-r>=QuoteDelim("'")<cr>
-  inoremap ` <c-r>=QuoteDelim('`')<cr>
+  inoremap <silent> ) <c-r>=ClosePair(')')<cr>
+  inoremap <silent> ] <c-r>=ClosePair(']')<cr>
+  inoremap <silent> } <c-r>=ClosePair('}')<cr>
+  inoremap <silent> > <c-r>=ClosePair('>')<cr>
+  inoremap <silent> " <c-r>=QuoteDelim('"')<cr>
+  inoremap <silent> ' <c-r>=QuoteDelim("'")<cr>
+  inoremap <silent> ` <c-r>=QuoteDelim('`')<cr>
   inoremap <c-g>q ``''<left><left>
 
   vmap ( <s-s>(<cr>

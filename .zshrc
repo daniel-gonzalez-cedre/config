@@ -363,7 +363,7 @@ alias rm="rm -v"
 alias diff="grc diff"
 alias rsync="rsync -v --progress"
 
-alias ls="tree -L 1 --dirsfirst --noreport"
+alias ls="tree -L 1 -N --dirsfirst --noreport"
 alias tree="tree -N --dirsfirst --noreport"
 # function tree_ascii() {
   # tree --dirsfirst -C -N -h "$1" | sed 's/├/\+/g; s/─/-/g; s/└/\\/g'
@@ -388,16 +388,16 @@ alias latexmk="latexmk -pdf -pvc"
   # latexmk -pdf -pvc "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$'
 # }
 function latex() {
-  latexmk -pdf -pvc "$1" | grep -i -A7 '^!.*\|^.*error.*$'
+  latexmk "$1" | grep -i -A7 '^!.*\|^.*error.*$'
 }
 function xelatex() {
-  latexmk -pdf -pvc -xelatex "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$'
+  latexmk -xelatex "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$'
 }
 function lualatex() {
-  latexmk -pdf -pvc -lualatex "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$'
+  latexmk -lualatex "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$'
 }
 function latexsh() {
-  latexmk -pdf -pvc -shell-escape "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$'
+  latexmk --shell-escape "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$'
 }
 
 # conda

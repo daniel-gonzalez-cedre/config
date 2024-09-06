@@ -1,11 +1,13 @@
 \makeatletter
   % some sensible defaults
   \gdef\DraftOption{}
+  \gdef\MintedOption{}
   \gdef\BookChapterOption{}
   \gdef\DateHeaderText{}
   \gdef\ProofSpacing{-0.75\baselineskip}
 
   \newif\ifdraft
+  \newif\ifminted
   \newif\ifbeamer
   \newif\ifheaders
   \newif\iffooters
@@ -170,15 +172,26 @@
   \def\setFootnoteMark@numbers{\footnotesymbolsfalse}
   \def\setFootnoteMark@symbols{\footnotesymbolstrue}
 
-  \newcommand{\setup}[6]{%
+  % setMinted
+  \def\setMinted@yes{%
+    \mintedtrue%
+    \gdef\MintedOption{minted}%
+  }
+  \def\setMinted@no{%
+    \mintedfalse%
+    \gdef\MintedOption{}%
+  }
+
+  \newcommand{\setup}[7]{%
     \csname setDraft@#1\endcsname%
-    \csname setDocument@#2\endcsname%
-    \csname setPaper@#3\endcsname%
-    \csname setDate@#4\endcsname%
-    \csname setMathSymbols@#5\endcsname%
-    \csname setFootnoteMark@#6\endcsname%
+    \csname setMinted@#2\endcsname%
+    \csname setDocument@#3\endcsname%
+    \csname setPaper@#4\endcsname%
+    \csname setDate@#5\endcsname%
+    \csname setMathSymbols@#6\endcsname%
+    \csname setFootnoteMark@#7\endcsname%
   }
 \makeatother
 
-%     { #1      }{ #2     }{ #3      }{ #4     }{ #5            }{ #6             }
-\setup{\optDraft}{\optType}{\optPaper}{\optDate}{\optMathSymbols}{\optFootnoteMark}
+%     { #1      }{ #2       }{ #3     }{ #4      }{ #5     }{ #6            }{ #7             }
+\setup{\optDraft}{\optMinted}{\optType}{\optPaper}{\optDate}{\optMathSymbols}{\optFootnoteMark}
