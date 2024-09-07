@@ -38,6 +38,10 @@
   set viewdir=~/.vim/vimfiles/viewfiles//
   set viewoptions=cursor,folds
   augroup remember_folds | au!
+    " autocmd FileType gitcommit let b:amnesia=true
+    " if !exists("b:foo")
+      " autocmd ...
+    " endif
     autocmd BufWinLeave * mkview
     autocmd BufWinEnter * silent! loadview
   augroup END

@@ -21,6 +21,24 @@
 \ifminted
   \usepackage{minted}
   \usepackage{fontspec}
+  % SATUS BUG FIX [tufte+fontspec LuaLaTex]
+  \renewcommand\allcapsspacing[1]{{\addfontfeature{LetterSpace=15}#1}}
+  \renewcommand\smallcapsspacing[1]{{\addfontfeature{LetterSpace=10}#1}}
+  % FINEM BUG FIX [tufte+fontspec LuaLaTex]
+  \setmonofont{BerkeleyMono}[
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic,
+    BoldItalicFont = *-BoldItalic,
+    Extension = .otf,
+    Scale=MatchLowercase,
+  ]
+  % \setmonofont{CommitMono-450-01111-00000011000-450}[
+    % UprightFont = *-Regular,
+    % ItalicFont = *-Italic,
+    % Extension = .otf,
+    % Scale=MatchLowercase,
+  % ]
 \else
 \fi
 

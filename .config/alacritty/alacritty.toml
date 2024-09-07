@@ -23,18 +23,18 @@ size = 14.0
 # size = 20.0
 
 [font.normal]
-# family="Berkeley Mono"
-family="CommitMono-450-01111-00000011000"
+family="Berkeley Mono"
+# family="CommitMono-450-01111-00000011000"
 style="Regular"
 
 [font.bold]
-# family="Berkeley Mono"
-family="CommitMono-450-01111-00000011000"
+family="Berkeley Mono"
+# family="CommitMono-450-01111-00000011000"
 style="Bold"
 
 [font.italic]
-# family="Berkeley Mono"
-family="CommitMono-450-01111-00000011000"
+family="Berkeley Mono"
+# family="CommitMono-450-01111-00000011000"
 style="Italic"
 
 [font.bold_italic]
