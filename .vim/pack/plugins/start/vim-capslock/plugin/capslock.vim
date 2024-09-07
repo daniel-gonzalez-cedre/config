@@ -26,6 +26,9 @@ function! s:enable(mode, ...) abort
     endwhile
   endif
   let &l:readonly = &l:readonly
+  if g:lightline_is_loaded
+    call lightline#update()
+  endif
   return ''
 endfunction
 
@@ -42,6 +45,9 @@ function! s:disable(mode) abort
     endwhile
   endif
   let &l:readonly = &l:readonly
+  if g:lightline_is_loaded
+    call lightline#update()
+  endif
   return ''
 endfunction
 
@@ -70,7 +76,7 @@ function! s:exitcallback() abort
 endfunction
 
 function! CapsLockStatusline(...) abort
-  return s:enabled('i') ? (a:0 == 1 ? a:1 : '[Caps]') : ''
+  return s:enabled('i') ? (a:0 == 1 ? a:1 : 'CAPS') : ''
 endfunction
 
 augroup capslock

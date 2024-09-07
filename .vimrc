@@ -410,16 +410,21 @@
   packadd lightline.vim
     set noshowmode
     function! LightlineFilenameAndMod()
-      let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
-      let modified = &modified ? ' +' : ''
-      return filename . modified
+      let l:filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+      let l:modified = &modified ? ' +' : ''
+      return l:filename . modified
+    endfunction
+    function! CapsLockStatus()
+      let l:capstatus = exists('*CapsLockStatusline')?CapsLockStatusline():''
+      return l:capstatus
     endfunction
 
     let g:lightline = { 
           \ 'colorscheme': 'gruvbox_material', 
           \ 'active': {
           \   'left': [ [ 'mode', 'paste' ],
-          \             [ 'caps', 'filenameAndMod' ] ],
+          \             [ 'caps', 'filename' ],
+          \             [ 'modified' ] ],
           \   'right': [ [ 'lineinfo' ],
           \              [ 'percent' ],
           \              [ 'readonly', 'filetype' ] ]
@@ -436,10 +441,19 @@
           \ 'separator': {'left': '', 'right': ''},
           \ 'subseparator': { 'left': '', 'right': ''}
           \ }
+          " \ 'component_function': {
+          " \   'filenameAndMod': 'LightlineFilenameAndMod',
+          " \   'caps': 'CapsLockStatus',
+          " \ },
+          " \ 'component_expand': {
+          " \   'caps': 'CapsLockStatusline',
+          " \ },
 
   " vim-capslock
-    nnoremap <silent> <c-g>c <plug>CapsLockToggle:call lightline#update()<cr>
-    inoremap <silent> <c-g>c <c-o><plug>CapsLockToggle<c-o>:call lightline#update()<cr>
+    nnoremap <silent> <c-g>c <plug>CapsLockToggle
+    " nnoremap <silent> <c-g>c <plug>CapsLockToggle:call lightline#update()<cr>
+    " inoremap <silent> <c-g>c <c-o><plug>CapsLockToggle<c-o>:call lightline#update()<cr>
+    " imap <c-g>c <c-l><c-o>:call lightline#update()<cr>
 
   let g:tmuxline_is_loaded = 1
   packadd tmuxline.vim
@@ -1009,10 +1023,10 @@
 
 
 " DELIMITER MAPPINGS
-  inoremap <c-g>m $
-  inoremap ( ()<c-g>U<left>
-  inoremap [ []<c-g>U<left>
-  inoremap { {}<c-g>U<left>
+  inoremap <silent> <c-g>m $
+  inoremap <silent> ( ()<c-g>U<left>
+  inoremap <silent> [ []<c-g>U<left>
+  inoremap <silent> { {}<c-g>U<left>
   inoremap <silent> ) <c-r>=ClosePair(')')<cr>
   inoremap <silent> ] <c-r>=ClosePair(']')<cr>
   inoremap <silent> } <c-r>=ClosePair('}')<cr>
@@ -1020,29 +1034,33 @@
   inoremap <silent> " <c-r>=QuoteDelim('"')<cr>
   inoremap <silent> ' <c-r>=QuoteDelim("'")<cr>
   inoremap <silent> ` <c-r>=QuoteDelim('`')<cr>
-  inoremap <c-g>q ``''<left><left>
+  inoremap <silent> <c-g>q ``''<left><left>
 
+  " VIM-SURROUND DEPENDENT MAPPINGS
+  " <s-s>(
+  " <s-s>)
   vmap ( <s-s>(<cr>
   vmap ) <s-s>)<cr>
-  vmap <leader>b <s-s>)<cr>
-  vmap <leader>p <s-s>)<cr>
   vmap <leader>( <s-s>(<cr>
   vmap <leader>) <s-s>)<cr>
 
-  vmap [ <s-s>[<cr>
-  vmap ] <s-s>]<cr>
-  vmap <leader>r <s-s>]<cr>
+  " <s-s>[
+  " <s-s>]
+  " vmap [ <s-s>[<cr>
+  " vmap ] <s-s>]<cr>
   vmap <leader>[ <s-s>[<cr>
   vmap <leader>] <s-s>]<cr>
 
+  " <s-s>{
+  " <s-s>}
   vmap { <s-s>{<cr>
   vmap } <s-s>}<cr>
-  vmap <leader>B <s-s>}<cr>
   vmap <leader>{ <s-s>{<cr>
   vmap <leader>} <s-s>}<cr>
 
+  " <s-s><
+  " <s-s>>
   " vmap <leader>a <s-s>><cr>
-  vmap <leader>k <s-s>><cr>
   vmap <leader>< <s-s><<cr>
   vmap <leader>> <s-s>><cr>
 
@@ -1051,7 +1069,7 @@
   vmap <leader>$ <s-s>$<cr>
 
   vmap " <s-s>"<cr>
-  vmap ' <s-s>'<cr>
+  " vmap ' <s-s>'<cr>
   vmap ` <s-s>`<cr>
   vmap <c-g>q <s-s><c-q><cr>
   vmap <leader>" <s-s>"<cr>

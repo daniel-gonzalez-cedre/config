@@ -332,72 +332,74 @@ else
   export TERM=xterm-256color
 fi
 
-export HOMEBREW_AUTO_UPDATE_SECS="86400"
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
 export PATH=~/.local/bin:$PATH
 # export PATH="$PYENV_ROOT/bin:$PATH"
 
-# export PYENV_ROOT="$HOME/.pyenv"
+export HOMEBREW_AUTO_UPDATE_SECS="86400"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+# export PYENV_ROOT="$HOME/.pyenv"
 
-export FFDIR=${HOME}/Library/Application\ Support/Firefox
-for FILE in ${FFDIR}/Profiles/*
-do
-  # PATTERN=".*.........default-release"
-  PATTERN=".*.default-release"
-  [[ $FILE =~ $PATTERN ]] && export FFPROFILE=$FILE
-done
+# export FFDIR=${HOME}/Library/Application\ Support/Firefox
+# for FILE in ${FFDIR}/Profiles/*
+# do
+  # # PATTERN=".*.........default-release"
+  # PATTERN=".*.default-release"
+  # [[ $FILE =~ $PATTERN ]] && export FFPROFILE=$FILE
+# done
 
-export LWDIR=${HOME}/Library/Application\ Support/librewolf
-for FILE in ${LWDIR}/Profiles/*
-do
-  # PATTERN=".*.........default-release"
-  PATTERN=".*.default-default"
-  [[ $FILE =~ $PATTERN ]] && export LWPROFILE=$FILE
-done
+# export LWDIR=${HOME}/Library/Application\ Support/librewolf
+# for FILE in ${LWDIR}/Profiles/*
+# do
+  # # PATTERN='.*.........default-release'
+  # PATTERN='.*.default-default'
+  # [[ $FILE =~ $PATTERN ]] && export LWPROFILE=$FILE
+# done
 
-alias cp="cp -v"
-alias mv="mv -v"
-alias rm="rm -v"
-alias diff="grc diff"
-alias rsync="rsync -v --progress"
+# ALIASES
+alias cp='cp -v'
+alias mv='mv -v'
+alias rm='rm -v'
+alias diff='grc diff'
+alias rsync='rsync -v --progress'
 
-alias ls="tree -L 1 -N --dirsfirst --noreport"
-alias tree="tree -N --dirsfirst --noreport"
+alias ls='tree -L 1 -N --dirsfirst --noreport'
+alias tree='tree -N --dirsfirst --noreport'
 # function tree_ascii() {
   # tree --dirsfirst -C -N -h "$1" | sed 's/├/\+/g; s/─/-/g; s/└/\\/g'
 # }
 
-alias g++="g++ -std=c++11"
-alias ghc="ghc -no-keep-hi-files -no-keep-o-files"
-alias haskell="runhaskell"
-alias lisp="sbcl"
-alias lisps="sbcl --script"
-alias matlab="/Applications/MATLAB_R2019a.app/bin/matlab -nodesktop -nosplash"
-# alias minicondactivate="source ~/miniconda3/bin/activate"
-alias python="python3"
+# alias g++="g++ -std=c++11"
+alias ghc='ghc -no-keep-hi-files -no-keep-o-files'
+alias haskell='runhaskell'
+alias lisp='sbcl'
+alias lisps='sbcl --script'
+alias python='python3'
 
-alias pdfcrop="/Library/TeX/texbin/pdfcrop"
-alias mpv="open -a /Applications/mpv.app/"
-alias istats="watch -n 0 --color istats"
-alias storage="watch -n 1 --color df -h"
+alias pdfcrop='/Library/TeX/texbin/pdfcrop'
+alias mpv='open -a /Applications/mpv.app/'
+alias istats='watch -n 0 --color istats'
+alias storage='watch -n 1 --color df -h'
 
-alias latexmk="latexmk -pdf -pvc"
-# function latex() {
-  # latexmk -pdf -pvc "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$'
-# }
+alias latexmk='latexmk -pdf -pvc'
 function latex() {
-  latexmk "$1" | grep -i -A7 '^!.*\|^.*error.*$'
-}
-function xelatex() {
-  latexmk -xelatex "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$'
-}
-function lualatex() {
-  latexmk -lualatex "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$'
+  command latexmk -pdf -pvc "$1" | grep -i -A7 '^!.*\|^.*error.*$'
 }
 function latexsh() {
-  latexmk --shell-escape "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$'
+  command latexmk -pdf -pvc --shell-escape "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$'
+}
+function xelatex() {
+  command latexmk -pdf -pvc -xelatex "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$'
+}
+function xelatexsh() {
+  command latexmk -pdf -pvc -xelatex --shell-escape "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$'
+}
+function lualatex() {
+  command latexmk -pdf -pvc -lualatex "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$'
+}
+function lualatexsh() {
+  command latexmk -pdf -pvc -lualatex --shell-escape "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$'
 }
 
 # conda
@@ -485,7 +487,7 @@ function clean() {
   rm -f *.xdv(N)
   # rm -if .*.swp(N)
   # rm -if .*.swo(N)
-  rm -f _minted*(N)
+  rm -rf _minted*(N)
 }
 
 # computer vision
