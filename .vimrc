@@ -15,28 +15,38 @@
     au FileType text,markdown,html,tex set spell
   augroup END
 
+  " set home config directory
+  if !isdirectory($HOME.'/.vim')
+    call mkdir($HOME.'/.vim', '', 0770)
+  endif
+
+  " set session files directory
+  if !isdirectory($HOME.'/.vim/vimfiles')
+    call mkdir($HOME.'/.vim/vimfiles', '', 0700)
+  endif
+
+  " set swap directory
+  if !isdirectory($HOME.'/.vim/vimfiles/swapfiles')
+    call mkdir($HOME.'/.vim/vimfiles/swapfiles', '', 0700)
+  endif
+  set directory=~/.vim/vimfiles/swapfiles//
+
+  " set views directory
+  if !isdirectory($HOME.'/.vim/vimfiles/viewfiles')
+    call mkdir($HOME.'/.vim/vimfiles/viewfiles', '', 0700)
+  endif
+  set viewdir=~/.vim/vimfiles/viewfiles//
   set viewoptions=cursor,folds
   augroup remember_folds | au!
     autocmd BufWinLeave * mkview
     autocmd BufWinEnter * silent! loadview
   augroup END
 
-  " set home config directory
-  if !isdirectory($HOME.'/.vim')
-    call mkdir($HOME.'/.vim', '', 0770)
-  endif
-
-  " set swap file directory
-  if !isdirectory($HOME.'/.vim/swapfiles')
-    call mkdir($HOME.'/.vim/swapfiles', '', 0700)
-  endif
-  set directory=~/.vim/swapfiles//
-
   " set undo directory
-  if !isdirectory($HOME.'/.vim/undodir')
-    call mkdir($HOME.'/.vim/undodir', '', 0700)
+  if !isdirectory($HOME.'/.vim/vimfiles/undodir')
+    call mkdir($HOME.'/.vim/vimfiles/undodir', '', 0700)
   endif
-  set undodir=~/.vim/undodir
+  set undodir=~/.vim/vimfiles/undodir
   set undofile
 
   " make sure colors are set correctly
