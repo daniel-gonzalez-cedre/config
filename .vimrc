@@ -15,8 +15,8 @@
     au FileType text,markdown,html,tex set spell
   augroup END
 
-  augroup remember_folds
-    autocmd!
+  set viewoptions=cursor,folds
+  augroup remember_folds | au!
     autocmd BufWinLeave * mkview
     autocmd BufWinEnter * silent! loadview
   augroup END
