@@ -176,6 +176,7 @@
   \def\setMinted@yes{%
     \mintedtrue%
     \gdef\MintedOption{minted}%
+    \PassOptionsToPackage{outputdir=/tmp/latexmk}{minted}
   }
   \def\setMinted@no{%
     \mintedfalse%

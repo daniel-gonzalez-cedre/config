@@ -143,8 +143,10 @@
   \patchcmd{\epigraph}{\@epitext{#1}\\}{\vspace{-10ex}\@epitext{#1}\\}{}{}
 \makeatother
 
-\setlist[enumerate]{topsep=0ex,itemsep=0ex,partopsep=1ex,parsep=1ex}
 \setlist[itemize]{topsep=0ex,itemsep=0ex,partopsep=1ex,parsep=1ex,label=$\cdot$}
+\setlist[enumerate]{topsep=0ex,itemsep=0ex,partopsep=1ex,parsep=1ex}
+% \setlist[enumerate]{topsep=0ex,itemsep=0ex,partopsep=1ex,parsep=1ex,label*=\arabic*.}
+% \setlist[enumerate]{topsep=0ex,itemsep=0ex,partopsep=1ex,parsep=1ex,label*=\arabic*.,leftmargin=*}
 
 \hypersetup{%
   % pdfpagemode=FullScreen,

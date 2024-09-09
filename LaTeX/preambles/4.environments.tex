@@ -113,10 +113,9 @@
 
   \newtcblisting{codedark}[2][]{
     listing engine=minted,
-    minted options app={mathescape,linenos,fontsize=\footnotesize},  
-    % minted options app={mathescape,linenos,fontsize=\normalsize},
-    minted options app={mathescape,linenos},  
-    minted style=gruvbox-dark,
+    minted options app={escapeinside=??,mathescape,linenos,fontsize=\footnotesize},  
+    % minted options app={escapeinside=??,mathescape,linenos,fontsize=\normalsize},
+    minted style=coffee,
     minted language=#2,
     verbatim ignore indention at end=true,
     left=3pt, bottom=0pt, top=0pt, right=3pt,
@@ -128,8 +127,8 @@
 
   \newtcblisting{codelight}[2][]{
     listing engine=minted,
-    minted options app={mathescape,linenos,fontsize=\footnotesize},  
-    % minted options app={mathescape,linenos,fontsize=\normalsize},
+    minted options app={escapeinside=??,mathescape,linenos,fontsize=\footnotesize},  
+    % minted options app={escapeinside=??,mathescape,linenos,fontsize=\normalsize},
     minted style=gruvbox-light,
     minted language=#2,
     verbatim ignore indention at end=true,
@@ -146,8 +145,8 @@
     colframe=foreground, colback=foreground,
     listing only,
     on line,
-  }{\mintinline[style=gruvbox-dark,fontsize=\footnotesize]{#1}{#2}}
-  % }{\mintinline[style=gruvbox-dark,fontsize=\normalsize]{#1}{#2}}
+  }{\mintinline[escapeinside=??,mathescape,style=coffee,fontsize=\footnotesize]{#1}{#2}}
+  % }{\mintinline[escapeinside=??,mathescape,style=coffee,fontsize=\normalsize]{#1}{#2}}
 
   \NewTotalTCBox{\codeinlight}{O{text} v}{
     before upper=\strut,
@@ -155,8 +154,8 @@
     colframe=butter, colback=butter,
     listing only,
     on line,
-  }{\mintinline[style=gruvbox-light,fontsize=\footnotesize]{#1}{#2}}
-  % }{\mintinline[style=gruvbox-light,fontsize=\normalsize]{#1}{#2}}
+  }{\mintinline[escapeinside=??,mathescape,style=gruvbox-light,fontsize=\footnotesize]{#1}{#2}}
+  % }{\mintinline[escapeinside=??,mathescape,style=gruvbox-light,fontsize=\normalsize]{#1}{#2}}
 \else
 \fi
 
