@@ -434,7 +434,7 @@
 	<data>
 	YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
 	AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGkCwwVFlUkbnVsbNQNDg8QERIT
-	FFZOU1NpemVYTlNmRmxhZ3NWTlNOYW1lViRjbGFzcyNAJgAAAAAAABAQgAKAA18QFEJl
+	FFZOU1NpemVYTlNmRmxhZ3NWTlNOYW1lViRjbGFzcyNALAAAAAAAABAQgAKAA18QFEJl
 	cmtlbGV5TW9uby1SZWd1bGFy0hcYGRpaJGNsYXNzbmFtZVgkY2xhc3Nlc1ZOU0ZvbnSi
 	GRtYTlNPYmplY3QIERokKTI3SUxRU1heZ253foWOkJKUq7C7xMvOAAAAAAAAAQEAAAAA
 	AAAAHAAAAAAAAAAAAAAAAAAAANc=
@@ -561,11 +561,11 @@
 	<key>WindowTitle</key>
 	<string>λ</string>
 	<key>columnCount</key>
-	<integer>180</integer>
+	<integer>128</integer>
 	<key>name</key>
 	<string>gruvbox</string>
 	<key>rowCount</key>
-	<integer>56</integer>
+	<integer>44</integer>
 	<key>shellExitAction</key>
 	<integer>1</integer>
 	<key>type</key>
