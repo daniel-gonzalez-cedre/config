@@ -2,17 +2,13 @@
   filetype plugin indent on
   syntax enable
   silent
-
-  " let &t_fe = "\<Esc>[?1004h"
-  " let &t_fd = "\<Esc>[?1004l"
-  " execute "set <FocusGained>=\<Esc>[I"
-  " execute "set <FocusLost>=\<Esc>[O"
+  runtime ftplugin/man.vim
 
   augroup init_settings | au!
     au BufEnter * set nospell
     au BufEnter * :syntax sync fromstart
     au FileType * set conceallevel=0
-    au FileType text,markdown,html,tex set spell
+    au FileType text,markdown,html,tex,gitcommit set spell
   augroup END
 
   " set home config directory
@@ -20,7 +16,7 @@
     call mkdir($HOME.'/.vim', '', 0770)
   endif
 
-  " set session files directory
+  " set directory for miscellaneous book-keeping files
   if !isdirectory($HOME.'/.vim/vimfiles')
     call mkdir($HOME.'/.vim/vimfiles', '', 0700)
   endif
@@ -37,13 +33,11 @@
   endif
   set viewdir=~/.vim/vimfiles/viewfiles//
   set viewoptions=cursor,folds
-  augroup remember_folds | au!
-    " autocmd FileType gitcommit let b:amnesia=true
-    " if !exists("b:foo")
-      " autocmd ...
-    " endif
-    autocmd BufWinLeave * mkview
-    autocmd BufWinEnter * silent! loadview
+  set sessionoptions=folds
+  augroup autosave_recovery | au!
+    au BufWinLeave,BufLeave,BufWritePost,BufHidden,QuitPre ?* nested silent! mkview!
+    " au BufWinLeave * mkview
+    au BufWinEnter ?* silent! loadview
   augroup END
 
   " set undo directory
@@ -65,7 +59,7 @@
 
   " reload if file has been edited elsewhere
   redir => capture
-  silent autocmd CursorHold
+  silent au CursorHold
   redir END
   if match(capture, 'checktime') == -1
     augroup reload_settings
@@ -124,6 +118,19 @@
 
 
 " COLORS
+  " \ll to highlight a line
+  noremap <silent> \ll :call matchadd('MarkedLine', '\%'.line('.').'l')<cr>
+
+  " \lc to clear a highlight
+  nnoremap <silent> \lc :
+    \for m in filter(getmatches(), { i, v -> has_key(l:v, 'pattern') && l:v.pattern is? '\%'.line('.').'l'} )
+    \<bar>   :call matchdelete(m.id)
+    \<bar> :endfor<cr>
+  vnoremap <silent> \lc :normal \lc<cr>
+
+  " \L to remove all line highlights
+  nnoremap <silent> \L :call clearmatches()<cr>
+
   function! s:set_lightline_colorscheme(name) abort
     let g:lightline.colorscheme = a:name
     call lightline#init()
@@ -307,6 +314,11 @@
     " call gruvbox_material#highlight('MatchParen', l:palette.red, l:palette.none, 'bold')
     " call gruvbox_material#highlight('MatchParen', l:palette.none, l:palette.none, 'bold')
     call gruvbox_material#highlight('MatchParen', l:palette.none, l:palette.bg0, 'bold')
+
+    " call gruvbox_material#highlight('MarkedLine', l:palette.none, l:palette.bg5, 'bold')
+    call gruvbox_material#highlight('MarkedLine', l:palette.none, l:palette.bg2)
+
+    highlight HighlightedyankRegion cterm=reverse gui=reverse
   endfunction
 
   function! s:gitgutter_colors()
@@ -372,7 +384,7 @@
 
   let g:highlightedyank_is_loaded=1
   packadd vim-highlightedyank
-    let g:highlightedyank_highlight_duration = 50
+    let g:highlightedyank_highlight_duration = 100
     let g:highlightedyank_highlight_in_visual = 0
 
   " let g:autocomplpop_is_loaded = 1
@@ -683,9 +695,10 @@
       noremap [e <plug>(ale_previous_wrap_error)
       noremap ]w <plug>(ale_next_wrap_warning)
       noremap [w <plug>(ale_previous_wrap_warning)
+      noremap <leader>ad <plug>(ale_detail)
       noremap <leader>bd <plug>(ale_detail)
-      nnoremap <leader>ta <plug>(ale_toggle)
-      nnoremap <leader>ll <plug>(ale_lint)
+      nnoremap <leader>at <plug>(ale_toggle)
+      nnoremap <leader>al <plug>(ale_lint)
     endfunction
   augroup END
 
@@ -739,10 +752,10 @@
 
   " GENERAL
     augroup set_settings | au!
-      autocmd BufNewFile,BufRead * setlocal formatoptions-=c
-      autocmd BufNewFile,BufRead * setlocal formatoptions-=o
-      autocmd BufNewFile,BufRead * setlocal formatoptions+=r
-      autocmd BufNewFile,BufRead * setlocal formatoptions+=j
+      au BufNewFile,BufRead * setlocal formatoptions-=c
+      au BufNewFile,BufRead * setlocal formatoptions-=o
+      au BufNewFile,BufRead * setlocal formatoptions+=r
+      au BufNewFile,BufRead * setlocal formatoptions+=j
     augroup END
     set background=dark
     set backspace=indent,eol,start
@@ -902,6 +915,21 @@
     " noremap <leader>bs :call ScratchBuffer()<cr>
 
   " MOVEMENT
+    " augroup yank_visual_movement | au!
+      " nnoremap v mmv
+      " vnoremap y "+ygv<c-c>
+      " au TextYankPost if v:event.operator ==# 'y' | normal `m | endif
+
+    " vmap y ygv<c-c>
+    " augroup yank_cursor_reset | au!
+    " augroup END
+    " augroup END
+    " there are no autocmd 
+    " augroup visual_cursor_reset | au!
+      " autocmd VisualEnter *
+      " autocmd VisualLeave *
+    " augroup END
+
     inoremap <left> <c-g>U<left>
     inoremap <right> <c-g>U<right>
     " noremap \h <c-w>h
@@ -923,15 +951,15 @@
     nnoremap <right> zl
     vnoremap <right> zl
 
-    nnoremap ]p }
-    vnoremap ]p }
-    onoremap ]p }
-    xnoremap ]p }
+    nnoremap g} }
+    vnoremap g} }
+    onoremap g} }
+    xnoremap g} }
 
-    nnoremap [p {
-    vnoremap [p {
-    onoremap [p {
-    xnoremap [p {
+    nnoremap g{ {
+    vnoremap g{ {
+    onoremap g{ {
+    xnoremap g{ {
 
     " nnoremap ]] }
     " vnoremap ]] }
@@ -943,30 +971,29 @@
     " onoremap [[ {
     " xnoremap [[ {
 
-
   " LINES
-    " beginning of line
-    nnoremap g<c-a> ^
-    vnoremap g<c-a> ^
-    onoremap g<c-a> ^
-    " beginning of wrapped line
-    nnoremap ga g^
-    vnoremap ga g^
-    onoremap ga g^
-    " operator pending to beginning of line
+    " start of rendered text line
+    nnoremap ga ^
+    vnoremap ga ^
+    onoremap ga ^
+    " start of logical text line
+    nnoremap gA g^
+    vnoremap gA g^
+    onoremap gA g^
+    " operator pending to start of logical text line
     onoremap <c-a> ^
-    " beginning of command line
+    " start of command line
     cnoremap <c-a> <home>
 
-    " end of line
-    nnoremap g<c-e> g_
-    vnoremap g<c-e> g_
-    onoremap g<c-e> g_
-    " end of wrapped line
-    nnoremap ge g$
-    vnoremap ge g$
-    onoremap ge g$
-    " operator pending to end of line
+    " end of rendered line of text
+    nnoremap ge g_
+    vnoremap ge g_
+    onoremap ge g_
+    " end of logical line of text
+    nnoremap gE g$
+    vnoremap gE g$
+    onoremap gE g$
+    " operator pending to end of logical text line
     onoremap <c-e> g_
     " end of command line
     cnoremap <c-e> <end>
@@ -1018,21 +1045,25 @@
   " COPY AND PASTE
     if has('clipboard')
       noremap d "+d
-      noremap p "+p
-      noremap x "+x:noh<bar>:echo<cr>
-      noremap X "+X:noh<bar>:echo<cr>
-
-      nnoremap y "+y
-      nnoremap Y "+Y
       nnoremap D "+D
-      nnoremap P "+P
-      nnoremap yy "+yy
       nnoremap dd "+dd
 
-      vnoremap y "+y`<
+      noremap y "+y
+      noremap Y "+Y
+      nnoremap yy "+yy
+
+      " vnoremap y "+ygv<c-c>
+
+      noremap p "+p
+      noremap P "+P
+
+      " noremap x "+x:noh<bar>:echo<cr>
+      " noremap X "+X:noh<bar>:echo<cr>
+
+      " vnoremap y "+y`<
     else
-      noremap x x:noh<bar>:echo<cr>
-      noremap X X:noh<bar>:echo<cr>
+      " noremap x x:noh<bar>:echo<cr>
+      " noremap X X:noh<bar>:echo<cr>
     endif
 
 
@@ -1217,7 +1248,7 @@
   augroup custom_cursors | au! 
     let &t_SI="\e[6 q"  " start insert mode
     let &t_EI="\e[2 q"  " end insert mode
-    " autocmd VimEnter * silent !echo \ne "\e[2 q"
+    " au VimEnter * silent !echo \ne "\e[2 q"
   augroup END
 
 " UNDERCURL SUPPORT FOR WEZTERM
@@ -1225,5 +1256,5 @@
   let &t_Ce = "\e[4:0m"
 
 augroup jump_settings | au!
-  autocmd VimEnter * :clearjumps
+  au VimEnter * :clearjumps
 augroup END

@@ -8,6 +8,7 @@ autoload -Uz compinit && compinit
 # source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # # source /opt/homebrew/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
+setopt histignoredups
 setopt promptsubst
 setopt promptpercent
 _comp_options+=(globdots)
@@ -424,50 +425,155 @@ alias mpv='open -a /Applications/mpv.app/'
 alias istats='watch -n 0 --color istats'
 alias storage='watch -n 1 --color df -h'
 
-alias latexmk='latexmk -pdf -pvc'
-function latex() {
-  command latexmk -pdf -pvc "$1" | grep -i -A7 '^!.*\|^.*error.*$'
-}
-function latexsh() {
-  command latexmk -pdf -pvc --shell-escape "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$'
-}
-function xelatex() {
-  command latexmk -pdf -pvc -xelatex "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$'
-}
-function xelatexsh() {
-  command latexmk -pdf -pvc -xelatex --shell-escape "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$'
-}
-function lualatex() {
-  command latexmk -pdf -pvc -lualatex "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$'
-}
-function lualatexsh() {
-  command latexmk -pdf -pvc -lualatex --shell-escape "$1" | grep -i -A7 '^!.*\|^.*error.*$\|^.*warning.*$'
+# $1: <options>
+#   pass "-i" as an argument to ask on every rm
+(){
+  function cleanlatex() {
+    mkdir -p /tmp/latexmk/
+    base_name="${1%.*}"
+    find /tmp/latexmk/ -depth 1 -name "_minted*${base_name}*" -exec rm -r '{}' \; 2>/dev/null
+    find /tmp/latexmk/ -depth 1 -name "${base_name}*aux" -exec rm '{}' \;
+    find /tmp/latexmk/ -depth 1 -name "${base_name}*bbl" -exec rm '{}' \;
+    find /tmp/latexmk/ -depth 1 -name "${base_name}*bcf" -exec rm '{}' \;
+    find /tmp/latexmk/ -depth 1 -name "${base_name}*blg" -exec rm '{}' \;
+    find /tmp/latexmk/ -depth 1 -name "${base_name}*brf" -exec rm '{}' \;
+    find /tmp/latexmk/ -depth 1 -name "${base_name}*fdb_latexmk" -exec rm '{}' \;
+    find /tmp/latexmk/ -depth 1 -name "${base_name}*fls" -exec rm '{}' \;
+    find /tmp/latexmk/ -depth 1 -name "${base_name}*idx" -exec rm '{}' \;
+    find /tmp/latexmk/ -depth 1 -name "${base_name}*ilg" -exec rm '{}' \;
+    find /tmp/latexmk/ -depth 1 -name "${base_name}*ind" -exec rm '{}' \;
+    find /tmp/latexmk/ -depth 1 -name "${base_name}*listings" -exec rm '{}' \;
+    find /tmp/latexmk/ -depth 1 -name "${base_name}*lof" -exec rm '{}' \;
+    find /tmp/latexmk/ -depth 1 -name "${base_name}*log" -exec rm '{}' \;
+    find /tmp/latexmk/ -depth 1 -name "${base_name}*lol" -exec rm '{}' \;
+    find /tmp/latexmk/ -depth 1 -name "${base_name}*lot" -exec rm '{}' \;
+    find /tmp/latexmk/ -depth 1 -name "${base_name}*nav" -exec rm '{}' \;
+    find /tmp/latexmk/ -depth 1 -name "${base_name}*out" -exec rm '{}' \;
+    find /tmp/latexmk/ -depth 1 -name "${base_name}*pyg" -exec rm '{}' \;
+    find /tmp/latexmk/ -depth 1 -name "${base_name}*run.xml" -exec rm '{}' \;
+    find /tmp/latexmk/ -depth 1 -name "${base_name}*snm" -exec rm '{}' \;
+    find /tmp/latexmk/ -depth 1 -name "${base_name}*toc" -exec rm '{}' \;
+    find /tmp/latexmk/ -depth 1 -name "${base_name}*xdv" -exec rm '{}' \;
+  }
+  function cleantex() { cleanlatex "$@" }
+
+  function cleanvim() {
+    mkdir -p /tmp/vim/
+    find . -depth 1 -name ".*.swo" -exec mv '{}' /tmp/vim/'{}' \;
+    find . -depth 1 -name ".*.swp" -exec mv '{}' /tmp/vim/'{}' \;
+  }
+
+  function clean() {
+    mkdir -p /tmp/Finder/
+    mkdir -p /tmp/python/
+    mkdir -p /tmp/latexmk/
+    mkdir -p /tmp/vim/
+
+    find . -depth 1 -name ".DS_Store" -exec mv '{}' /tmp/Finder/'{}' \;
+    find . -depth 1 -name "__pycache__/" -exec mv '{}' /tmp/python/'{}' \;
+  }
 }
 
-# conda
-  # precmd_conda_info() {
-    # if [[ -n $CONDA_PREFIX ]]; then
-      # if [[ $(basename $CONDA_PREFIX) == "miniconda3" ]]; then
-        # # Without this, it would display conda version
-        # CONDA_ENV="(base) "
-      # else
-        # # For all environments that aren't (base)
-        # CONDA_ENV="($(basename $CONDA_PREFIX)) "
-      # fi
-    # # When no conda environment is active, don't show anything
-    # else
-      # CONDA_ENV=""
-    # fi
-  # }
-  # # precmd_functions+=( precmd_conda_info )
-  # function minicondactivate() {
-  # # source ~/miniconda3/bin/activate  # commented out by conda initialize
-    # PROMPT=" %11Fλ%f "
-    # RPROMPT="%0F%10<(...<$CONDA_PROMPT_MODIFIER%<<$RPROMPT"
-    # # ask_conda="$(PROMPT="${PROMPT:-}" __conda_exe shell.posix activate)" || \return
-    # # echo "$ask_conda"
-    # # ask_conda="$(PS1="${PS1:-}" __conda_exe shell.posix "$@")" || \return
-  # }
+(){
+  # alias latexmk='latexmk -pvc -pdf'
+  function latex() {
+    local engine_option="--pdf"
+    local shell_escape=""
+    local file
+    local verbose="no"
+
+    # parse arguments
+    while [[ $# -gt 0 ]]; do
+      case "$1" in
+        --pdf)
+          engine_option="-pdf"
+          shift
+          ;;
+        --lua)
+          engine_option="-pdflua"
+          shift
+          ;;
+        --xe)
+          engine_option="-pdfxe"
+          shift
+          ;;
+        --se)
+          shell_escape="--shell-escape"
+          shift
+          ;;
+        -v)
+          verbose="yes"
+          shift
+          ;;
+        *)
+          if [[ -z "$file" ]]; then
+            file="$1"
+          else
+            echo "Unknown argument: $1"
+            echo "Usage: myfunc [<engine_option>] [--se] [-v] <file>"
+            echo "Engine options: --pdf, --lua, --xe"
+            return 1
+          fi
+          shift
+          ;;
+      esac
+    done
+
+    # check for file
+    if [[ -z "$file" ]]; then
+      echo "File argument is required."
+      echo "Usage: myfunc [<engine_option>] [--se] [-v] <file>"
+      echo "Engine options: --pdf, --lua, --xe"
+      return 1
+    fi
+
+    # run latexmk
+    if [[ "$verbose" == "yes" ]]; then
+      command latexmk -pvc "$engine_option" $shell_escape "$file" 2>&1 | awk '
+        /LaTeX Warning: Marginpar on page [0-9]+ moved\./ {
+          printf "\033[30m%s\033[0m\n", $0
+          next
+        }
+        tolower($0) ~ /warning/ { printf "\033[33m%s\033[0m\n", $0; next }
+        /^.*:[0-9]+:/ { printf "\033[31m%s\033[0m\n", $0; next }
+        { printf "\033[37m%s\033[0m\n", $0; next }
+      '
+    else
+      command latexmk -pvc "$engine_option" $shell_escape "$file" 2>&1 | awk '
+        /LaTeX Warning: Marginpar on page [0-9]+ moved\./ {
+          printf "\033[30m%s\033[0m\n", $0
+          next
+        }
+        tolower($0) ~ /warning/ { printf "\033[33m%s\033[0m\n", $0; next }
+        /^.*:[0-9]+:/ { printf "\033[31m%s\033[0m\n", $0; next }
+        /Output written on/ { printf "\033[32m%s\033[0m\n", $0; next }
+      '
+    fi
+    # /^=== / { printf "\033[32m%s\033[0m\n", $0; next }
+  }
+  function lualatex() { latex --lua "$@" }
+  function luatex() { latex --lua "$@" }
+  function xelatex() { latex --xe "$@" }
+  function xetex() { latex --xe "$@" }
+}
+
+(){
+  _tex_complete() {
+    local -a files
+    files=(*.tex)
+    _files -g '*.tex'
+  }
+
+  _add_latex_completion() {
+  local -a cmds
+  cmds=(vim lualatex luatex xelatex xetex cleanlatex cleantex) # Add other commands here
+    for cmd in $cmds; do
+      compdef _tex_complete $cmd
+    done
+  }
+
+  _add_latex_completion
+}
 
 function ris2bib() {
   ris2xml "$1" | xml2bib > "${1/%.ris/.bib}"
@@ -500,36 +606,6 @@ function size() {
 
 function temperature() {
   watch 'sudo powermetrics --samplers smc -i1 -n1 | tail'
-}
-
-# $1: <options>
-#   pass "-i" as an argument to ask on every rm
-function clean() {
-  rm -rf __pycache__/
-  rm -f .DS_Store
-  rm -f *.aux(N)
-  rm -f *.bbl(N)
-  rm -f *.bcf(N)
-  rm -f *.blg(N)
-  rm -f *.brf(N)
-  rm -f *.fdb_latexmk(N)
-  rm -f *.fls(N)
-  rm -f *.idx(N)
-  rm -f *.ilg(N)
-  rm -f *.ind(N)
-  rm -f *.lof(N)
-  rm -f *.log(N)
-  rm -f *.lol(N)
-  rm -f *.lot(N)
-  rm -f *.nav(N)
-  rm -f *.out(N)
-  rm -f *.run.xml(N)
-  rm -f *.snm(N)
-  rm -f *.toc(N)
-  rm -f *.xdv(N)
-  # rm -if .*.swp(N)
-  # rm -if .*.swo(N)
-  rm -rf _minted*(N)
 }
 
 # computer vision

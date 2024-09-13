@@ -40,4 +40,6 @@
     "editor.renderLineHighlightOnlyWhenFocus": true,
     "git.openRepositoryInParentFolders": "never",
     "window.confirmSaveUntitledWorkspace": false,
+    "security.workspace.trust.emptyWindow": false,
+    "security.workspace.trust.enabled": false,
 }
