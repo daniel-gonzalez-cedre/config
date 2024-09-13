@@ -9,6 +9,7 @@
     au BufEnter * :syntax sync fromstart
     au FileType * set conceallevel=0
     au FileType text,markdown,html,tex,gitcommit set spell
+    au FileType gitcommit set nowrap
   augroup END
 
   " set home config directory
