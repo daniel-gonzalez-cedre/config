@@ -5,10 +5,13 @@
   runtime ftplugin/man.vim
 
   augroup init_settings | au!
-    au BufEnter * set nospell
+    au BufEnter * set spell
+    au BufEnter *.py,*.ipynb set nospell
+    " au FileType text,markdown,html,tex,vim,gitcommit set spell
+
     au BufEnter * :syntax sync fromstart
+
     au FileType * set conceallevel=0
-    au FileType text,markdown,html,tex,gitcommit set spell
     au FileType gitcommit set nowrap
   augroup END
 
@@ -56,18 +59,22 @@
       let $NVIM_TUI_ENABLE_TRUE_COLOR=1
     endif
     set termguicolors
+    if &term =~ "alacritty"
+      let &t_fe = "\<Esc>[?1004h"
+      let &t_fd = "\<Esc>[?1004l"
+    endif
   endif
 
-  " reload if file has been edited elsewhere
-  redir => capture
-  silent au CursorHold
-  redir END
-  if match(capture, 'checktime') == -1
-    augroup reload_settings
-      au!
-      au CursorHold * silent! checktime
-    augroup END
-  endif
+  " " reload if file has been edited elsewhere
+  " redir => capture
+  " silent au CursorHold
+  " redir END
+  " if match(capture, 'checktime') == -1
+    " augroup reload_settings
+      " au!
+      " au CursorHold * silent! checktime
+    " augroup END
+  " endif
 
 
 " LEADER KEY
@@ -119,19 +126,6 @@
 
 
 " COLORS
-  " \ll to highlight a line
-  noremap <silent> \ll :call matchadd('MarkedLine', '\%'.line('.').'l')<cr>
-
-  " \lc to clear a highlight
-  nnoremap <silent> \lc :
-    \for m in filter(getmatches(), { i, v -> has_key(l:v, 'pattern') && l:v.pattern is? '\%'.line('.').'l'} )
-    \<bar>   :call matchdelete(m.id)
-    \<bar> :endfor<cr>
-  vnoremap <silent> \lc :normal \lc<cr>
-
-  " \L to remove all line highlights
-  nnoremap <silent> \L :call clearmatches()<cr>
-
   function! s:set_lightline_colorscheme(name) abort
     let g:lightline.colorscheme = a:name
     call lightline#init()
@@ -145,7 +139,6 @@
     setlocal showcmd
     hi! link FoldColumn NONE
     hi! link SignColumn NONE
-    hi! link LineNR NONE
     hi! link CursorLineNR NONE
 
     " call s:set_lightline_colorscheme('gruvbox_material')
@@ -167,8 +160,7 @@
     hi Blank guifg=#262626 guibg=NONE ctermfg=0 ctermbg=NONE
     hi! link FoldColumn Blank
     hi! link SignColumn Blank
-    hi! link LineNR Blank
-    hi! link CursorLineNR Blank
+    hi! link CursorLineNR LineNR
 
     " call s:set_lightline_colorscheme('blank')
     call lightline#toggle()
@@ -254,6 +246,8 @@
     hi texCmdSize ctermfg=208 ctermbg=none cterm=none
     hi texCmdStyle ctermfg=208 ctermbg=none cterm=none
 
+    hi SignColumn ctermbg=black
+
     if g:ale_is_loaded
       hi clear ALEError
       hi clear ALEWarning
@@ -278,48 +272,58 @@
       hi ALEVirtualTextWarning guifg=#504945 ctermfg=240
       " hi ALEVirtualTextWarning ctermfg=214
     endif
-
-    hi SignColumn ctermbg=black
   endfunction
 
   function! s:gruvbox_material_colors()
-    let l:palette = gruvbox_material#get_palette('medium', 'material', {})
+    " let l:palette = gruvbox_material#get_palette('medium', 'material', {'bg0': ['#262626', '235'], 'bg1': ['#2f2c29', '235']})
+    let l:palette = gruvbox_material#get_palette('medium', 'material', {'bg1': ['#2f2c29', '235']})
 
-    " call gruvbox_material#highlight('Function', l:palette.orange, l:palette.none)
-    call gruvbox_material#highlight('Folded', l:palette.bg5, l:palette.none)
-    " call gruvbox_material#highlight('String', l:palette.fg1, l:palette.none, 'bold')
-    " call gruvbox_material#highlight('String', ['#e2cca9', '223'], l:palette.none, 'bold')
-    " call gruvbox_material#highlight('String', l:palette.yellow, l:palette.none, 'bold')
+    call gruvbox_material#highlight('Comment', l:palette.grey0, l:palette.none, 'italic')
+
     call gruvbox_material#highlight('String', l:palette.fg1, l:palette.bg1, 'bold')
-    " highlight! link String YellowBold
 
-    call gruvbox_material#highlight('Todo', l:palette.grey1, l:palette.none, 'bold')
+    call gruvbox_material#highlight('Todo', l:palette.grey1, l:palette.none, 'bolditalic')
 
     call gruvbox_material#highlight('ErrorText', l:palette.none, l:palette.none, 'undercurl', l:palette.red)
     call gruvbox_material#highlight('WarningText', l:palette.none, l:palette.none, 'undercurl', l:palette.yellow)
     call gruvbox_material#highlight('InfoText', l:palette.none, l:palette.none, 'undercurl', l:palette.blue)
-    call gruvbox_material#highlight('HintText', l:palette.none, l:palette.none, 'undercurl', l:palette.green)
+    call gruvbox_material#highlight('HintText', l:palette.none, l:palette.none, 'undercurl', l:palette.aqua)
 
-    call gruvbox_material#highlight('FoldColumn', l:palette.bg5, l:palette.none)
+    " call gruvbox_material#highlight('ALEErrorSign', l:palette.none, l:palette.none, 'undercurl', l:palette.red)
+    " call gruvbox_material#highlight('ALEWarningSign', l:palette.none, l:palette.none, 'undercurl', l:palette.yellow)
+    " call gruvbox_material#highlight('ALEInfoSign', l:palette.none, l:palette.none, 'undercurl', l:palette.blue)
+    " call gruvbox_material#highlight('ALEVirtualTextError', l:palette.none, l:palette.none, 'undercurl', l:palette.red)
+    " call gruvbox_material#highlight('ALEVirtualTextWarning', l:palette.none, l:palette.none, 'undercurl', l:palette.yellow)
+
+    call gruvbox_material#highlight('Folded', l:palette.grey0, l:palette.bg1)
+    call gruvbox_material#highlight('FoldColumn', l:palette.bg2, l:palette.none)
     " call gruvbox_material#highlight('FoldColumn', l:palette.grey1, l:palette.none)
 
     " call gruvbox_material#highlight('CursorLine', l:palette.none, ['#2a2a2a',   '235'])
     " call gruvbox_material#highlight('CursorLineNr', l:palette.grey1, ['#2a2a2a',   '235'])
     " call gruvbox_material#highlight('CursorLine', l:palette.none, l:palette.bg1)
     " call gruvbox_material#highlight('CursorLineNr', l:palette.grey1, l:palette.bg1)
+    call gruvbox_material#highlight('LineNr', l:palette.bg5, l:palette.none)
     call gruvbox_material#highlight('CursorLine', l:palette.none, l:palette.none)
-    call gruvbox_material#highlight('CursorLineNr', l:palette.grey1, l:palette.none)
+    call gruvbox_material#highlight('CursorLineNr', l:palette.fg0, l:palette.none)
     " call gruvbox_material#highlight('StatusLine', l:palette.bg2, l:palette.none)
     " call gruvbox_material#highlight('StatusLineNC', l:palette.bg2, l:palette.none)
 
     " call gruvbox_material#highlight('MatchParen', l:palette.red, l:palette.none, 'bold')
     " call gruvbox_material#highlight('MatchParen', l:palette.none, l:palette.none, 'bold')
-    call gruvbox_material#highlight('MatchParen', l:palette.none, l:palette.bg0, 'bold')
+    call gruvbox_material#highlight('MatchParen', l:palette.none, l:palette.bg1, 'bold')
 
-    " call gruvbox_material#highlight('MarkedLine', l:palette.none, l:palette.bg5, 'bold')
-    call gruvbox_material#highlight('MarkedLine', l:palette.none, l:palette.bg2)
+    call gruvbox_material#highlight('NonText', l:palette.bg2, l:palette.none)
+    " call gruvbox_material#highlight('SpecialKey', l:palette.bg2, l:palette.none)
 
-    highlight HighlightedyankRegion cterm=reverse gui=reverse
+    " call gruvbox_material#highlight('LeadingSpace', l:palette.none, l:palette.bg1)
+    " match LeadingSpace /^\s\+/
+
+    " call gruvbox_material#highlight('TrailingSpace', l:palette.none, l:palette.bg1)
+    " match TrailingSpace / \+$/
+
+    " call gruvbox_material#highlight('HighlightedyankRegion', l:palette.none, l:palette.bg3)
+    " highlight HighlightedyankRegion cterm=reverse gui=reverse
   endfunction
 
   function! s:gitgutter_colors()
@@ -349,19 +353,18 @@
     let g:gruvbox_material_enable_italic = 0  " (0), 1
     let g:gruvbox_material_disable_italic_comment = 0  " (0), 1
     let g:gruvbox_material_visual = 'grey background'  " (grey background), red background, green background, blue background, reverse
-    let g:gruvbox_material_menu_selection_background = 'yellow'  " (grey), red, orange, yellow, green, aqua, blue, purple
-    let g:gruvbox_material_spell_foreground = 'colored'  " (none), colored
+    let g:gruvbox_material_menu_selection_background = 'aqua'  " (grey), red, orange, yellow, green, aqua, blue, purple
+    let g:gruvbox_material_spell_foreground = 'none'  " (none), colored
     let g:gruvbox_material_ui_contrast = 'low'  " (low), high
     let g:gruvbox_material_float_style = 'bright'  " (bright), dim
     let g:gruvbox_material_diagnostic_text_highlight = 0  " (0), 1
     let g:gruvbox_material_diagnostic_line_highlight = 0  " (0), 1
     let g:gruvbox_material_diagnostic_virtual_text = 'colored'  " (grey), colored, highlighted
     let g:gruvbox_material_better_performance = 1  " (0), 1
-    let g:gruvbox_material_colors_override = {'bg0': ['#262626', '235']}
     au ColorScheme gruvbox-material call s:gruvbox_material_colors()
   augroup END
 
-  packadd! gruvbox-material
+  packadd gruvbox-material
   colorscheme gruvbox-material
 
 
@@ -430,7 +433,7 @@
     " au ColorScheme * hi MatchWord gui=bold cterm=bold
   " augroup END
 
-  let g:foldsearch_is_loaded = 0
+  " let g:foldsearch_is_loaded = 1
   " packadd vim-foldsearch
 
   let g:lightline_is_loaded = 1
@@ -706,7 +709,12 @@
 
 " SET OPTIONS
   " FILETYPE SPECIFIC
+    augroup shell_settings | au!
+      au BufNewFile,BufRead *.sh set filetype=bash
+    augroup END
+
     augroup python_settings | au!
+      au FileType python setlocal foldmethod=indent
       au FileType python setlocal shiftwidth=2
       au FileType python setlocal softtabstop=2
       au FileType python setlocal tabstop=8
@@ -718,37 +726,25 @@
     augroup END
     
     augroup latex_settings | au!
+      packadd vimtex
       au BufNewFile,BufRead *.bib,*.tex,*.tikz set filetype=tex
       au BufNewFile,BufRead *.bib,*.tex,*.tikz set syntax=tex
 
-      au BufNewFile,BufRead *.bib,*.tex,*.tikz imap ` <nop>
-      au BufNewFile,BufRead *.bib,*.tex,*.tikz iunmap `
+      au FileType tex imap ` <nop>
+      au FileType tex iunmap `
 
+      au FileType tex setlocal foldmethod=syntax
       au FileType tex inoremap $ <c-r>=QuoteDelim('$')<cr>
       au FileType tex inoremap <c-g>m <c-r>=QuoteDelim('$')<cr>
       " au FileType tex inoremap <c-\> <c-r>=QuoteDelim('$')<cr>
-
-
-      let g:vimtex_is_loaded = 1
-      packadd vimtex
-
-      if g:vimtex_is_loaded
-        " au FileType tex set foldmethod=syntax
-        au FileType tex let g:vimtex_compiler_enabled = 0
-        au FileType tex let g:vimtex_complete_enabled = 0
-        " au FileType tex let g:vimtex_fold_enabled = 1
-        au FileType tex let g:vimtex_imaps_enabled = 0
-        " au FileType tex let g:vimtex_mappings_enabled = 0
-        au FileType tex let g:vimtex_quickfix_enabled = 0
-        au FileType tex let g:vimtex_syntax_nospell_comments = 1
-        au FileType tex let g:vimtex_view_enabled = 0
-
-        let g:Tex_SmartQuoteOpen = '``'
-        let g:Tex_SmartQuoteClose = "''"
-        " let g:tex_flavor = 'latex'
-        " let g:tex_fold_enabled = 1
-      endif
-
+      au FileType tex let g:vimtex_compiler_enabled = 0
+      au FileType tex let g:vimtex_complete_enabled = 0
+      au FileType tex let g:vimtex_fold_enabled = 1
+      au FileType tex let g:vimtex_imaps_enabled = 0
+      au FileType tex let g:vimtex_mappings_enabled = 0
+      au FileType tex let g:vimtex_quickfix_enabled = 0
+      au FileType tex let g:vimtex_syntax_nospell_comments = 1
+      au FileType tex let g:vimtex_view_enabled = 0
     augroup END
 
   " GENERAL
@@ -800,17 +796,25 @@
   " FOLDING
     set foldopen-=search
     set foldopen+=undo
-    set foldcolumn=1
-    set foldignore=
-    set foldlevelstart=99
-    set foldmethod=manual
+      set foldcolumn=0
+      set foldignore=
+      set foldlevelstart=99
+      set foldmethod=manual
     " set fillchars+=foldsep:│,foldclose:╶
     " set fillchars+=foldopen:├,foldsep:│,foldclose:╶
     " set fillchars+=foldopen:┣,foldsep:┃,foldclose:╺
     " set fillchars+=foldopen:┏,foldsep:┃,foldclose:╺
     " set fillchars+=foldopen:▾,foldsep:│,foldclose:▸
     " set fillchars+=foldopen:▿,foldsep:│,foldclose:▷
-    " set foldmethod=indent
+    set fillchars+=fold:\ 
+    set foldtext=MyFoldText()
+    function MyFoldText()
+      let line = getline(v:foldstart)
+      let sub = substitute(line, '/\*\|\*/\|{{{\d\=', '', 'g')
+      let sub = substitute(sub, ' ', '+', '')
+      " return '>' .. sub
+      return sub
+    endfunction
 
   " INDENTATION
     set autoindent
@@ -827,7 +831,8 @@
     set sidescroll=10
     set textwidth=0
     " set list
-    " set listchars=tab:--,nbsp:_,eol:⋅
+    " set listchars=nbsp:_,eol:⋅
+    " " set listchars=multispace:_,nbsp:_,eol:$
 
 
 " PLUGIN SETTINGS
@@ -938,10 +943,10 @@
     " noremap \k <c-w>k
     " noremap \l <c-w>l
 
-    nnoremap j gj
-    nnoremap k gk
-    nnoremap gj j
-    nnoremap gk k
+    " nnoremap j gj
+    " nnoremap k gk
+    " nnoremap gj j
+    " nnoremap gk k
 
     nnoremap <up> <c-y>
     vnoremap <up> <c-y>
@@ -1252,9 +1257,13 @@
     " au VimEnter * silent !echo \ne "\e[2 q"
   augroup END
 
-" UNDERCURL SUPPORT FOR WEZTERM
+" UNDERCURL SUPPORT
   let &t_Cs = "\e[4:3m"
   let &t_Ce = "\e[4:0m"
+
+" COLORED UNDERCURL SUPPORT
+  let &t_RB = "\<Esc>]11;?\<C-G>"
+  let &t_RV = "\<Esc>[>c"
 
 augroup jump_settings | au!
   au VimEnter * :clearjumps

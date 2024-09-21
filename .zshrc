@@ -154,9 +154,10 @@ function min() {
 }
 
 # prompt parameters
-PROMPTTYPE="simple"  # "simple", "complex"
-NEWLINE=0  # 0,1
-PIPES=0  # 0, 1
+# PROMPTTYPE="complex"  # "simple", "complex"
+PROMPTTYPE=1  # 0, 1
+NEWLINE=0  # 0, 1
+PIPES=1  # 0, 1
 
 if [[ ${NEWLINE} -eq 0 ]]; then
   NEWLINE_CHAR=''
@@ -170,10 +171,10 @@ if [[ ${PIPES} -eq 0 ]]; then
   UR=''
   BR=''
 else
-  UL="${fg_darker}┏╸${color_clear} "
-  BL="${fg_darker}┗━━╸${color_clear} "
-  UR=" ${fg_darker}╺┓${color_clear}"
-  BR=" ${fg_darker}╺┛${color_clear}"
+  UL="${fg_dark}╭╴${color_clear} "
+  BL="${fg_dark}╰╴${color_clear} "
+  UR=" ${fg_dark}╶╮${color_clear}"
+  BR=" ${fg_dark}╶╯${color_clear}"
   # UL="${fg_shade}┌╴${color_clear} "
   # BL="${fg_shade}└──╴${color_clear} "
   # UL="${fg_shade}╭╴${color_clear} "
@@ -187,7 +188,7 @@ else
 fi
 
 # prompt setup
-if [[ $PROMPTTYPE == "simple" ]]; then
+if [[ ${PROMPTTYPE} -eq 0 ]]; then
   # PROMPT="${topline}${botline}"
   # RPROMPT="${timestamp} ${BR}"
   (){ # local scope
@@ -497,7 +498,7 @@ alias storage='watch -n 1 --color df -h'
           engine_option="-pdfxe"
           shift
           ;;
-        --se)
+        --shell)
           shell_escape="--shell-escape"
           shift
           ;;
@@ -510,7 +511,7 @@ alias storage='watch -n 1 --color df -h'
             file="$1"
           else
             echo "Unknown argument: $1"
-            echo "Usage: myfunc [<engine_option>] [--se] [-v] <file>"
+            echo "Usage: myfunc [<engine_option>] [--shell] [-v] <file>"
             echo "Engine options: --pdf, --lua, --xe"
             return 1
           fi
@@ -522,7 +523,7 @@ alias storage='watch -n 1 --color df -h'
     # check for file
     if [[ -z "$file" ]]; then
       echo "File argument is required."
-      echo "Usage: myfunc [<engine_option>] [--se] [-v] <file>"
+      echo "Usage: myfunc [<engine_option>] [--shell] [-v] <file>"
       echo "Engine options: --pdf, --lua, --xe"
       return 1
     fi
@@ -573,6 +574,12 @@ alias storage='watch -n 1 --color df -h'
   }
 
   _add_latex_completion
+}
+
+function hex2rgb() {
+  hex="${1}"
+  printf "R   G   B\n"
+  printf "%d %d %d\n" 0x${hex:0:2} 0x${hex:2:2} 0x${hex:4:2}
 }
 
 function ris2bib() {
