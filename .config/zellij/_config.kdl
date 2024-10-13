@@ -1,0 +1,13 @@
+keybinds {
+    normal clear-defaults=true {
+        bind "F12" { SwitchToMode "locked"; }
+        bind "Ctrl b" { SwitchToMode "tmux"; }
+    }
+    locked {
+        bind "F12" { SwitchToMode "Normal"; }
+    }
+}
+
+// two settings to remove frame and only 1 status line, like tmux's default layout
+default_layout "compact"
+pane_frames false
