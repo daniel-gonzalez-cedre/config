@@ -103,10 +103,15 @@ function! vimtex#util#is_win() abort " {{{1
 endfunction
 
 " }}}1
+function! vimtex#util#win_clean_output(lines) abort " {{{1
+  return map(a:lines, {_, x -> substitute(x, '\r$', '', '')})
+endfunction
+
+" }}}1
 function! vimtex#util#extend_recursive(dict1, dict2, ...) abort " {{{1
   let l:option = a:0 > 0 ? a:1 : 'force'
   if index(['force', 'keep', 'error'], l:option) < 0
-    throw 'E475: Invalid argument: ' . l:option
+    throw 'E475: Invalid argument: ' .. l:option
   endif
 
   for [l:key, l:value] in items(a:dict2)
@@ -115,7 +120,7 @@ function! vimtex#util#extend_recursive(dict1, dict2, ...) abort " {{{1
     elseif type(l:value) == v:t_dict
       call vimtex#util#extend_recursive(a:dict1[l:key], l:value, l:option)
     elseif l:option ==# 'error'
-      throw 'E737: Key already exists: ' . l:key
+      throw 'E737: Key already exists: ' .. l:key
     elseif l:option ==# 'force'
       let a:dict1[l:key] = l:value
     endif
@@ -126,14 +131,14 @@ function! vimtex#util#extend_recursive(dict1, dict2, ...) abort " {{{1
 endfunction
 
 " }}}1
-function! vimtex#util#materialize_property(dict, name) abort " {{{1
+function! vimtex#util#materialize_property(dict, name, ...) abort " {{{1
   if type(get(a:dict, a:name)) != v:t_func | return | endif
 
   try
-    let a:dict[a:name] = a:dict[a:name]()
+    let a:dict[a:name] = call(a:dict[a:name], a:000)
   catch
     call vimtex#log#error(
-          \ 'Could not materialize property: ' . a:name,
+          \ 'Could not materialize property: ' .. a:name,
           \ v:exception)
     let a:dict[a:name] = ''
   endtry
@@ -172,7 +177,6 @@ function! vimtex#util#tex2unicode(line) abort " {{{1
   return l:line
 endfunction
 
-"
 " Define list for converting compositions like \"u to unicode ű
 let s:tex2unicode_list = map([
       \ ['\\"A',                'Ä'],
@@ -388,7 +392,7 @@ let s:tex2unicode_list = map([
       \ ['\\¨i',                'ï'],
       \ ['\\¨o',                'ö'],
       \ ['\\¨u',                'ü'],
-      \], {_, x -> ['\C' . x[0], x[1]]})
+      \], {_, x -> ['\C' .. x[0], x[1]]})
 
 " }}}1
 function! vimtex#util#tex2tree(str) abort " {{{1
@@ -454,16 +458,6 @@ function! vimtex#util#texsplit(str) abort " {{{1
 endfunction
 
 " }}}1
-function! vimtex#util#trim(str) abort " {{{1
-  if exists('*trim') | return trim(a:str) | endif
-
-  let l:str = substitute(a:str, '^\s*', '', '')
-  let l:str = substitute(l:str, '\s*$', '', '')
-
-  return l:str
-endfunction
-
-" }}}1
 function! vimtex#util#uniq_unsorted(list) abort " {{{1
   if len(a:list) <= 1 | return deepcopy(a:list) | endif
 
@@ -490,16 +484,26 @@ function! vimtex#util#undostore() abort " {{{1
 endfunction
 
 " }}}1
-function! vimtex#util#www(url) abort " {{{1
-  let l:os = vimtex#util#get_os()
+function! vimtex#util#url_encode(str) abort " {{{1
+  " This code is based on Tip Pope's vim-unimpaired:
+  " https://github.com/tpope/vim-unimpaired
+  return substitute(
+        \ iconv(a:str, 'latin1', 'utf-8'),
+        \ '[^A-Za-z0-9_.~-]',
+        \ '\="%".printf("%02X",char2nr(submatch(0)))',
+        \ 'g'
+        \)
+endfunction
 
-  silent execute (l:os ==# 'linux'
-        \         ? '!xdg-open'
-        \         : (l:os ==# 'mac'
-        \            ? '!open'
-        \            : '!start'))
-        \ . ' ' . a:url
-        \ . (l:os ==# 'win' ? '' : ' &')
+" }}}1
+function! vimtex#util#www(url) abort " {{{1
+  let l:cmd = get(#{
+        \ linux: 'xdg-open',
+        \ mac: 'open',
+        \ win: 'start',
+        \}, vimtex#util#get_os())
+
+  call vimtex#jobs#start(l:cmd .. ' ' .. a:url)
 endfunction
 
 " }}}1

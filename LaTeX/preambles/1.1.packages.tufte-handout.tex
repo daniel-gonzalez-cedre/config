@@ -19,6 +19,7 @@
 \usepackage[\MintedOption]{tcolorbox}
 \tcbuselibrary{hooks}
 \ifminted
+  \usepackage{pmboxdraw}
   \usepackage{fontspec}
   % SATUS BUG FIX [tufte+fontspec LuaLaTex]
   \renewcommand\allcapsspacing[1]{{\addfontfeature{LetterSpace=15}#1}}

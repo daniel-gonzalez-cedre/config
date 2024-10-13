@@ -17,6 +17,15 @@ function! vimtex#state#init() abort " {{{1
   let [l:main, l:main_parser, l:unsupported_modules] = s:get_main()
   let l:id = s:get_main_id(l:main)
 
+  if exists('s:cand_fallback')
+    call vimtex#log#warning(
+          \ 'Ignored latexmain specifier which points to: ',
+          \ s:cand_fallback,
+          \ 'Reason: That main file did not include this file!',
+          \)
+    unlet s:cand_fallback
+  endif
+
   if l:id >= 0
     let b:vimtex_id = l:id
     let b:vimtex = s:vimtex_states[l:id]
@@ -479,7 +488,6 @@ function! s:get_main_choose(list) abort " {{{1
 
     unsilent return vimtex#ui#select(l:choices, {
           \ 'prompt': 'Please select an appropriate main file:',
-          \ 'abort': v:false,
           \ 'return': 'key',
           \})
   endif
@@ -542,15 +550,17 @@ endfunction
 
 " }}}1
 function! s:globpath_upwards(expr, path) abort " {{{1
-  " Returns the list of files obtained by globpath(p, a:expr) with p going from
-  " a:path and upwards in the directory tree.
+  " Returns the list of files (NOT directories) obtained by globpath(p, a:expr)
+  " with p going from a:path and upwards in the directory tree.
   let l:path = a:path
   let l:dirs = l:path
   while l:path != fnamemodify(l:path, ':h')
     let l:path = fnamemodify(l:path, ':h')
     let l:dirs .= ',' . l:path
   endwhile
-  return split(globpath(fnameescape(l:dirs), a:expr), '\n')
+  return filter(
+        \ split(globpath(fnameescape(l:dirs), a:expr), '\n'),
+        \ 'filereadable(v:val)')
 endfunction
 
 " }}}1

@@ -9,6 +9,7 @@
   \newif\ifdraft
   \newif\ifminted
   \newif\ifbeamer
+  \newif\ifposter
   \newif\ifheaders
   \newif\iffooters
 
@@ -28,6 +29,7 @@
   % setDocument Tufte styles
   \def\setDocument@tuftebook{%
     \beamerfalse%
+    \posterfalse%
     \headerstrue%
     \footerstrue%
     \input{\optPreambleDirectory/1.1.packages.tufte-book}
@@ -36,6 +38,7 @@
 
   \def\setDocument@tuftearticle{%
     \beamerfalse%
+    \posterfalse%
     \headerstrue%
     \footerstrue%
     \input{\optPreambleDirectory/1.1.packages.tufte-handout}
@@ -44,6 +47,7 @@
 
   \def\setDocument@tufteproblemset{%
     \beamerfalse%
+    \posterfalse%
     \headerstrue%
     \footerstrue%
     \input{\optPreambleDirectory/1.1.packages.tufte-handout}
@@ -51,6 +55,7 @@
   }
   \def\setDocument@problemset{%
     \beamerfalse%
+    \posterfalse%
     \headerstrue%
     \footerstrue%
     \input{\optPreambleDirectory/1.1.packages.tufte-handout}
@@ -59,6 +64,7 @@
 
   \def\setDocument@tuftesolutionset{%
     \beamerfalse%
+    \posterfalse%
     \headerstrue%
     \footerstrue%
     \input{\optPreambleDirectory/1.1.packages.tufte-handout}
@@ -66,6 +72,7 @@
   }
   \def\setDocument@solutionset{%
     \beamerfalse%
+    \posterfalse%
     \headerstrue%
     \footerstrue%
     \input{\optPreambleDirectory/1.1.packages.tufte-handout}
@@ -74,6 +81,7 @@
 
   \def\setDocument@tufteexam{%
     \beamerfalse%
+    \posterfalse%
     \headerstrue%
     \footerstrue%
     \input{\optPreambleDirectory/1.1.packages.tufte-handout}
@@ -81,6 +89,7 @@
   }
   \def\setDocument@exam{%
     \beamerfalse%
+    \posterfalse%
     \headerstrue%
     \footerstrue%
     \input{\optPreambleDirectory/1.1.packages.tufte-handout}
@@ -89,6 +98,7 @@
 
   \def\setDocument@tuftesyllabus{%
     \beamerfalse%
+    \posterfalse%
     \headerstrue%
     \footerstrue%
     \input{\optPreambleDirectory/1.1.packages.tufte-handout}
@@ -96,6 +106,7 @@
   }
   \def\setDocument@syllabus{%
     \beamerfalse%
+    \posterfalse%
     \headerstrue%
     \footerstrue%
     \input{\optPreambleDirectory/1.1.packages.tufte-handout}
@@ -107,6 +118,7 @@
     % \booktrue%
     % \examfalse%
     \beamerfalse%
+    \posterfalse%
     % \standalonefalse%
     \headerstrue%
     \footerstrue%
@@ -120,6 +132,7 @@
     % \bookfalse%
     % \examfalse%
     \beamerfalse%
+    \posterfalse%
     % \standalonefalse%
     \headerstrue%
     \footerstrue%
@@ -130,6 +143,18 @@
 
   \def\setDocument@beamer{%
     \beamertrue%
+    \posterfalse%
+    \headersfalse%
+    \footersfalse%
+    \gdef\ClassType{beamer}%
+    \gdef\ClassOptions{}%
+    \input{\optPreambleDirectory/1.1.packages.beamer}
+    \input{\optPreambleDirectory/1.2.settings.beamer}
+  }
+
+  \def\setDocument@beamerposter{%
+    \beamertrue%
+    \postertrue%
     \headersfalse%
     \footersfalse%
     \gdef\ClassType{beamer}%
@@ -143,6 +168,7 @@
     % \bookfalse%
     % \examfalse%
     \beamerfalse%
+    \posterfalse%
     % \standalonetrue%
     \headersfalse%
     \footersfalse%

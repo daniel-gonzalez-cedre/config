@@ -23,10 +23,12 @@ let s:qf = {
       \}
 
 function! s:qf.set_errorformat() abort dict "{{{1
-  setlocal errorformat=%+E%.%#---line\ %l\ of\ file\ %f
+  setlocal errorformat=
+  setlocal errorformat+=%+EName%.%#has\ a\ comma\ at\ the\ end%.%#
   setlocal errorformat+=%+EI\ found\ %.%#---while\ reading\ file\ %f
   setlocal errorformat+=%+WWarning--empty\ %.%#\ in\ %.%m
   setlocal errorformat+=%+WWarning--entry\ type\ for%m
+  setlocal errorformat+=%-Cwhile\ executing---line\ %l\ of\ file\ %f
   setlocal errorformat+=%-C--line\ %l\ of\ file\ %f
   setlocal errorformat+=%-G%.%#
 endfunction
@@ -185,6 +187,24 @@ function! s:type_no_bibstyle.fix(ctx, entry) abort " {{{1
       endif
     endfor
     return 1
+  endif
+endfunction
+
+" }}}1
+
+let s:type_fix_bst_path = {}
+function! s:type_fix_bst_path.fix(ctx, entry) abort " {{{1
+  let l:filename = has_key(a:entry, 'filename')
+        \ ? a:entry.filename
+        \ : has_key(a:entry, 'bufnr')
+        \   ? bufname(a:entry.bufnr)
+        \   : ''
+  if l:filename =~# '\.bst$' && !filereadable(l:filename)
+    let l:path = vimtex#kpsewhich#find(l:filename)
+    if filereadable(l:path)
+      let a:entry.filename = l:path
+      unlet! a:entry.bufnr
+    endif
   endif
 endfunction
 

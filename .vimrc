@@ -4,15 +4,35 @@
   silent
   runtime ftplugin/man.vim
 
+  " :call HelptagsAll
+  function HelptagsAll()
+    command! -nargs=0 -bar Helptags
+        \  for p in glob('~/.vim/pack/bundle/opt/*', 1, 1)
+        \|     exe 'packadd ' . fnamemodify(p, ':t')
+        \| endfor
+        \| helptags ALL
+  endfunction
+
   augroup init_settings | au!
-    au BufEnter * set spell
-    au BufEnter *.py,*.ipynb set nospell
+    au BufEnter * set nospell
+    " au BufEnter *.py,*.ipynb set nospell
     " au FileType text,markdown,html,tex,vim,gitcommit set spell
 
-    au BufEnter * :syntax sync fromstart
+    au BufEnter * syntax sync fromstart
 
     au FileType * set conceallevel=0
     au FileType gitcommit set nowrap
+
+    " CUSTOM CURSORS
+      " BLINKING BLOCK:     \e[0
+      " BLINKING BLOCK:     \e[1
+      " STEADY BLOCK:       \e[2
+      " BLINKING UNDERLINE: \e[3
+      " STEADY UNDERLINE:   \e[4
+      " BLINKING BAR:       \e[5
+      " STEADY BAR:         \e[6
+      let &t_SI="\e[6 q"  " start insert mode
+      let &t_EI="\e[2 q"  " end insert mode
   augroup END
 
   " set home config directory
@@ -37,7 +57,9 @@
   endif
   set viewdir=~/.vim/vimfiles/viewfiles//
   set viewoptions=cursor,folds
+  " set viewoptions=cursor
   set sessionoptions=folds
+  " set sessionoptions=
   augroup autosave_recovery | au!
     au BufWinLeave,BufLeave,BufWritePost,BufHidden,QuitPre ?* nested silent! mkview!
     " au BufWinLeave * mkview
@@ -54,14 +76,24 @@
   " make sure colors are set correctly
   " if $TERM_PROGRAM !=# 'Apple_Terminal' || $TMUX !=? ''
   if $TERM_PROGRAM !=# 'Apple_Terminal'
-    if (has('nvim'))
-      "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-      let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-    endif
     set termguicolors
+
+    " UNDERCURL SUPPORT
+    let &t_Cs = "\e[4:3m"
+    let &t_Ce = "\e[4:0m"
+
+    " COLORED UNDERCURL SUPPORT
+    " let &t_RB = "\<Esc>]11;?\<C-G>"
+    let &t_RV = "\<Esc>[>c"
+
     if &term =~ "alacritty"
       let &t_fe = "\<Esc>[?1004h"
       let &t_fd = "\<Esc>[?1004l"
+    endif
+
+    if (has('nvim'))
+      "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+      let $NVIM_TUI_ENABLE_TRUE_COLOR=1
     endif
   endif
 
@@ -135,56 +167,48 @@
 
   " TODO: not working when refocussing after closing pane with <c-d>
   function! s:focus_gained_buffer()
-    setlocal ruler
-    setlocal showcmd
-    hi! link FoldColumn NONE
-    hi! link SignColumn NONE
-    hi! link CursorLineNR NONE
+    " setlocal ruler
+    " setlocal showcmd
+    " hi! link Folded NONE
+    " hi! link FoldColumn NONE
+    " hi! link SignColumn NONE
+    " hi! link CursorLineNR NONE
 
     " call s:set_lightline_colorscheme('gruvbox_material')
     call lightline#toggle()
 
-    if g:gitgutter_is_loaded
-      GitGutterBufferEnable
-    endif
-    if g:ale_is_loaded
-      ALELint
-    endif
+    " if g:gitgutter_is_loaded
+      " GitGutterBufferEnable
+    " endif
+
+    " if g:ale_is_loaded
+      " ALELint
+    " endif
   endfunction
 
   " TODO: not working when tmux split pane
   function! s:focus_lost_buffer()
-    setlocal noruler
-    setlocal noshowcmd
-    " hi Blank guifg=#262626 guibg=#262626 ctermfg=0 ctermbg=0
-    hi Blank guifg=#262626 guibg=NONE ctermfg=0 ctermbg=NONE
-    hi! link FoldColumn Blank
-    hi! link SignColumn Blank
-    hi! link CursorLineNR LineNR
+    " setlocal noruler
+    " setlocal noshowcmd
+    " hi Blank guifg=#282828 guibg=NONE ctermfg=0 ctermbg=NONE
+    " hi! link Folded LineNR
+    " hi! link FoldColumn Blank
+    " hi! link SignColumn Blank
+    " hi! link CursorLineNR LineNR
 
     " call s:set_lightline_colorscheme('blank')
     call lightline#toggle()
 
-    if g:gitgutter_is_loaded
-      GitGutterBufferDisable
-    endif
-    if g:ale_is_loaded
-      ALEReset
-    endif
+    " if g:gitgutter_is_loaded
+      " GitGutterBufferDisable
+    " endif
+    " if g:ale_is_loaded
+      " ALEReset
+    " endif
 
     " echo @%
     echo ''
   endfunction
-
-  " function! s:toggle_focus()
-    " if g:focus_status == 0
-      " let g:focus_status = 1
-      " call s:focus_gained_buffer()
-    " else
-      " let g:focus_status = 0
-      " call s:focus_lost_buffer()
-    " endif
-  " endfunction
 
   augroup focus | au!
     " let g:focus_status = 0
@@ -277,6 +301,7 @@
   function! s:gruvbox_material_colors()
     " let l:palette = gruvbox_material#get_palette('medium', 'material', {'bg0': ['#262626', '235'], 'bg1': ['#2f2c29', '235']})
     let l:palette = gruvbox_material#get_palette('medium', 'material', {'bg1': ['#2f2c29', '235']})
+    " let l:palette = gruvbox_material#get_palette('medium', 'material', {})
 
     call gruvbox_material#highlight('Comment', l:palette.grey0, l:palette.none, 'italic')
 
@@ -295,17 +320,17 @@
     " call gruvbox_material#highlight('ALEVirtualTextError', l:palette.none, l:palette.none, 'undercurl', l:palette.red)
     " call gruvbox_material#highlight('ALEVirtualTextWarning', l:palette.none, l:palette.none, 'undercurl', l:palette.yellow)
 
-    call gruvbox_material#highlight('Folded', l:palette.grey0, l:palette.bg1)
-    call gruvbox_material#highlight('FoldColumn', l:palette.bg2, l:palette.none)
+    call gruvbox_material#highlight('Folded', l:palette.bg3, l:palette.none)
+    " call gruvbox_material#highlight('FoldColumn', l:palette.bg2, l:palette.none)
     " call gruvbox_material#highlight('FoldColumn', l:palette.grey1, l:palette.none)
 
     " call gruvbox_material#highlight('CursorLine', l:palette.none, ['#2a2a2a',   '235'])
-    " call gruvbox_material#highlight('CursorLineNr', l:palette.grey1, ['#2a2a2a',   '235'])
+    " call gruvbox_material#highlight('CursorLineNR', l:palette.grey1, ['#2a2a2a',   '235'])
     " call gruvbox_material#highlight('CursorLine', l:palette.none, l:palette.bg1)
-    " call gruvbox_material#highlight('CursorLineNr', l:palette.grey1, l:palette.bg1)
-    call gruvbox_material#highlight('LineNr', l:palette.bg5, l:palette.none)
+    " call gruvbox_material#highlight('CursorLineNR', l:palette.grey1, l:palette.bg1)
+    call gruvbox_material#highlight('LineNR', l:palette.bg5, l:palette.none)
     call gruvbox_material#highlight('CursorLine', l:palette.none, l:palette.none)
-    call gruvbox_material#highlight('CursorLineNr', l:palette.fg0, l:palette.none)
+    call gruvbox_material#highlight('CursorLineNR', l:palette.fg0, l:palette.none)
     " call gruvbox_material#highlight('StatusLine', l:palette.bg2, l:palette.none)
     " call gruvbox_material#highlight('StatusLineNC', l:palette.bg2, l:palette.none)
 
@@ -338,12 +363,12 @@
 
   augroup setup_colors | au!
     " gruvbox
-    let g:gruvbox_improved_strings = 1  " (0), 1
-    let g:gruvbox_improved_warnings = 1  " (0), 1
-    let g:gruvbox_hls_cursor = 'orange'
-    let g:gruvbox_contrast_dark = 'medium'  " soft, (medium), hard
-    let g:gruvbox_contrast_light = 'hard'  " soft, (medium), hard
-    au ColorScheme gruvbox call s:gruvbox_colors()
+    " let g:gruvbox_improved_strings = 1  " (0), 1
+    " let g:gruvbox_improved_warnings = 1  " (0), 1
+    " let g:gruvbox_hls_cursor = 'orange'
+    " let g:gruvbox_contrast_dark = 'medium'  " soft, (medium), hard
+    " let g:gruvbox_contrast_light = 'hard'  " soft, (medium), hard
+    " au ColorScheme gruvbox call s:gruvbox_colors()
 
     " gruvbox-material
     let g:gruvbox_material_background = 'medium'  " soft, (medium), hard
@@ -364,7 +389,7 @@
     au ColorScheme gruvbox-material call s:gruvbox_material_colors()
   augroup END
 
-  packadd gruvbox-material
+  packadd! gruvbox-material
   colorscheme gruvbox-material
 
 
@@ -382,6 +407,7 @@
   let g:juliavim_is_loaded = 0
   let g:rainbow_is_loaded=0
   let g:gitgutter_is_loaded = 0
+  let g:vimcommentary_is_loaded = 0
   let g:nerdcommenter_is_loaded = 0
   let g:ale_is_loaded = 0
   let g:vimtex_is_loaded = 0
@@ -449,8 +475,8 @@
       return l:capstatus
     endfunction
 
-    let g:lightline = { 
-          \ 'colorscheme': 'gruvbox_material', 
+    let g:lightline = {
+          \ 'colorscheme': 'gruvbox_material',
           \ 'active': {
           \   'left': [ [ 'mode', 'paste' ],
           \             [ 'caps', 'filename' ],
@@ -479,21 +505,18 @@
           " \   'caps': 'CapsLockStatusline',
           " \ },
 
-  " vim-capslock
-    nnoremap <silent> <c-g>c <plug>CapsLockToggle
-    " nnoremap <silent> <c-g>c <plug>CapsLockToggle:call lightline#update()<cr>
-    " inoremap <silent> <c-g>c <c-o><plug>CapsLockToggle<c-o>:call lightline#update()<cr>
-    " imap <c-g>c <c-l><c-o>:call lightline#update()<cr>
+  nnoremap <silent> <c-g>c <plug>CapsLockToggle
 
   let g:tmuxline_is_loaded = 1
   packadd tmuxline.vim
   if executable('tmux') && filereadable(expand('~/.zshrc')) && $TMUX !=# ''
     let g:vim_is_in_tmux = 1
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    " let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   else
     let g:vim_is_in_tmux = 0
   endif
+
   if g:vim_is_in_tmux == 1 && !has('win32')
     " let g:tmuxline_powerline_separators = 0
     let g:tmuxline_status_justify = 'left'
@@ -625,6 +648,25 @@
     " set statusline+=%{GitStatus()}
   augroup END
 
+  " let vimcommentary_is_loaded = 1
+  " packadd vim-commentary
+  " if vimcommentary_is_loaded
+  "   " nnoremap <silent> gC o<c-g>U.<esc><plug>Commentary kJi<space><esc>$s
+  "   nnoremap <silent> gcs i<c-g>U<enter>.<esc><plug>Commentary kJi<space><esc>
+
+  "   nnoremap <silent> gce i<c-g>U<enter>.<esc><plug>Commentary kJi<space><left>
+
+  "   " append comment to end of line with space
+  "   nnoremap <silent> gcA o<c-g>U.<esc><plug>Commentary kJi<space><esc>$s
+
+  "   " append comment to end of line without space
+  "   nnoremap <silent> gcL o<c-g>U.<esc><plug>Commentary kJx$xx
+
+  "   nnoremap <silent> gcO O<c-g>U.<esc><plug>Commentary $s
+  "   nnoremap <silent> gco o<c-g>U.<esc><plug>Commentary $s
+
+  " endif
+
   let nerdcommenter_is_loaded = 1
   packadd nerdcommenter
   augroup nerdcommenter_settings | au!
@@ -639,20 +681,40 @@
     let g:NERDSpaceDelims = 1
     let g:NERDToggleCheckAllLines = 1
     let g:NERDTrimTrailingWhitespace = 1
-    au! VimEnter * call s:nerdcommenter_mappings()
+    au! BufEnter * call s:nerdcommenter_mappings()
 
     function! s:nerdcommenter_mappings()
-      nmap <leader>cc <plug>NERDCommenterToggle
-      nmap <leader>ci <plug>NERDCommenterInvert
-      nmap <leader>ct <plug>NERDCommenterInvert
-      vmap <leader>cc <plug>NERDCommenterToggle `<
-      vmap <leader>ci <plug>NERDCommenterInvert `<
-      vmap <leader>ct <plug>NERDCommenterInvert `<
-      nnoremap <leader>cA <plug>NERDCommenterAppend
-      nnoremap <leader>ca A<space><c-c><plug>NERDCommenterAppend
-      nnoremap <leader>cl A<esc><plug>NERDCommenterAppend<bs><c-g>U<left><bs><right><esc>
-      nnoremap <leader>co o<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
-      nnoremap <leader>cO O<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
+      " for key in ['c', 'a', 'n', 'm', 'y', '$', 'a', 'a', 'l', 'b', 'u' "<space>"]
+        " exe "unmap \<leader\>c" . key
+      " endfor
+    endfunction
+    function! s:nerdcommenter_mappings()
+      " for mov in ['j', 'k', 'gg', 'G', '(', ')', '{', '}', 'is', 'ip', 'if', 'af']
+        " exe "nnoremap gc" . mov . " V" . mov . "\<Plug\>NERDCommenterInvert `<"
+      " endfor
+
+      " for i in range(1, 50)
+        " exe "nnoremap gc" . i . "j V" . i . "j\<plug\>NERDCommenterInvert"
+        " exe "nnoremap gc" . i . "k V" . i . "k\<plug\>NERDCommenterInvert"
+      " endfor
+
+      noremap gcr <plug>NERDCommenterComment
+      noremap gcu <plug>NERDCommenterUncomment
+
+      noremap gcc <plug>NERDCommenterInvert
+      noremap gct <plug>NERDCommenterToggle
+
+      noremap gci <plug>NERDCommenterToEOL a
+      noremap gcI <plug>NERDCommenterComment ^a<space>
+
+      nnoremap gca A<c-g>U<space><c-o><plug>NERDCommenterAppend
+      nnoremap gcA <plug>NERDCommenterAppend
+
+      nnoremap gcl A<c-g>U<c-o><plug>NERDCommenterAppend<bs><left><bs><right><esc>
+      nnoremap gcL <plug>NERDCommenterToEOL
+
+      nnoremap gco o<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
+      nnoremap gcO O<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
     endfunction
   augroup END
 
@@ -685,7 +747,7 @@
     " au FileType tex call s:setup_ale()
 
     au FileType python,lua,vim,tex call s:setup_ale()
-    au FileType python,lua,vim,tex ALEDisable
+    " au FileType python,lua,vim,tex ALEDisable
 
     function! s:setup_ale()
       packadd ale
@@ -703,6 +765,10 @@
       noremap <leader>bd <plug>(ale_detail)
       nnoremap <leader>at <plug>(ale_toggle)
       nnoremap <leader>al <plug>(ale_lint)
+
+      if g:ale_is_loaded
+        ALEDisable
+      endif
     endfunction
   augroup END
 
@@ -720,31 +786,38 @@
       au FileType python setlocal tabstop=8
     augroup END
 
+    augroup markdown_settings | au!
+      au FileType markdown setlocal shiftwidth=2
+      au FileType markdown setlocal softtabstop=2
+      au FileType markdown setlocal tabstop=8
+    augroup END
+
+
     augroup html_settings | au!
       au BufNewFile,BufRead *.svg set filetype=html
       au FileType html inoremap < <><c-g>U<left>
     augroup END
-    
+
     augroup latex_settings | au!
-      packadd vimtex
+      let g:vimtex_compiler_enabled = 0
+      let g:vimtex_complete_enabled = 0
+      let g:vimtex_fold_enabled = 1
+      let g:vimtex_imaps_enabled = 0
+      " let g:vimtex_mappings_enabled = 0
+      let g:vimtex_quickfix_enabled = 0
+      let g:vimtex_syntax_nospell_comments = 1
+      let g:vimtex_view_enabled = 0
+
       au BufNewFile,BufRead *.bib,*.tex,*.tikz set filetype=tex
       au BufNewFile,BufRead *.bib,*.tex,*.tikz set syntax=tex
 
+      au FileType tex packadd vimtex
       au FileType tex imap ` <nop>
       au FileType tex iunmap `
 
-      au FileType tex setlocal foldmethod=syntax
       au FileType tex inoremap $ <c-r>=QuoteDelim('$')<cr>
       au FileType tex inoremap <c-g>m <c-r>=QuoteDelim('$')<cr>
       " au FileType tex inoremap <c-\> <c-r>=QuoteDelim('$')<cr>
-      au FileType tex let g:vimtex_compiler_enabled = 0
-      au FileType tex let g:vimtex_complete_enabled = 0
-      au FileType tex let g:vimtex_fold_enabled = 1
-      au FileType tex let g:vimtex_imaps_enabled = 0
-      au FileType tex let g:vimtex_mappings_enabled = 0
-      au FileType tex let g:vimtex_quickfix_enabled = 0
-      au FileType tex let g:vimtex_syntax_nospell_comments = 1
-      au FileType tex let g:vimtex_view_enabled = 0
     augroup END
 
   " GENERAL
@@ -756,10 +829,8 @@
     augroup END
     set background=dark
     set backspace=indent,eol,start
-    set conceallevel=0
     set cursorline
     set display+=lastline
-    " set fillchars=stl:⋅,stlnc:⋅,vert:\|,fold:⋅
     set formatoptions-=c
     set formatoptions-=o
     set formatoptions+=r
@@ -773,13 +844,11 @@
     set mouse=""
     set number
     set numberwidth=3
-    " set ruler
     set signcolumn=yes
     set shiftround
     set showcmd
     set showtabline=1
     set smartcase
-    " set nospell
     set spelllang+=cjk
     set spellsuggest=best,5
     set splitbelow
@@ -787,7 +856,7 @@
     set notimeout nottimeout
     set updatetime=100
     set wildmenu
-    set wildmode=list:longest,full
+    " set wildmode=list:longest,full
     " set number relativenumber
     " set scrolloff=2
 
@@ -796,10 +865,12 @@
   " FOLDING
     set foldopen-=search
     set foldopen+=undo
-      set foldcolumn=0
-      set foldignore=
-      set foldlevelstart=99
-      set foldmethod=manual
+    set foldcolumn=0
+    set foldignore=
+    set foldlevelstart=99
+    set foldmethod=indent
+    " set foldmethod=manual
+
     " set fillchars+=foldsep:│,foldclose:╶
     " set fillchars+=foldopen:├,foldsep:│,foldclose:╶
     " set fillchars+=foldopen:┣,foldsep:┃,foldclose:╺
@@ -807,12 +878,13 @@
     " set fillchars+=foldopen:▾,foldsep:│,foldclose:▸
     " set fillchars+=foldopen:▿,foldsep:│,foldclose:▷
     set fillchars+=fold:\ 
+    " set foldtext=
     set foldtext=MyFoldText()
+
     function MyFoldText()
       let line = getline(v:foldstart)
       let sub = substitute(line, '/\*\|\*/\|{{{\d\=', '', 'g')
-      let sub = substitute(sub, ' ', '+', '')
-      " return '>' .. sub
+      " let sub = substitute(sub, ' ', '+', '')
       return sub
     endfunction
 
@@ -880,17 +952,6 @@
   vnoremap <leader>* y/\V<c-r>=escape(@",'/\')<cr>
   vnoremap <leader>s y`<`>:<c-u>%s/\V<c-r>=escape(@",'/\')<cr>//gc<left><left><left>
 
-  " toggle highlighting on search
-  augroup search_highlight_toggling | au!
-    " au CmdlineEnter /,\? :set hlsearch
-
-    " au CmdlineEnter /,\? hi clear Search
-    " au CmdlineEnter /,\? hi Search guifg=#fabd2f guibg=#504945 ctermfg=15 ctermbg=239 cterm=none
-
-    au InsertEnter * call feedkeys("\<cmd>noh\<cr>" , 'n')
-    au TextChanged * call feedkeys("\<cmd>noh\<cr>" , 'n')
-  augroup END
-
 
 " QUALITY OF LIFE MAPPINGS
   " MATCH MAPPINGS
@@ -921,6 +982,7 @@
     " noremap <leader>bs :call ScratchBuffer()<cr>
 
   " MOVEMENT
+    nnoremap dS :%s/\s\+$//e<cr><c-o>
     " augroup yank_visual_movement | au!
       " nnoremap v mmv
       " vnoremap y "+ygv<c-c>
@@ -930,7 +992,7 @@
     " augroup yank_cursor_reset | au!
     " augroup END
     " augroup END
-    " there are no autocmd 
+    " there are no autocmd
     " augroup visual_cursor_reset | au!
       " autocmd VisualEnter *
       " autocmd VisualLeave *
@@ -979,6 +1041,8 @@
 
   " LINES
     " start of rendered text line
+    " inoremap <c-a> <home>
+    inoremap <c-a> <c-g>U<c-o>^
     nnoremap ga ^
     vnoremap ga ^
     onoremap ga ^
@@ -992,6 +1056,8 @@
     cnoremap <c-a> <home>
 
     " end of rendered line of text
+    " inoremap <c-e> <end>
+    inoremap <c-e> <c-g>U<c-o>g_<right>
     nnoremap ge g_
     vnoremap ge g_
     onoremap ge g_
@@ -1242,28 +1308,6 @@
   function! TwiddleCase(str)
     return substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
   endfunction
-
-" CUSTOM CURSORS
-  " BLINKING BLOCK:     \e[0
-  " BLINKING BLOCK:     \e[1
-  " STEADY BLOCK:       \e[2
-  " BLINKING UNDERLINE: \e[3
-  " STEADY UNDERLINE:   \e[4
-  " BLINKING BAR:       \e[5
-  " STEADY BAR:         \e[6
-  augroup custom_cursors | au! 
-    let &t_SI="\e[6 q"  " start insert mode
-    let &t_EI="\e[2 q"  " end insert mode
-    " au VimEnter * silent !echo \ne "\e[2 q"
-  augroup END
-
-" UNDERCURL SUPPORT
-  let &t_Cs = "\e[4:3m"
-  let &t_Ce = "\e[4:0m"
-
-" COLORED UNDERCURL SUPPORT
-  let &t_RB = "\<Esc>]11;?\<C-G>"
-  let &t_RV = "\<Esc>[>c"
 
 augroup jump_settings | au!
   au VimEnter * :clearjumps

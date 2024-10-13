@@ -30,24 +30,9 @@ endfunction
 
 " }}}1
 function! s:viewer.out() dict abort " {{{1
-  let l:out = b:vimtex.compiler.get_file('pdf')
-
-  " Copy pdf and synctex files if we use temporary files
-  if g:vimtex_view_use_temp_files
-    let l:temp = b:vimtex.root . '/' . b:vimtex.name . '_vimtex.pdf'
-    if getftime(l:out) > getftime(l:temp)
-      call writefile(readfile(l:out, 'b'), l:temp, 'b')
-    endif
-    let l:out = l:temp
-
-    let l:old = b:vimtex.compiler.get_file('synctex.gz')
-    let l:new = fnamemodify(l:out, ':r') . '.synctex.gz'
-    if getftime(l:old) > getftime(l:new)
-      call rename(l:old, l:new)
-    endif
-  endif
-
-  return filereadable(l:out) ? l:out : ''
+  return exists('*b:vimtex.compiler.get_file')
+        \ ? b:vimtex.compiler.get_file('pdf')
+        \ : ''
 endfunction
 
 " }}}1
@@ -137,9 +122,6 @@ function! s:viewer.xdo_get_id() dict abort " {{{1
   if !self.xdo_check() | return 0 | endif
 
   if self.xwin_id > 0 | return self.xwin_id | endif
-
-  " Allow some time for the viewer to start properly
-  sleep 500m
 
   " Try to find viewer's window ID by different methods:
   " * by PID (probably most reliable when it works)
@@ -261,6 +243,7 @@ function! s:viewer.xdo_focus_vim() dict abort " {{{1
     let l:xwinids = filter(reverse(l:output), '!empty(v:val)')
 
     if !empty(l:xwinids)
+      call vimtex#jobs#run('xdotool mousemove --window '. l:xwinids[0] . ' --polar 0 0')
       call vimtex#jobs#run('xdotool windowactivate ' . l:xwinids[0] . ' &')
       return l:xwinids[0]
       break

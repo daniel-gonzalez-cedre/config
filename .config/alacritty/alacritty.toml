@@ -1,45 +1,49 @@
 import = ["~/.config/alacritty/themes/gruvbox_material_medium_dark.toml"]
 
+[colors]
+  draw_bold_text_with_bright_colors = true
+
 [keyboard]
-bindings = [
-   # { key = "n", mods = "Command|Shift", action = "SpawnNewInstance" },
-   { key = "Tab", mods = "Control", action = "SelectNextTab" },
-   { key = "Tab", mods = "Control|Shift", action = "SelectPreviousTab" }
-]
+  bindings = [
+    # { key = "n", mods = "Command|Shift", action = "SpawnNewInstance" },
+    { key = "Tab", mods = "Control", action = "SelectNextTab" },
+    { key = "Tab", mods = "Control|Shift", action = "SelectPreviousTab" }
+  ]
 
 [mouse]
-hide_when_typing = true
+  hide_when_typing = true
 
 [window]
-dimensions = { columns = 128, lines = 44 }
-padding = { x = 4, y = 4 }
-dynamic_padding = true
-# decorations = "None"
-# decorations = "Transparent"
-decorations = "Buttonless"
+  dimensions = { columns = 128, lines = 44 }
+  padding = { x = 4, y = 4 }
+  dynamic_padding = true
+  # decorations = "None"
+  # decorations = "Transparent"
+  decorations = "Buttonless"
 
 [font]
-size = 12.0
-# size = 20.0
-offset.x = 0  # For letter spacing (default: 0)
-offset.y = 0  # For line spacing (default: 0)
+  size = 12.0
+  # size = 18.0
+  # size = 20.0
+  offset.x = 0  # For letter spacing (default: 0)
+  offset.y = 0  # For line spacing (default: 0)
 
 [font.normal]
-family="Berkeley Mono"
-# family="CommitMono-450-01111-00000011000"
-style="Regular"
+  family="Berkeley Mono"
+  # family="CommitMono-450-01111-00000011000"
+  style="Regular"
 
 [font.bold]
-family="Berkeley Mono"
-# family="CommitMono-450-01111-00000011000"
-style="Bold"
+  family="Berkeley Mono"
+  # family="CommitMono-450-01111-00000011000"
+  style="Bold"
 
 [font.italic]
-family="Berkeley Mono"
-# family="CommitMono-450-01111-00000011000"
-style="Italic"
+  family="Berkeley Mono"
+  # family="CommitMono-450-01111-00000011000"
+  style="Italic"
 
 [font.bold_italic]
-family="Berkeley Mono"
-# family="CommitMono-450-01111-00000011000"
-style="Bold Italic"
+  family="Berkeley Mono"
+  # family="CommitMono-450-01111-00000011000"
+  style="Bold Italic"

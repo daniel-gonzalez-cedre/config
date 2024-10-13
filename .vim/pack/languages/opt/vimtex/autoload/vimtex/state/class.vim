@@ -14,7 +14,7 @@ function! vimtex#state#class#new(opts) abort " {{{1
 
   let l:new = deepcopy(s:vimtex)
 
-  let l:new.root = fnamemodify(l:opts.main, ':h')
+  let l:new.root = resolve(fnamemodify(l:opts.main, ':h'))
   let l:new.base = fnamemodify(l:opts.main, ':t')
   let l:new.name = fnamemodify(l:opts.main, ':t:r')
   let l:new.main_parser = l:opts.main_parser
@@ -25,7 +25,9 @@ function! vimtex#state#class#new(opts) abort " {{{1
   endif
 
   let l:ext = fnamemodify(l:opts.main, ':e')
-  let l:new.tex = l:ext =~? '\v^%(%(la)?tex|dtx|tikz|ins)$' ? l:opts.main : ''
+  let l:new.tex = l:ext =~? '\v^%(%(la)?tex|dtx|tikz|ins)$'
+        \ ? l:new.root . '/' . l:new.base
+        \ : ''
 
   " Get preamble for some state parsing
   let l:preamble = !empty(l:new.tex)
@@ -38,7 +40,7 @@ function! vimtex#state#class#new(opts) abort " {{{1
 
   " Initialize state in submodules
   for l:mod in filter(
-        \ ['view', 'compiler', 'qf', 'toc', 'fold', 'context'],
+        \ ['compiler', 'view', 'qf', 'toc', 'fold', 'context'],
         \ 'index(l:opts.unsupported_modules, v:val) < 0')
     call vimtex#{l:mod}#init_state(l:new)
   endfor
@@ -134,13 +136,13 @@ endfunction
 
 " }}}1
 function! s:vimtex.get_tex_program() abort dict " {{{1
-  let l:tex_program_re =
-        \ '\v^\c\s*\%\s*!?\s*tex\s+%(ts-)?program\s*\=\s*\zs.*\ze\s*$'
-
   let l:lines = vimtex#parser#preamble(self.tex, {'root' : self.root})[:20]
-  call map(l:lines, 'matchstr(v:val, l:tex_program_re)')
-  call filter(l:lines, '!empty(v:val)')
-  return tolower(get(l:lines, -1, '_'))
+  call map(l:lines, { _, x ->
+        \ matchstr(x, '\v^\c\s*\%\s*!?\s*tex\s+%(ts-)?program\s*\=\s*\zs.*$')
+        \})
+  call filter(l:lines, { _, x -> !empty(x) })
+  let l:tex_program = get(l:lines, -1, '_')
+  return tolower(trim(l:tex_program))
 endfunction
 
 " }}}1

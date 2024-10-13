@@ -101,19 +101,24 @@ function! s:viewer._start(outfile) dict abort " {{{1
   let self.cmd_start = l:cmd
 
   let self.job = vimtex#jobs#start(self.cmd_start, {'detached': v:true})
-
-  call self.xdo_get_id()
-  call self.xdo_send_keys(g:vimtex_view_mupdf_send_keys)
-
   if g:vimtex_view_forward_search_on_start
     call self._forward_search(a:outfile)
   endif
+
+  call timer_start(500, self._start_post)
+endfunction
+
+" }}}1
+function! s:viewer._start_post(_timer_id) dict abort " {{{1
+  call self.xdo_get_id()
+  call self.xdo_send_keys(g:vimtex_view_mupdf_send_keys)
 endfunction
 
 " }}}1
 function! s:viewer._forward_search(outfile) dict abort " {{{1
   if !executable('xdotool') | return | endif
   if !executable('synctex') | return | endif
+  if self.xwin_id <= 0 | return | endif
 
   let self.cmd_synctex_view = 'synctex view -i '
         \ . (line('.') + 1) . ':'

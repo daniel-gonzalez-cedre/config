@@ -215,9 +215,18 @@ function! s:cache_persistent.write(...) dict abort " {{{1
   let l:modified = self.modified || a:0 > 0
   if !l:modified || empty(self.data) | return | endif
 
-  call writefile([json_encode(self.data)], self.path)
-  let self.ftime = getftime(self.path)
-  let self.modified = 0
+  try
+    let l:encoded = json_encode(self.data)
+    call writefile([l:encoded], self.path)
+    let self.ftime = getftime(self.path)
+    let self.modified = 0
+  catch /E474:/
+    call vimtex#log#warning(
+          \ 'Could not encode cache "'
+          \   . fnamemodify(self.path, ':t:r') . '"',
+          \ string(self.data)
+          \)
+  endtry
 endfunction
 
 " }}}1
@@ -311,6 +320,14 @@ function! s:local_name(name) abort " {{{1
   let l:filename = substitute(l:filename, '\/', '%', 'g')
   let l:filename = substitute(l:filename, '\\', '%', 'g')
   let l:filename = substitute(l:filename, ':', '%', 'g')
+
+  " We can't save cache files with too long names. This is not a rigorous fix,
+  " but I think it should handle most relevant cases well enough.
+  " See: https://github.com/lervag/vimtex/issues/3001
+  if strlen(l:filename) > 200
+    let l:filename = '%...' .. strpart(l:filename, strlen(l:filename) - 200)
+  endif
+
   return a:name . l:filename
 endfunction
 

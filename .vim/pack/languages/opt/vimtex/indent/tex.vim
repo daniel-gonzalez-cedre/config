@@ -210,6 +210,8 @@ let s:envs_ignored = '\v<%(' . join(g:vimtex_indent_ignored_envs, '|') . ')>'
 
 " }}}1
 function! s:indent_items(line, lnum, prev_line, prev_lnum) abort " {{{1
+  if s:envs_lists_empty | return 0 | endif
+
   if a:prev_line =~# s:envs_item
         \ && (a:line !~# s:envs_enditem
         \     || (a:line =~# s:envs_item && a:prev_line =~# s:envs_beglist))
@@ -231,6 +233,7 @@ function! s:indent_items(line, lnum, prev_line, prev_lnum) abort " {{{1
   return 0
 endfunction
 
+let s:envs_lists_empty = empty(g:vimtex_indent_lists)
 let s:envs_lists = join(g:vimtex_indent_lists, '\|')
 let s:envs_item = '^\s*\\item\>'
 let s:envs_beglist = '\\begin{\%(' . s:envs_lists . '\)'
@@ -260,8 +263,8 @@ let s:re_opt = extend({
 let s:re_open = join(s:re_opt.open, '\|')
 let s:re_close = join(s:re_opt.close, '\|')
 if s:re_opt.include_modified_math
-  let s:re_open .= (empty(s:re_open) ? '' : '\|') . g:vimtex#delim#re.delim_mod_math.open
-  let s:re_close .= (empty(s:re_close) ? '' : '\|') . g:vimtex#delim#re.delim_mod_math.close
+  let s:re_open .= (empty(s:re_open) ? '' : '\|') . g:vimtex#delim#re.delim_math_mod.open
+  let s:re_close .= (empty(s:re_close) ? '' : '\|') . g:vimtex#delim#re.delim_math_mod.close
 endif
 let s:re_delim_trivial = empty(s:re_open) || empty(s:re_close)
 

@@ -28,6 +28,9 @@ function! vimtex#cmd#init_buffer() abort " {{{1
 
   xnoremap <silent><buffer> <plug>(vimtex-cmd-toggle-frac)
         \ :<c-u>call vimtex#cmd#toggle_frac_visual()<cr>
+
+  nnoremap <silent><buffer> <plug>(vimtex-cmd-toggle-break)
+        \ :<c-u>call <sid>operator_setup('toggle_break')<bar>normal! g@l<cr>
 endfunction
 
 " }}}1
@@ -268,6 +271,18 @@ function! vimtex#cmd#toggle_frac_visual() abort " {{{1
 endfunction
 
 " }}}1
+function! vimtex#cmd#toggle_break() abort " {{{1
+  let l:lnum = line('.')
+  let l:line = getline(l:lnum)
+
+  let l:replace = l:line =~# '\s*\\\\\s*$'
+        \ ? substitute(l:line, '\s*\\\\\s*$', '', '')
+        \ : substitute(l:line, '\s*$', ' \\\\', '')
+
+  call setline(l:lnum, l:replace)
+endfunction
+
+" }}}1
 
 function! vimtex#cmd#parser_separator_check(separator_string) abort " {{{1
   return a:separator_string =~# '\v^%(\n\s*)?$'
@@ -345,14 +360,14 @@ function! s:get_frac_cmd() abort " {{{1
 
     let l:blurp = matchstr(l:part, '^\s*{[^}]*}')
     if !empty(l:blurp)
-      let l:frac[l:key] = vimtex#util#trim(l:blurp)[1:-2]
+      let l:frac[l:key] = trim(l:blurp)[1:-2]
       let l:frac.col_end += len(l:blurp)
       continue
     endif
 
     let l:blurp = matchstr(l:part, '^\s*\w')
     if !empty(l:blurp)
-      let l:frac[l:key] = vimtex#util#trim(l:blurp)
+      let l:frac[l:key] = trim(l:blurp)
       let l:frac.col_end += len(l:blurp)
     endif
   endfor
@@ -529,7 +544,7 @@ endfunction
 
 " }}}1
 function! s:get_inline_trim(str) abort " {{{1
-  let l:str = vimtex#util#trim(a:str)
+  let l:str = trim(a:str)
   return substitute(l:str, '^(\(.*\))$', '\1', '')
 endfunction
 
@@ -609,6 +624,7 @@ function! s:operator_function(_) abort " {{{1
         \   'delete': 'delete()',
         \   'toggle_star': 'toggle_star()',
         \   'toggle_frac': 'toggle_frac()',
+        \   'toggle_break': 'toggle_break()',
         \ }[s:operator]
 endfunction
 

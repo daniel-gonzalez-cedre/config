@@ -385,21 +385,21 @@ export HOMEBREW_AUTO_UPDATE_SECS="86400"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 # export PYENV_ROOT="$HOME/.pyenv"
 
-# export FFDIR=${HOME}/Library/Application\ Support/Firefox
-# for FILE in ${FFDIR}/Profiles/*
-# do
-  # # PATTERN=".*.........default-release"
-  # PATTERN=".*.default-release"
-  # [[ $FILE =~ $PATTERN ]] && export FFPROFILE=$FILE
-# done
+export FFDIR=${HOME}/Library/Application\ Support/Firefox
+for FILE in ${FFDIR}/Profiles/*
+do
+  # PATTERN=".*.........default-release"
+  PATTERN=".*.default-release"
+  [[ $FILE =~ $PATTERN ]] && export FFPROFILE=$FILE
+done
 
-# export LWDIR=${HOME}/Library/Application\ Support/librewolf
-# for FILE in ${LWDIR}/Profiles/*
-# do
-  # # PATTERN='.*.........default-release'
-  # PATTERN='.*.default-default'
-  # [[ $FILE =~ $PATTERN ]] && export LWPROFILE=$FILE
-# done
+export LWDIR=${HOME}/Library/Application\ Support/librewolf
+for FILE in ${LWDIR}/Profiles/*
+do
+  # PATTERN='.*.........default-release'
+  PATTERN='.*.default-default'
+  [[ $FILE =~ $PATTERN ]] && export LWPROFILE=$FILE
+done
 
 # ALIASES
 alias cp='cp -v'
@@ -476,7 +476,7 @@ alias storage='watch -n 1 --color df -h'
 }
 
 (){
-  # alias latexmk='latexmk -pvc -pdf'
+  alias latexmk='latexmk -pvc -pdf'
   function latex() {
     local engine_option="--pdf"
     local shell_escape=""
@@ -567,7 +567,7 @@ alias storage='watch -n 1 --color df -h'
 
   _add_latex_completion() {
   local -a cmds
-  cmds=(vim lualatex luatex xelatex xetex cleanlatex cleantex) # Add other commands here
+  cmds=(lualatex luatex xelatex xetex cleanlatex cleantex) # Add other commands here
     for cmd in $cmds; do
       compdef _tex_complete $cmd
     done

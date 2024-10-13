@@ -204,6 +204,7 @@ function! vimtex#parser#toc#get_matchers() abort " {{{1
       let l:re .= '|' . l:matcher.prefilter_re
     endif
   endfor
+  let l:cmds = vimtex#util#uniq_unsorted(l:cmds)
   let l:matchers.prefilter = '\v\\%(' . join(l:cmds, '|') . ')' . l:re
 
   return l:matchers
@@ -219,15 +220,16 @@ function! vimtex#parser#toc#level(level) abort " {{{1
 endfunction
 
 let s:sec_to_value = {
-      \ '_' : 0,
-      \ 'subparagraph' : 1,
-      \ 'paragraph' : 2,
-      \ 'subsubsubsection' : 3,
-      \ 'subsubsection' : 4,
-      \ 'subsection' : 5,
-      \ 'section' : 6,
-      \ 'chapter' : 7,
-      \ 'part' : 8,
+      \ '_': 0,
+      \ 'subparagraph': 1,
+      \ 'paragraph': 2,
+      \ 'subsubsubsubsection': 3,
+      \ 'subsubsubsection': 4,
+      \ 'subsubsection': 5,
+      \ 'subsection': 6,
+      \ 'section': 7,
+      \ 'chapter': 8,
+      \ 'part': 9,
       \}
 
 " }}}1

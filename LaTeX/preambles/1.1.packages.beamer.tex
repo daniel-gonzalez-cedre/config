@@ -1,4 +1,10 @@
-\documentclass{beamer}  % SET DOCUMENT CLASS
+\documentclass[final]{beamer}  % SET DOCUMENT CLASS
+\ifposter
+  \usepackage{etoolbox}
+  \AtBeginEnvironment{microtype}{\let\MT_delim_set_star\relax}
+  \usepackage[size=a0, orientation=landscape]{beamerposter}
+  % \setbeamersize{text margin left=2cm, text margin right=2cm}
+\fi
 
 % MATH
 \usepackage{amsmath, amsfonts, amssymb, amstext, amscd, amsthm}
@@ -20,6 +26,7 @@
 \tcbuselibrary{hooks}
 \ifminted
   \usepackage[outputdir=/tmp/latexmk]{minted}
+  \usepackage{pmboxdraw}
 \else
 \fi
 
