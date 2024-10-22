@@ -7,26 +7,24 @@
 \renewcommand{\headrulewidth}{0pt}
 \fancypagestyle{plain}{%
   \ifheaders
-    \fancyhead[L]{\DateHeaderText}
-    % \fancyhead[R]{}
+    \fancyhead[L]{\makebox[\textwidth][l]{\scshape\uline{name: \hfill}}}
+    \fancyhead[C]{}
+    \fancyhead[R]{\makebox[2in][r]{\scshape\uline{netid: \hfill}}}
   \else
+  \fi
+  \iffooters
+    \fancyfoot[C]{\tiny \thepage\ / \pageref*{LastPage}}
+    % \fancyfoot[C]{--~\thepage~--}
+    % \fancypagestyle{plain}{}
+  \else
+    \fancyfoot{}
   \fi
 }
 
-\pagestyle{fancy}
+\pagestyle{plain}
 
-\iffooters
-  \fancyfoot[C]{\tiny \thepage\ / \pageref*{LastPage}}
-  % \fancyfoot[C]{--~\thepage~--}
-  % \fancypagestyle{plain}{}
-\else
-  \fancyfoot{}
-\fi
+% \pagestyle{fancy}
 
-\fancyhead[R]{%
-  \textsc{name:} \uline{\hfill}%
-  \textsc{netid:} \uline{\hfill}%
-}
 
 \setcounter{tocdepth}{2}
 \setcounter{secnumdepth}{1}

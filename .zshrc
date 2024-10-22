@@ -429,34 +429,36 @@ alias storage='watch -n 1 --color df -h'
 # $1: <options>
 #   pass "-i" as an argument to ask on every rm
 (){
-  function cleanlatex() {
-    mkdir -p /tmp/latexmk/
-    base_name="${1%.*}"
-    find /tmp/latexmk/ -depth 1 -name "_minted*${base_name}*" -exec rm -r '{}' \; 2>/dev/null
-    find /tmp/latexmk/ -depth 1 -name "${base_name}*aux" -exec rm '{}' \;
-    find /tmp/latexmk/ -depth 1 -name "${base_name}*bbl" -exec rm '{}' \;
-    find /tmp/latexmk/ -depth 1 -name "${base_name}*bcf" -exec rm '{}' \;
-    find /tmp/latexmk/ -depth 1 -name "${base_name}*blg" -exec rm '{}' \;
-    find /tmp/latexmk/ -depth 1 -name "${base_name}*brf" -exec rm '{}' \;
-    find /tmp/latexmk/ -depth 1 -name "${base_name}*fdb_latexmk" -exec rm '{}' \;
-    find /tmp/latexmk/ -depth 1 -name "${base_name}*fls" -exec rm '{}' \;
-    find /tmp/latexmk/ -depth 1 -name "${base_name}*idx" -exec rm '{}' \;
-    find /tmp/latexmk/ -depth 1 -name "${base_name}*ilg" -exec rm '{}' \;
-    find /tmp/latexmk/ -depth 1 -name "${base_name}*ind" -exec rm '{}' \;
-    find /tmp/latexmk/ -depth 1 -name "${base_name}*listings" -exec rm '{}' \;
-    find /tmp/latexmk/ -depth 1 -name "${base_name}*lof" -exec rm '{}' \;
-    find /tmp/latexmk/ -depth 1 -name "${base_name}*log" -exec rm '{}' \;
-    find /tmp/latexmk/ -depth 1 -name "${base_name}*lol" -exec rm '{}' \;
-    find /tmp/latexmk/ -depth 1 -name "${base_name}*lot" -exec rm '{}' \;
-    find /tmp/latexmk/ -depth 1 -name "${base_name}*nav" -exec rm '{}' \;
-    find /tmp/latexmk/ -depth 1 -name "${base_name}*out" -exec rm '{}' \;
-    find /tmp/latexmk/ -depth 1 -name "${base_name}*pyg" -exec rm '{}' \;
-    find /tmp/latexmk/ -depth 1 -name "${base_name}*run.xml" -exec rm '{}' \;
-    find /tmp/latexmk/ -depth 1 -name "${base_name}*snm" -exec rm '{}' \;
-    find /tmp/latexmk/ -depth 1 -name "${base_name}*toc" -exec rm '{}' \;
-    find /tmp/latexmk/ -depth 1 -name "${base_name}*xdv" -exec rm '{}' \;
+  function cleantex() {
+    # local LATEXDIR="/tmp/latexmk/"
+    local LATEXDIR="./"
+    mkdir -p $LATEXDIR
+    NAME="${1%.*}"
+    find $LATEXDIR -depth 1 -name "_minted*${NAME}*" -exec rm -r '{}' \; 2>/dev/null
+    find $LATEXDIR -depth 1 -name "${NAME}*aux" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*bbl" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*bcf" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*blg" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*brf" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*fdb_latexmk" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*fls" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*idx" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*ilg" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*ind" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*listings" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*lof" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*log" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*lol" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*lot" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*nav" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*out" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*pyg" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*run.xml" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*snm" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*toc" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*xdv" -exec rm -v '{}' \;
   }
-  function cleantex() { cleanlatex "$@" }
+  function cleanlatex() { cleantex "$@" }
 
   function cleanvim() {
     mkdir -p /tmp/vim/

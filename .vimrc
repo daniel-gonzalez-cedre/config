@@ -14,7 +14,8 @@
   endfunction
 
   augroup init_settings | au!
-    au BufEnter * set nospell
+    " au BufEnter * set nospell
+    au BufEnter * set spell
     " au BufEnter *.py,*.ipynb set nospell
     " au FileType text,markdown,html,tex,vim,gitcommit set spell
 
@@ -711,6 +712,9 @@
       nnoremap gcA <plug>NERDCommenterAppend
 
       nnoremap gcl A<c-g>U<c-o><plug>NERDCommenterAppend<bs><left><bs><right><esc>
+      nnoremap gcH <plug>NERDCommenterToEOL
+      nnoremap gcJ <plug>NERDCommenterToEOL
+      nnoremap gcK <plug>NERDCommenterToEOL
       nnoremap gcL <plug>NERDCommenterToEOL
 
       nnoremap gco o<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
@@ -799,11 +803,13 @@
     augroup END
 
     augroup latex_settings | au!
+      let g:tex_comment_nospell=1
+
       let g:vimtex_compiler_enabled = 0
       let g:vimtex_complete_enabled = 0
       let g:vimtex_fold_enabled = 1
       let g:vimtex_imaps_enabled = 0
-      " let g:vimtex_mappings_enabled = 0
+      let g:vimtex_mappings_enabled = 0
       let g:vimtex_quickfix_enabled = 0
       let g:vimtex_syntax_nospell_comments = 1
       let g:vimtex_view_enabled = 0
@@ -811,7 +817,12 @@
       au BufNewFile,BufRead *.bib,*.tex,*.tikz set filetype=tex
       au BufNewFile,BufRead *.bib,*.tex,*.tikz set syntax=tex
 
-      au FileType tex packadd vimtex
+      " au BufNewFile,BufRead *.bib,*.tex,*.tikz packadd! vimtex
+      " packadd vimtex
+      " let g:vimtex_is_loaded = 1
+
+      " au FileType tex packadd vimtex
+
       au FileType tex imap ` <nop>
       au FileType tex iunmap `
 

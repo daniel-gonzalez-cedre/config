@@ -1,5 +1,5 @@
-APP="LibreWolfIcon"
-IMGPATH="librewolf330.png"
+APP="?Icon"
+IMGPATH="?.png"
 
 mkdir -p "${APP}".iconset
 sips -z 16 16     "${IMGPATH}" --out "${APP}".iconset/icon_16x16.png

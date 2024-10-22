@@ -1,7 +1,7 @@
 #!/bin/bash
 
-APP="LibreWolf"
-ICNS="/Users/cedre/.config/librewolf/LibreWolfIcon.icns"
+APP="Floorp"
+ICNS="/Users/cedre/.config/floorp/FloorpIcon.icns"
 OUT="firefox.icns"
 
 # update app icon file
