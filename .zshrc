@@ -580,8 +580,14 @@ alias storage='watch -n 1 --color df -h'
 
 function hex2rgb() {
   hex="${1}"
-  printf "R   G   B\n"
   printf "%d %d %d\n" 0x${hex:0:2} 0x${hex:2:2} 0x${hex:4:2}
+}
+
+function rgb2hex() {
+  red="${1}"
+  green="${2}"
+  blue="${3}"
+  printf "#%x%x%x\n" "${red}" "${green}" "${blue}"
 }
 
 function ris2bib() {

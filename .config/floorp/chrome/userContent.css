@@ -18,9 +18,11 @@ NOTE: You can use the userContent.css file without change preferences (about:con
 @charset "UTF-8";
 /* Please write your custom CSS under this line*/
 
-@-moz-document url("about:home"), url("about:newtab") {
-  .logo {
-    background: url("about:blank") no-repeat center !important;
-    background-size: contain !important;
-  }
+@-moz-document url(about:blank), url(about:home), url(about:newtab) {
 }
+
+/* @-moz-document url-prefix() { */
+  /* :root { */
+    /* background-color: #1b1b1b !important; */
+  /* } */
+/* } */

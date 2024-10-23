@@ -14,12 +14,94 @@ NOTE: You can use the userChrome.css file without change preferences (about:conf
 Quote: https://userChrome.org | https://github.com/topics/userchrome 
 
 */
+/* chrome://browser/content/browser.xhtml */
 
 @charset "UTF-8";
 @-moz-document url(chrome://browser/content/browser.xhtml) {/* Please write your custom CSS under this line*/
   /* remove treestyletabs header */
-  #sidebar-header {
-      visibility: collapse !important;
-      display: none;
+  :root{
+    --bgdark: #141617;
+    --bgdim: #1d2021;
+    --bg0: #1b1b1b;
+    --bg1: #282828;
+    --bg2: #32302f;
+    --bg3: #3c3836;
+    --bg4: #45403d;
+    --bg5: #504945;
+    --bgbright0: #5a524c;
+    --bgbright1: #665c54;
+
+    --fg0: #d4be98;
+    --fg1: #ddc7a1;
+    --fg2: #e2cca9;
+    --fg3: #ebdbb2;
+
+    --toolbar-field-background-color: var(--bg2) !important;
+    --toolbar-field-focus-background-color: var(--bg2) !important;
+    /* --toolbar-field-focus-background-color: var(--bg3) !important; */
+    /* --toolbar-field-focus-background-color */
+    /* --toolbar-field-focus-border-color: transparent !important; */
+    --toolbar-field-focus-border-color: var(--bgbright0) !important;
+
+    /* --urlbarView-secondary-text-color */
+
+    /* --mac-selected-bgcolor: #1d2021 !important; */
+    /* --mac-selected-bgcolor: #191c1d !important; */
+    --mac-bgcolor: var(--bg0) !important;
+    --mac-selected-bgcolor: var(--bg0) !important;
   }
+  #navigator-toolbox {
+    padding: 2px 0px 2px 0px;
+    /* padding-top: 2px; */
+    /* padding-bottom: 2px; */
+    /* background-color: var(--mac-selected-bgcolor); */
+  }
+  browser, menubar, toolbar, nav-bar, #navigator-toolbox, #TabsToolbar > *{ background-color: var(--mac-selected-bgcolor) !important; }
+  /* @media screen and (min-width: 1100px){ */
+    /* #TabsToolbar{ visibility: collapse !important } */
+  /* } */
+  /* #urlbar, #urlbar-background { */
+    /* border-radius: 8px; */
+  /* } */
+  #sidebar-header {
+    visibility: collapse !important;
+    display: none;
+  }
+  stack.browserStack {
+    margin-left: -5px;
+    border: 0px solid transparent;
+  }
+  /* browser, main-window, menubar, toolbar, nav-bar, #TabsToolbar > *{ */
+    /* background-color: var(--mac-selected-bgcolor) !important; */
+  /* } */
+  /* body, #appcontent[flex], #tabbrowser-tabbox, #tabbrowser-tabpanels { */
+    /* background-color: var(--mac-selected-bgcolor) !important; */
+  /* } */
+  /* .browserSidebarContainer, .browserSidebarContainer.deck-selected, .browserContainer, .browserStack { */
+    /* background-color: var(--mac-selected-bgcolor) !important; */
+  /* } */
+  /* nav-bar { */
+    /* [> padding-top: 1px; <] */
+    /* top: 1px; */
+  /* } */
+  .tab-icon-image:not([src]){
+    content: url("about:blank");  /* filename for icon to load */
+  }
+
+  /* BEGIN make window draggable from URL bar */
+  .urlbar-input-box, .urlbar-input, #urlbar-scheme, #urlbar-container{
+    -moz-window-dragging: drag;
+    cursor: default;
+  }
+  .urlbar-input-container > box,
+  #page-action-buttons,
+  #urlbar-container:focus-within,
+  #urlbar-container:focus-within:is(.urlbar-input-box,
+                                    .urlbar-input,
+                                    #urlbar-scheme,
+                                    #urlbar-container) {
+    -moz-window-dragging: no-drag;
+    cursor: auto;
+  }
+  /* END make window draggable from URL bar */
 }

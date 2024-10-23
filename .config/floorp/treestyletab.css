@@ -15,13 +15,13 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --label-color: #d4be98;  /* #cabaa9; */
-    --background-color: #2b2a33;
-    --tab-active-background-color: #282828;
+    --label-color: #e2cca9;  /* #ebdbb2; #d4be98; */
+    --background-color: #1b1b1b;
+    --tab-active-background-color: #32302f;
     --tab-background-color: #1b1b1b;
-    --tab-item-hover-background-color: #282828;
+    --tab-item-hover-background-color: #3c3836;
+    --tab-item-substance-background-color: #1d2021;
     --tab-item-substance-border-color: #000000;
-    --tab-item-substance-background-color: #1e1e1e;
   }
 }
 @media (prefers-color-scheme: light) {
@@ -30,10 +30,11 @@
     --background-color: #ffffff;
     --tab-active-background-color: #f0f0f0;
     --tab-item-hover-background-color: #f0f0f0;
-    --tab-item-substance-border-color: #00000025;
     --tab-item-substance-background-color: #ffffff;
+    --tab-item-substance-border-color: #00000025;
   }
 }
+
 
 :root, #background { background: var(--background-color); }
 :root.sidebar .label-content { color: var(--label-color) !important; }
@@ -46,16 +47,17 @@
   top: 0px !important;
   left: 0px !important;
   right: 0px !important;
-  bottom: 0px !important;
+  bottom: 5px !important;
   margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
 }
 #normal-tabs-container { scrollbar-width: none; }  /* remove scroll bar */
 
 /* tab styling */
 #tabbar .tab {
   height: var(--tab-height);
-  margin: 0px;
-  padding: 0px;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
   transition: 0.25s width;
 }
 #tabbar:not(:hover) .tab {
@@ -67,7 +69,7 @@
   background: var(--tab-background-color);
   margin: 2px;
   padding: 5px;
-  border-radius: 4px;
+  border-radius: 6px;
   transition: 0.25s background;
 }
 #tabbar .tab.active .background { background: var(--tab-active-background-color); }
@@ -87,42 +89,42 @@
 #tabbar tab-item-substance {
   background-color: var(--tab-item-substance-background-color);
   padding: 5px;
-  border-radius: 6px;
+  border-radius: 8px;
   border: solid 1px var(--tab-item-substance-border-color);
   transition: all 0.25s !important;
 }
 #tabbar tab-item tab-item-substance:hover { }
-#tabbar:hover tab-item[data-level][data-level="0"]  tab-item-substance { margin-left: 8px !important; }
-#tabbar:hover tab-item[data-level][data-level="1"]  tab-item-substance { margin-left: 12px !important; }
-#tabbar:hover tab-item[data-level][data-level="2"]  tab-item-substance { margin-left: 16px !important; }
-#tabbar:hover tab-item[data-level][data-level="3"]  tab-item-substance { margin-left: 20px !important; }
-#tabbar:hover tab-item[data-level][data-level="4"]  tab-item-substance { margin-left: 24px !important; }
-#tabbar:hover tab-item[data-level][data-level="5"]  tab-item-substance { margin-left: 28px !important; }
-#tabbar:hover tab-item[data-level][data-level="6"]  tab-item-substance { margin-left: 32px !important; }
-#tabbar:hover tab-item[data-level][data-level="7"]  tab-item-substance { margin-left: 36px !important; }
-#tabbar:hover tab-item[data-level][data-level="8"]  tab-item-substance { margin-left: 40px !important; }
-#tabbar:hover tab-item[data-level][data-level="9"]  tab-item-substance { margin-left: 44px !important; }
-#tabbar:hover tab-item[data-level][data-level="10"] tab-item-substance { margin-left: 48px !important; }
-#tabbar:hover tab-item[data-level][data-level="11"] tab-item-substance { margin-left: 52px !important; }
-#tabbar:hover tab-item[data-level][data-level="12"] tab-item-substance { margin-left: 56px !important; }
-#tabbar:hover tab-item[data-level][data-level="13"] tab-item-substance { margin-left: 60px !important; }
-#tabbar:hover tab-item[data-level][data-level="14"] tab-item-substance { margin-left: 64px !important; }
+#tabbar:hover tab-item[data-level][data-level="0"]  tab-item-substance { margin-left: 5px  !important; }
+#tabbar:hover tab-item[data-level][data-level="1"]  tab-item-substance { margin-left: 9px  !important; }
+#tabbar:hover tab-item[data-level][data-level="2"]  tab-item-substance { margin-left: 13px !important; }
+#tabbar:hover tab-item[data-level][data-level="3"]  tab-item-substance { margin-left: 17px !important; }
+#tabbar:hover tab-item[data-level][data-level="4"]  tab-item-substance { margin-left: 21px !important; }
+#tabbar:hover tab-item[data-level][data-level="5"]  tab-item-substance { margin-left: 25px !important; }
+#tabbar:hover tab-item[data-level][data-level="6"]  tab-item-substance { margin-left: 29px !important; }
+#tabbar:hover tab-item[data-level][data-level="7"]  tab-item-substance { margin-left: 33px !important; }
+#tabbar:hover tab-item[data-level][data-level="8"]  tab-item-substance { margin-left: 37px !important; }
+#tabbar:hover tab-item[data-level][data-level="9"]  tab-item-substance { margin-left: 41px !important; }
+#tabbar:hover tab-item[data-level][data-level="10"] tab-item-substance { margin-left: 45px !important; }
+#tabbar:hover tab-item[data-level][data-level="11"] tab-item-substance { margin-left: 49px !important; }
+#tabbar:hover tab-item[data-level][data-level="12"] tab-item-substance { margin-left: 53px !important; }
+#tabbar:hover tab-item[data-level][data-level="13"] tab-item-substance { margin-left: 57px !important; }
+#tabbar:hover tab-item[data-level][data-level="14"] tab-item-substance { margin-left: 61px !important; }
 #tabbar:hover tab-item[data-level] tab-item-substance { margin-right: 0px; }
-#tabbar:not(:hover) tab-item[data-level][data-level="0"]  tab-item-substance { margin-left: 8px !important; }
-#tabbar:not(:hover) tab-item[data-level][data-level="1"]  tab-item-substance { margin-left: 12px !important; }
-#tabbar:not(:hover) tab-item[data-level][data-level="2"]  tab-item-substance { margin-left: 16px !important; }
-#tabbar:not(:hover) tab-item[data-level][data-level="3"]  tab-item-substance { margin-left: 20px !important; }
-#tabbar:not(:hover) tab-item[data-level][data-level="4"]  tab-item-substance { margin-left: 24px !important; }
-#tabbar:not(:hover) tab-item[data-level][data-level="5"]  tab-item-substance { margin-left: 28px !important; }
-#tabbar:not(:hover) tab-item[data-level][data-level="6"]  tab-item-substance { margin-left: 32px !important; }
-#tabbar:not(:hover) tab-item[data-level][data-level="7"]  tab-item-substance { margin-left: 36px !important; }
-#tabbar:not(:hover) tab-item[data-level][data-level="8"]  tab-item-substance { margin-left: 40px !important; }
-#tabbar:not(:hover) tab-item[data-level][data-level="9"]  tab-item-substance { margin-left: 44px !important; }
-#tabbar:not(:hover) tab-item[data-level][data-level="10"] tab-item-substance { margin-left: 48px !important; }
-#tabbar:not(:hover) tab-item[data-level][data-level="11"] tab-item-substance { margin-left: 52px !important; }
-#tabbar:not(:hover) tab-item[data-level][data-level="12"] tab-item-substance { margin-left: 56px !important; }
-#tabbar:not(:hover) tab-item[data-level][data-level="13"] tab-item-substance { margin-left: 60px !important; }
-#tabbar:not(:hover) tab-item[data-level][data-level="14"] tab-item-substance { margin-left: 64px !important; }
+#tabbar:not(:hover) tab-item[data-level][data-level="0"]  tab-item-substance { margin-left: 5px  !important; }
+#tabbar:not(:hover) tab-item[data-level][data-level="1"]  tab-item-substance { margin-left: 9px  !important; }
+#tabbar:not(:hover) tab-item[data-level][data-level="2"]  tab-item-substance { margin-left: 13px !important; }
+#tabbar:not(:hover) tab-item[data-level][data-level="3"]  tab-item-substance { margin-left: 17px !important; }
+#tabbar:not(:hover) tab-item[data-level][data-level="4"]  tab-item-substance { margin-left: 21px !important; }
+#tabbar:not(:hover) tab-item[data-level][data-level="5"]  tab-item-substance { margin-left: 25px !important; }
+#tabbar:not(:hover) tab-item[data-level][data-level="6"]  tab-item-substance { margin-left: 29px !important; }
+#tabbar:not(:hover) tab-item[data-level][data-level="7"]  tab-item-substance { margin-left: 33px !important; }
+#tabbar:not(:hover) tab-item[data-level][data-level="8"]  tab-item-substance { margin-left: 37px !important; }
+#tabbar:not(:hover) tab-item[data-level][data-level="9"]  tab-item-substance { margin-left: 41px !important; }
+#tabbar:not(:hover) tab-item[data-level][data-level="10"] tab-item-substance { margin-left: 45px !important; }
+#tabbar:not(:hover) tab-item[data-level][data-level="11"] tab-item-substance { margin-left: 49px !important; }
+#tabbar:not(:hover) tab-item[data-level][data-level="12"] tab-item-substance { margin-left: 53px !important; }
+#tabbar:not(:hover) tab-item[data-level][data-level="13"] tab-item-substance { margin-left: 57px !important; }
+#tabbar:not(:hover) tab-item[data-level][data-level="14"] tab-item-substance { margin-left: 61px !important; }
 #tabbar:not(:hover) tab-item[data-level] tab-item-substance { margin-right: 0px; }
 
 /* tab label content styling */
