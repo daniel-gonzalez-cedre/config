@@ -42,7 +42,7 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
     --fg3: #ebdbb2;
 
     --toolbar-field-background-color: var(--bg2) !important;
-    --toolbar-field-focus-background-color: var(--bg2) !important;
+    --toolbar-field-focus-background-color: var(--bg3) !important;
     /* --toolbar-field-focus-background-color: var(--bg3) !important; */
     /* --toolbar-field-focus-background-color */
     /* --toolbar-field-focus-border-color: transparent !important; */
@@ -52,8 +52,8 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
 
     /* --mac-selected-bgcolor: #1d2021 !important; */
     /* --mac-selected-bgcolor: #191c1d !important; */
-    --mac-bgcolor: var(--bgdim) !important;
-    --mac-selected-bgcolor: var(--bgdim) !important;
+    --mac-bgcolor: var(--bg0) !important;
+    --mac-selected-bgcolor: var(--bg0) !important;
   }
   #navigator-toolbox {
     padding: 4px 0px 2px 0px;

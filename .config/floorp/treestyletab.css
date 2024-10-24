@@ -68,8 +68,6 @@
   --fg1: 221, 199, 161;
   --fg2: 226, 204, 169;
   --fg3: 235, 219, 178;
-  
-  --loading-tab-color: var(--gray2);
 
   --closebox-bg-color: var(--default-gray);
   --muted-color: var(--orange);
@@ -80,29 +78,27 @@
   --sound-hover-color: var(--default-gray);
   --twisty-hover-bg-color: var(--blue);
 }
-#tabbar tab-twisty:visible :root {
-  --twisty-height: 22px;
-  --twisty-width: 20px;
-}
-#tabbar tab-twisty:not(:visible) :root {
-  --twisty-height: 20px;
-  --twisty-width: 20px;
-}
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background-color: var(--bgdim);
+    --background-color: var(--bg0);
 
-    --tab-label-color: var(--fg2);
+    --tab-label-color: var(--fg0);
 
-    /* --tab-item-substance-border-color: #000000; */
+    /* --tab-item-substance-border-color: var(--bgdark); */
     --tab-item-substance-border-color: 0, 0, 0;
 
-    --tab-background-color: var(--bg0);
-    --tab-active-background-color: var(--fg0);
+    --tab-background-color: var(--bg1);
+    --tab-active-background-color: var(--glow1);
+    --tab-inactive-background-color: var(--bg3);
+    
+    --tab-loading-color: var(--bgdark);
 
-    --tab-item-hover-background-color: var(--gray0);
-    --tab-item-substance-background-color: var(--bgdim);
+    --tab-item-hover-background-color: var(--bg3);
+    --tab-item-substance-background-color: var(--bg1);
+        
+    --tab-unread-label-color: var(--gray0);
+    --tab-discarded-label-color: var(--gray0);
   }
 }
 @media (prefers-color-scheme: light) {
@@ -121,7 +117,7 @@
   }
 }
 
-:root, #background { background: rgba(var(--background-color), 1.0); }
+:root, #background { background: rgba(var(--background-color), 1.0) !important; }
 :root.sidebar .label-content { color: rgba(var(--tab-label-color), 1.0) !important; }
 
 /* tabbar styling */
@@ -164,6 +160,10 @@
   background: rgba(var(--tab-active-background-color), 1.0);
   transition: 0.25s background;
 }
+#tabbar .tab.active tab-item-substance:-moz-window-inactive {
+  background: rgba(var(--tab-inactive-background-color), 1.0);
+  transition: 0.25s background;
+}
 #tabbar .tab.active:hover .background {
   /* background: rgba(var(--tab-active-background-color), 1.0); */
 }
@@ -201,13 +201,14 @@
 
 /* styling for unread and discarded tabs */
 /* .unread .label-content, .discarded .label-content { opacity: 0.666; } */
-#tabbar .unread .label-content, #tabbar .discarded .label-content { color: rgba(var(--gray1), 1.0 ) !important; }
-#tabbar .unread tab-favicon, #tabbar .discarded tab-favicon { opacity: 0.25; }
+#tabbar .unread .label-content { color: rgba(var(--tab-unread-label-color), 1.0 ) !important; }
+#tabbar .discarded .label-content { color: rgba(var(--tab-discarded-label-color), 1.0 ) !important; }
+#tabbar .unread tab-favicon, #tabbar .discarded tab-favicon { opacity: 0.375; }
 
 /* blank tab  and loading behavior */
 #tabbar .loading tab-favicon { visibility: collapse !important; }
 #tabbar .loading .label-content { visibility: collapse !important; }
-#tabbar .loading tab-item-substance { background: rgba(var(--loading-tab-color), 1.0) !important; }
+#tabbar .loading tab-item-substance { background: rgba(var(--tab-loading-color), 1.0) !important; }
 
 #tabbar tab-item:-moz-any(
   [data-current-uri*="blanktab"],
