@@ -68,14 +68,25 @@
   --fg1: 221, 199, 161;
   --fg2: 226, 204, 169;
   --fg3: 235, 219, 178;
+  
+  --loading-tab-color: var(--gray2);
 
   --closebox-bg-color: var(--default-gray);
+  --muted-color: var(--orange);
+  --sound-color: var(--yellow);
   --twisty-bg-color: var(--default-gray);
-  --sound-color: var(--orange);
-
+  
   --closebox-hover-bg-color: var(--red);
-  --twisty-hover-bg-color: var(--blue);
   --sound-hover-color: var(--default-gray);
+  --twisty-hover-bg-color: var(--blue);
+}
+#tabbar tab-twisty:visible :root {
+  --twisty-height: 22px;
+  --twisty-width: 20px;
+}
+#tabbar tab-twisty:not(:visible) :root {
+  --twisty-height: 20px;
+  --twisty-width: 20px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -170,7 +181,7 @@
   transition: all 0.25s !important;
 }
 
-#tabbar:hover tab-item[data-level] tab-item-substance { margin-left: 0% !important; }
+/* #tabbar:hover tab-item[data-level] tab-item-substance { margin-left: 0% !important; } */
 
 /* tab label content styling */
 .label-content {
@@ -192,11 +203,11 @@
 /* .unread .label-content, .discarded .label-content { opacity: 0.666; } */
 #tabbar .unread .label-content, #tabbar .discarded .label-content { color: rgba(var(--gray1), 1.0 ) !important; }
 #tabbar .unread tab-favicon, #tabbar .discarded tab-favicon { opacity: 0.25; }
-#tabbar .unread:hover tab-favicon, #tabbar .discarded:hover tab-favicon { opacity: 0.0; }
 
 /* blank tab  and loading behavior */
 #tabbar .loading tab-favicon { visibility: collapse !important; }
 #tabbar .loading .label-content { visibility: collapse !important; }
+#tabbar .loading tab-item-substance { background: rgba(var(--loading-tab-color), 1.0) !important; }
 
 #tabbar tab-item:-moz-any(
   [data-current-uri*="blanktab"],
@@ -247,20 +258,23 @@
 #tabbar .tab:not(:hover) .closebox { opacity: 0.0; }
 #tabbar .tab:hover .closebox { }
 
-#tabbar tab-item.sound-playing tab-item-substance { background-color: rgba(var(--sound-color), 1.0); }
-#tabbar .sound-button {
-  margin-left: 0;
-  display: inline-block;
-  visibility: collapse;
+#tabbar tab-item .sound-button {
+  margin-left: 24px;
+  position: absolute;
+  float: left;
+  display: none !important;
 }
-
-#tabbar tab-item.sound-playing:hover .sound-button {
-  visibility: visible;
-  margin-right: 8px;
+#tabbar tab-item.sound-playing tab-item-substance {
+  background-color: rgba(var(--sound-color), 1.0);
 }
-#tabbar tab-item.muted:hover .sound-button {
-  visibility: visible;
-  margin-right: 8px;
+#tabbar tab-item.muted tab-item-substance {
+  background-color: rgba(var(--muted-color), 1.0);
+}
+#tabbar tab-item.muted .label-content, #tabbar tab-item.sound-playing .label-content {
+  margin-left: 20px;
+}
+#tabbar tab-item.muted .sound-button, #tabbar tab-item.sound-playing .sound-button {
+  display: inline-block !important;
 }
 
 /* [>] twisty styling for collapsed tab trees */
@@ -269,19 +283,25 @@
 #tabbar tab-twisty:hover::before { opacity: 1.0; }
 #tabbar tab-twisty {
   order: 10000;
+  width: 20px;
+  height: 20px;
   float: right;
-  position: relative;
+  display: inline-block;
+  position: inline-block;
   padding: 0px 16px 16px 0px;
   margin: 0px 0px 0px -4px;
-  height: 20px;
   box-sizing: border-box;
   border-radius: 5px;
   border: 2px solid rgba(var(--twisty-hover-bg-color), 1.0);
   background: rgba(var(--tab-background-color, 1.0));
   transition: all 0.25s;
 }
-#tabbar .tab:not(:hover) tab-twisty { opacity: 0.0; }
-#tabbar .tab:hover tab-twisty { opacity: 1.0; }
+#tabbar .tab:not(:hover) tab-twisty {
+  display: none !important;
+}
+#tabbar .tab:hover tab-twisty {
+  display: inline-block !important;
+}
 /* #tabbar .tab:hover tab-twisty:not(:hover) { opacity: 1.0; } */
 #tabbar .tab:hover tab-twisty:hover { background: rgba(var(--twisty-hover-bg-color), 1.0); }
 
@@ -295,7 +315,6 @@
 :root .tab .highlighter {
   visibility: collapse !important;
   display: none;
-  opacity: 0.0;
 }
 #tabbar tab-item.active .contextual-identity-marker {
   visibility: collapse !important;
