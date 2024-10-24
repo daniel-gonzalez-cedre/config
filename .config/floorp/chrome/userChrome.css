@@ -11,7 +11,7 @@ For instance, if you want to hide the tab bar, you can use the following CSS rul
 
 NOTE: You can use the userChrome.css file without change preferences (about:config)
 
-Quote: https://userChrome.org | https://github.com/topics/userchrome 
+Quote: https://userChrome.org | https://github.com/topics/userchrome
 
 */
 /* chrome://browser/content/browser.xhtml */
@@ -36,8 +36,8 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
     --fg2: #e2cca9;
     --fg3: #ebdbb2;
 
-    --toolbar-field-background-color: var(--bg2) !important;
-    --toolbar-field-focus-background-color: var(--bg2) !important;
+    --toolbar-field-background-color: var(--bg1) !important;
+    --toolbar-field-focus-background-color: var(--bg1) !important;
     /* --toolbar-field-focus-background-color: var(--bg3) !important; */
     /* --toolbar-field-focus-background-color */
     /* --toolbar-field-focus-border-color: transparent !important; */
@@ -47,11 +47,11 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
 
     /* --mac-selected-bgcolor: #1d2021 !important; */
     /* --mac-selected-bgcolor: #191c1d !important; */
-    --mac-bgcolor: var(--bg0) !important;
-    --mac-selected-bgcolor: var(--bg0) !important;
+    --mac-bgcolor: var(--bgdim) !important;
+    --mac-selected-bgcolor: var(--bgdim) !important;
   }
   #navigator-toolbox {
-    padding: 2px 0px 2px 0px;
+    padding: 4px 0px 2px 0px;
     /* padding-top: 2px; */
     /* padding-bottom: 2px; */
     /* background-color: var(--mac-selected-bgcolor); */
@@ -69,24 +69,10 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
   }
   stack.browserStack {
     margin-left: -5px;
+    margin-top: 1px;
     border: 0px solid transparent;
   }
-  /* browser, main-window, menubar, toolbar, nav-bar, #TabsToolbar > *{ */
-    /* background-color: var(--mac-selected-bgcolor) !important; */
-  /* } */
-  /* body, #appcontent[flex], #tabbrowser-tabbox, #tabbrowser-tabpanels { */
-    /* background-color: var(--mac-selected-bgcolor) !important; */
-  /* } */
-  /* .browserSidebarContainer, .browserSidebarContainer.deck-selected, .browserContainer, .browserStack { */
-    /* background-color: var(--mac-selected-bgcolor) !important; */
-  /* } */
-  /* nav-bar { */
-    /* [> padding-top: 1px; <] */
-    /* top: 1px; */
-  /* } */
-  .tab-icon-image:not([src]){
-    content: url("about:blank");  /* filename for icon to load */
-  }
+  .tab-icon-image:not([src]){ content: url("about:blank"); }
 
   /* BEGIN make window draggable from URL bar */
   .urlbar-input-box, .urlbar-input, #urlbar-scheme, #urlbar-container{

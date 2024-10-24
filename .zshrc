@@ -431,13 +431,20 @@ alias storage='watch -n 1 --color df -h'
 (){
   function cleantex() {
     # local LATEXDIR="/tmp/latexmk/"
-    local LATEXDIR="./"
-    mkdir -p $LATEXDIR
-    NAME="${1%.*}"
+    # mkdir -p $LATEXDIR
+    if [ -z "$2" ]; then
+      local NAME="${1%.*}"
+      local LATEXDIR="./"
+    else
+      local NAME="${1%.*}"
+      local LATEXDIR="{$2}"
+    fi
+
     find $LATEXDIR -depth 1 -name "_minted*${NAME}*" -exec rm -r '{}' \; 2>/dev/null
     find $LATEXDIR -depth 1 -name "${NAME}*aux" -exec rm -v '{}' \;
     find $LATEXDIR -depth 1 -name "${NAME}*bbl" -exec rm -v '{}' \;
     find $LATEXDIR -depth 1 -name "${NAME}*bcf" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*bcf-SAVE-ERROR" -exec rm -v '{}' \;
     find $LATEXDIR -depth 1 -name "${NAME}*blg" -exec rm -v '{}' \;
     find $LATEXDIR -depth 1 -name "${NAME}*brf" -exec rm -v '{}' \;
     find $LATEXDIR -depth 1 -name "${NAME}*fdb_latexmk" -exec rm -v '{}' \;
@@ -456,6 +463,7 @@ alias storage='watch -n 1 --color df -h'
     find $LATEXDIR -depth 1 -name "${NAME}*run.xml" -exec rm -v '{}' \;
     find $LATEXDIR -depth 1 -name "${NAME}*snm" -exec rm -v '{}' \;
     find $LATEXDIR -depth 1 -name "${NAME}*toc" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*xdv" -exec rm -v '{}' \;
     find $LATEXDIR -depth 1 -name "${NAME}*xdv" -exec rm -v '{}' \;
   }
   function cleanlatex() { cleantex "$@" }

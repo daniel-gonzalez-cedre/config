@@ -16,7 +16,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --label-color: #e2cca9;  /* #ebdbb2; #d4be98; */
-    --background-color: #1b1b1b;
+    --background-color: #1d2021;
     --tab-active-background-color: #32302f;
     --tab-background-color: #1b1b1b;
     --tab-item-hover-background-color: #3c3836;
@@ -35,7 +35,6 @@
   }
 }
 
-
 :root, #background { background: var(--background-color); }
 :root.sidebar .label-content { color: var(--label-color) !important; }
 
@@ -44,7 +43,7 @@
 #tabbar {
   overflow-x: hidden;
   overflow-y: hidden;
-  top: 0px !important;
+  top: 2px !important;
   left: 0px !important;
   right: 0px !important;
   bottom: 5px !important;
@@ -74,7 +73,7 @@
 }
 #tabbar .tab.active .background { background: var(--tab-active-background-color); }
 #tabbar .tab.active:hover tab-item-substance {
-  background: var(--tab-active-background-color);
+  background: var(--tab-item-hover-background-color);
   transition: 0.25s background;
 }
 #tabbar .tab.active:hover .background {
@@ -192,7 +191,10 @@
   opacity: 0.5;
   background: var(--closebox-color);
 }
-#tabbar tab-item tab-closebox:hover { background: var(--closebox-hover-color); }
+#tabbar tab-item tab-closebox:hover {
+  background: var(--closebox-hover-color);
+}
+#tabbar tab-item:hover tab-closebox:hover tab-item-substance { background: var(--closebox-hover-color); }
 #tabbar .tab:not(:hover) .closebox { opacity: 0; }
 #tabbar .tab:hover .closebox { }
 
