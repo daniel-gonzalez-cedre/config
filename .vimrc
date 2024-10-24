@@ -707,15 +707,17 @@
 
       noremap gci <plug>NERDCommenterToEOL a
       noremap gcI <plug>NERDCommenterComment ^a<space>
+      noremap gck <plug>NERDCommenterToEOL
+      noremap gcK <plug>NERDCommenterComment ^
 
       nnoremap gca A<c-g>U<space><c-o><plug>NERDCommenterAppend
       nnoremap gcA <plug>NERDCommenterAppend
 
       nnoremap gcl A<c-g>U<c-o><plug>NERDCommenterAppend<bs><left><bs><right><esc>
-      nnoremap gcH <plug>NERDCommenterToEOL
-      nnoremap gcJ <plug>NERDCommenterToEOL
-      nnoremap gcK <plug>NERDCommenterToEOL
-      nnoremap gcL <plug>NERDCommenterToEOL
+      " nnoremap gcH <plug>NERDCommenterToEOL
+      " nnoremap gcJ <plug>NERDCommenterToEOL
+      " nnoremap gcK <plug>NERDCommenterToEOL
+      " nnoremap gcL <plug>NERDCommenterToEOL
 
       nnoremap gco o<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
       nnoremap gcO O<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
