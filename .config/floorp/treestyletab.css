@@ -5,8 +5,8 @@
 @keyframes blink {}
 
 :root {
-  --tab-height: 32px;
-  --tab-width: 32px;
+  --tab-height: 34px;
+  --tab-width: 34px;
   
   --tab-inner-radius: 9px;
   --tab-outer-radius: 9px;
@@ -213,7 +213,7 @@
 #tabbar tab-item tab-favicon {
   float: left !important;
   position: static !important;
-  margin: 0px 0px 0px 1px !important;
+  margin: 0px 0px 0px 2px !important;
   transition: 0.25s opacity;
 }
 

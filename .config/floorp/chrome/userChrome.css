@@ -20,7 +20,7 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
 @-moz-document url(chrome://browser/content/browser.xhtml) {/* Please write your custom CSS under this line*/
   /* remove treestyletabs header */
   :root{
-    --min-tab-width: 39px;
+    --min-tab-width: 41px;
     --max-tab-width: 180px;
 
     --browser-radius: 9px;
@@ -153,22 +153,21 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
     border-radius: var(--browser-radius);
   }
 
-  
-  /* [> BEGIN make window draggable from URL bar <] */
-  /* .urlbar-input-box, .urlbar-input, #urlbar-scheme, #urlbar-container { */
-    /* -moz-window-dragging: drag; */
-    /* cursor: default; */
-  /* } */
+  /* BEGIN make window draggable from URL bar */
+  .urlbar-input-box, .urlbar-input, #urlbar-scheme, #urlbar-container {
+    -moz-window-dragging: drag;
+    cursor: default;
+  }
 
-  /* .urlbar-input-container > box, */
-  /* #page-action-buttons, */
-  /* #urlbar-container:focus-within, */
-  /* #urlbar-container:focus-within:is(.urlbar-input-box, */
-                                    /* .urlbar-input, */
-                                    /* #urlbar-scheme, */
-                                    /* #urlbar-container) { */
-    /* -moz-window-dragging: no-drag; */
-    /* cursor: auto; */
-  /* } */
-  /* [> END make window draggable from URL bar <] */
+  .urlbar-input-container > box,
+  #page-action-buttons,
+  #urlbar-container:focus-within,
+  #urlbar-container:focus-within:is(.urlbar-input-box,
+                                    .urlbar-input,
+                                    #urlbar-scheme,
+                                    #urlbar-container) {
+    -moz-window-dragging: no-drag;
+    cursor: auto;
+  }
+  /* END make window draggable from URL bar */
 }
