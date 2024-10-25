@@ -20,9 +20,14 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
 @-moz-document url(chrome://browser/content/browser.xhtml) {/* Please write your custom CSS under this line*/
   /* remove treestyletabs header */
   :root{
-    --min-tab-width: 46px;
+    --min-tab-width: 39px;
     --max-tab-width: 180px;
-    
+
+    --browser-radius: 9px;
+    --button-radius: 9px;
+    --urlbar-radius: 9px;
+    --urlbar-button-radius: 7px;
+
     --bgdark: #141617;
     --bgdim: #1d2021;
     --bg0: #1b1b1b;
@@ -59,100 +64,111 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
     --mac-selected-bgcolor: var(--bg0) !important;
   }
 
-  #browser { background-color: var(--mac-selected-bgcolor); }
-  #browser #appcontent {
-    box-sizing: border-box;
-    border-radius: 10px;
-    border: 1px solid #ffffff;
-  }
-  browser, menubar, toolbar, nav-bar, #navigator-toolbox, #TabsToolbar > * { background-color: var(--mac-selected-bgcolor) !important; }
-  #navigator-toolbox { padding: 4px 0px 2px 0px; }
+  body, #browser, browser, menubar, toolbar, nav-bar, #navigator-toolbox, #TabsToolbar > * { background-color: var(--mac-selected-bgcolor) !important; }
+
+  html#main-window, html:body, #browser { background-color: var(--mac-selected-bgcolor) !important; }
+  
   #page-action-buttons, #pageActionButton, #pageActionSeparator,
+  #remote-control-box, .chromeclass-toolbar-additional.urlbar-search-button,
   #star-button-box, #pocket-button-box, #identity-icon-labels,
-  .autocomplete-history-dropmarker, ar-button {
-    visibility: collapse !important;
-    display: none !important;
-  }
+  .autocomplete-history-dropmarker, ar-button { display: none !important; }
+
   #navigator-toolbox {
+    padding: 0px !important;
+    margin: 0px !important;
     border: 0px solid transparent !important;
+  }
+  #navigator-toolbox toolbar#nav-bar { margin: 5px 0px 5px 5px !important; }
+  
+  toolbarbutton > stack {
+    box-sizing: border-box !important;
+    border: 0px transparent !important;
+    border-radius: var(--button-radius) !important;
+  }
+  toolbar toolbarbutton image, toolbaritem toolbarbutton image {
+    box-sizing: border-box !important;
+    border: 0px transparent !important;
+    border-radius: var(--button-radius) !important;
   }
 
   /* #urlbar .urlbar-input { color: var(--fg3) !important; } */
+  #urlbar { margin: 0px; }
+  #urlbar-background {
+    box-sizing: border-box !important;
+    border: 1px transparent solid !important;
+    border-radius: var(--urlbar-radius) !important;
+  }
+  #urlbar:hover #urlbar-background {
+    border: 1px var(--toolbar-field-focus-border-color) solid !important;
+  }
+  .urlbar-go-button { display: none !important; }
+  .urlbar-input-container box {
+    box-sizing: border-box !important;
+    border: 0px transparent solid !important;
+    border-radius: var(--urlbar-button-radius) !important;
+  }
+  .urlbar-input-container box:hover, .urlbar-input-container box:hover box {
+    /* background-color: var(--gray0); */
+  }
+  
   #urlbar .urlbar-input { color: var(--fg3) !important; }
-  /* #urlbar .urlbar-input-box { text-align: center; } */
-  #urlbar .urlbar-input-box { padding-right: 10px; }
+  #urlbar .urlbar-input-box { padding-right: 9px; }
   #urlbar:not([focused]) .urlbar-input-box {
     color: var(--fg0) !important;
-    /*text-align: center;*/
-  }
-  /*browser { border: 1px solid; border-radius: 10px; }*/
-  /*.urlbar-input-container > box { display: none !important; }*/
-
-  stack.browserStack {
-    margin-left: -5px;
-    margin-top: 1px;
-    border: 0px solid transparent;
-    /* border-radius: 8px; */
+    text-align: center;
   }
 
   .tab-icon-image:not([src]){ content: url("about:blank"); }
 
-  #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] + #sidebar-splitter { display: none !important; }
-  #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
+  #sidebar, #sidebar-box {
+    margin: 0px !important;
+    padding: 0px !important;
+    background-color: var(--mac-selected-bg-color) !important;
+  }
+
+  #sidebar-header,
+  #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header,
+  #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] + #sidebar-splitter {
     visibility: collapse !important;
     display: none !important;
   }
-  #sidebar-header {
-    visibility: collapse !important;
-    display: none !important;
-  }
-  
-/*#sidebar-box:not([sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]) {
-	min-width: var(--max-tab-width) !important;
-	max-width: none !important;
-}*/
+
   #sidebar-box:-moz-window-inactive {
     min-width: var(--min-tab-width) !important;
     max-width: var(--min-tab-width) !important;
   }
-  #sidebar {
-    background-color: var(--mac-selected-bg-color) !important;
-  }
-  #sidebar-box {
-    background: var(--mac-selected-bgcolor) !important;
-    padding-right: 8px;
-  }
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:not(:hover) {
-	
-	/* transition: all 300ms !important; */
-  min-width: var(--min-tab-width) !important;
-	max-width: var(--min-tab-width) !important;
-  transition: all 0.25s !important;
-}
-
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover {
- 	/* transition: all 300ms !important; */
-
-	/* Negative right-margin to keep page from being pushed to the side. */
-	/* margin-right: calc((var(--max-tab-width) - var(--min-tab-width)) * -1) !important; */
-}
-
-
-  /* BEGIN make window draggable from URL bar */
-  .urlbar-input-box, .urlbar-input, #urlbar-scheme, #urlbar-container {
-    -moz-window-dragging: drag;
-    cursor: default;
+  #sidebar-box { background: var(--mac-selected-bgcolor) !important; }
+  #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:not(:hover) {
+    min-width: var(--min-tab-width) !important;
+    max-width: var(--min-tab-width) !important;
+    transition: all 0.25s !important;
   }
 
-  .urlbar-input-container > box,
-  #page-action-buttons,
-  #urlbar-container:focus-within,
-  #urlbar-container:focus-within:is(.urlbar-input-box,
-                                    .urlbar-input,
-                                    #urlbar-scheme,
-                                    #urlbar-container) {
-    -moz-window-dragging: no-drag;
-    cursor: auto;
+  #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover { transition: all 0.25s !important; }
+
+  #browser stack.browserStack browser {
+    margin: 0px 7px 7px 5px;
+    box-sizing: border-box;
+    border: 0px solid transparent !important;
+    border-radius: var(--browser-radius);
   }
-  /* END make window draggable from URL bar */
+
+  
+  /* [> BEGIN make window draggable from URL bar <] */
+  /* .urlbar-input-box, .urlbar-input, #urlbar-scheme, #urlbar-container { */
+    /* -moz-window-dragging: drag; */
+    /* cursor: default; */
+  /* } */
+
+  /* .urlbar-input-container > box, */
+  /* #page-action-buttons, */
+  /* #urlbar-container:focus-within, */
+  /* #urlbar-container:focus-within:is(.urlbar-input-box, */
+                                    /* .urlbar-input, */
+                                    /* #urlbar-scheme, */
+                                    /* #urlbar-container) { */
+    /* -moz-window-dragging: no-drag; */
+    /* cursor: auto; */
+  /* } */
+  /* [> END make window draggable from URL bar <] */
 }
