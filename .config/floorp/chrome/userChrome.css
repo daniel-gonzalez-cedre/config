@@ -147,7 +147,7 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
   #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover { transition: all 0.25s !important; }
 
   #browser stack.browserStack browser {
-    margin: 0px 7px 7px 5px;
+    margin: 0px 7px 7px 7px;
     box-sizing: border-box;
     border: 0px solid transparent !important;
     border-radius: var(--browser-radius);
