@@ -73,7 +73,7 @@
   --muted-color: var(--orange);
   --sound-color: var(--yellow);
   --twisty-bg-color: var(--default-gray);
-  
+
   --closebox-hover-bg-color: var(--red);
   --sound-hover-color: var(--default-gray);
   --twisty-hover-bg-color: var(--blue);
@@ -91,12 +91,12 @@
     --tab-background-color: var(--bg1);
     --tab-active-background-color: var(--glow1);
     --tab-inactive-background-color: var(--bg3);
-    
+
     --tab-loading-color: var(--bgdark);
 
     --tab-item-hover-background-color: var(--bg3);
     --tab-item-substance-background-color: var(--bg1);
-        
+
     --tab-unread-label-color: var(--gray0);
     --tab-discarded-label-color: var(--gray0);
   }
@@ -139,11 +139,9 @@
   height: var(--tab-height);
   margin: 0px;
   padding: 0px;
-  transition: 0.25s width;
 }
-#tabbar:not(:hover) .tab {
-  /*width: 34px;*/
-}
+#tabbar:not(:hover) { width: 32px; }
+#tabbar:not(:hover) .tab { width: 32px; }
 
 /* tab background styling */
 #tabbar .tab .background {
@@ -178,10 +176,10 @@
   padding: 5px;
   border-radius: 8px;
   border: solid 1px rgba(var(--tab-item-substance-border-color), 1.0);
-  transition: all 0.25s !important;
+  transition: 0.25s all !important;
 }
 
-/* #tabbar:hover tab-item[data-level] tab-item-substance { margin-left: 0% !important; } */
+#tabbar:not(:hover) tab-item[data-level] tab-item-substance { margin-left: 0% !important; }
 
 /* tab label content styling */
 .label-content {
@@ -277,9 +275,13 @@
 #tabbar tab-item.muted .sound-button, #tabbar tab-item.sound-playing .sound-button {
   display: inline-block !important;
 }
+#tabbar:not(:hover) tab-item .sound-button { display: none !important; }
 
 /* [>] twisty styling for collapsed tab trees */
-#tabbar tab-twisty::before { margin: 0px; }
+#tabbar tab-twisty::before {
+  margin: 0px;
+  transition: 0.25s all !important;
+}
 #tabbar tab-twisty:not(:hover)::before { opacity: 0.75; }
 #tabbar tab-twisty:hover::before { opacity: 1.0; }
 #tabbar tab-twisty {
@@ -295,13 +297,15 @@
   border-radius: 5px;
   border: 2px solid rgba(var(--twisty-hover-bg-color), 1.0);
   background: rgba(var(--tab-background-color, 1.0));
-  transition: all 0.25s;
+  transition: all 0.25s !important;
 }
 #tabbar .tab:not(:hover) tab-twisty {
-  display: none !important;
+  opacity: 0;
+  visibility: collapse;
 }
 #tabbar .tab:hover tab-twisty {
-  display: inline-block !important;
+  opacity: 1;
+  visibility: visible;
 }
 /* #tabbar .tab:hover tab-twisty:not(:hover) { opacity: 1.0; } */
 #tabbar .tab:hover tab-twisty:hover { background: rgba(var(--twisty-hover-bg-color), 1.0); }

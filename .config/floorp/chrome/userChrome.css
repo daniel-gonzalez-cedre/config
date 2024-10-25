@@ -20,6 +20,9 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
 @-moz-document url(chrome://browser/content/browser.xhtml) {/* Please write your custom CSS under this line*/
   /* remove treestyletabs header */
   :root{
+    --min-tab-width: 46px;
+    --max-tab-width: 180px;
+    
     --bgdark: #141617;
     --bgdim: #1d2021;
     --bg0: #1b1b1b;
@@ -55,35 +58,92 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
     --mac-bgcolor: var(--bg0) !important;
     --mac-selected-bgcolor: var(--bg0) !important;
   }
-  #navigator-toolbox {
-    padding: 4px 0px 2px 0px;
-    /* padding-top: 2px; */
-    /* padding-bottom: 2px; */
-    /* background-color: var(--mac-selected-bgcolor); */
+
+  #browser { background-color: var(--mac-selected-bgcolor); }
+  #browser #appcontent {
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid #ffffff;
   }
-  browser, menubar, toolbar, nav-bar, #navigator-toolbox, #TabsToolbar > *{ background-color: var(--mac-selected-bgcolor) !important; }
-  /* @media screen and (min-width: 1100px){ */
-    /* #TabsToolbar{ visibility: collapse !important } */
-  /* } */
-  /* #urlbar, #urlbar-background { */
-    /* border-radius: 8px; */
-  /* } */
-  #sidebar-header {
+  browser, menubar, toolbar, nav-bar, #navigator-toolbox, #TabsToolbar > * { background-color: var(--mac-selected-bgcolor) !important; }
+  #navigator-toolbox { padding: 4px 0px 2px 0px; }
+  #page-action-buttons, #pageActionButton, #pageActionSeparator,
+  #star-button-box, #pocket-button-box, #identity-icon-labels,
+  .autocomplete-history-dropmarker, ar-button {
     visibility: collapse !important;
-    display: none;
+    display: none !important;
   }
+  #navigator-toolbox {
+    border: 0px solid transparent !important;
+  }
+
+  /* #urlbar .urlbar-input { color: var(--fg3) !important; } */
+  #urlbar .urlbar-input { color: var(--fg3) !important; }
+  /* #urlbar .urlbar-input-box { text-align: center; } */
+  #urlbar .urlbar-input-box { padding-right: 10px; }
+  #urlbar:not([focused]) .urlbar-input-box {
+    color: var(--fg0) !important;
+    /*text-align: center;*/
+  }
+  /*browser { border: 1px solid; border-radius: 10px; }*/
+  /*.urlbar-input-container > box { display: none !important; }*/
+
   stack.browserStack {
     margin-left: -5px;
     margin-top: 1px;
     border: 0px solid transparent;
+    /* border-radius: 8px; */
   }
+
   .tab-icon-image:not([src]){ content: url("about:blank"); }
 
+  #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] + #sidebar-splitter { display: none !important; }
+  #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
+    visibility: collapse !important;
+    display: none !important;
+  }
+  #sidebar-header {
+    visibility: collapse !important;
+    display: none !important;
+  }
+  
+/*#sidebar-box:not([sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]) {
+	min-width: var(--max-tab-width) !important;
+	max-width: none !important;
+}*/
+  #sidebar-box:-moz-window-inactive {
+    min-width: var(--min-tab-width) !important;
+    max-width: var(--min-tab-width) !important;
+  }
+  #sidebar {
+    background-color: var(--mac-selected-bg-color) !important;
+  }
+  #sidebar-box {
+    background: var(--mac-selected-bgcolor) !important;
+    padding-right: 8px;
+  }
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:not(:hover) {
+	
+	/* transition: all 300ms !important; */
+  min-width: var(--min-tab-width) !important;
+	max-width: var(--min-tab-width) !important;
+  transition: all 0.25s !important;
+}
+
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover {
+ 	/* transition: all 300ms !important; */
+
+	/* Negative right-margin to keep page from being pushed to the side. */
+	/* margin-right: calc((var(--max-tab-width) - var(--min-tab-width)) * -1) !important; */
+}
+
+
   /* BEGIN make window draggable from URL bar */
-  .urlbar-input-box, .urlbar-input, #urlbar-scheme, #urlbar-container{
+  .urlbar-input-box, .urlbar-input, #urlbar-scheme, #urlbar-container {
     -moz-window-dragging: drag;
     cursor: default;
   }
+
   .urlbar-input-container > box,
   #page-action-buttons,
   #urlbar-container:focus-within,
