@@ -79,7 +79,8 @@
   --twisty-bg-color: var(--default-gray);
 
   --closebox-hover-bg-color: var(--red);
-  --sound-hover-color: var(--default-gray);
+  --muted-hover-color: var(--orange);
+  --sound-hover-color: var(--yellow);
   --twisty-hover-bg-color: var(--blue);
 }
 
@@ -285,17 +286,44 @@
 #tabbar .tab:not(:hover) .closebox { opacity: 0.0; }
 #tabbar .tab:hover .closebox { }
 
-#tabbar tab-item .sound-button {
-  margin-left: 24px;
-  position: absolute;
-  float: left;
-  display: none !important;
+#tabbar .tab .sound-button {
+  order: 999999;
+  height: 16px !important;
+  width: 16px !important;
+  min-width: 16px !important;
+  max-width: 16px !important;
+  float: right !important;
+  position: absolute !important;
+  right: 32px !important;
+  padding: 8px !important;
+  margin: 0px !important;
+  box-sizing: border-box !important;
+  transition: all 0.25s !important;
+}
+#tabbar .tab.sound-playing .sound-button {
+  color: rgba(var(--sound-color), 1.0);
+  background: rgba(var(--tab-background-color, 1.0));
+  border: 2px solid rgba(var(--sound-color), 1.0) !important;
+  border-radius: var(--tab-button-radius);
+  transition: all 0.25s !important;
+}
+#tabbar .tab.muted .sound-button {
+  color: rgba(var(--sound-color), 1.0);
+  background: rgba(var(--tab-background-color, 1.0));
+  border: 2px solid rgba(var(--muted-color), 1.0) !important;
+  border-radius: var(--tab-button-radius);
+  transition: all 0.25s !important;
 }
 #tabbar .tab.sound-playing .background { border: 2px solid rgba(var(--sound-color), 1.0) !important; }
 #tabbar .tab.muted .background { border: 2px solid rgba(var(--muted-color), 1.0) !important; }
 #tabbar .tab.muted .label-content, #tabbar .tab.sound-playing .label-content { margin-left: 20px; }
-#tabbar .tab.muted .sound-button, #tabbar .tab.sound-playing .sound-button { display: inline-block !important; }
-#tabbar:not(:hover) .tab .sound-button { display: none !important; }
+#tabbar .tab.muted .sound-button, #tabbar .tab.sound-playing .sound-button { opacity: 1.0 !important; }
+#tabbar .tab:not(:hover) .sound-button {
+  opacity: 0.0 !important;
+  transition: all 0.25s !important;
+}
+#tabbar .tab.muted .sound-button:hover { background: rgba(var(--muted-color, 1.0)); }
+#tabbar .tab.sound-playing .sound-button:hover { background: rgba(var(--sound-color, 1.0)); }
 
 /* [>] twisty styling for collapsed tab trees */
 #tabbar tab-twisty::before {
