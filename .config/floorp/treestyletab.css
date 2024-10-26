@@ -5,12 +5,12 @@
 @keyframes blink {}
 
 :root {
-  --tab-height: 34px;
-  --tab-width: 34px;
+  --tab-height: 32px;
+  --tab-width: 32px;
   
   --tab-inner-radius: 9px;
   --tab-outer-radius: 9px;
-  --tab-button-radius: 7px;
+  --tab-button-radius: 5px;
 
   /* --black: #3c3836; */
   /* --white: #d4be98; */
@@ -201,7 +201,7 @@
 /* tab label content styling */
 .label-content {
   position: static !important;
-  margin: 0px 0px 0px 6px !important;
+  margin: 0px 0px 0px 7px !important;
   padding: 0px !important;
   font-size: 9pt;
   line-height: var(--tab-height);
@@ -264,6 +264,7 @@
 #tabbar tab-item tab-closebox {
   order: -1;
   position: absolute !important;
+  left: 7px;
   margin: 0px 0px 0px 0px !important;
   padding: 0px !important;
   min-width: 16px !important;
@@ -320,7 +321,8 @@
   max-width: 16px !important;
   height: 16px !important;
   float: right !important;
-  position: static !important;
+  position: absolute !important;
+  right: 7px;
   padding: 0px !important;
   margin: 0px !important;
   box-sizing: content-box;

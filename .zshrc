@@ -385,21 +385,21 @@ export HOMEBREW_AUTO_UPDATE_SECS="86400"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 # export PYENV_ROOT="$HOME/.pyenv"
 
-export FFDIR=${HOME}/Library/Application\ Support/Firefox
-for FILE in ${FFDIR}/Profiles/*
-do
-  # PATTERN=".*.........default-release"
-  PATTERN=".*.default-release"
-  [[ $FILE =~ $PATTERN ]] && export FFPROFILE=$FILE
-done
+# export FFDIR=${HOME}/Library/Application\ Support/Firefox
+# for FILE in ${FFDIR}/Profiles/*
+# do
+  # # PATTERN=".*.........default-release"
+  # PATTERN=".*.default-release"
+  # [[ $FILE =~ $PATTERN ]] && export FFPROFILE=$FILE
+# done
 
-export LWDIR=${HOME}/Library/Application\ Support/librewolf
-for FILE in ${LWDIR}/Profiles/*
-do
-  # PATTERN='.*.........default-release'
-  PATTERN='.*.default-default'
-  [[ $FILE =~ $PATTERN ]] && export LWPROFILE=$FILE
-done
+# export LWDIR=${HOME}/Library/Application\ Support/librewolf
+# for FILE in ${LWDIR}/Profiles/*
+# do
+  # # PATTERN='.*.........default-release'
+  # PATTERN='.*.default-default'
+  # [[ $FILE =~ $PATTERN ]] && export LWPROFILE=$FILE
+# done
 
 # ALIASES
 alias cp='cp -v'
