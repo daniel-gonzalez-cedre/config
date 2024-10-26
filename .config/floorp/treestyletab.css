@@ -74,7 +74,7 @@
 /* colors */
 :root {
   --black: 60, 56, 54;  /* --black: #3c3836; */
-  --white: 68, 191, 152;  /* --white: #d4be98; */
+  --white: 208, 191, 152;  /* --white: #d4be98; */
 
   --red: 234, 105, 98;  /* --red: #ea6962; */
   --orange: 231, 138, 78;  /* --orange: #e78a4e; */
@@ -89,10 +89,10 @@
 
   /* tab colors */
   --tab-text: rgba(var(--fg1), 1.0);
-  --unread-text: rgba(var(--gray0), 1.0);
-  --discarded-text: rgba(var(--gray0), 1.0);
+  --unread-text: rgba(var(--gray1), 1.0);
+  --discarded-text: rgba(var(--gray1), 1.0);
 
-  --tab-bg: rgba(var(--bg0), 1.0);
+  --tab-bg: rgba(var(--bgdim), 1.0);
   --active-bg: rgba(var(--bg2), 1.0);
   --inactive-bg: rgba(var(--bg1), 1.0);
 
@@ -242,7 +242,7 @@
 #tabbar tab-item tab-favicon { opacity: 1.0; }  /* full color favicons on active tab */
 #tabbar tab-item.active tab-favicon { opacity: 1.0 !important; }  /* full color favicons on active tab */
 #tabbar .loading tab-favicon { visibility: collapse !important; }
-#tabbar .unread tab-favicon, #tabbar .discarded tab-favicon { opacity: 0.375; }  /* shade on unread or discarded */
+#tabbar .unread tab-favicon, #tabbar .discarded tab-favicon { opacity: 0.5; }  /* shade on unread or discarded */
 #tabbar tab-item:hover tab-favicon { opacity: 0.0; }  /* hide favicons on hover */
 #tabbar tab-item:-moz-any(
   [data-current-uri*="blanktab"],
