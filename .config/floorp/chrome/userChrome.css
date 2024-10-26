@@ -98,9 +98,7 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
     border: 1px transparent solid !important;
     border-radius: var(--urlbar-radius) !important;
   }
-  #urlbar:hover #urlbar-background {
-    border: 1px var(--toolbar-field-focus-border-color) solid !important;
-  }
+  #urlbar:hover #urlbar-background { border: 1px var(--toolbar-field-focus-border-color) solid !important; }
   .urlbar-go-button { display: none !important; }
   .urlbar-input-container box {
     box-sizing: border-box !important;
@@ -111,12 +109,13 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
     /* background-color: var(--gray0); */
   }
   
-  #urlbar .urlbar-input { color: var(--fg3) !important; }
+  /* #urlbar .urlbar-input { color: var(--fg3) !important; } */
   #urlbar .urlbar-input-box { padding-right: 9px; }
-  #urlbar:not([focused]) .urlbar-input-box {
-    color: var(--fg0) !important;
-    text-align: center;
-  }
+  #urlbar:not([focused]) .urlbar-input-box { text-align: center; }
+  /* #urlbar:not([focused]) .urlbar-input-box { */
+    /* color: var(--fg0) !important; */
+    /* text-align: center; */
+  /* } */
 
   .tab-icon-image:not([src]){ content: url("about:blank"); }
 

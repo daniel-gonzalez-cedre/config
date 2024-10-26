@@ -552,7 +552,7 @@
 \newcommand{\acvPubTopSkip}{0.0mm}  % default 0.0mm
 \newcommand{\acvPubAuthorSkip}{-0.5mm}  % default 0.0mm
 \newcommand{\acvServiceTopSkip}{-.0mm}  % default 0.0mm
-\newcommand{\acvEntryTopSkip}{-1.0mm}  % default 0.0mm
+\newcommand{\acvEntryTopSkip}{2.0mm}  % default 0.0mm
 \newcommand{\acvSectionTopSkip}{1.0mm}  % default 3.0mm
 \newcommand{\acvSectionContentTopSkip}{0.0mm}  % default 2.5mm
 \newcommand{\acvEntriesColSep}{1.0ex}  % default 1.0ex
@@ -1057,8 +1057,8 @@
   \vspace{-3.5mm}
   \begin{justify}
   \begin{itemize}[nosep,noitemsep,leftmargin=3.5ex]
-    \setlength{\parskip}{0pt}
-    \renewcommand{\labelitemi}{\raisebox{0.2ex}{\color{lighttext}-}}
+    \setlength{\parskip}{0pt}%
+    \renewcommand{\labelitemi}{\raisebox{0.2ex}{\color{lighttext}-}}%
 }{%
   \end{itemize}
   \end{justify}
