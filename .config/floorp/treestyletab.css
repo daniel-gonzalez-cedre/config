@@ -291,8 +291,8 @@
   float: left;
   display: none !important;
 }
-#tabbar .tab.sound-playing tab-item-substance { background-color: rgba(var(--sound-color), 1.0); }
-#tabbar .tab.muted tab-item-substance { background-color: rgba(var(--muted-color), 1.0); }
+#tabbar .tab.sound-playing tab-item-substance { border: 2px solid rgba(var(--sound-color), 1.0) !important; }
+#tabbar .tab.muted tab-item-substance { border: 2px solid rgba(var(--muted-color), 1.0) !important; }
 #tabbar .tab.muted .label-content, #tabbar .tab.sound-playing .label-content { margin-left: 20px; }
 #tabbar .tab.muted .sound-button, #tabbar .tab.sound-playing .sound-button { display: inline-block !important; }
 #tabbar:not(:hover) .tab .sound-button { display: none !important; }
