@@ -67,7 +67,7 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
   body, #browser, browser, menubar, toolbar, nav-bar, #navigator-toolbox, #TabsToolbar > * { background-color: var(--mac-selected-bgcolor) !important; }
 
   html#main-window, html:body, #browser { background-color: var(--mac-selected-bgcolor) !important; }
-  
+
   #page-action-buttons, #pageActionButton, #pageActionSeparator,
   #remote-control-box, .chromeclass-toolbar-additional.urlbar-search-button,
   #star-button-box, #pocket-button-box, #identity-icon-labels,
@@ -79,7 +79,7 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
     border: 0px solid transparent !important;
   }
   #navigator-toolbox toolbar#nav-bar { margin: 5px 0px 5px 5px !important; }
-  
+
   toolbarbutton > stack {
     box-sizing: border-box !important;
     border: 0px transparent !important;
@@ -108,7 +108,7 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
   .urlbar-input-container box:hover, .urlbar-input-container box:hover box {
     /* background-color: var(--gray0); */
   }
-  
+
   /* #urlbar .urlbar-input { color: var(--fg3) !important; } */
   #urlbar .urlbar-input-box { padding-right: 9px; }
   #urlbar:not([focused]) .urlbar-input-box { text-align: center; }
@@ -132,6 +132,8 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
     display: none !important;
   }
 
+  /* BEGIN resize tabs */
+  /*
   #sidebar-box:-moz-window-inactive {
     min-width: var(--min-tab-width) !important;
     max-width: var(--min-tab-width) !important;
@@ -144,6 +146,8 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
   }
 
   #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover { transition: all 0.25s !important; }
+  */
+  /* END resize tabs */
 
   #browser stack.browserStack browser {
     margin: 0px 7px 7px 7px;

@@ -92,7 +92,7 @@
   --unread-text: rgba(var(--gray1), 1.0);
   --discarded-text: rgba(var(--gray1), 1.0);
 
-  --tab-bg: rgba(var(--bgdim), 1.0);
+  --tab-bg: rgba(var(--bg1), 1.0);
   --active-bg: rgba(var(--bg2), 1.0);
   --inactive-bg: rgba(var(--bg1), 1.0);
 
@@ -114,11 +114,6 @@
   --muted-color: rgba(var(--orange), 1.0);
   --sound-color: rgba(var(--yellow), 1.0);
   --twisty-color: rgba(var(--blue), 1.0);
-
-  /*  */
-
-    /* --tab-color: var(--bg1); */
-
 }
 
 /* hide new tab button */
@@ -213,7 +208,7 @@
 #tabbar tab-item:hover tab-item-substance { background: var(--item-hover-bg); }
 #tabbar tab-item { margin: 10px !important; }
 
-#tabbar:not(:hover) tab-item[data-level] tab-item-substance { margin-left: 0% !important; }
+/* #tabbar:not(:hover) tab-item[data-level] tab-item-substance { margin-left: 0% !important; } */
 #tabbar tab-item-substance {
   background-color: var(--tab-color);
 
@@ -265,18 +260,27 @@
   transition: 0.25s opacity !important;
 }
 
-#tabbar .tab tab-closebox:not(:hover) { background: var(--tab-bg); }
-#tabbar .tab.active tab-closebox:not(:hover) { background: var(--active-bg); }
-#tabbar .tab tab-closebox:hover { background: var(--closebox-color); }
-#tabbar .tab:hover tab-closebox:hover tab-item-substance { background: var(--closebox-color); }
-#tabbar .tab:not(:hover) .closebox { opacity: 0.0; }
-#tabbar .tab:hover .closebox { opacity: 1.0; }
-#tabbar tab-item tab-closebox {
+#tabbar .tab:not(:hover) tab-closebox {
+  opacity: 0.0 !important;
+}
+#tabbar .tab:hover tab-closebox {
+  opacity: 1.0 !important;
+}
+#tabbar .tab:hover tab-closebox:not(:hover) {
+  background: var(--tab-bg);
+}
+#tabbar .tab:hover tab-closebox:hover {
+  background: var(--closebox-color);
+}
+#tabbar .tab.active:hover tab-closebox:not(:hover) {
+  background: var(--active-bg);
+}
+#tabbar .tab tab-closebox {
   order: -1;
   position: absolute !important;
   left: 7px;
 
-  margin: 0px 0px 0px 0px !important;
+  margin: 0px !important;
   padding: 0px !important;
 
   min-width: 16px !important;
@@ -284,66 +288,55 @@
   width: 16px !important;
   height: 16px !important;
 
-  background: var(--tab-bg);
-
   box-sizing: content-box;
   border-radius: var(--button-radius) !important;
   border: 2px solid var(--closebox-color) !important;
 
-  transition: 0.25s opacity !important;
-  transition: 0.25s background !important;
+  background: var(--tab-bg);
+
+  transition: 0.25s opacity, 0.25s background !important;
 }
 
 #tabbar .tab.muted .background { border: 2px solid var(--muted-color) !important; }
-#tabbar .tab.muted .label-content, #tabbar .tab.sound-playing .label-content { margin-left: 20px; }
-#tabbar .tab.muted .sound-button:hover { background: var(--muted-color); }
-#tabbar .tab.muted .sound-button {
-  opacity: 1.0 !important; 
-
-  background: var(--tab-bg);
-
-  border: 2px solid var(--muted-color) !important;
-  border-radius: var(--button-radius);
-
-  color: var(--sound-color);
-
-  transition: all 0.25s !important;
-}
 #tabbar .tab.sound-playing .background { border: 2px solid var(--sound-color) !important; }
-#tabbar .tab.sound-playing .sound-button:hover { background: var(--sound-color); }
-#tabbar .tab.sound-playing .sound-button {
-  opacity: 1.0 !important; 
 
-  background: var(--tab-bg);
-
-  border: 2px solid var(--sound-color) !important;
-  border-radius: var(--button-radius);
-
-  color: var(--sound-color);
-
-  transition: all 0.25s !important;
+/* #tabbar .tab.muted .label-content, #tabbar .tab.sound-playing .label-content { margin-left: 20px; } */
+#tabbar:hover .tab.muted .label-content, #tabbar .tab.sound-playing .label-content {
+  margin-left: 28px !important;
+  transition: 0.25s margin-left !important;
 }
+#tabbar:not(:hover) .tab.muted .label-content, #tabbar:not(:hover) .tab.sound-playing .label-content {
+  margin-left: 7px !important;
+  transition: 0.25s margin-left !important;
+}
+
+#tabbar:not(:hover) .sound-button {
+  opacity: 0.0 !important;
+  transition: 0.25s opacity !important;
+}
+
 #tabbar .tab .sound-button {
-  order: 999999;
   position: absolute !important;
-  float: right !important;
-  right: 32px !important;
+  /*float: right !important;*/
+  /*right: 32px !important;*/
+
+  left: 32px !important;
 
   margin: 0px !important;
-  padding: 8px !important;
+  padding: 0px !important;
 
   min-width: 16px !important;
   max-width: 16px !important;
   width: 16px !important;
   height: 16px !important;
 
-  box-sizing: border-box !important;
+  box-sizing: content-box !important;
 
-  transition: all 0.25s !important;
+  transition: 0.25s all !important;
 }
 #tabbar .tab:not(:hover) .sound-button {
-  opacity: 0.0 !important;
-  transition: all 0.25s !important;
+  /*opacity: 0.0 !important;*/
+  /* transition: 0.25s all !important; */
 }
 
 #tabbar .tab:not(:hover) tab-twisty { opacity: 0 !important; }

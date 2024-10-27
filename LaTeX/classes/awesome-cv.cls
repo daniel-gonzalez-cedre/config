@@ -143,7 +143,14 @@
 %-------------------------------------------------------------------------------
 %                Configuration for colors
 %-------------------------------------------------------------------------------
-\newcommand{\PaperColor}{paperwhite}
+\newcommand{\PaperColor}{white}
+\RequirePackage{ocgx2}
+\RequirePackage{tikz}
+\AddToHook{shipout/background}{%
+  \begin{ocg}[printocg=never]{Non printable}{noprint}{1}
+    \put (-0.5cm,-30cm) {\tikz[opacity=1] \draw[fill=paperwhite] (0,0) rectangle (24cm, -32cm);}
+  \end{ocg}
+}
 % \input{colors}
 \input{\HomeDir/LaTeX/preambles/2.colors}
 % Text colors
@@ -184,9 +191,8 @@
   % \ifbool{acvSectionColorHighlight}{\textcolor{awesome!100!text}{#1}\textcolor{awesome!75!text}{#2}\textcolor{awesome!50!text}{#3}\textcolor{awesome!25!text}{#4}}{#1#2#3#4}%
 % }
 
-\newcommand{\skipdot}{\color{lighttext}{\ $\cdot$\ }}
-\newcommand{\spacedot}{\color{lighttext}{\enspace$\cdot$\enspace}}
-\newcommand{\lowerspacedot}{\color{lighttext}{\enspace\raisebox{-0.5pt}{$\cdot$}\enspace}}
+\newcommand{\skipdot}{\color{lighttext!75}{\ $\cdot$\ }}
+\newcommand{\spacedot}{\color{lighttext!75}{\enspace$\cdot$\enspace}}
 
 
 %-------------------------------------------------------------------------------
@@ -323,24 +329,24 @@
 \newcommand*{\lettersectionstyle}[1]{{\fontsize{16pt}{1em}\bodyfont\sectionshape\color{text}\@sectioncolor #1}}
 % \newcommand*{\lettersubsectionstyle}[1]{{\fontsize{12pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
 \newcommand*{\lettersubsectionstyle}[1]{{\fontsize{12pt}{1em}\bodyfont\bfseries\itshape\color{text}\@sectioncolor #1}}
-\newcommand*{\recipienttitlestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\bfseries\itshape\color{graytext} #1}}
-\newcommand*{\recipientdepartmentstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\bfseries\itshape\color{text} #1}}
-\newcommand*{\recipientuniversitystyle}[1]{{\fontsize{9pt}{1em}\bodyfont\bfseries\itshape\color{graytext} #1}}
-\newcommand*{\recipientaddressstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext}\MakeLowercase{#1}}}
-\newcommand*{\lettertitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfontlight\bfseries\color{darktext} \underline{#1}}}
+\newcommand*{\recipienttitlestyle}[1]{{\fontsize{11pt}{1em}\bodyfont\bfseries\itshape\color{graytext} #1}}
+\newcommand*{\recipientdepartmentstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{text} \MakeLowercase{#1}}}
+\newcommand*{\recipientuniversitystyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{graytext} \MakeLowercase{#1}}}
+\newcommand*{\recipientaddressstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{graytext}\MakeLowercase{#1}}}
+\newcommand*{\lettertitlestyle}[1]{{\fontsize{11pt}{1em}\bodyfontlight\bfseries\color{darktext} \underline{#1}}}
 \newcommand*{\letterdatestyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\itshape\color{graytext} #1}}
 % \newcommand*{\lettertextstyle}{\fontsize{11pt}{1.4em}\bodyfontlight\upshape\color{text}}
 % \newcommand*{\letterinfostyle}{\fontsize{9pt}{1.4em}\bodyfontlight\upshape\color{text}}
-\newcommand*{\lettertextstyle}{\fontsize{\lettertextsize}{\lettertextheight}\bodyfontlight\upshape\color{text}}
-\newcommand*{\letternamestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\itshape\color{darktext} #1}}
-\newcommand*{\letterpositionstyle}[1]{{\fontsize{10pt}{1em}\bodyfont\itshape\color{graytext} #1}}
-\newcommand*{\letterdepartmentstyle}[1]{{\fontsize{10pt}{1em}\bodyfont\itshape\color{graytext} #1}}
-\newcommand*{\letteruniversitystyle}[1]{{\fontsize{10pt}{1em}\bodyfont\itshape\color{graytext} #1}}
-\newcommand*{\closingnamestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\itshape\color{text} #1}}
-\newcommand*{\closingpositionstyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\itshape\color{graytext} #1}}
-\newcommand*{\closingdepartmentstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext}\MakeLowercase{#1}}}
-\newcommand*{\closinguniversitystyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext}\MakeLowercase{#1}}}
-\newcommand*{\closingphonestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{lighttext}\MakeLowercase{#1}}}
+\newcommand*{\lettertextstyle}{\fontsize{\lettertextsize}{\lettertextheight}\bodyfont\upshape\color{text}}
+\newcommand*{\letternamestyle}[1]{{\fontsize{11pt}{1em}\bodyfont\itshape\color{darktext} #1}}
+\newcommand*{\letterpositionstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\itshape\color{graytext} #1}}
+\newcommand*{\letterdepartmentstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\itshape\color{graytext} #1}}
+\newcommand*{\letteruniversitystyle}[1]{{\fontsize{11pt}{1em}\bodyfont\itshape\color{graytext} #1}}
+\newcommand*{\closingnamestyle}[1]{{\fontsize{11pt}{1em}\bodyfont\bfseries\itshape\color{text} {#1}}}
+\newcommand*{\closingpositionstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{text} \MakeLowercase{#1}}}
+\newcommand*{\closingdepartmentstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{graytext}\MakeLowercase{#1}}}
+\newcommand*{\closinguniversitystyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{graytext}\MakeLowercase{#1}}}
+\newcommand*{\closingphonestyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{lighttext}\MakeLowercase{#1}}}
 
 \newcommand*{\letterenclosurestyle}[1]{{\fontsize{10pt}{1em}\bodyfontlight\itshape\color{lighttext} #1}}
 
@@ -835,7 +841,7 @@
        % \entrypositionstyle{#3} & \entrylocationstyle{#5} \\[-0.25ex]
        % \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#6}}}
     \entrytitlestyle{#1}\entrysubjectstyle{{\spacedot}#2}\ifempty{#3}{}{\entrypostscriptstyle{{\spacedot}#3}} & \entrylocationstyle{#5} \\[-0.25ex]
-    \entrypositionstyle{#4} & \entrydatestyle{#6}{\fontsize{9pt}{1em}\color{lighttext}\scshape~\textendash~}\entrydatestyle{#7} \\[-0.25ex]
+    \entrypositionstyle{#4} & \entrydatestyle{#6}{\fontsize{9pt}{1em}\color{lighttext}\scshape~~\textendash~~}\entrydatestyle{#7} \\[-0.25ex]
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#8}}
 
   \end{tabular*}%
@@ -844,11 +850,11 @@
   \vspace{\acvEntryTopSkip}
   \setlength\tabcolsep{0pt}
   \setlength{\extrarowheight}{0pt}
-  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.25cm} R{4.25cm}}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 5.25cm} R{5.25cm}}
     \ifempty{#2#3}
       {\entrypositionstyle{#1} & \entrylocationstyle{#4} \\}
       {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\[-0.25ex]
-      \entrypositionstyle{#1} & \entrydatestyle{#4}{\fontsize{9pt}{1em}\color{lighttext}\scshape~\textendash~}\entrydatestyle{#5} \\[-0.25ex]}
+      \entrypositionstyle{#1} & \entrydatestyle{#4}{\fontsize{9pt}{1em}\color{lighttext}\scshape~~\textendash~~}\entrydatestyle{#5} \\[-0.25ex]}
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#6}}
   \end{tabular*}%
 }
@@ -971,17 +977,17 @@
     % \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}
   % \end{tabular*}%
 % }
-% \newcommand*{\cvassist}[7]{%
-  % \vspace{\acvEntryTopSkip}
-  % \setlength\tabcolsep{0pt}
-  % \setlength{\extrarowheight}{0pt}
-  % \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
-    % \teachingtitlestyle{#2} & \teachingdatestyle{#6} \\[-0.25ex]
-    % % \teachingpositionstyle{#1}\teachingcoursestyle{{\spacedot}#3} & \teachingdatestyle{#4} \\[-0.25ex]
-    % \teachingpositionstyle{#1}\teachingcoursestyle{{\spacedot}#3}\teachingsizestyle{{\spacedot}#4} & \teachingdatestyle{#5} \\[-0.25ex]
-    % \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#7}}
-  % \end{tabular*}%
-% }
+\newcommand*{\cvassist}[6]{%
+  \vspace{\acvEntryTopSkip}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 3.75cm} R{3.75cm}}
+    \teachingtitlestyle{#2} & \teachinglocationstyle{#5} \\[-0.25ex]
+    % \teachingpositionstyle{#1}\teachingcoursestyle{{\spacedot}#3} & \teachingdatestyle{#4} \\[-0.25ex]
+    \teachingpositionstyle{#1} & \teachingdatestyle{#3}{\fontsize{9pt}{1em}\color{lighttext}\scshape~~\textendash~~}\teachingdatestyle{#4} \\[-0.25ex]
+    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#6}}
+  \end{tabular*}%
+}
 \newcommand*{\cvteach}[7]{%
   \vspace{\acvEntryTopSkip}
   \setlength\tabcolsep{0pt}
@@ -1149,7 +1155,7 @@
   % \begin{singlespace}
     % \recipientaddressstyle{\@recipientaddress} \\\\
   % \end{singlespace}
-  \begin{itemize}[nosep,noitemsep,topsep=-5pt,leftmargin=0pt]
+  \begin{itemize}[nosep,noitemsep,itemsep=0pt,leftmargin=0pt]
     \renewcommand{\labelitemi}{}
     \ifthenelse{\isundefined{\@letterdate}}
       {\item
@@ -1167,25 +1173,28 @@
     \item
       \recipientaddressstyle{\@recipientaddresscountry}
   \end{itemize}
-  \ifthenelse{\isundefined{\@lettertitle}}
-    {}
-    {\lettertitlestyle{\@lettertitle} \\}
+  % \ifthenelse{\isundefined{\@lettertitle}}
+    % {}
+    % {\lettertitlestyle{\@lettertitle} \\}
+
+  % \vspace{3.4mm}
+  \vspace{0.4em}
+  \vspace{3pt}
   \lettertextstyle{\@letteropening}
 }
 
 % Define a closing of the cover letter
 % Usage: \makeletterclosing
 \newcommand*{\makeletterclosing}{%
-  \vspace{3.4mm}
-  % \vspace{0.0mm}
+  % \vspace{3.4mm}
   \lettertextstyle{\@letterclosing}
-
-  \begin{itemize}[noitemsep,leftmargin=15pt]
+  \vspace{3pt}
+  \begin{itemize}[nosep,noitemsep,itemsep=0pt,leftmargin=15pt]
     \renewcommand{\labelitemi}{}
     \item
       \ifthenelse{\isundefined{\@position}}
       {\closingnamestyle{\@firstname\ \@lastname}}
-      {\closingnamestyle{\@firstname\ \@lastname}{\spacedot}\closingpositionstyle{\@position}}
+      {\closingnamestyle{\@firstname\ \@lastname}{\fontsize{10pt}{1em}\spacedot}\closingpositionstyle{\@position}}
     \item
       \closingdepartmentstyle{\@department}
     \item
