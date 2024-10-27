@@ -1018,10 +1018,10 @@
     " noremap \k <c-w>k
     " noremap \l <c-w>l
 
-    " nnoremap j gj
-    " nnoremap k gk
-    " nnoremap gj j
-    " nnoremap gk k
+    nnoremap j gj
+    nnoremap k gk
+    nnoremap gj j
+    nnoremap gk k
 
     nnoremap <up> <c-y>
     vnoremap <up> <c-y>
@@ -1056,13 +1056,13 @@
     " start of rendered text line
     " inoremap <c-a> <home>
     inoremap <c-a> <c-g>U<c-o>^
-    nnoremap ga ^
-    vnoremap ga ^
-    onoremap ga ^
+    nnoremap ga g^
+    vnoremap ga g^
+    onoremap ga g^
     " start of logical text line
-    nnoremap gA g^
-    vnoremap gA g^
-    onoremap gA g^
+    nnoremap <c-g>a ^
+    vnoremap <c-g>a ^
+    onoremap <c-g>a ^
     " operator pending to start of logical text line
     onoremap <c-a> ^
     " start of command line
@@ -1071,13 +1071,13 @@
     " end of rendered line of text
     " inoremap <c-e> <end>
     inoremap <c-e> <c-g>U<c-o>g_<right>
-    nnoremap ge g_
-    vnoremap ge g_
-    onoremap ge g_
+    nnoremap ge g$
+    vnoremap ge g$
+    onoremap ge g$
     " end of logical line of text
-    nnoremap gE g$
-    vnoremap gE g$
-    onoremap gE g$
+    nnoremap <c-g>e g_
+    vnoremap <c-g>e g_
+    onoremap <c-g>e g_
     " operator pending to end of logical text line
     onoremap <c-e> g_
     " end of command line

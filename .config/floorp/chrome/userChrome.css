@@ -153,20 +153,31 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
   }
 
   /* BEGIN make window draggable from URL bar */
-  .urlbar-input-box, .urlbar-input, #urlbar-scheme, #urlbar-container {
+  /* .urlbar-input-box, .urlbar-input, #urlbar-scheme, #urlbar-container { */
+    /* -moz-window-dragging: drag; */
+    /* cursor: default; */
+  /* } */
+
+  /* .urlbar-input-container > box, */
+  /* #page-action-buttons, */
+  /* #urlbar-container:focus-within, */
+  /* #urlbar-container:focus-within:is(.urlbar-input-box, */
+                                    /* .urlbar-input, */
+                                    /* #urlbar-scheme, */
+                                    /* #urlbar-container) { */
+    /* -moz-window-dragging: no-drag; */
+    /* cursor: auto; */
+  /* } */
+
+  #navigator-toolbox,
+  #navigator-toolbox #toolbar,
+  #navigator-toolbox #floorp-tabbar-window-manage-container,
+  #navigator-toolbox #PanelUI-button,
+  #navigator-toolbox #PanelUI-menu-button
+  {
     -moz-window-dragging: drag;
     cursor: default;
   }
 
-  .urlbar-input-container > box,
-  #page-action-buttons,
-  #urlbar-container:focus-within,
-  #urlbar-container:focus-within:is(.urlbar-input-box,
-                                    .urlbar-input,
-                                    #urlbar-scheme,
-                                    #urlbar-container) {
-    -moz-window-dragging: no-drag;
-    cursor: auto;
-  }
   /* END make window draggable from URL bar */
 }

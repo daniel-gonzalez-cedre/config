@@ -5,7 +5,7 @@
 %                Identification
 %-------------------------------------------------------------------------------
 \ProvidesClass{awesome-cv}[Modified Curriculum Vitae Class]
-\NeedsTeXFormat{LaTeX2e}
+% \NeedsTeXFormat{LaTeX2e}
 
 \def\HomeDir{/Users/cedre}
 
@@ -76,11 +76,12 @@
 % Needed to change line spacing in specific environment
 \RequirePackage{setspace}
 % Needed to manage fonts
-\RequirePackage[quiet]{fontspec}
+\RequirePackage{fontspec}
 % To support LaTeX quoting style
 \defaultfontfeatures{Ligatures=TeX}
 % Needed to manage math fonts
 % \RequirePackage{unicode-math}
+\RequirePackage{amsmath}
 % Needed to use icons from font-awesome
 % \RequirePackage{fontawesome5}
 \RequirePackage[default,opentype]{sourcesanspro}
@@ -247,7 +248,7 @@
 \newcommand*{\bodyfont}{\ebgaramond}
 \newcommand*{\bodyfontlight}{\ebgaramond}
 
-\newcommand*{\stremph}[1]{\textit{\textbf{\textcolor{text}{#1}}}}
+\newcommand*{\stremph}[1]{\textit{\textbf{\textcolor{graytext}{#1}}}}
 % \renewcommand*{\emph}[1]{\textit{\textcolor{text}{#1}}}
 % \renewcommand*{\strong}[1]{\textbf{\textcolor{text}{#1}}}
 \renewcommand*{\emph}[1]{\textit{#1}}
@@ -260,39 +261,34 @@
 % For fundamental structures
 \newcommand*{\headerfirstnamestyle}[1]{{\fontsize{32pt}{1em}\headerfont\color{graytext} #1}}
 \newcommand*{\headerlastnamestyle}[1]{{\fontsize{32pt}{1em}\headerfont\bfseries\color{awesome} #1}}
-\newcommand*{\headersubtitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\scshape\color{text} #1}}
+\newcommand*{\headersubtitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\scshape\color{text}\MakeLowercase{#1}}}
 \newcommand*{\headeraddressstyle}[1]{{\fontsize{8pt}{1em}\headerfont\itshape\color{lighttext} #1}}
 \newcommand*{\headersocialstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\itshape\color{graytext} #1}}
 \newcommand*{\headerquotestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\itshape\color{darktext} #1}}
 \newcommand*{\footerstyle}[1]{{\fontsize{8pt}{1em}\footerfont\scshape\color{lighttext} #1}}
 \newcommand*{\sectionstyle}[1]{{\fontsize{16pt}{1em}\bodyfont\sectionshape\color{text}\@sectioncolor #1}}
-\newcommand*{\subsectionstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\textcolor{text}{#1}}}
+\newcommand*{\subsectionstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\textcolor{text}{\MakeLowercase{#1}}}}
 \newcommand*{\paragraphstyle}{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text}}
 
 % For elements of entry
 \newcommand*{\entrytitlestyle}[1]{{\fontsize{11pt}{1em}\bodyfont\headershape\color{text} #1}}
-\newcommand*{\entrypositionstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{text} #1}}
-\newcommand*{\entrydatestyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\itshape\color{graytext} #1}}
-\newcommand*{\entrysubjectstyle}[1]{{\fontsize{11pt}{1em}\bodyfontlight\bfseries\itshape\color{graytext} #1}}
-\newcommand*{\entrylocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\bfseries\itshape\color{awesome} #1}}
-\newcommand*{\descriptionstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text} #1}}
-
-% For elements of subentry
-\newcommand*{\subentrytitlestyle}[1]{{\fontsize{8pt}{1em}\bodyfont\mdseries\color{graytext} #1}}
-\newcommand*{\subentrypositionstyle}[1]{{\fontsize{7pt}{1em}\bodyfont\scshape\color{graytext} #1}}
-\newcommand*{\subentrydatestyle}[1]{{\fontsize{7pt}{1em}\bodyfontlight\itshape\color{graytext} #1}}
-\newcommand*{\subentrylocationstyle}[1]{{\fontsize{7pt}{1em}\bodyfontlight\bfseries\itshape\color{awesome} #1}}
-\newcommand*{\subdescriptionstyle}[1]{{\fontsize{8pt}{1em}\bodyfontlight\upshape\color{text} #1}}
+\newcommand*{\entrypositionstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext}\MakeLowercase{#1}}}
+% \newcommand*{\entrydatestyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\bfseries\itshape\color{awesome} #1}}
+\newcommand*{\entrylocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\bfseries\itshape\color{text} #1}}
+\newcommand*{\entrydatestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext}\MakeLowercase{#1}}}
+\newcommand*{\entrysubjectstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\bfseries\color{graytext} #1}}
+\newcommand*{\entrypostscriptstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\bfseries\itshape\color{lighttext} #1}}
+\newcommand*{\descriptionstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\upshape\color{text} #1}}
 
 % For elements of teaching
 \newcommand*{\teachingtitlestyle}[1]{{\fontsize{11pt}{1em}\bodyfont\headershape\color{text} #1}}
-\newcommand*{\teachingpositionstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{text} #1}}
-\newcommand*{\teachingcoursestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext} #1}}
-\newcommand*{\teachingsizestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{lighttext} #1}}
+\newcommand*{\teachingpositionstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{text}\MakeLowercase{#1}}}
+\newcommand*{\teachingcoursestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext}\MakeLowercase{#1}}}
+\newcommand*{\teachingsizestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{lighttext}\MakeLowercase{#1}}}
 % \newcommand*{\teachingtitlestyle}[1]{{\fontsize{12pt}{1em}\bodyfont\itshape\color{text} #1}}
 \newcommand*{\teachingtopicstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\itshape\color{graytext} #1}}
-\newcommand*{\teachingdatestyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\itshape\color{graytext} #1}}
-\newcommand*{\teachinglocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\bfseries\itshape\color{awesome} #1}}
+\newcommand*{\teachinglocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\bfseries\itshape\color{text} #1}}
+\newcommand*{\teachingdatestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext} \MakeLowercase{#1}}}
 
 % For elements of honor
 \newcommand*{\honortitlestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\color{graytext} #1}}
@@ -316,12 +312,21 @@
 % For elements of publication
 \newcommand*{\pubvenuestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\bfseries\color{lighttext} #1}}
 
+% For elements of subentry
+\newcommand*{\subentrytitlestyle}[1]{{\fontsize{8pt}{1em}\bodyfont\mdseries\color{graytext} #1}}
+\newcommand*{\subentrypositionstyle}[1]{{\fontsize{7pt}{1em}\bodyfont\scshape\color{graytext}\MakeLowercase{#1}}}
+\newcommand*{\subentrydatestyle}[1]{{\fontsize{7pt}{1em}\bodyfontlight\itshape\color{graytext} #1}}
+\newcommand*{\subentrylocationstyle}[1]{{\fontsize{7pt}{1em}\bodyfontlight\bfseries\itshape\color{awesome} #1}}
+\newcommand*{\subdescriptionstyle}[1]{{\fontsize{8pt}{1em}\bodyfontlight\upshape\color{text} #1}}
+
 % For elements of the cover letter
 \newcommand*{\lettersectionstyle}[1]{{\fontsize{16pt}{1em}\bodyfont\sectionshape\color{text}\@sectioncolor #1}}
 % \newcommand*{\lettersubsectionstyle}[1]{{\fontsize{12pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
 \newcommand*{\lettersubsectionstyle}[1]{{\fontsize{12pt}{1em}\bodyfont\bfseries\itshape\color{text}\@sectioncolor #1}}
-\newcommand*{\recipientaddressstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext} #1}}
 \newcommand*{\recipienttitlestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\bfseries\itshape\color{graytext} #1}}
+\newcommand*{\recipientdepartmentstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\bfseries\itshape\color{text} #1}}
+\newcommand*{\recipientuniversitystyle}[1]{{\fontsize{9pt}{1em}\bodyfont\bfseries\itshape\color{graytext} #1}}
+\newcommand*{\recipientaddressstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext}\MakeLowercase{#1}}}
 \newcommand*{\lettertitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfontlight\bfseries\color{darktext} \underline{#1}}}
 \newcommand*{\letterdatestyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\itshape\color{graytext} #1}}
 % \newcommand*{\lettertextstyle}{\fontsize{11pt}{1.4em}\bodyfontlight\upshape\color{text}}
@@ -331,6 +336,11 @@
 \newcommand*{\letterpositionstyle}[1]{{\fontsize{10pt}{1em}\bodyfont\itshape\color{graytext} #1}}
 \newcommand*{\letterdepartmentstyle}[1]{{\fontsize{10pt}{1em}\bodyfont\itshape\color{graytext} #1}}
 \newcommand*{\letteruniversitystyle}[1]{{\fontsize{10pt}{1em}\bodyfont\itshape\color{graytext} #1}}
+\newcommand*{\closingnamestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\itshape\color{text} #1}}
+\newcommand*{\closingpositionstyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\itshape\color{graytext} #1}}
+\newcommand*{\closingdepartmentstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext}\MakeLowercase{#1}}}
+\newcommand*{\closinguniversitystyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext}\MakeLowercase{#1}}}
+\newcommand*{\closingphonestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{lighttext}\MakeLowercase{#1}}}
 
 \newcommand*{\letterenclosurestyle}[1]{{\fontsize{10pt}{1em}\bodyfontlight\itshape\color{lighttext} #1}}
 
@@ -773,7 +783,7 @@
   \vspace{\acvSectionTopSkip}
   \sectionstyle{#1\strut\mathstrut}
   \phantomsection
-  \color{sectiondivider}\vhrulefill{0.9pt}
+  \color{sectiondivider}\vhrulefill{0.9pt}%
 }
 
 % Define a subsection for CV
@@ -808,26 +818,38 @@
   \vspace{\acvEntryTopSkip}
   \setlength\tabcolsep{0pt}
   \setlength{\extrarowheight}{0pt}
-  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 3.75cm} R{3.75cm}}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.25cm} R{4.25cm}}
     \ifempty{#2#3}
-      {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
-      {\entrytitlestyle{#2} & \entrylocationstyle{#4} \\[-0.25ex]
-      \entrypositionstyle{#1} & \entrydatestyle{#3} \\[-0.25ex]}
+      {\entrypositionstyle{#1} & \entrylocationstyle{#4} \\}
+      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\[-0.25ex]
+      \entrypositionstyle{#1} & \entrydatestyle{#4} \\[-0.25ex]}
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}
   \end{tabular*}%
 }
-\newcommand*{\cveducation}[6]{%
+\newcommand*{\cveducation}[8]{%
   \vspace{\acvEntryTopSkip}
   \setlength\tabcolsep{0pt}
   \setlength{\extrarowheight}{0pt}
   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 3.75cm} R{3.75cm}}
-    \ifempty{#2}
-      {\entrytitlestyle{#1} & \entrylocationstyle{#4} \\[-0.25ex]
-       \entrypositionstyle{#3} & \entrydatestyle{#5} \\[-0.25ex]
-       \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#6}}}
-      {\entrytitlestyle{#1}\entrysubjectstyle{{\spacedot}#2} & \entrylocationstyle{#4} \\[-0.25ex]
-       \entrypositionstyle{#3} & \entrydatestyle{#5} \\[-0.25ex]
-       \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#6}}}
+      % {\entrytitlestyle{#1} & \entrydatestyle{#4} \\[-0.25ex]
+       % \entrypositionstyle{#3} & \entrylocationstyle{#5} \\[-0.25ex]
+       % \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#6}}}
+    \entrytitlestyle{#1}\entrysubjectstyle{{\spacedot}#2}\ifempty{#3}{}{\entrypostscriptstyle{{\spacedot}#3}} & \entrylocationstyle{#5} \\[-0.25ex]
+    \entrypositionstyle{#4} & \entrydatestyle{#6}{\fontsize{9pt}{1em}\color{lighttext}\scshape~\textendash~}\entrydatestyle{#7} \\[-0.25ex]
+    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#8}}
+
+  \end{tabular*}%
+}
+\newcommand*{\cvinternship}[6]{%
+  \vspace{\acvEntryTopSkip}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.25cm} R{4.25cm}}
+    \ifempty{#2#3}
+      {\entrypositionstyle{#1} & \entrylocationstyle{#4} \\}
+      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\[-0.25ex]
+      \entrypositionstyle{#1} & \entrydatestyle{#4}{\fontsize{9pt}{1em}\color{lighttext}\scshape~\textendash~}\entrydatestyle{#5} \\[-0.25ex]}
+    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#6}}
   \end{tabular*}%
 }
 \newcommand*{\cventryblank}[4]{%
@@ -835,8 +857,8 @@
   \setlength\tabcolsep{0pt}
   \setlength{\extrarowheight}{0pt}
   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
-    \entrytitlestyle{#2} & \entrylocationstyle{#4} \\[-0.25ex]
-    \entrypositionstyle{#1} & \entrydatestyle{#3} \\[-0.25ex]
+    \entrytitlestyle{#2} & \entrydatestyle{#4} \\[-0.25ex]
+    \entrypositionstyle{#1} & \entrylocationstyle{#3} \\[-0.25ex]
   \end{tabular*}%
 }
 
@@ -870,9 +892,9 @@
   % \setlength{\extrarowheight}{0pt}
   % \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
     % \ifempty{#2#3}
-      % {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
-      % {\entrytitlestyle{#2}~~\includegraphics[height=\ht\strutbox]{#6} & \entrylocationstyle{#4} \\
-      % \entrypositionstyle{#1} & \entrydatestyle{#3} \\}
+      % {\entrypositionstyle{#1} & \entrylocationstyle{#4} \\}
+      % {\entrytitlestyle{#2}~~\includegraphics[height=\ht\strutbox]{#6} & \entrydatestyle{#4} \\
+      % \entrypositionstyle{#1} & \entrylocationstyle{#3} \\}
     % \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}
   % \end{tabular*}%
 % }
@@ -883,9 +905,9 @@
   \setlength{\extrarowheight}{0pt}
   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
     \ifempty{#2#3#4}
-      {\entrypositionstyle{#1} & \entrydatestyle{#5} \\}
-      {\entrytitlestyle{#3} & \entrylocationstyle{#5} \\[-0.25ex]
-      \entrypositionstyle{#1} & \entrydatestyle{#4} \\[-0.25ex]
+      {\entrypositionstyle{#1} & \entrylocationstyle{#5} \\}
+      {\entrytitlestyle{#3} & \entrydatestyle{#5} \\[-0.25ex]
+      \entrypositionstyle{#1} & \entrylocationstyle{#4} \\[-0.25ex]
       \entrypositionstyle{#2}\\[-0.25ex]}
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#6}}
   \end{tabular*}%
@@ -897,9 +919,9 @@
   % \setlength{\extrarowheight}{0pt}
   % \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
     % \ifempty{#2#3#4}
-      % {\entrypositionstyle{#1} & \entrydatestyle{#5} \\}
-      % {\entrytitlestyle{#3}~~\includegraphics[height=\ht\strutbox]{#7} & \entrylocationstyle{#5} \\
-      % \entrypositionstyle{#1} & \entrydatestyle{#4} \\
+      % {\entrypositionstyle{#1} & \entrylocationstyle{#5} \\}
+      % {\entrytitlestyle{#3}~~\includegraphics[height=\ht\strutbox]{#7} & \entrydatestyle{#5} \\
+      % \entrypositionstyle{#1} & \entrylocationstyle{#4} \\
       % \entrypositionstyle{#2}\\}
     % \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#6}}
   % \end{tabular*}%
@@ -947,6 +969,17 @@
       % {\teachingpositionstyle{#2} & \teachinglocationstyle{#4} \\[-0.4ex]
        % \teachingtitlestyle{#1} & \teachingdatestyle{#3} \\[-0.25ex]}
     % \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}
+  % \end{tabular*}%
+% }
+% \newcommand*{\cvassist}[7]{%
+  % \vspace{\acvEntryTopSkip}
+  % \setlength\tabcolsep{0pt}
+  % \setlength{\extrarowheight}{0pt}
+  % \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+    % \teachingtitlestyle{#2} & \teachingdatestyle{#6} \\[-0.25ex]
+    % % \teachingpositionstyle{#1}\teachingcoursestyle{{\spacedot}#3} & \teachingdatestyle{#4} \\[-0.25ex]
+    % \teachingpositionstyle{#1}\teachingcoursestyle{{\spacedot}#3}\teachingsizestyle{{\spacedot}#4} & \teachingdatestyle{#5} \\[-0.25ex]
+    % \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#7}}
   % \end{tabular*}%
 % }
 \newcommand*{\cvteach}[7]{%
@@ -1120,9 +1153,9 @@
     \renewcommand{\labelitemi}{}
     \ifthenelse{\isundefined{\@letterdate}}
       {\item
-        \recipienttitlestyle{\@recipientdepartment}}{}
+        \recipientdepartmentstyle{\@recipientdepartment}}{}
     \item
-      \recipientaddressstyle{\@recipientuniversity}
+      \recipientuniversitystyle{\@recipientuniversity}
     \ifthenelse{\isundefined{\@recipientaddressbuilding}}
       {}
       {\item
@@ -1151,16 +1184,16 @@
     \renewcommand{\labelitemi}{}
     \item
       \ifthenelse{\isundefined{\@position}}
-      {\letternamestyle{\@firstname\ \@lastname}}
-      {\letternamestyle{\@firstname\ \@lastname}{\spacedot}\letterpositionstyle{\@position}}
+      {\closingnamestyle{\@firstname\ \@lastname}}
+      {\closingnamestyle{\@firstname\ \@lastname}{\spacedot}\closingpositionstyle{\@position}}
     \item
-      \letterdepartmentstyle{\@department}
+      \closingdepartmentstyle{\@department}
     \item
-      \letteruniversitystyle{\@university}
+      \closinguniversitystyle{\@university}
     \ifthenelse{\isundefined{\@mobile}}
       {}
       {\item
-        \letterpositionstyle{\textcolor{lighttext}{\@mobile}}}
+        \closingphonestyle{\@mobile}}
   \end{itemize}
 
   % \ifthenelse{\isundefined{\@letterenclosure}}
