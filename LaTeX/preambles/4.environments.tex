@@ -95,21 +95,42 @@
 \crefname{figure}{\emph{figure}}{\emph{Figure}}
 \crefname{table}{\emph{table}}{\emph{Table}}
 
-\newenvironment{code}[1][Code]
-  {\textbf{#1:}\quote}
-  {\endquote}
+% \newenvironment{code}[1][Code]
+  % {\textbf{#1:}\quote}
+  % {\endquote}
 
 \ifminted
-  \renewcommand{\theFancyVerbLine}{\normalfont\textcolor{foreground!50!background}{\tiny\arabic{FancyVerbLine}}}
+  \renewcommand{\theFancyVerbLine}{\normalfont\textcolor{foreground}{\tiny\arabic{FancyVerbLine}}}
 
-  % \newtcblisting{code}[1][]{
-    % verbatim ignore indention at end=true,
-    % left=3pt, bottom=0pt, top=0pt, right=3pt,
-    % colframe=foreground, colback=foreground,
-    % listing only,
-    % on line,
-    % #1,
-  % }
+  \newtcblisting{code}[2][]{
+    autoparskip,
+    listing engine=minted,
+    minted options app={escapeinside=??,mathescape,linenos,fontsize=\footnotesize},  
+    % minted options app={escapeinside=??,mathescape,linenos,fontsize=\normalsize},
+    minted style=gruvbox-light,
+    minted language=#2,
+    verbatim ignore indention at end=true,
+    left=1pt, bottom=-2pt, top=-2pt, right=1pt,
+    colupper=foreground, colback=background, colframe=cream!50!butter,
+    valign=center,
+    listing only,
+    #1,
+  }
+
+  \newtcblisting{nocode}[2][]{
+    autoparskip,
+    listing engine=minted,
+    minted options app={escapeinside=??,mathescape,fontsize=\footnotesize},  
+    % minted options app={escapeinside=??,mathescape,linenos,fontsize=\normalsize},
+    minted style=gruvbox-light,
+    minted language=#2,
+    verbatim ignore indention at end=true,
+    left=1pt, bottom=-2pt, top=-2pt, right=1pt,
+    colupper=foreground, colback=background, colframe=cream!50!butter,
+    valign=center,
+    listing only,
+    #1,
+  }
 
   \newtcblisting{codedark}[2][]{
     autoparskip,
@@ -141,6 +162,20 @@
     #1,
   }
 
+  \NewTotalTCBox{\codeinline}{O{text} v}{
+    on line,
+    boxsep=0pt,
+    baseline=4.5pt,
+    listing only,
+    halign=center,
+    valign=center,
+    height=\baselineskip,
+    % before upper=\strut,
+    left=3pt, bottom=0pt, top=0pt, right=3pt,
+    colupper=foreground, colback=background, colframe=cream!50!butter,
+  }{\mintinline[escapeinside=??,mathescape,style=gruvbox-light,fontsize=\footnotesize]{#1}{#2}}
+  % }{\mintinline[escapeinside=??,mathescape,style=coffee,fontsize=\normalsize]{#1}{#2}}
+
   \NewTotalTCBox{\codeindark}{O{text} v}{
     on line,
     boxsep=0pt,
@@ -169,6 +204,7 @@
   }{\mintinline[escapeinside=??,mathescape,style=gruvbox-light,fontsize=\footnotesize]{#1}{#2}}
   % }{\mintinline[escapeinside=??,mathescape,style=gruvbox-light,fontsize=\normalsize]{#1}{#2}}
 \else
+  \newcommand{\code}[1]{\texttt{#1}}
 \fi
 
 % \ifblank{#1}{\:\cdot\:}{#1}

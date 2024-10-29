@@ -178,6 +178,10 @@
     % class=minimal,border=0pt
   }
 
+  % setBackGround
+  \def\setBackGround@white{\gdef\BackGroundColor{white}}
+  \def\setBackGround@natural{\gdef\BackGroundColor{paperwhite}}
+
   % setPaper
   \def\setPaper@white{\gdef\PaperColor{white}}
   \def\setPaper@natural{\gdef\PaperColor{paperwhite}}
@@ -209,16 +213,17 @@
     \gdef\MintedOption{}%
   }
 
-  \newcommand{\setup}[7]{%
+  \newcommand{\setup}[8]{%
     \csname setDraft@#1\endcsname%
     \csname setMinted@#2\endcsname%
     \csname setDocument@#3\endcsname%
-    \csname setPaper@#4\endcsname%
-    \csname setDate@#5\endcsname%
-    \csname setMathSymbols@#6\endcsname%
-    \csname setFootnoteMark@#7\endcsname%
+    \csname setBackGround@#4\endcsname%
+    \csname setPaper@#5\endcsname%
+    \csname setDate@#6\endcsname%
+    \csname setMathSymbols@#7\endcsname%
+    \csname setFootnoteMark@#8\endcsname%
   }
 \makeatother
 
-%     { #1      }{ #2       }{ #3     }{ #4      }{ #5     }{ #6            }{ #7             }
-\setup{\optDraft}{\optMinted}{\optType}{\optPaper}{\optDate}{\optMathSymbols}{\optFootnoteMark}
+%     { #1      }{ #2       }{ #3     }{ #4           }{ #5      }{ #6     }{ #7            }{ #8             }
+\setup{\optDraft}{\optMinted}{\optType}{\optBackGround}{\optPaper}{\optDate}{\optMathSymbols}{\optFootnoteMark}

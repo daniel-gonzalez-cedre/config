@@ -143,14 +143,16 @@
 %-------------------------------------------------------------------------------
 %                Configuration for colors
 %-------------------------------------------------------------------------------
-\newcommand{\PaperColor}{white}
-\RequirePackage{ocgx2}
-\RequirePackage{tikz}
-\AddToHook{shipout/background}{%
-  \begin{ocg}[printocg=never]{Non printable}{noprint}{1}
-    \put (-0.5cm,-30cm) {\tikz[opacity=1] \draw[fill=paperwhite] (0,0) rectangle (24cm, -32cm);}
-  \end{ocg}
-}
+\newcommand{\BackGroundColor}{paperwhite}
+\newcommand{\PaperColor}{paperwhite}
+% \newcommand{\PaperColor}{white}
+% \RequirePackage{ocgx2}
+% \RequirePackage{tikz}
+% \AddToHook{shipout/background}{%
+  % \begin{ocg}[printocg=never]{Non printable}{noprint}{1}
+    % \put (-0.5cm,-30cm) {\tikz[opacity=1] \draw[fill=paperwhite] (0,0) rectangle (24cm, -32cm);}
+  % \end{ocg}
+% }
 % \input{colors}
 \input{\HomeDir/LaTeX/preambles/2.colors}
 % Text colors
@@ -332,7 +334,7 @@
 \newcommand*{\recipienttitlestyle}[1]{{\fontsize{11pt}{1em}\bodyfont\bfseries\itshape\color{graytext} #1}}
 \newcommand*{\recipientdepartmentstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{text} \MakeLowercase{#1}}}
 \newcommand*{\recipientuniversitystyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{graytext} \MakeLowercase{#1}}}
-\newcommand*{\recipientaddressstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{graytext}\MakeLowercase{#1}}}
+\newcommand*{\recipientaddressstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{lighttext}\MakeLowercase{#1}}}
 \newcommand*{\lettertitlestyle}[1]{{\fontsize{11pt}{1em}\bodyfontlight\bfseries\color{darktext} \underline{#1}}}
 \newcommand*{\letterdatestyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\itshape\color{graytext} #1}}
 % \newcommand*{\lettertextstyle}{\fontsize{11pt}{1.4em}\bodyfontlight\upshape\color{text}}
@@ -346,6 +348,7 @@
 \newcommand*{\closingpositionstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{text} \MakeLowercase{#1}}}
 \newcommand*{\closingdepartmentstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{graytext}\MakeLowercase{#1}}}
 \newcommand*{\closinguniversitystyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{graytext}\MakeLowercase{#1}}}
+\newcommand*{\closingaddressstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{lighttext}\MakeLowercase{#1}}}
 \newcommand*{\closingphonestyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{lighttext}\MakeLowercase{#1}}}
 
 \newcommand*{\letterenclosurestyle}[1]{{\fontsize{10pt}{1em}\bodyfontlight\itshape\color{lighttext} #1}}
@@ -388,10 +391,11 @@
 
 \newcommand*{\position}[1]{\def\@position{#1}}
 \newcommand*{\department}[1]{\def\@department{#1}}
+\newcommand*{\building}[1]{\def\@building{#1}}
 \newcommand*{\university}[1]{\def\@university{#1}}
 
 % Define writer's address
-% Usage: \address{<address>}
+\newcommand*{\headeraddress}[1]{\def\@headeraddress{#1}}
 \newcommand*{\address}[1]{\def\@address{#1}}
 
 % Define writer's subtitle
@@ -507,15 +511,15 @@
 % \newcommand*{\recipient}[2]{\def\@recipientname{#1}\def\@recipientaddress{#2}}
 \newcommand*{\recipient}[5]{\def\@recipientname{#1}\def\@recipientdepartment{#1}%
                             \def\@recipientuniversity{#2}%
-                            \ifthenelse{\isempty{#3}}{}{\def\@recipientaddressbuilding{#3}}%
-                            \ifthenelse{\isempty{#4}}{}{\def\@recipientaddressstreet{#4}}%
-                            \def\@recipientaddresscountry{#5}}
+                            \ifthenelse{\isempty{#3}}{}{\def\@recipientbuilding{#3}}%
+                            \ifthenelse{\isempty{#4}}{}{\def\@recipientstreet{#4}}%
+                            \def\@recipientaddress{#5}}
 \newcommand*{\recipientname}[1]{\def\@recipientname{#1}}
-\newcommand*{\recipientdepartment}[1]{\def\@recipientdepartment{#1}}
+\newcommand*{\recipientdepartment}[1]{\def\@recipientname{#1}\def\@recipientdepartment{#1}}
+\newcommand*{\recipientbuilding}[1]{\def\@recipientbuilding{#1}}
+\newcommand*{\recipientstreet}[1]{\def\@recipientstreet{#1}}
 \newcommand*{\recipientuniversity}[1]{\def\@recipientuniversity{#1}}
-\newcommand*{\recipientbuilding}[1]{\def\@recipientaddressbuilding{#1}}
-\newcommand*{\recipientstreet}[1]{\def\@recipientaddressstreet{#1}}
-\newcommand*{\recipientcountry}[1]{\def\@recipientaddresscountry{#1}}
+\newcommand*{\recipientaddress}[1]{\def\@recipientaddress{#1}}
 % \newcommand*{\recipientaddress}[1]{\def\@recipientaddress{#1}}
 
 % Defines the title for letter (cover letter only, optional)
@@ -628,7 +632,7 @@
     \headerfirstnamestyle{\@firstname}\headerlastnamestyle{{}\acvHeaderNameDelim\@lastname}%
     \\[\acvHeaderAfterNameSkip]%
     \ifthenelse{\isundefined{\@subtitle}}{}{\headersubtitlestyle{\@subtitle\\[\acvHeaderAfterSubtitleSkip]}}%
-    \ifthenelse{\isundefined{\@address}}{}{\headeraddressstyle{\@address\\[\acvHeaderAfterAddressSkip]}}%
+    \ifthenelse{\isundefined{\@headeraddress}}{}{\headeraddressstyle{\@headeraddress\\[\acvHeaderAfterAddressSkip]}}%
     \headersocialstyle{%
       \newbool{isstart}%
       \setbool{isstart}{true}%
@@ -1157,21 +1161,27 @@
   % \end{singlespace}
   \begin{itemize}[nosep,noitemsep,itemsep=0pt,leftmargin=0pt]
     \renewcommand{\labelitemi}{}
-    \ifthenelse{\isundefined{\@letterdate}}
+    % \ifthenelse{\isundefined{\@letterdate}}
+    \ifthenelse{\isundefined{\@recipientdepartment}}
+      {}%
       {\item
-        \recipientdepartmentstyle{\@recipientdepartment}}{}
-    \item
-      \recipientuniversitystyle{\@recipientuniversity}
-    \ifthenelse{\isundefined{\@recipientaddressbuilding}}
+        \recipientdepartmentstyle{\@recipientdepartment}}%
+    \ifthenelse{\isundefined{\@recipientuniversity}}%
       {}
       {\item
-        \recipientaddressstyle{\@recipientaddressbuilding}}
-    \ifthenelse{\isundefined{\@recipientaddressstreet}}
-      {}
+        \recipientuniversitystyle{\@recipientuniversity}}
+    \ifthenelse{\isundefined{\@recipientbuilding}}%
+      {}%
       {\item
-        \recipientaddressstyle{\@recipientaddressstreet}}
-    \item
-      \recipientaddressstyle{\@recipientaddresscountry}
+        \recipientaddressstyle{\@recipientbuilding}}%
+    \ifthenelse{\isundefined{\@recipientstreet}}%
+      {}%
+      {\item
+        \recipientaddressstyle{\@recipientstreet}}%
+    \ifthenelse{\isundefined{\@recipientaddress}}%
+      {}%
+      {\item
+        \recipientaddressstyle{\@recipientaddress}}%
   \end{itemize}
   % \ifthenelse{\isundefined{\@lettertitle}}
     % {}
@@ -1195,10 +1205,22 @@
       \ifthenelse{\isundefined{\@position}}
       {\closingnamestyle{\@firstname\ \@lastname}}
       {\closingnamestyle{\@firstname\ \@lastname}{\fontsize{10pt}{1em}\spacedot}\closingpositionstyle{\@position}}
-    \item
-      \closingdepartmentstyle{\@department}
-    \item
-      \closinguniversitystyle{\@university}
+    \ifthenelse{\isundefined{\@department}}
+      {}
+      {\item
+        \closingdepartmentstyle{\@department}}
+    \ifthenelse{\isundefined{\@university}}
+      {}
+      {\item
+        \closinguniversitystyle{\@university}}
+    \ifthenelse{\isundefined{\@building}}
+      {}
+      {\item
+        \closingaddressstyle{\@building}}
+    \ifthenelse{\isundefined{\@address}}
+      {}
+      {\item
+        \closingaddressstyle{\@address}}
     \ifthenelse{\isundefined{\@mobile}}
       {}
       {\item

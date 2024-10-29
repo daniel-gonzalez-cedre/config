@@ -27,8 +27,10 @@
 
     --fg0: 212, 190, 152;  /* --fg0: #d4be98; */
     --fg1: 221, 199, 161;  /* --fg1: #ddc7a1; */
+    --fg1norm: 212, 199, 188;
     --fg2: 226, 204, 169;  /* --fg2: #e2cca9; */
     --fg3: 235, 219, 178;  /* --fg3: #ebdbb2; */
+    --fg4: 244, 228, 187;  /* --fg3: #ebdbb2; */
   }
 }
 
@@ -56,8 +58,10 @@
 
     --fg0: 212, 190, 152;  /* --fg0: #d4be98; */
     --fg1: 221, 199, 161;  /* --fg1: #ddc7a1; */
+    --fg1norm: 212, 199, 188;
     --fg2: 226, 204, 169;  /* --fg2: #e2cca9; */
     --fg3: 235, 219, 178;  /* --fg3: #ebdbb2; */
+    --fg4: 244, 228, 187;  /* --fg3: #ebdbb2; */
   }
 }
 
@@ -88,7 +92,7 @@
   --tabbar-bg: rgba(var(--bg0), 1.0);
 
   /* tab colors */
-  --tab-text: rgba(var(--fg1), 1.0);
+  --tab-text: rgba(var(--fg1norm), 1.0);
   --unread-text: rgba(var(--gray1), 1.0);
   --discarded-text: rgba(var(--gray1), 1.0);
 

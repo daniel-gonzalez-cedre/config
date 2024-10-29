@@ -1,3 +1,5 @@
+" ☡
+
 " INIT
   filetype plugin indent on
   syntax enable
@@ -15,13 +17,16 @@
 
   augroup init_settings | au!
     " au BufEnter * set nospell
-    au BufEnter * set spell
-    " au BufEnter *.py,*.ipynb set nospell
+    au BufEnter,BufNewFile,BufReadPost * set spell
+    au BufEnter,BufNewFile,BufReadPost *.vimrc,*.vim setlocal nospell
+    " au FileType vim set nospell
     " au FileType text,markdown,html,tex,vim,gitcommit set spell
 
-    au BufEnter * syntax sync fromstart
+    au BufEnter,BufNewFile,BufReadPost * syntax sync fromstart
+    au BufEnter,BufNewFile,BufReadPost * set conceallevel=0
+    " au BufEnter,BufNewFile,BufReadPost * set conceallevel=1
+    " au FileType * syntax keyword Normal lambda conceal cchar=λ
 
-    au FileType * set conceallevel=0
     au FileType gitcommit set nowrap
 
     " CUSTOM CURSORS
@@ -783,9 +788,12 @@
   " FILETYPE SPECIFIC
     augroup shell_settings | au!
       au BufNewFile,BufRead *.sh set filetype=bash
+      au BufNewFile,BufRead,BufReadPost *.sh setlocal nospell
     augroup END
 
     augroup python_settings | au!
+      au BufNewFile,BufRead,BufReadPost *.py setlocal nospell
+      au FileType python setlocal nospell
       au FileType python setlocal foldmethod=indent
       au FileType python setlocal shiftwidth=2
       au FileType python setlocal softtabstop=2
@@ -807,14 +815,14 @@
     augroup latex_settings | au!
       let g:tex_comment_nospell=1
 
-      let g:vimtex_compiler_enabled = 0
-      let g:vimtex_complete_enabled = 0
-      let g:vimtex_fold_enabled = 1
-      let g:vimtex_imaps_enabled = 0
-      let g:vimtex_mappings_enabled = 0
-      let g:vimtex_quickfix_enabled = 0
-      let g:vimtex_syntax_nospell_comments = 1
-      let g:vimtex_view_enabled = 0
+      " let g:vimtex_compiler_enabled = 0
+      " let g:vimtex_complete_enabled = 0
+      " let g:vimtex_fold_enabled = 1
+      " let g:vimtex_imaps_enabled = 0
+      " let g:vimtex_mappings_enabled = 0
+      " let g:vimtex_quickfix_enabled = 0
+      " let g:vimtex_syntax_nospell_comments = 1
+      " let g:vimtex_view_enabled = 0
 
       au BufNewFile,BufRead *.bib,*.tex,*.tikz set filetype=tex
       au BufNewFile,BufRead *.bib,*.tex,*.tikz set syntax=tex
@@ -879,10 +887,10 @@
     set foldopen-=search
     set foldopen+=undo
     set foldcolumn=0
-    set foldignore=
+    " set foldignore=
     set foldlevelstart=99
-    set foldmethod=indent
-    " set foldmethod=manual
+    " set foldmethod=indent
+    set foldmethod=manual
 
     " set fillchars+=foldsep:│,foldclose:╶
     " set fillchars+=foldopen:├,foldsep:│,foldclose:╶
@@ -941,6 +949,8 @@
   endif
   nnoremap <leader>tw :setlocal nowrap!<cr>
   nnoremap <leader>ts :setlocal spell!<cr>
+  nnoremap <leader>tfi :setlocal foldmethod=indent<cr>
+  nnoremap <leader>tfm :setlocal foldmethod=manual<cr>
   nnoremap <leader>tgm :call ToggleGMove()<cr>
   nnoremap <leader>tq :call ToggleQuote()<cr>
   nnoremap <leader>t' :call ToggleQuote()<cr>
@@ -952,6 +962,15 @@
   nnoremap <leader>at <plug>(ale_toggle)
   nnoremap <leader>tale <plug>(ale_toggle)
   nnoremap <leader>tgit :GitGutterToggle<cr>
+
+  " function! ToggleConcealLevel()
+      " if &conceallevel == 0
+          " setlocal conceallevel=1
+      " else
+          " setlocal conceallevel=0
+      " endif
+  " endfunction
+  " nnoremap <silent> <leader>tc :call ToggleConcealLevel()<cr>
 
   " relative line numbers
   " nnoremap <leader>trln :set rnu!<cr>
