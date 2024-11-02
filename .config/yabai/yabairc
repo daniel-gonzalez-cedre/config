@@ -1,0 +1,24 @@
+yabai -m config layout bsp
+# yabai -m config layout stack
+# yabai -m config layout float
+
+yabai -m config window_placement second_child
+
+# padding
+yabai -m config left_padding 4
+yabai -m config right_padding 4
+yabai -m config top_padding 4
+yabai -m config bottom_padding 4
+yabai -m config window_gap 4
+
+yaba -m config mouse_follows_focus on
+
+yaba -m config mouse_modifier alt
+yaba -m config mouse_action1 move  # <left click> + drag
+yaba -m config mouse_action2 resize  # <right click> + drag
+yaba -m config mouse_drop_action swap  # dropping one window on another
+
+yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^Karabiner-Elements$" manage=off
+yabai -m rule --add app="^Hammerspoon$" manage=off

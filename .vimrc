@@ -1091,7 +1091,7 @@
     " inoremap <c-e> <end>
     inoremap <c-e> <c-g>U<c-o>g_<right>
     nnoremap ge g$
-    vnoremap ge g$
+    vnoremap ge g$<left>
     onoremap ge g$
     " end of logical line of text
     nnoremap <c-g>e g_
