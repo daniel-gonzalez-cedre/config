@@ -151,9 +151,13 @@
   overflow-y: hidden;
 
   top: 0px !important;
-  left: 7px !important;
+  left: 5px !important;
   right: 0px !important;
-  bottom: 7px !important;
+  bottom: 5px !important;
+  
+  box-sizing: border-box !important;
+  border: 0px solid;
+  border-radius: 10px !important;
 
   margin: 0px !important;
   padding: 0px !important;
@@ -178,48 +182,48 @@
   background: var(--tab-bg);
 
   box-sizing: border-box !important;
-  border: 2px var(--tab-color) solid !important;
+  border: 2px solid var(--tab-color) !important;
   border-radius: var(--tab-radius) !important;
 
   transition: all 0.25s !important;
 }
 #tabbar .tab:hover .background {
-  border: 2px var(--tab-hover-bg) solid !important;
-  transition: 0.25s border !important;
+  border: 2px solid var(--tab-hover-bg) !important;
+  transition: border 0.25s !important;
 }
 #tabbar .tab.active .background {
-  background-color: var(--active-bg);
-
-  border: 2px var(--active-color) solid !important;
-
-  transition: 0.25s border !important;
-  transition: 0.25s background;
+  background: var(--active-bg);
+  border: 2px solid var(--active-color) !important;
+  transition: background 0.25s, border 0.25s !important;
 }
 #tabbar:-moz-window-inactive .tab.active .background {
-  background-color: var(--inactive-bg);
-
-  border: 2px var(--inactive-color) solid !important;
-
-  transition: 0.25s border !important;
-  transition: 0.25s background;
+  background: var(--inactive-bg);
+  border: 2px solid var(--inactive-color) !important;
+  transition: background 0.25s, border 0.25s !important;
 }
 #tabbar .tab.active:hover .background { }
 #tabbar .tab.loading .background {
-  border: 2px var(--loading-color) solid !important;
+  border: 2px solid var(--loading-color) !important;
   transition: border 0.25s !important;
 }
 
 #tabbar tab-item:hover tab-item-substance { background: var(--item-hover-bg); }
 #tabbar tab-item { margin: 10px !important; }
 
-/* #tabbar:not(:hover) tab-item[data-level] tab-item-substance { margin-left: 0% !important; } */
+/* BEGIN auto-hide tab bar collapse */
+#tabbar:not(:hover) tab-item[data-level] tab-item-substance {
+  margin-left: 0% !important;
+  transition: margin-left 0.1s !important;
+}
+/* END auto-hide tab bar collapse */
+
 #tabbar tab-item-substance {
-  background-color: var(--tab-color);
+  background: var(--tab-color);
 
   padding: 0px 11px 0px 7px !important;
 
   box-sizing: border-box;
-  border: 0px solid var(--tab-color);
+  border: 0px solid var(--tab-color) !important;
   border-radius: var(--tab-radius) !important;
 
   transition: 0.25s all !important;
@@ -292,11 +296,11 @@
   width: 16px !important;
   height: 16px !important;
 
-  box-sizing: content-box;
-  border-radius: var(--button-radius) !important;
-  border: 2px solid var(--closebox-color) !important;
-
   background: var(--tab-bg);
+
+  box-sizing: content-box;
+  border: 2px solid var(--closebox-color) !important;
+  border-radius: var(--button-radius) !important;
 
   transition: 0.25s opacity, 0.25s background !important;
 }
@@ -372,8 +376,8 @@
   background: var(--tab-bg);
 
   box-sizing: content-box;
+  border: 2px solid var(--twisty-color) !important;
   border-radius: var(--button-radius) !important;
-  border: 2px solid var(--twisty-color);
 
   transition: all 0.25s !important;
 }

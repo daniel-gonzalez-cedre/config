@@ -20,8 +20,8 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
 @-moz-document url(chrome://browser/content/browser.xhtml) {/* Please write your custom CSS under this line*/
   /* remove treestyletabs header */
   :root{
-    --min-tab-width: 41px;
-    --max-tab-width: 180px;
+    --min-tab-width: 39px;
+    --max-tab-width: 172px;
 
     --browser-radius: 9px;
     --button-radius: 9px;
@@ -78,7 +78,7 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
     margin: 0px !important;
     border: 0px solid transparent !important;
   }
-  #navigator-toolbox toolbar#nav-bar { margin: 5px 0px 5px 5px !important; }
+  #navigator-toolbox toolbar#nav-bar { margin: 4px 0px 3px 0px !important; }
 
   toolbarbutton > stack {
     box-sizing: border-box !important;
@@ -132,25 +132,30 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
     display: none !important;
   }
 
-  /* BEGIN resize tabs */
-  /*
+  /* BEGIN auto-hide resize tabs */
   #sidebar-box:-moz-window-inactive {
     min-width: var(--min-tab-width) !important;
     max-width: var(--min-tab-width) !important;
+    width: var(--min-tab-width) !important;
   }
   #sidebar-box { background: var(--mac-selected-bgcolor) !important; }
   #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:not(:hover) {
     min-width: var(--min-tab-width) !important;
     max-width: var(--min-tab-width) !important;
-    transition: all 0.25s !important;
+    width: var(--min-tab-width) !important;
+    transition: all 0.1s !important;
   }
-
-  #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover { transition: all 0.25s !important; }
-  */
-  /* END resize tabs */
+  
+  #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover {
+    min-width: var(--max-tab-width) !important;
+    max-width: var(--max-tab-width) !important;
+    width: var(--max-tab-width) !important;
+    transition: all 0.1s !important;
+  }
+  /* END auto-hide resize tabs */
 
   #browser stack.browserStack browser {
-    margin: 0px 7px 7px 7px;
+    margin: 0px 5px 5px 5px;
     box-sizing: border-box;
     border: 0px solid transparent !important;
     border-radius: var(--browser-radius);
