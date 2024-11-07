@@ -171,10 +171,10 @@ if [[ ${PIPES} -eq 0 ]]; then
   UR=''
   BR=''
 else
-  UL="${fg_dark}╭╴${color_clear} "
-  BL="${fg_dark}╰╴${color_clear} "
-  UR=" ${fg_dark}╶╮${color_clear}"
-  BR=" ${fg_dark}╶╯${color_clear}"
+  UL="${fg_dark}╭╴${color_clear}"
+  BL="${fg_dark}╰╴${color_clear}"
+  UR="${fg_dark}╶╮${color_clear}"
+  BR="${fg_dark}╶╯${color_clear}"
   # UL="${fg_shade}┌╴${color_clear} "
   # BL="${fg_shade}└──╴${color_clear} "
   # UL="${fg_shade}╭╴${color_clear} "
@@ -358,6 +358,15 @@ function schedprompt() {
 }
 schedprompt
 
+
+mkdir -p "$HOME/.config"
+mkdir -p "$HOME/.cache"
+mkdir -p "$HOME/.local/share"
+mkdir -p "$HOME/.local/state"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
 
 export CLICOLOR=1
 export EDITOR='vim'

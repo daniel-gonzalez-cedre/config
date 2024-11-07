@@ -17,8 +17,8 @@
 
   augroup init_settings | au!
     " au BufEnter * set nospell
-    au BufEnter,BufNewFile,BufReadPost * set spell
-    au BufEnter,BufNewFile,BufReadPost *.vimrc,*.vim setlocal nospell
+    au BufEnter,BufNewFile,BufReadPost * set nospell
+    " au BufEnter,BufNewFile,BufReadPost *.vimrc,*.vim setlocal nospell
     " au FileType vim set nospell
     " au FileType text,markdown,html,tex,vim,gitcommit set spell
 
@@ -500,7 +500,7 @@
           \ 'component_type': {
           \   'caps': 'warning',
           \ },
-          \ 'separator': {'left': '', 'right': ''},
+          \ 'separator': {'left': '', 'right': ''},
           \ 'subseparator': { 'left': '', 'right': ''}
           \ }
           " \ 'component_function': {
@@ -510,6 +510,7 @@
           " \ 'component_expand': {
           " \   'caps': 'CapsLockStatusline',
           " \ },
+          " \ 'separator': {'left': '', 'right': ''},
 
   nnoremap <silent> <c-g>c <plug>CapsLockToggle
 
@@ -555,10 +556,16 @@
           " \'y'    : '%h %d',
           " \'z'    : '%R'
           " \}
+    " let g:tmuxline_separators = {
+          " \ 'left' : '',
+          " \ 'left_alt': '',
+          " \ 'right' : '',
+          " \ 'right_alt' : '',
+          " \ 'space' : ' '}
     let g:tmuxline_separators = {
-          \ 'left' : '',
+          \ 'left' : '',
           \ 'left_alt': '',
-          \ 'right' : '',
+          \ 'right' : '',
           \ 'right_alt' : '',
           \ 'space' : ' '}
     " let g:tmuxline_theme = {
@@ -689,11 +696,11 @@
     let g:NERDTrimTrailingWhitespace = 1
     au! BufEnter * call s:nerdcommenter_mappings()
 
-    function! s:nerdcommenter_mappings()
+    " function! s:nerdcommenter_mappings()
       " for key in ['c', 'a', 'n', 'm', 'y', '$', 'a', 'a', 'l', 'b', 'u' "<space>"]
         " exe "unmap \<leader\>c" . key
       " endfor
-    endfunction
+    " endfunction
     function! s:nerdcommenter_mappings()
       " for mov in ['j', 'k', 'gg', 'G', '(', ')', '{', '}', 'is', 'ip', 'if', 'af']
         " exe "nnoremap gc" . mov . " V" . mov . "\<Plug\>NERDCommenterInvert `<"
@@ -788,12 +795,12 @@
   " FILETYPE SPECIFIC
     augroup shell_settings | au!
       au BufNewFile,BufRead *.sh set filetype=bash
-      au BufNewFile,BufRead,BufReadPost *.sh setlocal nospell
+      " au BufNewFile,BufRead,BufReadPost *.sh setlocal nospell
     augroup END
 
     augroup python_settings | au!
-      au BufNewFile,BufRead,BufReadPost *.py setlocal nospell
-      au FileType python setlocal nospell
+      " au BufNewFile,BufRead,BufReadPost *.py setlocal nospell
+      " au FileType python setlocal nospell
       au FileType python setlocal foldmethod=indent
       au FileType python setlocal shiftwidth=2
       au FileType python setlocal softtabstop=2
@@ -1183,48 +1190,58 @@
   inoremap <silent> " <c-r>=QuoteDelim('"')<cr>
   inoremap <silent> ' <c-r>=QuoteDelim("'")<cr>
   inoremap <silent> ` <c-r>=QuoteDelim('`')<cr>
-  inoremap <silent> <c-g>q ``''<left><left>
+  " inoremap <silent> <c-g>q ``''<left><left>
+  " FIX ISSUE OF QUOTE TEXT OBJECTS GRABBING AN EXTRA SPACE
+  onoremap a` 2i`
+  onoremap a' 2i'
+  onoremap a" 2i"
+  xnoremap a` 2i`
+  xnoremap a' 2i'
+  xnoremap a" 2i"
 
   " VIM-SURROUND DEPENDENT MAPPINGS
   " <s-s>(
   " <s-s>)
-  vmap ( <s-s>(<cr>
-  vmap ) <s-s>)<cr>
-  vmap <leader>( <s-s>(<cr>
-  vmap <leader>) <s-s>)<cr>
+  " vmap ( <s-s>(<cr>
+  " vmap ) <s-s>)<cr>
+  " vmap <leader>( <s-s>(<cr>
+  " vmap <leader>) <s-s>)<cr>
+  " vmap <leader>( <s-s>(<cr>
+  " vmap <leader>) <s-s>)<cr>
 
   " <s-s>[
   " <s-s>]
   " vmap [ <s-s>[<cr>
   " vmap ] <s-s>]<cr>
-  vmap <leader>[ <s-s>[<cr>
-  vmap <leader>] <s-s>]<cr>
+  " vmap <leader>[ <s-s>[<cr>
+  " vmap <leader>] <s-s>]<cr>
 
   " <s-s>{
   " <s-s>}
-  vmap { <s-s>{<cr>
-  vmap } <s-s>}<cr>
-  vmap <leader>{ <s-s>{<cr>
-  vmap <leader>} <s-s>}<cr>
+  " vmap { <s-s>{<cr>
+  " vmap } <s-s>}<cr>
+  " vmap <leader>{ <s-s>{<cr>
+  " vmap <leader>} <s-s>}<cr>
 
   " <s-s><
   " <s-s>>
   " vmap <leader>a <s-s>><cr>
-  vmap <leader>< <s-s><<cr>
-  vmap <leader>> <s-s>><cr>
+  " vmap <leader>< <s-s><<cr>
+  " vmap <leader>> <s-s>><cr>
 
-  vmap <c-g>m <s-s>$<cr>
-  vmap <leader>m <s-s>$<cr>
-  vmap <leader>$ <s-s>$<cr>
+  " vmap <c-g>m <s-s>$<cr>
+  " vmap <leader>m <s-s>$<cr>
+  " vmap <leader>$ <s-s>$<cr>
 
-  vmap " <s-s>"<cr>
+  " vmap " <s-s>"<cr>
   " vmap ' <s-s>'<cr>
-  vmap ` <s-s>`<cr>
-  vmap <c-g>q <s-s><c-q><cr>
-  vmap <leader>" <s-s>"<cr>
-  vmap <leader>' <s-s>'<cr>
-  vmap <leader>` <s-s>`<cr>
-  vmap <leader>q <s-s><c-q><cr>
+  " vmap ` <s-s>`<cr>
+
+  " vmap <c-g>q <s-s><c-q><cr>
+  " vmap <leader>" <s-s>"<cr>
+  " vmap <leader>' <s-s>'<cr>
+  " vmap <leader>` <s-s>`<cr>
+  " vmap <leader>q <s-s><c-q><cr>
   " vnoremap " <c-c>`>a"<c-c>`<i"<c-c>
   " vnoremap ' <c-c>`>a'<c-c>`<i'<c-c>
   " vnoremap ` <c-c>`>a`<c-c>`<i`<c-c>

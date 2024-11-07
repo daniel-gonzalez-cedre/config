@@ -1,8 +1,8 @@
 #!/bin/bash
 
-APP="Floorp"
-ICNS="/Users/cedre/.config/floorp/FloorpIcon.icns"
-OUT="firefox.icns"
+APP="Alacritty"
+ICNS="/Users/cedre/.config/alacritty/icon/alacritty.icns"
+OUT="alacritty.icns"
 
 # update app icon file
 cp "${ICNS}" /Applications/"${APP}".app/Contents/Resources/"${OUT}"
