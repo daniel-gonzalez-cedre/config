@@ -1,62 +1,194 @@
-/* remove bottom status text (popup url) */
-#statuspanel { display: none !important; }
+/*
 
-/* remove top tab bar */
-#TabsToolbar { visibility: collapse !important; }
+"userChrome.css" is a custom CSS file that can be used to specify CSS style rules for Floorp's interface (NOT internal site) using "chrome" privileges.
+For instance, if you want to hide the tab bar, you can use the following CSS rule:
 
-/* remove treestyletabs header */
-#sidebar-header {
+**************************************
+#TabsToolbar {                       *
+    display: none !important;        *
+}                                    *
+**************************************
+
+NOTE: You can use the userChrome.css file without change preferences (about:config)
+
+Quote: https://userChrome.org | https://github.com/topics/userchrome
+
+*/
+/* chrome://browser/content/browser.xhtml */
+
+@charset "UTF-8";
+@-moz-document url(chrome://browser/content/browser.xhtml) {/* Please write your custom CSS under this line*/
+  /* remove treestyletabs header */
+  :root{
+    --min-tab-width: 39px;
+    --max-tab-width: 172px;
+
+    --browser-radius: 9px;
+    --button-radius: 9px;
+    --urlbar-radius: 9px;
+    --urlbar-button-radius: 7px;
+
+    --bgdark: #141617;
+    --bgdim: #1d2021;
+    --bg0: #1b1b1b;
+    --bg1: #282828;
+    --bg2: #32302f;
+    --bg3: #3c3836;
+    --bg4: #45403d;
+    --bg5: #504945;
+
+    --glow0: #5a524c;
+    --glow1: #665c54;
+
+    --gray0: #7c6f64;
+    --gray1: #928374;
+    --gray2: #a89984;
+
+    --fg0: #d4be98;
+    --fg1: #ddc7a1;
+    --fg2: #e2cca9;
+    --fg3: #ebdbb2;
+
+    --toolbar-field-background-color: var(--bg2) !important;
+    --toolbar-field-focus-background-color: var(--bg3) !important;
+    /* --toolbar-field-focus-background-color: var(--bg3) !important; */
+    /* --toolbar-field-focus-background-color */
+    /* --toolbar-field-focus-border-color: transparent !important; */
+    --toolbar-field-focus-border-color: var(--glow0) !important;
+
+    /* --urlbarView-secondary-text-color */
+
+    /* --mac-selected-bgcolor: #1d2021 !important; */
+    /* --mac-selected-bgcolor: #191c1d !important; */
+    --mac-bgcolor: var(--bg0) !important;
+    --mac-selected-bgcolor: var(--bg0) !important;
+  }
+
+  body, #browser, browser, menubar, toolbar, nav-bar, #navigator-toolbox, #TabsToolbar > * { background-color: var(--mac-selected-bgcolor) !important; }
+
+  html#main-window, html:body, #browser { background-color: var(--mac-selected-bgcolor) !important; }
+
+  #page-action-buttons, #pageActionButton, #pageActionSeparator,
+  #remote-control-box, .chromeclass-toolbar-additional.urlbar-search-button,
+  #star-button-box, #pocket-button-box, #identity-icon-labels,
+  .autocomplete-history-dropmarker, ar-button { display: none !important; }
+
+  #navigator-toolbox {
+    padding: 0px !important;
+    margin: 0px !important;
+    border: 0px solid transparent !important;
+  }
+  #navigator-toolbox toolbar#nav-bar { margin: 4px 0px 3px 0px !important; }
+
+  toolbarbutton > stack {
+    box-sizing: border-box !important;
+    border: 0px transparent !important;
+    border-radius: var(--button-radius) !important;
+  }
+  toolbar toolbarbutton image, toolbaritem toolbarbutton image {
+    box-sizing: border-box !important;
+    border: 0px transparent !important;
+    border-radius: var(--button-radius) !important;
+  }
+
+  /* #urlbar .urlbar-input { color: var(--fg3) !important; } */
+  #urlbar { margin: 0px; }
+  #urlbar-background {
+    box-sizing: border-box !important;
+    border: 1px transparent solid !important;
+    border-radius: var(--urlbar-radius) !important;
+  }
+  #urlbar:hover #urlbar-background { border: 1px var(--toolbar-field-focus-border-color) solid !important; }
+  .urlbar-go-button { display: none !important; }
+  .urlbar-input-container box {
+    box-sizing: border-box !important;
+    border: 0px transparent solid !important;
+    border-radius: var(--urlbar-button-radius) !important;
+  }
+  .urlbar-input-container box:hover, .urlbar-input-container box:hover box {
+    /* background-color: var(--gray0); */
+  }
+
+  /* #urlbar .urlbar-input { color: var(--fg3) !important; } */
+  #urlbar .urlbar-input-box { padding-right: 9px; }
+  #urlbar:not([focused]) .urlbar-input-box { text-align: center; }
+  /* #urlbar:not([focused]) .urlbar-input-box { */
+    /* color: var(--fg0) !important; */
+    /* text-align: center; */
+  /* } */
+
+  .tab-icon-image:not([src]){ content: url("about:blank"); }
+
+  #sidebar, #sidebar-box {
+    margin: 0px !important;
+    padding: 0px !important;
+    background-color: var(--mac-selected-bg-color) !important;
+  }
+
+  #statuspanel,
+  #TabsToolbar,
+  #sidebar-header,
+  #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header,
+  #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] + #sidebar-splitter {
     visibility: collapse !important;
-    display: none;
+    display: none !important;
+  }
+
+  /* BEGIN auto-hide resize tabs */
+  #sidebar-box:-moz-window-inactive {
+    min-width: var(--min-tab-width) !important;
+    max-width: var(--min-tab-width) !important;
+    width: var(--min-tab-width) !important;
+  }
+  #sidebar-box { background: var(--mac-selected-bgcolor) !important; }
+  #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:not(:hover) {
+    min-width: var(--min-tab-width) !important;
+    max-width: var(--min-tab-width) !important;
+    width: var(--min-tab-width) !important;
+    transition: all 0.1s !important;
+  }
+
+  #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover {
+    min-width: var(--max-tab-width) !important;
+    max-width: var(--max-tab-width) !important;
+    width: var(--max-tab-width) !important;
+    transition: all 0.1s !important;
+  }
+  /* END auto-hide resize tabs */
+
+  #browser stack.browserStack browser {
+    margin: 0px 5px 5px 5px;
+    box-sizing: border-box;
+    border: 0px solid transparent !important;
+    border-radius: var(--browser-radius);
+  }
+
+  /* BEGIN make window draggable from URL bar */
+  /* .urlbar-input-box, .urlbar-input, #urlbar-scheme, #urlbar-container { */
+    /* -moz-window-dragging: drag; */
+    /* cursor: default; */
+  /* } */
+
+  /* .urlbar-input-container > box, */
+  /* #page-action-buttons, */
+  /* #urlbar-container:focus-within, */
+  /* #urlbar-container:focus-within:is(.urlbar-input-box, */
+                                    /* .urlbar-input, */
+                                    /* #urlbar-scheme, */
+                                    /* #urlbar-container) { */
+    /* -moz-window-dragging: no-drag; */
+    /* cursor: auto; */
+  /* } */
+
+  #navigator-toolbox,
+  #navigator-toolbox #toolbar,
+  #navigator-toolbox #floorp-tabbar-window-manage-container,
+  #navigator-toolbox #PanelUI-button,
+  #navigator-toolbox #PanelUI-menu-button
+  {
+    -moz-window-dragging: drag;
+    cursor: default;
+  }
+
+  /* END make window draggable from URL bar */
 }
-
-/* setup size of side tab bar */
-:root {
-  --sidebar-min-width: 35px;  /* 35px */
-  --sidebar-max-width: 259px;  /* 259px */
-  --sidebar-width: 128px;  /* 128px */
-}
-#sidebar {
-  /* min-width: var(--sidebar-min-width) !important; */
-  /* max-width: var(--sidebar-max-width) !important; */
-  width: var(--sidebar-width) !important;
-  min-width: var(--sidebar-width) !important;
-  max-width: var(--sidebar-width) !important;
-}
-
-#sidebar-box {
-  overflow-x: hidden !important;
-  overflow-y: hidden !important;
-  /* position: relative !important; */
-  width: var(--sidebar-width) !important;
-  min-width: var(--sidebar-width) !important;
-  max-width: var(--sidebar-width) !important;
-}
-
-/* #sidebar-box:not([sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]) { */
-  /* [> min-width: var(--sidebar-max-width) !important; <] */
-  /* [> max-width: var(--sidebar-max-width) !important; <] */
-  /* min-width: var(--sidebar-width) !important; */
-  /* max-width: var(--sidebar-width) !important; */
-/* } */
-
-/* [> contract sidebar on hover <] */
-/* #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] { */
-  /* transition: all 0.25s !important; */
-  /* min-width: var(--sidebar-min-width) !important; */
-  /* max-width: var(--sidebar-min-width) !important; */
-  /* z-index: 2; */
-/* } */
-/* [> expand sidebar on hover <] */
-/* #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover, */
-/* #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar { */
-  /* transition: all 0.25s !important; */
-  /* min-width: var(--sidebar-max-width) !important; */
-  /* max-width: var(--sidebar-max-width) !important; */
-  /* z-index: 1; */
-/* } */
-
-/* [> prevent window content from moving on sidebar resize <] */
-/* #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover { */
-  /* margin-right: calc((var(--sidebar-max-width) - var(--sidebar-min-width)) * -1) !important; */
-/* } */

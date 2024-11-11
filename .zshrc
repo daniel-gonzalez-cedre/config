@@ -154,10 +154,9 @@ function min() {
 }
 
 # prompt parameters
-# PROMPTTYPE="complex"  # "simple", "complex"
-PROMPTTYPE=1  # 0, 1
-NEWLINE=0  # 0, 1
-PIPES=1  # 0, 1
+PROMPTTYPE=1  # 0 (simple), 1 (complex)
+NEWLINE=0  # 0 (no), 1 (yes)
+PIPES=1  # 0 (no), 1 (yes)
 
 if [[ ${NEWLINE} -eq 0 ]]; then
   NEWLINE_CHAR=''
@@ -171,10 +170,14 @@ if [[ ${PIPES} -eq 0 ]]; then
   UR=''
   BR=''
 else
-  UL="${fg_dark}╭╴${color_clear}"
-  BL="${fg_dark}╰╴${color_clear}"
-  UR="${fg_dark}╶╮${color_clear}"
-  BR="${fg_dark}╶╯${color_clear}"
+  UL="${fg_dark}╭${color_clear}"
+  BL="${fg_dark}╰${color_clear}"
+  UR="${fg_dark}╮${color_clear}"
+  BR="${fg_dark}╯${color_clear}"
+  # UL="${fg_dark}╭╴${color_clear}"
+  # BL="${fg_dark}╰╴${color_clear}"
+  # UR="${fg_dark}╶╮${color_clear}"
+  # BR="${fg_dark}╶╯${color_clear}"
   # UL="${fg_shade}┌╴${color_clear} "
   # BL="${fg_shade}└──╴${color_clear} "
   # UL="${fg_shade}╭╴${color_clear} "
@@ -274,7 +277,7 @@ else
     local gitbranch='$(git symbolic-ref --short HEAD 2> /dev/null)'
     # local gitsuffix=" ::"
     # local git="${fg_coaqua}%${gitlimit}<⋅⋅⋅<${gitbranch}%<<${fg_dark}${gitsuffix}${color_clear}"
-    local git="${fg_coaqua}%${gitlimit}<⋅⋅⋅<${gitbranch}%<<${color_clear}"
+    local git="${fg_cogreen}%${gitlimit}<⋅⋅⋅<${gitbranch}%<<${color_clear}"
 
     # first
     local function prefixlimiter() { echo $(( $COLUMNS - $(strlen ${${PWD:t}/$HOME/~}) - $(strlen ${USER}) - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅ ╺┓ master") )) }
@@ -294,10 +297,12 @@ else
       # gitbranch+='$(git symbolic-ref --short HEAD 2> /dev/null)'
       # gitsuffix+=" ::"
     # fi
-    local left="${UL}${path}"
+    local left=" ${UL} ${path}"
+    # local left=" ${path}"
     # left+=" ${git}"
 
-    local right="${git} ${user} ${machine}${UR}"
+    local right="${git} ${user} ${machine} ${UR} "
+    # local right="${git} ${user} ${machine} "
       # Virtualenv.
       # right+='${VIRTUAL_ENV:+venv }'
 
@@ -311,16 +316,18 @@ else
 
     local leftspace=${(S)left//${~pattern}}
     local rightspace=${(S)right//${~pattern}}
-    local spacing="\${(l,COLUMNS-2-\${#\${(%):-${leftspace}${rightspace}}},)}"
+    local spacing="\${(l,COLUMNS-0-\${#\${(%):-${leftspace}${rightspace}}},)}"
 
     local function toplinelimiter() { echo $(( $COLUMNS - 20 )) }
     local toplinelimit='$(max $(toplinelimiter) 1)'
-    local topline=" %${toplinelimit}>>${left}${spacing}${right} %>>%{"$'\n'"%}"
+    local topline="%${toplinelimit}>>${left}${spacing}${right}%>>%{"$'\n'"%}"
 
-    local botline=" ${BL}${linefeed} "
+    local botline=" ${BL} ${linefeed} "
+    # local botline=" ${linefeed} "
 
-    PROMPT="${NEWLINE_CHAR}${topline}${botline}"
-    RPROMPT="${timestamp}${BR}"
+    PROMPT="%{${NEWLINE_CHAR}%}${topline}${botline}"
+    RPROMPT="${timestamp} ${BR}"
+    # RPROMPT="${timestamp}"
   }
 fi
 
@@ -368,10 +375,17 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
-export CLICOLOR=1
 export EDITOR='vim'
 # export VISUAL='vim'
-export GREP_OPTIONS="--color=always"  # --line-buffered
+
+CLICOLOR=1
+# LS_COLORS='di=1;32:ln=1;30;47:so=30;45:pi=30;45:ex=1;31:bd=30;46:cd=30;46:su=30'
+# LS_COLORS="${LS_COLORS};41:sg=30;41:tw=30;41:ow=30;41:*.rpm=1;31:*.deb=1;31"
+# LSCOLORS=CxahafafBxagagabababab
+GREP_COLORS='sl=49;39:cx=49;39:mt=49;31;1:fn=49;32:ln=49;33:bn=49;33:se=1;36'
+GREP_OPTIONS="--color=always"  # --line-buffered
+# export CLICOLOR LS_COLORS LSCOLORS GREP_COLORS GREP_OPTIONS
+export CLICOLOR GREP_COLORS GREP_OPTIONS
 
 export CONFIG=${HOME}/config
 

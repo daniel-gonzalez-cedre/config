@@ -4,189 +4,120 @@
 @keyframes tab-burst-animation-light {}
 @keyframes blink {}
 
-:root {
-  --tab-height: 32px;
-  --tab-width: 160px;
-  --tab-min-width: 32px;
-  --tab-max-width: 256px;
-  --closebox-color: #4f4d4d00;
-  --closebox-hover-color: #fb4934;
-  --twisty-color: #4f4d4d00;
-  --twisty-hover-color: #fe8019;
-  
-  --loading-color: #a8998455;
-  --unread-color: #a8998455;
-  --discarded-color: #22202055;
-}
-
+/* dark mode */
 @media (prefers-color-scheme: dark) {
   :root {
-    --label-color: #cccccc;  /* #cabaa9; */
-    --background-color: #000000;
-    --tab-active-background-color: #a89984aa;
-    --tab-background-color: #181818;
-    --tab-item-hover-background-color: #222020;
-    --tab-item-substance-border-color: #000000;
-    --tab-item-substance-background-color: #181818;
+    --bgdark: 20, 22, 23;  /* --bgdark: #141617; */
+    --bgdim: 29, 32, 33;  /* --bgdim: #1d2021; */
+    --bg0: 27, 27, 27;  /* --bg0: #1b1b1b; */
+    --bg1: 40, 40, 40;  /* --bg1: #282828; */
+    --bg2: 50, 48, 47;  /* --bg2: #32302f; */
+    --bg3: 60, 56, 54;  /* --bg3: #3c3836; */
+    --bg4: 69, 64, 61;  /* --bg4: #45403d; */
+    --bg5: 80, 73, 69;  /* --bg5: #504945; */
+
+    --glow0: 90, 92, 86;  /* --glow0: #5a524c; */
+    --glow1: 102, 92, 84;  /* --glow1: #665c54; */
+
+    --gray0: 124, 111, 100;  /* --gray0: #7c6f64; */
+    --gray1: 146, 131, 116;  /* --gray1: #928374; */
+    --gray2: 168, 153, 132;  /* --gray2: #a89984; */
+
+    --default-gray: 79, 77, 77;  /* --default-gray: #4f4d4d; */
+
+    --fg0: 212, 190, 152;  /* --fg0: #d4be98; */
+    --fg1: 221, 199, 161;  /* --fg1: #ddc7a1; */
+    --fg2: 226, 204, 169;  /* --fg2: #e2cca9; */
+    --fg3: 235, 219, 178;  /* --fg3: #ebdbb2; */
+    --fg4: 244, 228, 187;  /* --fg3: #ebdbb2; */
+    --fgnorm: 235, 219, 196;  /* --fg3: #ebdbb2; */
   }
 }
+
+/* light mode */
 @media (prefers-color-scheme: light) {
   :root {
-    --label-color: #121212;
-    --background-color: #ffffff;
-    --tab-active-background-color: #f0f0f0;
-    --tab-item-hover-background-color: #f0f0f0;
-    --tab-item-substance-border-color: #00000025;
-    --tab-item-substance-background-color: #ffffff;
+    /* [> TODO: update these colors for light mode <] */
+    --bgdark: 20, 22, 23;  /* --bgdark: #141617; */
+    --bgdim: 29, 32, 33;  /* --bgdim: #1d2021; */
+    --bg0: 27, 27, 27;  /* --bg0: #1b1b1b; */
+    --bg1: 40, 40, 40;  /* --bg1: #282828; */
+    --bg2: 50, 48, 47;  /* --bg2: #32302f; */
+    --bg3: 60, 56, 54;  /* --bg3: #3c3836; */
+    --bg4: 69, 64, 61;  /* --bg4: #45403d; */
+    --bg5: 80, 73, 69;  /* --bg5: #504945; */
+
+    --glow0: 90, 92, 86;  /* --glow0: #5a524c; */
+    --glow1: 102, 92, 84;  /* --glow1: #665c54; */
+
+    --gray0: 124, 111, 100;  /* --gray0: #7c6f64; */
+    --gray1: 146, 131, 116;  /* --gray1: #928374; */
+    --gray2: 168, 153, 132;  /* --gray2: #a89984; */
+
+    --default-gray: 79, 77, 77;  /* --default-gray: #4f4d4d; */
+
+    --fg0: 212, 190, 152;  /* --fg0: #d4be98; */
+    --fg1: 221, 199, 161;  /* --fg1: #ddc7a1; */
+    --fg2: 226, 204, 169;  /* --fg2: #e2cca9; */
+    --fg3: 235, 219, 178;  /* --fg3: #ebdbb2; */
+    --fg4: 244, 228, 187;  /* --fg3: #ebdbb2; */
+    --fgnorm: 235, 219, 196;  /* --fg3: #ebdbb2; */
   }
 }
 
-:root, #background { background: var(--background-color); }
-:root.sidebar .label-content { color: var(--label-color) !important; }
+/* properties */
+:root {
+  --font-size: 9pt;
+  --tab-height: 32px;
+  --tab-width: 32px;
 
-/* tabbar styling */
-/* :root.left #tabbar, #tabContextMenu, #tabContextMenu ul { margin: 0px; } */
-#tabbar {
-  overflow-x: hidden;
-  overflow-y: hidden;
-  top: 0px !important;
-  left: 0px !important;
-  right: 0px !important;
-  bottom: 0px !important;
-  margin: 0px 1px 2px 2px;
-}
-#normal-tabs-container { scrollbar-width: none; }  /* remove scroll bar */
-
-/* tab styling */
-#tabbar .tab {
-  height: var(--tab-height);
-  width: var(--tab-width);  /* max */
-  margin: 0px;
-  padding: 0px;
-  transition: 0.25s width;
-}
-#tabbar:not(:hover) .tab { width: var(--tab-width); }  /* min */
-
-/* tab background styling */
-#tabbar .tab .background {
-  background: var(--tab-background-color);
-  margin: 2px;
-  padding: 5px;
-  border-radius: 4px;
-  transition: 0.25s background;
-}
-#tabbar .tab.active .background {
-  /* background: var(--tab-active-background-color); */
-  background: var(--tab-active-background-color);
-}
-#tabbar .tab.active:hover tab-item-substance {
-  background: var(--tab-active-background-color);
-  transition: 0.25s background;
-}
-#tabbar .tab.active:hover .background {
-  /* background: var(--tab-active-background-color); */
-}
-#tabbar tab-item:hover tab-item-substance { background: var(--tab-item-hover-background-color); }
-
-/* tab item styling */
-#tabbar tab-item { }
-
-/* tab item substance styling */
-#tabbar tab-item-substance {
-  background-color: var(--tab-item-substance-background-color);
-  padding: 5px;
-  border-radius: 6px;
-  border: solid 1px var(--tab-item-substance-border-color);
-  transition: all 0.25s !important;
-}
-#tabbar tab-item tab-item-substance:hover { }
-#tabbar:not(:hover) tab-item[data-level] tab-item-substance { margin-left: 0% !important; }
-
-/* tab label content styling */
-.label-content {
-  margin: 0px;
-  padding: 0px;
-  font-size: 12px;
-  line-height: var(--tab-height);
+  --tab-radius: 9px;
+  --button-radius: 5px;
 }
 
-/* tab favicon stylings */
-#tabbar tab-item.active tab-favicon { filter: grayscale(0); }  /* full color favicons on active tab */
-#tabbar tab-item:hover tab-favicon { opacity: 0; }  /* hide favicons on hover */
-#tabbar tab-item tab-favicon {
-  margin: 0px 6px 0px 2px;
-  transition: 0.25s opacity;
-}
+/* colors */
+:root {
+  --black: 60, 56, 54;  /* --black: #3c3836; */
+  --white: 208, 191, 152;  /* --white: #d4be98; */
 
-/* styling for unread and discarded tabs */
-#tabbar tab-item.unread, #tabbar tab-item.discarded { opacity: 0.75; }
-#tabbar tab-item.unread:hover tab-item-substance, #tabbar tab-item.discarded:hover tab-item-substance { background: var(--discarded-color); }
-#tabbar tab-item.unread, #tabbar tab-item.discarded tab-favicon { filter: grayscale(1); }
-#tabbar tab-item.discarded .label-content { opacity: 0.25 !important; }
+  --red: 234, 105, 98;  /* --red: #ea6962; */
+  --orange: 231, 138, 78;  /* --orange: #e78a4e; */
+  --yellow: 216, 166, 87;  /* --yellow: #d8a657; */
+  --green: 169, 182, 101;  /* --green: #a9b665; */
+  --cyan: 137, 180, 130;  /* --cyan: #89b482; */
+  --blue: 125, 174, 163;  /* --blue: #7daea3; */
+  --fuchsia: 211, 134, 155;  /* --fuchsia: #d3869b; */
 
-/* blank tab  and loading behavior */
-#tabbar .loading tab-favicon { visibility: collapse !important; }
-#tabbar .loading .label-content { visibility: collapse !important; }
-#tabbar .loading tab-item-substance { background: var(--loading-color); !important }
+  /* sidebar colors */
+  --tabbar-bg: rgba(var(--bg0), 1.0);
 
-#tabbar tab-item:not(.loading):-moz-any([data-current-uri*="blanktab"], [data-current-uri="about:home"], [data-current-uri="about:blank"], [data-current-uri="about:newtab"]) .label-content,
-#tabbar tab-item:not(.loading):-moz-any([data-current-uri*="blanktab"], [data-current-uri="about:home"], [data-current-uri="about:blank"], [data-current-uri="about:newtab"]) tab-favicon,
-#tabbar tab-item.loading:-moz-any([data-current-uri*="blanktab"], [data-current-uri="about:home"], [data-current-uri="about:blank"], [data-current-uri="about:newtab"]) .label-content,
-#tabbar tab-item.loading:-moz-any([data-current-uri*="blanktab"], [data-current-uri="about:home"], [data-current-uri="about:blank"], [data-current-uri="about:newtab"]) tab-favicon {
-  visibility: collapse !important;
-}
+  /* tab colors */
+  --tab-text: rgba(var(--fgnorm), 1.0);
+  --unread-text: rgba(var(--gray1), 1.0);
+  --discarded-text: rgba(var(--gray1), 1.0);
 
+  --tab-bg: rgba(var(--bg1), 1.0);
+  --active-bg: rgba(var(--bg2), 1.0);
+  --inactive-bg: rgba(var(--bg1), 1.0);
 
-/* [x] closebox styling for closing tabs */
-#tabbar tab-item tab-closebox {
-  order: -1;
-  margin: 0px -19px 0px 1px;
-  padding: 1px;
-  border-radius: 4px;
-  transition: 0.25s opacity;
-}
-#tabbar tab-item tab-closebox:not(:hover) {
-  opacity: 0.5;
-  background: var(--closebox-color);
-}
-#tabbar tab-item tab-closebox:hover { background: var(--closebox-hover-color); }
-#tabbar .tab:hover .closebox { }
-#tabbar .tab:not(:hover) .closebox { opacity: 0; }
+  --tab-hover-bg: rgba(var(--bg3), 1.0);
+  --active-hover-bg: rgba(var(--bg3), 1.0);
 
-/* [>] twisty styling for collapsed tab trees */
-#tabbar tab-twisty {
-  order: 10000;
-  padding: 0px;
-  margin: 0px;
-  opacity: 0.5;
-  border-radius: 4px;
-  transition: all 0.25s;
-}
-#tabbar tab-twisty::before { margin: 1px 0px -1px 0px; }
-#tabbar:hover tab-twisty {
-  opacity: 0.5;
-}
-#tabbar tab-twisty:hover {
-  background: var(--twisty-hover-color);
-  opacity: 1;
-}
+  --tab-color: rgba(var(--bgdark), 1.0);
+  --active-color: rgba(var(--fg0), 1.0);
+  --inactive-color: rgba(var(--glow1), 1.0);
 
-/* tab counter styling for collapsed tab trees */
-#tabbar tab-item tab-counter {
-  display: none !important;
-  visibility: collapse !important;
-}
+  --loading-color: rgba(var(--red), 1.0);
+  --inactive-loading-color: rgba(var(--red), 0.5);
 
-/* remove active tab indicator bar */
-:root .tab .highlighter {
-  visibility: collapse !important;
-  display: none;
-  opacity: 0;
-}
-#tabbar tab-item.active .contextual-identity-marker {
-  visibility: collapse !important;
-  display: none !important;
-  opacity: 0;
+  /* tab-item colors */
+  --item-hover-bg: rgba(var(--bg3), 1.0);
+
+  /* tab element colors */
+  --closebox-color: rgba(var(--red), 1.0);
+  --muted-color: rgba(var(--orange), 1.0);
+  --sound-color: rgba(var(--yellow), 1.0);
+  --twisty-color: rgba(var(--blue), 1.0);
 }
 
 /* hide new tab button */
@@ -194,3 +125,277 @@
 .after-tabs button { display: none !important; }
 .newtab-button { display: none !important; }
 .newtab-button-box { display: none !important; }
+
+:root, #background { background: var(--tabbar-bg) !important; }
+:root.sidebar .label-content { color: var(--tab-text) !important; }
+#tabbar .unread .label-content { color: var(--unread-text) !important; }
+#tabbar .discarded .label-content { color: var(--discarded-text) !important; }
+#tabbar .loading .label-content { visibility: collapse !important; }
+#tabbar tab-item.loading:-moz-any(
+  [data-current-uri*="blanktab"],
+  [data-current-uri="about:home"],
+  [data-current-uri="about:blank"],
+  [data-current-uri="about:newtab"]
+) .label-content { visibility: collapse !important; }
+#tabbar tab-item:-moz-any(
+  [data-current-uri*="blanktab"],
+  [data-current-uri="about:home"],
+  [data-current-uri="about:blank"],
+  [data-current-uri="about:newtab"]
+) .label-content { visibility: collapse !important; }
+
+/* tabbar styling */
+/* :root.left #tabbar, #tabContextMenu, #tabContextMenu ul { margin: 0px; } */
+#tabbar {
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  top: 0px !important;
+  left: 5px !important;
+  right: 0px !important;
+  bottom: 5px !important;
+  
+  box-sizing: border-box !important;
+  border: 0px solid;
+  border-radius: 9px !important;
+
+  margin: 0px !important;
+  padding: 0px !important;
+
+  transition: width 0s !important;
+}
+#normal-tabs-container { scrollbar-width: none !important; }  /* remove scroll bar */
+
+#tabbar .tab {
+  height: var(--tab-height);
+
+  margin: 0px !important;
+  padding: 0px !important;
+
+  transition: width 0s !important;
+}
+
+#tabbar .tab .background {
+  margin: 0px !important;
+  padding: 0px !important;
+
+  background: var(--tab-bg);
+
+  box-sizing: border-box !important;
+  border: 2px solid var(--tab-color) !important;
+  border-radius: var(--tab-radius) !important;
+
+  transition: all 0.25s !important;
+}
+#tabbar .tab:hover .background {
+  border: 2px solid var(--tab-hover-bg) !important;
+  transition: border 0.25s !important;
+}
+#tabbar .tab.active .background {
+  background: var(--active-bg);
+  border: 2px solid var(--active-color) !important;
+  transition: background 0.25s, border 0.25s !important;
+}
+#tabbar:-moz-window-inactive .tab.active .background {
+  background: var(--inactive-bg);
+  border: 2px solid var(--inactive-color) !important;
+  transition: background 0.25s, border 0.25s !important;
+}
+#tabbar .tab.active:hover .background { }
+#tabbar .tab.loading .background {
+  border: 2px solid var(--loading-color) !important;
+  transition: border 0.25s !important;
+}
+
+#tabbar tab-item:hover tab-item-substance { background: var(--item-hover-bg); }
+#tabbar tab-item { margin: 10px !important; }
+
+/* BEGIN auto-hide tab bar collapse */
+#tabbar:not(:hover) tab-item[data-level] tab-item-substance {
+  margin-left: 0% !important;
+  transition: margin-left 0.1s !important;
+}
+/* END auto-hide tab bar collapse */
+
+#tabbar tab-item-substance {
+  background: var(--tab-color);
+
+  padding: 0px 11px 0px 7px !important;
+
+  box-sizing: border-box;
+  border: 0px solid var(--tab-color) !important;
+  border-radius: var(--tab-radius) !important;
+
+  transition: 0.25s all !important;
+}
+
+/* tab label content styling */
+.label-content {
+  position: static !important;
+
+  margin: 0px 0px 0px 7px !important;
+  padding: 0px !important;
+
+  line-height: var(--tab-height);
+  font-size: var(--font-size);
+}
+
+/* tab favicon stylings */
+/* #tabbar tab-item.active tab-favicon { filter: grayscale(0); }  [> full color favicons on active tab <] */
+#tabbar tab-item tab-favicon { opacity: 1.0; }  /* full color favicons on active tab */
+#tabbar tab-item.active tab-favicon { opacity: 1.0 !important; }  /* full color favicons on active tab */
+#tabbar .loading tab-favicon { visibility: collapse !important; }
+#tabbar .unread tab-favicon, #tabbar .discarded tab-favicon { opacity: 0.5; }  /* shade on unread or discarded */
+#tabbar tab-item:hover tab-favicon { opacity: 0.0; }  /* hide favicons on hover */
+#tabbar tab-item:-moz-any(
+  [data-current-uri*="blanktab"],
+  [data-current-uri="about:home"],
+  [data-current-uri="about:blank"],
+  [data-current-uri="about:newtab"]
+) tab-favicon { visibility: collapse !important; }
+#tabbar tab-item.loading:-moz-any(
+  [data-current-uri*="blanktab"],
+  [data-current-uri="about:home"],
+  [data-current-uri="about:blank"],
+  [data-current-uri="about:newtab"]
+) tab-favicon { visibility: collapse !important; }
+#tabbar tab-item tab-favicon {
+  position: static !important;
+  float: left !important;
+
+  margin: 0px 0px 0px 2px !important;
+
+  transition: 0.25s opacity !important;
+}
+
+#tabbar .tab:not(:hover) tab-closebox {
+  opacity: 0.0 !important;
+}
+#tabbar .tab:hover tab-closebox {
+  opacity: 1.0 !important;
+}
+#tabbar .tab:hover tab-closebox:not(:hover) {
+  background: var(--tab-bg);
+}
+#tabbar .tab:hover tab-closebox:hover {
+  background: var(--closebox-color);
+}
+#tabbar .tab.active:hover tab-closebox:not(:hover) {
+  background: var(--active-bg);
+}
+#tabbar .tab tab-closebox {
+  order: -1;
+  position: absolute !important;
+  left: 7px;
+
+  margin: 0px !important;
+  padding: 0px !important;
+
+  min-width: 16px !important;
+  max-width: 16px !important;
+  width: 16px !important;
+  height: 16px !important;
+
+  background: var(--tab-bg);
+
+  box-sizing: content-box;
+  border: 2px solid var(--closebox-color) !important;
+  border-radius: var(--button-radius) !important;
+
+  transition: 0.25s opacity, 0.25s background !important;
+}
+
+#tabbar .tab.muted .background { border: 2px solid var(--muted-color) !important; }
+#tabbar .tab.sound-playing .background { border: 2px solid var(--sound-color) !important; }
+
+/* #tabbar .tab.muted .label-content, #tabbar .tab.sound-playing .label-content { margin-left: 20px; } */
+#tabbar:hover .tab.muted .label-content, #tabbar .tab.sound-playing .label-content {
+  margin-left: 28px !important;
+  transition: 0.25s margin-left !important;
+}
+#tabbar:not(:hover) .tab.muted .label-content, #tabbar:not(:hover) .tab.sound-playing .label-content {
+  margin-left: 7px !important;
+  transition: 0.25s margin-left !important;
+}
+
+#tabbar:not(:hover) .sound-button {
+  opacity: 0.0 !important;
+  transition: 0.25s opacity !important;
+}
+
+#tabbar .tab .sound-button {
+  position: absolute !important;
+  /*float: right !important;*/
+  /*right: 32px !important;*/
+
+  left: 32px !important;
+
+  margin: 0px !important;
+  padding: 0px !important;
+
+  min-width: 16px !important;
+  max-width: 16px !important;
+  width: 16px !important;
+  height: 16px !important;
+
+  box-sizing: content-box !important;
+
+  transition: 0.25s all !important;
+}
+#tabbar .tab:not(:hover) .sound-button {
+  /*opacity: 0.0 !important;*/
+  /* transition: 0.25s all !important; */
+}
+
+#tabbar .tab:not(:hover) tab-twisty { opacity: 0 !important; }
+#tabbar .tab:hover tab-twisty { opacity: 1 !important; }
+#tabbar .tab:hover tab-twisty:not(:hover) { background: var(--tab-bg); }
+#tabbar .tab:hover tab-twisty:hover { background: var(--twisty-color); }
+#tabbar .tab.active:hover tab-twisty:not(:hover) { background: var(--active-bg); }
+/* #tabbar tab-twisty:not(:hover)::before { opacity: 0.75; } */
+#tabbar tab-twisty:hover::before { opacity: 1.0; }
+#tabbar tab-twisty::before {
+  margin: 0px !important;
+  padding: 0px !important;
+  transition: 0.25s all !important;
+}
+#tabbar tab-twisty {
+  order: 1000000 !important;
+  position: absolute !important;
+  float: right !important;
+  right: 7px;
+
+  margin: 0px !important;
+  padding: 0px !important;
+
+  min-width: 16px !important;
+  max-width: 16px !important;
+  width: 16px !important;
+  height: 16px !important;
+
+  background: var(--tab-bg);
+
+  box-sizing: content-box;
+  border: 2px solid var(--twisty-color) !important;
+  border-radius: var(--button-radius) !important;
+
+  transition: all 0.25s !important;
+}
+
+/* tab counter styling for collapsed tab trees */
+#tabbar tab-item tab-counter {
+  visibility: collapse !important;
+  display: none !important;
+}
+
+/* remove active tab indicator (vertical bar) */
+:root .tab .highlighter {
+  opacity: 0.0 !important;
+  visibility: collapse !important;
+  display: none;
+}
+#tabbar tab-item.active .contextual-identity-marker {
+  opacity: 0.0 !important;
+  visibility: collapse !important;
+  display: none !important;
+}

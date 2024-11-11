@@ -125,6 +125,8 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
     background-color: var(--mac-selected-bg-color) !important;
   }
 
+  #statuspanel,
+  #TabsToolbar,
   #sidebar-header,
   #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header,
   #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] + #sidebar-splitter {
@@ -145,7 +147,7 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
     width: var(--min-tab-width) !important;
     transition: all 0.1s !important;
   }
-  
+
   #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover {
     min-width: var(--max-tab-width) !important;
     max-width: var(--max-tab-width) !important;

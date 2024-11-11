@@ -16,8 +16,9 @@
 
 [window]
   dimensions = { columns = 128, lines = 44 }
-  padding = { x = 4, y = 4 }
+  padding = { x = 0, y = 0 }
   dynamic_padding = true
+  dynamic_title = true
   # decorations = "None"
   # decorations = "Transparent"
   decorations = "Buttonless"

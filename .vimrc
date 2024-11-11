@@ -1163,8 +1163,6 @@
       noremap Y "+Y
       nnoremap yy "+yy
 
-      " vnoremap y "+ygv<c-c>
-
       noremap p "+p
       noremap P "+P
 
