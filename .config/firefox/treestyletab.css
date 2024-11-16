@@ -246,7 +246,7 @@
 #tabbar tab-item.active tab-favicon { opacity: 1.0 !important; }  /* full color favicons on active tab */
 #tabbar .loading tab-favicon { visibility: collapse !important; }
 #tabbar .unread tab-favicon, #tabbar .discarded tab-favicon { opacity: 0.5; }  /* shade on unread or discarded */
-#tabbar tab-item:hover tab-favicon { opacity: 0.0; }  /* hide favicons on hover */
+#tabbar tab-item:hover tab-favicon { opacity: 1.0; }  /* hide favicons on hover */
 #tabbar tab-item:-moz-any(
   [data-current-uri*="blanktab"],
   [data-current-uri="about:home"],
@@ -284,9 +284,10 @@
   background: var(--active-bg);
 }
 #tabbar .tab tab-closebox {
-  order: -1;
+  order: 1000000 !important;
   position: absolute !important;
-  left: 7px;
+  float: right !important;
+  right: 7px;
 
   margin: 0px !important;
   padding: 0px !important;
@@ -360,10 +361,9 @@
   transition: 0.25s all !important;
 }
 #tabbar tab-twisty {
-  order: 1000000 !important;
+  order: -1;
   position: absolute !important;
-  float: right !important;
-  right: 7px;
+  left: 7px;
 
   margin: 0px !important;
   padding: 0px !important;

@@ -16,12 +16,16 @@
 
 [window]
   dimensions = { columns = 128, lines = 44 }
-  padding = { x = 0, y = 0 }
+  padding = { x = 5, y = 5 }
   dynamic_padding = true
   dynamic_title = true
   # decorations = "None"
   # decorations = "Transparent"
   decorations = "Buttonless"
+  # opacity = 0.975
+  opacity = 1.0
+  # blur = true
+  blur = false
 
 [font]
   size = 12.0

@@ -597,11 +597,13 @@
     " vnoremap <tab><space> :Tabularize /\zs<left><left><left>
     vnoremap <leader><tab>= :Tabularize /=<cr>
     vnoremap <leader><tab>( :Tabularize /(<cr>
-    vnoremap <leader><tab>{ :Tabularize /{<cr>
     vnoremap <leader><tab>[ :Tabularize /[<cr>
+    vnoremap <leader><tab>{ :Tabularize /{<cr>
+    vnoremap <leader><tab>< :Tabularize /<<cr>
     vnoremap <leader><tab>: :Tabularize /:<cr>
+    vnoremap <leader><tab>; :Tabularize /;<cr>
     vnoremap <leader><tab>, :Tabularize /,<cr>
-    vnoremap <leader><tab>t :Tabularize /\|<cr>
+    vnoremap <leader><tab>\| :Tabularize /\|<cr>
     " vnoremap <tab>\ :Tabularize /\zs<left><left><left>
 
   let g:fanfingtastic_is_loaded = 1
