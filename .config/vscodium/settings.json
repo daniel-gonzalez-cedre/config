@@ -6,6 +6,7 @@
     "gruvboxMaterial.darkWorkbench": "flat",
 
     "editor.fontFamily": "Berkeley Mono, CommitMono-400-01111-00000011000, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 12,
     "editor.cursorStyle": "block",
     "editor.wordWrap": "on",
     "editor.tabSize": 2,
@@ -42,4 +43,5 @@
     "window.confirmSaveUntitledWorkspace": false,
     "security.workspace.trust.emptyWindow": false,
     "security.workspace.trust.enabled": false,
+    "window.zoomPerWindow": false,
 }

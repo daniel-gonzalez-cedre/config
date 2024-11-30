@@ -45,6 +45,15 @@
     \input{\optPreambleDirectory/1.2.settings.tufte-article}
   }
 
+  \def\setDocument@tufteletter{%
+    \beamerfalse%
+    \posterfalse%
+    \headersfalse%
+    \footersfalse%
+    \input{\optPreambleDirectory/1.1.packages.tufte-handout}
+    \input{\optPreambleDirectory/1.2.settings.tufte-letter}
+  }
+
   \def\setDocument@tufteproblemset{%
     \beamerfalse%
     \posterfalse%

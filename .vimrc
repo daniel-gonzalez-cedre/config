@@ -990,7 +990,7 @@
   nnoremap ? /<up>
 
   " vnoremap <leader>/ y/\V<c-r>=escape(@",'/\')<cr>
-  vnoremap <leader>* y/\V<c-r>=escape(@",'/\')<cr>
+  vnoremap * y/\V<c-r>=escape(@",'/\')<cr><cr>
   vnoremap <leader>s y`<`>:<c-u>%s/\V<c-r>=escape(@",'/\')<cr>//gc<left><left><left>
 
 

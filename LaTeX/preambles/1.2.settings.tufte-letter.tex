@@ -1,8 +1,20 @@
+\AtBeginDocument{%
+  \usepackage{garamondlibre}  % default font size & baselineskip: {10pt}{14pt}
+  \fontsize{11}{15.4}\selectfont  % using a 1.4x factor to scale the baselineskip
+}
+
+\geometry{left=1.35in, right=1.35in, top=2.25in, bottom=2.25in}
+
 \renewcommand{\headrulewidth}{0pt}
 \fancypagestyle{plain}{%
   \ifheaders
     \fancyhead[L]{\DateHeaderText}
+    % \fancyhead[C]{}
+    % \fancyhead[R]{}
   \else
+    \fancyhead[L]{}
+    \fancyhead[C]{}
+    \fancyhead[R]{}
   \fi
 }
 

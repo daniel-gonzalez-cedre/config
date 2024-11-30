@@ -1,72 +1,108 @@
-/*
-
-"userChrome.css" is a custom CSS file that can be used to specify CSS style rules for Floorp's interface (NOT internal site) using "chrome" privileges.
-For instance, if you want to hide the tab bar, you can use the following CSS rule:
-
-**************************************
-#TabsToolbar {                       *
-    display: none !important;        *
-}                                    *
-**************************************
-
-NOTE: You can use the userChrome.css file without change preferences (about:config)
-
-Quote: https://userChrome.org | https://github.com/topics/userchrome
-
-*/
-/* chrome://browser/content/browser.xhtml */
-
 @charset "UTF-8";
-@-moz-document url(chrome://browser/content/browser.xhtml) {/* Please write your custom CSS under this line*/
-  /* remove treestyletabs header */
-  :root{
+@-moz-document url(chrome://browser/content/browser.xhtml) {
+  :root {
+    --bgdark: 20, 22, 23;  /* --bgdark: #141617; */
+    --bgdim: 29, 32, 33;  /* --bgdim: #1d2021; */
+    --bg0: 27, 27, 27;  /* --bg0: #1b1b1b; */
+    --bg1: 40, 40, 40;  /* --bg1: #282828; */
+    --bg2: 50, 48, 47;  /* --bg2: #32302f; */
+    --bg3: 60, 56, 54;  /* --bg3: #3c3836; */
+    --bg4: 69, 64, 61;  /* --bg4: #45403d; */
+    --bg5: 80, 73, 69;  /* --bg5: #504945; */
+
+    --glow0: 90, 92, 86;  /* --glow0: #5a524c; */
+    --glow1: 102, 92, 84;  /* --glow1: #665c54; */
+
+    --gray0: 124, 111, 100;  /* --gray0: #7c6f64; */
+    --gray1: 146, 131, 116;  /* --gray1: #928374; */
+    --gray2: 168, 153, 132;  /* --gray2: #a89984; */
+
+    --default-gray: 79, 77, 77;  /* --default-gray: #4f4d4d; */
+
+    --fg0: 212, 190, 152;  /* --fg0: #d4be98; */
+    --fg1: 221, 199, 161;  /* --fg1: #ddc7a1; */
+    --fg2: 226, 204, 169;  /* --fg2: #e2cca9; */
+    --fg3: 235, 219, 178;  /* --fg3: #ebdbb2; */
+    --fg4: 244, 228, 187;  /* --fg3: #ebdbb2; */
+    --fgnorm: 235, 219, 196;  /* --fg3: #ebdbb2; */
+
+    --toolbar-field-background-color: rgba(var(--bg2)) !important;
+    --toolbar-field-focus-background-color: rgba(var(--bg3)) !important;
+    --toolbar-field-focus-border-color: rgba(var(--glow0)) !important;
+    --mac-bgcolor: rgba(var(--bg0)) !important;
+    --mac-selected-bgcolor: rgba(var(--bg0)) !important;
+
+    --browser-bg: rgba(var(--bg0)) !important;
+  }
+
+  /* properties */
+  :root {
     --min-tab-width: 39px;
     --max-tab-width: 172px;
+    --min-tabbar-width: 39px;
+    --max-tabbar-width: 172px;
 
     --browser-radius: 9px;
     --button-radius: 9px;
     --urlbar-radius: 9px;
     --urlbar-button-radius: 7px;
 
-    --bgdark: #141617;
-    --bgdim: #1d2021;
-    --bg0: #1b1b1b;
-    --bg1: #282828;
-    --bg2: #32302f;
-    --bg3: #3c3836;
-    --bg4: #45403d;
-    --bg5: #504945;
+    --font-size: 9pt;
+    --tab-height: 32px;
+    --tab-width: 32px;
 
-    --glow0: #5a524c;
-    --glow1: #665c54;
-
-    --gray0: #7c6f64;
-    --gray1: #928374;
-    --gray2: #a89984;
-
-    --fg0: #d4be98;
-    --fg1: #ddc7a1;
-    --fg2: #e2cca9;
-    --fg3: #ebdbb2;
-
-    --toolbar-field-background-color: var(--bg2) !important;
-    --toolbar-field-focus-background-color: var(--bg3) !important;
-    /* --toolbar-field-focus-background-color: var(--bg3) !important; */
-    /* --toolbar-field-focus-background-color */
-    /* --toolbar-field-focus-border-color: transparent !important; */
-    --toolbar-field-focus-border-color: var(--glow0) !important;
-
-    /* --urlbarView-secondary-text-color */
-
-    /* --mac-selected-bgcolor: #1d2021 !important; */
-    /* --mac-selected-bgcolor: #191c1d !important; */
-    --mac-bgcolor: var(--bg0) !important;
-    --mac-selected-bgcolor: var(--bg0) !important;
+    --tab-radius: 9px;
+    --button-radius: 5px;
   }
 
-  body, #browser, browser, menubar, toolbar, nav-bar, #navigator-toolbox, #TabsToolbar > * { background-color: var(--mac-selected-bgcolor) !important; }
+  /* colors */
+  :root {
+    --black: 60, 56, 54;  /* --black: #3c3836; */
+    --white: 208, 191, 152;  /* --white: #d4be98; */
 
-  html#main-window, html:body, #browser { background-color: var(--mac-selected-bgcolor) !important; }
+    --red: 234, 105, 98;  /* --red: #ea6962; */
+    --orange: 231, 138, 78;  /* --orange: #e78a4e; */
+    --yellow: 216, 166, 87;  /* --yellow: #d8a657; */
+    --green: 169, 182, 101;  /* --green: #a9b665; */
+    --cyan: 137, 180, 130;  /* --cyan: #89b482; */
+    --blue: 125, 174, 163;  /* --blue: #7daea3; */
+    --fuchsia: 211, 134, 155;  /* --fuchsia: #d3869b; */
+
+    /* sidebar colors */
+    --tabbar-bg: rgba(var(--bg0), 1.0);
+
+    /* tab colors */
+    --tab-text: rgba(var(--fgnorm), 1.0);
+    --unread-text: rgba(var(--gray1), 1.0);
+    --discarded-text: rgba(var(--gray1), 1.0);
+
+    --tab-bg: rgba(var(--bg1), 1.0);
+    --active-bg: rgba(var(--bg2), 1.0);
+    --inactive-bg: rgba(var(--bg1), 1.0);
+
+    --tab-hover-bg: rgba(var(--bg3), 1.0);
+    --active-hover-bg: rgba(var(--bg3), 1.0);
+
+    --tab-color: rgba(var(--bgdark), 1.0);
+    --active-color: rgba(var(--fg0), 1.0);
+    --inactive-color: rgba(var(--glow1), 1.0);
+
+    --loading-color: rgba(var(--red), 1.0);
+    --inactive-loading-color: rgba(var(--red), 0.5);
+
+    /* tab-item colors */
+    --item-hover-bg: rgba(var(--bg3), 1.0);
+
+    /* tab element colors */
+    --closebox-color: rgba(var(--red), 1.0);
+    --muted-color: rgba(var(--orange), 1.0);
+    --sound-color: rgba(var(--yellow), 1.0);
+    --twisty-color: rgba(var(--blue), 1.0);
+  }
+
+  body, #browser, browser, menubar, toolbar, nav-bar, #navigator-toolbox, #TabsToolbar > * { background-color: var(--browser-bg) !important; }
+
+  html, html#main-window, html:body, html:div { background-color: var(--browser-bg) !important; }
 
   #page-action-buttons, #pageActionButton, #pageActionSeparator,
   #remote-control-box, .chromeclass-toolbar-additional.urlbar-search-button,
@@ -92,7 +128,7 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
   }
 
   /* #urlbar .urlbar-input { color: var(--fg3) !important; } */
-  #urlbar { margin: 0px; }
+  #urlbar { margin: px; }
   #urlbar-background {
     box-sizing: border-box !important;
     border: 1px transparent solid !important;
@@ -105,9 +141,7 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
     border: 0px transparent solid !important;
     border-radius: var(--urlbar-button-radius) !important;
   }
-  .urlbar-input-container box:hover, .urlbar-input-container box:hover box {
-    /* background-color: var(--gray0); */
-  }
+  .urlbar-input-container box:hover, .urlbar-input-container box:hover box { }
 
   /* #urlbar .urlbar-input { color: var(--fg3) !important; } */
   #urlbar .urlbar-input-box { padding-right: 9px; }
@@ -117,78 +151,47 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
     /* text-align: center; */
   /* } */
 
-  .tab-icon-image:not([src]){ content: url("about:blank"); }
-
-  #sidebar, #sidebar-box {
+  #sidebar, #sidebar-box, #sidebar-main, #vertical-tabs {
     margin: 0px !important;
     padding: 0px !important;
-    background-color: var(--mac-selected-bg-color) !important;
+    background-color: var(--tabbar-bg) !important;
+  }
+  tabs#tabbrowser-tabs {
+    margin: -2px 0px -5px 0px !important;
+    padding: 0px !important;
+    background-color: var(--tabbar-bg) !important;
   }
 
-  #statuspanel,
-  #TabsToolbar,
-  #sidebar-header,
-  #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header,
-  #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] + #sidebar-splitter {
+  .tabbrowser-tab, .tab-stack {
+    /* height: var(--tab-height) !important; */
+    margin: -1px !important;
+    padding: 0px !important;
+  }
+
+  .tabbrowser-tab > .tab-stack > .tab-background { background-color: var(--inactive-bg) !important; }
+  .tabbrowser-tab:hover > .tab-stack > .tab-background { background-color: var(--tab-hover-bg) !important; }
+  .tabbrowser-tab[selected] > .tab-stack > .tab-background { background-color: var(--active-bg) !important; }
+  .tabbrowser-tab[selected]:hover > .tab-stack > .tab-background { background-color: var(--active-hover-bg) !important; }
+
+  .tabbrowser-tab > .tab-stack > .tab-content { color: var(--tab-text) !important; }
+
+  #tabbrowser-arrowscrollbox-periphery, div.wrapper > button-group.tools-and-extensions, #vertical-tabs-newtab-button { display: none !important; }
+
+  #statuspanel, #TabsToolbar, #sidebar-header {
     visibility: collapse !important;
     display: none !important;
   }
 
-  /* BEGIN auto-hide resize tabs */
-  #sidebar-box:-moz-window-inactive {
-    min-width: var(--min-tab-width) !important;
-    max-width: var(--min-tab-width) !important;
-    width: var(--min-tab-width) !important;
+  #browser, #tabbrowser-tabbox, #tabbrowser-tabpanels, .browserSidebarContainer, .browserContainer, .browserStack {
+    background-color: var(--browser-bg) !important;
+    margin: 0px !important;
+    padding: 0px !important;
   }
-  #sidebar-box { background: var(--mac-selected-bgcolor) !important; }
-  #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:not(:hover) {
-    min-width: var(--min-tab-width) !important;
-    max-width: var(--min-tab-width) !important;
-    width: var(--min-tab-width) !important;
-    transition: all 0.1s !important;
-  }
-
-  #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover {
-    min-width: var(--max-tab-width) !important;
-    max-width: var(--max-tab-width) !important;
-    width: var(--max-tab-width) !important;
-    transition: all 0.1s !important;
-  }
-  /* END auto-hide resize tabs */
 
   #browser stack.browserStack browser {
-    margin: 0px 5px 5px 5px;
+    margin: 0px 5px 5px 0px;
     box-sizing: border-box;
     border: 0px solid transparent !important;
     border-radius: var(--browser-radius);
   }
-
-  /* BEGIN make window draggable from URL bar */
-  /* .urlbar-input-box, .urlbar-input, #urlbar-scheme, #urlbar-container { */
-    /* -moz-window-dragging: drag; */
-    /* cursor: default; */
-  /* } */
-
-  /* .urlbar-input-container > box, */
-  /* #page-action-buttons, */
-  /* #urlbar-container:focus-within, */
-  /* #urlbar-container:focus-within:is(.urlbar-input-box, */
-                                    /* .urlbar-input, */
-                                    /* #urlbar-scheme, */
-                                    /* #urlbar-container) { */
-    /* -moz-window-dragging: no-drag; */
-    /* cursor: auto; */
-  /* } */
-
-  #navigator-toolbox,
-  #navigator-toolbox #toolbar,
-  #navigator-toolbox #floorp-tabbar-window-manage-container,
-  #navigator-toolbox #PanelUI-button,
-  #navigator-toolbox #PanelUI-menu-button
-  {
-    -moz-window-dragging: drag;
-    cursor: default;
-  }
-
-  /* END make window draggable from URL bar */
 }
