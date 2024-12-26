@@ -21,7 +21,7 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
   /* remove treestyletabs header */
   :root{
     --min-tab-width: 39px;
-    --max-tab-width: 172px;
+    --max-tab-width: 128px;
 
     --browser-radius: 9px;
     --button-radius: 9px;
@@ -134,26 +134,33 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
     display: none !important;
   }
 
-  /* BEGIN auto-hide resize tabs */
-  #sidebar-box:-moz-window-inactive {
-    min-width: var(--min-tab-width) !important;
-    max-width: var(--min-tab-width) !important;
-    width: var(--min-tab-width) !important;
-  }
-  #sidebar-box { background: var(--mac-selected-bgcolor) !important; }
-  #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:not(:hover) {
-    min-width: var(--min-tab-width) !important;
-    max-width: var(--min-tab-width) !important;
-    width: var(--min-tab-width) !important;
-    transition: all 0.1s !important;
-  }
-
-  #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover {
+  #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] {
     min-width: var(--max-tab-width) !important;
     max-width: var(--max-tab-width) !important;
     width: var(--max-tab-width) !important;
     transition: all 0.1s !important;
   }
+
+  /* BEGIN auto-hide resize tabs */
+  /* #sidebar-box:-moz-window-inactive { */
+    /* min-width: var(--min-tab-width) !important; */
+    /* max-width: var(--min-tab-width) !important; */
+    /* width: var(--min-tab-width) !important; */
+  /* } */
+  /* #sidebar-box { background: var(--mac-selected-bgcolor) !important; } */
+  /* #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:not(:hover) { */
+    /* min-width: var(--min-tab-width) !important; */
+    /* max-width: var(--min-tab-width) !important; */
+    /* width: var(--min-tab-width) !important; */
+    /* transition: all 0.1s !important; */
+  /* } */
+
+  /* #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover { */
+    /* min-width: var(--max-tab-width) !important; */
+    /* max-width: var(--max-tab-width) !important; */
+    /* width: var(--max-tab-width) !important; */
+    /* transition: all 0.1s !important; */
+  /* } */
   /* END auto-hide resize tabs */
 
   #browser stack.browserStack browser {

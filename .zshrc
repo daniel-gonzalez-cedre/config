@@ -431,7 +431,9 @@ alias rm='rm -v'
 alias diff='grc diff'
 alias rsync='rsync -v --progress'
 
-alias ls='tree -L 1 -N --dirsfirst --noreport'
+# alias ls='tree -L 1 -N --dirsfirst --noreport'
+alias ls='tree -C -L 1 -N --dirsfirst --noreport | tail -n +2'
+alias gls='gls --color --group-directories-first -h'
 alias tree='tree -N --dirsfirst --noreport'
 # function tree_ascii() {
   # tree --dirsfirst -C -N -h "$1" | sed 's/├/\+/g; s/─/-/g; s/└/\\/g'
@@ -464,30 +466,31 @@ alias storage='watch -n 1 --color df -h'
     fi
 
     find $LATEXDIR -depth 1 -name "_minted*${NAME}*" -exec rm -r '{}' \; 2>/dev/null
-    find $LATEXDIR -depth 1 -name "${NAME}*aux" -exec rm -v '{}' \;
-    find $LATEXDIR -depth 1 -name "${NAME}*bbl" -exec rm -v '{}' \;
-    find $LATEXDIR -depth 1 -name "${NAME}*bcf" -exec rm -v '{}' \;
-    find $LATEXDIR -depth 1 -name "${NAME}*bcf-SAVE-ERROR" -exec rm -v '{}' \;
-    find $LATEXDIR -depth 1 -name "${NAME}*blg" -exec rm -v '{}' \;
-    find $LATEXDIR -depth 1 -name "${NAME}*brf" -exec rm -v '{}' \;
-    find $LATEXDIR -depth 1 -name "${NAME}*fdb_latexmk" -exec rm -v '{}' \;
-    find $LATEXDIR -depth 1 -name "${NAME}*fls" -exec rm -v '{}' \;
-    find $LATEXDIR -depth 1 -name "${NAME}*idx" -exec rm -v '{}' \;
-    find $LATEXDIR -depth 1 -name "${NAME}*ilg" -exec rm -v '{}' \;
-    find $LATEXDIR -depth 1 -name "${NAME}*ind" -exec rm -v '{}' \;
-    find $LATEXDIR -depth 1 -name "${NAME}*listings" -exec rm -v '{}' \;
-    find $LATEXDIR -depth 1 -name "${NAME}*lof" -exec rm -v '{}' \;
-    find $LATEXDIR -depth 1 -name "${NAME}*log" -exec rm -v '{}' \;
-    find $LATEXDIR -depth 1 -name "${NAME}*lol" -exec rm -v '{}' \;
-    find $LATEXDIR -depth 1 -name "${NAME}*lot" -exec rm -v '{}' \;
-    find $LATEXDIR -depth 1 -name "${NAME}*nav" -exec rm -v '{}' \;
-    find $LATEXDIR -depth 1 -name "${NAME}*out" -exec rm -v '{}' \;
-    find $LATEXDIR -depth 1 -name "${NAME}*pyg" -exec rm -v '{}' \;
-    find $LATEXDIR -depth 1 -name "${NAME}*run.xml" -exec rm -v '{}' \;
-    find $LATEXDIR -depth 1 -name "${NAME}*snm" -exec rm -v '{}' \;
-    find $LATEXDIR -depth 1 -name "${NAME}*toc" -exec rm -v '{}' \;
-    find $LATEXDIR -depth 1 -name "${NAME}*xdv" -exec rm -v '{}' \;
-    find $LATEXDIR -depth 1 -name "${NAME}*xdv" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*.aux" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*.bbl" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*.bcf" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*.bcf-SAVE-ERROR*" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*.blg" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*.brf" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*.fdb_latexmk" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*.fls" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*.idx" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*.ilg" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*.ind" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*.listings" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*.listing" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*.lof" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*.log" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*.lol" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*.lot" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*.nav" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*.out" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*.pyg" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*.run.xml" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*.snm" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*.toc" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*.xdv" -exec rm -v '{}' \;
+    find $LATEXDIR -depth 1 -name "${NAME}*.xdv" -exec rm -v '{}' \;
   }
   function cleanlatex() { cleantex "$@" }
 

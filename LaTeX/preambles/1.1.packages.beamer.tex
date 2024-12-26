@@ -16,12 +16,6 @@
 % \usepackage{garamondlibre}
 \usepackage[absolute,overlay]{textpos}
 
-% FORMATTING
-\usepackage{listings, parskip, verbatim, upquote}
-\usepackage[normalem]{ulem}
-\usepackage[framemethod=TikZ]{mdframed}
-\usepackage[group-separator={,},group-minimum-digits={3}]{siunitx}
-
 % COLORS
 \usepackage{color, soul, xcolor}
 \usepackage[\MintedOption]{tcolorbox}
@@ -29,8 +23,16 @@
 \ifminted
   \usepackage[outputdir=/tmp/latexmk]{minted}
   \usepackage{pmboxdraw}
+  \let\textblockpm\textblock
+  \let\textblock\relax
 \else
 \fi
+
+% FORMATTING
+\usepackage{listings, parskip, verbatim, upquote}
+\usepackage[normalem]{ulem}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[group-separator={,},group-minimum-digits={3}]{siunitx}
 
 % TABLES
 \usepackage{booktabs, colortbl, makecell, multirow}

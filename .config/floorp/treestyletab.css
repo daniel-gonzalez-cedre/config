@@ -211,10 +211,10 @@
 #tabbar tab-item { margin: 10px !important; }
 
 /* BEGIN auto-hide tab bar collapse */
-#tabbar:not(:hover) tab-item[data-level] tab-item-substance {
-  margin-left: 0% !important;
-  transition: margin-left 0.1s !important;
-}
+/* #tabbar:not(:hover) tab-item[data-level] tab-item-substance { */
+  /* margin-left: 0% !important; */
+  /* transition: margin-left 0.1s !important; */
+/* } */
 /* END auto-hide tab bar collapse */
 
 #tabbar tab-item-substance {

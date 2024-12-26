@@ -26,10 +26,11 @@
   opacity = 1.0
   # blur = true
   blur = false
+  resize_increments = true
 
 [font]
   size = 12.0
-  # size = 18.0
+  # size = 22.0
   offset.x = 0  # For letter spacing (default: 0)
   offset.y = 0  # For line spacing (default: 0)
 
@@ -52,3 +53,8 @@
   family="Berkeley Mono"
   # family="CommitMono-450-01111-00000011000"
   style="Bold Italic"
+
+[[hints.enabled]]
+command = ""
+hyperlinks = true
+mouse.enabled = false

@@ -7,25 +7,29 @@
 % FONTS
 \usepackage{bbm, CJKutf8, dsfont, marvosym, microtype, stmaryrd, tipa}
 
-% FORMATTING
-\usepackage{arydshln, fancyvrb, listings, parskip, verbatim, upquote}
-\usepackage[normalem]{ulem}
-\usepackage[shortlabels]{enumitem}
-\usepackage[framemethod=TikZ]{mdframed}
-\usepackage[absolute,overlay]{textpos}
-\usepackage[group-separator={,},group-minimum-digits={3}]{siunitx}
-
 % COLORS
 \usepackage{color, soul, xcolor}
 \usepackage[\MintedOption]{tcolorbox}
 \tcbuselibrary{hooks}
 \ifminted
   \usepackage{pmboxdraw}
+  \let\textblockpm\textblock
+  \let\textblock\relax
+
   \usepackage{fontspec}
   % SATUS BUG FIX [tufte+fontspec LuaLaTex]
   \renewcommand\allcapsspacing[1]{{\addfontfeature{LetterSpace=15}#1}}
   \renewcommand\smallcapsspacing[1]{{\addfontfeature{LetterSpace=10}#1}}
   % FINEM BUG FIX [tufte+fontspec LuaLaTex]
+
+  \setmainfont{AdobeGaramond}[
+    Path=\HomeDir/LaTeX/fonts/,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic,
+    BoldItalicFont = *-BoldItalic,
+    Extension = .otf,
+  ]
   \setmonofont{BerkeleyMono}[
     UprightFont = *-Regular,
     BoldFont = *-Bold,
@@ -42,6 +46,14 @@
   % ]
 \else
 \fi
+
+% FORMATTING
+\usepackage{arydshln, fancyvrb, listings, parskip, verbatim, upquote}
+\usepackage[normalem]{ulem}
+\usepackage[shortlabels]{enumitem}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[absolute,overlay]{textpos}
+\usepackage[group-separator={,},group-minimum-digits={3}]{siunitx}
 
 % TABLES
 \usepackage{booktabs, colortbl, makecell, multirow}

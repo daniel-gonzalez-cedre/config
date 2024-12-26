@@ -1188,7 +1188,7 @@
   inoremap <silent> } <c-r>=ClosePair('}')<cr>
   inoremap <silent> > <c-r>=ClosePair('>')<cr>
   inoremap <silent> " <c-r>=QuoteDelim('"')<cr>
-  inoremap <silent> ' <c-r>=QuoteDelim("'")<cr>
+  " inoremap <silent> ' <c-r>=QuoteDelim("'")<cr>
   inoremap <silent> ` <c-r>=QuoteDelim('`')<cr>
   " inoremap <silent> <c-g>q ``''<left><left>
   " FIX ISSUE OF QUOTE TEXT OBJECTS GRABBING AN EXTRA SPACE
@@ -1343,14 +1343,10 @@
   function! ToggleQuote()
     if g:quoteStatus == 0
       let g:quoteStatus = 1
-      inoremap " <c-r>=ClosePair('"')<cr>
       inoremap ' <c-r>=ClosePair("'")<cr>
-      inoremap ` <c-r>=ClosePair('`')<cr>
     else
       let g:quoteStatus = 0
-      inoremap " <c-r>=QuoteDelim('"')<cr>
       inoremap ' <c-r>=QuoteDelim("'")<cr>
-      inoremap ` <c-r>=QuoteDelim('`')<cr>
     endif
   endfunction
 

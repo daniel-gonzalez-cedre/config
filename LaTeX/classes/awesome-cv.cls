@@ -8,6 +8,7 @@
 % \NeedsTeXFormat{LaTeX2e}
 
 \def\HomeDir{/Users/cedre}
+\def\LaTeXDir{\HomeDir/LaTeX}
 
 \newif\ifitalicsections
 % \italicsectionstrue
@@ -87,14 +88,11 @@
 \RequirePackage[default,opentype]{sourcesanspro}
 % Needed for the photo ID
 \RequirePackage[skins]{tcolorbox}
-% Needed to deal a paragraphs
 \RequirePackage{parskip}
 \RequirePackage{makecell}
 \RequirePackage{lastpage}
 \RequirePackage[normalem]{ulem}
-\RequirePackage{setspace}
 \RequirePackage{changepage}
-% Needed to deal hyperlink
 \RequirePackage[hidelinks,unicode]{hyperref}
 \hypersetup{%
   pdftitle={},
@@ -193,8 +191,8 @@
   % \ifbool{acvSectionColorHighlight}{\textcolor{awesome!100!text}{#1}\textcolor{awesome!75!text}{#2}\textcolor{awesome!50!text}{#3}\textcolor{awesome!25!text}{#4}}{#1#2#3#4}%
 % }
 
-\newcommand{\skipdot}{\color{lighttext!75}{\ $\cdot$\ }}
-\newcommand{\spacedot}{\color{lighttext!75}{\enspace$\cdot$\enspace}}
+\newcommand{\skipdot}{\color{lighttext}{\ $\cdot$\ }}
+\newcommand{\spacedot}{\color{lighttext}{\enspace$\cdot$\enspace}}
 
 
 %-------------------------------------------------------------------------------
@@ -229,6 +227,20 @@
   BoldFont=*-Bold.ttf,
   BoldItalicFont=*-BoldItalic.ttf,
 ]{EBGaramond}
+\newfontfamily\garamondlibre[
+  Path=\@fontdir,
+  UprightFont=*-Regular.otf,
+  ItalicFont=*-Italic.otf,
+  BoldFont=*-Bold.otf,
+  % BoldItalicFont=*-BoldItalic.otf,
+]{GaramondLibre}
+\newfontfamily\adobegaramond[
+  Path=\@fontdir,
+  UprightFont=*-Regular.otf,
+  ItalicFont=*-Italic.otf,
+  BoldFont=*-Bold.otf,
+  BoldItalicFont=*-BoldItalic.otf,
+]{AGaramondPro}
 \newfontfamily\cormorantgaramond[
   Path=\@fontdir,
   UprightFont=*-Medium.ttf,
@@ -251,10 +263,10 @@
   BoldItalicFont=*-MediumItalic.ttf,
 ]{Roboto}
 
-\newcommand*{\headerfont}{\ebgaramond}
-\newcommand*{\footerfont}{\ebgaramond}
-\newcommand*{\bodyfont}{\ebgaramond}
-\newcommand*{\bodyfontlight}{\ebgaramond}
+\newcommand*{\headerfont}{\adobegaramond}
+\newcommand*{\footerfont}{\adobegaramond}
+\newcommand*{\bodyfont}{\adobegaramond}
+\newcommand*{\bodyfontlight}{\adobegaramond}
 
 \newcommand*{\stremph}[1]{\textit{\textbf{\textcolor{graytext}{#1}}}}
 % \renewcommand*{\emph}[1]{\textit{\textcolor{text}{#1}}}
@@ -268,7 +280,7 @@
 % Configure styles for each CV elements
 % For fundamental structures
 \newcommand*{\headerfirstnamestyle}[1]{{\fontsize{32pt}{1em}\headerfont\color{graytext} #1}}
-\newcommand*{\headerlastnamestyle}[1]{{\fontsize{32pt}{1em}\headerfont\bfseries\color{awesome} #1}}
+\newcommand*{\headerlastnamestyle}[1]{{\fontsize{32pt}{1em}\headerfont\itshape\bfseries\color{awesome} #1}}
 \newcommand*{\headersubtitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\scshape\color{text}\MakeLowercase{#1}}}
 \newcommand*{\headeraddressstyle}[1]{{\fontsize{8pt}{1em}\headerfont\itshape\color{lighttext} #1}}
 \newcommand*{\headersocialstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\itshape\color{graytext} #1}}
@@ -330,7 +342,7 @@
 % For elements of the cover letter
 \newcommand*{\lettersectionstyle}[1]{{\fontsize{16pt}{1em}\bodyfont\sectionshape\color{text}\@sectioncolor #1}}
 % \newcommand*{\lettersubsectionstyle}[1]{{\fontsize{12pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
-\newcommand*{\lettersubsectionstyle}[1]{{\fontsize{12pt}{1em}\bodyfont\bfseries\itshape\color{text}\@sectioncolor #1}}
+\newcommand*{\lettersubsectionstyle}[1]{{\fontsize{12pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
 \newcommand*{\recipienttitlestyle}[1]{{\fontsize{11pt}{1em}\bodyfont\bfseries\itshape\color{graytext} #1}}
 \newcommand*{\recipientdepartmentstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{text} \MakeLowercase{#1}}}
 \newcommand*{\recipientuniversitystyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{graytext} \MakeLowercase{#1}}}
@@ -342,11 +354,12 @@
 \newcommand*{\lettertextstyle}{\fontsize{\lettertextsize}{\lettertextheight}\bodyfont\upshape\color{text}}
 \newcommand*{\letternamestyle}[1]{{\fontsize{11pt}{1em}\bodyfont\itshape\color{darktext} #1}}
 \newcommand*{\letterpositionstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\itshape\color{graytext} #1}}
-\newcommand*{\letterdepartmentstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\itshape\color{graytext} #1}}
+\newcommand*{\letterdepartmentstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\itshape\color{text} #1}}
 \newcommand*{\letteruniversitystyle}[1]{{\fontsize{11pt}{1em}\bodyfont\itshape\color{graytext} #1}}
 \newcommand*{\closingnamestyle}[1]{{\fontsize{11pt}{1em}\bodyfont\bfseries\itshape\color{text} {#1}}}
+\newcommand*{\closingsignaturestyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{text} {#1}}}
 \newcommand*{\closingpositionstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{text} \MakeLowercase{#1}}}
-\newcommand*{\closingdepartmentstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{graytext}\MakeLowercase{#1}}}
+\newcommand*{\closingdepartmentstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{text}\MakeLowercase{#1}}}
 \newcommand*{\closinguniversitystyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{graytext}\MakeLowercase{#1}}}
 \newcommand*{\closingaddressstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{lighttext}\MakeLowercase{#1}}}
 \newcommand*{\closingphonestyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{lighttext}\MakeLowercase{#1}}}
@@ -569,14 +582,20 @@
 \newcommand{\acvHeaderIconSep}{\space}
 
 % Others
-\newcommand{\acvPubTopSkip}{0.0mm}  % default 0.0mm
-\newcommand{\acvPubAuthorSkip}{-0.5mm}  % default 0.0mm
-\newcommand{\acvServiceTopSkip}{-.0mm}  % default 0.0mm
-\newcommand{\acvEntryTopSkip}{-1.0mm}  % default 0.0mm
-\newcommand{\acvSectionTopSkip}{1.0mm}  % default 3.0mm
-\newcommand{\acvSectionContentTopSkip}{0.0mm}  % default 2.5mm
-\newcommand{\acvEntriesColSep}{1.0ex}  % default 1.0ex
+\newcommand{\acvSectionTopSkip}{2.0mm}  % default 3.0mm
+\newcommand{\acvSectionContentTopSkip}{-1.0mm}  % default 2.5mm
+% \newcommand{\acvSectionListingSkip}{-1.0mm}  % default 0.0mm
+\newcommand{\acvSubSectionContentTopSkip}{-2.0mm}  % default 2.5mm
+\newcommand{\acvParagraphContentTopSkip}{-2.0mm}  % default 2.5mm
+\newcommand{\acvEntryTopSkip}{0.0mm}  % default 0.0mm
+\newcommand{\acvItemSkip}{-3.5mm}  % default -3.5mm
+\newcommand{\acvPubAuthorSkip}{-0.25mm}  % default 0.0mm
+% \newcommand{\acvPubsTopSkip}{-1.0mm}  % default 0.0mm
+% \newcommand{\acvTalksTopSkip}{-1.0mm}  % default 0.0mm
+% \newcommand{\acvHonorsTopSkip}{-1.0mm}  % default 0.0mm
+% \newcommand{\acvServiceTopSkip}{-1.0mm}  % default 0.0mm
 
+\newcommand{\acvEntriesColSep}{1.0ex}  % default 1.0ex
 
 %-------------------------------------------------------------------------------
 %                Commands for utilities
@@ -655,7 +674,7 @@
           \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
           % \href{mailto:\@supplemental}{\textcolor{links}{\@supplemental}}%
           % \href{https://\@supplemental}{\textcolor{links}{\@supplemental}}%
-          \href{\@supplemental}{\textcolor{links}{\textsc{supplemental materials}}}%
+          \href{\@supplemental}{\textcolor{links}{{supplemental materials}}}%
         }%
       \ifthenelse{\isundefined{\@homepage}}%
         {}%
@@ -799,16 +818,14 @@
 % Define a subsection for CV
 % Usage: \cvsubsection{<subsection-title>}
 \newcommand{\cvsubsection}[1]{%
-  \vspace{\acvSectionContentTopSkip}
-  \vspace{-2mm}
+  \vspace{\acvSubSectionContentTopSkip}
   \subsectionstyle{#1}
   \phantomsection
 }
 
 % Define a paragraph for CV
 \newenvironment{cvparagraph}{%
-  \vspace{\acvSectionContentTopSkip}
-  \vspace{-2mm}
+  \vspace{\acvParagraphTopSkip}
   \paragraphstyle
 }{%
   \par
@@ -1097,7 +1114,7 @@
 
 % Define an environment for cvitems(for cventry)
 \newenvironment{cvitems}{%
-  \vspace{-3.5mm}
+  \vspace{\acvItemSkip}
   \begin{justify}
   \begin{itemize}[nosep,noitemsep,leftmargin=3.5ex]
     \setlength{\parskip}{0pt}
@@ -1105,7 +1122,6 @@
 }{%
   \end{itemize}
   \end{justify}
-  \vspace{-4.0mm}
 }
 
 
@@ -1193,18 +1209,16 @@
   \lettertextstyle{\@letteropening}
 }
 
-% Define a closing of the cover letter
-% Usage: \makeletterclosing
 \newcommand*{\makeletterclosing}{%
   % \vspace{3.4mm}
-  \lettertextstyle{\@letterclosing}
   \vspace{3pt}
+  \lettertextstyle{\@letterclosing}
   \begin{itemize}[nosep,noitemsep,itemsep=0pt,leftmargin=15pt]
     \renewcommand{\labelitemi}{}
     \item
       \ifthenelse{\isundefined{\@position}}
       {\closingnamestyle{\@firstname\ \@lastname}}
-      {\closingnamestyle{\@firstname\ \@lastname}{\fontsize{10pt}{1em}\spacedot}\closingpositionstyle{\@position}}
+      {\closingnamestyle{\@firstname\ \@lastname}{\fontsize{10pt}{1em}\color{graytext}{\enspace$\cdot$\enspace}}\closingpositionstyle{\@position}}
     \ifthenelse{\isundefined{\@department}}
       {}
       {\item
@@ -1226,11 +1240,16 @@
       {\item
         \closingphonestyle{\@mobile}}
   \end{itemize}
+  \vspace{-\baselineskip}
+}
 
-  % \ifthenelse{\isundefined{\@letterenclosure}}
-    % {\\}
-    % {%
-      % \\\\\\
-      % \letterenclosurestyle{\@letterenclname: \@letterenclosure} \\
-    % }
+\newcommand*{\makelettersignature}{%
+  \vspace{3pt}
+  \lettertextstyle{\@letterclosing}
+
+  \vspace{3pt}
+  \includegraphics[width=3cm]{\LaTeXDir/assets/signature.pdf}
+
+  \vspace{-3pt}
+  \closingsignaturestyle{\MakeLowercase\@firstname\ \MakeLowercase\@lastname}{\fontsize{10pt}{1em}\color{graytext}{\enspace$\cdot$\enspace}}\closingpositionstyle{\@position}
 }

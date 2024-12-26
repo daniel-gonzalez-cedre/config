@@ -9,14 +9,6 @@
 \usepackage[greek,english]{babel}  % greek fonts
 % \usepackage[utf8]{inputenc}  % utf8 input encoding
 
-% FORMATTING
-\usepackage{arydshln, fancyvrb, listings, parskip, verbatim, upquote}
-\usepackage[normalem]{ulem}
-\usepackage[shortlabels]{enumitem}
-\usepackage[framemethod=TikZ]{mdframed}
-\usepackage[absolute,overlay]{textpos}
-\usepackage[group-separator={,},group-minimum-digits={3}]{siunitx}
-
 % COLORS
 \usepackage{color, soul, xcolor}
 \usepackage[\MintedOption]{tcolorbox}
@@ -24,8 +16,18 @@
 \ifminted
   \usepackage[outputdir=/tmp/latexmk]{minted}
   \usepackage{pmboxdraw}
+  \let\textblockpm\textblock
+  \let\textblock\relax
 \else
 \fi
+
+% FORMATTING
+\usepackage{arydshln, fancyvrb, listings, parskip, verbatim, upquote}
+\usepackage[normalem]{ulem}
+\usepackage[shortlabels]{enumitem}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[absolute,overlay]{textpos}
+\usepackage[group-separator={,},group-minimum-digits={3}]{siunitx}
 
 % TABLES
 \usepackage{booktabs, colortbl, makecell, multirow}
