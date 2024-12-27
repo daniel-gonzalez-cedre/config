@@ -12,11 +12,11 @@
 │                                 ~~ INFO ~~                                  │
 ├──────────────┬──────────────────────────────────────────────────────────────┤
 │ TYPEFACE     │ TX-02 Berkeley Mono™ Typeface Family                         │
-│ TICKET No.   │ 9K84LXR2                                                     │
-│ BUILD DATE   │ 2024-12-27 23:16:41 UTC                                      │
+│ TICKET No.   │ 8W215431                                                     │
+│ BUILD DATE   │ 2024-12-27 23:16:07 UTC                                      │
 │ FONT COUNT   │ 10 Fonts                                                     │
 │ GLYPH COUNT  │ 6440 Glyphs                                                  │
-│ BUILD TIME   │ 45.29 seconds                                                │
+│ BUILD TIME   │ 26.30 seconds                                                │
 │ SERVICE No.  │ 2YQX5Y4302                                                   │
 │ SERVICE      │ TS-025 Berkeley Mono™ SuperType™ Compiler                    │
 │ SERVICE TIER │ SUPERTYPE                                                    │
@@ -25,20 +25,20 @@
 ├──────────────┴──────────────────────────────────────────────────────────────┤
 │                                ~~ FONTS ~~                                  │
 ├──────────────┬──────────────────────────────────────────────────────────────┤
-│ TX-02-762K   │ Retina                                                       │
-│ TX-02-764K   │ Retina Oblique                                               │
-│ TX-02-772M   │ Regular                                                      │
-│ TX-02-774M   │ Oblique                                                      │
-│ TX-02-792K   │ Medium                                                       │
-│ TX-02-794K   │ Medium Oblique                                               │
-│ TX-02-7B2M   │ Bold                                                         │
-│ TX-02-7B4M   │ Bold Oblique                                                 │
-│ TX-02-7C2K   │ ExtraBold                                                    │
-│ TX-02-7C4K   │ ExtraBold Oblique                                            │
+│ TX-02-662K   │ Retina SemiCondensed                                         │
+│ TX-02-664K   │ Retina SemiCondensed Oblique                                 │
+│ TX-02-672K   │ SemiCondensed                                                │
+│ TX-02-674K   │ SemiCondensed Oblique                                        │
+│ TX-02-692K   │ Medium SemiCondensed                                         │
+│ TX-02-694K   │ Medium SemiCondensed Oblique                                 │
+│ TX-02-6B2K   │ Bold SemiCondensed                                           │
+│ TX-02-6B4K   │ Bold SemiCondensed Oblique                                   │
+│ TX-02-6C2K   │ ExtraBold SemiCondensed                                      │
+│ TX-02-6C4K   │ ExtraBold SemiCondensed Oblique                              │
 ├──────────────┴──────────────────────────────────────────────────────────────┤
 │                         ~~ BUILD SPECIFICATIONS ~~                          │
 ├──────────────┬──────────────────────────────────────────────────────────────┤
-│ FC-001       │ 7                                                            │
+│ FC-001       │ 6                                                            │
 │ FC-002       │ 679BC                                                        │
 │ FC-003       │ 24                                                           │
 │ FC-004       │ zero.dotted                                                  │
@@ -52,62 +52,62 @@
 ├──────────────┴──────────────────────────────────────────────────────────────┤
 │                                ~~ FILES ~~                                  │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ TX-02-Retina.otf                                                            │
-│ TX-02-Retina-Oblique.otf                                                    │
-│ TX-02-Regular.otf                                                           │
-│ TX-02-Oblique.otf                                                           │
-│ TX-02-Medium.otf                                                            │
-│ TX-02-Medium-Oblique.otf                                                    │
-│ TX-02-Bold.otf                                                              │
-│ TX-02-Bold-Oblique.otf                                                      │
-│ TX-02-ExtraBold.otf                                                         │
-│ TX-02-ExtraBold-Oblique.otf                                                 │
+│ TX-02-Retina-SemiCondensed.otf                                              │
+│ TX-02-Retina-SemiCondensed-Oblique.otf                                      │
+│ TX-02-SemiCondensed.otf                                                     │
+│ TX-02-SemiCondensed-Oblique.otf                                             │
+│ TX-02-Medium-SemiCondensed.otf                                              │
+│ TX-02-Medium-SemiCondensed-Oblique.otf                                      │
+│ TX-02-Bold-SemiCondensed.otf                                                │
+│ TX-02-Bold-SemiCondensed-Oblique.otf                                        │
+│ TX-02-ExtraBold-SemiCondensed.otf                                           │
+│ TX-02-ExtraBold-SemiCondensed-Oblique.otf                                   │
 │ README.txt                                                                  │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                         ~~ LOGS (2024-12-27 UTC) ~~                         │
 ├──────────────┬──────────────────────────────────────────────────────────────┤
-│ 23:15:56.494 │ INIT: Querying database for build ticket information         │
-│ 23:15:56.496 │ INIT: Generated Package ID: 241227LR57X4VNMZ                 │
-│ 23:15:56.497 │ INIT: Loading static font compiler                           │
-│ 23:15:56.497 │ FEATURES: Processing FC-010: Set OTF format                  │
-│ 23:15:56.656 │ FEATURES: Processing FC-008: Compile ligatures               │
-│ 23:15:56.661 │ FEATURES: Processing FC-004: Target: zero, Source: zero.dott │
-│ 23:15:56.661 │ FEATURES: Processing FC-005: Target: seven, Source: seven.eu │
-│ 23:15:56.661 │ FEATURES: Processing FC-006: Target: bar, Source: bar.broken │
-│ 23:15:56.662 │ FEATURES: Processing FC-007: Target: r, Source: r.german     │
-│ 23:15:59.632 │ INTERPOLATE: Retina                                          │
-│ 23:16:00.637 │ INTERPOLATE: RetinaOblique                                   │
-│ 23:16:00.722 │ INTERPOLATE: Regular                                         │
-│ 23:16:00.803 │ INTERPOLATE: Oblique                                         │
-│ 23:16:00.886 │ INTERPOLATE: Medium                                          │
-│ 23:16:00.971 │ INTERPOLATE: MediumOblique                                   │
-│ 23:16:01.056 │ INTERPOLATE: Bold                                            │
-│ 23:16:01.139 │ INTERPOLATE: BoldOblique                                     │
-│ 23:16:01.644 │ INTERPOLATE: ExtraBold                                       │
-│ 23:16:01.752 │ INTERPOLATE: ExtraBoldOblique                                │
-│ 23:16:01.891 │ INTERPOLATE: Interpolating 10 instances                      │
-│ 23:16:01.904 │ COMPILE: OTF, TX-02-Retina                                   │
-│ 23:16:04.138 │ DISK IO: Saving TX-02-Retina.otf to ramdisk                  │
-│ 23:16:04.297 │ COMPILE: OTF, TX-02-RetinaOblique                            │
-│ 23:16:06.586 │ DISK IO: Saving TX-02-Retina-Oblique.otf to ramdisk          │
-│ 23:16:06.761 │ COMPILE: OTF, TX-02-Regular                                  │
-│ 23:16:09.099 │ DISK IO: Saving TX-02-Regular.otf to ramdisk                 │
-│ 23:16:09.255 │ COMPILE: OTF, TX-02-Oblique                                  │
-│ 23:16:11.544 │ DISK IO: Saving TX-02-Oblique.otf to ramdisk                 │
-│ 23:16:11.712 │ COMPILE: OTF, TX-02-Medium                                   │
-│ 23:16:14.005 │ DISK IO: Saving TX-02-Medium.otf to ramdisk                  │
-│ 23:16:14.164 │ COMPILE: OTF, TX-02-MediumOblique                            │
-│ 23:16:16.417 │ DISK IO: Saving TX-02-Medium-Oblique.otf to ramdisk          │
-│ 23:16:16.588 │ COMPILE: OTF, TX-02-Bold                                     │
-│ 23:16:18.866 │ DISK IO: Saving TX-02-Bold.otf to ramdisk                    │
-│ 23:16:19.025 │ COMPILE: OTF, TX-02-BoldOblique                              │
-│ 23:16:36.808 │ DISK IO: Saving TX-02-Bold-Oblique.otf to ramdisk            │
-│ 23:16:36.980 │ COMPILE: OTF, TX-02-ExtraBold                                │
-│ 23:16:39.221 │ DISK IO: Saving TX-02-ExtraBold.otf to ramdisk               │
-│ 23:16:39.382 │ COMPILE: OTF, TX-02-ExtraBoldOblique                         │
-│ 23:16:41.622 │ DISK IO: Saving TX-02-ExtraBold-Oblique.otf to ramdisk       │
-│ 23:16:41.784 │ PACKAGE: Compressing font package 241227LR57X4VNMZ.zip       │
-│ 23:16:41.784 │ PACKAGE: Uploading font package to AWS S3                    │
+│ 23:15:41.268 │ INIT: Querying database for build ticket information         │
+│ 23:15:41.271 │ INIT: Generated Package ID: 2412278J6Z5JPN68                 │
+│ 23:15:41.272 │ INIT: Loading static font compiler                           │
+│ 23:15:41.272 │ FEATURES: Processing FC-010: Set OTF format                  │
+│ 23:15:41.432 │ FEATURES: Processing FC-008: Compile ligatures               │
+│ 23:15:41.437 │ FEATURES: Processing FC-004: Target: zero, Source: zero.dott │
+│ 23:15:41.437 │ FEATURES: Processing FC-005: Target: seven, Source: seven.eu │
+│ 23:15:41.438 │ FEATURES: Processing FC-006: Target: bar, Source: bar.broken │
+│ 23:15:41.438 │ FEATURES: Processing FC-007: Target: r, Source: r.german     │
+│ 23:15:43.968 │ INTERPOLATE: RetinaSemiCondensed                             │
+│ 23:15:45.634 │ INTERPOLATE: RetinaSemiCondensedOblique                      │
+│ 23:15:45.747 │ INTERPOLATE: SemiCondensed                                   │
+│ 23:15:45.820 │ INTERPOLATE: SemiCondensedOblique                            │
+│ 23:15:45.891 │ INTERPOLATE: MediumSemiCondensed                             │
+│ 23:15:46.006 │ INTERPOLATE: MediumSemiCondensedOblique                      │
+│ 23:15:46.119 │ INTERPOLATE: BoldSemiCondensed                               │
+│ 23:15:46.195 │ INTERPOLATE: BoldSemiCondensedOblique                        │
+│ 23:15:46.268 │ INTERPOLATE: ExtraBoldSemiCondensed                          │
+│ 23:15:46.422 │ INTERPOLATE: ExtraBoldSemiCondensedOblique                   │
+│ 23:15:46.625 │ INTERPOLATE: Interpolating 10 instances                      │
+│ 23:15:46.626 │ COMPILE: OTF, TX-02-RetinaSemiCondensed                      │
+│ 23:15:48.453 │ DISK IO: Saving TX-02-Retina-SemiCondensed.otf to ramdisk    │
+│ 23:15:48.600 │ COMPILE: OTF, TX-02-RetinaSemiCondensedOblique               │
+│ 23:15:50.458 │ DISK IO: Saving TX-02-Retina-SemiCondensed-Oblique.otf to ra │
+│ 23:15:50.622 │ COMPILE: OTF, TX-02-SemiCondensed                            │
+│ 23:15:52.441 │ DISK IO: Saving TX-02-SemiCondensed.otf to ramdisk           │
+│ 23:15:52.592 │ COMPILE: OTF, TX-02-SemiCondensedOblique                     │
+│ 23:15:54.434 │ DISK IO: Saving TX-02-SemiCondensed-Oblique.otf to ramdisk   │
+│ 23:15:54.593 │ COMPILE: OTF, TX-02-MediumSemiCondensed                      │
+│ 23:15:56.403 │ DISK IO: Saving TX-02-Medium-SemiCondensed.otf to ramdisk    │
+│ 23:15:56.552 │ COMPILE: OTF, TX-02-MediumSemiCondensedOblique               │
+│ 23:15:59.488 │ DISK IO: Saving TX-02-Medium-SemiCondensed-Oblique.otf to ra │
+│ 23:15:59.648 │ COMPILE: OTF, TX-02-BoldSemiCondensed                        │
+│ 23:16:01.457 │ DISK IO: Saving TX-02-Bold-SemiCondensed.otf to ramdisk      │
+│ 23:16:01.609 │ COMPILE: OTF, TX-02-BoldSemiCondensedOblique                 │
+│ 23:16:03.456 │ DISK IO: Saving TX-02-Bold-SemiCondensed-Oblique.otf to ramd │
+│ 23:16:03.618 │ COMPILE: OTF, TX-02-ExtraBoldSemiCondensed                   │
+│ 23:16:05.429 │ DISK IO: Saving TX-02-ExtraBold-SemiCondensed.otf to ramdisk │
+│ 23:16:05.581 │ COMPILE: OTF, TX-02-ExtraBoldSemiCondensedOblique            │
+│ 23:16:07.409 │ DISK IO: Saving TX-02-ExtraBold-SemiCondensed-Oblique.otf to │
+│ 23:16:07.570 │ PACKAGE: Compressing font package 2412278J6Z5JPN68.zip       │
+│ 23:16:07.570 │ PACKAGE: Uploading font package to AWS S3                    │
 ├──────────────┴──────────────────────────────────────────────────────────────┤
 │                                ~~ LEGAL ~~                                  │
 ├──────────────┬──────────────────────────────────────────────────────────────┤
