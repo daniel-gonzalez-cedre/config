@@ -2,8 +2,8 @@
 #   "Berkeley Mono"
 #   "FiraCode Retina"
 #   "CommitMono-450-01111-00000011000"
-font-family = "CommitMono-450-01111-00000011000"
-font-size = ""
+font-family = "Berkeley Mono"
+font-size = 12
 
 # SYNTHETIC FONT STYLE GENERATION
 font-synthetic-style = false
@@ -29,8 +29,8 @@ window-save-state = never
 window-theme = system
 
 window-padding-x = 0
-window-padding-y = 5
-window-padding-balance = false
+window-padding-y = 0
+window-padding-balance = true
 
 resize-overlay = never
 resize-overlay-position = top-right

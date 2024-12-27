@@ -327,6 +327,7 @@ else
 
     PROMPT="%{${NEWLINE_CHAR}%}${topline}${botline}"
     RPROMPT="${timestamp} ${BR}"
+    # RPROMPT="${timestamp} %{${BR}${terminfo[cub1]}%}"
     # RPROMPT="${timestamp}"
   }
 fi
