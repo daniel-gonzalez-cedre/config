@@ -32,6 +32,7 @@ window-theme = system
 window-padding-x = 0
 window-padding-y = 0
 window-padding-balance = true
+window-padding-color = extend
 
 resize-overlay = never
 resize-overlay-position = top-right
@@ -43,7 +44,7 @@ quick-terminal-autohide = true
 macos-titlebar-style = hidden
 macos-titlebar-proxy-icon = hidden
 macos-window-shadow = false
-macos-icon = "custom-style"
+macos-icon = custom-style
 macos-icon-frame = "aluminum"
 macos-icon-screen-color = "32302f"
 macos-icon-ghost-color = "d4be98"
