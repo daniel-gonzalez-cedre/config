@@ -35,24 +35,28 @@
   offset.y = 0  # For line spacing (default: 0)
 
 [font.normal]
-  family="Berkeley Mono"
+  family="TX-02"
+  # family="Berkeley Mono"
   # family="CommitMono-450-01111-00000011000"
   style="Regular"
 
 [font.bold]
-  family="Berkeley Mono"
+  family="TX-02"
+  # family="Berkeley Mono"
   # family="CommitMono-450-01111-00000011000"
   style="Bold"
 
 [font.italic]
-  family="Berkeley Mono"
+  family="TX-02"
+  # family="Berkeley Mono"
   # family="CommitMono-450-01111-00000011000"
-  style="Italic"
+  style="Oblique"
 
 [font.bold_italic]
-  family="Berkeley Mono"
+  family="TX-02"
+  # family="Berkeley Mono"
   # family="CommitMono-450-01111-00000011000"
-  style="Bold Italic"
+  style="Bold-Oblique"
 
 [[hints.enabled]]
 command = ""
