@@ -1,0 +1,56 @@
+# AVAILABLE FONTS:
+#   "Berkeley Mono"
+#   "FiraCode Retina"
+#   "CommitMono-450-01111-00000011000"
+font-family = "CommitMono-450-01111-00000011000"
+font-size = ""
+
+# SYNTHETIC FONT STYLE GENERATION
+font-synthetic-style = false
+
+# DISABLE FONT LIGATURES: -calt -liga -dlig
+font-feature = -calt
+
+theme = dark:gruvbox-material,light:GruvboxLight
+background-opacity = 1
+selection-foreground = ""
+selection-background = ""
+
+shell-integration-features = no-cursor
+cursor-style = block
+cursor-style-blink = false
+cursor-invert-fg-bg = true
+mouse-hide-while-typing = true
+
+title = " "
+window-decoration = true
+window-new-tab-position = current
+window-save-state = never
+window-theme = system
+
+window-padding-x = 0
+window-padding-y = 5
+window-padding-balance = false
+
+resize-overlay = never
+resize-overlay-position = top-right
+
+quick-terminal-position = center
+quick-terminal-animation-duration = 0
+quick-terminal-autohide = true
+
+macos-titlebar-style = hidden
+macos-titlebar-proxy-icon = hidden
+macos-window-shadow = false
+macos-icon = "custom-style"
+macos-icon-frame = "aluminum"
+macos-icon-screen-color = "32302f"
+macos-icon-ghost-color = "d4be98"
+
+# AUTO-UPDATE:
+#   off, check, download
+#   stable, tip
+auto-update = check
+auto-update-channel = stable
+
+keybind = global:ctrl+q=toggle_quick_terminal

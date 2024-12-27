@@ -431,8 +431,8 @@ alias rm='rm -v'
 alias diff='grc diff'
 alias rsync='rsync -v --progress'
 
-# alias ls='tree -L 1 -N --dirsfirst --noreport'
-alias ls='tree -C -L 1 -N --dirsfirst --noreport | tail -n +2'
+alias ls='tree -L 1 -N --dirsfirst --noreport'
+# alias ls='tree -C -L 1 -N --dirsfirst --noreport | tail -n +2'
 alias gls='gls --color --group-directories-first -h'
 alias tree='tree -N --dirsfirst --noreport'
 # function tree_ascii() {
