@@ -6,10 +6,10 @@ yabai -m config window_placement second_child
 # yabai -m config window_border_placement inset
 
 # padding
-yabai -m config left_padding 2
-yabai -m config right_padding 2
 yabai -m config top_padding 2
 yabai -m config bottom_padding 2
+yabai -m config left_padding 2
+yabai -m config right_padding 2
 yabai -m config window_gap 2
 
 # set focus follows mouse mode (default: off, options: off, autoraise, autofocus)
