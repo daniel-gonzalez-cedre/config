@@ -118,14 +118,6 @@ clearcode=(
   all   "%f%k%b%u%s"
 )
 
-function path_info() {
-  if [[ $PWD:h == "/" || $PWD == $HOME ]]; then
-    echo ""
-  else
-    print -P '${${PWD:h}/$HOME/~} '
-  fi
-}
-
 function strlen() {
   foo=$1
   local invisible='%([BSUbfksu]|([FB]|){*})' # (1)
@@ -135,6 +127,14 @@ function strlen() {
 
 function max() { echo $(( $1 > $2 ? $1 : $2 )) }
 function min() { echo $(( $1 < $2 ? $1 : $2 )) }
+
+function path_info() {
+  if [[ $PWD:h == "/" || $PWD == $HOME ]]; then
+    echo ""
+  else
+    print -P '${${PWD:h}/$HOME/~} '
+  fi
+}
 
 function prompt_path() {
   if [[ $PWD:h == "/" || $PWD == $HOME ]]; then
@@ -195,7 +195,6 @@ function prompt_venv_post() {
 
 # PROMPT SETUP
 #     █▓▒░ ░▒▓█    
-
 (){
   USERCOLOR="red"
   PATHCOLOR="blue"
@@ -241,10 +240,10 @@ function prompt_venv_post() {
   PROMPT="${BOTLINE}"
 }
 
-mkdir -p "$HOME/.config"
-mkdir -p "$HOME/.cache"
-mkdir -p "$HOME/.local/share"
-mkdir -p "$HOME/.local/state"
+command mkdir -p "$HOME/.config"
+command mkdir -p "$HOME/.cache"
+command mkdir -p "$HOME/.local/share"
+command mkdir -p "$HOME/.local/state"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -254,9 +253,6 @@ export EDITOR='vim'
 # export VISUAL='vim'
 
 CLICOLOR=1
-# LS_COLORS='di=1;32:ln=1;30;47:so=30;45:pi=30;45:ex=1;31:bd=30;46:cd=30;46:su=30'
-# LS_COLORS="${LS_COLORS};41:sg=30;41:tw=30;41:ow=30;41:*.rpm=1;31:*.deb=1;31"
-# LSCOLORS=CxahafafBxagagabababab
 GREP_COLORS='sl=49;39:cx=49;39:mt=49;31;1:fn=49;32:ln=49;33:bn=49;33:se=1;36'
 GREP_OPTIONS="--color=always"  # --line-buffered
 # export CLICOLOR LS_COLORS LSCOLORS GREP_COLORS GREP_OPTIONS
@@ -264,10 +260,6 @@ export CLICOLOR GREP_COLORS GREP_OPTIONS
 
 export CONFIG=${HOME}/config
 
-# if [ "$TMUX" = "" ]; then
-  # # tmux new -A -s 新;
-  # tmux;
-# fi
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ] && [ "$TERM_PROGRAM" != "WezTerm" ] && [ "$TERM_PROGRAM" != "iTerm.app" ]; then
   export TERM=alacritty
 else
@@ -279,25 +271,10 @@ export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
 export PATH=~/.local/bin:$PATH
 # export PATH="$PYENV_ROOT/bin:$PATH"
 
+export HOMEBREW_NO_ENV_HINTS=1
 export HOMEBREW_AUTO_UPDATE_SECS="86400"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 # export PYENV_ROOT="$HOME/.pyenv"
-
-# export FFDIR=${HOME}/Library/Application\ Support/Firefox
-# for FILE in ${FFDIR}/Profiles/*
-# do
-  # # PATTERN=".*.........default-release"
-  # PATTERN=".*.default-release"
-  # [[ $FILE =~ $PATTERN ]] && export FFPROFILE=$FILE
-# done
-
-# export LWDIR=${HOME}/Library/Application\ Support/librewolf
-# for FILE in ${LWDIR}/Profiles/*
-# do
-  # # PATTERN='.*.........default-release'
-  # PATTERN='.*.default-default'
-  # [[ $FILE =~ $PATTERN ]] && export LWPROFILE=$FILE
-# done
 
 # ALIASES
 alias cp='cp -v'
