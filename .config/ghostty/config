@@ -20,6 +20,7 @@ theme = dark:gruvbox-material,light:GruvboxLight
 background-opacity = 1
 selection-foreground = ""
 selection-background = ""
+minimum-contrast = 1
 
 shell-integration-features = no-cursor
 cursor-style = block

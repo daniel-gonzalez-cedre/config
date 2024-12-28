@@ -52,91 +52,79 @@ key[Shift-Tab]="${terminfo[kcbt]}"
 # FINALLY, MAKE SURE THE TERMINAL IS IN APPLICATION MODE, WHEN zle IS ACTIVE.
 # ONLY THEN ARE THE VALUES FROM $terminfo VALID.
 if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
-	autoload -Uz add-zle-hook-widget
-	function zle_application_mode_start { echoti smkx }
-	function zle_application_mode_stop { echoti rmkx }
-	add-zle-hook-widget -Uz zle-line-init zle_application_mode_start
-	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
+  autoload -Uz add-zle-hook-widget
+  function zle_application_mode_start { echoti smkx }
+  function zle_application_mode_stop { echoti rmkx }
+  add-zle-hook-widget -Uz zle-line-init zle_application_mode_start
+  add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 
-
-function git_info() {
-  # local BRANCH=$(git symbolic-ref --short HEAD 2> /dev/null) || return
-  # if [[ -n $BRANCH ]]; then
-    # print -P "%{${fg_coaqua}%}$BRANCH %{${fg_dark}%}:: %{${color_clear}%}"
-  # else
-    # print -P ""
-    # # echo "%F{14}$BRANCH%F{237}::%f"
-  # fi
-  # local STATUS=''
-  # local FLAGS
-  # FLAGS=('--porcelain')
-  # if [[ "$(command git config --get oh-my-zsh.hide-dirty)" != "1" ]]; then
-  #   if [[ $POST_1_7_2_GIT -gt 0 ]]; then
-  #   FLAGS+='--ignore-submodules=dirty'
-  #   fi
-  #   if [[ "$DISABLE_UNTRACKED_FILES_DIRTY" == "true" ]]; then
-  #   FLAGS+='--untracked-files=no'
-  #   fi
-  #   STATUS=$(command git status ${FLAGS} 2> /dev/null | tail -n1)
-  # fi
-  # if [[ -n $STATUS ]]; then
-  #   GIT_PROMPT_COLOR="%F{7}"
-  #   GIT_STAR=""
-  # else
-  #   GIT_PROMPT_COLOR="%F{6}"
-  #   unset GIT_STAR
-  # fi
-  # echo "$BRANCH$GIT_STAR"
-}
+typeset -A fgcode
+fgcode=(
+  black      "%F{0}"
+  red        "%F{1}"
+  green      "%F{2}"
+  yellow     "%F{3}"
+  blue       "%F{4}"
+  purple     "%F{5}"
+  aqua       "%F{6}"
+  white      "%F{7}"
+  coblack    "%F{8}"
+  cored      "%F{9}"
+  cogreen    "%F{10}"
+  coyellow   "%F{11}"
+  coblue     "%F{12}"
+  copurple   "%F{13}"
+  coaqua     "%F{14}"
+  cowhite    "%F{15}"
+  grey       "%F{239}"
+  dark       "%F{238}"
+  darker     "%F{236}"
+  darkest    "%F{235}"
+  background "%F{234}"
+  foreground "%F{15}"
+  clear      "%f"
+)
+typeset -A bgcode
+bgcode=(
+  black      "%K{0}"
+  red        "%K{1}"
+  green      "%K{2}"
+  yellow     "%K{3}"
+  blue       "%K{4}"
+  purple     "%K{5}"
+  aqua       "%K{6}"
+  white      "%K{7}"
+  coblack    "%K{8}"
+  cored      "%K{9}"
+  cogreen    "%K{10}"
+  coyellow   "%K{11}"
+  coblue     "%K{12}"
+  copurple   "%K{13}"
+  coaqua     "%K{14}"
+  cowhite    "%K{15}"
+  grey       "%K{239}"
+  dark       "%K{238}"
+  darker     "%K{236}"
+  darkest    "%K{235}"
+  background "%K{234}"
+  foreground "%K{15}"
+  clear      "%k"
+)
+typeset -A clearcode
+clearcode=(
+  color "%{$(tput sgr0)"
+  style "${reset}"
+  all   "%f%k%b%u%s"
+)
 
 function path_info() {
-  # if [ ${#${PWD:h}} -eq ${#${str}} ]; then
-  # if [[ $PWD:h == $str_root ]]; then
-  if [[ $PWD:h == "/" ]]; then
+  if [[ $PWD:h == "/" || $PWD == $HOME ]]; then
     echo ""
   else
-    if [[ $PWD == $HOME ]]; then
-      echo ""
-    else
-      print -P '${${PWD:h}/$HOME/~} '
-    fi
+    print -P '${${PWD:h}/$HOME/~} '
   fi
 }
-
-fg_black="%F{0}"
-fg_red="%F{1}"
-fg_green="%F{2}"
-fg_yellow="%F{3}"
-fg_blue="%F{4}"
-fg_purple="%F{5}"
-fg_aqua="%F{6}"
-fg_white="%F{7}"
-
-fg_coblack="%F{8}"
-fg_cored="%F{9}"
-fg_cogreen="%F{10}"
-fg_coyellow="%F{11}"
-fg_coblue="%F{12}"
-fg_copurple="%F{13}"
-fg_coaqua="%F{14}"
-fg_cowhite="%F{15}"
-
-fg_bg="%F{0}"
-fg_fg="%F{15}"
-fg_text="%F{15}"
-
-fg_silver="%F{7}"
-fg_grey="%F{8}"
-fg_shade="%F{239}"
-fg_dark="%F{238}"
-fg_darker="%F{236}"
-fg_darkest="%F{235}"
-
-fg_clear="%f"
-bg_clear="%k"
-color_clear="%f%k"
-markup_clear="%b%u%s"
 
 function strlen() {
   foo=$1
@@ -145,227 +133,113 @@ function strlen() {
   echo $bar
 }
 
-function max() {
-  echo $(( $1 > $2 ? $1 : $2 ))
+function max() { echo $(( $1 > $2 ? $1 : $2 )) }
+function min() { echo $(( $1 < $2 ? $1 : $2 )) }
+
+function prompt_path() {
+  if [[ $PWD:h == "/" || $PWD == $HOME ]]; then
+    echo "${fgcode[blue]}${bgcode[clear]}"
+  else
+    print -P "${fgcode[blue]}${bgcode[clear]}${fgcode[background]}${bgcode[blue]}"'${${PWD:h}/$HOME/~}'"${fgcode[blue]}${bgcode[blue]}"
+  fi
+}
+function prompt_git() {
+  local BRANCH=$(git symbolic-ref --short HEAD 2> /dev/null)
+  if [[ -z "$BRANCH" ]]; then
+    echo ""
+  else
+    echo "主"
+  fi
+}
+function prompt_git_pre() {
+  local BRANCH=$(git symbolic-ref --short HEAD 2> /dev/null)
+  if [[ -z "$BRANCH" ]]; then
+    echo ""
+  else
+    echo "${fgcode[$1]}${bgcode[$2]} "
+  fi
+}
+function prompt_git_post() {
+  local BRANCH=$(git symbolic-ref --short HEAD 2> /dev/null)
+  if [[ -z "$BRANCH" ]]; then
+    if [[ -z $VIRTUAL_ENV ]]; then
+      echo "${fgcode[$1]}${bgcode[$4]} "
+    else
+      echo "${fgcode[$1]}${bgcode[$3]} "
+    fi
+  else
+    if [[ -z $VIRTUAL_ENV ]]; then
+      echo "${fgcode[$2]}${bgcode[$4]} "
+    else
+      echo "${fgcode[$2]}${bgcode[$3]} "
+    fi
+  fi
+}
+function prompt_venv() {
+  if [[ -z "$VIRTUAL_ENV" ]]; then
+    echo ""
+  else
+    # echo " "
+    # echo "$VIRTUAL_ENV:t"
+    # echo "蟒"
+    echo "蛇"
+  fi
+}
+function prompt_venv_post() {
+  if [[ -z "$VIRTUAL_ENV" ]]; then
+    echo ""
+  else
+    echo "${fgcode[$1]}${bgcode[$2]} "
+  fi
 }
 
-function min() {
-  echo $(( $1 < $2 ? $1 : $2 ))
+# PROMPT SETUP
+#     █▓▒░ ░▒▓█    
+
+(){
+  USERCOLOR="red"
+  PATHCOLOR="blue"
+  GITCOLOR="green"
+  VENVCOLOR="yellow"
+  MACHINECOLOR="grey"
+  TIMECOLOR="clear"
+
+  local USER="%n"
+  local MACHINE="%m"
+  local VENV='$(prompt_venv)'
+
+  # local GIT='$(git symbolic-ref --short HEAD 2> /dev/null)'
+  local GIT='$(prompt_git)'
+
+  local TIME="%D{%K:%M}"
+
+  # local PATH_PREFIX='$(prompt_path)'
+  # local PATH_SUFFIX='%B%1~%b'
+  # local PATH_SUFFIX='%1~'
+  local PATHSTR='%1~'
+
+  TOPLINE="${fgcode[$USERCOLOR]}${bgcode[clear]}"
+  TOPLINE+="${fgcode[background]}${bgcode[$USERCOLOR]}${USER}"
+  TOPLINE+="${fgcode[$USERCOLOR]}${bgcode[$PATHCOLOR]} "
+  # TOPLINE+="${fgcode[$PATHCOLOR]}${bgcode[$USERCOLOR]} "
+  TOPLINE+="${fgcode[background]}${bgcode[$PATHCOLOR]}${PATHSTR}"
+  # TOPLINE+="${fgcode[background]}${bgcode[blue]}${PATH_SUFFIX}"
+  TOPLINE+='$(prompt_git_pre $PATHCOLOR $GITCOLOR $TIMECOLOR)'
+  TOPLINE+="${fgcode[background]}${bgcode[$GITCOLOR]}${GIT}"
+  TOPLINE+='$(prompt_git_post $PATHCOLOR $GITCOLOR $VENVCOLOR $TIMECOLOR)'
+  TOPLINE+="${fgcode[background]}${bgcode[$VENVCOLOR]}${VENV}"
+  TOPLINE+='$(prompt_venv_post $VENVCOLOR $TIMECOLOR)'
+  # TOPLINE+="${fgcode[background]}${bgcode[$MACHINECOLOR]}${MACHINE}"
+  # TOPLINE+="${fgcode[$MACHINECOLOR]}${bgcode[$TIMECOLOR]} "
+  # TOPLINE+="${fgcode[background]}${bgcode[$TIMECOLOR]}${TIME}"
+  # TOPLINE+="${fgcode[$TIMECOLOR]}${bgcode[clear]}"
+  TOPLINE+="${fgcode[clear]}${bgcode[clear]}"
+
+  BOTLINE="${fgcode[yellow]}%Bλ%b${fgcode[clear]}${bgcode[clear]} "
+
+  precmd() { print -P "${TOPLINE}" }
+  PROMPT="${BOTLINE}"
 }
-
-# prompt parameters
-PROMPTTYPE=1  # 0 (simple), 1 (complex)
-NEWLINE=0  # 0 (no), 1 (yes)
-PIPES=1  # 0 (no), 1 (yes)
-
-if [[ ${NEWLINE} -eq 0 ]]; then
-  NEWLINE_CHAR=''
-else
-  NEWLINE_CHAR="%{"$'\n'"%}"
-fi
-
-if [[ ${PIPES} -eq 0 ]]; then
-  UL=''
-  BL=''
-  UR=''
-  BR=''
-else
-  UL="${fg_dark}╭${color_clear}"
-  BL="${fg_dark}╰${color_clear}"
-  UR="${fg_dark}╮${color_clear}"
-  BR="${fg_dark}╯${color_clear}"
-  # UL="${fg_dark}╭╴${color_clear}"
-  # BL="${fg_dark}╰╴${color_clear}"
-  # UR="${fg_dark}╶╮${color_clear}"
-  # BR="${fg_dark}╶╯${color_clear}"
-  # UL="${fg_shade}┌╴${color_clear} "
-  # BL="${fg_shade}└──╴${color_clear} "
-  # UL="${fg_shade}╭╴${color_clear} "
-  # BL="${fg_shade}╰╴${color_clear} "
-  # UR=" ${fg_shade}╶╮${color_clear}"
-  # BR=" ${fg_shade}╶╯${color_clear}"
-  # UL="${fg_dark}┏╸${color_clear} "
-  # BL="${fg_dark}┗━━┫${color_clear} "
-  # UR=" ${fg_dark}╺┓${color_clear}"
-  # BR=" ${fg_dark}╺┛${color_clear}"
-fi
-
-# prompt setup
-if [[ ${PROMPTTYPE} -eq 0 ]]; then
-  # PROMPT="${topline}${botline}"
-  # RPROMPT="${timestamp} ${BR}"
-  (){ # local scope
-    # fourth
-    local function userlimiter() { echo $(( $COLUMNS - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅ ⋅⋅⋅⋅⋅⋅ ╺┓ ⋅⋅⋅ ") )) }
-    local userlimit='$(max $(userlimiter) 1)'
-    local user="${fg_coyellow}%${userlimit}<⋅⋅⋅<%n%<<${color_clear}"
-
-    # fifth
-    local function machinelimiter() { echo $(( $COLUMNS - $(strlen " ┏╸ ⋅⋅⋅⋅⋅⋅ ⋅⋅⋅⋅⋅⋅ ╺┓ ⋅⋅⋅ ") )) }
-    local machinelimit='$(max $(machinelimiter) 1)'
-    local machine="${fg_cored}%${machinelimit}<⋅⋅⋅<%m%<<${color_clear}"
-
-    local linefeed="${fg_coyellow}λ${color_clear}"
-    local timestamp="${fg_dark}%D{%K:%M:%S}${color_clear}"
-
-    # third
-    local function gitlimiter() { echo $(( $COLUMNS - $(strlen ${USER}) - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅ ╺┓ ⋅⋅⋅ ") )) }
-    local gitlimit='$(max $(gitlimiter) 1)'
-    local gitbranch='$(git symbolic-ref --short HEAD 2> /dev/null)'
-    # local gitsuffix=" ::"
-    # local git="${fg_coaqua}%${gitlimit}<⋅⋅⋅<${gitbranch}%<<${fg_dark}${gitsuffix}${color_clear}"
-    local git="${fg_coaqua}%${gitlimit}<⋅⋅⋅<${gitbranch}%<<${color_clear}"
-
-    # first
-    local function prefixlimiter() { echo $(( $COLUMNS - $(strlen ${${PWD:t}/$HOME/~}) - $(strlen ${USER}) - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅ ╺┓ master") )) }
-    local prefixlimit='$(max $(prefixlimiter) 1)'
-    local pathprefix='$(path_info)'
-
-    # second
-    local function suffixlimiter() { echo $(( $COLUMNS - $(strlen ${USER}) - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅⋅⋅⋅ ╺┓ master") )) }
-    local suffixlimit='$(max $(suffixlimiter) 1)'
-    local pathsuffix='%B%1~%b'
-
-    local path="${fg_shade}%${prefixlimit}<⋅⋅⋅<${pathprefix}%<<${fg_coblue}%${suffixlimit}<⋅⋅⋅<${pathsuffix}%<<${color_clear}"
-
-    local left="${path}"
-    # left+=" ${git}"
-
-    local right="${git} ${user} ${machine}"
-      # Virtualenv.
-      # right+='${VIRTUAL_ENV:+venv }'
-
-      # Editing mode. $ZLE_MODE shouldn't contain %, no need to escape
-      # ZLE_MODE=insert
-      # right+='%K{green} $ZLE_MODE'
-
-    # Combine left and right prompt with spacing in between.
-    local pattern='%([BSUbfksu]|([FBK]|){*})'
-    local zero='%([BSUbfksu]|([FK]|){*})'
-
-    local leftspace=${(S)left//${~pattern}}
-    local rightspace=${(S)right//${~pattern}}
-    local spacing="\${(l,COLUMNS-2-\${#\${(%):-${leftspace}${rightspace}}},)}"
-
-    local function toplinelimiter() { echo $(( $COLUMNS - 20 )) }
-    local toplinelimit='$(max $(toplinelimiter) 1)'
-    local topline="%${toplinelimit}>> ${left}${spacing}${right} %>>%{"$'\n'"%}"
-
-    local botline=" ${linefeed} "
-
-    PROMPT="${NEWLINE_CHAR}%${toplinelimit}>> ${left} ${linefeed} "
-    RPROMPT="${right}"
-  }
-else
-  (){ # local scope
-    # fourth
-    local function userlimiter() { echo $(( $COLUMNS - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅ ⋅⋅⋅⋅⋅⋅ ╺┓ ⋅⋅⋅ ") )) }
-    local userlimit='$(max $(userlimiter) 1)'
-    local user="${fg_coyellow}%${userlimit}<⋅⋅⋅<%n%<<${color_clear}"
-
-    # fifth
-    local function machinelimiter() { echo $(( $COLUMNS - $(strlen " ┏╸ ⋅⋅⋅⋅⋅⋅ ⋅⋅⋅⋅⋅⋅ ╺┓ ⋅⋅⋅ ") )) }
-    local machinelimit='$(max $(machinelimiter) 1)'
-    local machine="${fg_cored}%${machinelimit}<⋅⋅⋅<%m%<<${color_clear}"
-
-    local linefeed="${fg_coyellow}λ${color_clear}"
-    local timestamp="${fg_dark}%D{%K:%M:%S}${color_clear}"
-
-    # third
-    local function gitlimiter() { echo $(( $COLUMNS - $(strlen ${USER}) - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅ ╺┓ ⋅⋅⋅ ") )) }
-    local gitlimit='$(max $(gitlimiter) 1)'
-    local gitbranch='$(git symbolic-ref --short HEAD 2> /dev/null)'
-    # local gitsuffix=" ::"
-    # local git="${fg_coaqua}%${gitlimit}<⋅⋅⋅<${gitbranch}%<<${fg_dark}${gitsuffix}${color_clear}"
-    local git="${fg_cogreen}%${gitlimit}<⋅⋅⋅<${gitbranch}%<<${color_clear}"
-
-    # first
-    local function prefixlimiter() { echo $(( $COLUMNS - $(strlen ${${PWD:t}/$HOME/~}) - $(strlen ${USER}) - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅ ╺┓ master") )) }
-    local prefixlimit='$(max $(prefixlimiter) 1)'
-    local pathprefix='$(path_info)'
-
-    # second
-    local function suffixlimiter() { echo $(( $COLUMNS - $(strlen ${USER}) - $(strlen ${HOST}) - $(strlen " ┏╸ ⋅⋅⋅⋅⋅⋅ ╺┓ master") )) }
-    local suffixlimit='$(max $(suffixlimiter) 1)'
-    local pathsuffix='%B%1~%b'
-
-    local path="${fg_shade}%${prefixlimit}<⋅⋅⋅<${pathprefix}%<<${fg_coblue}%${suffixlimit}<⋅⋅⋅<${pathsuffix}%<<${color_clear}"
-
-    # local gitbranch gitsuffix
-    # local gitcheck=$(git symbolic-ref --short HEAD 2> /dev/null)
-    # if [[ -n $(git symbolic-ref --short HEAD 2> /dev/null) ]]; then
-      # gitbranch+='$(git symbolic-ref --short HEAD 2> /dev/null)'
-      # gitsuffix+=" ::"
-    # fi
-    local left=" ${UL} ${path}"
-    # local left=" ${path}"
-    # left+=" ${git}"
-
-    local right="${git} ${user} ${machine} ${UR} "
-    # local right="${git} ${user} ${machine} "
-      # Virtualenv.
-      # right+='${VIRTUAL_ENV:+venv }'
-
-      # Editing mode. $ZLE_MODE shouldn't contain %, no need to escape
-      # ZLE_MODE=insert
-      # right+='%K{green} $ZLE_MODE'
-
-    # Combine left and right prompt with spacing in between.
-    local pattern='%([BSUbfksu]|([FBK]|){*})'
-    local zero='%([BSUbfksu]|([FK]|){*})'
-
-    local leftspace=${(S)left//${~pattern}}
-    local rightspace=${(S)right//${~pattern}}
-    local spacing="\${(l,COLUMNS-0-\${#\${(%):-${leftspace}${rightspace}}},)}"
-
-    local function toplinelimiter() { echo $(( $COLUMNS - 20 )) }
-    local toplinelimit='$(max $(toplinelimiter) 1)'
-    local topline="%${toplinelimit}>>${left}${spacing}${right}%>>%{"$'\n'"%}"
-
-    local botline=" ${BL} ${linefeed} "
-    # local botline=" ${linefeed} "
-
-    PROMPT="%{${NEWLINE_CHAR}%}${topline}${botline}"
-    RPROMPT="${timestamp} ${BR}"
-    # RPROMPT="${timestamp} %{${BR}${terminfo[cub1]}%}"
-    # RPROMPT="${timestamp}"
-  }
-fi
-
-
-# autoload vcs_info
-# precmd() vcs_info
-
-# update-mode() {
-  # case $KEYMAP in
-    # (main)
-      # case $ZLE_STATE in
-        # (*insert*) ZLE_MODE=insert;;
-        # (*) ZLE_MODE=overwrite
-      # esac;;
-    # (*) ZLE_MODE=$KEYMAP
-  # esac
-  # [[ $ZLE_MODE = $oldmode ]] || zle reset-prompt
-# }
-
-# overwrite-mode() {
-   # zle ".$WIDGET"
-   # update-mode
-# }
-# zle -N overwrite-mode
-# zle -N zle-keymap-select update-mode
-
-
-function schedprompt() {
-  emulate -L zsh
-  zmodload -i zsh/sched
-  integer i=${"${(@)zsh_scheduled_events#*:*:}"[(I)schedprompt]}
-  (( i )) && sched -$i
-  zle && zle reset-prompt
-  sched +30 schedprompt
-}
-schedprompt
-
 
 mkdir -p "$HOME/.config"
 mkdir -p "$HOME/.cache"
@@ -814,27 +688,6 @@ esac
   # export POETRY_CONFIG_DIR="$HOME/.config/pypoetry"
 # fi
 
-
-# ===
-# we should stop using conda
-function condactivate() {
-  # >>> conda initialize >>>
-  # !! Contents within this block are managed by 'conda init' !!
-  __conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-  if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-  else
-    if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
-      . "$HOME/miniconda3/etc/profile.d/conda.sh"
-    else
-      export PATH="$HOME/miniconda3/bin:$PATH"
-    fi
-  fi
-  unset __conda_setup
-  # <<< conda initialize <<<
-  conda activate
-  conda config --set changeps1 false
-}
 
 # launch tmux at login
 # if [ "$TMUX" = "" ]; then
