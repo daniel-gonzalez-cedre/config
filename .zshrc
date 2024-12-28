@@ -432,9 +432,47 @@ alias rm='rm -v'
 alias diff='grc diff'
 alias rsync='rsync -v --progress'
 
-alias ls='tree -L 1 -N --dirsfirst --noreport'
+function ls() {
+  local aopt=""
+  local lopt=""
+  local iopt=""
+  local qopt="--no-quotes"
+  local dopt=""
+  local fopt=""
+  local sopt=""
+  while getopts "aliqdDf" opt; do
+    case $opt in
+      a) aopt='-a' ;;
+      l) lopt='-l' ;;
+      i) iopt='--icons' ;;
+      q) qopt='--no-quotes' ;;
+      d)
+        dopt='-D'
+        sopt='--show-symlinks'
+        ;;
+      D)
+        dopt='-D'
+        sopt='--show-symlinks'
+        ;;
+      f)
+        fopt='-f'
+        sopt='--show-symlinks'
+        ;;
+      *) ;;
+    esac
+  done
+  shift $((OPTIND-1))
+  local args="$@"
+  if [[ -z "$args" ]]; then
+    args='.'
+  fi
+  # echo "command eza --icons --no-quotes $diroption $fileoption $args"
+  command eza $aopt $lopt $iopt $qopt $dopt $fopt $sopt $args
+}
+# alias ls='eza --icons --no-quotes'
+# alias ls='tree -L 1 -N --dirsfirst --noreport'
 # alias ls='tree -C -L 1 -N --dirsfirst --noreport | tail -n +2'
-alias gls='gls --color --group-directories-first -h'
+# alias gls='gls --color --group-directories-first -h'
 alias tree='tree -N --dirsfirst --noreport'
 # function tree_ascii() {
   # tree --dirsfirst -C -N -h "$1" | sed 's/├/\+/g; s/─/-/g; s/└/\\/g'
