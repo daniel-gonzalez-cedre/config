@@ -338,7 +338,7 @@ alias python='python3'
 
 alias pdfcrop='/Library/TeX/texbin/pdfcrop'
 alias mpv='open -a /Applications/mpv.app/'
-alias istats='watch -n 0 --color istats'
+# alias istats='watch -n 0 --color istats'
 alias storage='watch -n 1 --color df -h'
 
 # $1: <options>
