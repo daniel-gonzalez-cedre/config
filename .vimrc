@@ -423,21 +423,21 @@
     let g:highlightedyank_highlight_duration = 100
     let g:highlightedyank_highlight_in_visual = 0
 
-  " let g:autocomplpop_is_loaded = 1
-  " packadd AutoComplPop
-  if g:autocomplpop_is_loaded
-    let g:acp_behaviorKeywordLength = 3
-    inoremap <expr> <cr> pumvisible() ? "\<c-g>u\<cr>" : "\<cr>"
-    inoremap <expr> <tab> pumvisible() ? "\<c-y>" : "\<tab>"
-  else
-    set completeopt=longest,menuone,popup
-    " inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
-    inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<cr>"
-    inoremap <expr> <tab> pumvisible() ? "\<c-y>" : "\<tab>"
-    inoremap <expr> <c-n> pumvisible() ? '<c-n>' : '<c-n><c-r>=pumvisible() ? "\<lt>down>" : ""<cr>'
-    " set completepopup=height:15,width:60,border:off,highlight:PMenuSbar
-    " set previewpopup=height:10,width:60,highlight:PMenuSbar
-  endif
+  " " let g:autocomplpop_is_loaded = 1
+  " " packadd AutoComplPop
+  " if g:autocomplpop_is_loaded
+    " let g:acp_behaviorKeywordLength = 3
+    " inoremap <expr> <cr> pumvisible() ? "\<c-g>u\<cr>" : "\<cr>"
+    " inoremap <expr> <tab> pumvisible() ? "\<c-y>" : "\<tab>"
+  " else
+    " set completeopt=longest,menuone,popup
+    " " inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
+    " inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<cr>"
+    " inoremap <expr> <tab> pumvisible() ? "\<c-y>" : "\<tab>"
+    " inoremap <expr> <c-n> pumvisible() ? '<c-n>' : '<c-n><c-r>=pumvisible() ? "\<lt>down>" : ""<cr>'
+    " " set completepopup=height:15,width:60,border:off,highlight:PMenuSbar
+    " " set previewpopup=height:10,width:60,highlight:PMenuSbar
+  " endif
 
 
   " let g:matchup_is_loaded = 1

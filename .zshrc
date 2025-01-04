@@ -252,11 +252,9 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export EDITOR='vim'
 # export VISUAL='vim'
 
-CLICOLOR=1
-GREP_COLORS='sl=49;39:cx=49;39:mt=49;31;1:fn=49;32:ln=49;33:bn=49;33:se=1;36'
-GREP_OPTIONS="--color=always"  # --line-buffered
-# export CLICOLOR LS_COLORS LSCOLORS GREP_COLORS GREP_OPTIONS
-export CLICOLOR GREP_COLORS GREP_OPTIONS
+export CLICOLOR=1
+# export GREP_COLORS='sl=49;39:cx=49;39:mt=49;31;1:fn=49;32:ln=49;33:bn=49;33:se=1;36'
+export GREP_OPTIONS="--color=auto"  # --line-buffered
 
 export CONFIG=${HOME}/config
 

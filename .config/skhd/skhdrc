@@ -66,8 +66,8 @@ modal < cmd - t  : alacritty msg create-window ; skhd -k "escape"
 
 # SPACES #
   ## ARRANGEMENT ##
-  modal < x     : yabai -m space --mirror y-axis ; skhd -k "escape"
-  modal < y     : yabai -m space --mirror x-axis ; skhd -k "escape"
+  modal < x     : yabai -m space --mirror x-axis ; skhd -k "escape"
+  modal < y     : yabai -m space --mirror y-axis ; skhd -k "escape"
   modal < space : yabai -m space --balance       ; skhd -k "escape"
   # modal < ctrl - r : yabai -m space --rotate 90  ; skhd -k "escape"
   # modal < ctrl - o : yabai -m space --rotate 270 ; skhd -k "escape"
