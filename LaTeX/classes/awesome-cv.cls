@@ -318,8 +318,8 @@
 \newcommand*{\honorlocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\itshape\color{text} #1}}
 
 \newcommand*{\servicedatestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\bfseries\color{graytext} #1}}
-\newcommand*{\serviceshortstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\bfseries\color{lighttext} #1}}
-\newcommand*{\servicevenuestyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\itshape\color{darktext} #1}}
+\newcommand*{\serviceshortstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
+\newcommand*{\servicevenuestyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\itshape\color{graytext} #1}}
 
 % For elements of skill
 \newcommand*{\skilltypestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\bfseries\color{text} #1}}
@@ -674,7 +674,8 @@
           \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
           % \href{mailto:\@supplemental}{\textcolor{links}{\@supplemental}}%
           % \href{https://\@supplemental}{\textcolor{links}{\@supplemental}}%
-          \href{\@supplemental}{\textcolor{links}{{supplemental materials}}}%
+          % \href{\@supplemental}{\textcolor{links}{\upshape\footnotesize\texttt{notredame.box.com/s/zc6u68wfolhy77g0h2qkp7h1qji3tto7}}}%
+          \href{\@supplemental}{\textcolor{links}{Supplemental Materials}}%
         }%
       \ifthenelse{\isundefined{\@homepage}}%
         {}%
@@ -894,7 +895,7 @@
   \begin{center}
     \setlength\tabcolsep{\acvEntriesColSep}
     \setlength{\extrarowheight}{0pt}
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l r L{\textwidth * \real{0.9125}}}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l L{\textwidth * \real{0.9125}}}
 }{%
     \end{tabular*}
   \end{center}
@@ -909,8 +910,8 @@
 % }
 \newcommand*{\cvservice}[3]{%
   \ifempty{#2}
-    {\servicedatestyle{#1} && \servicevenuestyle{#3} \\}
-    {\servicedatestyle{#1} & \serviceshortstyle{#2} & \servicevenuestyle{#3} \\}
+    {\servicedatestyle{#1} & \servicevenuestyle{#3} \\}
+    {\servicedatestyle{#1} & \serviceshortstyle{#2}{\spacedot}\servicevenuestyle{#3} \\}
 }
 
 % \newcommand*{\cventrylogo}[6]{%
@@ -1040,8 +1041,9 @@
     % \setlength\tabcolsep{1ex}
     \setlength\tabcolsep{\acvEntriesColSep}
     \setlength{\extrarowheight}{0pt}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.35}} R{\textwidth * \real{0.325}} L{\textwidth * \real{0.175}}}
+    % \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.9125}}}
     % \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} C{1.5cm} L{\textwidth - 4.0cm} R{2.5cm}}
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.9125}}}
 }{%
     \end{tabular*}
   \end{center}
@@ -1049,7 +1051,7 @@
 % Define a line of cv information(honor, award or something else)
 % Usage: \cvhonor{<position>}{<title>}{<location>}{<date>}
 \newcommand*{\cvhonor}[4]{%
-  \honordatestyle{#1} & \honorpositionstyle{#2}{\spacedot}\honorconferralstyle{#3}{\spacedot}\honorlocationstyle{#4} \\
+  \honordatestyle{#1} & \honorpositionstyle{#2} & \honorconferralstyle{#3} & \honorlocationstyle{#4} \\
   % \skilldatestyle{#1} & \skillsetstyle{\textbf{#2}} & \skillsetstyle{\textit{#3}} & \skilllocationstyle{#4} \\
 }
 
@@ -1099,7 +1101,8 @@
   \begin{center}
     \setlength\tabcolsep{\acvEntriesColSep}
     \setlength{\extrarowheight}{0pt}
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.9125}}}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.4}} R{\textwidth * \real{0.15}} L{\textwidth * \real{0.3}}}
+    % \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.9125}}}
     % \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.4}} L{\textwidth * \real{0.125}} L{\textwidth * \real{0.275}}}
 }{%
     \end{tabular*}
@@ -1109,7 +1112,7 @@
 % Usage: \cvskill{<type>}{<skillset>}
 \newcommand*{\cvtalk}[4]{%
   % \skilldatestyle{#1} & \skillsetstyle{\textbf{#2}} & \skillsetstyle{\textit{#3}} & \skilllocationstyle{#4} \\
-  \skilldatestyle{#1} & \skilltypestyle{#2}{\spacedot}\skillformstyle{#3}{\spacedot}\skilllocationstyle{#4} \\
+  \skilldatestyle{#1} & \skilltypestyle{#2} & \skillformstyle{#3} & \skilllocationstyle{#4} \\
 }
 
 % Define an environment for cvitems(for cventry)
