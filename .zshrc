@@ -282,42 +282,39 @@ alias diff='grc diff'
 alias rsync='rsync -v --progress'
 
 function ls() {
-  local aopt=""
-  local lopt=""
-  local iopt=""
-  local qopt="--no-quotes"
-  local dopt=""
-  local fopt=""
-  local sopt=""
-  while getopts "aliqdDf" opt; do
-    case $opt in
-      a) aopt='-a' ;;
-      l) lopt='-l' ;;
-      i) iopt='--icons' ;;
-      q) qopt='--no-quotes' ;;
-      d)
-        dopt='-D'
-        sopt='--show-symlinks'
+  args=("$@")
+  excl=()
+  opts=()
+  for arg in $args; do
+    case $arg in
+      -([a-zA-Z0-9]*[a-zA-Z0-9]) )
+        for char in ${(s::)arg}; do
+          if [[ $char != "-" ]]; then
+            args+=(-${char})
+          fi
+        done
+        excl+=($arg)
         ;;
-      D)
-        dopt='-D'
-        sopt='--show-symlinks'
-        ;;
-      f)
-        fopt='-f'
-        sopt='--show-symlinks'
-        ;;
-      *) ;;
+      * ) ;;
     esac
   done
-  shift $((OPTIND-1))
-  local args="$@"
-  if [[ -z "$args" ]]; then
-    args='.'
-  fi
-  # echo "command eza --icons --no-quotes $diroption $fileoption $args"
-  command eza $aopt $lopt $iopt $qopt $dopt $fopt $sopt $args
+  for arg in ${args:|excl}; do
+    case $arg in
+      -1 | -l ) opts+=('-1' '--show-symlinks') ;;
+      -a ) opts+=('-a') ;;
+      -L ) opts+=('-l') ;;
+      -i ) opts+=('--icons') ;;
+      -q ) opts+=('--no-quotes') ;;
+      -f ) opts+=('-f' '--show-symlinks') ;;
+      -d | -D ) opts+=('-D' '--show-symlinks') ;;
+      --list ) opts+=('-1' '--show-symlinks') ;;
+      --long ) opts+=('-l') ;;
+      * ) opts+=($arg) ;;
+    esac
+  done
+  command eza $opts[@]
 }
+
 # alias ls='eza --icons --no-quotes'
 # alias ls='tree -L 1 -N --dirsfirst --noreport'
 # alias ls='tree -C -L 1 -N --dirsfirst --noreport | tail -n +2'
