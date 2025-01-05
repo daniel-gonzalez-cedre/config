@@ -16,7 +16,7 @@ font-synthetic-style = false
 # DISABLE FONT LIGATURES: -calt -liga -dlig
 font-feature = -calt
 
-theme = dark:gruvbox-material,light:GruvboxLight
+theme = gruvbox-material
 background-opacity = 1
 selection-foreground = ""
 selection-background = ""
@@ -37,7 +37,7 @@ window-theme = system
 window-padding-x = 1
 window-padding-y = 1
 window-padding-balance = true
-window-padding-color = extend
+window-padding-color = background
 
 resize-overlay = never
 resize-overlay-position = top-right
@@ -61,3 +61,5 @@ auto-update = check
 auto-update-channel = stable
 
 keybind = global:ctrl+q=toggle_quick_terminal
+keybind = ctrl+tab=unbind
+keybind = shift+ctrl+tab=unbind
