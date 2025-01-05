@@ -41,5 +41,6 @@ __pycache__/
 .vim/swapfiles
 .vim/undodir
 .vim/view
+.vim/vimfiles
 
 .vim/trash
