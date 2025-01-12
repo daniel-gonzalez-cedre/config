@@ -126,6 +126,7 @@
   noremap q <nop>
   noremap <leader><c-q> q
 
+  nnoremap ZQ <nop>
   nnoremap ZZ <nop>
   nnoremap Zz <nop>
   nnoremap ZX <nop>
@@ -584,9 +585,13 @@
   let g:nrrwrgn_is_loaded = 1
   packadd NrrwRgn
     vunmap <leader>nr
-    vmap <leader>be :NR<cr>
-    vmap <leader>bc :NR<cr>
-    vmap <leader>bs :NR<cr>
+    " vmap <leader>be :NR<cr>
+    " vmap <leader>bc :NR<cr>
+    " vmap <leader>bs :NR<cr>
+    vmap gbe :NR<cr>
+    vmap gbc :NR<cr>
+    vmap gbs :NR<cr>
+    vmap <c-w>e :NR<cr>
 
   let g:tabular_is_loaded = 1
   packadd tabular  " tabularize
@@ -713,16 +718,16 @@
         " exe "nnoremap gc" . i . "k V" . i . "k\<plug\>NERDCommenterInvert"
       " endfor
 
-      noremap gcr <plug>NERDCommenterComment
+      noremap gcc <plug>NERDCommenterComment
       noremap gcu <plug>NERDCommenterUncomment
 
-      noremap gcc <plug>NERDCommenterInvert
-      noremap gct <plug>NERDCommenterToggle
+      noremap gci <plug>NERDCommenterInvert
+      " noremap gct <plug>NERDCommenterToggle
 
-      noremap gci <plug>NERDCommenterToEOL a
-      noremap gcI <plug>NERDCommenterComment ^a<space>
-      noremap gck <plug>NERDCommenterToEOL
-      noremap gcK <plug>NERDCommenterComment ^
+      " noremap gci <plug>NERDCommenterToEOL a
+      " noremap gcI <plug>NERDCommenterComment ^a<space>
+      " noremap gck <plug>NERDCommenterToEOL
+      " noremap gcK <plug>NERDCommenterComment ^
 
       nnoremap gca A<c-g>U<space><c-o><plug>NERDCommenterAppend
       nnoremap gcA <plug>NERDCommenterAppend
@@ -781,10 +786,10 @@
       noremap [e <plug>(ale_previous_wrap_error)
       noremap ]w <plug>(ale_next_wrap_warning)
       noremap [w <plug>(ale_previous_wrap_warning)
-      noremap <leader>ad <plug>(ale_detail)
-      noremap <leader>bd <plug>(ale_detail)
-      nnoremap <leader>at <plug>(ale_toggle)
-      nnoremap <leader>al <plug>(ale_lint)
+      " noremap <leader>ad <plug>(ale_detail)
+      noremap gbd <plug>(ale_detail)
+      " nnoremap <leader>at <plug>(ale_toggle)
+      " nnoremap <leader>al <plug>(ale_lint)
 
       if g:ale_is_loaded
         ALEDisable
@@ -898,8 +903,8 @@
     set foldcolumn=0
     " set foldignore=
     set foldlevelstart=99
-    " set foldmethod=indent
-    set foldmethod=manual
+    set foldmethod=indent
+    " set foldmethod=manual
 
     " set fillchars+=foldsep:│,foldclose:╶
     " set fillchars+=foldopen:├,foldsep:│,foldclose:╶
@@ -998,20 +1003,20 @@
   " MATCH MAPPINGS
     " cnoremap <tab> <c-g>
     " cnoremap <s-tab> <c-t>
-    nmap <c-f> %
-    vmap <c-f> %
+    " nmap <c-f> %
+    " vmap <c-f> %
 
-    nmap [<c-f> [%
-    nmap ]<c-f> ]%
+    " nmap [<c-f> [%
+    " nmap ]<c-f> ]%
 
-    vmap i<c-f> i%
-    vmap a<c-f> a%
+    " vmap i<c-f> i%
+    " vmap a<c-f> a%
 
-    omap i<c-f> i%
-    omap a<c-f> a%
+    " omap i<c-f> i%
+    " omap a<c-f> a%
 
-    xmap i<c-f> i%
-    xmap a<c-f> a%
+    " xmap i<c-f> i%
+    " xmap a<c-f> a%
 
     " nnoremap <c-\> <c-a>
     " vnoremap <c-\> <c-a>
@@ -1019,7 +1024,10 @@
     " vnoremap <c-_> <c-x>
 
   " BUFFER MAPPINGS
-    noremap <leader>bb :call ScratchBuffer()<cr>
+    " noremap <leader>bb :call ScratchBuffer()<cr>
+    noremap gbb :call ScratchBuffer()<cr>
+    noremap gbs :call ScratchBuffer()<cr>
+    " noremap <c-w>b :call ScratchBuffer()<cr>
     " noremap <leader>bs :call ScratchBuffer()<cr>
 
   " MOVEMENT
@@ -1060,6 +1068,22 @@
     nnoremap <right> zl
     vnoremap <right> zl
 
+    " unmap annoying default mappings
+    noremap <c-y> <nop>
+    noremap <c-e> <nop>
+    noremap <c-w><c-c> <nop>
+    noremap <c-z> <nop>
+
+    noremap <tab> =
+    noremap <tab><tab> ==
+
+    noremap = <c-a>
+    noremap g= g<c-a>
+    noremap - <c-x>
+    noremap g- g<c-x>
+    " noremap <c-s> <c-x>
+    " noremap z<c-a> <c-a>
+
     nnoremap g} }
     vnoremap g} }
     onoremap g} }
@@ -1080,36 +1104,48 @@
     " onoremap [[ {
     " xnoremap [[ {
 
-  " LINES
+  " LINE MOVEMENT
     " start of rendered text line
-    " inoremap <c-a> <home>
-    inoremap <c-a> <c-g>U<c-o>^
-    nnoremap ga g^
-    vnoremap ga g^
-    onoremap ga g^
+      " inoremap <c-a> <home>
+      inoremap <c-a> <c-g>U<c-o>^
+      " nnoremap <c-g>a ^
+      " vnoremap <c-g>a ^
+      " onoremap <c-g>a ^
+      nnoremap <c-a> ^
+      vnoremap <c-a> ^
+      onoremap <c-a> ^
     " start of logical text line
-    nnoremap <c-g>a ^
-    vnoremap <c-g>a ^
-    onoremap <c-g>a ^
+      " nnoremap ga g^
+      " vnoremap ga g^
+      " onoremap ga g^
+      nnoremap g<c-a> g^
+      vnoremap g<c-a> g^
+      onoremap g<c-a> g^
     " operator pending to start of logical text line
-    onoremap <c-a> ^
+      onoremap <c-a> ^
     " start of command line
-    cnoremap <c-a> <home>
+      cnoremap <c-a> <home>
 
     " end of rendered line of text
-    " inoremap <c-e> <end>
-    inoremap <c-e> <c-g>U<c-o>g_<right>
-    nnoremap ge g$
-    vnoremap ge g$<left>
-    onoremap ge g$
+      " inoremap <c-e> <end>
+      inoremap <c-e> <c-g>U<c-o>g_<right>
+      " nnoremap <c-g>e g_
+      " vnoremap <c-g>e g_
+      " onoremap <c-g>e g_
+      nnoremap <c-e> g_
+      vnoremap <c-e> g_
+      onoremap <c-e> g_
     " end of logical line of text
-    nnoremap <c-g>e g_
-    vnoremap <c-g>e g_
-    onoremap <c-g>e g_
+      " nnoremap ge g$
+      " vnoremap ge g$<left>
+      " onoremap ge g$
+      nnoremap g<c-e> g$
+      vnoremap g<c-e> g$<left>
+      onoremap g<c-e> g$
     " operator pending to end of logical text line
-    onoremap <c-e> g_
+      onoremap <c-e> g_
     " end of command line
-    cnoremap <c-e> <end>
+      cnoremap <c-e> <end>
 
     " text object inside current line
     xnoremap il g_o^

@@ -198,7 +198,7 @@ function prompt_venv_post() {
 (){
   USERCOLOR="red"
   PATHCOLOR="blue"
-  GITCOLOR="green"
+  GITCOLOR="cored"
   VENVCOLOR="yellow"
   MACHINECOLOR="grey"
   TIMECOLOR="clear"
@@ -281,6 +281,8 @@ alias rm='rm -v'
 alias diff='grc diff'
 alias rsync='rsync -v --progress'
 
+alias pbcopy="tr -d '\n' | pbcopy"
+
 function ls() {
   args=("$@")
   excl=()
@@ -335,6 +337,7 @@ alias pdfcrop='/Library/TeX/texbin/pdfcrop'
 alias mpv='open -a /Applications/mpv.app/'
 # alias istats='watch -n 0 --color istats'
 alias storage='watch -n 1 --color df -h'
+alias hhkb='open -a hhkb-keymap-tool'
 
 # $1: <options>
 #   pass "-i" as an argument to ask on every rm
