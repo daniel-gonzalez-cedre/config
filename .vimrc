@@ -126,6 +126,11 @@
   noremap q <nop>
   noremap <leader><c-q> q
 
+  noremap <c-y> <nop>
+  noremap <c-e> <nop>
+  noremap <c-w><c-c> <nop>
+  noremap <c-z> <nop>
+
   nnoremap ZQ <nop>
   nnoremap ZZ <nop>
   nnoremap Zz <nop>
@@ -136,15 +141,6 @@
   noremap <c-b> <nop>
   noremap! <c-b> <nop>
 
-  nmap <s-cr> <cr>
-  vmap <s-cr> <cr>
-  " nmap <c-cr> <cr>
-  " vmap <c-cr> <cr>
-  " nmap <s-bs> <bs>
-  " vmap <s-bs> <bs>
-  " nmap <c-bs> <bs>
-  " vmap <c-bs> <bs>
-
   nnoremap <s-up> <nop>
   nnoremap <s-down> <nop>
   nnoremap <s-left> <nop>
@@ -154,14 +150,25 @@
   inoremap <s-left> <nop>
   inoremap <s-right> <nop>
 
-  nnoremap <silent> <cr> :noh<bar>:echo<cr>
-  nnoremap <silent> <bs> :noh<bar>:echo<cr>
-  vnoremap <silent> <bs> <nop>
+  " nnoremap <silent> <cr> :noh<bar>:echo<cr>
+  " nnoremap <silent> <bs> :noh<bar>:echo<cr>
+  " vnoremap <silent> <bs> <nop>
+  noremap <silent><cr> <nop>
+  noremap <silent><bs> <nop>
 
   noremap <silent> <c-c> <esc><esc>
-  nnoremap <silent> <c-c> :noh<bar>:echo<cr><esc><esc>
-  inoremap <silent> <c-c> <esc><esc>:noh<bar>:echo<cr>
+  inoremap <silent> <c-c> <esc><esc>
+  " nnoremap <silent> <c-c> :noh<bar>:echo<cr><esc><esc>
+  " inoremap <silent> <c-c> <esc><esc>:noh<bar>:echo<cr>
   " vnoremap <silent> <c-c> <c-c><c-c>`<
+
+  map <s-cr> <cr>
+  " nmap <c-cr> <cr>
+  " vmap <c-cr> <cr>
+  " nmap <s-bs> <bs>
+  " vmap <s-bs> <bs>
+  " nmap <c-bs> <bs>
+  " vmap <c-bs> <bs>
 
 
 " COLORS
@@ -432,7 +439,7 @@
     " inoremap <expr> <tab> pumvisible() ? "\<c-y>" : "\<tab>"
   " else
     " set completeopt=longest,menuone,popup
-    " " inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
+    " \" inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
     " inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<cr>"
     " inoremap <expr> <tab> pumvisible() ? "\<c-y>" : "\<tab>"
     " inoremap <expr> <c-n> pumvisible() ? '<c-n>' : '<c-n><c-r>=pumvisible() ? "\<lt>down>" : ""<cr>'
@@ -753,12 +760,12 @@
           \ }
     let g:ale_sign_error = '×⟩'
     let g:ale_sign_warning = '~⟩'
-    let g:ale_lint_on_text_changed = 'always'
+    let g:ale_lint_on_text_changed = 'normal'
     let g:ale_lint_on_insert_leave = 1
-    let g:ale_lint_delay = 0
     let g:ale_lint_on_save = 1
+    let g:ale_lint_delay = 0
     " let g:ale_virtualtext_prefix = '  '
-    let g:ale_virtualtext_prefix = ' ⟨⋅ '
+    let g:ale_virtualtext_prefix = '  '
     let g:ale_virtualtext_cursor = 'current'
     let g:ale_virtualtext_delay = 0
     let g:ale_echo_cursor = 0
@@ -991,8 +998,10 @@
 
 
 " SEARCH MAPPINGS
+  nnoremap <silent> gh :noh<cr>
+  vnoremap <silent> gh <c-c>:noh<cr>gv
   nnoremap <leader>s :%s//gc<left><left><left>
-  nnoremap ? /<up>
+  " nnoremap ? /<up>
 
   " vnoremap <leader>/ y/\V<c-r>=escape(@",'/\')<cr>
   vnoremap * y/\V<c-r>=escape(@",'/\')<cr><cr>
@@ -1059,40 +1068,30 @@
     nnoremap gj j
     nnoremap gk k
 
-    nnoremap <up> <c-y>
-    vnoremap <up> <c-y>
-    nnoremap <down> <c-e>
-    vnoremap <down> <c-e>
-    nnoremap <left> zh
-    vnoremap <left> zh
-    nnoremap <right> zl
-    vnoremap <right> zl
+    noremap <up> <c-y>
+    noremap <down> <c-e>
+    noremap <left> zh
+    noremap <right> zl
 
-    " unmap annoying default mappings
-    noremap <c-y> <nop>
-    noremap <c-e> <nop>
-    noremap <c-w><c-c> <nop>
-    noremap <c-z> <nop>
+    noremap <c-]> =
+    noremap <c-]><c-]> ==
 
-    noremap <tab> =
-    noremap <tab><tab> ==
-
-    noremap = <c-a>
-    noremap g= g<c-a>
-    noremap - <c-x>
-    noremap g- g<c-x>
+    noremap za <c-a>
+    noremap gza g<c-a>
+    noremap zx <c-x>
+    noremap gzx g<c-x>
     " noremap <c-s> <c-x>
     " noremap z<c-a> <c-a>
 
-    nnoremap g} }
-    vnoremap g} }
-    onoremap g} }
-    xnoremap g} }
+    " nnoremap g} }
+    " vnoremap g} }
+    " onoremap g} }
+    " xnoremap g} }
 
-    nnoremap g{ {
-    vnoremap g{ {
-    onoremap g{ {
-    xnoremap g{ {
+    " nnoremap g{ {
+    " vnoremap g{ {
+    " onoremap g{ {
+    " xnoremap g{ {
 
     " nnoremap ]] }
     " vnoremap ]] }
