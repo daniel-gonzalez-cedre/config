@@ -1326,7 +1326,7 @@
     elseif line[col - 1] == a:char
       return "\<c-g>U\<right>"
     else
-      return a:char.a:char."\<esc>i"
+      return a:char.a:char."\<c-g>U\<left>"
     endif
   endfunction
 

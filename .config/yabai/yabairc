@@ -2,7 +2,7 @@ yabai -m config layout bsp
 # yabai -m config layout stack
 # yabai -m config layout float
 
-yabai -m config window_placement second_child
+# yabai -m config window_placement second_child
 # yabai -m config window_border_placement inset
 
 # padding
@@ -25,6 +25,7 @@ yabai -m config mouse_drop_action stack  # dropping one window on another
 
 # yabai -m rule --add app!="^(Safari|Firefox|Librewolf|Floorp|Terminal|Alacritty|Wezterm|Slack|Calendar)$" manage=off
 
+yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^Messages$" manage=off
 yabai -m rule --add app="^FaceTime$" manage=off
 yabai -m rule --add app="^Passwords$" manage=off
