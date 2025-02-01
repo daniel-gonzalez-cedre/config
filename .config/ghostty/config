@@ -20,19 +20,18 @@ theme = "gruvbox-material.toml"
 background-opacity = 1
 minimum-contrast = 1
 
-cursor-style = block
-cursor-style-blink = false
-cursor-invert-fg-bg = true
-
 mouse-hide-while-typing = true
 shell-integration-features = no-cursor
 
 title = " "
 window-decoration = true
 window-new-tab-position = current
+window-step-resize = false
 window-save-state = never
 window-theme = system
 
+# FONT-SIZE = 11 => PADDING = 3
+# FONT-SIZE = 12 => PADDING = 7
 window-padding-x = 3
 window-padding-y = 3
 window-padding-balance = true

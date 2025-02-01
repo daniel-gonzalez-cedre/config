@@ -14,8 +14,13 @@ palette = 12=#7daea3
 palette = 13=#d3869b
 palette = 14=#89b482
 palette = 15=#ddc7a1
-background = 252423
-foreground = d4be98
-cursor-color = ""
+background = #252423
+foreground = #d4be98
+cursor-color = #d4be98
+cursor-text = #252423
+cursor-invert-fg-bg = true
+cursor-style = block
+cursor-style-blink = false
 selection-foreground = ""
 selection-background = ""
+selection-invert-fg-bg = true
