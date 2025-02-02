@@ -198,10 +198,11 @@ function prompt_venv_post() {
 (){
   USERCOLOR="red"
   PATHCOLOR="blue"
-  GITCOLOR="cored"
-  VENVCOLOR="yellow"
+  GITCOLOR="aqua"
+  VENVCOLOR="green"
   MACHINECOLOR="grey"
   TIMECOLOR="clear"
+  LAMBDACOLOR="purple"
 
   local USER="%n"
   local MACHINE="%m"
@@ -215,7 +216,8 @@ function prompt_venv_post() {
   # local PATH_PREFIX='$(prompt_path)'
   # local PATH_SUFFIX='%B%1~%b'
   # local PATH_SUFFIX='%1~'
-  local PATHSTR='%1~'
+  local width='$(($COLUMNS/5))'
+  local PATHSTR="%${width}<...<%1~%<<"
 
   TOPLINE="${fgcode[$USERCOLOR]}${bgcode[clear]}"
   TOPLINE+="${fgcode[background]}${bgcode[$USERCOLOR]}${USER}"
@@ -223,21 +225,24 @@ function prompt_venv_post() {
   # TOPLINE+="${fgcode[$PATHCOLOR]}${bgcode[$USERCOLOR]} "
   TOPLINE+="${fgcode[background]}${bgcode[$PATHCOLOR]}${PATHSTR}"
   # TOPLINE+="${fgcode[background]}${bgcode[blue]}${PATH_SUFFIX}"
-  TOPLINE+='$(prompt_git_pre $PATHCOLOR $GITCOLOR $TIMECOLOR)'
+  TOPLINE+='$(prompt_git_pre $PATHCOLOR $GITCOLOR $LAMBDACOLOR)'
   TOPLINE+="${fgcode[background]}${bgcode[$GITCOLOR]}${GIT}"
-  TOPLINE+='$(prompt_git_post $PATHCOLOR $GITCOLOR $VENVCOLOR $TIMECOLOR)'
+  TOPLINE+='$(prompt_git_post $PATHCOLOR $GITCOLOR $VENVCOLOR $LAMBDACOLOR)'
   TOPLINE+="${fgcode[background]}${bgcode[$VENVCOLOR]}${VENV}"
-  TOPLINE+='$(prompt_venv_post $VENVCOLOR $TIMECOLOR)'
+  # TOPLINE+='$(prompt_venv_post $VENVCOLOR $TIMECOLOR)'
+  TOPLINE+='$(prompt_venv_post $VENVCOLOR $LAMBDACOLOR)'
   # TOPLINE+="${fgcode[background]}${bgcode[$MACHINECOLOR]}${MACHINE}"
   # TOPLINE+="${fgcode[$MACHINECOLOR]}${bgcode[$TIMECOLOR]} "
   # TOPLINE+="${fgcode[background]}${bgcode[$TIMECOLOR]}${TIME}"
   # TOPLINE+="${fgcode[$TIMECOLOR]}${bgcode[clear]}"
   TOPLINE+="${fgcode[clear]}${bgcode[clear]}"
 
-  BOTLINE="${fgcode[yellow]}%Bλ%b${fgcode[clear]}${bgcode[clear]} "
+  BOTLINE="${fgcode[$LAMBDACOLOR]}${bgcode[background]}${fgcode[background]}${bgcode[$LAMBDACOLOR]}%Bλ%b${fgcode[$LAMBDACOLOR]}${bgcode[background]}${fgcode[clear]}${bgcode[clear]} "
+  ENDLINE="${fgcode[background]}${bgcode[$LAMBDACOLOR]}%Bλ%b${fgcode[$LAMBDACOLOR]}${bgcode[background]}${fgcode[clear]}${bgcode[clear]} "
 
-  precmd() { print -P "${TOPLINE}" }
-  PROMPT="${BOTLINE}"
+  # precmd() { print -P "${TOPLINE}" }
+  # PROMPT="${BOTLINE}"
+  PROMPT="${TOPLINE}${ENDLINE}"
 }
 
 command mkdir -p "$HOME/.config"
@@ -259,7 +264,8 @@ export GREP_OPTIONS="--color=auto"  # --line-buffered
 export CONFIG=${HOME}/config
 
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ] && [ "$TERM_PROGRAM" != "WezTerm" ] && [ "$TERM_PROGRAM" != "iTerm.app" ]; then
-  export TERM=alacritty
+  # export TERM=alacritty
+  export TERM=xterm-256color
 else
   export TERM=xterm-256color
 fi
@@ -280,6 +286,8 @@ alias mv='mv -v'
 alias rm='rm -v'
 alias diff='grc diff'
 alias rsync='rsync -v --progress'
+alias view='chafa'
+# alias viu='viu'
 
 alias pbcopy="tr -d '\n' | pbcopy"
 
