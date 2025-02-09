@@ -27,7 +27,7 @@ modal < cmd - t  : alacritty msg create-window ; skhd -k "escape"
   modal < p : yabai -m window --focus stack.prev || yabai -m window --focus stack.last  ; skhd -k "escape"
 
   modal < z : yabai -m window --toggle zoom-fullscreen          ; skhd -k "escape"
-  modal < f : yabai -m window --toggle float --grid 6:6:1:1:4:4 ; skhd -k "escape"
+  modal < f : yabai -m window --toggle float --grid 9:9:1:1:7:7 ; skhd -k "escape"
   modal < o : yabai -m window --toggle split                    ; skhd -k "escape"
 
   modal < cmd - f        : yabai -m window --toggle native-fullscreen ; skhd -k "escape"

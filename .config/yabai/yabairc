@@ -33,7 +33,9 @@ yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
 
 yabai -m rule --add app="^Bitwarden$" manage=off
+yabai -m rule --add app="^GoodLinks$" manage=off
 
+yabai -m rule --add app="^Karabiner-*" manage=off
 yabai -m rule --add app="^Hammerspoon$" manage=off
 yabai -m rule --add app="^QMK Toolbox$" manage=off
 
