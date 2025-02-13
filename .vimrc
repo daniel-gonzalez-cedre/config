@@ -725,10 +725,11 @@
         " exe "nnoremap gc" . i . "k V" . i . "k\<plug\>NERDCommenterInvert"
       " endfor
 
-      noremap gcc <plug>NERDCommenterComment
+      noremap gci <plug>NERDCommenterComment
       noremap gcu <plug>NERDCommenterUncomment
 
-      noremap gci <plug>NERDCommenterInvert
+      noremap gca <plug>NERDCommenterInvert
+      noremap gcc <plug>NERDCommenterInvert
       " noremap gct <plug>NERDCommenterToggle
 
       " noremap gci <plug>NERDCommenterToEOL a
@@ -736,8 +737,8 @@
       " noremap gck <plug>NERDCommenterToEOL
       " noremap gcK <plug>NERDCommenterComment ^
 
-      nnoremap gca A<c-g>U<space><c-o><plug>NERDCommenterAppend
-      nnoremap gcA <plug>NERDCommenterAppend
+      nnoremap gcA A<c-g>U<space><c-o><plug>NERDCommenterAppend
+      nnoremap gc<c-a> <plug>NERDCommenterAppend
 
       nnoremap gcl A<c-g>U<c-o><plug>NERDCommenterAppend<bs><left><bs><right><esc>
       " nnoremap gcH <plug>NERDCommenterToEOL
