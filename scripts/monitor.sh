@@ -1,1 +1,1 @@
-while :; do clear; "${1}"; sleep 2; done
+while :; do clear; bat "${1}"; sleep 2; done
