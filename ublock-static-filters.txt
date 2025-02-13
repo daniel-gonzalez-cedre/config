@@ -1,0 +1,32 @@
+! YOUTUBE
+    ! YOUTUBE SEARCH - keep only videos (no shorts), channels and playlists
+    youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(:not(ytd-video-renderer,ytd-channel-renderer,ytd-playlist-renderer,yt-lockup-view-model,yt-showing-results-for-renderer,[icon-name="promo-full-height:EMPTY_SEARCH"]),ytd-video-renderer:has([aria-label="Shorts"])),ytd-secondary-search-container-renderer
+
+    ! YOUTUBE HOMEPAGE - Hide the Posts Section
+    youtube.com##ytd-browse[page-subtype="home"] ytd-rich-section-renderer:has(ytd-rich-item-renderer[is-post])
+    ! YOUTUBE HOMEPAGE - Hide Posts
+    youtube.com##ytd-browse[page-subtype="home"] ytd-rich-item-renderer[is-post]
+    ! YOUTUBE HOMEPAGE - Move homepage placeholders to the end
+    youtube.com##ytd-browse[page-subtype="home"] :is(ytd-rich-grid-row, #contents.ytd-rich-grid-row):style(display: contents !important)
+
+    ! YOUTUBE VIDEO - Annotations & endscreen
+    youtube.com##.ytp-ce-element
+        ! /annotations_module.js$script,xhr,important,domain=youtube.com
+        ! /endscreen.js$script,xhr,important,domain=youtube.com
+    ! YOUTUBE VIDEO - Overlways
+    youtube.com##.ytp-button.ytp-cards-button
+    youtube.com##.ytp-button.branding-img-container
+    youtube.com##.ytp-suggested-action
+    ! YOUTUBE  VIDEO - 1080p premium quality option
+    youtube.com##.ytp-quality-menu .ytp-menuitem:has(.ytp-premium-label)
+    ! YOUTUBE VIDEO - Self-promotion pop-up
+    youtube.com##ytd-popup-container > tp-yt-paper-dialog > ytd-mealbar-promo-renderer, ytd-popup-container > tp-yt-paper-dialog > yt-mealbar-promo-renderer:has-text(/Claim Offer|Join now|Not Now|No thanks|YouTube TV|live TV|Live TV|movies|sports|Try it free|unlimited DVR|watch NFL/)
+
+! LOGIN CREDENTIAL PICKER
+||accounts.google.com/gsi/client$script,third-party
+*###credential_picker_container
+
+!  STACKOVERFLOW.COM & *.STACKEXCHANGE.COM & SUPERUSER.COM
+superuser.com##.vertical-align-content.ot-wo-title.ot-bottom-left.otFloatingRoundedCorner
+stackoverflow.com##.vertical-align-content.ot-wo-title.ot-bottom-left.otFloatingRoundedCorner
+stackexchange.com##.vertical-align-content.ot-wo-title.ot-bottom-left.otFloatingRoundedCorner
