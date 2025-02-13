@@ -1,4 +1,4 @@
-\let\bfseries\mdseries  % disable all bold fonts
+% \let\bfseries\mdseries  % disable all bold fonts
 \usefonttheme{serif}
 
 \usetheme[background=light,
@@ -13,6 +13,21 @@
           progressbar=frametitle]{metropolis}
 
 \setbeamercovered{transparent}
+
+\setbeamertemplate{blocks}[rounded]
+\setbeamertemplate{frametitle}{
+  \nointerlineskip
+  \begin{beamercolorbox}[wd=\paperwidth, ht=3ex, dp=1.775ex]{frametitle}
+    \hspace*{1em}{\mdseries\scshape\insertframetitle}\hspace*{1em}
+  \end{beamercolorbox}
+  \nointerlineskip
+  \usebeamertemplate{progress bar in head/foot}
+}
+
+% \setbeamerfont{standout}{series=\normalfont}
+\setbeamerfont{frametitle}{series=\normalfont}
+\setbeamerfont{section title}{series=\normalfont}
+
 \setbeamercolor{normal text}{fg=foreground, bg=background}
 \setbeamercolor{alerted text}{fg=orange, bg=orange}
 \setbeamercolor{example text}{fg=blue, bg=blue}
@@ -24,7 +39,6 @@
 \setbeamercolor{block body alerted}{bg=background}
 \setbeamercolor{block title example}{bg=background}
 \setbeamercolor{block body example}{bg=background}
-\setbeamertemplate{blocks}[rounded]
 
 % otherwise latex crases
 \makeatletter

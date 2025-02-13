@@ -661,11 +661,11 @@
           % \href{tel:\@mobile}{\@mobile}%
           % \setbool{isstart}{false}%
         % }%
-      \ifthenelse{\isundefined{\@email}}%
+      \ifthenelse{\isundefined{\@homepage}}%
         {}%
         {%
           % \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
-          \href{mailto:\@email}{\textcolor{links}{\@email}}%
+          \href{https://\@homepage}{\textcolor{links}{\@homepage}}%
           \setbool{isstart}{false}%
         }%
       \ifthenelse{\isundefined{\@supplemental}}%
@@ -677,11 +677,11 @@
           % \href{\@supplemental}{\textcolor{links}{\upshape\footnotesize\texttt{notredame.box.com/s/zc6u68wfolhy77g0h2qkp7h1qji3tto7}}}%
           \href{\@supplemental}{\textcolor{links}{Supplemental Materials}}%
         }%
-      \ifthenelse{\isundefined{\@homepage}}%
+      \ifthenelse{\isundefined{\@email}}%
         {}%
         {%
           \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
-          \href{https://\@homepage}{\textcolor{links}{\@homepage}}%
+          \href{mailto:\@email}{\textcolor{links}{\@email}}%
         }%
       \ifthenelse{\isundefined{\@dateofbirth}}%
         {}%
@@ -1251,7 +1251,7 @@
   \lettertextstyle{\@letterclosing}
 
   \vspace{3pt}
-  \includegraphics[width=3cm]{\LaTeXDir/assets/signature.pdf}
+  \includegraphics[height=1.25cm]{\LaTeXDir/assets/signature.pdf}
 
   \vspace{-3pt}
   \closingsignaturestyle{\MakeLowercase\@firstname\ \MakeLowercase\@lastname}{\fontsize{10pt}{1em}\color{graytext}{\enspace$\cdot$\enspace}}\closingpositionstyle{\@position}
