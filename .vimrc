@@ -328,6 +328,18 @@
     call gruvbox_material#highlight('InfoText', l:palette.none, l:palette.none, 'undercurl', l:palette.blue)
     call gruvbox_material#highlight('HintText', l:palette.none, l:palette.none, 'undercurl', l:palette.aqua)
 
+    " call gruvbox_material#highlight('LspDiagLine', l:palette.none, l:palette.none, 'undercurl', l:palette.fg1)
+    call gruvbox_material#highlight('LspDiagInlineError', l:palette.none, l:palette.none, 'undercurl', l:palette.red)
+    call gruvbox_material#highlight('LspDiagInlineHint', l:palette.none, l:palette.none, 'undercurl', l:palette.aqua)
+    call gruvbox_material#highlight('LspDiagInlineInfo', l:palette.none, l:palette.none, 'undercurl', l:palette.blue)
+    call gruvbox_material#highlight('LspDiagInlineWarning', l:palette.none, l:palette.none, 'undercurl', l:palette.yellow)
+
+    call gruvbox_material#highlight('LspDiagSignErrorText', l:palette.red, l:palette.none, 'bold')
+    call gruvbox_material#highlight('LspDiagSignHintText', l:palette.aqua, l:palette.none, 'bold')
+    call gruvbox_material#highlight('LspDiagSignInfoText', l:palette.blue, l:palette.none, 'bold')
+    call gruvbox_material#highlight('LspDiagSignWarningText', l:palette.yellow, l:palette.none, 'bold')
+
+
     " call gruvbox_material#highlight('ALEErrorSign', l:palette.none, l:palette.none, 'undercurl', l:palette.red)
     " call gruvbox_material#highlight('ALEWarningSign', l:palette.none, l:palette.none, 'undercurl', l:palette.yellow)
     " call gruvbox_material#highlight('ALEInfoSign', l:palette.none, l:palette.none, 'undercurl', l:palette.blue)
@@ -349,8 +361,8 @@
     " call gruvbox_material#highlight('StatusLineNC', l:palette.bg2, l:palette.none)
 
     " call gruvbox_material#highlight('MatchParen', l:palette.red, l:palette.none, 'bold')
-    " call gruvbox_material#highlight('MatchParen', l:palette.none, l:palette.none, 'bold')
-    call gruvbox_material#highlight('MatchParen', l:palette.none, l:palette.bg1, 'bold')
+    call gruvbox_material#highlight('MatchParen', l:palette.none, l:palette.none, 'bold')
+    " call gruvbox_material#highlight('MatchParen', l:palette.none, l:palette.bg1, 'bold')
 
     call gruvbox_material#highlight('NonText', l:palette.bg2, l:palette.none)
     " call gruvbox_material#highlight('SpecialKey', l:palette.bg2, l:palette.none)
@@ -365,15 +377,15 @@
     " highlight HighlightedyankRegion cterm=reverse gui=reverse
   endfunction
 
-  function! s:gitgutter_colors()
-    if $TERM_PROGRAM !=# 'Apple_Terminal'
-      hi clear SignColumn
-      hi GitGutterAdd ctermfg=142 ctermbg=none
-      hi GitGutterChange ctermfg=109 ctermbg=none
-      hi GitGutterDelete ctermfg=167 ctermbg=none
-      hi GitGutterChangeDelete ctermfg=175 ctermbg=none
-    endif
-  endfunction
+  " function! s:gitgutter_colors()
+    " if $TERM_PROGRAM !=# 'Apple_Terminal'
+      " hi clear SignColumn
+      " hi GitGutterAdd ctermfg=142 ctermbg=none
+      " hi GitGutterChange ctermfg=109 ctermbg=none
+      " hi GitGutterDelete ctermfg=167 ctermbg=none
+      " hi GitGutterChangeDelete ctermfg=175 ctermbg=none
+    " endif
+  " endfunction
 
   augroup setup_colors | au!
     " gruvbox
@@ -592,13 +604,10 @@
   let g:nrrwrgn_is_loaded = 1
   packadd NrrwRgn
     vunmap <leader>nr
-    " vmap <leader>be :NR<cr>
-    " vmap <leader>bc :NR<cr>
-    " vmap <leader>bs :NR<cr>
-    vmap gbe :NR<cr>
-    vmap gbc :NR<cr>
-    vmap gbs :NR<cr>
-    vmap <c-w>e :NR<cr>
+    " vmap gbe :NR<cr>
+    " vmap gbc :NR<cr>
+    " vmap gbs :NR<cr>
+    vmap <c-w>e <cmd>NR<cr>
 
   let g:tabular_is_loaded = 1
   packadd tabular  " tabularize
@@ -643,30 +652,29 @@
     " \ 'guifgs': ['#ea6962', '#e78a4e', '#d8a657', '#a9b665', '#89b482', '#7daea3', '#d3869b'],
   packadd rainbow
 
-  let g:gitgutter_is_loaded = 1
-  packadd vim-gitgutter
-  augroup gitgutter_settings | au!
-    let g:gitgutter_map_keys = 1
-    let g:gitgutter_sign_added = '⋅ '
-    let g:gitgutter_sign_modified = '⋅ '
-    let g:gitgutter_sign_removed = '⋅ '
-    " let g:gitgutter_sign_removed_first_line = '  '
-    " let g:gitgutter_sign_removed_above_and_below = '  '
-    let g:gitgutter_sign_modified_removed = '⋅ '
-    call gitgutter#highlight#define_signs()
+  " let g:gitgutter_is_loaded = 1
+  " packadd vim-gitgutter
+  " augroup gitgutter_settings | au!
+    " let g:gitgutter_map_keys = 1
+    " let g:gitgutter_sign_added = '⋅ '
+    " let g:gitgutter_sign_modified = '⋅ '
+    " let g:gitgutter_sign_removed = '⋅ '
+    " " let g:gitgutter_sign_removed_first_line = '  '
+    " " let g:gitgutter_sign_removed_above_and_below = '  '
+    " let g:gitgutter_sign_modified_removed = '⋅ '
+    " call gitgutter#highlight#define_signs()
 
     if g:gitgutter_is_loaded
       au ColorScheme gruvbox call s:gitgutter_colors()
+      " nmap ]g <Plug>(GitGutterNextHunk)
+      " nmap [g <Plug>(GitGutterPrevHunk)
+      " omap ig <Plug>(GitGutterTextObjectInnerPending)
+      " omap ag <Plug>(GitGutterTextObjectOuterPending)
+      " xmap ig <Plug>(GitGutterTextObjectInnerVisual)
+      " xmap ag <Plug>(GitGutterTextObjectOuterVisual)
+      " nmap <leader>gf :GitGutterFold<cr>
+      nmap <leader>fg :GitGutterFold<cr>
     endif
-
-    " nmap ]g <Plug>(GitGutterNextHunk)
-    " nmap [g <Plug>(GitGutterPrevHunk)
-    " omap ig <Plug>(GitGutterTextObjectInnerPending)
-    " omap ag <Plug>(GitGutterTextObjectOuterPending)
-    " xmap ig <Plug>(GitGutterTextObjectInnerVisual)
-    " xmap ag <Plug>(GitGutterTextObjectOuterVisual)
-    " nmap <leader>gf :GitGutterFold<cr>
-    nmap <leader>fg :GitGutterFold<cr>
 
     " function! GitStatus()
       " let [a,m,r] = GitGutterGetHunkSummary()
@@ -751,59 +759,170 @@
     endfunction
   augroup END
 
-  augroup ale_settings | au!
-    " linters: ruff, mypy, pylint, pyright, lacheck, chktek, proselint
-    let g:ale_linters = {
-          \ 'vim': ['vint'],
-          \ 'python': ['ruff', 'mypy'],
-          \ 'lua': ['luacheck', 'luac'],
-          \ 'tex': ['lacheck']
-          \ }
-    let g:ale_sign_error = '×⟩'
-    let g:ale_sign_warning = '~⟩'
-    let g:ale_lint_on_text_changed = 'normal'
-    let g:ale_lint_on_insert_leave = 1
-    let g:ale_lint_on_save = 1
-    let g:ale_lint_delay = 0
-    " let g:ale_virtualtext_prefix = '  '
-    let g:ale_virtualtext_prefix = '  '
-    let g:ale_virtualtext_cursor = 'current'
-    let g:ale_virtualtext_delay = 0
-    let g:ale_echo_cursor = 0
-    " let g:ale_echo_detail = 1
-    " let g:ale_echo_delay = 0
-    let g:ale_python_pylint_options = "--init-hook=\"import sys; sys.path.append(\'" . trim(system('git rev-parse --show-toplevel')) . "\')\""
+  " packadd asyncomplete.vim
+  " packadd vim-lsp
+  " if executable('pylsp')
+      " " pip install python-lsp-server
+      " au User lsp_setup call lsp#register_server({
+          " \ 'name': 'pylsp',
+          " \ 'cmd': {server_info->['pylsp']},
+          " \ 'allowlist': ['python'],
+          " \ })
+  " endif
 
-    " au FileType python call s:setup_ale()
-    " au FileType lua call s:setup_ale()
-    " au FileType vim call s:setup_ale()
-    " au FileType tex call s:setup_ale()
+  packadd lsp
+  " brew install python-lsp-server
+  " pip install python-lsp-server
+  if executable('pylsp')
+    call LspAddServer([#{name: 'pylsp',
+                      \  filetype: 'python',
+                      \  path: '/opt/homebrew/bin/pylsp',
+                      \  args: []}])
+  endif
+  if executable('pyright')
+    call LspAddServer([#{name: 'pyright',
+                      \  filetype: 'python',
+                      \  path: '/opt/homebrew/bin/pyright-langserver',
+                      \  args: ['--stdio'],
+                      \  workspaceConfig: #{
+                      \    python: #{
+                      \      pythonPath: '$(which python3)'
+                      \  }}
+                      \ }])
+  endif
+  " call LspAddServer([#{name: 'ruff',
+                    " \   filetype: 'python',
+                    " \   path: '/opt/homebrew/bin/ruff',
+                    " \   args: [server]
+                    " \ }])
+  if executable('texlab')
+    call LspAddServer([#{name: 'texlab',
+                      \  filetype: 'tex',
+                      \  path: '/opt/homebrew/bin/texlab',
+                      \  args: []}])
+  endif
+  call LspOptionsSet(#{
+          \   aleSupport: v:false,
+          \   autoComplete: v:true,
+          \   autoHighlight: v:false,
+          \   autoHighlightDiags: v:true,
+          \   autoPopulateDiags: v:false,
+          \   completionMatcher: 'fuzzy',
+          \   completionMatcherValue: 1,
+          \   diagSignErrorText: '!!',
+          \   diagSignHintText: '--',
+          \   diagSignInfoText: '==',
+          \   diagSignWarningText: '??',
+          \   echoSignature: v:false,
+          \   hideDisabledCodeActions: v:false,
+          \   highlightDiagInline: v:true,
+          \   hoverInPreview: v:false,
+          \   ignoreMissingServer: v:false,
+          \   keepFocusInDiags: v:true,
+          \   keepFocusInReferences: v:true,
+          \   completionTextEdit: v:true,
+          \   diagVirtualTextAlign: 'after',
+          \   diagVirtualTextWrap: 'truncate',
+          \   noNewlineInCompletion: v:false,
+          \   omniComplete: v:null,
+          \   outlineOnRight: v:true,
+          \   outlineWinSize: 32,
+          \   semanticHighlight: v:true,
+          \   showDiagInBalloon: v:false,
+          \   showDiagInPopup: v:true,
+          \   showDiagOnStatusLine: v:true,
+          \   showDiagWithSign: v:true,
+          \   showDiagWithVirtualText: v:false,
+          \   showInlayHints: v:false,
+          \   showSignature: v:true,
+          \   snippetSupport: v:false,
+          \   ultisnipsSupport: v:false,
+          \   useBufferCompletion: v:false,
+          \   usePopupInCodeAction: v:false,
+          \   useQuickfixForLocations: v:false,
+          \   vsnipSupport: v:false,
+          \   bufferCompletionTimeout: 100,
+          \   customCompletionKinds: v:false,
+          \   completionKinds: {},
+          \   filterCompletionDuplicates: v:false,
+          \ })
+  " noremap ]e :LspDiag nextWrap<cr>
+  " noremap [e :LspDiag prevWrap<cr>
+  " noremap ]d :LspDiag nextWrap<cr>
+  " noremap [d :LspDiag prevWrap<cr>
+  augroup lsp_settings | au!
+    au FileType * set keywordprg=:LspHover
+    nnoremap <buffer> gd <cmd>LspGotoDefinition<cr>
+    nnoremap <buffer> <c-w>gd <cmd>botright LspGotoDefinition<cr>
+    nnoremap <buffer> gD <cmd>LspGotoDeclaration<cr>
+    nnoremap <buffer> gi <cmd>LspGotoImpl<cr>
+    nnoremap <buffer> gt <cmd>LspGotoTypeDef<cr>
 
-    au FileType python,lua,vim,tex call s:setup_ale()
-    " au FileType python,lua,vim,tex ALEDisable
+    nnoremap <buffer> gpd <cmd>LspPeekDefinition<cr>
+    nnoremap <buffer> gpD <cmd>LspPeekDeclaration<cr>
+    nnoremap <buffer> gpi <cmd>LspPeekImpl<cr>
+    nnoremap <buffer> gpt <cmd>LspPeekTypeDef<cr>
 
-    function! s:setup_ale()
-      packadd ale
-      let g:ale_is_loaded = 1
-
-      noremap ]a <plug>(ale_next_wrap)
-      noremap [a <plug>(ale_previous_wrap)
-      noremap ]l <plug>(ale_next_wrap)
-      noremap [l <plug>(ale_previous_wrap)
-      noremap ]e <plug>(ale_next_wrap_error)
-      noremap [e <plug>(ale_previous_wrap_error)
-      noremap ]w <plug>(ale_next_wrap_warning)
-      noremap [w <plug>(ale_previous_wrap_warning)
-      " noremap <leader>ad <plug>(ale_detail)
-      noremap gbd <plug>(ale_detail)
-      " nnoremap <leader>at <plug>(ale_toggle)
-      " nnoremap <leader>al <plug>(ale_lint)
-
-      if g:ale_is_loaded
-        ALEDisable
-      endif
-    endfunction
+    nnoremap <buffer> gs <cmd>LspHighlight<cr>
+    nnoremap <buffer> gS <cmd>LspHighlightClear<cr>
+    noremap ]e <cmd>LspDiag nextWrap<cr>
+    noremap [e <cmd>LspDiag prevWrap<cr>
   augroup END
+
+  " augroup ale_settings | au!
+    " " linters: ruff, mypy, pylint, pyright, lacheck, chktek, proselint
+    " let g:ale_linters = {
+          " \ 'vim': ['vint'],
+          " \ 'python': ['ruff', 'mypy'],
+          " \ 'lua': ['luacheck', 'luac'],
+          " \ 'tex': ['lacheck']
+          " \ }
+    " let g:ale_sign_error = '×⟩'
+    " let g:ale_sign_warning = '~⟩'
+    " let g:ale_lint_on_text_changed = 'normal'
+    " let g:ale_lint_on_insert_leave = 1
+    " let g:ale_lint_on_save = 1
+    " let g:ale_lint_delay = 0
+    " " let g:ale_virtualtext_prefix = '  '
+    " let g:ale_virtualtext_prefix = '  '
+    " let g:ale_virtualtext_cursor = 'current'
+    " let g:ale_virtualtext_delay = 0
+    " let g:ale_echo_cursor = 0
+    " " let g:ale_echo_detail = 1
+    " " let g:ale_echo_delay = 0
+    " let g:ale_python_pylint_options = "--init-hook=\"import sys; sys.path.append(\'" . trim(system('git rev-parse --show-toplevel')) . "\')\""
+
+    " " au FileType python call s:setup_ale()
+    " " au FileType lua call s:setup_ale()
+    " " au FileType vim call s:setup_ale()
+    " " au FileType tex call s:setup_ale()
+
+    " au FileType python,lua,vim,tex call s:setup_ale()
+    " " au FileType python,lua,vim,tex ALEDisable
+
+    " function! s:setup_ale()
+      " packadd ale
+      " let g:ale_is_loaded = 1
+
+      " noremap ]a <plug>(ale_next_wrap)
+      " noremap [a <plug>(ale_previous_wrap)
+      " noremap ]l <plug>(ale_next_wrap)
+      " noremap [l <plug>(ale_previous_wrap)
+      " noremap ]e <plug>(ale_next_wrap_error)
+      " noremap [e <plug>(ale_previous_wrap_error)
+      " noremap ]w <plug>(ale_next_wrap_warning)
+      " noremap [w <plug>(ale_previous_wrap_warning)
+      " " noremap <leader>ad <plug>(ale_detail)
+      " noremap gbd <plug>(ale_detail)
+      " " nnoremap <leader>at <plug>(ale_toggle)
+      " " nnoremap <leader>al <plug>(ale_lint)
+
+      " if g:ale_is_loaded
+        " ALEDisable
+      " endif
+    " endfunction
+
+  " augroup END
 
 
 " SET OPTIONS
@@ -966,9 +1085,6 @@
 
 
 " TOGGLE MAPPINGS
-  if g:rainbow_is_loaded
-    nnoremap <leader>tr :RainbowToggle<cr>
-  endif
   nnoremap <leader>tw :setlocal nowrap!<cr>
   nnoremap <leader>ts :setlocal spell!<cr>
   nnoremap <leader>tfi :setlocal foldmethod=indent<cr>
@@ -980,10 +1096,16 @@
   " noremap <leader>h :noh<bar>:echo<cr>
   " nnoremap <leader>th :set nohlsearch!<cr>
   " nnoremap <leader>tb :call ToggleBackground()<cr>
-
-  nnoremap <leader>at <plug>(ale_toggle)
-  nnoremap <leader>tale <plug>(ale_toggle)
-  nnoremap <leader>tgit :GitGutterToggle<cr>
+  if g:rainbow_is_loaded
+    nnoremap <leader>tr :RainbowToggle<cr>
+  endif
+  if g:ale_is_loaded
+    nnoremap <leader>at <plug>(ale_toggle)
+    nnoremap <leader>tale <plug>(ale_toggle)
+  endif
+  if g:gitgutter_is_loaded
+    nnoremap <leader>tgit :GitGutterToggle<cr>
+  endif
 
   " function! ToggleConcealLevel()
       " if &conceallevel == 0
@@ -1035,10 +1157,17 @@
 
   " BUFFER MAPPINGS
     " noremap <leader>bb :call ScratchBuffer()<cr>
-    noremap gbb :call ScratchBuffer()<cr>
-    noremap gbs :call ScratchBuffer()<cr>
-    " noremap <c-w>b :call ScratchBuffer()<cr>
+    " noremap gbb :call ScratchBuffer()<cr>
+    " noremap gbs :call ScratchBuffer()<cr>
+    noremap <c-w>b :call ScratchBuffer()<cr>
     " noremap <leader>bs :call ScratchBuffer()<cr>
+
+  " WINDOWS & POPUPS
+    noremap <c-w>z <c-w>_
+    noremap <c-w>Z <c-w>=
+    " inoremap <expr> <cr> pumvisible() ? (complete_info().selected == -1 ? '<c-y><cr>' : '<c-y>') : '<cr>'
+    " inoremap <expr> <cr> pumvisible() ? "\<c-g>u\<cr>" : "\<cr>"
+    " inoremap <expr> <tab> pumvisible() ? "\<c-y>" : "\<tab>"
 
   " MOVEMENT
     nnoremap dS :%s/\s\+$//e<cr><c-o>
