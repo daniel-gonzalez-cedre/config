@@ -17,13 +17,13 @@
 
   augroup init_settings | au!
     " au BufEnter * set nospell
-    au BufEnter,BufNewFile,BufReadPost * set nospell
+    au VimEnter,BufEnter,BufNewFile,BufReadPost * set nospell
     " au BufEnter,BufNewFile,BufReadPost *.vimrc,*.vim setlocal nospell
     " au FileType vim set nospell
     " au FileType text,markdown,html,tex,vim,gitcommit set spell
 
-    au BufEnter,BufNewFile,BufReadPost * syntax sync fromstart
-    au BufEnter,BufNewFile,BufReadPost * set conceallevel=0
+    au VimEnter,BufEnter,BufNewFile,BufReadPost * syntax sync fromstart
+    au VimEnter,BufEnter,BufNewFile,BufReadPost * set conceallevel=0
     " au BufEnter,BufNewFile,BufReadPost * set conceallevel=1
     " au FileType * syntax keyword Normal lambda conceal cchar=λ
 
@@ -420,6 +420,7 @@
 
 
 " PACKAGES
+  let g:vimlsp_is_loaded = 0
   let g:highlightedyank_is_loaded=0
   let g:autocomplpop_is_loaded = 0
   let g:matchup_is_loaded = 0
@@ -673,7 +674,7 @@
       " xmap ig <Plug>(GitGutterTextObjectInnerVisual)
       " xmap ag <Plug>(GitGutterTextObjectOuterVisual)
       " nmap <leader>gf :GitGutterFold<cr>
-      nmap <leader>fg :GitGutterFold<cr>
+      " nmap <leader>fg :GitGutterFold<cr>
     endif
 
     " function! GitStatus()
@@ -771,103 +772,106 @@
   " endif
 
   packadd lsp
-  " brew install python-lsp-server
-  " pip install python-lsp-server
-  if executable('pylsp')
-    call LspAddServer([#{name: 'pylsp',
-                      \  filetype: 'python',
-                      \  path: '/opt/homebrew/bin/pylsp',
-                      \  args: []}])
-  endif
-  if executable('pyright')
-    call LspAddServer([#{name: 'pyright',
-                      \  filetype: 'python',
-                      \  path: '/opt/homebrew/bin/pyright-langserver',
-                      \  args: ['--stdio'],
-                      \  workspaceConfig: #{
-                      \    python: #{
-                      \      pythonPath: '$(which python3)'
-                      \  }}
-                      \ }])
-  endif
-  " call LspAddServer([#{name: 'ruff',
-                    " \   filetype: 'python',
-                    " \   path: '/opt/homebrew/bin/ruff',
-                    " \   args: [server]
-                    " \ }])
-  if executable('texlab')
-    call LspAddServer([#{name: 'texlab',
-                      \  filetype: 'tex',
-                      \  path: '/opt/homebrew/bin/texlab',
-                      \  args: []}])
-  endif
-  call LspOptionsSet(#{
-          \   aleSupport: v:false,
-          \   autoComplete: v:true,
-          \   autoHighlight: v:false,
-          \   autoHighlightDiags: v:true,
-          \   autoPopulateDiags: v:false,
-          \   completionMatcher: 'fuzzy',
-          \   completionMatcherValue: 1,
-          \   diagSignErrorText: '!!',
-          \   diagSignHintText: '--',
-          \   diagSignInfoText: '==',
-          \   diagSignWarningText: '??',
-          \   echoSignature: v:false,
-          \   hideDisabledCodeActions: v:false,
-          \   highlightDiagInline: v:true,
-          \   hoverInPreview: v:false,
-          \   ignoreMissingServer: v:false,
-          \   keepFocusInDiags: v:true,
-          \   keepFocusInReferences: v:true,
-          \   completionTextEdit: v:true,
-          \   diagVirtualTextAlign: 'after',
-          \   diagVirtualTextWrap: 'truncate',
-          \   noNewlineInCompletion: v:false,
-          \   omniComplete: v:null,
-          \   outlineOnRight: v:true,
-          \   outlineWinSize: 32,
-          \   semanticHighlight: v:true,
-          \   showDiagInBalloon: v:false,
-          \   showDiagInPopup: v:true,
-          \   showDiagOnStatusLine: v:true,
-          \   showDiagWithSign: v:true,
-          \   showDiagWithVirtualText: v:false,
-          \   showInlayHints: v:false,
-          \   showSignature: v:true,
-          \   snippetSupport: v:false,
-          \   ultisnipsSupport: v:false,
-          \   useBufferCompletion: v:false,
-          \   usePopupInCodeAction: v:false,
-          \   useQuickfixForLocations: v:false,
-          \   vsnipSupport: v:false,
-          \   bufferCompletionTimeout: 100,
-          \   customCompletionKinds: v:false,
-          \   completionKinds: {},
-          \   filterCompletionDuplicates: v:false,
-          \ })
-  " noremap ]e :LspDiag nextWrap<cr>
-  " noremap [e :LspDiag prevWrap<cr>
-  " noremap ]d :LspDiag nextWrap<cr>
-  " noremap [d :LspDiag prevWrap<cr>
-  augroup lsp_settings | au!
-    au FileType * set keywordprg=:LspHover
-    nnoremap <buffer> gd <cmd>LspGotoDefinition<cr>
-    nnoremap <buffer> <c-w>gd <cmd>botright LspGotoDefinition<cr>
-    nnoremap <buffer> gD <cmd>LspGotoDeclaration<cr>
-    nnoremap <buffer> gi <cmd>LspGotoImpl<cr>
-    nnoremap <buffer> gt <cmd>LspGotoTypeDef<cr>
+  let g:vimlsp_is_loaded = 1
+  if g:vimlsp_is_loaded
+    " brew install python-lsp-server, pip install python-lsp-server
+    if executable('pylsp')
+      call LspAddServer([#{name: 'pylsp',
+                        \  filetype: 'python',
+                        \  path: '/opt/homebrew/bin/pylsp',
+                        \  args: []}])
+    endif
+    " if executable('pyright')
+      " call LspAddServer([#{name: 'pyright',
+                        " \  filetype: 'python',
+                        " \  path: '/opt/homebrew/bin/pyright-langserver',
+                        " \  args: ['--stdio'],
+                        " \  workspaceConfig: #{
+                        " \    python: #{
+                        " \      pythonPath: '/Users/cedre/repos/explainable_graphs/.venv/bin/python3'
+                        " \  }}
+                        " \ }])
+    " endif
+    " call LspAddServer([#{name: 'ruff',
+                      " \   filetype: 'python',
+                      " \   path: '/opt/homebrew/bin/ruff',
+                      " \   args: [server]
+                      " \ }])
+    " brew install texlab
+    if executable('texlab')
+      call LspAddServer([#{name: 'texlab',
+                        \  filetype: 'tex',
+                        \  path: '/opt/homebrew/bin/texlab',
+                        \  args: []}])
+    endif
+    call LspOptionsSet(#{aleSupport: v:false,
+                       \ autoComplete: v:true,
+                       \ autoHighlight: v:false,
+                       \ autoHighlightDiags: v:true,
+                       \ autoPopulateDiags: v:false,
+                       \ completionMatcher: 'fuzzy',
+                       \ completionMatcherValue: 1,
+                       \ diagSignErrorText: '!!',
+                       \ diagSignHintText: '--',
+                       \ diagSignInfoText: '==',
+                       \ diagSignWarningText: '??',
+                       \ echoSignature: v:false,
+                       \ hideDisabledCodeActions: v:false,
+                       \ highlightDiagInline: v:true,
+                       \ hoverInPreview: v:false,
+                       \ ignoreMissingServer: v:false,
+                       \ keepFocusInDiags: v:true,
+                       \ keepFocusInReferences: v:true,
+                       \ completionTextEdit: v:true,
+                       \ diagVirtualTextAlign: 'after',
+                       \ diagVirtualTextWrap: 'truncate',
+                       \ noNewlineInCompletion: v:false,
+                       \ omniComplete: v:null,
+                       \ outlineOnRight: v:true,
+                       \ outlineWinSize: 32,
+                       \ semanticHighlight: v:true,
+                       \ showDiagInBalloon: v:false,
+                       \ showDiagInPopup: v:true,
+                       \ showDiagOnStatusLine: v:true,
+                       \ showDiagWithSign: v:true,
+                       \ showDiagWithVirtualText: v:false,
+                       \ showInlayHints: v:false,
+                       \ showSignature: v:true,
+                       \ snippetSupport: v:false,
+                       \ ultisnipsSupport: v:false,
+                       \ useBufferCompletion: v:false,
+                       \ usePopupInCodeAction: v:false,
+                       \ useQuickfixForLocations: v:false,
+                       \ vsnipSupport: v:false,
+                       \ bufferCompletionTimeout: 100,
+                       \ customCompletionKinds: v:false,
+                       \ completionKinds: {},
+                       \ filterCompletionDuplicates: v:false})
+    augroup lsp_settings | au!
+      au VimEnter * set keywordprg=:LspHover
 
-    nnoremap <buffer> gpd <cmd>LspPeekDefinition<cr>
-    nnoremap <buffer> gpD <cmd>LspPeekDeclaration<cr>
-    nnoremap <buffer> gpi <cmd>LspPeekImpl<cr>
-    nnoremap <buffer> gpt <cmd>LspPeekTypeDef<cr>
+      au VimEnter * noremap ]e <cmd>LspDiag nextWrap<cr>
+      au VimEnter * noremap [e <cmd>LspDiag prevWrap<cr>
 
-    nnoremap <buffer> gs <cmd>LspHighlight<cr>
-    nnoremap <buffer> gS <cmd>LspHighlightClear<cr>
-    noremap ]e <cmd>LspDiag nextWrap<cr>
-    noremap [e <cmd>LspDiag prevWrap<cr>
-  augroup END
+      au VimEnter * nnoremap <buffer> ]d <cmd>botright LspGotoDefinition<cr>
+      au VimEnter * nnoremap <buffer> [d <cmd>LspGotoDefinition<cr>
+      au VimEnter * nnoremap <buffer> [D <cmd>LspGotoDeclaration<cr>
+      au VimEnter * nnoremap <buffer> [i <cmd>LspGotoImpl<cr>
+      au VimEnter * nnoremap <buffer> [t <cmd>LspGotoTypeDef<cr>
+
+      au VimEnter * nnoremap <buffer> gd <cmd>LspPeekDefinition<cr>
+      au VimEnter * nnoremap <buffer> gD <cmd>LspPeekDeclaration<cr>
+      au VimEnter * nnoremap <buffer> gi <cmd>LspPeekImpl<cr>
+      au VimEnter * nnoremap <buffer> gt <cmd>LspPeekTypeDef<cr>
+
+      au VimEnter * nnoremap <buffer> gm <cmd>LspDiag current<cr>
+
+      au VimEnter * nnoremap <buffer> gH <cmd>LspDiag highlight toggle<cr>
+
+      au VimEnter * nnoremap <buffer> gs <cmd>LspHighlight<cr>
+      au VimEnter * nnoremap <buffer> gS <cmd>LspHighlightClear<cr>
+    augroup END
+  endif
 
   " augroup ale_settings | au!
     " " linters: ruff, mypy, pylint, pyright, lacheck, chktek, proselint
@@ -1344,25 +1348,27 @@
 
 
 " DELIMITER MAPPINGS
-  inoremap <silent> <c-g>m $
-  inoremap <silent> ( ()<c-g>U<left>
-  inoremap <silent> [ []<c-g>U<left>
-  inoremap <silent> { {}<c-g>U<left>
-  inoremap <silent> ) <c-r>=ClosePair(')')<cr>
-  inoremap <silent> ] <c-r>=ClosePair(']')<cr>
-  inoremap <silent> } <c-r>=ClosePair('}')<cr>
-  inoremap <silent> > <c-r>=ClosePair('>')<cr>
-  inoremap <silent> " <c-r>=QuoteDelim('"')<cr>
-  " inoremap <silent> ' <c-r>=QuoteDelim("'")<cr>
-  inoremap <silent> ` <c-r>=QuoteDelim('`')<cr>
-  " inoremap <silent> <c-g>q ``''<left><left>
-  " FIX ISSUE OF QUOTE TEXT OBJECTS GRABBING AN EXTRA SPACE
-  onoremap a` 2i`
-  onoremap a' 2i'
-  onoremap a" 2i"
-  xnoremap a` 2i`
-  xnoremap a' 2i'
-  xnoremap a" 2i"
+  augroup delimiter_mappings | au!
+    au VimEnter * inoremap <silent> <c-g>m $
+    au VimEnter * inoremap <silent> ( ()<c-g>U<left>
+    au VimEnter * inoremap <silent> [ []<c-g>U<left>
+    au VimEnter * inoremap <silent> { {}<c-g>U<left>
+    au VimEnter * inoremap <silent> ) <c-r>=ClosePair(')')<cr>
+    au VimEnter * inoremap <silent> ] <c-r>=ClosePair(']')<cr>
+    au VimEnter * inoremap <silent> } <c-r>=ClosePair('}')<cr>
+    au VimEnter * inoremap <silent> > <c-r>=ClosePair('>')<cr>
+    au VimEnter * inoremap <silent> " <c-r>=QuoteDelim('"')<cr>
+    au VimEnter * " inoremap <silent> ' <c-r>=QuoteDelim("'")<cr>
+    au VimEnter * inoremap <silent> ` <c-r>=QuoteDelim('`')<cr>
+    " au VimEnter * inoremap <silent> <c-g>q ``''<left><left>
+    " FIX ISSUE OF QUOTE TEXT OBJECTS GRABBING AN EXTRA SPACE
+    au VimEnter * onoremap a` 2i`
+    au VimEnter * onoremap a' 2i'
+    au VimEnter * onoremap a" 2i"
+    au VimEnter * xnoremap a` 2i`
+    au VimEnter * xnoremap a' 2i'
+    au VimEnter * xnoremap a" 2i"
+  augroup END
 
   " VIM-SURROUND DEPENDENT MAPPINGS
   " <s-s>(

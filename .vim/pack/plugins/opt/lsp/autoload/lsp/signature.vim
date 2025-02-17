@@ -61,13 +61,31 @@ export def BufferInit(lspserver: dict<any>)
     if ch =~ ' '
       mapChar = '<Space>'
     endif
-    exe $"inoremap <buffer> <silent> {mapChar} {mapChar}<C-R>=g:LspShowSignature()<CR>"
+    # OVERRIDING FUNCTION
+    # exe $"inoremap <buffer> <silent> {mapChar} {mapChar}<C-R>=g:LspShowSignature()<CR>"
+    exe $"inoremap <buffer> <silent> {mapChar} {mapChar}<C-R>=g:LspShowSignature()<CR><C-R>=g:MatchBrace(\"{mapChar}\")<CR>"
   endfor
 
   # close the signature popup when leaving insert mode
   autocmd_add([{bufnr: bufnr(),
 		event: 'InsertLeave',
 		cmd: 'CloseCurBufSignaturePopup()'}])
+enddef
+
+# MY CUSTOM FUNCTION
+def g:MatchBrace(matchChar: string): string
+  if matchChar == '('
+    return ")\<left>"
+  else
+    if matchChar == '{'
+      return "}\<left>"
+    else
+      if matchChar == '['
+        return "]\<left>"
+      endif
+    endif
+  endif
+  return ''
 enddef
 
 # process the 'textDocument/signatureHelp' reply from the LSP server and
