@@ -141,21 +141,21 @@ if has('nvim')
 else
   call gruvbox_material#highlight('SpecialKey', s:palette.bg5, s:palette.none)
 endif
-call gruvbox_material#highlight('Pmenu', s:palette.fg1, s:palette.bg3)
-call gruvbox_material#highlight('PmenuSbar', s:palette.none, s:palette.bg3)
+call gruvbox_material#highlight('Pmenu', s:palette.fg0, s:palette.bg2)
+call gruvbox_material#highlight('PmenuSbar', s:palette.none, s:palette.bg2)  " scroll bar
 if s:configuration.menu_selection_background ==# 'grey'
-  call gruvbox_material#highlight('PmenuSel', s:palette.bg3, s:palette.grey2)
+  call gruvbox_material#highlight('PmenuSel', s:palette.bg2, s:palette.grey1)
 elseif s:configuration.menu_selection_background ==# 'green'
-  call gruvbox_material#highlight('PmenuSel', s:palette.bg3, s:palette.bg_green)
+  call gruvbox_material#highlight('PmenuSel', s:palette.bg2, s:palette.bg_green)
 elseif s:configuration.menu_selection_background ==# 'red'
-  call gruvbox_material#highlight('PmenuSel', s:palette.bg3, s:palette.bg_red)
+  call gruvbox_material#highlight('PmenuSel', s:palette.bg2, s:palette.bg_red)
 else
-  call gruvbox_material#highlight('PmenuSel', s:palette.bg3, s:palette[s:configuration.menu_selection_background])
+  call gruvbox_material#highlight('PmenuSel', s:palette.bg2, s:palette[s:configuration.menu_selection_background])
 endif
-call gruvbox_material#highlight('PmenuKind', s:palette.green, s:palette.bg3)
-call gruvbox_material#highlight('PmenuExtra', s:palette.grey2, s:palette.bg3)
+call gruvbox_material#highlight('PmenuKind', s:palette.yellow, s:palette.bg2)
+call gruvbox_material#highlight('PmenuExtra', s:palette.grey2, s:palette.bg2)
 highlight! link WildMenu PmenuSel
-call gruvbox_material#highlight('PmenuThumb', s:palette.none, s:palette.grey0)
+call gruvbox_material#highlight('PmenuThumb', s:palette.none, s:palette.bg4)  " scroll bar
 if s:configuration.float_style ==# 'dim'
   call gruvbox_material#highlight('NormalFloat', s:palette.fg1, s:palette.bg_dim)
   call gruvbox_material#highlight('FloatBorder', s:palette.grey1, s:palette.bg_dim)

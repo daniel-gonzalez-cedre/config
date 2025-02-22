@@ -27,6 +27,12 @@
     " au BufEnter,BufNewFile,BufReadPost * set conceallevel=1
     " au FileType * syntax keyword Normal lambda conceal cchar=λ
 
+    au VimEnter * set completeopt=menuone,popup,noinsert,noselect,fuzzy
+    au VimEnter * set completepopup=height:16,width:32
+    au VimEnter * set previewpopup=height:16,width:32
+    " au VimEnter * set completepopup=height:15,width:60,border:off,highlight:PMenuSbar
+    " au VimEnter * set previewpopup=height:10,width:60,highlight:PMenuSbar
+
     au FileType gitcommit set nowrap
 
     " CUSTOM CURSORS
@@ -317,9 +323,14 @@
     let l:palette = gruvbox_material#get_palette('medium', 'material', {'bg1': ['#2f2c29', '235']})
     " let l:palette = gruvbox_material#get_palette('medium', 'material', {})
 
+    call gruvbox_material#highlight('IncSearch', l:palette.none, l:palette.none, 'inverse')
+    " call gruvbox_material#highlight('IncSearch', l:palette.bg_yellow, l:palette.none, 'inverse')
+    " call gruvbox_material#highlight('Search', l:palette.none, l:palette.bg2)
+    call gruvbox_material#highlight('Search', l:palette.none, l:palette.none, 'underline')
+
     call gruvbox_material#highlight('Comment', l:palette.grey0, l:palette.none, 'italic')
 
-    call gruvbox_material#highlight('String', l:palette.fg1, l:palette.bg1, 'bold')
+    call gruvbox_material#highlight('String', l:palette.fg0, l:palette.bg2, 'bold')
 
     call gruvbox_material#highlight('Todo', l:palette.grey1, l:palette.none, 'bolditalic')
 
@@ -404,7 +415,7 @@
     let g:gruvbox_material_enable_italic = 0  " (0), 1
     let g:gruvbox_material_disable_italic_comment = 0  " (0), 1
     let g:gruvbox_material_visual = 'grey background'  " (grey background), red background, green background, blue background, reverse
-    let g:gruvbox_material_menu_selection_background = 'aqua'  " (grey), red, orange, yellow, green, aqua, blue, purple
+    " let g:gruvbox_material_menu_selection_background = 'green'  " (grey), red, orange, yellow, green, aqua, blue, purple
     let g:gruvbox_material_spell_foreground = 'none'  " (none), colored
     let g:gruvbox_material_ui_contrast = 'low'  " (low), high
     let g:gruvbox_material_float_style = 'bright'  " (bright), dim
@@ -608,7 +619,7 @@
     " vmap gbe :NR<cr>
     " vmap gbc :NR<cr>
     " vmap gbs :NR<cr>
-    vmap <c-w>e <cmd>NR<cr>
+    vmap <c-w>e :NR<cr>
 
   let g:tabular_is_loaded = 1
   packadd tabular  " tabularize
@@ -781,6 +792,12 @@
                         \  path: '/opt/homebrew/bin/pylsp',
                         \  args: []}])
     endif
+    if executable('clangd')
+      call LspAddServer([#{name: 'clangd',
+                        \  filetype: ['c', 'cpp'],
+                        \  path: '/usr/bin/clangd',
+                        \  args: ['--background-index']}])
+    endif
     " if executable('pyright')
       " call LspAddServer([#{name: 'pyright',
                         " \  filetype: 'python',
@@ -825,7 +842,7 @@
                        \ completionTextEdit: v:true,
                        \ diagVirtualTextAlign: 'after',
                        \ diagVirtualTextWrap: 'truncate',
-                       \ noNewlineInCompletion: v:false,
+                       \ noNewlineInCompletion: v:true,
                        \ omniComplete: v:null,
                        \ outlineOnRight: v:true,
                        \ outlineWinSize: 32,
@@ -843,7 +860,7 @@
                        \ usePopupInCodeAction: v:false,
                        \ useQuickfixForLocations: v:false,
                        \ vsnipSupport: v:false,
-                       \ bufferCompletionTimeout: 100,
+                       \ bufferCompletionTimeout: 20,
                        \ customCompletionKinds: v:false,
                        \ completionKinds: {},
                        \ filterCompletionDuplicates: v:false})
@@ -1353,21 +1370,21 @@
     au VimEnter * inoremap <silent> ( ()<c-g>U<left>
     au VimEnter * inoremap <silent> [ []<c-g>U<left>
     au VimEnter * inoremap <silent> { {}<c-g>U<left>
-    au VimEnter * inoremap <silent> ) <c-r>=ClosePair(')')<cr>
-    au VimEnter * inoremap <silent> ] <c-r>=ClosePair(']')<cr>
-    au VimEnter * inoremap <silent> } <c-r>=ClosePair('}')<cr>
-    au VimEnter * inoremap <silent> > <c-r>=ClosePair('>')<cr>
-    au VimEnter * inoremap <silent> " <c-r>=QuoteDelim('"')<cr>
-    au VimEnter * " inoremap <silent> ' <c-r>=QuoteDelim("'")<cr>
-    au VimEnter * inoremap <silent> ` <c-r>=QuoteDelim('`')<cr>
+    au VimEnter * inoremap <silent> ) <c-g>U<c-r>=ClosePair(')')<cr>
+    au VimEnter * inoremap <silent> ] <c-g>U<c-r>=ClosePair(']')<cr>
+    au VimEnter * inoremap <silent> } <c-g>U<c-r>=ClosePair('}')<cr>
+    au VimEnter * inoremap <silent> > <c-g>U<c-r>=ClosePair('>')<cr>
+    au VimEnter * inoremap <silent> " <c-g>U<c-r>=QuoteDelim('"')<cr>
+    au VimEnter * " inoremap <silent> ' <c-g>U<c-r>=QuoteDelim("'")<cr>
+    au VimEnter * inoremap <silent> ` <c-g>U<c-r>=QuoteDelim('`')<cr>
     " au VimEnter * inoremap <silent> <c-g>q ``''<left><left>
     " FIX ISSUE OF QUOTE TEXT OBJECTS GRABBING AN EXTRA SPACE
-    au VimEnter * onoremap a` 2i`
-    au VimEnter * onoremap a' 2i'
-    au VimEnter * onoremap a" 2i"
-    au VimEnter * xnoremap a` 2i`
-    au VimEnter * xnoremap a' 2i'
-    au VimEnter * xnoremap a" 2i"
+    au VimEnter * onoremap <silent> a` 2i`
+    au VimEnter * onoremap <silent> a' 2i'
+    au VimEnter * onoremap <silent> a" 2i"
+    au VimEnter * xnoremap <silent> a` 2i`
+    au VimEnter * xnoremap <silent> a' 2i'
+    au VimEnter * xnoremap <silent> a" 2i"
   augroup END
 
   " VIM-SURROUND DEPENDENT MAPPINGS
