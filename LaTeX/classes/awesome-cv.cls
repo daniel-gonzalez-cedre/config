@@ -595,6 +595,9 @@
 % \newcommand{\acvHonorsTopSkip}{-1.0mm}  % default 0.0mm
 % \newcommand{\acvServiceTopSkip}{-1.0mm}  % default 0.0mm
 
+\newcommand{\afterSectionSkip}{-2.0pt}  % default -0.4pt
+\newcommand{\afterEntrySkip}{-2.5pt}  % default -0.4pt
+
 \newcommand{\acvEntriesColSep}{1.0ex}  % default 1.0ex
 
 %-------------------------------------------------------------------------------
@@ -675,7 +678,7 @@
           % \href{mailto:\@supplemental}{\textcolor{links}{\@supplemental}}%
           % \href{https://\@supplemental}{\textcolor{links}{\@supplemental}}%
           % \href{\@supplemental}{\textcolor{links}{\upshape\footnotesize\texttt{notredame.box.com/s/zc6u68wfolhy77g0h2qkp7h1qji3tto7}}}%
-          \href{\@supplemental}{\textcolor{links}{Supplemental Materials}}%
+          \href{\@supplemental}{\textcolor{links}{Supplementary Materials}}%
         }%
       \ifthenelse{\isundefined{\@email}}%
         {}%
@@ -839,6 +842,7 @@
   \begin{center}
 }{%
   \end{center}
+  \vspace{\afterSectionSkip}
 }
 % Define an entry of cv information
 % Usage: \cventry{<position>}{<title>}{<location>}{<date>}{<description>}
@@ -849,7 +853,7 @@
   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.25cm} R{4.25cm}}
     \ifempty{#2#3}
       {\entrypositionstyle{#1} & \entrylocationstyle{#4} \\}
-      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\[-0.25ex]
+      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\[-0.5ex]
       \entrypositionstyle{#1} & \entrydatestyle{#4} \\[-0.25ex]}
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}
   \end{tabular*}%
@@ -862,11 +866,11 @@
       % {\entrytitlestyle{#1} & \entrydatestyle{#4} \\[-0.25ex]
        % \entrypositionstyle{#3} & \entrylocationstyle{#5} \\[-0.25ex]
        % \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#6}}}
-    \entrytitlestyle{#1}\entrysubjectstyle{{\spacedot}#2}\ifempty{#3}{}{\entrypostscriptstyle{{\spacedot}#3}} & \entrylocationstyle{#5} \\[-0.25ex]
+    \entrytitlestyle{#1}\entrysubjectstyle{{\spacedot}#2}\ifempty{#3}{}{\entrypostscriptstyle{{\spacedot}#3}} & \entrylocationstyle{#5} \\[-0.5ex]
     \entrypositionstyle{#4} & \entrydatestyle{#6}{\fontsize{9pt}{1em}\color{lighttext}\scshape~~\textendash~~}\entrydatestyle{#7} \\[-0.25ex]
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#8}}
-
   \end{tabular*}%
+  \vspace{\afterEntrySkip}%
 }
 \newcommand*{\cvinternship}[6]{%
   \vspace{\acvEntryTopSkip}
@@ -875,10 +879,11 @@
   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 5.25cm} R{5.25cm}}
     \ifempty{#2#3}
       {\entrypositionstyle{#1} & \entrylocationstyle{#4} \\}
-      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\[-0.25ex]
-      \entrypositionstyle{#1} & \entrydatestyle{#4}{\fontsize{9pt}{1em}\color{lighttext}\scshape~~\textendash~~}\entrydatestyle{#5} \\[-0.25ex]}
+      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\[-0.5ex]
+      \entrypositionstyle{#1} & \entrydatestyle{#4}{\fontsize{9pt}{1em}\color{lighttext}\scshape~~\textendash~~}\entrydatestyle{#5} \\[-0.5ex]}
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#6}}
   \end{tabular*}%
+  \vspace{\afterEntrySkip}%
 }
 \newcommand*{\cventryblank}[4]{%
   \vspace{\acvEntryTopSkip}
@@ -1004,7 +1009,7 @@
   \setlength\tabcolsep{0pt}
   \setlength{\extrarowheight}{0pt}
   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 3.75cm} R{3.75cm}}
-    \teachingtitlestyle{#2} & \teachinglocationstyle{#5} \\[-0.25ex]
+    \teachingtitlestyle{#2} & \teachinglocationstyle{#5} \\[-0.5ex]
     % \teachingpositionstyle{#1}\teachingcoursestyle{{\spacedot}#3} & \teachingdatestyle{#4} \\[-0.25ex]
     \teachingpositionstyle{#1} & \teachingdatestyle{#3}{\fontsize{9pt}{1em}\color{lighttext}\scshape~~\textendash~~}\teachingdatestyle{#4} \\[-0.25ex]
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#6}}
@@ -1015,7 +1020,7 @@
   \setlength\tabcolsep{0pt}
   \setlength{\extrarowheight}{0pt}
   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
-    \teachingtitlestyle{#2} & \teachinglocationstyle{#6} \\[-0.25ex]
+    \teachingtitlestyle{#2} & \teachinglocationstyle{#6} \\[-0.5ex]
     % \teachingpositionstyle{#1}\teachingcoursestyle{{\spacedot}#3} & \teachingdatestyle{#4} \\[-0.25ex]
     \teachingpositionstyle{#1}\teachingcoursestyle{{\spacedot}#3}\teachingsizestyle{{\spacedot}#4} & \teachingdatestyle{#5} \\[-0.25ex]
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#7}}
@@ -1026,11 +1031,12 @@
   \setlength\tabcolsep{0pt}
   \setlength{\extrarowheight}{0pt}
   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
-    \teachingtitlestyle{#2} & \teachinglocationstyle{#6} \\[-0.25ex]
-    \teachingpositionstyle{#1}\teachingcoursestyle{{\spacedot}#3}\teachingsizestyle{{\spacedot}#4} & \teachingdatestyle{#5} \\[-0.25ex]
+    \teachingtitlestyle{#2} & \teachinglocationstyle{#6} \\[-0.5ex]
+    \teachingpositionstyle{#1}\teachingcoursestyle{{\spacedot}#3}\teachingsizestyle{{\spacedot}#4} & \teachingdatestyle{#5} \\[-0.5ex]
     \teachingtopicstyle{#7} \\[-0.25ex]
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#8}}
   \end{tabular*}%
+  % \vspace{\afterEntrySkip}
 }
 
 % Define an environment for cvhonor
@@ -1040,7 +1046,7 @@
     % % \setlength\tabcolsep{0pt}
     % \setlength\tabcolsep{1ex}
     \setlength\tabcolsep{\acvEntriesColSep}
-    \setlength{\extrarowheight}{0pt}
+    \setlength{\extrarowheight}{-0.5pt}
     \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.35}} R{\textwidth * \real{0.325}} L{\textwidth * \real{0.175}}}
     % \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.9125}}}
     % \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} C{1.5cm} L{\textwidth - 4.0cm} R{2.5cm}}
@@ -1084,15 +1090,17 @@
 }{%
     \end{tabular*}
   \end{center}
+  \vspace{\afterSectionSkip}
 }
 % Define a line of cv information(skill)
 % Usage: \cvskill{<type>}{<skillset>}
 \newcommand*{\cvpub}[4]{%
   \vspace{\acvPubAuthorSkip}
-    % \skilldatestyle{#1} & \skilltypestyle{#2}{\spacedot}\skillformstyle{\normalshape\textsc{#3}} \\
-    % \skilldatestyle{#1} & \skilltypestyle{#2}{\spacedot}\skillformstyle{#3} \\
-    \skilldatestyle{#1} & \skilltypestyle{#2}{\spacedot}\pubvenuestyle{#3} \\
-    & \skillsetstyle{#4} \\
+  % \skilldatestyle{#1} & \skilltypestyle{#2}{\spacedot}\skillformstyle{\normalshape\textsc{#3}} \\
+  % \skilldatestyle{#1} & \skilltypestyle{#2}{\spacedot}\skillformstyle{#3} \\
+  \skilldatestyle{#1} & \skilltypestyle{#2}{\spacedot}\pubvenuestyle{#3} \\
+                      & \skillsetstyle{#4} \\[0.25ex]
+  % \vspace{-1.0pt}
 }
 
 % Define an environment for cvskill
@@ -1100,7 +1108,7 @@
   \vspace{\acvSectionContentTopSkip}
   \begin{center}
     \setlength\tabcolsep{\acvEntriesColSep}
-    \setlength{\extrarowheight}{0pt}
+    \setlength{\extrarowheight}{-0.5pt}
     \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.4}} R{\textwidth * \real{0.15}} L{\textwidth * \real{0.3}}}
     % \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.9125}}}
     % \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.4}} L{\textwidth * \real{0.125}} L{\textwidth * \real{0.275}}}

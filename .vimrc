@@ -792,12 +792,12 @@
                         \  path: '/opt/homebrew/bin/pylsp',
                         \  args: []}])
     endif
-    if executable('clangd')
-      call LspAddServer([#{name: 'clangd',
-                        \  filetype: ['c', 'cpp'],
-                        \  path: '/usr/bin/clangd',
-                        \  args: ['--background-index']}])
-    endif
+    " if executable('clangd')
+      " call LspAddServer([#{name: 'clangd',
+                        " \  filetype: ['c', 'cpp'],
+                        " \  path: '/usr/bin/clangd',
+                        " \  args: ['--background-index']}])
+    " endif
     " if executable('pyright')
       " call LspAddServer([#{name: 'pyright',
                         " \  filetype: 'python',
@@ -1176,16 +1176,22 @@
     " nnoremap <c-_> <c-x>
     " vnoremap <c-_> <c-x>
 
-  " BUFFER MAPPINGS
-    " noremap <leader>bb :call ScratchBuffer()<cr>
-    " noremap gbb :call ScratchBuffer()<cr>
-    " noremap gbs :call ScratchBuffer()<cr>
-    noremap <c-w>b :call ScratchBuffer()<cr>
-    " noremap <leader>bs :call ScratchBuffer()<cr>
+  " WINDOWS, BUFFERS, & POPUPS
+    noremap <c-w>q <nop>
+    noremap <c-w>c <nop>
+    noremap <c-w>o <nop>
 
-  " WINDOWS & POPUPS
+    " GO TO PREVIOUS/NEXT TAB
+    noremap <c-w>p <c-w>gT
+    noremap <c-w>n <c-w>gt
+
+    noremap <c-w>t :call NewTabBuffer()<cr>
+    noremap <c-w>s :call NewSplitBuffer()<cr>
+    noremap <c-w>v :call NewVSplitBuffer()<cr>
+
     noremap <c-w>z <c-w>_
     noremap <c-w>Z <c-w>=
+
     " inoremap <expr> <cr> pumvisible() ? (complete_info().selected == -1 ? '<c-y><cr>' : '<c-y>') : '<cr>'
     " inoremap <expr> <cr> pumvisible() ? "\<c-g>u\<cr>" : "\<cr>"
     " inoremap <expr> <tab> pumvisible() ? "\<c-y>" : "\<tab>"
@@ -1452,7 +1458,16 @@
     " endwhile
   " endfunction
 
-  function! ScratchBuffer()
+  function! NewTabBuffer()
+    let l:prevft = &filetype
+    tabnew
+    noswapfile hide enew
+    setlocal buftype=nofile
+    setlocal bufhidden=delete
+    setlocal nobuflisted
+    let &l:filetype=l:prevft
+  endfunction
+  function! NewSplitBuffer()
     let l:prevft = &filetype
     split
     noswapfile hide enew
@@ -1460,7 +1475,15 @@
     setlocal bufhidden=delete
     setlocal nobuflisted
     let &l:filetype=l:prevft
-    file scratch
+  endfunction
+  function! NewVSplitBuffer()
+    let l:prevft = &filetype
+    vsplit
+    noswapfile hide enew
+    setlocal buftype=nofile
+    setlocal bufhidden=delete
+    setlocal nobuflisted
+    let &l:filetype=l:prevft
   endfunction
 
   function ClosePair(char)
