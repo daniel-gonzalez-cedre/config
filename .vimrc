@@ -1181,9 +1181,11 @@
     noremap <c-w>c <nop>
     noremap <c-w>o <nop>
 
+    " noremap <silent> <c-s-a>b :ls<cr>
+
     " GO TO PREVIOUS/NEXT TAB
-    noremap <c-w>p <c-w>gT
-    noremap <c-w>n <c-w>gt
+    " noremap <c-w>p <c-w>gT
+    " noremap <c-w>n <c-w>gt
 
     noremap <c-w>t :call NewTabBuffer()<cr>
     noremap <c-w>s :call NewSplitBuffer()<cr>
