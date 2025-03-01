@@ -1351,8 +1351,11 @@
 
   " COPY AND PASTE
     if has('clipboard')
+      vnoremap x "+x
+      vnoremap X "+X
+
       noremap d "+d
-      nnoremap D "+D
+      noremap D "+D
       nnoremap dd "+dd
 
       noremap y "+y

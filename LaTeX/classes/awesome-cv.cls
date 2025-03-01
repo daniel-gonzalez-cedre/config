@@ -143,25 +143,20 @@
 %-------------------------------------------------------------------------------
 \newcommand{\BackGroundColor}{paperwhite}
 \newcommand{\PaperColor}{paperwhite}
-% \newcommand{\PaperColor}{white}
-% \RequirePackage{ocgx2}
-% \RequirePackage{tikz}
-% \AddToHook{shipout/background}{%
-  % \begin{ocg}[printocg=never]{Non printable}{noprint}{1}
-    % \put (-0.5cm,-30cm) {\tikz[opacity=1] \draw[fill=paperwhite] (0,0) rectangle (24cm, -32cm);}
-  % \end{ocg}
-% }
-% \input{colors}
+
 \input{\HomeDir/LaTeX/preambles/2.colors}
-% Text colors
+
+% \colorlet{darktext}{black}
+% \colorlet{text}{darkgray}
+% \colorlet{graytext}{gray}
+% \colorlet{lighttext}{lightgray}
+% \colorlet{sectiondivider}{lightgray}
 \colorlet{darktext}{black}
-\colorlet{text}{darkgray}
-\colorlet{graytext}{gray}
-\colorlet{lighttext}{lightgray}
-\colorlet{sectiondivider}{lightgray}
-% Miscellaneous colors
-% School colors
-% Awesome colors
+\colorlet{text}{retroblack}
+\colorlet{graytext}{retrodark}
+\colorlet{lighttext}{retrolight}
+\colorlet{sectiondivider}{retrolight}
+
 \definecolor{awesome-emerald}{HTML}{00A388}
 \definecolor{awesome-skyblue}{HTML}{0395DE}
 \definecolor{awesome-red}{HTML}{DC3522}
@@ -172,7 +167,6 @@
 \definecolor{awesome-darknight}{HTML}{131A28}
 \definecolor{awesome-night}{HTML}{5c4f57}
 
-% \colorlet{awesome}{black}
 \colorlet{awesome}{darktext}
 \colorlet{links}{darktext}
 
@@ -279,29 +273,29 @@
 %-------------------------------------------------------------------------------
 % Configure styles for each CV elements
 % For fundamental structures
-\newcommand*{\headerfirstnamestyle}[1]{{\fontsize{32pt}{1em}\headerfont\color{graytext} #1}}
-\newcommand*{\headerlastnamestyle}[1]{{\fontsize{32pt}{1em}\headerfont\itshape\bfseries\color{awesome} #1}}
+\newcommand*{\headerfirstnamestyle}[1]{{\fontsize{28pt}{1em}\headerfont\color{graytext} #1}}
+\newcommand*{\headerlastnamestyle}[1]{{\fontsize{28pt}{1em}\headerfont\itshape\bfseries\color{awesome} #1}}
 \newcommand*{\headersubtitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\scshape\color{text}\MakeLowercase{#1}}}
 \newcommand*{\headeraddressstyle}[1]{{\fontsize{8pt}{1em}\headerfont\itshape\color{lighttext} #1}}
 \newcommand*{\headersocialstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\itshape\bfseries\color{graytext} #1}}
 \newcommand*{\headerquotestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\itshape\color{darktext} #1}}
 \newcommand*{\footerstyle}[1]{{\fontsize{8pt}{1em}\footerfont\scshape\color{lighttext} #1}}
-\newcommand*{\sectionstyle}[1]{{\fontsize{16pt}{1em}\bodyfont\sectionshape\color{text}\@sectioncolor #1}}
+\newcommand*{\sectionstyle}[1]{{\fontsize{15pt}{1em}\bodyfont\sectionshape\color{text}\@sectioncolor #1}}
 \newcommand*{\subsectionstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\textcolor{text}{\MakeLowercase{#1}}}}
 \newcommand*{\paragraphstyle}{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text}}
 
 % For elements of entry
-\newcommand*{\entrytitlestyle}[1]{{\fontsize{11pt}{1em}\bodyfont\headershape\color{text} #1}}
+\newcommand*{\entrytitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\headershape\color{text} #1}}
 \newcommand*{\entrypositionstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext}\MakeLowercase{#1}}}
 % \newcommand*{\entrydatestyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\bfseries\itshape\color{awesome} #1}}
 \newcommand*{\entrylocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\bfseries\itshape\color{text} #1}}
 \newcommand*{\entrydatestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext}\MakeLowercase{#1}}}
-\newcommand*{\entrysubjectstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\bfseries\color{graytext} #1}}
-\newcommand*{\entrypostscriptstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\bfseries\itshape\color{lighttext} #1}}
+\newcommand*{\entrysubjectstyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\color{graytext} #1}}
+\newcommand*{\entrypostscriptstyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\itshape\color{lighttext} #1}}
 \newcommand*{\descriptionstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\upshape\color{text} #1}}
 
 % For elements of teaching
-\newcommand*{\teachingtitlestyle}[1]{{\fontsize{11pt}{1em}\bodyfont\headershape\color{text} #1}}
+\newcommand*{\teachingtitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\headershape\color{text} #1}}
 \newcommand*{\teachingpositionstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{text}\MakeLowercase{#1}}}
 \newcommand*{\teachingcoursestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext}\MakeLowercase{#1}}}
 \newcommand*{\teachingsizestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{lighttext}\MakeLowercase{#1}}}
@@ -340,14 +334,14 @@
 \newcommand*{\subdescriptionstyle}[1]{{\fontsize{8pt}{1em}\bodyfontlight\upshape\color{text} #1}}
 
 % For elements of the cover letter
-\newcommand*{\lettersectionstyle}[1]{{\fontsize{16pt}{1em}\bodyfont\sectionshape\color{text}\@sectioncolor #1}}
+\newcommand*{\lettersectionstyle}[1]{{\fontsize{15pt}{1em}\bodyfont\sectionshape\color{text}\@sectioncolor #1}}
 % \newcommand*{\lettersubsectionstyle}[1]{{\fontsize{12pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
 \newcommand*{\lettersubsectionstyle}[1]{{\fontsize{12pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
-\newcommand*{\recipienttitlestyle}[1]{{\fontsize{11pt}{1em}\bodyfont\bfseries\itshape\color{graytext} #1}}
-\newcommand*{\recipientdepartmentstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{text} \MakeLowercase{#1}}}
-\newcommand*{\recipientuniversitystyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{graytext} \MakeLowercase{#1}}}
-\newcommand*{\recipientaddressstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{lighttext}\MakeLowercase{#1}}}
-\newcommand*{\lettertitlestyle}[1]{{\fontsize{11pt}{1em}\bodyfontlight\bfseries\color{darktext} \underline{#1}}}
+\newcommand*{\recipienttitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\itshape\color{graytext} #1}}
+\newcommand*{\recipientdepartmentstyle}[1]{{\fontsize{10pt}{1em}\bodyfont\scshape\color{text} \MakeLowercase{#1}}}
+\newcommand*{\recipientuniversitystyle}[1]{{\fontsize{10pt}{1em}\bodyfont\scshape\color{graytext} \MakeLowercase{#1}}}
+\newcommand*{\recipientaddressstyle}[1]{{\fontsize{10pt}{1em}\bodyfont\scshape\color{lighttext}\MakeLowercase{#1}}}
+\newcommand*{\lettertitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfontlight\bfseries\color{darktext} \underline{#1}}}
 \newcommand*{\letterdatestyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\itshape\color{graytext} #1}}
 % \newcommand*{\lettertextstyle}{\fontsize{11pt}{1.4em}\bodyfontlight\upshape\color{text}}
 % \newcommand*{\letterinfostyle}{\fontsize{9pt}{1.4em}\bodyfontlight\upshape\color{text}}
@@ -582,8 +576,8 @@
 \newcommand{\acvHeaderIconSep}{\space}
 
 % Others
-\newcommand{\acvSectionTopSkip}{2.0mm}  % default 3.0mm
-\newcommand{\acvSectionContentTopSkip}{-1.0mm}  % default 2.5mm
+\newcommand{\acvSectionTopSkip}{2pt}  % default 3.0mm
+\newcommand{\acvSectionContentTopSkip}{-4pt}  % default 2.5mm
 % \newcommand{\acvSectionListingSkip}{-1.0mm}  % default 0.0mm
 \newcommand{\acvSubSectionContentTopSkip}{-2.0mm}  % default 2.5mm
 \newcommand{\acvParagraphContentTopSkip}{-2.0mm}  % default 2.5mm
@@ -595,8 +589,8 @@
 % \newcommand{\acvHonorsTopSkip}{-1.0mm}  % default 0.0mm
 % \newcommand{\acvServiceTopSkip}{-1.0mm}  % default 0.0mm
 
-\newcommand{\afterSectionSkip}{-2.0pt}  % default -0.4pt
-\newcommand{\afterEntrySkip}{-2.5pt}  % default -0.4pt
+\newcommand{\afterSectionSkip}{6pt}  % default -0.4pt
+\newcommand{\afterEntrySkip}{-4pt}  % default -0.4pt
 
 \newcommand{\acvEntriesColSep}{1.0ex}  % default 1.0ex
 
@@ -678,7 +672,7 @@
           % \href{mailto:\@supplemental}{\textcolor{links}{\@supplemental}}%
           % \href{https://\@supplemental}{\textcolor{links}{\@supplemental}}%
           % \href{\@supplemental}{\textcolor{links}{\upshape\footnotesize\texttt{notredame.box.com/s/zc6u68wfolhy77g0h2qkp7h1qji3tto7}}}%
-          \href{\@supplemental}{\textcolor{links}{Supplementary Materials}}%
+          \href{\@supplemental}{\textcolor{links}{Supplemental Materials}}%
         }%
       \ifthenelse{\isundefined{\@email}}%
         {}%
@@ -816,7 +810,7 @@
   \vspace{\acvSectionTopSkip}
   \sectionstyle{#1\strut\mathstrut}
   \phantomsection
-  \color{sectiondivider}\vhrulefill{0.9pt}%
+  \color{sectiondivider}\vhrulefill{0.5pt}%
 }
 
 % Define a subsection for CV
@@ -841,8 +835,9 @@
   \vspace{\acvSectionContentTopSkip}
   \begin{center}
 }{%
-  \end{center}
-  \vspace{\afterSectionSkip}
+  \vspace{0pt}%
+  \end{center}%
+  \vspace{\afterSectionSkip}%
 }
 % Define an entry of cv information
 % Usage: \cventry{<position>}{<title>}{<location>}{<date>}{<description>}
@@ -853,8 +848,8 @@
   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.25cm} R{4.25cm}}
     \ifempty{#2#3}
       {\entrypositionstyle{#1} & \entrylocationstyle{#4} \\}
-      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\[-0.5ex]
-      \entrypositionstyle{#1} & \entrydatestyle{#4} \\[-0.25ex]}
+      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\[-2pt]
+      \entrypositionstyle{#1} & \entrydatestyle{#4} \\[-2pt]}
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}
   \end{tabular*}%
 }
@@ -866,8 +861,8 @@
       % {\entrytitlestyle{#1} & \entrydatestyle{#4} \\[-0.25ex]
        % \entrypositionstyle{#3} & \entrylocationstyle{#5} \\[-0.25ex]
        % \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#6}}}
-    \entrytitlestyle{#1}\entrysubjectstyle{{\spacedot}#2}\ifempty{#3}{}{\entrypostscriptstyle{{\spacedot}#3}} & \entrylocationstyle{#5} \\[-0.5ex]
-    \entrypositionstyle{#4} & \entrydatestyle{#6}{\fontsize{9pt}{1em}\color{lighttext}\scshape~~\textendash~~}\entrydatestyle{#7} \\[-0.25ex]
+    \entrytitlestyle{#1}\entrysubjectstyle{{\spacedot}#2}\ifempty{#3}{}{\entrypostscriptstyle{{\spacedot}#3}} & \entrylocationstyle{#5} \\[-2pt]
+    \entrypositionstyle{#4} & \entrydatestyle{#6}{\fontsize{9pt}{1em}\color{lighttext}\scshape~~\textendash~~}\entrydatestyle{#7} \\[-2pt]
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#8}}
   \end{tabular*}%
   \vspace{\afterEntrySkip}%
@@ -879,8 +874,8 @@
   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 5.25cm} R{5.25cm}}
     \ifempty{#2#3}
       {\entrypositionstyle{#1} & \entrylocationstyle{#4} \\}
-      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\[-0.5ex]
-      \entrypositionstyle{#1} & \entrydatestyle{#4}{\fontsize{9pt}{1em}\color{lighttext}\scshape~~\textendash~~}\entrydatestyle{#5} \\[-0.5ex]}
+      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\[-2pt]
+      \entrypositionstyle{#1} & \entrydatestyle{#4}{\fontsize{9pt}{1em}\color{lighttext}\scshape~~\textendash~~}\entrydatestyle{#5} \\[-2pt]}
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#6}}
   \end{tabular*}%
   \vspace{\afterEntrySkip}%
@@ -890,8 +885,8 @@
   \setlength\tabcolsep{0pt}
   \setlength{\extrarowheight}{0pt}
   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
-    \entrytitlestyle{#2} & \entrydatestyle{#4} \\[-0.25ex]
-    \entrypositionstyle{#1} & \entrylocationstyle{#3} \\[-0.25ex]
+    \entrytitlestyle{#2} & \entrydatestyle{#4} \\[-2pt]
+    \entrypositionstyle{#1} & \entrylocationstyle{#3} \\[-2pt]
   \end{tabular*}%
 }
 
@@ -902,8 +897,9 @@
     \setlength{\extrarowheight}{0pt}
     \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l L{\textwidth * \real{0.9125}}}
 }{%
-    \end{tabular*}
-  \end{center}
+    \end{tabular*}%
+  \end{center}%
+  \vspace{\afterSectionSkip}%
 }
 % \newcommand*{\cvservice}[2]{%
   % \vspace{\acvEntryTopSkip}
@@ -939,9 +935,9 @@
   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
     \ifempty{#2#3#4}
       {\entrypositionstyle{#1} & \entrylocationstyle{#5} \\}
-      {\entrytitlestyle{#3} & \entrydatestyle{#5} \\[-0.25ex]
-      \entrypositionstyle{#1} & \entrylocationstyle{#4} \\[-0.25ex]
-      \entrypositionstyle{#2}\\[-0.25ex]}
+      {\entrytitlestyle{#3} & \entrydatestyle{#5} \\[-2pt]
+      \entrypositionstyle{#1} & \entrylocationstyle{#4} \\[-2pt]
+      \entrypositionstyle{#2}\\[-2pt]}
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#6}}
   \end{tabular*}%
 }
@@ -988,7 +984,8 @@
   \vspace{\acvSectionContentTopSkip}
   \begin{center}
 }{%
-  \end{center}
+  \end{center}%
+  \vspace{\afterSectionSkip}%
 }
 % Define an entry of cv information
 % Usage: \cventry{<position>}{<title>}{<location>}{<date>}{<description>}
@@ -1009,59 +1006,58 @@
   \setlength\tabcolsep{0pt}
   \setlength{\extrarowheight}{0pt}
   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 3.75cm} R{3.75cm}}
-    \teachingtitlestyle{#2} & \teachinglocationstyle{#5} \\[-0.5ex]
+    \teachingtitlestyle{#2} & \teachinglocationstyle{#5} \\[-2pt]
     % \teachingpositionstyle{#1}\teachingcoursestyle{{\spacedot}#3} & \teachingdatestyle{#4} \\[-0.25ex]
-    \teachingpositionstyle{#1} & \teachingdatestyle{#3}{\fontsize{9pt}{1em}\color{lighttext}\scshape~~\textendash~~}\teachingdatestyle{#4} \\[-0.25ex]
+    \teachingpositionstyle{#1} & \teachingdatestyle{#3}{\fontsize{9pt}{1em}\color{lighttext}\scshape~~\textendash~~}\teachingdatestyle{#4} \\[-2pt]
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#6}}
   \end{tabular*}%
+  \vspace{\afterEntrySkip}%
 }
 \newcommand*{\cvteach}[7]{%
   \vspace{\acvEntryTopSkip}
   \setlength\tabcolsep{0pt}
   \setlength{\extrarowheight}{0pt}
   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
-    \teachingtitlestyle{#2} & \teachinglocationstyle{#6} \\[-0.5ex]
+    \teachingtitlestyle{#2} & \teachinglocationstyle{#6} \\[-2pt]
     % \teachingpositionstyle{#1}\teachingcoursestyle{{\spacedot}#3} & \teachingdatestyle{#4} \\[-0.25ex]
-    \teachingpositionstyle{#1}\teachingcoursestyle{{\spacedot}#3}\teachingsizestyle{{\spacedot}#4} & \teachingdatestyle{#5} \\[-0.25ex]
+    \teachingpositionstyle{#1}\teachingcoursestyle{{\spacedot}#3}\teachingsizestyle{{\spacedot}#4} & \teachingdatestyle{#5} \\[-2pt]
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#7}}
   \end{tabular*}%
+  \vspace{\afterEntrySkip}%
 }
 \newcommand*{\cvteachtopics}[8]{%
   \vspace{\acvEntryTopSkip}
   \setlength\tabcolsep{0pt}
   \setlength{\extrarowheight}{0pt}
   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
-    \teachingtitlestyle{#2} & \teachinglocationstyle{#6} \\[-0.5ex]
-    \teachingpositionstyle{#1}\teachingcoursestyle{{\spacedot}#3}\teachingsizestyle{{\spacedot}#4} & \teachingdatestyle{#5} \\[-0.5ex]
-    \teachingtopicstyle{#7} \\[-0.25ex]
+    \teachingtitlestyle{#2} & \teachinglocationstyle{#6} \\[-2pt]
+    \teachingpositionstyle{#1}\teachingcoursestyle{{\spacedot}#3}\teachingsizestyle{{\spacedot}#4} & \teachingdatestyle{#5} \\[-2pt]
+    \teachingtopicstyle{#7} \\[-2pt]
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#8}}
   \end{tabular*}%
-  % \vspace{\afterEntrySkip}
+  \vspace{\afterEntrySkip}%
 }
 
-% Define an environment for cvhonor
 \newenvironment{cvhonors}{%
   \vspace{\acvSectionContentTopSkip}
   \begin{center}
     % % \setlength\tabcolsep{0pt}
     % \setlength\tabcolsep{1ex}
     \setlength\tabcolsep{\acvEntriesColSep}
-    \setlength{\extrarowheight}{-0.5pt}
+    \setlength{\extrarowheight}{0.0pt}
     \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.35}} R{\textwidth * \real{0.325}} L{\textwidth * \real{0.175}}}
     % \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.9125}}}
     % \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} C{1.5cm} L{\textwidth - 4.0cm} R{2.5cm}}
 }{%
-    \end{tabular*}
-  \end{center}
+    \end{tabular*}%
+  \end{center}%
+  \vspace{\afterSectionSkip}%
 }
-% Define a line of cv information(honor, award or something else)
-% Usage: \cvhonor{<position>}{<title>}{<location>}{<date>}
 \newcommand*{\cvhonor}[4]{%
   \honordatestyle{#1} & \honorpositionstyle{#2} & \honorconferralstyle{#3} & \honorlocationstyle{#4} \\
   % \skilldatestyle{#1} & \skillsetstyle{\textbf{#2}} & \skillsetstyle{\textit{#3}} & \skilllocationstyle{#4} \\
 }
 
-% Define an environment for cvskill
 \newenvironment{cvskills}{%
   \vspace{\acvSectionContentTopSkip}
   \begin{center}
@@ -1073,13 +1069,8 @@
     \end{tabular*}
   \end{center}
 }
-% Define a line of cv information(skill)
-% Usage: \cvskill{<type>}{<skillset>}
-\newcommand*{\cvskill}[2]{%
-	\skilltypestyle{#1} & \skillsetstyle{#2} \\
-}
+\newcommand*{\cvskill}[2]{ \skilltypestyle{#1} & \skillsetstyle{#2} \\ }
 
-% Define an environment for cvskill
 \newenvironment{cvpubs}{%
   \vspace{\acvSectionContentTopSkip}
   \begin{center}
@@ -1087,52 +1078,47 @@
     \setlength\tabcolsep{\acvEntriesColSep}
     \setlength{\extrarowheight}{0pt}
     \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.9125}}}
-}{%
-    \end{tabular*}
-  \end{center}
-  \vspace{\afterSectionSkip}
+  }{%
+    \end{tabular*}%
+  \end{center}%
+  \vspace{\afterSectionSkip}%
+  \vspace{-6pt}%
 }
-% Define a line of cv information(skill)
-% Usage: \cvskill{<type>}{<skillset>}
 \newcommand*{\cvpub}[4]{%
   \vspace{\acvPubAuthorSkip}
+  \skilldatestyle{#1} & \skilltypestyle{#2}{\spacedot}\pubvenuestyle{#3} \\[0pt]
+                      & \skillsetstyle{#4} \\[0pt]
   % \skilldatestyle{#1} & \skilltypestyle{#2}{\spacedot}\skillformstyle{\normalshape\textsc{#3}} \\
   % \skilldatestyle{#1} & \skilltypestyle{#2}{\spacedot}\skillformstyle{#3} \\
-  \skilldatestyle{#1} & \skilltypestyle{#2}{\spacedot}\pubvenuestyle{#3} \\
-                      & \skillsetstyle{#4} \\[0.25ex]
-  % \vspace{-1.0pt}
 }
 
-% Define an environment for cvskill
 \newenvironment{cvtalks}{%
   \vspace{\acvSectionContentTopSkip}
   \begin{center}
     \setlength\tabcolsep{\acvEntriesColSep}
-    \setlength{\extrarowheight}{-0.5pt}
+    \setlength{\extrarowheight}{0.0pt}
     \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.4}} R{\textwidth * \real{0.15}} L{\textwidth * \real{0.3}}}
     % \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.9125}}}
     % \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.4}} L{\textwidth * \real{0.125}} L{\textwidth * \real{0.275}}}
 }{%
     \end{tabular*}
   \end{center}
+  \vspace{\afterSectionSkip}
 }
-% Define a line of cv information(skill)
-% Usage: \cvskill{<type>}{<skillset>}
 \newcommand*{\cvtalk}[4]{%
   % \skilldatestyle{#1} & \skillsetstyle{\textbf{#2}} & \skillsetstyle{\textit{#3}} & \skilllocationstyle{#4} \\
   \skilldatestyle{#1} & \skilltypestyle{#2} & \skillformstyle{#3} & \skilllocationstyle{#4} \\
 }
 
-% Define an environment for cvitems(for cventry)
 \newenvironment{cvitems}{%
   \vspace{\acvItemSkip}
   \begin{justify}
-  \begin{itemize}[nosep,noitemsep,leftmargin=3.5ex]
-    \setlength{\parskip}{0pt}
-    \renewcommand{\labelitemi}{\raisebox{0.2ex}{\color{lighttext}-}}
+    \begin{itemize}[nosep,noitemsep,leftmargin=3.5ex]
+      \setlength{\parskip}{0pt}
+      \renewcommand{\labelitemi}{\raisebox{0.2ex}{\color{lighttext}-}}
 }{%
-  \end{itemize}
-  \end{justify}
+    \end{itemize}
+  \end{justify}%
 }
 
 
@@ -1148,10 +1134,10 @@
 % Define a section for the cover letter
 % Usage: \lettersection{<section-title>}
 \newcommand{\lettersection}[1]{%
-  \par\addvspace{2.5ex}
+  \par\addvspace{\acvSectionTopSkip}
   \phantomsection{}
   \lettersectionstyle{#1}
-  \color{sectiondivider}\vhrulefill{0.9pt}
+  \color{sectiondivider}\vhrulefill{0.5pt}
   % \par\nobreak\addvspace{0.4ex}
   \par\nobreak\addvspace{-1mm}
   \lettertextstyle
@@ -1181,12 +1167,12 @@
   \setlength{\extrarowheight}{0pt}
   \ifthenelse{\isundefined{\@letterdate}}
   {}{\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
-       \recipienttitlestyle{\hspace{-1ex}\@recipientname} & \letterdatestyle{\@letterdate}
+       \recipienttitlestyle{\hspace{-2pt}\@recipientname} & \letterdatestyle{\@letterdate}
      \end{tabular*}}
   % \begin{singlespace}
     % \recipientaddressstyle{\@recipientaddress} \\\\
   % \end{singlespace}
-  \begin{itemize}[nosep,noitemsep,itemsep=0pt,leftmargin=0pt]
+  \begin{itemize}[nosep,noitemsep,itemsep=-2pt,leftmargin=0pt]
     \renewcommand{\labelitemi}{}
     % \ifthenelse{\isundefined{\@letterdate}}
     \ifthenelse{\isundefined{\@recipientdepartment}}
@@ -1213,16 +1199,12 @@
   % \ifthenelse{\isundefined{\@lettertitle}}
     % {}
     % {\lettertitlestyle{\@lettertitle} \\}
-
-  % \vspace{3.4mm}
-  \vspace{0.4em}
-  \vspace{3pt}
+  \vspace{4pt}%
   \lettertextstyle{\@letteropening}
 }
 
 \newcommand*{\makeletterclosing}{%
-  % \vspace{3.4mm}
-  \vspace{3pt}
+  \vspace{4pt}%
   \lettertextstyle{\@letterclosing}
   \begin{itemize}[nosep,noitemsep,itemsep=0pt,leftmargin=15pt]
     \renewcommand{\labelitemi}{}
@@ -1255,12 +1237,10 @@
 }
 
 \newcommand*{\makelettersignature}{%
-  \vspace{3pt}
+  % \vspace{0pt}
   \lettertextstyle{\@letterclosing}
-
-  \vspace{3pt}
-  \includegraphics[height=1.25cm]{\LaTeXDir/assets/signature.pdf}
-
-  \vspace{-3pt}
-  \closingsignaturestyle{\MakeLowercase\@firstname\ \MakeLowercase\@lastname}{\fontsize{10pt}{1em}\color{graytext}{\enspace$\cdot$\enspace}}\closingpositionstyle{\@position}
+  \par%\vspace{0pt}
+  \includegraphics[height=1.125cm]{\LaTeXDir/assets/signature.pdf}\\
+  % \vspace{-6pt}
+  \closingsignaturestyle{\MakeLowercase\@firstname\ \MakeLowercase\@lastname}{\fontsize{10pt}{1em}\color{graytext}{\enspace$\cdot$\enspace}}\closingpositionstyle{\@position}%
 }
