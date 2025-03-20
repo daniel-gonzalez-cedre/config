@@ -672,11 +672,9 @@ export def BufferInit(lspserver: dict<any>, bnr: number, ftype: string)
   # set options for insert mode completion
   if opt.lspOptions.autoComplete
     if lspserver.completionLazyDoc
-      # setbufvar(bnr, '&completeopt', 'menuone,popuphidden,noinsert,noselect')
-      setbufvar(bnr, '&completeopt', 'menuone,popup,noinsert,noselect,fuzzy')
+      setbufvar(bnr, '&completeopt', 'menuone,popuphidden,noinsert,noselect')
     else
-      # setbufvar(bnr, '&completeopt', 'menuone,popup,noinsert,noselect')
-      setbufvar(bnr, '&completeopt', 'menuone,popup,noinsert,noselect,fuzzy')
+      setbufvar(bnr, '&completeopt', 'menuone,popup,noinsert,noselect')
     endif
     setbufvar(bnr, '&completepopup',
 	      'width:80,highlight:Pmenu,align:item,border:off')

@@ -273,7 +273,7 @@ fi
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
 export PATH=~/.local/bin:$PATH
-export PATH=$PATH:~/.scripts
+export PATH=$PATH:~/.scripts:~/.cargo/bin
 # export PATH="$PYENV_ROOT/bin:$PATH"
 
 export HOMEBREW_NO_ENV_HINTS=1

@@ -26,11 +26,12 @@ yabai -m config mouse_drop_action stack  # dropping one window on another
 # yabai -m rule --add app!="^(Safari|Firefox|Librewolf|Floorp|Terminal|Alacritty|Wezterm|Slack|Calendar)$" manage=off
 
 yabai -m rule --add app="^Finder$" manage=off
-yabai -m rule --add app="^Messages$" manage=off
+# yabai -m rule --add app="^Messages$" manage=off
 yabai -m rule --add app="^FaceTime$" manage=off
 yabai -m rule --add app="^Passwords$" manage=off
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^Font Book$" manage=off
 
 yabai -m rule --add app="^Bitwarden$" manage=off
 yabai -m rule --add app="^GoodLinks$" manage=off

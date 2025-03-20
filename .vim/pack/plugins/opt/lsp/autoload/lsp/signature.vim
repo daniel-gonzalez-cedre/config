@@ -61,31 +61,13 @@ export def BufferInit(lspserver: dict<any>)
     if ch =~ ' '
       mapChar = '<Space>'
     endif
-    # OVERRIDING FUNCTION
-    # exe $"inoremap <buffer> <silent> {mapChar} {mapChar}<C-R>=g:LspShowSignature()<CR>"
-    exe $"inoremap <buffer> <silent> {mapChar} {mapChar}<C-R>=g:LspShowSignature()<CR><C-R>=g:MatchBrace(\"{mapChar}\")<CR>"
+    exe $"inoremap <buffer> <silent> {mapChar} {mapChar}<C-R>=g:LspShowSignature()<CR>"
   endfor
 
   # close the signature popup when leaving insert mode
   autocmd_add([{bufnr: bufnr(),
 		event: 'InsertLeave',
 		cmd: 'CloseCurBufSignaturePopup()'}])
-enddef
-
-# MY CUSTOM FUNCTION
-def g:MatchBrace(matchChar: string): string
-  if matchChar == '('
-    return ")\<left>"
-  else
-    if matchChar == '{'
-      return "}\<left>"
-    else
-      if matchChar == '['
-        return "]\<left>"
-      endif
-    endif
-  endif
-  return ''
 enddef
 
 # process the 'textDocument/signatureHelp' reply from the LSP server and
@@ -154,7 +136,7 @@ export def SignatureHelp(lspserver: dict<any>, sighelp: any): void
     # Close the previous signature popup and open a new one
     lspserver.signaturePopup->popup_close()
 
-    var popupID = text->popup_atcursor({padding: [0, 1, 0, 1], moved: [col('.') - 1, 9999999]})
+    var popupID = text->popup_atcursor({padding: [0, 1, 0, 1], moved: [col('.') - 1, 9999999], pos: 'botright'})
     var bnr: number = popupID->winbufnr()
     prop_type_add('signature', {bufnr: bnr, highlight: 'LspSigActiveParameter'})
     if hllen > 0

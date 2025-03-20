@@ -3,6 +3,7 @@
 #   "Berkeley Mono"
 #   "FiraCode Retina"
 #   "CommitMono-450-01111-00000011000"
+# font-family = "CommitMono-450-01111-00000011000"
 font-family = "TX-02"
 font-style = "Medium"
 font-style-italic = "Medium Oblique"
@@ -43,6 +44,7 @@ resize-overlay-position = top-right
 quick-terminal-position = center
 quick-terminal-animation-duration = 0
 quick-terminal-autohide = true
+# quick-terminal-space-behavior = remain
 
 macos-titlebar-style = hidden
 macos-titlebar-proxy-icon = hidden

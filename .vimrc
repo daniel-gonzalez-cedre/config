@@ -34,6 +34,7 @@
     " au VimEnter * set previewpopup=height:10,width:60,highlight:PMenuSbar
 
     au FileType gitcommit set nowrap
+    au VimEnter,BufEnter,BufNewFile,BufReadPost,FileType * call SetQuote()
 
     " CUSTOM CURSORS
       " BLINKING BLOCK:     \e[0
@@ -326,11 +327,11 @@
     call gruvbox_material#highlight('IncSearch', l:palette.none, l:palette.none, 'inverse')
     " call gruvbox_material#highlight('IncSearch', l:palette.bg_yellow, l:palette.none, 'inverse')
     " call gruvbox_material#highlight('Search', l:palette.none, l:palette.bg2)
-    call gruvbox_material#highlight('Search', l:palette.none, l:palette.none, 'underline')
+    call gruvbox_material#highlight('Search', l:palette.none, l:palette.bg3)
 
-    call gruvbox_material#highlight('Comment', l:palette.grey0, l:palette.none, 'italic')
+    call gruvbox_material#highlight('Comment', l:palette.bg5, l:palette.none)
 
-    call gruvbox_material#highlight('String', l:palette.fg0, l:palette.bg2, 'bold')
+    call gruvbox_material#highlight('String', l:palette.fg0, l:palette.bg1, 'bold')
 
     call gruvbox_material#highlight('Todo', l:palette.grey1, l:palette.none, 'bolditalic')
 
@@ -367,7 +368,7 @@
     " call gruvbox_material#highlight('CursorLineNR', l:palette.grey1, l:palette.bg1)
     call gruvbox_material#highlight('LineNR', l:palette.bg5, l:palette.none)
     call gruvbox_material#highlight('CursorLine', l:palette.none, l:palette.none)
-    call gruvbox_material#highlight('CursorLineNR', l:palette.fg0, l:palette.none)
+    call gruvbox_material#highlight('CursorLineNR', l:palette.fg1, l:palette.none)
     " call gruvbox_material#highlight('StatusLine', l:palette.bg2, l:palette.none)
     " call gruvbox_material#highlight('StatusLineNC', l:palette.bg2, l:palette.none)
 
@@ -450,16 +451,21 @@
   let g:ale_is_loaded = 0
   let g:vimtex_is_loaded = 0
 
+  " SEARCH HIGHLIGHT AUTOTOGGLING
+  packadd! vim-cool
+    set hlsearch
+    " let g:cool_total_matches = 1
+
   let g:highlightedyank_is_loaded=1
   packadd vim-highlightedyank
-    let g:highlightedyank_highlight_duration = 100
+    let g:highlightedyank_highlight_duration = 128
     let g:highlightedyank_highlight_in_visual = 0
 
   " " let g:autocomplpop_is_loaded = 1
   " " packadd AutoComplPop
   " if g:autocomplpop_is_loaded
     " let g:acp_behaviorKeywordLength = 3
-    " inoremap <expr> <cr> pumvisible() ? "\<c-g>u\<cr>" : "\<cr>"
+    inoremap <expr> <cr> pumvisible() ? "\<c-g>u\<cr>" : "\<cr>"
     " inoremap <expr> <tab> pumvisible() ? "\<c-y>" : "\<tab>"
   " else
     " set completeopt=longest,menuone,popup
@@ -619,25 +625,25 @@
     " vmap gbe :NR<cr>
     " vmap gbc :NR<cr>
     " vmap gbs :NR<cr>
-    vmap <c-w>e :NR<cr>
+    vnoremap <c-w>e :NR<cr>
 
   let g:tabular_is_loaded = 1
   packadd tabular  " tabularize
-    " nnoremap <leader><tab> :Tabularize /
-    nnoremap <leader><tab> :Tabularize /
-    vnoremap <leader><tab> :Tabularize /
-    " vnoremap <tab> :Tabularize /
-    " vnoremap <tab><space> :Tabularize /\zs<left><left><left>
-    vnoremap <leader><tab>= :Tabularize /=<cr>
-    vnoremap <leader><tab>( :Tabularize /(<cr>
-    vnoremap <leader><tab>[ :Tabularize /[<cr>
-    vnoremap <leader><tab>{ :Tabularize /{<cr>
-    vnoremap <leader><tab>< :Tabularize /<<cr>
-    vnoremap <leader><tab>: :Tabularize /:<cr>
-    vnoremap <leader><tab>; :Tabularize /;<cr>
-    vnoremap <leader><tab>, :Tabularize /,<cr>
-    vnoremap <leader><tab>\| :Tabularize /\|<cr>
-    " vnoremap <tab>\ :Tabularize /\zs<left><left><left>
+    " nnoremap <leader><tab> <cmd>Tabularize /
+    nnoremap <leader><tab> <cmd>Tabularize /
+    vnoremap <leader><tab> <cmd>Tabularize /
+    " vnoremap <tab> <cmd>Tabularize /
+    " vnoremap <tab><space> <cmd>Tabularize /\zs<left><left><left>
+    vnoremap <leader><tab>= <cmd>Tabularize /=<cr>
+    vnoremap <leader><tab>( <cmd>Tabularize /(<cr>
+    vnoremap <leader><tab>[ <cmd>Tabularize /[<cr>
+    vnoremap <leader><tab>{ <cmd>Tabularize /{<cr>
+    vnoremap <leader><tab>< <cmd>Tabularize /<<cr>
+    vnoremap <leader><tab>: <cmd>Tabularize /:<cr>
+    vnoremap <leader><tab>; <cmd>Tabularize /;<cr>
+    vnoremap <leader><tab>, <cmd>Tabularize /,<cr>
+    vnoremap <leader><tab>\| <cmd>Tabularize /\|<cr>
+    " vnoremap <tab>\ <cmd>Tabularize /\zs<left><left><left>
 
   let g:fanfingtastic_is_loaded = 1
   packadd vim-fanfingtastic
@@ -684,8 +690,8 @@
       " omap ag <Plug>(GitGutterTextObjectOuterPending)
       " xmap ig <Plug>(GitGutterTextObjectInnerVisual)
       " xmap ag <Plug>(GitGutterTextObjectOuterVisual)
-      " nmap <leader>gf :GitGutterFold<cr>
-      " nmap <leader>fg :GitGutterFold<cr>
+      " nmap <leader>gf <cmd>GitGutterFold<cr>
+      " nmap <leader>fg <cmd>GitGutterFold<cr>
     endif
 
     " function! GitStatus()
@@ -748,7 +754,7 @@
       noremap gci <plug>NERDCommenterComment
       noremap gcu <plug>NERDCommenterUncomment
 
-      noremap gca <plug>NERDCommenterInvert
+      noremap gct <plug>NERDCommenterInvert
       noremap gcc <plug>NERDCommenterInvert
       " noremap gct <plug>NERDCommenterToggle
 
@@ -757,8 +763,8 @@
       " noremap gck <plug>NERDCommenterToEOL
       " noremap gcK <plug>NERDCommenterComment ^
 
-      nnoremap gcA A<c-g>U<space><c-o><plug>NERDCommenterAppend
-      nnoremap gc<c-a> <plug>NERDCommenterAppend
+      nnoremap gca A<c-g>U<space><c-o><plug>NERDCommenterAppend
+      nnoremap gcA <plug>NERDCommenterAppend
 
       nnoremap gcl A<c-g>U<c-o><plug>NERDCommenterAppend<bs><left><bs><right><esc>
       " nnoremap gcH <plug>NERDCommenterToEOL
@@ -792,6 +798,25 @@
                         \  path: '/opt/homebrew/bin/pylsp',
                         \  args: []}])
     endif
+    " if executable('lua-language-server')
+      " call LspAddServer([#{name: 'lua-language-server',
+                        " \  filetype: 'lua',
+                        " \  path: '/opt/homebrew/bin/lua-language-server',
+                        " \  args: [],
+                        " \  workspaceConfig: #{
+                        " \    Lua: #{
+                        " \      hint: #{
+                        " \        enable: v:true,
+                        " \      }
+                        " \    }
+                        " \  }}])
+    " endif
+    " if executable('emmylua_ls')
+      " call LspAddServer([#{name: 'emmylua_ls',
+                        " \  filetype: 'lua',
+                        " \  path: '/Users/cedre/.cargo/bin/emmylua_ls',
+                        " \  args: []}])
+    " endif
     " if executable('clangd')
       " call LspAddServer([#{name: 'clangd',
                         " \  filetype: ['c', 'cpp'],
@@ -853,7 +878,7 @@
                        \ showDiagWithSign: v:true,
                        \ showDiagWithVirtualText: v:false,
                        \ showInlayHints: v:false,
-                       \ showSignature: v:true,
+                       \ showSignature: v:false,
                        \ snippetSupport: v:false,
                        \ ultisnipsSupport: v:false,
                        \ useBufferCompletion: v:false,
@@ -870,23 +895,23 @@
       au VimEnter * noremap ]e <cmd>LspDiag nextWrap<cr>
       au VimEnter * noremap [e <cmd>LspDiag prevWrap<cr>
 
-      au VimEnter * nnoremap <buffer> ]d <cmd>botright LspGotoDefinition<cr>
-      au VimEnter * nnoremap <buffer> [d <cmd>LspGotoDefinition<cr>
-      au VimEnter * nnoremap <buffer> [D <cmd>LspGotoDeclaration<cr>
-      au VimEnter * nnoremap <buffer> [i <cmd>LspGotoImpl<cr>
-      au VimEnter * nnoremap <buffer> [t <cmd>LspGotoTypeDef<cr>
+      au VimEnter * nnoremap [d <cmd>botright LspGotoDefinition<cr>
+      au VimEnter * nnoremap ]d <cmd>LspGotoDefinition<cr>
+      au VimEnter * nnoremap ]D <cmd>LspGotoDeclaration<cr>
+      au VimEnter * nnoremap ]i <cmd>LspGotoImpl<cr>
+      au VimEnter * nnoremap ]t <cmd>LspGotoTypeDef<cr>
 
-      au VimEnter * nnoremap <buffer> gd <cmd>LspPeekDefinition<cr>
-      au VimEnter * nnoremap <buffer> gD <cmd>LspPeekDeclaration<cr>
-      au VimEnter * nnoremap <buffer> gi <cmd>LspPeekImpl<cr>
-      au VimEnter * nnoremap <buffer> gt <cmd>LspPeekTypeDef<cr>
+      au VimEnter * nnoremap gd <cmd>LspPeekDefinition<cr>
+      au VimEnter * nnoremap gD <cmd>LspPeekDeclaration<cr>
+      au VimEnter * nnoremap gi <cmd>LspPeekImpl<cr>
+      au VimEnter * nnoremap gt <cmd>LspPeekTypeDef<cr>
 
-      au VimEnter * nnoremap <buffer> gm <cmd>LspDiag current<cr>
+      au VimEnter * nnoremap gm <cmd>LspDiag current<cr>
 
-      au VimEnter * nnoremap <buffer> gH <cmd>LspDiag highlight toggle<cr>
+      au VimEnter * nnoremap gh <cmd>LspDiag highlight toggle<cr>
 
-      au VimEnter * nnoremap <buffer> gs <cmd>LspHighlight<cr>
-      au VimEnter * nnoremap <buffer> gS <cmd>LspHighlightClear<cr>
+      au VimEnter * nnoremap gs <cmd>LspShowSignature<cr>
+      " au VimEnter * nnoremap gS <cmd>LspHighlightClear<cr>
     augroup END
   endif
 
@@ -962,6 +987,10 @@
       au FileType python setlocal tabstop=8
     augroup END
 
+    augroup vim_settings | au!
+      au FileType vim inoremap < <><c-g>U<left>
+    augroup END
+
     augroup markdown_settings | au!
       au FileType markdown setlocal shiftwidth=2
       au FileType markdown setlocal softtabstop=2
@@ -1018,7 +1047,6 @@
     set formatoptions-=o
     set formatoptions+=r
     set formatoptions+=j
-    set hlsearch
     set ignorecase
     set incsearch
     set nojoinspaces
@@ -1106,26 +1134,26 @@
 
 
 " TOGGLE MAPPINGS
-  nnoremap <leader>tw :setlocal nowrap!<cr>
-  nnoremap <leader>ts :setlocal spell!<cr>
-  nnoremap <leader>tfi :setlocal foldmethod=indent<cr>
-  nnoremap <leader>tfm :setlocal foldmethod=manual<cr>
-  nnoremap <leader>tgm :call ToggleGMove()<cr>
-  nnoremap <leader>tq :call ToggleQuote()<cr>
-  nnoremap <leader>t' :call ToggleQuote()<cr>
-  nnoremap <leader>t" :call ToggleQuote()<cr>
-  " noremap <leader>h :noh<bar>:echo<cr>
-  " nnoremap <leader>th :set nohlsearch!<cr>
-  " nnoremap <leader>tb :call ToggleBackground()<cr>
+  nnoremap <leader>tw <cmd>setlocal nowrap!<cr>
+  nnoremap <leader>ts <cmd>setlocal spell!<cr>
+  nnoremap <leader>tfi <cmd>setlocal foldmethod=indent<cr>
+  nnoremap <leader>tfm <cmd>setlocal foldmethod=manual<cr>
+  nnoremap <leader>tgm <cmd>call ToggleGMove()<cr>
+  nnoremap <leader>tq <cmd>call ToggleQuote()<cr>
+  nnoremap <leader>t' <cmd>call ToggleQuote()<cr>
+  nnoremap <leader>t" <cmd>call ToggleQuote()<cr>
+  " noremap <leader>h <cmd>noh<bar>:echo<cr>
+  " nnoremap <leader>th <cmd>set nohlsearch!<cr>
+  " nnoremap <leader>tb <cmd>call ToggleBackground()<cr>
   if g:rainbow_is_loaded
-    nnoremap <leader>tr :RainbowToggle<cr>
+    nnoremap <leader>tr <cmd>RainbowToggle<cr>
   endif
   if g:ale_is_loaded
     nnoremap <leader>at <plug>(ale_toggle)
     nnoremap <leader>tale <plug>(ale_toggle)
   endif
   if g:gitgutter_is_loaded
-    nnoremap <leader>tgit :GitGutterToggle<cr>
+    nnoremap <leader>tgit <cmd>GitGutterToggle<cr>
   endif
 
   " function! ToggleConcealLevel()
@@ -1135,21 +1163,30 @@
           " setlocal conceallevel=0
       " endif
   " endfunction
-  " nnoremap <silent> <leader>tc :call ToggleConcealLevel()<cr>
+  " nnoremap <silent> <leader>tc <cmd>call ToggleConcealLevel()<cr>
 
   " relative line numbers
-  " nnoremap <leader>trln :set rnu!<cr>
+  " nnoremap <leader>trln <cmd>set rnu!<cr>
 
 
 " SEARCH MAPPINGS
-  nnoremap <silent> gh :noh<cr>
-  vnoremap <silent> gh <c-c>:noh<cr>gv
-  nnoremap <leader>s :%s//gc<left><left><left>
-  " nnoremap ? /<up>
+  " augroup search_highlighting | au!
+    " autocmd CmdlineEnter /,\? set hlsearch
+    " autocmd CmdlineLeave /,\? set nohlsearch
+    " autocmd InsertEnter * set nohlsearch
+    " " autocmd InsertLeave * set nohlsearch
+    " nnoremap <silent> gh <cmd>set hlsearch!<cr>
+    " vnoremap <silent> gh <cmd>set hlsearch!<cr>
+    " " cnoremap <expr> <cr> getcmdtype() == '/' ? '<cr>zz' : '<cr>'
+  " augroup END
+  " nnoremap <silent> gh <cmd>noh<cr>
+  " vnoremap <silent> gh <cmd>noh<cr>
+  nnoremap <c-s> :%s//gc<left><left><left>
 
   " vnoremap <leader>/ y/\V<c-r>=escape(@",'/\')<cr>
+  vnoremap <c-s> y`<`>:<c-u>%s/\V<c-r>=escape(@",'/\')<cr>//gc<left><left><left>
+
   vnoremap * y/\V<c-r>=escape(@",'/\')<cr><cr>
-  vnoremap <leader>s y`<`>:<c-u>%s/\V<c-r>=escape(@",'/\')<cr>//gc<left><left><left>
 
 
 " QUALITY OF LIFE MAPPINGS
@@ -1181,15 +1218,29 @@
     noremap <c-w>c <nop>
     noremap <c-w>o <nop>
 
-    " noremap <silent> <c-s-a>b :ls<cr>
+    " noremap <silent> <c-s-a>b <cmd>ls<cr>
+
+    " GO TO PREVIOUS/NEXT BUFFER
+    noremap <silent> <c-w>n <cmd>bn<cr>
+    noremap <silent> <c-w>p <cmd>bp<cr>
+    noremap <silent> <c-w>d <cmd>bd<cr>
+    noremap <silent> <c-w>s <cmd>ls<cr>
 
     " GO TO PREVIOUS/NEXT TAB
     " noremap <c-w>p <c-w>gT
     " noremap <c-w>n <c-w>gt
 
-    noremap <c-w>t :call NewTabBuffer()<cr>
-    noremap <c-w>s :call NewSplitBuffer()<cr>
-    noremap <c-w>v :call NewVSplitBuffer()<cr>
+    noremap <c-w>t <cmd>call NewTabBuffer()<cr>
+
+    " noremap <c-w>v <cmd>call NewVSplitBuffer()<cr>
+    noremap <c-w>x <cmd>sp<cr>
+    noremap <c-w>y <cmd>vsp<cr>
+
+    noremap <c-w>b <cmd>call NewSplitBuffer()<cr>
+    noremap <c-w>B <cmd>call NewSplitBuffer()<cr>
+
+    noremap <c-w>" <cmd>call NewSplitBuffer()<cr>
+    noremap <c-w>% <cmd>call NewVSplitBuffer()<cr>
 
     noremap <c-w>z <c-w>_
     noremap <c-w>Z <c-w>=
@@ -1222,25 +1273,23 @@
     " noremap \k <c-w>k
     " noremap \l <c-w>l
 
-    nnoremap j gj
-    nnoremap k gk
-    nnoremap gj j
-    nnoremap gk k
+    " nnoremap j gj
+    " nnoremap k gk
+    " nnoremap gj j
+    " nnoremap gk k
 
-    noremap <up> <c-y>
-    noremap <down> <c-e>
-    noremap <left> zh
-    noremap <right> zl
+    noremap <s-up> <c-y>
+    noremap <s-down> <c-e>
+    noremap <s-left> zh
+    noremap <s-right> zl
 
-    noremap <c-]> =
-    noremap <c-]><c-]> ==
+    " noremap <c-]> =
+    " noremap <c-]><c-]> ==
 
-    noremap za <c-a>
-    noremap gza g<c-a>
-    noremap zx <c-x>
-    noremap gzx g<c-x>
-    " noremap <c-s> <c-x>
-    " noremap z<c-a> <c-a>
+    " noremap za <c-a>
+    " noremap gza g<c-a>
+    " noremap zx <c-x>
+    " noremap gzx g<c-x>
 
     " nnoremap g} }
     " vnoremap g} }
@@ -1264,53 +1313,36 @@
 
   " LINE MOVEMENT
     " start of rendered text line
-      " inoremap <c-a> <home>
-      inoremap <c-a> <c-g>U<c-o>^
-      " nnoremap <c-g>a ^
-      " vnoremap <c-g>a ^
-      " onoremap <c-g>a ^
-      nnoremap <c-a> ^
-      vnoremap <c-a> ^
-      onoremap <c-a> ^
+      noremap <silent> ga ^
+      onoremap <silent> <c-a> ^
+      inoremap <silent> <c-a> <c-g>U<c-o>^
     " start of logical text line
-      " nnoremap ga g^
-      " vnoremap ga g^
-      " onoremap ga g^
-      nnoremap g<c-a> g^
-      vnoremap g<c-a> g^
-      onoremap g<c-a> g^
-    " operator pending to start of logical text line
-      onoremap <c-a> ^
+      noremap <silent> g<c-a> g^
+      inoremap <silent> <c-g><c-a> <c-g>U<c-o>g^
     " start of command line
       cnoremap <c-a> <home>
 
     " end of rendered line of text
-      " inoremap <c-e> <end>
-      inoremap <c-e> <c-g>U<c-o>g_<right>
-      " nnoremap <c-g>e g_
-      " vnoremap <c-g>e g_
-      " onoremap <c-g>e g_
-      nnoremap <c-e> g_
-      vnoremap <c-e> g_
-      onoremap <c-e> g_
+      noremap <silent> ge g_
+      inoremap <silent> <c-e> <c-g>U<c-o>g_<right>
     " end of logical line of text
       " nnoremap ge g$
       " vnoremap ge g$<left>
       " onoremap ge g$
-      nnoremap g<c-e> g$
-      vnoremap g<c-e> g$<left>
-      onoremap g<c-e> g$
+      nnoremap <silent> g<c-e> g$
+      vnoremap <silent> g<c-e> g$<left>
+      onoremap <silent> g<c-e> g$
     " operator pending to end of logical text line
-      onoremap <c-e> g_
+      onoremap <silent> <c-e> g_
     " end of command line
       cnoremap <c-e> <end>
 
     " text object inside current line
     xnoremap il g_o^
-    onoremap <silent> il :normal vil<cr>
+    onoremap <silent> il <cmd>normal vil<cr>
     " text object around current line
     xnoremap al $o^
-    onoremap <silent> al :normal val<cr>
+    onoremap <silent> al <cmd>normal val<cr>
 
   " FOLDS
     nnoremap <leader>ff zf
@@ -1516,8 +1548,12 @@
     if !exists('*synstack')
       return
     endif
-    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+    return map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
   endfunc
+  function! ReturnHighlightTerm(group, term)
+    let output = execute('hi ' . a:group)
+    return matchstr(output, a:term.'=\zs\S*')
+  endfunction
 
   function! ToggleBackground()
     if (&background == 'light')
@@ -1555,14 +1591,22 @@
     endif
   endfunction
 
-  let quoteStatus = 0
-  function! ToggleQuote()
-    if g:quoteStatus == 0
-      let g:quoteStatus = 1
-      inoremap ' <c-r>=ClosePair("'")<cr>
+  function! SetQuote()
+    let l:special_filetypes = ['python', 'lua', 'c', 'cpp', 'objc', 'vim']
+    let g:quote_status = index(l:special_filetypes, &filetype) >= 0 ? 1 : 0
+    if g:quote_status == 0
+      inoremap <silent> ' <c-r>=ClosePair("'")<cr>
     else
-      let g:quoteStatus = 0
-      inoremap ' <c-r>=QuoteDelim("'")<cr>
+      inoremap <silent> ' <c-r>=QuoteDelim("'")<cr>
+    endif
+  endfunction
+  function! ToggleQuote()
+    if g:quote_status == 1
+      let g:quote_status = 0
+      inoremap <silent> ' <c-r>=ClosePair("'")<cr>
+    else
+      let g:quote_status = 1
+      inoremap <silent> ' <c-r>=QuoteDelim("'")<cr>
     endif
   endfunction
 
