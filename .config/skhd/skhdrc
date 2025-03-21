@@ -6,9 +6,9 @@
 :: stack  @
 :: resize @
 :: float  @
-default                                 < ctrl - f ; modal
-modal, swap, warp, stack, resize, float < ctrl - c ; default
-modal, swap, warp, stack, resize, float < escape   ; default
+default                                 < ctrl - 0x29 ; modal
+modal, swap, warp, stack, resize, float < ctrl - c    ; default
+modal, swap, warp, stack, resize, float < escape      ; default
 
 # OPEN TERMINAL #
 modal < ctrl - t : alacritty msg create-window ; skhd -k "escape"

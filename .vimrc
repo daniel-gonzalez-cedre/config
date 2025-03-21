@@ -96,12 +96,12 @@
     let &t_Ce = "\e[4:0m"
 
     " COLORED UNDERCURL SUPPORT
-    " let &t_RB = "\<Esc>]11;?\<C-G>"
-    let &t_RV = "\<Esc>[>c"
+    " let &t_RB = "\<esc>]11;?\<C-G>"
+    let &t_RV = "\<esc>[>c"
 
     if &term =~ "alacritty"
-      let &t_fe = "\<Esc>[?1004h"
-      let &t_fd = "\<Esc>[?1004l"
+      let &t_fe = "\<esc>[?1004h"
+      let &t_fd = "\<esc>[?1004l"
     endif
 
     if (has('nvim'))
@@ -123,18 +123,18 @@
 
 
 " LEADER KEY
-  nnoremap <space> <nop>
-  vnoremap <space> <nop>
+  noremap <silent> <space> <nop>
   let mapleader = "\<space>"
 
 
 " NOP MAPPINGS
   " silence macro recording
-  noremap q <nop>
-  noremap <leader><c-q> q
+  noremap <silent> q <nop>
+  noremap <silent> qq q
+  " noremap <leader><c-q> q
 
-  noremap <c-y> <nop>
-  noremap <c-e> <nop>
+  " noremap <c-y> <nop>
+  " noremap <c-e> <nop>
   noremap <c-w><c-c> <nop>
   noremap <c-z> <nop>
 
@@ -148,14 +148,14 @@
   noremap <c-b> <nop>
   noremap! <c-b> <nop>
 
-  nnoremap <s-up> <nop>
-  nnoremap <s-down> <nop>
-  nnoremap <s-left> <nop>
-  nnoremap <s-right> <nop>
-  inoremap <s-up> <nop>
-  inoremap <s-down> <nop>
-  inoremap <s-left> <nop>
-  inoremap <s-right> <nop>
+  " nnoremap <s-up> <nop>
+  " nnoremap <s-down> <nop>
+  " nnoremap <s-left> <nop>
+  " nnoremap <s-right> <nop>
+  " inoremap <s-up> <nop>
+  " inoremap <s-down> <nop>
+  " inoremap <s-left> <nop>
+  " inoremap <s-right> <nop>
 
   " nnoremap <silent> <cr> :noh<bar>:echo<cr>
   " nnoremap <silent> <bs> :noh<bar>:echo<cr>
@@ -556,8 +556,8 @@
   packadd tmuxline.vim
   if executable('tmux') && filereadable(expand('~/.zshrc')) && $TMUX !=# ''
     let g:vim_is_in_tmux = 1
-    " let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    " let &t_8f = "\<esc>[38;2;%lu;%lu;%lum"
+    " let &t_8b = "\<esc>[48;2;%lu;%lu;%lum"
   else
     let g:vim_is_in_tmux = 0
   endif
@@ -819,9 +819,22 @@
     " endif
     " if executable('clangd')
       " call LspAddServer([#{name: 'clangd',
-                        " \  filetype: ['c', 'cpp'],
+                        " \  filetype: ['c', 'cpp', 'objc'],
                         " \  path: '/usr/bin/clangd',
-                        " \  args: ['--background-index']}])
+                        " \  args: ['-j=8',
+                        " \         '--background-index',
+                        " \         '--background-index-priority=normal',
+                        " \         '--pch-storage=memory',
+                        " \         '--header-insertion=never',
+                        " \         '--limit-references=64',
+                        " \         '--limit-results=16',
+                        " \         '--enable-config']}])
+    " endif
+    " if executable('ccls')
+      " call LspAddServer([#{name: 'ccls',
+                        " \  filetype: ['c', 'cpp', 'objc'],
+                        " \  path: '/opt/homebrew/bin/ccls',
+                        " \  args: ['']}])
     " endif
     " if executable('pyright')
       " call LspAddServer([#{name: 'pyright',
@@ -1136,12 +1149,13 @@
 " TOGGLE MAPPINGS
   nnoremap <leader>tw <cmd>setlocal nowrap!<cr>
   nnoremap <leader>ts <cmd>setlocal spell!<cr>
-  nnoremap <leader>tfi <cmd>setlocal foldmethod=indent<cr>
-  nnoremap <leader>tfm <cmd>setlocal foldmethod=manual<cr>
-  nnoremap <leader>tgm <cmd>call ToggleGMove()<cr>
   nnoremap <leader>tq <cmd>call ToggleQuote()<cr>
   nnoremap <leader>t' <cmd>call ToggleQuote()<cr>
   nnoremap <leader>t" <cmd>call ToggleQuote()<cr>
+  nnoremap <leader>tg <cmd>call ToggleGMove()<cr>
+  nnoremap <leader>ta <cmd>call ToggleAMove()<cr>
+  nnoremap <leader>tfi <cmd>setlocal foldmethod=indent<cr>
+  nnoremap <leader>tfm <cmd>setlocal foldmethod=manual<cr>
   " noremap <leader>h <cmd>noh<bar>:echo<cr>
   " nnoremap <leader>th <cmd>set nohlsearch!<cr>
   " nnoremap <leader>tb <cmd>call ToggleBackground()<cr>
@@ -1268,10 +1282,20 @@
 
     inoremap <left> <c-g>U<left>
     inoremap <right> <c-g>U<right>
+
     " noremap \h <c-w>h
     " noremap \j <c-w>j
     " noremap \k <c-w>k
     " noremap \l <c-w>l
+
+    nnoremap <s-up> <nop>
+    nnoremap <s-down> <nop>
+    nnoremap <s-left> <nop>
+    nnoremap <s-right> <nop>
+    inoremap <s-up> <nop>
+    inoremap <s-down> <nop>
+    inoremap <s-left> <nop>
+    inoremap <s-right> <nop>
 
     " nnoremap j gj
     " nnoremap k gk
@@ -1315,7 +1339,7 @@
     " start of rendered text line
       noremap <silent> ga ^
       onoremap <silent> <c-a> ^
-      inoremap <silent> <c-a> <c-g>U<c-o>^
+      inoremap <silent> <c-a> <c-g>U<home>
     " start of logical text line
       noremap <silent> g<c-a> g^
       inoremap <silent> <c-g><c-a> <c-g>U<c-o>g^
@@ -1324,7 +1348,7 @@
 
     " end of rendered line of text
       noremap <silent> ge g_
-      inoremap <silent> <c-e> <c-g>U<c-o>g_<right>
+      inoremap <silent> <c-e> <c-g>U<end>
     " end of logical line of text
       " nnoremap ge g$
       " vnoremap ge g$<left>
@@ -1410,6 +1434,7 @@
 " DELIMITER MAPPINGS
   augroup delimiter_mappings | au!
     au VimEnter * inoremap <silent> <c-g>m $
+    au VimEnter * inoremap <silent> <c-g>d $
     au VimEnter * inoremap <silent> ( ()<c-g>U<left>
     au VimEnter * inoremap <silent> [ []<c-g>U<left>
     au VimEnter * inoremap <silent> { {}<c-g>U<left>
@@ -1588,6 +1613,20 @@
       nnoremap k gk
       nnoremap gj j
       nnoremap gk k
+    endif
+  endfunction
+
+  function! ToggleAMove()
+    if (maparg('<left>') ==# 'zh') || (maparg('<down>') ==# '<c-e>') || (maparg('<up>') ==# '<c-y>') || (maparg('<right>') ==# 'zl')
+      unmap <up>
+      unmap <down>
+      unmap <left>
+      unmap <right>
+    else
+      noremap <up>    <c-y>
+      noremap <down>  <c-e>
+      noremap <left>  zh
+      noremap <right> zl
     endif
   endfunction
 
