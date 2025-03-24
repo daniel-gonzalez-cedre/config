@@ -292,6 +292,10 @@ alias view='chafa'
 
 alias pbcopy="tr -d '\n' | pbcopy"
 
+function open_window() {
+  osascript -e "tell application \"$1\" to activate" -e 'tell application "System Events" to keystroke "n" using command down';
+}
+
 function ls() {
   args=("$@")
   excl=()
@@ -316,6 +320,7 @@ function ls() {
       -L ) opts+=('-l') ;;
       -i ) opts+=('--icons') ;;
       -q ) opts+=('--no-quotes') ;;
+      -t ) opts+=('--tree') ;;
       -f ) opts+=('-f' '--show-symlinks') ;;
       -d | -D ) opts+=('-D' '--show-symlinks') ;;
       --list ) opts+=('-1' '--show-symlinks') ;;

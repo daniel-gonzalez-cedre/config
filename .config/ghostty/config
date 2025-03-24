@@ -60,6 +60,6 @@ macos-icon-ghost-color = "d4be98"
 auto-update = check
 auto-update-channel = stable
 
-keybind = global:ctrl+q=toggle_quick_terminal
+keybind = global:ctrl+shift+t=toggle_quick_terminal
 keybind = ctrl+tab=unbind
 keybind = shift+ctrl+tab=unbind

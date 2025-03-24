@@ -133,6 +133,8 @@
   noremap <silent> qq q
   " noremap <leader><c-q> q
 
+  noremap <silent> <c-f> <nop>
+
   " noremap <c-y> <nop>
   " noremap <c-e> <nop>
   noremap <c-w><c-c> <nop>
@@ -704,19 +706,19 @@
   " let vimcommentary_is_loaded = 1
   " packadd vim-commentary
   " if vimcommentary_is_loaded
-  "   " nnoremap <silent> gC o<c-g>U.<esc><plug>Commentary kJi<space><esc>$s
-  "   nnoremap <silent> gcs i<c-g>U<enter>.<esc><plug>Commentary kJi<space><esc>
+  "   " nnoremap <silent> gC o.<esc><plug>Commentary kJi<space><esc>$s
+  "   nnoremap <silent> gcs i<enter>.<esc><plug>Commentary kJi<space><esc>
 
-  "   nnoremap <silent> gce i<c-g>U<enter>.<esc><plug>Commentary kJi<space><left>
+  "   nnoremap <silent> gce i<enter>.<esc><plug>Commentary kJi<space><left>
 
   "   " append comment to end of line with space
-  "   nnoremap <silent> gcA o<c-g>U.<esc><plug>Commentary kJi<space><esc>$s
+  "   nnoremap <silent> gcA o.<esc><plug>Commentary kJi<space><esc>$s
 
   "   " append comment to end of line without space
-  "   nnoremap <silent> gcL o<c-g>U.<esc><plug>Commentary kJx$xx
+  "   nnoremap <silent> gcL o.<esc><plug>Commentary kJx$xx
 
-  "   nnoremap <silent> gcO O<c-g>U.<esc><plug>Commentary $s
-  "   nnoremap <silent> gco o<c-g>U.<esc><plug>Commentary $s
+  "   nnoremap <silent> gcO O.<esc><plug>Commentary $s
+  "   nnoremap <silent> gco o.<esc><plug>Commentary $s
 
   " endif
 
@@ -1280,75 +1282,43 @@
       " autocmd VisualLeave *
     " augroup END
 
-    inoremap <left> <c-g>U<left>
+    noremap <up>    <c-y>
+    noremap <down>  <c-e>
+    noremap <left>  zh
+    noremap <right> zl
+
+    inoremap <left>  <c-g>U<left>
     inoremap <right> <c-g>U<right>
 
-    " noremap \h <c-w>h
-    " noremap \j <c-w>j
-    " noremap \k <c-w>k
-    " noremap \l <c-w>l
+    noremap <s-up>    <c-y>
+    noremap <s-down>  <c-e>
+    noremap <s-left>  zh
+    noremap <s-right> zl
 
-    nnoremap <s-up> <nop>
-    nnoremap <s-down> <nop>
-    nnoremap <s-left> <nop>
-    nnoremap <s-right> <nop>
-    inoremap <s-up> <nop>
-    inoremap <s-down> <nop>
-    inoremap <s-left> <nop>
-    inoremap <s-right> <nop>
+    inoremap <s-up>    <c-o><c-y>
+    inoremap <s-down>  <c-o><c-e>
+    inoremap <s-left>  <c-o>zh
+    inoremap <s-right> <c-o>zl
 
     " nnoremap j gj
     " nnoremap k gk
     " nnoremap gj j
     " nnoremap gk k
 
-    noremap <s-up> <c-y>
-    noremap <s-down> <c-e>
-    noremap <s-left> zh
-    noremap <s-right> zl
-
-    " noremap <c-]> =
-    " noremap <c-]><c-]> ==
-
-    " noremap za <c-a>
-    " noremap gza g<c-a>
-    " noremap zx <c-x>
-    " noremap gzx g<c-x>
-
-    " nnoremap g} }
-    " vnoremap g} }
-    " onoremap g} }
-    " xnoremap g} }
-
-    " nnoremap g{ {
-    " vnoremap g{ {
-    " onoremap g{ {
-    " xnoremap g{ {
-
-    " nnoremap ]] }
-    " vnoremap ]] }
-    " onoremap ]] }
-    " xnoremap ]] }
-
-    " nnoremap [[ {
-    " vnoremap [[ {
-    " onoremap [[ {
-    " xnoremap [[ {
-
   " LINE MOVEMENT
     " start of rendered text line
       noremap <silent> ga ^
       onoremap <silent> <c-a> ^
-      inoremap <silent> <c-a> <c-g>U<home>
+      inoremap <silent> <c-a> <c-o>^
     " start of logical text line
       noremap <silent> g<c-a> g^
-      inoremap <silent> <c-g><c-a> <c-g>U<c-o>g^
+      inoremap <silent> <c-g><c-a> <c-o>g^
     " start of command line
       cnoremap <c-a> <home>
 
     " end of rendered line of text
       noremap <silent> ge g_
-      inoremap <silent> <c-e> <c-g>U<end>
+      inoremap <silent> <c-e> <c-o>g_
     " end of logical line of text
       " nnoremap ge g$
       " vnoremap ge g$<left>

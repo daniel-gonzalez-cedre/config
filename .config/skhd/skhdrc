@@ -7,12 +7,13 @@
 :: resize @
 :: float  @
 default                                 < ctrl - 0x29 ; modal
+default                                 < ctrl - q    ; modal
 modal, swap, warp, stack, resize, float < ctrl - c    ; default
 modal, swap, warp, stack, resize, float < escape      ; default
 
 # OPEN TERMINAL #
-modal < ctrl - t : alacritty msg create-window ; skhd -k "escape"
-modal < cmd - t  : alacritty msg create-window ; skhd -k "escape"
+# modal < ctrl - t : alacritty msg create-window ; skhd -k "escape"
+# modal < cmd - t  : alacritty msg create-window ; skhd -k "escape"
 # modal < ctrl + shift - t : alacritty msg create-window ; yabai -m window --toggle float --grid 4 : 4 : 1 : 1 : 2 : 2 ; skhd -k "escape"
 # modal < cmd - t : alacritty msg create-window ; yabai -m window --toggle float --grid 6:6:1:1:4:4 ; skhd -k "escape"
 

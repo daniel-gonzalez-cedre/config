@@ -2,7 +2,7 @@ yabai -m config layout bsp
 # yabai -m config layout stack
 # yabai -m config layout float
 
-# yabai -m config window_placement second_child
+yabai -m config window_placement second_child
 # yabai -m config window_border_placement inset
 
 # padding
