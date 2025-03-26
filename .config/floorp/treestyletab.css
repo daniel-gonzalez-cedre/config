@@ -220,7 +220,7 @@
 #tabbar tab-item-substance {
   background: var(--tab-color);
 
-  padding: 0px 0px 0px 7px !important;
+  padding: 0px 7px 0px 7px !important;
 
   box-sizing: border-box;
   border: 0px solid var(--tab-color) !important;
@@ -289,8 +289,8 @@
 #tabbar .tab tab-closebox {
   order: 1000000 !important;
   position: absolute !important;
-  float: right !important;
-  right: 7px;
+  float: left !important;
+  left: 7px;
 
   margin: 0px !important;
   padding: 0px !important;
@@ -351,7 +351,12 @@
   /* transition: 0.25s all !important; */
 }
 
-#tabbar .tab:not(:hover) tab-twisty { opacity: 0 !important; }
+#tabbar .tab:not(:hover) tab-twisty {
+  opacity: 1 !important;
+  background: #00000000 !important;
+  border: 2px solid #00000000 !important;
+  transition: all 0.25s !important;
+}
 #tabbar .tab:hover tab-twisty { opacity: 1 !important; }
 #tabbar .tab:hover tab-twisty:not(:hover) { background: var(--tab-bg); }
 #tabbar .tab:hover tab-twisty:hover { background: var(--twisty-color); }
@@ -366,7 +371,7 @@
 #tabbar tab-twisty {
   order: -1;
   position: absolute !important;
-  left: 7px;
+  right: 7px;
 
   margin: 0px !important;
   padding: 0px !important;
