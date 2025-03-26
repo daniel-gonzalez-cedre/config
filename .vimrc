@@ -245,9 +245,6 @@
     hi clear Folded
     hi Folded guifg=#504945 ctermfg=240 ctermbg=none cterm=none
 
-    " hi clear Comment
-    " hi Comment ctermfg=243 ctermbg=none cterm=none
-
     hi clear String
     hi String guifg=#b8bb26 ctermfg=142 cterm=none
 
@@ -331,7 +328,7 @@
     " call gruvbox_material#highlight('Search', l:palette.none, l:palette.bg2)
     call gruvbox_material#highlight('Search', l:palette.none, l:palette.bg3)
 
-    call gruvbox_material#highlight('Comment', l:palette.bg5, l:palette.none)
+    call gruvbox_material#highlight('Comment', l:palette.bg5, l:palette.none, 'italic')
 
     call gruvbox_material#highlight('String', l:palette.fg0, l:palette.bg1, 'bold')
 
@@ -1224,10 +1221,10 @@
     " xmap i<c-f> i%
     " xmap a<c-f> a%
 
-    " nnoremap <c-\> <c-a>
-    " vnoremap <c-\> <c-a>
-    " nnoremap <c-_> <c-x>
-    " vnoremap <c-_> <c-x>
+    noremap + <c-a>
+    noremap - <c-x>
+    noremap g+ g<c-a>
+    noremap g- g<c-x>
 
   " WINDOWS, BUFFERS, & POPUPS
     noremap <c-w>q <nop>
@@ -1307,27 +1304,29 @@
 
   " LINE MOVEMENT
     " start of rendered text line
-      noremap <silent> ga ^
-      onoremap <silent> <c-a> ^
+      noremap <silent> g<c-a> g^
+      onoremap <silent> g<c-a> g^
       inoremap <silent> <c-a> <c-o>^
     " start of logical text line
-      noremap <silent> g<c-a> g^
+      noremap <silent> <c-a> g^
+      onoremap <silent> <c-a> g^
       inoremap <silent> <c-g><c-a> <c-o>g^
     " start of command line
       cnoremap <c-a> <home>
 
     " end of rendered line of text
-      noremap <silent> ge g_
-      inoremap <silent> <c-e> <c-o>g_
+      noremap <silent> g<c-e> g_
+      onoremap <silent> g<c-e> g_
+      inoremap <silent> <c-g><c-e> <c-o>g$
     " end of logical line of text
       " nnoremap ge g$
       " vnoremap ge g$<left>
       " onoremap ge g$
-      nnoremap <silent> g<c-e> g$
-      vnoremap <silent> g<c-e> g$<left>
-      onoremap <silent> g<c-e> g$
+      nnoremap <silent> <c-e> $
+      vnoremap <silent> <c-e> $<left>
+      onoremap <silent> <c-e> $
+      inoremap <silent> <c-e> <c-o>$
     " operator pending to end of logical text line
-      onoremap <silent> <c-e> g_
     " end of command line
       cnoremap <c-e> <end>
 
@@ -1539,13 +1538,13 @@
   endfunction
 
   " echoes the highlight group under the cursor
-  function! SynStack()
+  function! HighlightGroup()
     if !exists('*synstack')
       return
     endif
     return map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
   endfunc
-  function! ReturnHighlightTerm(group, term)
+  function! HighlightTerm(group, term)
     let output = execute('hi ' . a:group)
     return matchstr(output, a:term.'=\zs\S*')
   endfunction

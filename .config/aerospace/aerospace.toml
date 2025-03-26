@@ -96,7 +96,7 @@ automatically-unhide-macos-hidden-apps = true
     # end tell'
     # '''
     # alt-enter = 'exec-and-forget open_window ghostty'
-    alt-t = '''exec-and-forget osascript -e 'tell application "Ghostty" to activate' -e 'tell application "System Events" to keystroke "n" using command down';'''
+    alt-t = '''exec-and-forget osascript -e 'tell application "ghostty" to activate' && osascript -e 'tell application "System Events" to keystroke "n" using command down';'''
     # alt-t = '''exec-and-forget osascript -e
     # -e tell application "Ghostty"
       # do script
@@ -109,14 +109,26 @@ automatically-unhide-macos-hidden-apps = true
     # '''
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-    alt-slash = 'layout tiles horizontal vertical'
-    alt-comma = 'layout accordion horizontal vertical'
+    alt-slash = 'layout tiles'  # set node to tiles layout
+    alt-comma = 'layout accordion'  # set node to accordion layout
+    alt-period = 'layout tiles accordion'  # toggle node tiles/accordion
+    alt-o = 'layout horizontal vertical'  # toggle root node orientation (tree propagates down)
+    alt-shift-f = 'layout floating tiling'  # toggle floating/tiling for a given window
+
+    # See: https://nikitabobko.github.io/AeroSpace/commands#fullscreen
+    alt-f = 'fullscreen'
+    alt-z = 'fullscreen'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-    alt-h = 'focus left'
-    alt-j = 'focus down'
-    alt-k = 'focus up'
-    alt-l = 'focus right'
+    alt-h = 'focus left --ignore-floating'
+    alt-j = 'focus down --ignore-floating'
+    alt-k = 'focus up --ignore-floating'
+    alt-l = 'focus right --ignore-floating'
+
+    alt-left = 'focus left --boundaries-action wrap-around-the-workspace'
+    alt-down = 'focus down --boundaries-action wrap-around-the-workspace'
+    alt-up = 'focus up --boundaries-action wrap-around-the-workspace'
+    alt-right = 'focus right --boundaries-action wrap-around-the-workspace'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move
     alt-shift-h = 'move left'
@@ -130,9 +142,6 @@ automatically-unhide-macos-hidden-apps = true
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#balance-sizes
     alt-space = 'balance-sizes'
-
-    # See: https://nikitabobko.github.io/AeroSpace/commands#fullscreen
-    alt-z = 'fullscreen'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
     alt-n = 'workspace next'
@@ -170,6 +179,8 @@ automatically-unhide-macos-hidden-apps = true
     # alt-z = 'workspace Z'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
+    alt-shift-p = 'move-node-to-workspace prev'
+    alt-shift-n = 'move-node-to-workspace next'
     alt-shift-1 = 'move-node-to-workspace 1'
     alt-shift-2 = 'move-node-to-workspace 2'
     alt-shift-3 = 'move-node-to-workspace 3'
@@ -210,6 +221,8 @@ automatically-unhide-macos-hidden-apps = true
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
     alt-shift-semicolon = 'mode service'
 
+    # for creating a new node
+    # See: https://nikitabobko.github.io/AeroSpace/commands#join-with
     alt-ctrl-h = 'join-with left'
     alt-ctrl-j = 'join-with down'
     alt-ctrl-k = 'join-with up'
@@ -220,17 +233,19 @@ automatically-unhide-macos-hidden-apps = true
 [mode.service.binding]
     esc = ['reload-config', 'mode main']
     r = ['flatten-workspace-tree', 'mode main'] # reset layout
-    f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
-    backspace = ['close-all-windows-but-current', 'mode main']
+    # f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+    # backspace = ['close-all-windows-but-current', 'mode main']
 
     # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
     #s = ['layout sticky tiling', 'mode main']
 
-    alt-shift-h = ['join-with left', 'mode main']
-    alt-shift-j = ['join-with down', 'mode main']
-    alt-shift-k = ['join-with up', 'mode main']
-    alt-shift-l = ['join-with right', 'mode main']
+    # for creating a new node
+    # See: https://nikitabobko.github.io/AeroSpace/commands#join-with
+    # alt-ctrl-h = ['join-with left', 'mode main']
+    # alt-ctrl-j = ['join-with down', 'mode main']
+    # alt-ctrl-k = ['join-with up', 'mode main']
+    # alt-ctrl-l = ['join-with right', 'mode main']
 
-    down = 'volume down'
-    up = 'volume up'
-    shift-down = ['volume set 0', 'mode main']
+    # down = 'volume down'
+    # up = 'volume up'
+    # shift-down = ['volume set 0', 'mode main']
