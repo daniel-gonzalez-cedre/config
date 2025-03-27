@@ -220,7 +220,7 @@
 #tabbar tab-item-substance {
   background: var(--tab-color);
 
-  padding: 0px 7px 0px 7px !important;
+  padding: 0px 13px 0px 7px !important;
 
   box-sizing: border-box;
   border: 0px solid var(--tab-color) !important;
@@ -232,9 +232,10 @@
 /* tab label content styling */
 .label-content {
   position: static !important;
+  float: left;
 
-  margin: 0px 0px 0px 7px !important;
-  padding: 0px !important;
+  margin: 0px !important;
+  padding: 3px !important;
 
   line-height: var(--tab-height);
   font-size: var(--font-size);
@@ -260,8 +261,9 @@
   [data-current-uri="about:newtab"]
 ) tab-favicon { visibility: collapse !important; }
 #tabbar tab-item tab-favicon {
-  position: static !important;
-  float: left !important;
+  position: absolute !important;
+  float: right !important;
+  right: 9px !important;
 
   margin: 0px 0px 0px 2px !important;
 
@@ -289,8 +291,8 @@
 #tabbar .tab tab-closebox {
   order: 1000000 !important;
   position: absolute !important;
-  float: left !important;
-  left: 7px;
+  float: right !important;
+  right: 7px;
 
   margin: 0px !important;
   padding: 0px !important;
@@ -352,9 +354,9 @@
 }
 
 #tabbar .tab:not(:hover) tab-twisty {
-  opacity: 1 !important;
-  background: #00000000 !important;
-  border: 2px solid #00000000 !important;
+  opacity: 0 !important;
+  /* background: #00000000 !important; */
+  /* border: 2px solid #00000000 !important; */
   transition: all 0.25s !important;
 }
 #tabbar .tab:hover tab-twisty { opacity: 1 !important; }
