@@ -318,7 +318,7 @@
 /* #tabbar .tab.muted .label-content, #tabbar .tab.sound-playing .label-content { margin-left: 20px; } */
 #tabbar:hover .tab.muted tab-item-substance,
 #tabbar:hover .tab.sound-playing tab-item-substance {
-  padding-right: 28px !important;
+  padding-right: 32px !important;
   /* transition: 0.25s margin-left !important; */
 }
 #tabbar:not(:hover) .tab.muted .label-content,
