@@ -103,7 +103,7 @@
   --tab-hover-bg: rgba(var(--bg3), 1.0);
   --active-hover-bg: rgba(var(--bg3), 1.0);
 
-  --tab-color: rgba(var(--bgdark), 1.0);
+  --tab-color: rgba(var(--bgdark), 0.75);
   --active-color: rgba(var(--fg0), 1.0);
   --inactive-color: rgba(var(--glow1), 1.0);
 
@@ -151,7 +151,7 @@
   overflow-y: hidden;
 
   top: 0px !important;
-  left: 4px !important;
+  left: 3px !important;
   right: 0px !important;
   bottom: 5px !important;
 

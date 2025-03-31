@@ -78,7 +78,7 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
     margin: 0px !important;
     border: 0px solid transparent !important;
   }
-  #navigator-toolbox toolbar#nav-bar { margin: 4px 0px 3px 0px !important; }
+  #navigator-toolbox toolbar#nav-bar { margin: 5px 0px 4px 0px !important; }
 
   toolbarbutton > stack {
     box-sizing: border-box !important;
@@ -111,7 +111,7 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
 
   /* #urlbar .urlbar-input { color: var(--fg3) !important; } */
   #urlbar .urlbar-input-box { padding-right: 9px; }
-  #urlbar:not([focused]) .urlbar-input-box { text-align: center; }
+  #urlbar:not([focused]) .urlbar-input-box { }
   /* #urlbar:not([focused]) .urlbar-input-box { */
     /* color: var(--fg0) !important; */
     /* text-align: center; */
@@ -164,8 +164,8 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
   /* END auto-hide resize tabs */
 
   #browser stack.browserStack browser {
-    margin: 0px 5px 5px 5px;
-    box-sizing: border-box;
+    margin: 0px 5px 5px 2px;
+    box-sizing: border-box !important;
     border: 0px solid transparent !important;
     border-radius: var(--browser-radius);
   }
