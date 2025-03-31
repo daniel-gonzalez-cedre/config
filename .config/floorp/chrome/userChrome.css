@@ -78,7 +78,7 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
     margin: 0px !important;
     border: 0px solid transparent !important;
   }
-  #navigator-toolbox toolbar#nav-bar { margin: 5px 0px 4px 0px !important; }
+  #navigator-toolbox toolbar#nav-bar { margin: 3px 0px 2px 0px !important; }
 
   toolbarbutton > stack {
     box-sizing: border-box !important;
