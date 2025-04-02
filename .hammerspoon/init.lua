@@ -31,24 +31,24 @@ end
 -- remap('capslock', pressFn({'ctrl'}))
 
 -- remap({'ctrl'}, 'space', pressFn('l'))
---++ remap({'ctrl'}, 'delete', pressFn('forwarddelete'))
+remap({'ctrl'}, 'delete', pressFn('forwarddelete'))
 
 -- remap({'ctrl'}, 'f', pressFn('left'))
 
---++ remap({'ctrl'}, 'h', pressFn('left'))
---++ remap({'ctrl'}, 'j', pressFn('down'))
---++ remap({'ctrl'}, 'k', pressFn('up'))
---++ remap({'ctrl'}, 'l', pressFn('right'))
+remap({'ctrl'}, 'h', pressFn('left'))
+remap({'ctrl'}, 'j', pressFn('down'))
+remap({'ctrl'}, 'k', pressFn('up'))
+remap({'ctrl'}, 'l', pressFn('right'))
 
---++ remap({'ctrl', 'shift'}, 'h', pressFn({'shift'}, 'left'))
---++ remap({'ctrl', 'shift'}, 'j', pressFn({'shift'}, 'down'))
---++ remap({'ctrl', 'shift'}, 'k', pressFn({'shift'}, 'up'))
---++ remap({'ctrl', 'shift'}, 'l', pressFn({'shift'}, 'right'))
+remap({'ctrl', 'shift'}, 'h', pressFn({'shift'}, 'left'))
+remap({'ctrl', 'shift'}, 'j', pressFn({'shift'}, 'down'))
+remap({'ctrl', 'shift'}, 'k', pressFn({'shift'}, 'up'))
+remap({'ctrl', 'shift'}, 'l', pressFn({'shift'}, 'right'))
 
---++ remap({'ctrl', 'cmd'}, 'h', pressFn({'cmd'}, 'left'))
---++ remap({'ctrl', 'cmd'}, 'j', pressFn({'cmd'}, 'down'))
---++ remap({'ctrl', 'cmd'}, 'k', pressFn({'cmd'}, 'up'))
---++ remap({'ctrl', 'cmd'}, 'l', pressFn({'cmd'}, 'right'))
+remap({'ctrl', 'cmd'}, 'h', pressFn({'cmd'}, 'left'))
+remap({'ctrl', 'cmd'}, 'j', pressFn({'cmd'}, 'down'))
+remap({'ctrl', 'cmd'}, 'k', pressFn({'cmd'}, 'up'))
+remap({'ctrl', 'cmd'}, 'l', pressFn({'cmd'}, 'right'))
 
 -- remap({'ctrl', 'alt'}, 'h', pressFn({'alt'}, 'left'))
 -- remap({'ctrl', 'alt'}, 'j', pressFn({'alt'}, 'down'))
