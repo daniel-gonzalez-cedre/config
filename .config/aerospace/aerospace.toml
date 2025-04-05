@@ -96,7 +96,9 @@ automatically-unhide-macos-hidden-apps = true
     # end tell'
     # '''
     # alt-enter = 'exec-and-forget open_window ghostty'
-    alt-t = '''exec-and-forget osascript -e 'tell application "ghostty" to activate' && osascript -e 'tell application "System Events" to keystroke "n" using command down';'''
+    alt-t = '''exec-and-forget osascript -e 'tell application "ghostty" to activate'
+    && osascript -e 'tell application "System Events" to keystroke "n" using command down'
+    && osascript -e 'tell application ""';'''
     # alt-t = '''exec-and-forget osascript -e
     # -e tell application "Ghostty"
       # do script

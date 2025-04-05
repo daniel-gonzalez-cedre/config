@@ -130,7 +130,8 @@
 " NOP MAPPINGS
   " silence macro recording
   noremap <silent> q <nop>
-  noremap <silent> qq q
+  noremap <silent> Qq q
+  noremap QQ Q
   " noremap <leader><c-q> q
 
   noremap <silent> <c-f> <nop>
@@ -1600,7 +1601,10 @@
   endfunction
 
   function! SetQuote()
-    let l:special_filetypes = ['python', 'lua', 'c', 'cpp', 'objc', 'vim']
+    let l:special_filetypes = ['python', 'lua', 'c', 'cpp', 'objc',
+                             \ 'html', 'css', 'javascript',
+                             \ 'vim', 'vimscript',
+                             \ 'markdown', 'toml', 'yaml']
     let g:quote_status = index(l:special_filetypes, &filetype) >= 0 ? 1 : 0
     if g:quote_status == 0
       inoremap <silent> ' <c-r>=ClosePair("'")<cr>
