@@ -1416,7 +1416,6 @@
     au VimEnter * " inoremap <silent> ' <c-g>U<c-r>=QuoteDelim("'")<cr>
     au VimEnter * inoremap <silent> ` <c-g>U<c-r>=QuoteDelim('`')<cr>
     " au VimEnter * inoremap <silent> <c-g>q ``''<left><left>
-    " FIX ISSUE OF QUOTE TEXT OBJECTS GRABBING AN EXTRA SPACE
     au VimEnter * onoremap <silent> a` 2i`
     au VimEnter * onoremap <silent> a' 2i'
     au VimEnter * onoremap <silent> a" 2i"

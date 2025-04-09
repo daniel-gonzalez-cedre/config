@@ -562,11 +562,11 @@
 % Header
 \newcommand{\acvHeaderNameDelim}{\space}
 
-\newcommand{\acvHeaderBeforeNameBlockSkip}{0.0mm}
-  \newcommand{\acvHeaderBeforeNameSkip}{0.0mm}
-  \newcommand{\acvHeaderAfterNameSkip}{2.5mm}  % 0.0mm 2.0mm
-  \newcommand{\acvHeaderAfterSubtitleSkip}{0.4mm}  % 0.4mm
-\newcommand{\acvHeaderAfterNameBlockSkip}{0.0mm}
+\newcommand{\acvHeaderBeforeNameBlockSkip}{-2.0mm}  % 0.0mm
+  \newcommand{\acvHeaderBeforeNameSkip}{0.0mm}  % 0.0mm
+  \newcommand{\acvHeaderAfterNameSkip}{2.0mm}  % 2.0mm
+  \newcommand{\acvHeaderAfterSubtitleSkip}{0.0mm}  % 0.4mm
+\newcommand{\acvHeaderAfterNameBlockSkip}{-2.0mm}  % 0.0mm
 
 \newcommand{\acvHeaderAfterQuoteSkip}{5mm}  % 0.0mm
 \newcommand{\acvHeaderAfterAddressSkip}{0mm}  % 0.0mm
@@ -853,6 +853,21 @@
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}
   \end{tabular*}%
 }
+\newcommand*{\cvexperience}[7]{%
+  \vspace{\acvEntryTopSkip}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 6.00cm} R{6.00cm}}
+      % {\entrytitlestyle{#1} & \entrydatestyle{#4} \\[-0.25ex]
+       % \entrypositionstyle{#3} & \entrylocationstyle{#5} \\[-0.25ex]
+       % \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#6}}}
+    \entrytitlestyle{#1}\ifempty{#2}{}{\entrypostscriptstyle{{\spacedot}#2}} & \entrylocationstyle{#4} \\[-2pt]
+    \entrypositionstyle{#3} & \entrydatestyle{#5}{\fontsize{9pt}{1em}\color{lighttext}\scshape~~\textendash~~}\entrydatestyle{#6} \\[-2pt]
+    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#7}}
+    \vspace{-14pt}
+  \end{tabular*}%
+  \vspace{\afterEntrySkip}%
+}
 \newcommand*{\cveducation}[8]{%
   \vspace{\acvEntryTopSkip}
   \setlength\tabcolsep{0pt}
@@ -866,6 +881,7 @@
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#8}}
   \end{tabular*}%
   \vspace{\afterEntrySkip}%
+  \vspace{-2pt}%
 }
 \newcommand*{\cvinternship}[6]{%
   \vspace{\acvEntryTopSkip}

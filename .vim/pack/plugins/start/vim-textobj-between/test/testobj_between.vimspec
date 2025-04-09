@@ -1,0 +1,87 @@
+Describe textobj-between-i
+  Before each
+    % delete _
+  End
+
+  It selects a text-block between a specified char (Operator-pending mode)
+    call setline(1, 'text/text-block/text')
+    normal f-dif/
+    Assert Equals(getline(1), 'text//text')
+
+    call setline(1, '\text-block\')
+    normal ldif\
+    Assert Equals(getline(1), '\\')
+  End
+
+  It selects a text-block between a specified char (Visual mode)
+    call setline(1, 'text/text-block/text')
+    normal f-vif/d
+    Assert Equals(getline(1), 'text//text')
+
+    call setline(1, '\text-block\')
+    normal lvif\d
+    Assert Equals(getline(1), '\\')
+  End
+
+  It is dot-repeatable
+    call setline(1, '/text-block/')
+    normal ldif/
+    call setline(1, '/text-block/')
+    normal .
+    Assert Equals(getline(1), '//')
+  End
+End
+
+Describe textobj-between-a
+  Before each
+    % delete _
+  End
+
+  It selects a text-block that starts and ends with a specified char (Operator-pending mode)
+    call setline(1, 'text/text-block/text')
+    normal f-daf/
+    Assert Equals(getline(1), 'texttext')
+
+    call setline(1, '\text-block\')
+    normal daf\
+    Assert Equals(getline(1), '')
+  End
+
+  It selects a text-block that starts and ends with a specified char (Visual mode)
+    call setline(1, 'text/text-block/text')
+    normal f-vaf/d
+    Assert Equals(getline(1), 'texttext')
+
+    call setline(1, '\text-block\')
+    normal lvaf\d
+    Assert Equals(getline(1), '')
+  End
+
+  It is dot-repeatable
+    call setline(1, '/text-block/')
+    normal ldaf/
+
+    call setline(1, 'text/text-block/text')
+    normal f-.
+    Assert Equals(getline(1), 'texttext')
+  End
+End
+
+Describe :TextobjBetweenDefaultKeyMappings
+  Before each
+    onoremap if <Plug>(dummy-rhs)
+    vnoremap af <Plug>(dummy-rhs)
+  End
+
+  It doesn't overwrite key-mappings when "!" isn't specified
+    TextobjBetweenDefaultKeyMappings
+    Assert Equal(maparg('if', 'o'), '<Plug>(dummy-rhs)')
+    Assert Equal(maparg('af', 'v'), '<Plug>(dummy-rhs)')
+  End
+
+  It overwrites key-mappings when "!" is specified
+    TextobjBetweenDefaultKeyMappings!
+    Assert Equal(maparg('if', 'o'), '<Plug>(textobj-between-i)')
+    Assert Equal(maparg('af', 'v'), '<Plug>(textobj-between-a)')
+  End
+End
