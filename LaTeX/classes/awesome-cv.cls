@@ -185,10 +185,6 @@
   % \ifbool{acvSectionColorHighlight}{\textcolor{awesome!100!text}{#1}\textcolor{awesome!75!text}{#2}\textcolor{awesome!50!text}{#3}\textcolor{awesome!25!text}{#4}}{#1#2#3#4}%
 % }
 
-\newcommand{\skipdot}{\color{lighttext}{\ $\cdot$\ }}
-\newcommand{\spacedot}{\color{lighttext}{\enspace$\cdot$\enspace}}
-
-
 %-------------------------------------------------------------------------------
 %                Configuration for fonts
 %-------------------------------------------------------------------------------
@@ -257,6 +253,10 @@
   BoldItalicFont=*-MediumItalic.ttf,
 ]{Roboto}
 
+\newcommand*{\skipdot}{\fontsize{9pt}{1em}\bodyfontlight\color{lighttext}{\ $\cdot$\ }}
+\newcommand*{\spacedot}{\fontsize{9pt}{1em}\bodyfontlight\color{lighttext}{\enspace$\cdot$\enspace}}
+\newcommand*{\spacedash}{\fontsize{9pt}{1em}\bodyfontlight\color{lighttext}~\textendash~}
+
 \newcommand*{\headerfont}{\adobegaramond}
 \newcommand*{\footerfont}{\adobegaramond}
 \newcommand*{\bodyfont}{\adobegaramond}
@@ -287,9 +287,11 @@
 % For elements of entry
 \newcommand*{\entrytitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\headershape\color{text} #1}}
 \newcommand*{\entrypositionstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext}\MakeLowercase{#1}}}
+\newcommand*{\entryadvisorstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\itshape\color{lighttext} #1}}
 % \newcommand*{\entrydatestyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\bfseries\itshape\color{awesome} #1}}
 \newcommand*{\entrylocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\bfseries\itshape\color{text} #1}}
 \newcommand*{\entrydatestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext}\MakeLowercase{#1}}}
+\newcommand*{\entrydatesstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext} #1}}
 \newcommand*{\entrysubjectstyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\color{graytext} #1}}
 \newcommand*{\entrypostscriptstyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\itshape\color{lighttext} #1}}
 \newcommand*{\descriptionstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\upshape\color{text} #1}}
@@ -562,7 +564,7 @@
 % Header
 \newcommand{\acvHeaderNameDelim}{\space}
 
-\newcommand{\acvHeaderBeforeNameBlockSkip}{-2.0mm}  % 0.0mm
+\newcommand{\acvHeaderBeforeNameBlockSkip}{-4.0mm}  % 0.0mm
   \newcommand{\acvHeaderBeforeNameSkip}{0.0mm}  % 0.0mm
   \newcommand{\acvHeaderAfterNameSkip}{2.0mm}  % 2.0mm
   \newcommand{\acvHeaderAfterSubtitleSkip}{0.0mm}  % 0.4mm
@@ -576,21 +578,21 @@
 \newcommand{\acvHeaderIconSep}{\space}
 
 % Others
-\newcommand{\acvSectionTopSkip}{2pt}  % default 3.0mm
-\newcommand{\acvSectionContentTopSkip}{-4pt}  % default 2.5mm
+\newcommand{\acvSectionTopSkip}{3.0pt}  % default 3.0mm
+\newcommand{\acvSectionContentTopSkip}{-4.0pt}  % default -4.0mm
 % \newcommand{\acvSectionListingSkip}{-1.0mm}  % default 0.0mm
-\newcommand{\acvSubSectionContentTopSkip}{-2.0mm}  % default 2.5mm
-\newcommand{\acvParagraphContentTopSkip}{-2.0mm}  % default 2.5mm
+\newcommand{\acvSubSectionContentTopSkip}{-2.0mm}  % default -2.0mm
+\newcommand{\acvParagraphContentTopSkip}{-2.0mm}  % default -2.0mm
 \newcommand{\acvEntryTopSkip}{0.0mm}  % default 0.0mm
 \newcommand{\acvItemSkip}{-3.5mm}  % default -3.5mm
-\newcommand{\acvPubAuthorSkip}{-0.25mm}  % default 0.0mm
+\newcommand{\acvPubAuthorSkip}{-0.25mm}  % default -0.25mm
 % \newcommand{\acvPubsTopSkip}{-1.0mm}  % default 0.0mm
 % \newcommand{\acvTalksTopSkip}{-1.0mm}  % default 0.0mm
 % \newcommand{\acvHonorsTopSkip}{-1.0mm}  % default 0.0mm
 % \newcommand{\acvServiceTopSkip}{-1.0mm}  % default 0.0mm
 
-\newcommand{\afterSectionSkip}{6pt}  % default -0.4pt
-\newcommand{\afterEntrySkip}{-4pt}  % default -0.4pt
+\newcommand{\afterSectionSkip}{4.0pt}  % default -4.0pt
+\newcommand{\afterEntrySkip}{-5.0pt}  % default -5.0pt
 
 \newcommand{\acvEntriesColSep}{1.0ex}  % default 1.0ex
 
@@ -862,9 +864,9 @@
        % \entrypositionstyle{#3} & \entrylocationstyle{#5} \\[-0.25ex]
        % \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#6}}}
     \entrytitlestyle{#1}\ifempty{#2}{}{\entrypostscriptstyle{{\spacedot}#2}} & \entrylocationstyle{#4} \\[-2pt]
-    \entrypositionstyle{#3} & \entrydatestyle{#5}{\fontsize{9pt}{1em}\color{lighttext}\scshape~~\textendash~~}\entrydatestyle{#6} \\[-2pt]
+    \entrypositionstyle{#3} & \entrydatestyle{#5}{\spacedash}\entrydatestyle{#6} \\[-2pt]
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#7}}
-    \vspace{-14pt}
+    \vspace{-12pt}
   \end{tabular*}%
   \vspace{\afterEntrySkip}%
 }
@@ -877,22 +879,20 @@
        % \entrypositionstyle{#3} & \entrylocationstyle{#5} \\[-0.25ex]
        % \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#6}}}
     \entrytitlestyle{#1}\entrysubjectstyle{{\spacedot}#2}\ifempty{#3}{}{\entrypostscriptstyle{{\spacedot}#3}} & \entrylocationstyle{#5} \\[-2pt]
-    \entrypositionstyle{#4} & \entrydatestyle{#6}{\fontsize{9pt}{1em}\color{lighttext}\scshape~~\textendash~~}\entrydatestyle{#7} \\[-2pt]
+    \entrypositionstyle{#4} & \entrydatestyle{#6}{\spacedash}\entrydatestyle{#7} \\[-2pt]
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#8}}
   \end{tabular*}%
   \vspace{\afterEntrySkip}%
   \vspace{-2pt}%
 }
-\newcommand*{\cvinternship}[6]{%
+\newcommand*{\cvinternship}[7]{%
   \vspace{\acvEntryTopSkip}
   \setlength\tabcolsep{0pt}
   \setlength{\extrarowheight}{0pt}
   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 5.25cm} R{5.25cm}}
-    \ifempty{#2#3}
-      {\entrypositionstyle{#1} & \entrylocationstyle{#4} \\}
-      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\[-2pt]
-      \entrypositionstyle{#1} & \entrydatestyle{#4}{\fontsize{9pt}{1em}\color{lighttext}\scshape~~\textendash~~}\entrydatestyle{#5} \\[-2pt]}
-    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#6}}
+    \entrytitlestyle{#1} & \entrylocationstyle{#2} \\[-2pt]
+    \entrypositionstyle{#3}\ifblank{#4}{}{\spacedot\entryadvisorstyle{#4}} & \ifblank{#6}{\entrydatesstyle{#5}}{\entrydatestyle{#5}{\spacedash}\entrydatestyle{#6}} \\[-2pt]
+    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#7}}
   \end{tabular*}%
   \vspace{\afterEntrySkip}%
 }
@@ -1024,7 +1024,7 @@
   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 3.75cm} R{3.75cm}}
     \teachingtitlestyle{#2} & \teachinglocationstyle{#5} \\[-2pt]
     % \teachingpositionstyle{#1}\teachingcoursestyle{{\spacedot}#3} & \teachingdatestyle{#4} \\[-0.25ex]
-    \teachingpositionstyle{#1} & \teachingdatestyle{#3}{\fontsize{9pt}{1em}\color{lighttext}\scshape~~\textendash~~}\teachingdatestyle{#4} \\[-2pt]
+    \teachingpositionstyle{#1} & \teachingdatestyle{#3}{\spacedash}\teachingdatestyle{#4} \\[-2pt]
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#6}}
   \end{tabular*}%
   \vspace{\afterEntrySkip}%
@@ -1068,6 +1068,7 @@
     \end{tabular*}%
   \end{center}%
   \vspace{\afterSectionSkip}%
+  \vspace{-4pt}%
 }
 \newcommand*{\cvhonor}[4]{%
   \honordatestyle{#1} & \honorpositionstyle{#2} & \honorconferralstyle{#3} & \honorlocationstyle{#4} \\
@@ -1088,7 +1089,7 @@
 \newcommand*{\cvskill}[2]{ \skilltypestyle{#1} & \skillsetstyle{#2} \\ }
 
 \newenvironment{cvpubs}{%
-  \vspace{\acvSectionContentTopSkip}
+  \vspace{\acvSectionContentTopSkip}%
   \begin{center}
     % \setlength\tabcolsep{1ex}
     \setlength\tabcolsep{\acvEntriesColSep}
@@ -1119,9 +1120,28 @@
 }{%
     \end{tabular*}
   \end{center}
-  \vspace{\afterSectionSkip}
+  \vspace{\afterSectionSkip}%
+  \vspace{-4pt}%
 }
 \newcommand*{\cvtalk}[4]{%
+  % \skilldatestyle{#1} & \skillsetstyle{\textbf{#2}} & \skillsetstyle{\textit{#3}} & \skilllocationstyle{#4} \\
+  \skilldatestyle{#1} & \skilltypestyle{#2} & \skillformstyle{#3} & \skilllocationstyle{#4} \\
+}
+\newenvironment{cvmentorship}{%
+  \vspace{\acvSectionContentTopSkip}
+  \begin{center}
+    \setlength\tabcolsep{\acvEntriesColSep}
+    \setlength{\extrarowheight}{0.0pt}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.4}} R{\textwidth * \real{0.275}} L{\textwidth * \real{0.225}}}
+    % \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.9125}}}
+    % \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.4}} L{\textwidth * \real{0.125}} L{\textwidth * \real{0.275}}}
+}{%
+    \end{tabular*}
+  \end{center}
+  \vspace{\afterSectionSkip}%
+  \vspace{-4pt}%
+}
+\newcommand*{\cvmentor}[4]{%
   % \skilldatestyle{#1} & \skillsetstyle{\textbf{#2}} & \skillsetstyle{\textit{#3}} & \skilllocationstyle{#4} \\
   \skilldatestyle{#1} & \skilltypestyle{#2} & \skillformstyle{#3} & \skilllocationstyle{#4} \\
 }

@@ -916,7 +916,7 @@
 
       au VimEnter * nnoremap gd <cmd>LspPeekDefinition<cr>
       au VimEnter * nnoremap gD <cmd>LspPeekDeclaration<cr>
-      au VimEnter * nnoremap gi <cmd>LspPeekImpl<cr>
+      " au VimEnter * nnoremap gi <cmd>LspPeekImpl<cr>
       au VimEnter * nnoremap gt <cmd>LspPeekTypeDef<cr>
 
       au VimEnter * nnoremap gm <cmd>LspDiag current<cr>
@@ -986,6 +986,12 @@
 
 " SET OPTIONS
   " FILETYPE SPECIFIC
+    augroup config_settings | au!
+      au BufNewFile,BufRead .yabairc,yabairc,.skhdrc set filetype=sh
+      au BufNewFile,BufRead .tmux.conf,.tmux.statusline set filetype=tmux
+      au BufNewFile,BufRead .ghosttyrc set filetype=toml
+    augroup END
+
     augroup shell_settings | au!
       au BufNewFile,BufRead *.sh set filetype=bash
       " au BufNewFile,BufRead,BufReadPost *.sh setlocal nospell

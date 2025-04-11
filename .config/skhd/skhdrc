@@ -6,8 +6,9 @@
 :: stack  @
 :: resize @
 :: float  @
-default                                 < ctrl - 0x29 ; modal
-default                                 < ctrl - q    ; modal
+# default                                 < ctrl - 0x29 ; modal
+# default                                 < ctrl - q    ; modal
+default                                 < ctrl - f    ; modal
 modal, swap, warp, stack, resize, float < ctrl - c    ; default
 modal, swap, warp, stack, resize, float < escape      ; default
 
@@ -24,8 +25,10 @@ modal, swap, warp, stack, resize, float < escape      ; default
   modal < k : yabai -m window --focus north                     ; skhd -k "escape"
   modal < l : yabai -m window --focus east                      ; skhd -k "escape"
 
-  modal < n : yabai -m window --focus stack.next || yabai -m window --focus stack.first ; skhd -k "escape"
-  modal < p : yabai -m window --focus stack.prev || yabai -m window --focus stack.last  ; skhd -k "escape"
+  # modal < n : yabai -m window --focus stack.next || yabai -m window --focus stack.first ; skhd -k "escape"
+  # modal < p : yabai -m window --focus stack.prev || yabai -m window --focus stack.last  ; skhd -k "escape"
+  modal < n : yabai -m window --focus stack.next ; skhd -k "escape"
+  modal < p : yabai -m window --focus stack.prev ; skhd -k "escape"
 
   modal < z : yabai -m window --toggle zoom-fullscreen          ; skhd -k "escape"
   modal < f : yabai -m window --toggle float --grid 9:9:1:1:7:7 ; skhd -k "escape"
