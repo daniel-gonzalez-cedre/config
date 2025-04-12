@@ -1313,11 +1313,11 @@
     " start of rendered text line
       noremap <silent> g<c-a> g^
       onoremap <silent> g<c-a> g^
-      inoremap <silent> <c-a> <c-o>^
-    " start of logical text line
-      noremap <silent> <c-a> g^
-      onoremap <silent> <c-a> g^
       inoremap <silent> <c-g><c-a> <c-o>g^
+    " start of logical text line
+      noremap <silent> <c-a> ^
+      onoremap <silent> <c-a> ^
+      inoremap <silent> <c-a> <c-o>^
     " start of command line
       cnoremap <c-a> <home>
 
@@ -1338,11 +1338,11 @@
       cnoremap <c-e> <end>
 
     " text object inside current line
-    xnoremap il g_o^
-    onoremap <silent> il <cmd>normal vil<cr>
+      xnoremap il g_o^
+      onoremap <silent> il <cmd>normal vil<cr>
     " text object around current line
-    xnoremap al $o^
-    onoremap <silent> al <cmd>normal val<cr>
+      xnoremap al $o^
+      onoremap <silent> al <cmd>normal val<cr>
 
   " FOLDS
     nnoremap <leader>ff zf

@@ -1,18 +1,22 @@
+# JANKY BORDERS
+# borders active_color=0xff5a524c inactive_color=0xff32302f width=5.0
+
 yabai -m config layout bsp
 # yabai -m config layout stack
 # yabai -m config layout float
 
+yabai -m config window_zoom_persist off
 yabai -m config window_placement second_child
 # yabai -m config window_border_placement inset
 
-# padding
+# PADDING
 yabai -m config top_padding 2
 yabai -m config bottom_padding 2
 yabai -m config left_padding 2
 yabai -m config right_padding 2
 yabai -m config window_gap 2
 
-# set focus follows mouse mode (default: off, options: off, autoraise, autofocus)
+# SET FOCUS FOLLOWS MOUSE MODE (DEFAULT: OFF, OPTIONS: OFF, AUTORAISE, AUTOFOCUS)
 yabai -m config focus_follows_mouse off
 yabai -m config mouse_follows_focus off
 
@@ -46,5 +50,11 @@ yabai -m rule --add app="^zoom.us$" manage=off
 
 yabai -m rule --add app="^Cisco AnyConnect Secure Mobility Client$" manage=off
 
-# janky borders
-# borders active_color=0xff5a524c inactive_color=0xff32302f width=5.0
+# SIGNALS
+# yabai -m signal --add event=window_created action="yabai -m window \$(yabai -m query --windows --space | jq -r 'first | .id') \$(yabai -m query --windows --space | jq -r 'if map(select(.\"has-fullscreen-zoom\" == true)) | any then \"--toggle zoom-fullscreen\" else \"\" end')"
+
+# FLASH WINDOW ON FOCUS CHANGE
+# yabai -m signal --add label="flash_focus" event="window_focused" action="yabai -m window \$YABAI_WINDOW_ID --opacity 0.1 && sleep $(yabai -m config window_opacity_duration) && yabai -m window \$YABAI_WINDOW_ID --opacity 0.0"
+
+# AUTOUPDATE
+YABAI_CERT=yabai-cert sh -c "$(curl -fsSL "https://git.io/update-yabai")" &
