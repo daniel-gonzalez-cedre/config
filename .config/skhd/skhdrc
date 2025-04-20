@@ -1,73 +1,135 @@
 # MODES #
 :: default
+:: await  @
 :: modal  @
 :: swap   @
 :: warp   @
 :: stack  @
 :: resize @
 :: float  @
-# default                                 < ctrl - 0x29 ; modal
-# default                                 < ctrl - q    ; modal
-default                                 < ctrl - f    ; modal
-modal, swap, warp, stack, resize, float < ctrl - c    ; default
-modal, swap, warp, stack, resize, float < escape      ; default
+# default                                 < ctrl - 0x29 ; await
+# default                                 < ctrl - q    ; await
+default                                        < ctrl - f ; await
+default                                        < ctrl - m ; modal
+await                                          < m        ; modal
+await, modal, swap, warp, stack, resize, float < ctrl - c ; default
+await, modal, swap, warp, stack, resize, float < escape   ; default
+await, modal, swap, warp, stack, resize, float < return   ; default
 
 # OPEN TERMINAL #
-# modal < ctrl - t : alacritty msg create-window ; skhd -k "escape"
-# modal < cmd - t  : alacritty msg create-window ; skhd -k "escape"
-# modal < ctrl + shift - t : alacritty msg create-window ; yabai -m window --toggle float --grid 4 : 4 : 1 : 1 : 2 : 2 ; skhd -k "escape"
-# modal < cmd - t : alacritty msg create-window ; yabai -m window --toggle float --grid 6:6:1:1:4:4 ; skhd -k "escape"
+# await < ctrl - t : alacritty msg create-window ; skhd -k "escape"
+# await < cmd - t  : alacritty msg create-window ; skhd -k "escape"
+# await < ctrl + shift - t : alacritty msg create-window ; yabai -m window --toggle float --grid 4 : 4 : 1 : 1 : 2 : 2 ; skhd -k "escape"
+# await < cmd - t : alacritty msg create-window ; yabai -m window --toggle float --grid 6:6:1:1:4:4 ; skhd -k "escape"
 
 # WINDOWS #
   ## FOCUS ##
-  # modal < h : yabai -m window --focus west  || yabai -m window --focus stack.prev || yabai -m window --focus stack.last  ; skhd -k "escape"
-  # modal < j : yabai -m window --focus south || yabai -m window --focus stack.next || yabai -m window --focus stack.first ; skhd -k "escape"
-  # modal < k : yabai -m window --focus north || yabai -m window --focus stack.prev || yabai -m window --focus stack.last  ; skhd -k "escape"
-  # modal < l : yabai -m window --focus east  || yabai -m window --focus stack.next || yabai -m window --focus stack.first ; skhd -k "escape"
-  modal < h : yabai -m window --focus west  ; skhd -k "escape"
-  modal < j : yabai -m window --focus south ; skhd -k "escape"
-  modal < k : yabai -m window --focus north ; skhd -k "escape"
-  modal < l : yabai -m window --focus east  ; skhd -k "escape"
+  # await < h : yabai -m window --focus west  || yabai -m window --focus stack.prev || yabai -m window --focus stack.last  ; skhd -k "escape"
+  # await < j : yabai -m window --focus south || yabai -m window --focus stack.next || yabai -m window --focus stack.first ; skhd -k "escape"
+  # await < k : yabai -m window --focus north || yabai -m window --focus stack.prev || yabai -m window --focus stack.last  ; skhd -k "escape"
+  # await < l : yabai -m window --focus east  || yabai -m window --focus stack.next || yabai -m window --focus stack.first ; skhd -k "escape"
+  await < h : yabai -m window --focus west  ; skhd -k "escape"
+  modal < h : yabai -m window --focus west
 
-  modal < n : yabai -m window --focus stack.next || yabai -m window --focus stack.first ; skhd -k "escape"
-  modal < p : yabai -m window --focus stack.prev || yabai -m window --focus stack.last  ; skhd -k "escape"
-  # modal < n : yabai -m window --focus stack.next ; skhd -k "escape"
-  # modal < p : yabai -m window --focus stack.prev ; skhd -k "escape"
+  await < j : yabai -m window --focus south ; skhd -k "escape"
+  modal < j : yabai -m window --focus south
 
-  modal < o         : yabai -m window --toggle split                    ; skhd -k "escape"
-  modal < z         : yabai -m window --toggle zoom-fullscreen          ; skhd -k "escape"
-  modal < shift - z : yabai -m window --toggle zoom-fullscreen          ; skhd -k "escape"
-  modal < f         : yabai -m window --toggle float --grid 9:9:1:1:7:7 ; skhd -k "escape"
+  await < k : yabai -m window --focus north ; skhd -k "escape"
+  modal < k : yabai -m window --focus north
 
-  modal < cmd - f        : yabai -m window --toggle native-fullscreen ; skhd -k "escape"
-  modal < cmd + ctrl - f : yabai -m window --toggle native-fullscreen ; skhd -k "escape"
+  await < l : yabai -m window --focus east  ; skhd -k "escape"
+  modal < l : yabai -m window --focus east
 
-  modal < cmd - w        : yabai -m window --close                    ; skhd -k "escape"
+  await < n : yabai -m window --focus stack.next || yabai -m window --focus stack.first ; skhd -k "escape"
+  modal < n : yabai -m window --focus stack.next || yabai -m window --focus stack.first
+
+  await < p : yabai -m window --focus stack.prev || yabai -m window --focus stack.last  ; skhd -k "escape"
+  modal < p : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+
+  await < o         : yabai -m window --toggle split                    ; skhd -k "escape"
+  modal < o         : yabai -m window --toggle split
+
+  await < z         : yabai -m window --toggle zoom-fullscreen          ; skhd -k "escape"
+  modal < z         : yabai -m window --toggle zoom-fullscreen
+
+  await < f         : yabai -m window --toggle float --grid 9:9:1:1:7:7 ; skhd -k "escape"
+  await < shift - f : yabai -m window --toggle float --grid 9:9:1:1:7:7 ; skhd -k "escape"
+  modal < f         : yabai -m window --toggle float --grid 9:9:1:1:7:7
+  modal < shift - f : yabai -m window --toggle float --grid 9:9:1:1:7:7
+
+  await, modal < cmd + ctrl  - f : yabai -m window --toggle native-fullscreen ; skhd -k "escape"
+  await, modal < cmd + shift - f : yabai -m window --toggle native-fullscreen ; skhd -k "escape"
+
+  await, modal < cmd - w : yabai -m window --close ; skhd -k "escape"
 
   ## SWAP ##
-  modal < s ; swap
-  swap < h : yabai -m window --swap west  ; skhd -k "escape"
-  swap < j : yabai -m window --swap south ; skhd -k "escape"
-  swap < k : yabai -m window --swap north ; skhd -k "escape"
-  swap < l : yabai -m window --swap east  ; skhd -k "escape"
+  await < shift - h : yabai -m window --swap west  ; skhd -k "escape"
+  modal < shift - h : yabai -m window --swap west
+
+  await < shift - j : yabai -m window --swap south ; skhd -k "escape"
+  modal < shift - j : yabai -m window --swap south
+
+  await < shift - k : yabai -m window --swap north ; skhd -k "escape"
+  modal < shift - k : yabai -m window --swap north
+
+  await < shift - l : yabai -m window --swap east  ; skhd -k "escape"
+  modal < shift - l : yabai -m window --swap east
+
+  # await < s ; swap
+  # swap < h : yabai -m window --swap west  ; skhd -k "escape"
+  # swap < j : yabai -m window --swap south ; skhd -k "escape"
+  # swap < k : yabai -m window --swap north ; skhd -k "escape"
+  # swap < l : yabai -m window --swap east  ; skhd -k "escape"
 
   ## WARP (MOVE) ##
-  modal < w ; warp
-  warp < h      : yabai -m window --warp west    ; skhd -k "escape"
-  warp < j      : yabai -m window --warp south   ; skhd -k "escape"
-  warp < k      : yabai -m window --warp north   ; skhd -k "escape"
-  warp < l      : yabai -m window --warp east    ; skhd -k "escape"
-  warp < return : yabai -m window --warp sibling ; skhd -k "escape"
+  await < ctrl - h : yabai -m window --warp west  ; skhd -k "escape"
+  await < left     : yabai -m window --warp west  ; skhd -k "escape"
+  modal < ctrl - h : yabai -m window --warp west
+  modal < left     : yabai -m window --warp west
+
+  await < ctrl - j : yabai -m window --warp south ; skhd -k "escape"
+  await < down     : yabai -m window --warp south ; skhd -k "escape"
+  modal < ctrl - j : yabai -m window --warp south
+  modal < down     : yabai -m window --warp south
+
+  await < ctrl - k : yabai -m window --warp north ; skhd -k "escape"
+  await < up       : yabai -m window --warp north ; skhd -k "escape"
+  modal < ctrl - k : yabai -m window --warp north
+  modal < up       : yabai -m window --warp north
+
+  await < ctrl - l : yabai -m window --warp east  ; skhd -k "escape"
+  await < right    : yabai -m window --warp east  ; skhd -k "escape"
+  modal < ctrl - l : yabai -m window --warp east
+  modal < right    : yabai -m window --warp east
+
+  # await < w ; warp
+  # warp < h      : yabai -m window --warp west    ; skhd -k "escape"
+  # warp < j      : yabai -m window --warp south   ; skhd -k "escape"
+  # warp < k      : yabai -m window --warp north   ; skhd -k "escape"
+  # warp < l      : yabai -m window --warp east    ; skhd -k "escape"
+  # warp < return : yabai -m window --warp sibling ; skhd -k "escape"
 
   ## STACK ##
-  modal < t ; stack
-  stack < h : yabai -m window --stack west  ; skhd -k "escape"
-  stack < j : yabai -m window --stack south ; skhd -k "escape"
-  stack < k : yabai -m window --stack north ; skhd -k "escape"
-  stack < l : yabai -m window --stack east  ; skhd -k "escape"
+  await < cmd - h : yabai -m window --stack west  ; skhd -k "escape"
+  modal < cmd - h : yabai -m window --stack west
+
+  await < cmd - j : yabai -m window --stack south ; skhd -k "escape"
+  modal < cmd - j : yabai -m window --stack south
+
+  await < cmd - k : yabai -m window --stack north ; skhd -k "escape"
+  modal < cmd - k : yabai -m window --stack north
+
+  await < cmd - l : yabai -m window --stack east  ; skhd -k "escape"
+  modal < cmd - l : yabai -m window --stack east
+
+  # await < t ; stack
+  # stack < h : yabai -m window --stack west  ; skhd -k "escape"
+  # stack < j : yabai -m window --stack south ; skhd -k "escape"
+  # stack < k : yabai -m window --stack north ; skhd -k "escape"
+  # stack < l : yabai -m window --stack east  ; skhd -k "escape"
 
   ## RESIZE ##
-  # modal < r ; resize
+  # await < r ; resize
   # resize < shift - h : yabai -m window --resize left:-20:0
   # resize < shift - j : yabai -m window --resize bottom:0:20
   # resize < shift - k : yabai -m window --resize top:0:-20
@@ -75,28 +137,37 @@ modal, swap, warp, stack, resize, float < escape      ; default
 
 # SPACES #
   ## ARRANGEMENT ##
-  # modal < tab      : yabai -m space --layout bsp    ; skhd -k "escape"
-  # modal < z        : yabai -m space --layout stack  ; skhd -k "escape"
-  modal < ctrl - z : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "stack" else "bsp" end') ; skhd -k "escape"
-  modal < x        : yabai -m space --mirror x-axis ; skhd -k "escape"
-  modal < y        : yabai -m space --mirror y-axis ; skhd -k "escape"
-  # modal < equal    : yabai -m space --balance       ; skhd -k "escape"
-  # modal < ctrl - r : yabai -m space --rotate 90  ; skhd -k "escape"
-  # modal < ctrl - o : yabai -m space --rotate 270 ; skhd -k "escape"
+  # await < tab      : yabai -m space --layout bsp    ; skhd -k "escape"
+  # await < z        : yabai -m space --layout stack  ; skhd -k "escape"
+  await < cmd + ctrl - z : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "stack" else "bsp" end') ; skhd -k "escape"
+  # modal < cmd + ctrl - z : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "stack" else "bsp" end')
 
-  ## FOCUS ##
-  modal < cmd - 1 : yabai -m space --focus 1       ; skhd -k "escape"
-  modal < cmd - 2 : yabai -m space --focus 2       ; skhd -k "escape"
-  modal < cmd - 3 : yabai -m space --focus 3       ; skhd -k "escape"
-  modal < cmd - n : yabai -m space --focus next    ; skhd -k "escape"
-  modal < cmd - p : yabai -m space --focus prev    ; skhd -k "escape"
+  await < x : yabai -m space --mirror x-axis ; skhd -k "escape"
+  modal < x : yabai -m space --mirror x-axis
 
-# MONITORS #
-modal < cmd + ctrl - n : yabai -m display --focus next ; skhd -k "escape"
-modal < cmd + ctrl - p : yabai -m display --focus prev ; skhd -k "escape"
-modal < cmd + ctrl - 1 : yabai -m display --focus 1    ; skhd -k "escape"
-modal < cmd + ctrl - 2 : yabai -m display --focus 2    ; skhd -k "escape"
-modal < cmd + ctrl - 3 : yabai -m display --focus 3    ; skhd -k "escape"
+  await < y : yabai -m space --mirror y-axis ; skhd -k "escape"
+  modal < y : yabai -m space --mirror y-axis
+
+  # `0x18` is `equals`
+  await < 0x18 : yabai -m space --balance       ; skhd -k "escape"
+  modal < 0x18 : yabai -m space --balance
+
+  # await < ctrl - r : yabai -m space --rotate 90  ; skhd -k "escape"
+  # await < ctrl - o : yabai -m space --rotate 270 ; skhd -k "escape"
+
+  # ## FOCUS ##
+  # await < cmd - 1 : yabai -m space --focus 1       ; skhd -k "escape"
+  # await < cmd - 2 : yabai -m space --focus 2       ; skhd -k "escape"
+  # await < cmd - 3 : yabai -m space --focus 3       ; skhd -k "escape"
+  # await < cmd - n : yabai -m space --focus next    ; skhd -k "escape"
+  # await < cmd - p : yabai -m space --focus prev    ; skhd -k "escape"
+
+# # MONITORS #
+# await < cmd + ctrl - n : yabai -m display --focus next ; skhd -k "escape"
+# await < cmd + ctrl - p : yabai -m display --focus prev ; skhd -k "escape"
+# await < cmd + ctrl - 1 : yabai -m display --focus 1    ; skhd -k "escape"
+# await < cmd + ctrl - 2 : yabai -m display --focus 2    ; skhd -k "escape"
+# await < cmd + ctrl - 3 : yabai -m display --focus 3    ; skhd -k "escape"
 
 
 

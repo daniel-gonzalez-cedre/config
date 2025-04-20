@@ -5,6 +5,9 @@ yabai -m config layout bsp
 # yabai -m config layout stack
 # yabai -m config layout float
 
+# TRANSPARENT INDICATOR OVERLAY FOR STACK INSERT PENDING MODE
+yabai -m config insert_feedback_color 0x00FFFFFF
+
 yabai -m config window_zoom_persist off
 yabai -m config window_placement second_child
 # yabai -m config window_border_placement inset
@@ -29,20 +32,20 @@ yabai -m config mouse_drop_action stack  # dropping one window on another
 
 # yabai -m rule --add app!="^(Safari|Firefox|Librewolf|Floorp|Terminal|Alacritty|Wezterm|Slack|Calendar)$" manage=off
 
-yabai -m rule --add app="^Finder$" manage=off
+# yabai -m rule --add app="^Finder$" manage=off
 # yabai -m rule --add app="^Messages$" manage=off
 yabai -m rule --add app="^FaceTime$" manage=off
-yabai -m rule --add app="^Passwords$" manage=off
+# yabai -m rule --add app="^Passwords$" manage=off
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^Font Book$" manage=off
 
-yabai -m rule --add app="^Bitwarden$" manage=off
-yabai -m rule --add app="^GoodLinks$" manage=off
+# yabai -m rule --add app="^Bitwarden$" manage=off
+# yabai -m rule --add app="^GoodLinks$" manage=off
 
-yabai -m rule --add app="^Karabiner-*" manage=off
-yabai -m rule --add app="^Hammerspoon$" manage=off
-yabai -m rule --add app="^QMK Toolbox$" manage=off
+# yabai -m rule --add app="^Karabiner-*" manage=off
+# yabai -m rule --add app="^Hammerspoon$" manage=off
+# yabai -m rule --add app="^QMK Toolbox$" manage=off
 
 yabai -m rule --add app="^Zoom$" manage=off
 yabai -m rule --add app="^Zoom Workplace$" manage=off
@@ -51,10 +54,19 @@ yabai -m rule --add app="^zoom.us$" manage=off
 yabai -m rule --add app="^Cisco AnyConnect Secure Mobility Client$" manage=off
 
 # SIGNALS
+# yabai -m signal --add event=window_created action='yabai -m window last --insert stack; SELWIN=$(yabai -m query --windows --window last); yabai -m window --focus $SELWIN; yabai -m window --insert stack'
+# yabai -m signal --add event=window_destroyed action='SELWIN=$(yabai -m query --windows --window last | jq -r -e ".id"); yabai -m window --focus $SELWIN'
+# yabai -m signal --add event=application_terminated action='SELWIN=$(yabai -m query --windows --window last | jq -r -e ".id"); yabai -m window --focus $SELWIN'
+
+# yabai -m signal --add event=window_focused action='yabai -m window --insert stack'
+# yabai -m signal --add event=application_front_switched action='yabai -m  window --insert stack'
+# yabai -m signal --add event=application_terminated action='yabai -m window --insert stack'
+# yabai -m signal --add event=window_destroyed action='yabai -m window --insert stack'
+
 # yabai -m signal --add event=window_created action="yabai -m window \$(yabai -m query --windows --space | jq -r 'first | .id') \$(yabai -m query --windows --space | jq -r 'if map(select(.\"has-fullscreen-zoom\" == true)) | any then \"--toggle zoom-fullscreen\" else \"\" end')"
 
 # FLASH WINDOW ON FOCUS CHANGE
 # yabai -m signal --add label="flash_focus" event="window_focused" action="yabai -m window \$YABAI_WINDOW_ID --opacity 0.1 && sleep $(yabai -m config window_opacity_duration) && yabai -m window \$YABAI_WINDOW_ID --opacity 0.0"
 
 # AUTOUPDATE
-YABAI_CERT=yabai-cert sh -c "$(curl -fsSL "https://git.io/update-yabai")" &
+# YABAI_CERT=yabai-cert sh -c "$(curl -fsSL "https://git.io/update-yabai")" &

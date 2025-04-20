@@ -451,11 +451,19 @@
   let g:ale_is_loaded = 0
   let g:vimtex_is_loaded = 0
 
+  " MARKS IN SIGN GUTTER
+  packadd! vim-signature
+    noremap " `
+    onoremap " `
+    noremap ` "
+    onoremap ` "
+
   " SEARCH HIGHLIGHT AUTOTOGGLING
   packadd! vim-cool
     set hlsearch
     " let g:cool_total_matches = 1
 
+  " HIGHLIGHT YANK SELECTION AUTOMATICALLY
   let g:highlightedyank_is_loaded=1
   packadd vim-highlightedyank
     let g:highlightedyank_highlight_duration = 128
@@ -1202,6 +1210,7 @@
   " nnoremap <silent> gh <cmd>noh<cr>
   " vnoremap <silent> gh <cmd>noh<cr>
   nnoremap <c-s> :%s//gc<left><left><left>
+  noremap ? //e<left><left>
 
   " vnoremap <leader>/ y/\V<c-r>=escape(@",'/\')<cr>
   vnoremap <c-s> y`<`>:<c-u>%s/\V<c-r>=escape(@",'/\')<cr>//gc<left><left><left>
@@ -1210,6 +1219,13 @@
 
 
 " QUALITY OF LIFE MAPPINGS
+  " LIST AND COMMAND MAPPINGS
+    nnoremap <leader>ls :ls<cr>
+    nnoremap <leader>b :ls<cr>:b<space>
+    nnoremap <leader>u :u<cr>:u<space>
+    nnoremap <leader>m :<c-u>marks<cr>:normal! `
+
+
   " MATCH MAPPINGS
     " cnoremap <tab> <c-g>
     " cnoremap <s-tab> <c-t>
@@ -1309,23 +1325,23 @@
     " nnoremap gj j
     " nnoremap gk k
 
-  " LINE MOVEMENT
-    " start of rendered text line
+    " LINE MOVEMENT
+    " START OF RENDERED TEXT LINE
       noremap <silent> g<c-a> g^
       onoremap <silent> g<c-a> g^
       inoremap <silent> <c-g><c-a> <c-o>g^
-    " start of logical text line
+    " START OF LOGICAL TEXT LINE
       noremap <silent> <c-a> ^
       onoremap <silent> <c-a> ^
       inoremap <silent> <c-a> <c-o>^
-    " start of command line
+    " START OF COMMAND LINE
       cnoremap <c-a> <home>
 
-    " end of rendered line of text
+    " END OF RENDERED LINE OF TEXT
       noremap <silent> g<c-e> g_
       onoremap <silent> g<c-e> g_
       inoremap <silent> <c-g><c-e> <c-o>g$
-    " end of logical line of text
+    " END OF LOGICAL LINE OF TEXT
       " nnoremap ge g$
       " vnoremap ge g$<left>
       " onoremap ge g$
@@ -1333,16 +1349,17 @@
       vnoremap <silent> <c-e> $<left>
       onoremap <silent> <c-e> $
       inoremap <silent> <c-e> <c-o>$
-    " operator pending to end of logical text line
-    " end of command line
+    " OPERATOR PENDING TO END OF LOGICAL TEXT LINE
+    " END OF COMMAND LINE
       cnoremap <c-e> <end>
 
-    " text object inside current line
+    " TEXT OBJECT INSIDE CURRENT LINE
       xnoremap il g_o^
       onoremap <silent> il <cmd>normal vil<cr>
-    " text object around current line
+    " TEXT OBJECT AROUND CURRENT LINE
       xnoremap al $o^
       onoremap <silent> al <cmd>normal val<cr>
+
 
   " FOLDS
     nnoremap <leader>ff zf
@@ -1608,7 +1625,7 @@
   function! SetQuote()
     let l:special_filetypes = ['python', 'lua', 'c', 'cpp', 'objc',
                              \ 'html', 'css', 'javascript',
-                             \ 'vim', 'vimscript',
+                             \ 'vim', 'vimscript', 'sh', 'bash', 'zsh',
                              \ 'markdown', 'toml', 'yaml']
     let g:quote_status = index(l:special_filetypes, &filetype) >= 0 ? 1 : 0
     if g:quote_status == 0
