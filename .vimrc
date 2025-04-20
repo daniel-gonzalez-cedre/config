@@ -453,10 +453,6 @@
 
   " MARKS IN SIGN GUTTER
   packadd! vim-signature
-    noremap " `
-    onoremap " `
-    noremap ` "
-    onoremap ` "
 
   " SEARCH HIGHLIGHT AUTOTOGGLING
   packadd! vim-cool
