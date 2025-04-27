@@ -1,0 +1,12 @@
+:TextobjBetweenDefaultKeyMappings	textobj-between.txt	/*:TextobjBetweenDefaultKeyMappings*
+<Plug>(textobj-between-a)	textobj-between.txt	/*<Plug>(textobj-between-a)*
+<Plug>(textobj-between-i)	textobj-between.txt	/*<Plug>(textobj-between-i)*
+g:textobj_between_no_default_key_mappings	textobj-between.txt	/*g:textobj_between_no_default_key_mappings*
+textobj-between	textobj-between.txt	/*textobj-between*
+textobj-between-changelog	textobj-between.txt	/*textobj-between-changelog*
+textobj-between-contents	textobj-between.txt	/*textobj-between-contents*
+textobj-between-customizing	textobj-between.txt	/*textobj-between-customizing*
+textobj-between-interface	textobj-between.txt	/*textobj-between-interface*
+textobj-between-introduction	textobj-between.txt	/*textobj-between-introduction*
+textobj-between-key-mappings	textobj-between.txt	/*textobj-between-key-mappings*
+textobj-between.txt	textobj-between.txt	/*textobj-between.txt*
