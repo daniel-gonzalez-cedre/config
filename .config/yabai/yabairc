@@ -37,7 +37,7 @@ yabai -m config mouse_action2 stack  # <RIGHT_CLICK> + DRAG
 
 # yabai -m rule --add app!="^(Safari|Firefox|Librewolf|Floorp|Terminal|Alacritty|Wezterm|Slack|Calendar)$" manage=off
 
-# yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^Finder$" manage=off
 # yabai -m rule --add app="^Messages$" manage=off
 yabai -m rule --add app="^FaceTime$" manage=off
 # yabai -m rule --add app="^Passwords$" manage=off

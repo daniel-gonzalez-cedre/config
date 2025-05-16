@@ -165,6 +165,7 @@
   " vnoremap <silent> <bs> <nop>
   noremap <silent><cr> <nop>
   noremap <silent><bs> <nop>
+  noremap <silent><del> <nop>
 
   noremap <silent> <c-c> <esc><esc>
   inoremap <silent> <c-c> <esc><esc>
@@ -751,15 +752,21 @@
       " endfor
 
       " for i in range(1, 50)
-        " exe "nnoremap gc" . i . "j V" . i . "j\<plug\>NERDCommenterInvert"
-        " exe "nnoremap gc" . i . "k V" . i . "k\<plug\>NERDCommenterInvert"
+        " exe 'nnoremap gc' . i . 'j V' . i . 'j\<plug\>NERDCommenterInvert'
+        " exe 'nnoremap gc' . i . 'k V' . i . 'k\<plug\>NERDCommenterInvert'
       " endfor
 
-      noremap gci <plug>NERDCommenterComment
-      noremap gcu <plug>NERDCommenterUncomment
+      noremap gc/ <plug>NERDCommenterComment
+      noremap gcd <plug>NERDCommenterUncomment
+      noremap gcx <plug>NERDCommenterUncomment
+      " noremap cd <plug>NERDCommenterUncomment
+      " " noremap dc <plug>NERDCommenterUncomment
+      " " noremap gci <plug>NERDCommenterComment
+      " " noremap gcu <plug>NERDCommenterUncomment
 
-      noremap gct <plug>NERDCommenterInvert
-      noremap gcc <plug>NERDCommenterInvert
+      noremap gci <plug>NERDCommenterInvert
+      " noremap gct <plug>NERDCommenterInvert
+      " noremap gcc <plug>NERDCommenterInvert
       " noremap gct <plug>NERDCommenterToggle
 
       " noremap gci <plug>NERDCommenterToEOL a
@@ -767,10 +774,14 @@
       " noremap gck <plug>NERDCommenterToEOL
       " noremap gcK <plug>NERDCommenterComment ^
 
-      nnoremap gca A<c-g>U<space><c-o><plug>NERDCommenterAppend
-      nnoremap gcA <plug>NERDCommenterAppend
+      nnoremap gca <plug>NERDCommenterAppend<left><left><left><space><right><right><right>
+      " nnoremap cA <plug>NERDCommenterAppend
+      " nnoremap cA <plug>NERDCommenterAppend
+      " nnoremap gca A<c-g>U<space><c-o><plug>NERDCommenterAppend
+      " nnoremap gcA <plug>NERDCommenterAppend
 
       nnoremap gcl A<c-g>U<c-o><plug>NERDCommenterAppend<bs><left><bs><right><esc>
+      " nnoremap gcl A<c-g>U<c-o><plug>NERDCommenterAppend<bs><left><bs><right><esc>
       " nnoremap gcH <plug>NERDCommenterToEOL
       " nnoremap gcJ <plug>NERDCommenterToEOL
       " nnoremap gcK <plug>NERDCommenterToEOL
@@ -778,6 +789,8 @@
 
       nnoremap gco o<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
       nnoremap gcO O<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
+      " nnoremap gco o<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
+      " nnoremap gcO O<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
     endfunction
   augroup END
 

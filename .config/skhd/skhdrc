@@ -9,12 +9,11 @@
 :: float  @
 # default                                 < ctrl - 0x29 ; await
 # default                                 < ctrl - q    ; await
-default                                        < ctrl - f ; await
-default                                        < ctrl - m ; modal
-await                                          < m        ; modal
-await, modal, swap, warp, stack, resize, float < ctrl - c ; default
-await, modal, swap, warp, stack, resize, float < escape   ; default
-await, modal, swap, warp, stack, resize, float < return   ; default
+default, await, modal                          < ctrl - f         ; await
+default, await, modal                          < ctrl + shift - f ; modal
+await, modal, swap, warp, stack, resize, float < ctrl - c         ; default
+await, modal, swap, warp, stack, resize, float < escape           ; default
+await, modal, swap, warp, stack, resize, float < return           ; default
 
 # OPEN TERMINAL #
 # await < ctrl - t : alacritty msg create-window ; skhd -k "escape"
