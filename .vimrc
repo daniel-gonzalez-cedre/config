@@ -767,7 +767,7 @@
       noremap gci <plug>NERDCommenterInvert
       " noremap gct <plug>NERDCommenterInvert
       " noremap gcc <plug>NERDCommenterInvert
-      " noremap gct <plug>NERDCommenterToggle
+      noremap gct <plug>NERDCommenterToggle
 
       " noremap gci <plug>NERDCommenterToEOL a
       " noremap gcI <plug>NERDCommenterComment ^a<space>
@@ -942,6 +942,21 @@
 
       au VimEnter * nnoremap gs <cmd>LspShowSignature<cr>
       " au VimEnter * nnoremap gS <cmd>LspHighlightClear<cr>
+
+      " function! s:CheckSig(timer)
+        " if g:lsp_trigger_flag
+          " let g:lsp_trigger_flag = 0
+          " call g:LspShowSignature()
+        " endif
+      " endfunction
+
+      " let g:lsp_trigger_flag = 0
+
+      " autocmd InsertCharPre call g:LspShowSignature()
+      " " autocmd InsertCharPre * if v:char ==# '(' | let g:lsp_trigger_flag = 1 | call timer_start(10, function('s:CheckSig')) | endif
+      " " autocmd InsertCharPre * if v:char ==# '{' | let g:lsp_trigger_flag = 1 | call timer_start(10, function('s:CheckSig')) | endif
+      " autocmd InsertEnter * call g:LspShowSignature()
+
     augroup END
   endif
 
