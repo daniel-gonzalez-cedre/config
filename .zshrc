@@ -296,6 +296,39 @@ function open_window() {
   osascript -e "tell application \"$1\" to activate" -e 'tell application "System Events" to keystroke "n" using command down';
 }
 
+function venv() {
+  args=("$@")
+  excl=()
+  opts=()
+  prefix=""
+  for arg in $args; do
+    case $arg in
+      -([a-zA-Z0-9]*[a-zA-Z0-9]) )
+        for char in ${(s::)arg}; do
+          if [[ $char != "-" ]]; then
+            args+=(-${char})
+          fi
+        done
+        excl+=($arg)
+        ;;
+      * ) ;;
+    esac
+  done
+  for arg in ${args:|}; do
+    case $arg in
+      -p       ) prefix="$arg/" ;;
+      -*       ) if [[ "${arg[-1]}" =~ [0-9] ]]; then
+                   for TEMP in $(seq 1 "${arg[-1]}"); do
+                     prefix="$prefix../"
+                   done
+                 fi ;;
+      .. | ../ ) prefix="../" ;;
+      *        ) prefix="$arg" ;;
+    esac
+  done
+  source "$prefix"".venv/bin/activate"
+}
+
 function ls() {
   args=("$@")
   excl=()
@@ -316,16 +349,16 @@ function ls() {
   for arg in ${args:|excl}; do
     case $arg in
       -1 | -l ) opts+=('-1' '--show-symlinks') ;;
-      -a ) opts+=('-a') ;;
-      -L ) opts+=('-l') ;;
-      -i ) opts+=('--icons') ;;
-      -q ) opts+=('--no-quotes') ;;
-      -t ) opts+=('--tree') ;;
-      -f ) opts+=('-f' '--show-symlinks') ;;
+      -a      ) opts+=('-a') ;;
+      -L      ) opts+=('-l') ;;
+      -i      ) opts+=('--icons') ;;
+      -q      ) opts+=('--no-quotes') ;;
+      -t      ) opts+=('--tree') ;;
+      -f      ) opts+=('-f' '--show-symlinks') ;;
       -d | -D ) opts+=('-D' '--show-symlinks') ;;
-      --list ) opts+=('-1' '--show-symlinks') ;;
-      --long ) opts+=('-l') ;;
-      * ) opts+=($arg) ;;
+      --list  ) opts+=('-1' '--show-symlinks') ;;
+      --long  ) opts+=('-l') ;;
+      *       ) opts+=($arg) ;;
     esac
   done
   command eza $opts[@]
@@ -424,37 +457,25 @@ alias hhkb='open -a hhkb-keymap-tool'
     # parse arguments
     while [[ $# -gt 0 ]]; do
       case "$1" in
-        --pdf)
-          engine_option="-pdf"
-          shift
-          ;;
-        --lua)
-          engine_option="-pdflua"
-          shift
-          ;;
-        --xe)
-          engine_option="-pdfxe"
-          shift
-          ;;
-        --shell)
-          shell_escape="--shell-escape"
-          shift
-          ;;
-        -v)
-          verbose="yes"
-          shift
-          ;;
-        *)
-          if [[ -z "$file" ]]; then
-            file="$1"
-          else
-            echo "Unknown argument: $1"
-            echo "Usage: myfunc [<engine_option>] [--shell] [-v] <file>"
-            echo "Engine options: --pdf, --lua, --xe"
-            return 1
-          fi
-          shift
-          ;;
+        --pdf   ) engine_option="-pdf"
+                  shift ;;
+        --lua   ) engine_option="-pdflua"
+                  shift ;;
+        --xe    ) engine_option="-pdfxe"
+                  shift ;;
+        --shell ) shell_escape="--shell-escape"
+                  shift ;;
+        -v      ) verbose="yes"
+                  shift ;;
+        *       ) if [[ -z "$file" ]]; then
+                    file="$1"
+                  else
+                    echo "Unknown argument: $1"
+                    echo "Usage: myfunc [<engine_option>] [--shell] [-v] <file>"
+                    echo "Engine options: --pdf, --lua, --xe"
+                    return 1
+                  fi
+                  shift ;;
       esac
     done
 
@@ -634,14 +655,18 @@ function resize() {
 
 # packages
 case `uname` in
-  Darwin) # commands for OS X go here
+  Darwin  ) # commands for OS X go here
     if ! command -v brew &> /dev/null; then
-      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      echo "Homebrew is missing; would you like to install it? (y/N)"
+      read response
+      if [[ "${response:l}" == "y" || "${response:l}" == "yes" ]]; then
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      fi
     fi
     if ! command -v tmux &> /dev/null; then
       brew install tmux
     fi
-    if ! command -v grc &> /dev/null; then
+    if ! command -v grc  &> /dev/null; then
       brew install grc
     fi
     if ! command -v tree &> /dev/null; then
@@ -655,7 +680,7 @@ case `uname` in
       # curl -sSL https://install.python-poetry.org | python3 -
     # fi
   ;;
-  Linux) # commands for Linux go here
+  Linux   ) # commands for Linux go here
     # if ! command -v pyenv &> /dev/null; then
         # curl https://pyenv.run | bash
     # fi
@@ -663,7 +688,7 @@ case `uname` in
         # curl -sSL https://install.python-poetry.org | python3 -
     # fi
   ;;
-  FreeBSD) # commands for FreeBSD go here
+  FreeBSD ) # commands for FreeBSD go here
   ;;
 esac
 
