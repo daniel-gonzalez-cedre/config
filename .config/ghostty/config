@@ -50,7 +50,7 @@ macos-icon-screen-color = "32302f"
 macos-icon-ghost-color = "d4be98"
 
 quick-terminal-screen = macos-menu-bar
-quick-terminal-position = top
+quick-terminal-position = center
 # quick-terminal-size = 100%
 quick-terminal-autohide = true
 quick-terminal-animation-duration = 0
@@ -64,9 +64,9 @@ auto-update-channel = tip
 
 keybind = super+comma=reload_config
 
-keybind = global:ctrl+shift+t=toggle_quick_terminal
-keybind = global:ctrl+shift+q=toggle_quick_terminal
-# keybind = global:ctrl+q=toggle_quick_terminal
+keybind = global:ctrl+q=toggle_quick_terminal
+# keybind = global:ctrl+shift+t=toggle_quick_terminal
+# keybind = global:ctrl+shift+q=toggle_quick_terminal
 
 keybind = ctrl+tab=unbind
 keybind = shift+ctrl+tab=unbind

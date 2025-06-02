@@ -1048,6 +1048,9 @@
       au FileType markdown setlocal tabstop=8
     augroup END
 
+    augroup text_settings | au!
+      au BufNewFile,BufRead *.dat set filetype=csv
+    augroup END
 
     augroup html_settings | au!
       au BufNewFile,BufRead *.svg set filetype=html
@@ -1246,7 +1249,7 @@
   " LIST AND COMMAND MAPPINGS
     nnoremap <leader>ls :ls<cr>
     nnoremap <leader>b :ls<cr>:b<space>
-    nnoremap <leader>u :u<cr>:u<space>
+    " nnoremap <leader>u :u<cr>:u<space>
     nnoremap <leader>m :<c-u>marks<cr>:normal! `
 
 
