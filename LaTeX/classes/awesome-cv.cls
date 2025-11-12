@@ -230,7 +230,7 @@
   ItalicFont=*-Italic.otf,
   BoldFont=*-Bold.otf,
   BoldItalicFont=*-BoldItalic.otf,
-]{AGaramondPro}
+]{AdobeGaramond}
 \newfontfamily\cormorantgaramond[
   Path=\@fontdir,
   UprightFont=*-Medium.ttf,

@@ -34,29 +34,29 @@
 \newcommand{\blankpage}{\newpage\hbox{}\thispagestyle{empty}\newpage}
 \newcommand*{\xline}[1][3em]{\rule[0.5ex]{#1}{0.55pt}}
 
-\newcommand{\bydefn}{\DOTSB\;\mathrel{\vcentcolon\Leftrightarrow}\;}
-\newcommand{\iffbydefn}{\DOTSB\;\mathrel{\vcentcolon\Leftrightarrow}\;}
-\newcommand{\defiff}{\DOTSB\;\mathrel{\vcentcolon\Leftrightarrow}\;}
+\newcommand{\bydefn}{\hspace{2pt}\mathrel{\vcentcolon\Leftrightarrow}\hspace{2pt}}
+\newcommand{\iffbydefn}{\hspace{2pt}\mathrel{\vcentcolon\Leftrightarrow}\hspace{2pt}}
+\newcommand{\defiff}{\hspace{2pt}\mathrel{\vcentcolon\Leftrightarrow}\hspace{2pt}}
 
-\newcommand{\proves}{\DOTSB\:\vdash\:}
-\newcommand{\satisfies}{\DOTSB\:\models\:}
-% \renewcommand{\implies}{\DOTSB\,\Rightarrow\,}
-\renewcommand{\implies}{\DOTSB\:\mathrel{\Rightarrow}\:}
-% \renewcommand{\impliedby}{\DOTSB\,\Leftarrow\,}
-\renewcommand{\impliedby}{\DOTSB\:\mathrel{\Leftarrow}\:}
-% \renewcommand{\iff}{\DOTSB\,\Leftrightarrow\,}
-\renewcommand{\iff}{\mathrel{\DOTSB\:\Leftrightarrow}\:}
-\newcommand{\lequiv}{\DOTSB\:\equiv\:}
-% \newcommand{\isomorphic}{\DOTSB\,\cong\,}
+\newcommand{\proves}{\hspace{2pt}\vdash\hspace{2pt}}
+\newcommand{\satisfies}{\hspace{2pt}\models\hspace{2pt}}
+% \renewcommand{\implies}{\hspace{1pt}\Rightarrow\hspace{1pt}}
+\renewcommand{\implies}{\hspace{1pt}\mathrel{\Rightarrow}\hspace{1pt}}
+% \renewcommand{\impliedby}{\hspace{1pt}\Leftarrow\hspace{1pt}}
+\renewcommand{\impliedby}{\hspace{1pt}\mathrel{\Leftarrow}\hspace{1pt}}
+% \renewcommand{\iff}{\hspace{1pt}\Leftrightarrow\hspace{1pt}}
+\renewcommand{\iff}{\mathrel{\hspace{1pt}\Leftrightarrow}\hspace{1pt}}
+\newcommand{\lequiv}{\mathrel{\hspace{1pt}\equiv\hspace{1pt}}}
+% \newcommand{\isomorphic}{\hspace{1pt}\cong\hspace{1pt}}
 \newcommand{\isomorphic}{\mathrel{\cong}}
 
-\newcommand{\notproves}{\DOTSB\,\nvdash\,}
-\newcommand{\notsatisfies}{\DOTSB\,\not\models\,}
-\newcommand{\notlequiv}{\DOTSB\,\not\equiv\,}
-\newcommand{\notimplies}{\DOTSB\,\not\Rightarrow\,}
-\newcommand{\notimpliedby}{\DOTSB\,\not\Leftarrow\,}
+\newcommand{\notproves}{\hspace{1pt}\nvdash\hspace{1pt}}
+\newcommand{\notsatisfies}{\hspace{1pt}\not\models\hspace{1pt}}
+\newcommand{\notlequiv}{\hspace{1pt}\not\equiv\hspace{1pt}}
+\newcommand{\notimplies}{\hspace{1pt}\not\Rightarrow\hspace{1pt}}
+\newcommand{\notimpliedby}{\hspace{1pt}\not\Leftarrow\hspace{1pt}}
 \newcommand{\notiff}{\mathrel{{\ooalign{\hidewidth$\not\phantom{"}$\hidewidth\cr$\iff$}}}}
-\newcommand{\notisomorphic}{\DOTSB\,\not\cong\,}
+\newcommand{\notisomorphic}{\hspace{1pt}\not\cong\hspace{1pt}}
 
 \renewcommand{\qedsymbol}{\scshape q.e.d.}
 
@@ -107,10 +107,10 @@
 \newcommand{\lifthen}{\mathrel{\rightarrow}}
 \newcommand{\liff}{\mathrel{\leftrightarrow}}
 
-\newcommand{\Land}{\DOTSB\,\wedge\,}
-\newcommand{\Lor}{\DOTSB\,\vee\,}
-\newcommand{\Lif}{\DOTSB\,\rightarrow\,}
-\newcommand{\Liff}{\DOTSB\,\leftrightarrow\,}
+\newcommand{\Land}{\hspace{1pt}\wedge\hspace{1pt}}
+\newcommand{\Lor}{\hspace{1pt}\vee\hspace{1pt}}
+\newcommand{\Lif}{\hspace{1pt}\rightarrow\hspace{1pt}}
+\newcommand{\Liff}{\hspace{1pt}\leftrightarrow\hspace{1pt}}
 
 \newcommand{\bigand}{\bigwedge}
 \newcommand{\bigor}{\bigwedge}
@@ -121,7 +121,9 @@
 \newcommand{\bigjoin}{\bigvee}
 
 \newcommand{\conjunct}{\wedge}
+\newcommand{\conjunction}{\wedge}
 \newcommand{\disjunct}{\vee}
+\newcommand{\disjunction}{\vee}
 \newcommand{\bigconjunct}{\bigwedge}
 \newcommand{\bigdisjunct}{\bigvee}
 
@@ -145,16 +147,17 @@
 \newcommand{\ndiv}{\nmid}
 \newcommand{\divides}{\mathrel{\mid}}
 \newcommand{\notdivides}{\nmid}
-\newcommand{\given}{\;\vert\;}
-\newcommand{\suchthat}{\;\vert\;}
+\newcommand{\given}{\hspace{2pt}\vert\hspace{2pt}}
+\newcommand{\suchthat}{\hspace{2pt}\vert\hspace{2pt}}
 % \newcommand{\contradiction}{\smash{\textnormal{\raisebox{-0.25ex}{\Large \Lightning}}} }
-\newcommand{\contradiction}{\smash{\textnormal{\faBolt}}\, }
+% \newcommand{\contradiction}{\smash{\textnormal{\faBolt}}\hspace{1pt} }
+\newcommand{\contradiction}{\smash{\textnormal{\Lightning}}\hspace{1pt} }
 
 \newcommand{\mean}[1]{\overline{#1}}
 \newcommand{\conjugate}[1]{\overline{#1}}
 % \newcommand{\complement}[1]{\overline{#1}}  % already defined lol?
 
-\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\diff{\mathop{}\hspace{-1pt}\mathrm{d}}
 \newcommand{\integral}[1]{\smashoperator{\int_{#1}}}
 \newcommand{\der}[2]{\frac{\diff{#1}}{\diff{#2}}}
 \newcommand{\dern}[3]{\frac{\diff^{#3}{#1}}{\diff{#2}^{#3}}}
@@ -204,10 +207,10 @@
 
 \newcommand{\chr}[1]{\texttt{#1}}
 \newcommand{\str}[1]{\texttt{"#1"}}
-\newcommand{\substr}[2]{\text{\normalshape \tt [}\ifblank{#1}{\!}{#1}:\ifblank{#2}{\!}{#2}\text{\normalshape \tt ]}}
-\newcommand{\slice}[2]{\text{\normalshape \tt [}\ifblank{#1}{\!}{#1}:\ifblank{#2}{\!}{#2}\text{\normalshape \tt ]}}
+\newcommand{\substr}[2]{\text{\normalshape \tt [}\ifblank{#1}{\hspace{-1pt}}{#1}:\ifblank{#2}{\hspace{-1pt}}{#2}\text{\normalshape \tt ]}}
+\newcommand{\slice}[2]{\text{\normalshape \tt [}\ifblank{#1}{\hspace{-1pt}}{#1}:\ifblank{#2}{\hspace{-1pt}}{#2}\text{\normalshape \tt ]}}
 
-% \DeclarePairedDelimiterXPP{\slice}[2]{}{\texttt{[}}{\texttt{]}}{}{\ifblank{#1}{\!}{#1}\!:\!\ifblank{#2}{\!}{#2}}
+% \DeclarePairedDelimiterXPP{\slice}[2]{}{\texttt{[}}{\texttt{]}}{}{\ifblank{#1}{\hspace{-1pt}}{#1}\hspace{-1pt}:\hspace{-1pt}\ifblank{#2}{\hspace{-1pt}}{#2}}
 
 \renewcommand{\restriction}[1]{\downharpoonright_{#1}}
 \newcommand{\restricted}[2]{#1\downharpoonright_{#2}}
@@ -299,8 +302,8 @@
 \newcommand*{\wff}{\textit{wff}}
 
 \DeclareMathOperator{\lcm}{lcm}
-\DeclareMathOperator*{\argmin}{arg\!\min}
-\DeclareMathOperator*{\argmax}{arg\!\max}
+\DeclareMathOperator*{\argmin}{arg\hspace{-1pt}\min}
+\DeclareMathOperator*{\argmax}{arg\hspace{-1pt}\max}
 
 \let\originalleft\left
 \let\originalright\right
@@ -314,18 +317,18 @@
 \newcommand{\kana}[1]{\begin{CJK}{UTF8}{min}#1\end{CJK}}
 
 % parentheses and delimiters
-\DeclarePairedDelimiterX \abs[1]{\lvert}{\rvert}{\ifblank{#1}{\:\cdot\:}{#1}}
-\DeclarePairedDelimiterX \norm[1]{\lVert}{\rVert}{\ifblank{#1}{\:\cdot\:}{#1}}
-\DeclarePairedDelimiterX \inner[2]{\langle}{\rangle}{\ifblank{#1}{\:\cdot\:}{#1},\ifblank{#2}{\:\cdot\:}{#2}}
-\DeclarePairedDelimiterX \bracket[1]{\langle}{\rangle}{\ifblank{#1}{\:\cdot\:}{#1}}
-\DeclarePairedDelimiterX \bra[1]{\langle}{\rvert}{\ifblank{#1}{\:\cdot\:}{#1}}
-\DeclarePairedDelimiterX \ket[1]{\lvert}{\rangle}{\ifblank{#1}{\:\cdot\:}{#1}}
-\DeclarePairedDelimiterX \floor[1]{\lfloor}{\rfloor}{\ifblank{#1}{\:\cdot\:}{#1}}
-\DeclarePairedDelimiterX \ceil[1]{\lceil}{\rceil}{\ifblank{#1}{\:\cdot\:}{#1}}
-\DeclarePairedDelimiterX \ceiling[1]{\lceil}{\rceil}{\ifblank{#1}{\:\cdot\:}{#1}}
+\DeclarePairedDelimiterX \abs[1]{\lvert}{\rvert}{\ifblank{#1}{\hspace{2pt}\cdot\hspace{2pt}}{#1}}
+\DeclarePairedDelimiterX \norm[1]{\lVert}{\rVert}{\ifblank{#1}{\hspace{2pt}\cdot\hspace{2pt}}{#1}}
+\DeclarePairedDelimiterX \inner[2]{\langle}{\rangle}{\ifblank{#1}{\hspace{2pt}\cdot\hspace{2pt}}{#1},\ifblank{#2}{\hspace{2pt}\cdot\hspace{2pt}}{#2}}
+\DeclarePairedDelimiterX \bracket[1]{\langle}{\rangle}{\ifblank{#1}{\hspace{2pt}\cdot\hspace{2pt}}{#1}}
+\DeclarePairedDelimiterX \bra[1]{\langle}{\rvert}{\ifblank{#1}{\hspace{2pt}\cdot\hspace{2pt}}{#1}}
+\DeclarePairedDelimiterX \ket[1]{\lvert}{\rangle}{\ifblank{#1}{\hspace{2pt}\cdot\hspace{2pt}}{#1}}
+\DeclarePairedDelimiterX \floor[1]{\lfloor}{\rfloor}{\ifblank{#1}{\hspace{2pt}\cdot\hspace{2pt}}{#1}}
+\DeclarePairedDelimiterX \ceil[1]{\lceil}{\rceil}{\ifblank{#1}{\hspace{2pt}\cdot\hspace{2pt}}{#1}}
+\DeclarePairedDelimiterX \ceiling[1]{\lceil}{\rceil}{\ifblank{#1}{\hspace{2pt}\cdot\hspace{2pt}}{#1}}
 
-\newcommand{\falling}[1]{^{\underline{\ifblank{#1}{\:\cdot\!\;}{#1}}}}
-\newcommand{\rising}[1]{^{\overline{\ifblank{#1}{\:\cdot\!\;}{#1}}}}
+\newcommand{\falling}[1]{^{\underline{\ifblank{#1}{\hspace{1pt}\cdot\hspace{-1pt}\hspace{2pt}}{#1}}}}
+\newcommand{\rising}[1]{^{\overline{\ifblank{#1}{\hspace{1pt}\cdot\hspace{-1pt}\hspace{2pt}}{#1}}}}
 
 \DeclarePairedDelimiter \card{\lvert}{\rvert}
 \DeclarePairedDelimiter \cardinality{\lvert}{\rvert}
@@ -333,12 +336,12 @@
 \DeclarePairedDelimiter \size{\lVert}{\rVert}
 
 \DeclarePairedDelimiterX \set[1]{\lbrace}{\rbrace}{%
-  \renewcommand{\suchthat}{\;\delimsize\vert\nonscript\;\mathopen{}}%
-  \renewcommand{\given}{\;\delimsize\vert\nonscript\;\mathopen{}}#1%
+  \renewcommand{\suchthat}{\hspace{2pt}\delimsize\vert\nonscript\hspace{2pt}\mathopen{}}%
+  \renewcommand{\given}{\hspace{2pt}\delimsize\vert\nonscript\hspace{2pt}\mathopen{}}#1%
 }
 \DeclarePairedDelimiterX \term[1]{(}{)}{%
-  \renewcommand{\suchthat}{\;\delimsize\vert\nonscript\;\mathopen{}}%
-  \renewcommand{\given}{\;\delimsize\vert\nonscript\;\mathopen{}}#1%
+  \renewcommand{\suchthat}{\hspace{2pt}\delimsize\vert\nonscript\hspace{2pt}\mathopen{}}%
+  \renewcommand{\given}{\hspace{2pt}\delimsize\vert\nonscript\hspace{2pt}\mathopen{}}#1%
 }
 
 \DeclarePairedDelimiter \pn{(}{)}

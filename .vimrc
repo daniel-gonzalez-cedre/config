@@ -1,4 +1,5 @@
 " ☡
+" setlocal spell
 
 " INIT
   filetype plugin indent on
@@ -6,18 +7,21 @@
   silent
   runtime ftplugin/man.vim
 
-  " :call HelptagsAll
-  function HelptagsAll()
-    command! -nargs=0 -bar Helptags
-        \  for p in glob('~/.vim/pack/bundle/opt/*', 1, 1)
-        \|     exe 'packadd ' . fnamemodify(p, ':t')
-        \| endfor
-        \| helptags ALL
-  endfunction
+  " :call HelptagsAll()
+  " function HelptagsAll()
+  "   command! -nargs=0 -bar Helptags
+  "       \  for p in glob('~/.vim/pack/plugins/opt/*', 1, 1)
+  "       \|     exe 'packadd ' . fnamemodify(p, ':t')
+  "       \| endfor
+  "       \| helptags ALL
+  " endfunction
 
   augroup init_settings | au!
+    " uncomment this line ∨∨∨
+    " au VimEnter,BufEnter,BufNewFile,BufReadPost * set nospell
+    " uncomment this line ∧∧∧
+
     " au BufEnter * set nospell
-    au VimEnter,BufEnter,BufNewFile,BufReadPost * set nospell
     " au BufEnter,BufNewFile,BufReadPost *.vimrc,*.vim setlocal nospell
     " au FileType vim set nospell
     " au FileType text,markdown,html,tex,vim,gitcommit set spell
@@ -27,7 +31,7 @@
     " au BufEnter,BufNewFile,BufReadPost * set conceallevel=1
     " au FileType * syntax keyword Normal lambda conceal cchar=λ
 
-    au VimEnter * set completeopt=menuone,popup,noinsert,noselect,fuzzy
+    " au VimEnter * set completeopt=menuone,popup,noinsert,noselect,fuzzy
     au VimEnter * set completepopup=height:16,width:32
     au VimEnter * set previewpopup=height:16,width:32
     " au VimEnter * set completepopup=height:15,width:60,border:off,highlight:PMenuSbar
@@ -163,9 +167,9 @@
   " nnoremap <silent> <cr> :noh<bar>:echo<cr>
   " nnoremap <silent> <bs> :noh<bar>:echo<cr>
   " vnoremap <silent> <bs> <nop>
-  noremap <silent><cr> <nop>
-  noremap <silent><bs> <nop>
-  noremap <silent><del> <nop>
+  nnoremap <silent><cr> <nop>
+  nnoremap <silent><bs> <nop>
+  nnoremap <silent><del> <nop>
 
   noremap <silent> <c-c> <esc><esc>
   inoremap <silent> <c-c> <esc><esc>
@@ -205,10 +209,6 @@
     " if g:gitgutter_is_loaded
       " GitGutterBufferEnable
     " endif
-
-    " if g:ale_is_loaded
-      " ALELint
-    " endif
   endfunction
 
   " TODO: not working when tmux split pane
@@ -226,9 +226,6 @@
 
     " if g:gitgutter_is_loaded
       " GitGutterBufferDisable
-    " endif
-    " if g:ale_is_loaded
-      " ALEReset
     " endif
 
     " echo @%
@@ -293,31 +290,6 @@
     hi texCmdStyle ctermfg=208 ctermbg=none cterm=none
 
     hi SignColumn ctermbg=black
-
-    if g:ale_is_loaded
-      hi clear ALEError
-      hi clear ALEWarning
-      hi clear ALEErrorSign
-      hi clear ALEWarningSign
-      hi clear ALEErrorLine
-      hi clear ALEWarningLine
-      hi clear ALEInfoSign
-      hi clear ALEVirtualTextError
-      hi clear ALEVirtualTextWarning
-      " hi ALEErrorLine ctermbg=none cterm=none
-      " hi ALEWarningLine ctermbg=none cterm=none
-      " hi ALEError ctermbg=167
-      " hi ALEWarning ctermfg=214
-      hi ALEErrorSign ctermfg=167 ctermbg=none
-      hi ALEWarningSign ctermfg=214 ctermbg=none
-      hi ALEInfoSign ctermfg=108 ctermbg=none
-      " hi ALEVirtualTextError ctermfg=237
-      " hi ALEVirtualTextWarning ctermfg=237
-      hi ALEVirtualTextError guifg=#504945 ctermfg=240
-      " hi ALEVirtualTextError ctermfg=167
-      hi ALEVirtualTextWarning guifg=#504945 ctermfg=240
-      " hi ALEVirtualTextWarning ctermfg=214
-    endif
   endfunction
 
   function! s:gruvbox_material_colors()
@@ -433,8 +405,26 @@
 
 
 " PACKAGES
+  " let delimitMate_autoclose = 1
+  let delimitMate_expand_inside_quotes = 1
+  let delimitMate_expand_space = 1
+  let delimitMate_expand_cr = 2
+  " au FileType tex,typst inoremap $ <c-r>=QuoteDelim('$')<cr>
+  " au FileType tex,typst inoremap <c-g>m <c-r>=QuoteDelim('$')<cr>
+  " au FileType tex inoremap <c-\> <c-r>=QuoteDelim('$')<cr>
+  " let delimitMate_matchpairs = "(:),{:},[:],<:>"
+  " au FileType tex,typst let b:delimitMate_matchpairs = "(:),{:},[:],<:>"
+  " let delimitMate_quotes = "\" ' `"
+  au FileType typst let b:delimitMate_quotes = "\" ' ` $"
+  au FileType tex let b:delimitMate_quotes = "$"
+  " au FileType * set sts=0
+
+  let g:fanfingtastic_all_inclusive = 1
+  let g:fanfingtastic_fix_t = 1
+  let g:fanfingtastic_ignorecase = 1
+
   let g:vimlsp_is_loaded = 0
-  let g:highlightedyank_is_loaded=0
+  let g:highlightedyank_is_loaded = 0
   let g:autocomplpop_is_loaded = 0
   let g:matchup_is_loaded = 0
   let g:foldsearch_is_loaded = 0
@@ -442,18 +432,16 @@
   let g:tmuxline_is_loaded = 0
   let g:nrrwrgn_is_loaded = 0
   let g:tabular_is_loaded = 0
-  let g:fanfingtastic_is_loaded = 0
   let g:polyglot_is_loaded = 0
   let g:juliavim_is_loaded = 0
-  let g:rainbow_is_loaded=0
+  let g:rainbow_is_loaded = 0
   let g:gitgutter_is_loaded = 0
-  let g:vimcommentary_is_loaded = 0
+  let g:vimcommentary_is_loaded = 1
   let g:nerdcommenter_is_loaded = 0
-  let g:ale_is_loaded = 0
   let g:vimtex_is_loaded = 0
 
   " MARKS IN SIGN GUTTER
-  packadd! vim-signature
+  " packadd! vim-signature
 
   " SEARCH HIGHLIGHT AUTOTOGGLING
   packadd! vim-cool
@@ -466,21 +454,7 @@
     let g:highlightedyank_highlight_duration = 128
     let g:highlightedyank_highlight_in_visual = 0
 
-  " " let g:autocomplpop_is_loaded = 1
-  " " packadd AutoComplPop
-  " if g:autocomplpop_is_loaded
-    " let g:acp_behaviorKeywordLength = 3
-    inoremap <expr> <cr> pumvisible() ? "\<c-g>u\<cr>" : "\<cr>"
-    " inoremap <expr> <tab> pumvisible() ? "\<c-y>" : "\<tab>"
-  " else
-    " set completeopt=longest,menuone,popup
-    " \" inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
-    " inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<cr>"
-    " inoremap <expr> <tab> pumvisible() ? "\<c-y>" : "\<tab>"
-    " inoremap <expr> <c-n> pumvisible() ? '<c-n>' : '<c-n><c-r>=pumvisible() ? "\<lt>down>" : ""<cr>'
-    " " set completepopup=height:15,width:60,border:off,highlight:PMenuSbar
-    " " set previewpopup=height:10,width:60,highlight:PMenuSbar
-  " endif
+  " inoremap <expr> <cr> pumvisible() ? "\<c-g>u\<cr>" : "\<cr>"
 
 
   " let g:matchup_is_loaded = 1
@@ -650,12 +624,6 @@
     vnoremap <leader><tab>\| <cmd>Tabularize /\|<cr>
     " vnoremap <tab>\ <cmd>Tabularize /\zs<left><left><left>
 
-  let g:fanfingtastic_is_loaded = 1
-  packadd vim-fanfingtastic
-    let g:fanfingtastic_all_inclusive = 1
-    let g:fanfingtastic_fix_t = 1
-    let g:fanfingtastic_ignorecase = 1
-
   " let g:polyglot_is_loaded = 1
   " let g:polyglot_disabled = ['ftdetect', 'sensible']
   " packadd vim-polyglot
@@ -706,93 +674,116 @@
     " set statusline+=%{GitStatus()}
   augroup END
 
-  " let vimcommentary_is_loaded = 1
-  " packadd vim-commentary
-  " if vimcommentary_is_loaded
-  "   " nnoremap <silent> gC o.<esc><plug>Commentary kJi<space><esc>$s
-  "   nnoremap <silent> gcs i<enter>.<esc><plug>Commentary kJi<space><esc>
+  if vimcommentary_is_loaded
+    packadd vim-commentary
+    " nnoremap <silent> gC o.<esc><plug>Commentary kJi<space><esc>$s
+    nnoremap <silent> gcs i<enter>.<esc><plug>Commentary kJi<space><esc>
 
-  "   nnoremap <silent> gce i<enter>.<esc><plug>Commentary kJi<space><left>
+    nnoremap <silent> gce i<enter>.<esc><plug>Commentary kJi<space><left>
 
-  "   " append comment to end of line with space
-  "   nnoremap <silent> gcA o.<esc><plug>Commentary kJi<space><esc>$s
+    " append comment to end of line with space
+    nnoremap <silent> gcA o.<esc><plug>Commentary kJi<space><esc>$s
 
-  "   " append comment to end of line without space
-  "   nnoremap <silent> gcL o.<esc><plug>Commentary kJx$xx
+    " append comment to end of line without space
+    nnoremap <silent> gcL o.<esc><plug>Commentary kJx$xx
 
-  "   nnoremap <silent> gcO O.<esc><plug>Commentary $s
-  "   nnoremap <silent> gco o.<esc><plug>Commentary $s
+    nnoremap <silent> gcO O.<esc><plug>Commentary $s
+    nnoremap <silent> gco o.<esc><plug>Commentary $s
 
-  " endif
+  endif
 
-  let nerdcommenter_is_loaded = 1
-  packadd nerdcommenter
-  augroup nerdcommenter_settings | au!
-    let g:NERDCommentEmptyLines = 0
-    let g:NERDCompactSexyComs = 1
-    let g:NERDCustomDelimiters = {
-          \ 'python': { 'left': '#', 'right': '' },
-          \ 'julia': { 'left': '#', 'right': '' },
-          \ 'typst': { 'left': '//', 'right': '' }
-          \ }
-    " let g:NERDDefaultAlign = 'left'
-    let g:NERDSpaceDelims = 1
-    let g:NERDToggleCheckAllLines = 1
-    let g:NERDTrimTrailingWhitespace = 1
-    au! BufEnter * call s:nerdcommenter_mappings()
+  if nerdcommenter_is_loaded
+    packadd nerdcommenter
+    augroup nerdcommenter_settings | au!
+      let g:NERDCommentEmptyLines = 0
+      let g:NERDCompactSexyComs = 1
+      let g:NERDCustomDelimiters = {
+            \ 'python': { 'left': '#', 'right': '' },
+            \ 'julia': { 'left': '#', 'right': '' },
+            \ 'typst': { 'left': '//', 'right': '' }
+            \ }
+      " let g:NERDDefaultAlign = 'left'
+      let g:NERDSpaceDelims = 1
+      let g:NERDToggleCheckAllLines = 1
+      let g:NERDTrimTrailingWhitespace = 1
+      au! BufEnter * call s:nerdcommenter_mappings()
 
-    " function! s:nerdcommenter_mappings()
+      " function! s:nerdcommenter_mappings()
       " for key in ['c', 'a', 'n', 'm', 'y', '$', 'a', 'a', 'l', 'b', 'u' "<space>"]
-        " exe "unmap \<leader\>c" . key
+      " exe "unmap \<leader\>c" . key
       " endfor
-    " endfunction
-    function! s:nerdcommenter_mappings()
-      " for mov in ['j', 'k', 'gg', 'G', '(', ')', '{', '}', 'is', 'ip', 'if', 'af']
+      " endfunction
+      function! s:nerdcommenter_mappings()
+        " for mov in ['j', 'k', 'gg', 'G', '(', ')', '{', '}', 'is', 'ip', 'if', 'af']
         " exe "nnoremap gc" . mov . " V" . mov . "\<Plug\>NERDCommenterInvert `<"
-      " endfor
+        " endfor
 
-      " for i in range(1, 50)
+        " for i in range(1, 50)
         " exe 'nnoremap gc' . i . 'j V' . i . 'j\<plug\>NERDCommenterInvert'
         " exe 'nnoremap gc' . i . 'k V' . i . 'k\<plug\>NERDCommenterInvert'
-      " endfor
+        " endfor
 
-      noremap gc/ <plug>NERDCommenterComment
-      noremap gcd <plug>NERDCommenterUncomment
-      noremap gcx <plug>NERDCommenterUncomment
-      " noremap cd <plug>NERDCommenterUncomment
-      " " noremap dc <plug>NERDCommenterUncomment
-      " " noremap gci <plug>NERDCommenterComment
-      " " noremap gcu <plug>NERDCommenterUncomment
+        " noremap gci <plug>NERDCommenterInvert
+        " nnoremap gcx <plug>NERDCommenterComment
+        " vnoremap gcx <plug>NERDCommenterComment
+        " noremap gcd <plug>NERDCommenterUncomment
+        " nnoremap gca <plug>NERDCommenterAppend<left><left><left><space><right><right><right>
+        " nnoremap gcl A<c-g>U<c-o><plug>NERDCommenterAppend<bs><left><bs><right><esc>
+        " nnoremap gco o<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
+        " nnoremap gcO O<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
 
-      noremap gci <plug>NERDCommenterInvert
-      " noremap gct <plug>NERDCommenterInvert
-      " noremap gcc <plug>NERDCommenterInvert
-      noremap gct <plug>NERDCommenterToggle
+        nnoremap c/ <plug>NERDCommenterComment
+        nnoremap c\ <plug>NERDCommenterInvert
+        nnoremap cd <plug>NERDCommenterUncomment
+        nnoremap dc <plug>NERDCommenterUncomment
 
-      " noremap gci <plug>NERDCommenterToEOL a
-      " noremap gcI <plug>NERDCommenterComment ^a<space>
-      " noremap gck <plug>NERDCommenterToEOL
-      " noremap gcK <plug>NERDCommenterComment ^
+        vnoremap c/ <plug>NERDCommenterComment
+        vnoremap c\ <plug>NERDCommenterInvert
+        vnoremap cd <plug>NERDCommenterUncomment
 
-      nnoremap gca <plug>NERDCommenterAppend<left><left><left><space><right><right><right>
-      " nnoremap cA <plug>NERDCommenterAppend
-      " nnoremap cA <plug>NERDCommenterAppend
-      " nnoremap gca A<c-g>U<space><c-o><plug>NERDCommenterAppend
-      " nnoremap gcA <plug>NERDCommenterAppend
+        nnoremap cA <plug>NERDCommenterAppend<left><left><left><space><right><right><right>
+        nnoremap cL A<c-g>U<c-o><plug>NERDCommenterAppend<bs><left><bs><right><esc>
+        nnoremap co o<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
+        nnoremap cO O<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
 
-      nnoremap gcl A<c-g>U<c-o><plug>NERDCommenterAppend<bs><left><bs><right><esc>
-      " nnoremap gcl A<c-g>U<c-o><plug>NERDCommenterAppend<bs><left><bs><right><esc>
-      " nnoremap gcH <plug>NERDCommenterToEOL
-      " nnoremap gcJ <plug>NERDCommenterToEOL
-      " nnoremap gcK <plug>NERDCommenterToEOL
-      " nnoremap gcL <plug>NERDCommenterToEOL
+        " noremap gc/ <plug>NERDCommenterComment
+        " noremap gcd <plug>NERDCommenterUncomment
+        " noremap gcx <plug>NERDCommenterUncomment
+        " " noremap cd <plug>NERDCommenterUncomment
+        " " " noremap dc <plug>NERDCommenterUncomment
+        " " " noremap gci <plug>NERDCommenterComment
+        " " " noremap gcu <plug>NERDCommenterUncomment
 
-      nnoremap gco o<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
-      nnoremap gcO O<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
-      " nnoremap gco o<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
-      " nnoremap gcO O<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
-    endfunction
-  augroup END
+        " noremap gci <plug>NERDCommenterInvert
+        " " noremap gct <plug>NERDCommenterInvert
+        " " noremap gcc <plug>NERDCommenterInvert
+        " noremap gct <plug>NERDCommenterToggle
+
+        " " noremap gci <plug>NERDCommenterToEOL a
+        " " noremap gcI <plug>NERDCommenterComment ^a<space>
+        " " noremap gck <plug>NERDCommenterToEOL
+        " " noremap gcK <plug>NERDCommenterComment ^
+
+        " nnoremap gca <plug>NERDCommenterAppend<left><left><left><space><right><right><right>
+        " " nnoremap cA <plug>NERDCommenterAppend
+        " " nnoremap cA <plug>NERDCommenterAppend
+        " " nnoremap gca A<c-g>U<space><c-o><plug>NERDCommenterAppend
+        " " nnoremap gcA <plug>NERDCommenterAppend
+
+        " nnoremap gcl A<c-g>U<c-o><plug>NERDCommenterAppend<bs><left><bs><right><esc>
+        " " nnoremap gcl A<c-g>U<c-o><plug>NERDCommenterAppend<bs><left><bs><right><esc>
+        " " nnoremap gcH <plug>NERDCommenterToEOL
+        " " nnoremap gcJ <plug>NERDCommenterToEOL
+        " " nnoremap gcK <plug>NERDCommenterToEOL
+        " " nnoremap gcL <plug>NERDCommenterToEOL
+
+        " nnoremap gco o<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
+        " nnoremap gcO O<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
+        " " nnoremap gco o<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
+        " " nnoremap gcO O<space><bs><esc><plug>NERDCommenterAppend<c-o><<<c-o>$
+      endfunction
+    augroup END
+  endif
 
   " packadd asyncomplete.vim
   " packadd vim-lsp
@@ -806,7 +797,7 @@
   " endif
 
   packadd lsp
-  let g:vimlsp_is_loaded = 1
+  let g:vimlsp_is_loaded = 0
   if g:vimlsp_is_loaded
     " brew install python-lsp-server, pip install python-lsp-server
     if executable('pylsp')
@@ -956,65 +947,8 @@
       " " autocmd InsertCharPre * if v:char ==# '(' | let g:lsp_trigger_flag = 1 | call timer_start(10, function('s:CheckSig')) | endif
       " " autocmd InsertCharPre * if v:char ==# '{' | let g:lsp_trigger_flag = 1 | call timer_start(10, function('s:CheckSig')) | endif
       " autocmd InsertEnter * call g:LspShowSignature()
-
     augroup END
   endif
-
-  " augroup ale_settings | au!
-    " " linters: ruff, mypy, pylint, pyright, lacheck, chktek, proselint
-    " let g:ale_linters = {
-          " \ 'vim': ['vint'],
-          " \ 'python': ['ruff', 'mypy'],
-          " \ 'lua': ['luacheck', 'luac'],
-          " \ 'tex': ['lacheck']
-          " \ }
-    " let g:ale_sign_error = '×⟩'
-    " let g:ale_sign_warning = '~⟩'
-    " let g:ale_lint_on_text_changed = 'normal'
-    " let g:ale_lint_on_insert_leave = 1
-    " let g:ale_lint_on_save = 1
-    " let g:ale_lint_delay = 0
-    " " let g:ale_virtualtext_prefix = '  '
-    " let g:ale_virtualtext_prefix = '  '
-    " let g:ale_virtualtext_cursor = 'current'
-    " let g:ale_virtualtext_delay = 0
-    " let g:ale_echo_cursor = 0
-    " " let g:ale_echo_detail = 1
-    " " let g:ale_echo_delay = 0
-    " let g:ale_python_pylint_options = "--init-hook=\"import sys; sys.path.append(\'" . trim(system('git rev-parse --show-toplevel')) . "\')\""
-
-    " " au FileType python call s:setup_ale()
-    " " au FileType lua call s:setup_ale()
-    " " au FileType vim call s:setup_ale()
-    " " au FileType tex call s:setup_ale()
-
-    " au FileType python,lua,vim,tex call s:setup_ale()
-    " " au FileType python,lua,vim,tex ALEDisable
-
-    " function! s:setup_ale()
-      " packadd ale
-      " let g:ale_is_loaded = 1
-
-      " noremap ]a <plug>(ale_next_wrap)
-      " noremap [a <plug>(ale_previous_wrap)
-      " noremap ]l <plug>(ale_next_wrap)
-      " noremap [l <plug>(ale_previous_wrap)
-      " noremap ]e <plug>(ale_next_wrap_error)
-      " noremap [e <plug>(ale_previous_wrap_error)
-      " noremap ]w <plug>(ale_next_wrap_warning)
-      " noremap [w <plug>(ale_previous_wrap_warning)
-      " " noremap <leader>ad <plug>(ale_detail)
-      " noremap gbd <plug>(ale_detail)
-      " " nnoremap <leader>at <plug>(ale_toggle)
-      " " nnoremap <leader>al <plug>(ale_lint)
-
-      " if g:ale_is_loaded
-        " ALEDisable
-      " endif
-    " endfunction
-
-  " augroup END
-
 
 " SET OPTIONS
   " FILETYPE SPECIFIC
@@ -1033,9 +967,9 @@
       " au BufNewFile,BufRead,BufReadPost *.py setlocal nospell
       " au FileType python setlocal nospell
       au FileType python setlocal foldmethod=indent
-      au FileType python setlocal shiftwidth=2
-      au FileType python setlocal softtabstop=2
-      au FileType python setlocal tabstop=8
+      " au FileType python setlocal shiftwidth=2
+      " au FileType python setlocal softtabstop=2
+      " au FileType python setlocal tabstop=8
     augroup END
 
     augroup vim_settings | au!
@@ -1043,9 +977,9 @@
     augroup END
 
     augroup markdown_settings | au!
-      au FileType markdown setlocal shiftwidth=2
-      au FileType markdown setlocal softtabstop=2
-      au FileType markdown setlocal tabstop=8
+      " au FileType markdown setlocal shiftwidth=2
+      " au FileType markdown setlocal softtabstop=2
+      " au FileType markdown setlocal tabstop=8
     augroup END
 
     augroup text_settings | au!
@@ -1080,27 +1014,27 @@
 
       au FileType tex imap ` <nop>
       au FileType tex iunmap `
-
-      au FileType tex inoremap $ <c-r>=QuoteDelim('$')<cr>
-      au FileType tex inoremap <c-g>m <c-r>=QuoteDelim('$')<cr>
-      " au FileType tex inoremap <c-\> <c-r>=QuoteDelim('$')<cr>
     augroup END
 
   " GENERAL
     augroup set_settings | au!
-      au BufNewFile,BufRead * setlocal formatoptions-=c
-      au BufNewFile,BufRead * setlocal formatoptions-=o
-      au BufNewFile,BufRead * setlocal formatoptions+=r
-      au BufNewFile,BufRead * setlocal formatoptions+=j
+      au BufNewFile,BufRead,BufEnter * set formatoptions=tjcrqn
     augroup END
+    " augroup set_settings | au!
+    "   au BufNewFile,BufRead * set formatoptions=tjcrqn
+    "   " au BufNewFile,BufRead * set formatoptions-=c
+    "   " au BufNewFile,BufRead * set formatoptions-=o
+    "   " au BufNewFile,BufRead * set formatoptions+=r
+    "   " au BufNewFile,BufRead * set formatoptions+=j
+    " augroup END
     set background=dark
     set backspace=indent,eol,start
     set cursorline
     set display+=lastline
-    set formatoptions-=c
-    set formatoptions-=o
-    set formatoptions+=r
-    set formatoptions+=j
+    " set formatoptions-=c
+    " set formatoptions-=o
+    " set formatoptions+=r
+    " set formatoptions+=j
     set ignorecase
     set incsearch
     set nojoinspaces
@@ -1154,11 +1088,11 @@
     endfunction
 
   " INDENTATION
-    set autoindent
-    set expandtab
-    set shiftwidth=2
-    set softtabstop=2
-    set tabstop=8
+    au FileType * set autoindent
+    au FileType * set expandtab
+    au FileType * set shiftwidth=2
+    au FileType * set softtabstop=2
+    au FileType * set tabstop=8
 
   " LINES & WRAPPING
     set breakindent
@@ -1203,10 +1137,6 @@
   if g:rainbow_is_loaded
     nnoremap <leader>tr <cmd>RainbowToggle<cr>
   endif
-  if g:ale_is_loaded
-    nnoremap <leader>at <plug>(ale_toggle)
-    nnoremap <leader>tale <plug>(ale_toggle)
-  endif
   if g:gitgutter_is_loaded
     nnoremap <leader>tgit <cmd>GitGutterToggle<cr>
   endif
@@ -1236,11 +1166,11 @@
   " augroup END
   " nnoremap <silent> gh <cmd>noh<cr>
   " vnoremap <silent> gh <cmd>noh<cr>
-  nnoremap <c-s> :%s//gc<left><left><left>
+  nnoremap S :%s//gc<left><left><left>
   noremap ? //e<left><left>
 
   " vnoremap <leader>/ y/\V<c-r>=escape(@",'/\')<cr>
-  vnoremap <c-s> y`<`>:<c-u>%s/\V<c-r>=escape(@",'/\')<cr>//gc<left><left><left>
+  vnoremap S y`<`>:<c-u>%s/\V<c-r>=escape(@",'/\')<cr>//gc<left><left><left>
 
   vnoremap * y/\V<c-r>=escape(@",'/\')<cr><cr>
 
@@ -1313,7 +1243,7 @@
     " inoremap <expr> <tab> pumvisible() ? "\<c-y>" : "\<tab>"
 
   " MOVEMENT
-    nnoremap dS :%s/\s\+$//e<cr><c-o>
+    nnoremap dgs :%s/\s\+$//e<cr><c-o>
     " augroup yank_visual_movement | au!
       " nnoremap v mmv
       " vnoremap y "+ygv<c-c>
@@ -1389,26 +1319,26 @@
 
 
   " FOLDS
-    nnoremap <leader>ff zf
-    vnoremap <leader>ff zf
+    " nnoremap <leader>ff zf
+    " vnoremap <leader>ff zf
 
-    nnoremap <leader>fd zd
-    vnoremap <leader>fd zd
-    nnoremap <leader>fD zD
-    vnoremap <leader>fD zD
-    nnoremap <leader>fE zE
-    vnoremap <leader>fE zE
+    " nnoremap <leader>fd zd
+    " vnoremap <leader>fd zd
+    " nnoremap <leader>fD zD
+    " vnoremap <leader>fD zD
+    " nnoremap <leader>fE zE
+    " vnoremap <leader>fE zE
 
-    nnoremap <leader>fa za
-    vnoremap <leader>fa za
-    nnoremap <leader>fA zA
-    vnoremap <leader>fA zA
+    " nnoremap <leader>fa za
+    " vnoremap <leader>fa za
+    " nnoremap <leader>fA zA
+    " vnoremap <leader>fA zA
 
-    nnoremap <leader>fo zo
-    vnoremap <leader>fo zo
+    " nnoremap <leader>fo zo
+    " vnoremap <leader>fo zo
 
-    nnoremap <leader>fc zc
-    vnoremap <leader>fc zc
+    " nnoremap <leader>fc zc
+    " vnoremap <leader>fc zc
 
     nnoremap [f zk
     nnoremap ]f zj
@@ -1453,19 +1383,35 @@
 
 " DELIMITER MAPPINGS
   augroup delimiter_mappings | au!
-    au VimEnter * inoremap <silent> <c-g>m $
-    au VimEnter * inoremap <silent> <c-g>d $
-    au VimEnter * inoremap <silent> ( ()<c-g>U<left>
-    au VimEnter * inoremap <silent> [ []<c-g>U<left>
-    au VimEnter * inoremap <silent> { {}<c-g>U<left>
-    au VimEnter * inoremap <silent> ) <c-g>U<c-r>=ClosePair(')')<cr>
-    au VimEnter * inoremap <silent> ] <c-g>U<c-r>=ClosePair(']')<cr>
-    au VimEnter * inoremap <silent> } <c-g>U<c-r>=ClosePair('}')<cr>
-    au VimEnter * inoremap <silent> > <c-g>U<c-r>=ClosePair('>')<cr>
-    au VimEnter * inoremap <silent> " <c-g>U<c-r>=QuoteDelim('"')<cr>
-    au VimEnter * " inoremap <silent> ' <c-g>U<c-r>=QuoteDelim("'")<cr>
-    au VimEnter * inoremap <silent> ` <c-g>U<c-r>=QuoteDelim('`')<cr>
+    au VimEnter * imap <silent> <c-g>a <
+    au VimEnter * imap <silent> <c-g>b (
+    au VimEnter * imap <silent> <c-g>B {
+    au VimEnter * imap <silent> <c-g>r [
+    au VimEnter * imap <silent> <c-g>g `
+    au VimEnter * imap <silent> <c-g>h #
+    au VimEnter * imap <silent> <c-g>d $
+    au VimEnter * imap <silent> <c-g>x *
+    au VimEnter * imap <silent> <c-g>u _
+    " au VimEnter * inoremap <silent> ( ()<c-g>U<left>
+    " au VimEnter * inoremap <silent> [ []<c-g>U<left>
+    " au VimEnter * inoremap <silent> { {}<c-g>U<left>
+    " au VimEnter * inoremap <silent> ) <c-g>U<c-r>=ClosePair(')')<cr>
+    " au VimEnter * inoremap <silent> ] <c-g>U<c-r>=ClosePair(']')<cr>
+    " au VimEnter * inoremap <silent> } <c-g>U<c-r>=ClosePair('}')<cr>
+    " au VimEnter * inoremap <silent> > <c-g>U<c-r>=ClosePair('>')<cr>
+    " au VimEnter * inoremap <silent> " <c-g>U<c-r>=QuoteDelim('"')<cr>
+    " au VimEnter * " inoremap <silent> ' <c-g>U<c-r>=QuoteDelim("'")<cr>
+    " au VimEnter * inoremap <silent> ` <c-g>U<c-r>=QuoteDelim('`')<cr>
     " au VimEnter * inoremap <silent> <c-g>q ``''<left><left>
+    " au VimEnter * map <silent> ysiwd ysiw$
+    au VimEnter * omap <silent> aa a<
+    au VimEnter * xmap <silent> aa a<
+    au VimEnter * omap <silent> ia i<
+    au VimEnter * xmap <silent> ia i<
+    au VimEnter * omap <silent> ad af$
+    au VimEnter * xmap <silent> ad af$
+    au VimEnter * omap <silent> id if$
+    au VimEnter * xmap <silent> id if$
     au VimEnter * onoremap <silent> a` 2i`
     au VimEnter * onoremap <silent> a' 2i'
     au VimEnter * onoremap <silent> a" 2i"
@@ -1475,6 +1421,13 @@
   augroup END
 
   " VIM-SURROUND DEPENDENT MAPPINGS
+  nmap ds    <Plug>Dsurround
+  nmap cs    <Plug>Csurround
+  nmap ys    <Plug>Ysurround
+  nmap yss   <Plug>Yssurround
+  xmap <c-s> <Plug>Vsurround
+  imap <c-s> <Plug>Isurround
+
   " <s-s>(
   " <s-s>)
   " vmap ( <s-s>(<cr>
@@ -1607,20 +1560,24 @@
     endif
   endfunction
 
-  function! MoveMap()
-    if (maparg('h') ==# ':noh<bar>:echo<cr>h') || (maparg('j') ==# ':noh<bar>:echo<cr>j') || (maparg('k') ==# ':noh<bar>:echo<cr>k') || (maparg('l') ==# ':noh<bar>:echo<cr>l')
-      unmap h
-      unmap j
-      unmap k
-      unmap l
-    else
-      nnoremap h :noh<bar>:echo<cr>h
-      nnoremap j :noh<bar>:echo<cr>j
-      nnoremap k :noh<bar>:echo<cr>k
-      nnoremap l :noh<bar>:echo<cr>l
-    endif
-  endfunction
+  " function! MoveMap()
+    " if (maparg('h') ==# ':noh<bar>:echo<cr>h') || (maparg('j') ==# ':noh<bar>:echo<cr>j') || (maparg('k') ==# ':noh<bar>:echo<cr>k') || (maparg('l') ==# ':noh<bar>:echo<cr>l')
+      " unmap h
+      " unmap j
+      " unmap k
+      " unmap l
+    " else
+      " nnoremap h :noh<bar>:echo<cr>h
+      " nnoremap j :noh<bar>:echo<cr>j
+      " nnoremap k :noh<bar>:echo<cr>k
+      " nnoremap l :noh<bar>:echo<cr>l
+    " endif
+  " endfunction
 
+  nnoremap j gj
+  nnoremap k gk
+  nnoremap gj j
+  nnoremap gk k
   function! ToggleGMove()
     if (maparg('j') ==# 'gj') || (maparg('k') ==# 'gk')
       unmap j

@@ -148,7 +148,8 @@ function prompt_git() {
   if [[ -z "$BRANCH" ]]; then
     echo ""
   else
-    echo "主"
+    # echo "主"
+    echo "Γ"
   fi
 }
 function prompt_git_pre() {
@@ -182,7 +183,8 @@ function prompt_venv() {
     # echo " "
     # echo "$VIRTUAL_ENV:t"
     # echo "蟒"
-    echo "蛇"
+    # echo "蛇"
+    echo "π"
   fi
 }
 function prompt_venv_post() {
@@ -270,10 +272,11 @@ else
   export TERM=xterm-256color
 fi
 
+export PATH=~/.local/bin:$PATH
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
-export PATH=~/.local/bin:$PATH
-export PATH=$PATH:~/.scripts:~/.cargo/bin
+export PATH=~/.scripts:$PATH:~/.cargo/bin
+export PATH=$PATH:/Library/TeX/texbin
 # export PATH="$PYENV_ROOT/bin:$PATH"
 
 export HOMEBREW_NO_ENV_HINTS=1
@@ -289,6 +292,8 @@ alias diff='grc diff'
 alias rsync='rsync -v --progress'
 alias view='chafa'
 # alias viu='viu'
+
+alias search='is-fast'
 
 alias pbcopy="tr -d '\n' | pbcopy"
 
@@ -381,7 +386,7 @@ alias lisps='sbcl --script'
 alias python='python3'
 
 alias pdfcrop='/Library/TeX/texbin/pdfcrop'
-alias mpv='open -a /Applications/mpv.app/'
+# alias mpv='open -a /Applications/mpv.app/'
 # alias istats='watch -n 0 --color istats'
 alias storage='watch -n 1 --color df -h'
 alias hhkb='open -a hhkb-keymap-tool'
@@ -656,29 +661,32 @@ function resize() {
 # packages
 case `uname` in
   Darwin  ) # commands for OS X go here
-    if ! command -v brew &> /dev/null; then
-      echo "Homebrew is missing; would you like to install it? (y/N)"
-      read response
-      if [[ "${response:l}" == "y" || "${response:l}" == "yes" ]]; then
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-      fi
-    fi
-    if ! command -v tmux &> /dev/null; then
-      brew install tmux
-    fi
-    if ! command -v grc  &> /dev/null; then
-      brew install grc
-    fi
-    if ! command -v tree &> /dev/null; then
-      brew install tree
-    fi
-    # if ! command -v pyenv &> /dev/null; then
-      # brew install pyenv
+    # if ! command -v brew &> /dev/null; then
+    #   echo "Homebrew is missing; would you like to install it? (y/N)"
+    #   read response
+    #   if [[ "${response:l}" == "y" || "${response:l}" == "yes" ]]; then
+    #     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    #   fi
     # fi
-    # if ! command -v poetry &> /dev/null; then
-      # #brew install poetry
-      # curl -sSL https://install.python-poetry.org | python3 -
+    # if ! command -v tmux &> /dev/null; then
+    #   brew install tmux
     # fi
+    # if ! command -v grc  &> /dev/null; then
+    #   brew install grc
+    # fi
+    # if ! command -v tree &> /dev/null; then
+    #   brew install tree
+    # fi
+    # if ! command -v is-fast &> /dev/null; then
+    #   brew install is-fast
+    # fi
+    # # if ! command -v pyenv &> /dev/null; then
+    #   # brew install pyenv
+    # # fi
+    # # if ! command -v poetry &> /dev/null; then
+    #   # #brew install poetry
+    #   # curl -sSL https://install.python-poetry.org | python3 -
+    # # fi
   ;;
   Linux   ) # commands for Linux go here
     # if ! command -v pyenv &> /dev/null; then
