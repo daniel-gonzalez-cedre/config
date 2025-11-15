@@ -53,6 +53,12 @@
     au VimEnter * onoremap <silent> ia i<
     au VimEnter * xnoremap <silent> ia i<
 
+    au VimEnter * onoremap <silent> ac a{
+    au VimEnter * xnoremap <silent> ac a{
+
+    au VimEnter * onoremap <silent> ic i{
+    au VimEnter * xnoremap <silent> ic i{
+
     au VimEnter * omap <silent> ad af$
     au VimEnter * xmap <silent> ad af$
 
