@@ -117,7 +117,7 @@ function! s:gruvbox_material_settings()
   let g:gruvbox_material_diagnostic_text_highlight = 0  " (0), 1
   let g:gruvbox_material_diagnostic_line_highlight = 0  " (0), 1
   let g:gruvbox_material_diagnostic_virtual_text = 'colored'  " (grey), colored, highlighted
-  " let g:gruvbox_material_better_performance = 1  " (0), 1
+  let g:gruvbox_material_better_performance = 0  " (0), 1
 endfunction
 
 function! s:gruvbox_material_colors()
@@ -190,7 +190,7 @@ function! s:gruvbox_material_colors()
   " highlight HighlightedyankRegion cterm=reverse gui=reverse
 
   " highlight ExtraWhitespace ctermbg=red guibg=red
-  call gruvbox_material#highlight('ExtraWhitespace', l:palette.none, l:palette.bg2)
+  call gruvbox_material#highlight('ExtraWhitespace', l:palette.none, l:palette.bg3)
 endfunction
 
 function! s:gitgutter_colors()

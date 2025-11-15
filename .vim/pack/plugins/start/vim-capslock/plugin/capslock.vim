@@ -123,5 +123,3 @@ endif
 " }}}1
 
 let &cpo = s:cpo_save
-
-" vim:set sw=2 et:

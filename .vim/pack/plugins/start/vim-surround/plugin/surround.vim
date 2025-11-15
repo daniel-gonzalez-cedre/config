@@ -210,27 +210,31 @@ function! s:wrap(string,char,type,removed,special)
       endif
     endif
   " elseif newchar ==# 'l' || newchar == '\'
-  elseif newchar == "g"
+  elseif newchar == 'g'
     " asterisk
     let before = '`'
     let after  = '`'
-  elseif newchar == "h"
+  elseif newchar == 'h'
     " asterisk
     let before = '#'
     let after  = '#'
-  elseif newchar == "d"
+  elseif newchar == 'd'
     " dollar
     let before = '$'
     let after  = '$'
-  elseif newchar == "x"
+  elseif newchar == 'x'
     " asterisk
     let before = '*'
     let after  = '*'
-  elseif newchar == "u"
+  elseif newchar == 'u'
     " underlines
     let before = '_'
     let after  = '_'
-  elseif newchar == "q" || newchar == "\<c-q>"
+  elseif newchar == 'q' || newchar == "\<c-q>"
+    " quotes
+    let before = '"'
+    let after  = '"'
+  elseif newchar == 'Q' || newchar == "\<c-q>"
     " LaTeX quotes
     let before = '``'
     let after  = "''"

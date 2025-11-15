@@ -3,4 +3,9 @@ function! CapsLockStatus()
   return l:capstatus
 endfunction
 
-nnoremap <silent> <c-g>c <plug>CapsLockToggle
+nmap <silent> <c-f>s <plug>CapsLockEnable
+nmap <silent> <c-g>s <plug>CapsLockDisable
+imap <silent> <c-f>s <Plug>CapsLockEnable
+imap <silent> <c-g>s <Plug>CapsLockDisable
+cmap <silent> <c-f>s <Plug>CapsLockEnable
+cmap <silent> <c-g>s <Plug>CapsLockDisable
