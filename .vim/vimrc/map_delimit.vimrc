@@ -20,6 +20,8 @@
 
     au VimEnter * imap <silent> <c-f>h #
 
+    au VimEnter * imap <silent> <c-f>t ~
+
     au VimEnter * imap <silent> <c-f>d $
     au VimEnter * imap <silent> <c-g>d $
 
