@@ -1,4 +1,5 @@
 #import "@local/colors:0.0.1": *
+#import "@local/fonts:0.0.1": *
 #import "@local/maths:0.0.1": *
 #import "@local/defs:0.0.1": *
 
@@ -7,101 +8,44 @@
 #let page-margin-right = (3.125in, 2.25in).at(1)
 #let fullwidth(content) = block(width: 100.0% + (page-margin-right - 1.0125in), content)
 
-#let apostille = sidenote.with(
-  dy: 1.0pt,
-  numbering: none,
-  side: left,
-  format: it => {
-    set align(right)
-    set text(style: "italic", size: 9.0pt)
-    it.default
-  }
-)
-#let marginale = sidenote.with(
-  dy: 1.0pt,
-  numbering: none,
-  padding: (
-    left: 2.0em,
-    right: 5.0em
+#let apostille( ..args ) = {
+  set text(size: 11.0pt, style: "italic")
+  sidenote(
+    dy: 1.0pt,
+    numbering: none,
+    side: left,
+    format: it => {
+      set align(right)
+      it.default
+    },
+    ..args
   )
-)
-#let marginalis = sidenote.with(
-  dy: 1.0pt,
-  numbering: "1",
-  padding: (
-    left: 2.0em,
-    right: 5.0em
+}
+#let marginale( ..args ) = {
+  set text(size: 11.0pt)
+  sidenote(
+    dy: 1.0pt,
+    numbering: none,
+    padding: (
+      left: 2.0em,
+      right: 4.0em
+    ),
+    format: it => { it.default },
+    ..args
   )
-)
-
-#let serif(size: 11.0pt) = (
-  font: "ETbb",
-  size: size,
-  fill: color.light.fg1,
-  number-type: "old-style",
-  number-width: "proportional",
-)
-
-#let sans-serif(size: 11.0pt, tracking: 6.0pt, max-size: 48.0pt) = (
-  font: "Gill Sans",
-  size: size,
-  fill: color.light.fg1,
-  tracking: if tracking == 0.0pt {
-    0.0pt
-  } else {
-    float(repr(tracking).split("p").at(0)) * float(repr(size).split("p").at(0)) / 48.0 * 1.0pt
-  }
-)
-
-#let monospace(size: 11.0pt) = (
-  font: "TX-02",
-  size: size,
-  fill: color.light.fg1,
-)
-
-#let coverauthorblock(author) = {
-  place(top + left, {
-    set text( ..sans-serif(size: 20.0pt) )
-    align(left, upper(author))
-  })
 }
-
-#let covertitleblock(title: none) = {
-  place(horizon + left, {
-    set text( hyphenate: false, ..sans-serif(size: 48.0pt) )
-    v(1.0fr)
-    for word in title.split() {
-      [#upper(word)]
-      v(- 32.0pt)
-    }
-    v(2.0fr)
-  })
-}
-
-#let coverdateblock(publisher, date) = {
-  place(bottom + center, {
-    set text( ..sans-serif(size: 14.0pt) )
-    if publisher != none {
-      [#upper(publisher) #h(1.0fr) #upper(displaydate(date))]
-    } else {
-      [#h(1.0fr) #upper(displaydate(date))]
-    }
-  })
-}
-
-#let part(title) = {
-  // pagebreak(weak: true)
-  page(header: none, footer: none)[
-    #place(horizon + left, {
-      v(1.0fr)
-      figure(
-        kind: "part",
-        supplement: none,
-        title
-      )
-      v(2.0fr)
-    })
-  ]
+#let marginalis( ..args ) = {
+  set text(size: 11.0pt)
+  sidenote(
+    dy: 1.0pt,
+    numbering: "1",
+    padding: (
+      left: 2.0em,
+      right: 4.0em
+    ),
+    format: it => { it.default },
+    ..args
+  )
 }
 
 #let article(
@@ -126,21 +70,24 @@
 
   set page(
     paper: paper,
-    fill: if paper_color == "natural" { color.misc.natural } else { color.misc.bleached },
+    fill: if paper_color == "natural" { color.paper.natural } else { color.paper.bleached },
     number-align: center,
     header: none,
     footer: none,
   )
 
-  set par(justify: true)
+  set par(
+    justify: true,
+    // leading: 0.65em,
+  )
 
-  show quote: set text( ..serif(size: 10.0pt), style: "italic" )
+  show quote: set text( ..fonts.serif, size: 10.0pt, style: "italic" )
   show quote: set pad(left: 1in, right: 0in)
   set quote(block: true)
   show quote.where(block: true): it => {
     set par(justify: false)
     set align(left)
-    set text( ..serif(size: 10.0pt) )
+    set text( ..fonts.serif, size: 10.0pt )
     pad(
       left: 1.0in,
       right: 0.0in,
@@ -150,12 +97,22 @@
     )
   }
 
-  set text( ..serif() )
-  show raw: set text(font: "TX-02")
+  set text( ..fonts.serif, size: 11.0pt )
+  // show math.equation: set text( ..fonts.mono, size: 11.0pt )
+  show raw: set text( ..fonts.mono, size: 9.0pt )
+  // show math.text: text.with( ..fonts.serif, size: 11.0pt )
+
+  set underline(
+    offset: 2.0pt,
+    stroke: (
+      cap: "round",
+      dash: "dotted",
+    )
+  )
 
   show figure: set figure.caption(separator: [.#h(0.5em)])
   show figure.caption: set align(left)
-  show figure.caption: set text( ..serif() )
+  show figure.caption: set text( ..fonts.serif )
 
   set enum(indent: 1.0em, body-indent: 1.0em)
   show enum: set par(justify: false)
@@ -168,17 +125,16 @@
   show figure.where(kind: image): set figure(supplement: [Fig.], numbering: "1")
   show figure.where(kind: raw): set figure(supplement: [Alg.], numbering: "1")
   show figure.where(kind: raw): set figure.caption(position: top)
-  show figure.where(kind: "part"): set text( ..serif(size: 24.0pt), style: "italic", weight: "bold" )
 
   show heading.where(level: 1): it => {
-    set text( ..serif(size: 22.0pt), style: "italic" )
+    set text( ..fonts.serif, size: 22.0pt, style: "italic" )
     block(
       v(32.0pt + 48.0pt)
       + it.body
     )
   }
   show outline.entry.where(level: 1): set block(above: 32.0pt, below: 12.0pt)
-  show outline.entry.where(level: 1): set text( ..serif(size: 16.0pt), style: "italic", weight: "bold" )
+  show outline.entry.where(level: 1): set text( ..fonts.serif, size: 16.0pt, style: "italic", weight: "bold" )
   show outline.entry.where(level: 1): it => link(
     it.element.location(),
     it.indented(
@@ -187,7 +143,7 @@
     ),
   )
   show outline.entry.where(level: 2): set block(above: 8.0pt, below: 8.0pt)
-  show outline.entry.where(level: 2): set text( ..serif(size: 11.0pt), style: "italic", weight: "bold" )
+  show outline.entry.where(level: 2): set text( ..fonts.serif, size: 11.0pt, style: "italic", weight: "bold" )
   show outline.entry.where(level: 2): it => link(
     it.element.location(),
     it.indented(
@@ -196,7 +152,7 @@
     ),
   )
   show outline.entry.where(level: 3): set block(above: 8.0pt, below: 8.0pt)
-  show outline.entry.where(level: 3): set text( ..serif(size: 11.0pt), style: "italic", weight: "regular" )
+  show outline.entry.where(level: 3): set text( ..fonts.serif, size: 11.0pt, style: "italic", weight: "regular" )
   show outline.entry.where(level: 3): it => link(
     it.element.location(),
     it.indented(
@@ -209,8 +165,10 @@
     margin: (right: page-margin-right, rest: auto),
     header: context {
       fullwidth(
-        smallcaps(lower(title))
+        emph(displaydate(date))
         + h(1.0fr)
+        + smallcaps(lower(title))
+        + h(2.0em)
         + counter(page).display()
         + v(1.0em)
       )
@@ -219,7 +177,7 @@
 
   set heading(numbering: "1.1")
   show heading.where(level: 1): it => {
-    set text( ..serif(size: 18.0pt), style: "italic", weight: "bold" )
+    set text( ..fonts.serif, size: 18.0pt, style: "italic", weight: "bold" )
     block(
       above: 22.0pt,
       below: 16.0pt,
@@ -228,7 +186,7 @@
     )
   }
   show heading.where(level: 2): it => {
-    set text( ..serif(size: 13.0pt), style: "italic", weight: "bold" )
+    set text( ..fonts.serif, size: 13.0pt, style: "italic", weight: "bold" )
     block(
       above: 22.0pt,
       below: 16.0pt,
@@ -237,18 +195,18 @@
     )
   }
   show heading.where(level: 3): it => {
-    set text( ..serif(size: 11.0pt), style: "italic", weight: "regular" )
+    set text( ..fonts.serif, size: 11.0pt, style: "italic", weight: "regular" )
     block(
       llap[#counter(heading).display()#h(12.0pt)]
       + it.body
     )
   }
 
-  show link: set text(luma(50))
+  // show link: set text(luma(50))
 
   doc
 
-  show bibliography: set text( ..serif(size: 9.0pt) )
+  show bibliography: set text( ..fonts.serif, size: 9.0pt )
   show bibliography: set par(justify: false)
   set bibliography(title: none)
   if bib != none {

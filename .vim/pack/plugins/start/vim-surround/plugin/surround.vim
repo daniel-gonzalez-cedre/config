@@ -26,7 +26,7 @@ function! s:inputtarget()
   if c == " "
     let c .= s:getchar()
   endif
-  if c =~ "\<Esc>\|\<C-C>\|\0"
+  if c =~ "\<esc>\|\<c-c>\|\0"
     return ""
   else
     return c
@@ -38,7 +38,7 @@ function! s:inputreplacement()
   if c == " "
     let c .= s:getchar()
   endif
-  if c =~ "\<Esc>" || c =~ "\<C-C>"
+  if c =~ "\<esc>" || c =~ "\<c-c>"
     return ""
   else
     return c
@@ -46,7 +46,7 @@ function! s:inputreplacement()
 endfunction
 
 function! s:beep()
-  exe "norm! \<Esc>"
+  exe "norm! \<esc>"
   return ""
 endfunction
 
@@ -164,7 +164,7 @@ function! s:wrap(string,char,type,removed,special)
   elseif newchar ==# ':'
     let before = ':'
     let after = ''
-  elseif newchar =~# "[tT\<C-T>]"
+  elseif newchar =~# "[tT]"
     let dounmapp = 0
     let dounmapb = 0
     if !maparg(">","c")
@@ -173,12 +173,12 @@ function! s:wrap(string,char,type,removed,special)
       exe "cn"."oremap > ><CR>"
     endif
     let default = ""
-    if newchar ==# "T"
-      if !exists("s:lastdel")
-        let s:lastdel = ""
-      endif
-      let default = matchstr(s:lastdel,'<\zs.\{-\}\ze>')
-    endif
+    " if newchar ==# "T"
+    "   if !exists("s:lastdel")
+    "     let s:lastdel = ""
+    "   endif
+    "   let default = matchstr(s:lastdel,'<\zs.\{-\}\ze>')
+    " endif
     let tag = input("<",default)
     if dounmapb
       silent! cunmap >
@@ -200,7 +200,7 @@ function! s:wrap(string,char,type,removed,special)
         let before = '<'.tag.attributes.'>'
         let after  = '</'.substitute(tag,' .*','','').'>'
       endif
-      if newchar == "\<C-T>"
+      if newchar == "T"
         if type ==# "v" || type ==# "V"
           let before .= "\n\t"
         endif
@@ -230,30 +230,26 @@ function! s:wrap(string,char,type,removed,special)
     " underlines
     let before = '_'
     let after  = '_'
-  elseif newchar == 'q' || newchar == "\<c-q>"
+  elseif newchar == 'q'
     " quotes
     let before = '"'
     let after  = '"'
-  elseif newchar == 'Q' || newchar == "\<c-q>"
-    " LaTeX quotes
-    let before = '``'
-    let after  = "''"
-  elseif newchar ==# 'e' || newchar == '\'
-  " elseif newchar == '\'
-    " LaTeX
-    let env = input('\begin{')
-    if env != ""
-      let s:input = env."\<CR>"
-      let env = '{' . env
-      let env .= s:closematch(env)
-      echo '\begin'.env
-      let before = '\begin'.env
-      let after  = '\end'.matchstr(env,'[^}]*').'}'
-    endif
+  " elseif newchar ==# 'e' || newchar == '\'
+  " " elseif newchar == '\'
+  "   " LaTeX
+  "   let env = input('\begin{')
+  "   if env != ""
+  "     let s:input = env."\<CR>"
+  "     let env = '{' . env
+  "     let env .= s:closematch(env)
+  "     echo '\begin'.env
+  "     let before = '\begin'.env
+  "     let after  = '\end'.matchstr(env,'[^}]*').'}'
+  "   endif
   elseif newchar ==# 'f' || newchar ==# 'F'
     let fnc = input('function: ')
     if fnc != ""
-      let s:input = fnc."\<CR>"
+      let s:input = fnc."\<cr>"
       let before = substitute(fnc,'($','','').'('
       let after  = ')'
       if newchar ==# 'F'
@@ -261,7 +257,7 @@ function! s:wrap(string,char,type,removed,special)
         let after = ' ' . after
       endif
     endif
-  elseif newchar ==# "\<C-F>"
+  elseif newchar ==# "\<c-f>"
     let fnc = input('function: ')
     let s:input = fnc."\<CR>"
     let before = '('.fnc.' '
@@ -271,7 +267,7 @@ function! s:wrap(string,char,type,removed,special)
     let idx = idx / 3 * 3
     let before = strpart(pairs,idx+1,1) . spc
     let after  = spc . strpart(pairs,idx+2,1)
-  elseif newchar == "\<C-[>" || newchar == "\<C-]>"
+  elseif newchar == "\<c-[>" || newchar == "\<c-]>"
     let before = "{\n\t"
     let after  = "\n}"
   elseif newchar !~ '\a'
@@ -318,7 +314,7 @@ function! s:wrap(string,char,type,removed,special)
   endif
   if type ==# 'V'
     let keeper = before.keeper.after
-  elseif type =~ "^\<C-V>"
+  elseif type =~ "^\<c-v>"
     " Really we should be iterating over the buffer
     let repl = substitute(before,'[\\~]','\\&','g').'\1'.substitute(after,'[\\~]','\\&','g')
     let repl = substitute(repl,'\n',' ','g')
@@ -418,6 +414,27 @@ function! s:dosurround(...) " {{{1
   endif
   if char == 'r'
     let char = ']'
+  endif
+  if char == 'g'
+    let char = '`'
+  endif
+  if char == 'h'
+    let char = '#'
+  endif
+  if char == 'd'
+    let char = '$'
+  endif
+  if char == 'd'
+    let char = '$'
+  endif
+  if char == 'x'
+    let char = '*'
+  endif
+  if char == 'u'
+    let char = '_'
+  endif
+  if char == 'q'
+    let char = '"'
   endif
   let newchar = ""
   if a:0 > 1

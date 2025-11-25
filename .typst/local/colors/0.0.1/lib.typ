@@ -1,4 +1,10 @@
 #let color = (
+  white: rgb("#FBF7F1"),
+  black: rgb("#141617"),
+  off: (
+    white: rgb("#F6F5F2"),
+    black: rgb("#252422"),
+  ),
   light: (
     bg0: rgb("#F9F5D7"),
     bg1: rgb("#F5EDCA"),
@@ -52,11 +58,15 @@
     orange: rgb("#ff5430"),
     gold:   rgb("#ea9c00"),
   ),
+  paper: (
+    sepia:  rgb("#F7F0E4"),
+    natural:  rgb("#FBF7F1"),
+    bleached:  rgb("#FFFFFF"),
+  ),
   misc: (
     sepia:  rgb("#F7F0E4"),
     butter: rgb("#FBF7F1"),
     cream:  rgb("#F6F5F2"),
-    natural:  rgb("#FBF7F1"),
-    bleached:  rgb("#FFFFFF"),
+    clarified:  rgb("#FDFBF8"),
   ),
 )
