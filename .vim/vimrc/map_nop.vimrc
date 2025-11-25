@@ -1,8 +1,14 @@
+" augroup nop_mappings | au!
+"   let &t_TI = ""
+"   let &t_TE = ""
+"   " noremap 
+" augroup END
+
+
 " silence macro recording
 noremap <silent> q <nop>
-noremap <silent> Qq q
+noremap <silent> Qq <nop>
 noremap QQ Q
-" noremap <leader><c-q> q
 
 noremap <silent> <c-f> <nop>
 
@@ -19,7 +25,8 @@ nnoremap Zx <nop>
 
 " unmap tmux leader key
 noremap <c-b> <nop>
-noremap! <c-b> <nop>
+inoremap <c-b> <nop>
+" noremap! <c-b> <nop>
 
 " nnoremap <s-up> <nop>
 " nnoremap <s-down> <nop>
@@ -37,13 +44,11 @@ nnoremap <silent><cr> <nop>
 nnoremap <silent><bs> <nop>
 nnoremap <silent><del> <nop>
 
-noremap <silent> <c-c> <esc><esc>
-inoremap <silent> <c-c> <esc><esc>
-" nnoremap <silent> <c-c> :noh<bar>:echo<cr><esc><esc>
-" inoremap <silent> <c-c> <esc><esc>:noh<bar>:echo<cr>
-" vnoremap <silent> <c-c> <c-c><c-c>`<
+noremap <silent> <c-c> <esc>
+inoremap <silent> <c-c> <esc>
 
-map <s-cr> <cr>
+noremap <s-cr> <nop>
+noremap <c-cr> <nop>
 " nmap <c-cr> <cr>
 " vmap <c-cr> <cr>
 " nmap <s-bs> <bs>

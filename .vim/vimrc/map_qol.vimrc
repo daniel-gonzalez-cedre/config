@@ -166,7 +166,7 @@
     nnoremap [f zk
     nnoremap ]f zj
 
-    inoremap <c-]> <del>
+    " inoremap <c-]> <del>
 
   " vnoremap <expr> i mode()=~'\cv' ? 'i' : 'I'
   " vnoremap <expr> a mode()=~'\cv' ? 'a' : 'A'

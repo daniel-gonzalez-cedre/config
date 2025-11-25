@@ -1,4 +1,4 @@
-hs.ipc.cliInstall("/opt/homebrew")
+-- hs.ipc.cliInstall("/opt/homebrew")
 
 -- valid strings:
 --

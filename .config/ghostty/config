@@ -33,15 +33,17 @@ window-theme = system
 
 # FONT-SIZE = 11 => PADDING = 3
 # FONT-SIZE = 12 => PADDING = 7
-window-padding-x = 3
-window-padding-y = 3
+window-padding-x = 0
+window-padding-y = 0
 window-padding-balance = true
 window-padding-color = background
 
 resize-overlay = never
 resize-overlay-position = top-right
 
-macos-titlebar-style = hidden
+bell-features = "no-system,no-audio,no-attention,no-title,no-border"
+
+macos-titlebar-style = tabs
 macos-titlebar-proxy-icon = hidden
 macos-window-shadow = true
 macos-icon = custom-style
@@ -59,8 +61,8 @@ quick-terminal-animation-duration = 0
 # AUTO-UPDATE:
 #   off, check, download
 #   stable, tip
-auto-update = check
-auto-update-channel = tip
+# auto-update = check
+# auto-update-channel = tip
 
 keybind = super+comma=reload_config
 
@@ -68,6 +70,7 @@ keybind = global:ctrl+q=toggle_quick_terminal
 # keybind = global:ctrl+shift+t=toggle_quick_terminal
 # keybind = global:ctrl+shift+q=toggle_quick_terminal
 
+keybind = ctrl+enter=unbind
 keybind = ctrl+tab=unbind
 keybind = shift+ctrl+tab=unbind
 

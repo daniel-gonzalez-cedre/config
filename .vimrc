@@ -3,10 +3,12 @@
 noremap <silent> <space> <nop>
 let mapleader = "\<space>"
 
+let keyprotocol = ""
+
 source ~/.vim/vimrc/init.vimrc
 
-source ~/.vim/vimrc/map_delimit.vimrc  " TODO
 source ~/.vim/vimrc/map_nop.vimrc      " TODO
+source ~/.vim/vimrc/map_delimit.vimrc  " TODO
 source ~/.vim/vimrc/map_search.vimrc   " TODO
 source ~/.vim/vimrc/map_toggle.vimrc   " TODO
 source ~/.vim/vimrc/map_qol.vimrc      " TODO

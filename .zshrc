@@ -138,9 +138,9 @@ function path_info() {
 
 function prompt_path() {
   if [[ $PWD:h == "/" || $PWD == $HOME ]]; then
-    echo "${fgcode[blue]}${bgcode[clear]}"
+    echo "${fgcode[blue]}${bgcode[clear]} "
   else
-    print -P "${fgcode[blue]}${bgcode[clear]}${fgcode[background]}${bgcode[blue]}"'${${PWD:h}/$HOME/~}'"${fgcode[blue]}${bgcode[blue]}"
+    print -P "${fgcode[blue]}${bgcode[clear]}${fgcode[background]}${bgcode[blue]} "'${${PWD:h}/$HOME/~}'" ${fgcode[blue]}${bgcode[blue]}"
   fi
 }
 function prompt_git() {
@@ -157,22 +157,22 @@ function prompt_git_pre() {
   if [[ -z "$BRANCH" ]]; then
     echo ""
   else
-    echo "${fgcode[$1]}${bgcode[$2]} "
+    echo "${fgcode[$1]}${bgcode[$2]} "
   fi
 }
 function prompt_git_post() {
   local BRANCH=$(git symbolic-ref --short HEAD 2> /dev/null)
   if [[ -z "$BRANCH" ]]; then
     if [[ -z $VIRTUAL_ENV ]]; then
-      echo "${fgcode[$1]}${bgcode[$4]} "
+      echo "${fgcode[$1]}${bgcode[$4]}"
     else
-      echo "${fgcode[$1]}${bgcode[$3]} "
+      echo "${fgcode[$1]}${bgcode[$3]} "
     fi
   else
     if [[ -z $VIRTUAL_ENV ]]; then
-      echo "${fgcode[$2]}${bgcode[$4]} "
+      echo " ${fgcode[$2]}${bgcode[$4]}"
     else
-      echo "${fgcode[$2]}${bgcode[$3]} "
+      echo " ${fgcode[$2]}${bgcode[$3]} "
     fi
   fi
 }
@@ -191,7 +191,7 @@ function prompt_venv_post() {
   if [[ -z "$VIRTUAL_ENV" ]]; then
     echo ""
   else
-    echo "${fgcode[$1]}${bgcode[$2]} "
+    echo " ${fgcode[$1]}${bgcode[$2]} "
   fi
 }
 
@@ -204,7 +204,7 @@ function prompt_venv_post() {
   VENVCOLOR="green"
   MACHINECOLOR="grey"
   TIMECOLOR="clear"
-  LAMBDACOLOR="purple"
+  LAMBDACOLOR="yellow"
 
   local USER="%n"
   local MACHINE="%m"
@@ -221,30 +221,27 @@ function prompt_venv_post() {
   local width='$(($COLUMNS/5))'
   local PATHSTR="%${width}<...<%1~%<<"
 
-  TOPLINE="${fgcode[$USERCOLOR]}${bgcode[clear]}"
-  TOPLINE+="${fgcode[background]}${bgcode[$USERCOLOR]}${USER}"
-  TOPLINE+="${fgcode[$USERCOLOR]}${bgcode[$PATHCOLOR]} "
-  # TOPLINE+="${fgcode[$PATHCOLOR]}${bgcode[$USERCOLOR]} "
-  TOPLINE+="${fgcode[background]}${bgcode[$PATHCOLOR]}${PATHSTR}"
-  # TOPLINE+="${fgcode[background]}${bgcode[blue]}${PATH_SUFFIX}"
-  TOPLINE+='$(prompt_git_pre $PATHCOLOR $GITCOLOR $LAMBDACOLOR)'
-  TOPLINE+="${fgcode[background]}${bgcode[$GITCOLOR]}${GIT}"
-  TOPLINE+='$(prompt_git_post $PATHCOLOR $GITCOLOR $VENVCOLOR $LAMBDACOLOR)'
-  TOPLINE+="${fgcode[background]}${bgcode[$VENVCOLOR]}${VENV}"
-  # TOPLINE+='$(prompt_venv_post $VENVCOLOR $TIMECOLOR)'
-  TOPLINE+='$(prompt_venv_post $VENVCOLOR $LAMBDACOLOR)'
+  LINE=""
+  # TOPLINE+="${fgcode[$USERCOLOR]}${bgcode[$USERCOLOR]} "
+  LINE+="${fgcode[background]}${bgcode[$USERCOLOR]} ${USER} "
+  # TOPLINE+=" ${fgcode[$USERCOLOR]}${bgcode[$PATHCOLOR]} "
+  LINE+="${fgcode[background]}${bgcode[$PATHCOLOR]} ${PATHSTR} "
+  LINE+='$(prompt_git_pre $PATHCOLOR $GITCOLOR $LAMBDACOLOR)'
+  LINE+="${fgcode[background]}${bgcode[$GITCOLOR]}${GIT}"
+  LINE+='$(prompt_git_post $PATHCOLOR $GITCOLOR $VENVCOLOR $LAMBDACOLOR)'
+  LINE+="${fgcode[background]}${bgcode[$VENVCOLOR]}${VENV}"
+  LINE+='$(prompt_venv_post $VENVCOLOR $LAMBDACOLOR)'
   # TOPLINE+="${fgcode[background]}${bgcode[$MACHINECOLOR]}${MACHINE}"
-  # TOPLINE+="${fgcode[$MACHINECOLOR]}${bgcode[$TIMECOLOR]} "
   # TOPLINE+="${fgcode[background]}${bgcode[$TIMECOLOR]}${TIME}"
-  # TOPLINE+="${fgcode[$TIMECOLOR]}${bgcode[clear]}"
-  TOPLINE+="${fgcode[clear]}${bgcode[clear]}"
+  LINE+="${fgcode[clear]}${bgcode[clear]}"
 
-  BOTLINE="${fgcode[$LAMBDACOLOR]}${bgcode[background]}${fgcode[background]}${bgcode[$LAMBDACOLOR]}%Bλ%b${fgcode[$LAMBDACOLOR]}${bgcode[background]}${fgcode[clear]}${bgcode[clear]} "
-  ENDLINE="${fgcode[background]}${bgcode[$LAMBDACOLOR]}%Bλ%b${fgcode[$LAMBDACOLOR]}${bgcode[background]}${fgcode[clear]}${bgcode[clear]} "
+  # BOTLINE="${fgcode[$LAMBDACOLOR]}${bgcode[background]}${fgcode[background]}${bgcode[$LAMBDACOLOR]}%Bλ%b${fgcode[$LAMBDACOLOR]}${bgcode[background]}${fgcode[clear]}${bgcode[clear]} "
+  # ENDLINE="${fgcode[background]}${bgcode[$LAMBDACOLOR]}%Bλ%b${fgcode[$LAMBDACOLOR]}${bgcode[background]}${fgcode[clear]}${bgcode[clear]} "
+  ENDLINE="${fgcode[background]}${bgcode[$LAMBDACOLOR]} %Bλ%b ${fgcode[clear]}${bgcode[clear]} "
 
   # precmd() { print -P "${TOPLINE}" }
   # PROMPT="${BOTLINE}"
-  PROMPT="${TOPLINE}${ENDLINE}"
+  PROMPT="${LINE}${ENDLINE}"
 }
 
 command mkdir -p "$HOME/.config"
@@ -266,8 +263,7 @@ export GREP_OPTIONS="--color=auto"  # --line-buffered
 export CONFIG=${HOME}/config
 
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ] && [ "$TERM_PROGRAM" != "WezTerm" ] && [ "$TERM_PROGRAM" != "iTerm.app" ]; then
-  # export TERM=alacritty
-  export TERM=xterm-256color
+  export TERM=xterm-ghostty
 else
   export TERM=xterm-256color
 fi
