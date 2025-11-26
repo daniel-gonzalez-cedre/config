@@ -5,10 +5,10 @@
 #   "CommitMono-450-01111-00000011000"
 # font-family = "CommitMono-450-01111-00000011000"
 font-family = "TX-02"
-font-style = "Medium"
-font-style-italic = "Medium Oblique"
-font-style-bold = "ExtraBold"
-font-style-bold-italic = "ExtraBold Oblique"
+# font-style = "Medium"
+# font-style-italic = "Medium Oblique"
+# font-style-bold = "ExtraBold"
+# font-style-bold-italic = "ExtraBold Oblique"
 font-size = 10
 
 # SYNTHETIC FONT STYLE GENERATION
