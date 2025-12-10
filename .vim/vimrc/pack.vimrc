@@ -2,15 +2,10 @@ let g:haskell_indent_if = 2
 let g:haskell_indent_case = 4
 let g:haskell_indent_guard = 5
 let g:incsearch#auto_nohlsearch = 1
-let g:latex_to_unicode_file_types = '.*'
 let g:python_highlight_all = 1
 let g:matchparen_timeout = 8
 let g:matchparen_insert_timeout = 8
 let g:tex_flavor = 'latex'
-
-let g:fanfingtastic_all_inclusive = 1
-let g:fanfingtastic_fix_t = 1
-let g:fanfingtastic_ignorecase = 1
 
 " MARKS IN SIGN GUTTER
 " packadd! vim-signature

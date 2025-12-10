@@ -3,6 +3,11 @@ syntax enable
 silent
 runtime ftplugin/man.vim
 
+noremap <silent> <space> <nop>
+let mapleader = "\<space>"
+
+let keyprotocol = ""
+
 augroup init_settings | au!
   " uncomment this line ∨∨∨
   " au VimEnter,BufEnter,BufNewFile,BufReadPost * set nospell

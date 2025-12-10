@@ -61,8 +61,8 @@ quick-terminal-animation-duration = 0
 # AUTO-UPDATE:
 #   off, check, download
 #   stable, tip
-# auto-update = check
-# auto-update-channel = tip
+auto-update = check
+auto-update-channel = stable
 
 keybind = super+comma=reload_config
 
@@ -78,6 +78,11 @@ keybind = super+z=toggle_split_zoom
 keybind = super+enter=toggle_split_zoom
 
 keybind = super+equal=equalize_splits
+
+keybind = super+h=goto_split:left
+keybind = super+j=goto_split:down
+keybind = super+k=goto_split:up
+keybind = super+l=goto_split:right
 
 keybind = super+left=goto_split:left
 keybind = super+down=goto_split:down

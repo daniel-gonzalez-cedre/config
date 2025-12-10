@@ -1,23 +1,20 @@
 augroup set_settings | au!
-  au BufNewFile,BufRead,BufEnter * set formatoptions=tjcrqn
+  au BufEnter * set formatoptions=tjcrqn
+
+  au BufEnter * set autoindent
+  au BufEnter * set expandtab
+  au BufEnter * set smarttab
+  au BufEnter * set shiftwidth=2
+  au BufEnter * set softtabstop=2
+  au BufEnter * set tabstop=8
 augroup END
-" augroup set_settings | au!
-"   au BufNewFile,BufRead * set formatoptions=tjcrqn
-"   " au BufNewFile,BufRead * set formatoptions-=c
-"   " au BufNewFile,BufRead * set formatoptions-=o
-"   " au BufNewFile,BufRead * set formatoptions+=r
-"   " au BufNewFile,BufRead * set formatoptions+=j
-" augroup END
+
 set background=dark
 set backspace=indent,eol,start
 set cursorline
 set display+=lastline
-" set formatoptions-=c
-" set formatoptions-=o
-" set formatoptions+=r
-" set formatoptions+=j
-set ignorecase
 
+set ignorecase
 set incsearch
 set hlsearch
 
@@ -39,58 +36,26 @@ set splitright
 set notimeout nottimeout
 set updatetime=100
 set wildmenu
-" set wildmode=list:longest,full
-" set number relativenumber
-" set scrolloff=2
 
-" POP-UP WINDOW
-
-" FOLDING
 set foldopen-=search
 set foldopen+=undo
 set foldcolumn=0
-" set foldignore=
 set foldlevelstart=99
 set foldmethod=indent
-" set foldmethod=manual
 
-" set fillchars+=foldsep:│,foldclose:╶
-" set fillchars+=foldopen:├,foldsep:│,foldclose:╶
-" set fillchars+=foldopen:┣,foldsep:┃,foldclose:╺
-" set fillchars+=foldopen:┏,foldsep:┃,foldclose:╺
-" set fillchars+=foldopen:▾,foldsep:│,foldclose:▸
-" set fillchars+=foldopen:▿,foldsep:│,foldclose:▷
 set fillchars+=fold:\ 
+set foldtext=ShowFoldText()
 " set foldtext=
-set foldtext=MyFoldText()
 
-function MyFoldText()
-  let line = getline(v:foldstart)
-  let sub = substitute(line, '/\*\|\*/\|{{{\d\=', '', 'g')
-  " let sub = substitute(sub, ' ', '+', '')
-  return sub
-endfunction
-
-" INDENTATION
-au FileType * set autoindent
-au FileType * set expandtab
-au FileType * set smarttab
-au FileType * set shiftwidth=2
-au FileType * set softtabstop=2
-au FileType * set tabstop=8
-
-" LINES & WRAPPING
 set breakindent
 set breakindentopt=sbr
 set linebreak
-" let &showbreak='>'
 set sidescroll=10
 set textwidth=0
 " set list
 " set listchars=nbsp:_,eol:⋅
 " " set listchars=multispace:_,nbsp:_,eol:$
 
-" FILETYPE SPECIFIC
 augroup rc_settings | au!
   au BufNewFile,BufRead .yabairc,yabairc,.skhdrc set filetype=sh
   au BufNewFile,BufRead .tmux.conf,.tmux.statusline set filetype=tmux

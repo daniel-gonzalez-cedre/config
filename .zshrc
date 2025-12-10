@@ -275,7 +275,7 @@ export PATH=~/.scripts:$PATH:~/.cargo/bin
 export PATH=$PATH:/Library/TeX/texbin
 # export PATH="$PYENV_ROOT/bin:$PATH"
 
-export TYPST_PACKAGE_PATH="/Users/cedre/.typst/"
+export TYPST_PACKAGE_PATH="/Users/cedre/typst/"
 
 export HOMEBREW_NO_ENV_HINTS=1
 export HOMEBREW_AUTO_UPDATE_SECS="86400"
