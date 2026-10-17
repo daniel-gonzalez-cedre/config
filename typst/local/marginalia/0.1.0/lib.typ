@@ -1,7 +1,7 @@
 #import "@preview/marginalia:0.3.1" as marginalia: show-frame, note, notefigure, wideblock
 
-#let _paper-size = state("_paper-size")
-#let _font-size = state("_font-size")
+#let _paper-size = state("_paper-size", "us-letter")
+#let _font-size = state("_font-size", 10pt)
 
 #let setup_defaults = (  // A4 paper size, 11pt font
   alternate: false,  // whether to alternate inner/outer on every page
@@ -139,6 +139,7 @@
   context marginalia.note(
     side: "outer",
     alignment: "baseline",
+    counter: counter("marginalis-page-" + str(here().page())),
     numbering: (..i) => super(numbering("1", ..i)),
     link-anchor: true,
     text-style: (
