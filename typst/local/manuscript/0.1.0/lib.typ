@@ -15,6 +15,7 @@
 
 #import "impl/src/formatting.typ" as formatting
 #import formatting: ca, cf, Eg, eg, etal, etc, ibid, Ie, ie, NB, nb, qv, qqv, sl, ss, vide, viz, vs, BC, AD
+#import formatting: diacritic
 #import formatting: define, hyperlink, url
 #import formatting: llap, display-date
 

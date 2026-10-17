@@ -21,6 +21,11 @@
 //   $scr(term)$
 // }
 
+#let display(body, ..args) = {
+  set math.lr(size: 100% + 2pt)
+  math.display(body, ..args)
+}
+
 #let nand = math.class("binary", math.overline(math.and))
 #let nor  = math.class("binary", math.overline(math.or))
 
@@ -139,29 +144,32 @@
   }
 }
 
-#let implies = context {
-  if query(selector(math.equation).before(here())).last().block {
-    h(0.75em, weak: true) + math.arrow.r.double + h(0.75em, weak: true)
-  } else {
-    math.space + math.arrow.r.double + math.space
-  }
-}
+#let implies = math.class("relation", math.arrow.double)
+// #let implies = context {
+//   if query(selector(math.equation).before(here())).last().block {
+//     h(0.75em, weak: true) + math.arrow.r.double + h(0.75em, weak: true)
+//   } else {
+//     math.space + math.arrow.r.double + math.space
+//   }
+// }
 
-#let impliedby = context {
-  if query(selector(math.equation).before(here())).last().block {
-    h(0.75em, weak: true) + math.arrow.l.double + h(0.75em, weak: true)
-  } else {
-    math.space + math.arrow.l.double + math.space
-  }
-}
+#let implied = math.class("relation", math.arrow.double.l)
+// #let impliedby = context {
+//   if query(selector(math.equation).before(here())).last().block {
+//     h(0.75em, weak: true) + math.arrow.l.double + h(0.75em, weak: true)
+//   } else {
+//     math.space + math.arrow.l.double + math.space
+//   }
+// }
 
-#let iff = context {
-  if query(selector(math.equation).before(here())).last().block {
-    h(0.75em, weak: true) + math.arrow.l.r.double + h(0.75em, weak: true)
-  } else {
-    math.space + math.arrow.l.r.double + math.space
-  }
-}
+#let iff = math.class("relation", math.arrow.double.l.r)
+// #let iff = context {
+//   if query(selector(math.equation).before(here())).last().block {
+//     h(0.75em, weak: true) + math.arrow.l.r.double + h(0.75em, weak: true)
+//   } else {
+//     math.space + math.arrow.l.r.double + math.space
+//   }
+// }
 
 #let syntax = (
   equiv: context {
