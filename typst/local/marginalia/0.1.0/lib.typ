@@ -92,7 +92,7 @@
   }
 
   show: marginalia.setup.with(
-    alternate: alternate,
+    book: alternate,
     inner: inner,
     outer: outer,
     top: vertical,
